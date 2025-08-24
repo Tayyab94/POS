@@ -34,7 +34,7 @@ namespace POS_Shop
                 }
 
                 // Show main profile form
-                using (var profile = new MainForm())
+                using (var profile = new MasterLayoutForm())
                 {
                     Application.Run(profile);
 
