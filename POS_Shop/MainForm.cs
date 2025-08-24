@@ -1,4 +1,7 @@
-﻿using System;
+﻿using POS_Shop.Helpers;
+using POS_Shop.Views;
+using POS_Shop.Views.Category;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,14 +24,83 @@ namespace POS_Shop
 
         private void logoutBtn_Click(object sender, EventArgs e)
         {
-            // Clear session
-            Properties.Settings.Default.IsLoggedIn = false;
-            Properties.Settings.Default.AuthToken = string.Empty;
-            Properties.Settings.Default.UserName = string.Empty;
-            Properties.Settings.Default.Save();
+           
+            SessionManager.Logout();
+            foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+            {
+                if (form != this)
+                    form.Close();
+                //form.Close();
+            }
+        }
+
+        private void CategoryBtn_Click(object sender, EventArgs e)
+        {
+            if (IsFormOpen<CategoryForm>())
+            {
+                // Bring existing form to front instead of opening a new one
+                var existingForm = Application.OpenForms.OfType<CategoryForm>().First();
+                existingForm.BringToFront();
+                return;
+            }
+
+            // Create and show new category form
+            var categoryForm = new CategoryForm();
+            categoryForm.FormClosed += (s, args) =>
+            {
+                UpdateButtonStates("CategoryForm"); // Re-enable button when form closes
+                NavigationHelper.ReturnToDashboard();
+            };
+            CategoryBtn.Enabled = false; // Immediately disable button
+
+            NavigationHelper.OpenForm(this, categoryForm);
+        }
 
 
-            this.Close();
+
+        private void CitySectionBtn_Click(object sender, EventArgs e)
+        {
+            if (IsFormOpen<CityForm>())
+            {
+                // Bring the existing form to front instead of Opening a new One
+                var existingForm= Application.OpenForms.OfType<CityForm>().First();
+                existingForm.BringToFront();
+                return;
+            }
+
+            var cityForm = new CityForm();
+            cityForm.FormClosed += (s, args) => UpdateButtonStates("CityForm");
+            CitySectionBtn.Enabled = false;
+            NavigationHelper.OpenForm(this, cityForm);
+        }
+
+        // Public method to update button states from child forms
+        public void UpdateButtonStates(string formName)
+        {
+            //// Disable CategoryBtn if any CategoryForm is already open
+            switch (formName)
+            {
+                case "CategoryForm":
+                    CategoryBtn.Enabled = !IsFormOpen<CategoryForm>();
+                    break;
+                case "CityForm":
+                    CitySectionBtn.Enabled = !IsFormOpen<CityForm>();
+                    break;
+                default:
+                    throw new ArgumentException("Unknown form name");
+            }
+         
+        }
+
+        // Helper method to check if a specific form type is open
+        private bool IsFormOpen<T>() where T : Form
+        {
+            return Application.OpenForms.OfType<T>().Any();
+        }
+
+        private void X_CloseBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

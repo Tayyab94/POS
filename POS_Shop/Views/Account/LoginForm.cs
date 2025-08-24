@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POS_Shop.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,10 @@ namespace POS_Shop.Views.Account
     {
         public LoginForm()
         {
+          
             InitializeComponent();
+            userNamelbl.AutoSize = true;
+            userPasswordLbl.AutoSize = true;
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
@@ -24,17 +28,20 @@ namespace POS_Shop.Views.Account
             if (string.IsNullOrWhiteSpace(userEmailTxt.Text) ||
                 string.IsNullOrWhiteSpace(UserPasswordTxt.Text))
             {
-                MessageBox.Show("Please enter both username and password");
+                MessageBox.Show("Please enter both username and password", "Warning",MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
 
             if (AuthenticateUser(userEmailTxt.Text, UserPasswordTxt.Text))
             {
-                Properties.Settings.Default.IsLoggedIn = true;
-                Properties.Settings.Default.AuthToken = GenerateToken();
-                Properties.Settings.Default.UserName = userEmailTxt.Text;
-                Properties.Settings.Default.Save();
+
+                SessionManager.Login(userEmailTxt.Text);
+
+                //Properties.Settings.Default.IsLoggedIn = true;
+                //Properties.Settings.Default.AuthToken = GenerateToken();
+                //Properties.Settings.Default.UserName = userEmailTxt.Text;
+                //Properties.Settings.Default.Save();
 
 
                 // this.Hide(); // Hide login form instead of closing if you might need it again
@@ -43,13 +50,14 @@ namespace POS_Shop.Views.Account
 
 
                 this.DialogResult = DialogResult.OK;
-                //this.Close();
+                this.Close();
 
 
             }
             else
             {
-                MessageBox.Show("Invalid username or password");
+                MessageBox.Show("Invalid username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -66,5 +74,6 @@ namespace POS_Shop.Views.Account
             return Guid.NewGuid().ToString();
         }
 
+    
     }
 }
