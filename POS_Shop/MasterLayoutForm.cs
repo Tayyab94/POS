@@ -1,4 +1,6 @@
-﻿using System;
+﻿using POS_Shop.Helpers;
+using POS_Shop.Views.Account;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +29,20 @@ namespace POS_Shop
         {
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(new Views.Controllers.Country.CountryControl1());
+        }
+
+        private void LogoutBtn_Click(object sender, EventArgs e)
+        {
+            SessionManager.Logout();
+            foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+            {
+                //if (form != this)
+                //    form.Close();
+                form.Close();
+            }
+
+            var loginForm = new LoginForm();
+            loginForm.Show();
         }
     }
 }
