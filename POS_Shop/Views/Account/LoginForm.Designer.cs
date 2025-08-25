@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties9 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties10 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -39,8 +40,6 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties16 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
-            this.loginFormLbl = new Bunifu.UI.WinForms.BunifuLabel();
             this.userEmailTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.UserPasswordTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.loginBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -48,7 +47,11 @@
             this.userPasswordLbl = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuLabel1 = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuLabel2 = new Bunifu.UI.WinForms.BunifuLabel();
-            this.bunifuPanel1.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.bunifuImageButton1 = new Bunifu.UI.WinForms.BunifuImageButton();
+            this.loginLbl = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -59,40 +62,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 653);
             this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // bunifuPanel1
-            // 
-            this.bunifuPanel1.AllowDrop = true;
-            this.bunifuPanel1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.bunifuPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuPanel1.BackgroundImage")));
-            this.bunifuPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuPanel1.BorderColor = System.Drawing.Color.Transparent;
-            this.bunifuPanel1.BorderRadius = 3;
-            this.bunifuPanel1.BorderThickness = 1;
-            this.bunifuPanel1.Controls.Add(this.loginFormLbl);
-            this.bunifuPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.bunifuPanel1.Location = new System.Drawing.Point(0, 0);
-            this.bunifuPanel1.Name = "bunifuPanel1";
-            this.bunifuPanel1.ShowBorders = true;
-            this.bunifuPanel1.Size = new System.Drawing.Size(280, 653);
-            this.bunifuPanel1.TabIndex = 1;
-            // 
-            // loginFormLbl
-            // 
-            this.loginFormLbl.AllowParentOverrides = false;
-            this.loginFormLbl.AutoEllipsis = false;
-            this.loginFormLbl.Cursor = System.Windows.Forms.Cursors.Default;
-            this.loginFormLbl.CursorType = System.Windows.Forms.Cursors.Default;
-            this.loginFormLbl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.loginFormLbl.Font = new System.Drawing.Font("Showcard Gothic", 19.8F);
-            this.loginFormLbl.Location = new System.Drawing.Point(0, 0);
-            this.loginFormLbl.Name = "loginFormLbl";
-            this.loginFormLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.loginFormLbl.Size = new System.Drawing.Size(196, 653);
-            this.loginFormLbl.TabIndex = 0;
-            this.loginFormLbl.Text = "Login Form";
-            this.loginFormLbl.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.loginFormLbl.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
             // userEmailTxt
             // 
@@ -253,7 +222,7 @@
             this.loginBtn.AutoSizeLeftIcon = true;
             this.loginBtn.AutoSizeRightIcon = true;
             this.loginBtn.BackColor = System.Drawing.Color.Transparent;
-            this.loginBtn.BackColor1 = System.Drawing.Color.DodgerBlue;
+            this.loginBtn.BackColor1 = System.Drawing.Color.SlateBlue;
             this.loginBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("loginBtn.BackgroundImage")));
             this.loginBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.loginBtn.ButtonText = "Login";
@@ -285,7 +254,7 @@
             this.loginBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
             this.loginBtn.IdleBorderRadius = 30;
             this.loginBtn.IdleBorderThickness = 1;
-            this.loginBtn.IdleFillColor = System.Drawing.Color.DodgerBlue;
+            this.loginBtn.IdleFillColor = System.Drawing.Color.SlateBlue;
             this.loginBtn.IdleIconLeftImage = null;
             this.loginBtn.IdleIconRightImage = null;
             this.loginBtn.IndicateFocus = false;
@@ -311,7 +280,7 @@
             this.loginBtn.OnIdleState.BorderRadius = 30;
             this.loginBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.loginBtn.OnIdleState.BorderThickness = 1;
-            this.loginBtn.OnIdleState.FillColor = System.Drawing.Color.DodgerBlue;
+            this.loginBtn.OnIdleState.FillColor = System.Drawing.Color.SlateBlue;
             this.loginBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
             this.loginBtn.OnIdleState.IconLeftImage = null;
             this.loginBtn.OnIdleState.IconRightImage = null;
@@ -397,12 +366,75 @@
             this.bunifuLabel2.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.bunifuLabel2.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.SlateBlue;
+            this.panel1.Controls.Add(this.bunifuImageButton1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(273, 653);
+            this.panel1.TabIndex = 8;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // bunifuImageButton1
+            // 
+            this.bunifuImageButton1.ActiveImage = null;
+            this.bunifuImageButton1.AllowAnimations = true;
+            this.bunifuImageButton1.AllowBuffering = false;
+            this.bunifuImageButton1.AllowToggling = false;
+            this.bunifuImageButton1.AllowZooming = false;
+            this.bunifuImageButton1.AllowZoomingOnFocus = false;
+            this.bunifuImageButton1.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuImageButton1.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.bunifuImageButton1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("bunifuImageButton1.ErrorImage")));
+            this.bunifuImageButton1.FadeWhenInactive = false;
+            this.bunifuImageButton1.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
+            this.bunifuImageButton1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuImageButton1.Image")));
+            this.bunifuImageButton1.ImageActive = null;
+            this.bunifuImageButton1.ImageLocation = null;
+            this.bunifuImageButton1.ImageMargin = 40;
+            this.bunifuImageButton1.ImageSize = new System.Drawing.Size(230, 51);
+            this.bunifuImageButton1.ImageZoomSize = new System.Drawing.Size(270, 91);
+            this.bunifuImageButton1.InitialImage = ((System.Drawing.Image)(resources.GetObject("bunifuImageButton1.InitialImage")));
+            this.bunifuImageButton1.Location = new System.Drawing.Point(0, 224);
+            this.bunifuImageButton1.Name = "bunifuImageButton1";
+            this.bunifuImageButton1.Rotation = 0;
+            this.bunifuImageButton1.ShowActiveImage = true;
+            this.bunifuImageButton1.ShowCursorChanges = true;
+            this.bunifuImageButton1.ShowImageBorders = true;
+            this.bunifuImageButton1.ShowSizeMarkers = false;
+            this.bunifuImageButton1.Size = new System.Drawing.Size(270, 91);
+            this.bunifuImageButton1.TabIndex = 0;
+            this.bunifuImageButton1.ToolTipText = "";
+            this.bunifuImageButton1.WaitOnLoad = false;
+            this.bunifuImageButton1.Zoom = 40;
+            this.bunifuImageButton1.ZoomSpeed = 10;
+            // 
+            // loginLbl
+            // 
+            this.loginLbl.AutoSize = true;
+            this.loginLbl.Font = new System.Drawing.Font("Ravie", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginLbl.ForeColor = System.Drawing.Color.SlateBlue;
+            this.loginLbl.Location = new System.Drawing.Point(375, 54);
+            this.loginLbl.Name = "loginLbl";
+            this.loginLbl.Size = new System.Drawing.Size(476, 81);
+            this.loginLbl.TabIndex = 9;
+            this.loginLbl.Text = "Login Form";
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1064, 653);
+            this.ClientSize = new System.Drawing.Size(961, 653);
+            this.Controls.Add(this.loginLbl);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.bunifuLabel2);
             this.Controls.Add(this.bunifuLabel1);
             this.Controls.Add(this.userPasswordLbl);
@@ -410,13 +442,11 @@
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.UserPasswordTxt);
             this.Controls.Add(this.userEmailTxt);
-            this.Controls.Add(this.bunifuPanel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
-            this.bunifuPanel1.ResumeLayout(false);
-            this.bunifuPanel1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,14 +454,16 @@
 
         #endregion
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private Bunifu.UI.WinForms.BunifuPanel bunifuPanel1;
         private Bunifu.UI.WinForms.BunifuTextBox userEmailTxt;
-        private Bunifu.UI.WinForms.BunifuLabel loginFormLbl;
         private Bunifu.UI.WinForms.BunifuTextBox UserPasswordTxt;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton loginBtn;
         private Bunifu.UI.WinForms.BunifuLabel userNamelbl;
         private Bunifu.UI.WinForms.BunifuLabel userPasswordLbl;
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel1;
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel2;
+        private System.Windows.Forms.Panel panel1;
+        private Bunifu.UI.WinForms.BunifuImageButton bunifuImageButton1;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Label loginLbl;
     }
 }

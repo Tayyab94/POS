@@ -11,7 +11,7 @@ namespace POS_Shop.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly POSDbContext _context;
+        protected readonly POSDbContext _context;
         private readonly DbSet<T> _dbSet;
 
         public Repository(POSDbContext context)
