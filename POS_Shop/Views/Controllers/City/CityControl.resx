@@ -120,12 +120,12 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="CityNameTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAXMAAAApCAYAAADH2Mm3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAADPSURBVHhe7dRBCQQxAATB+FeVJTJOxgm4JZDPSUhTBfMZ
-        AT0AiFhrfeacPzMzu2u73yflY+wDgPvsfp+UiznArcQcIEDMAQLEHCBAzAECxBwgQMwBAsQcIEDMAQLE
-        HCBAzAECxBwgQMwBAsQcIEDMAQLEHCBAzAECxBwgQMwBAsQcIEDMAQLEHCBAzAECxBwgQMwBAsQcIEDM
-        AQLEHCBAzAECxBwgQMwBAsQcIEDMAQLEHCBAzAECxBwg4C/mz/N892FmZndt9/ukHIC7jfECVOqwVEKa
-        01oAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAVYAAAApCAYAAABurAEjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAADLSURBVHhe7dSxCQMxAARB9V+VHpXhMlyAH4ESp+91NgOX
+        XAE7APiDtdZrzvkxM7Pn2y09WR1jHwD8Zrf0ZFVYAQrCChATVoCYsALEhBUgJqwAMWEFiAkrQExYAWLC
+        ChATVoCYsALEhBUgJqwAMWEFiAkrQExYAWLCChATVoCYsALEhBUgJqwAMWEFiAkrQExYAWLCChATVoCY
+        sALEhBUgJqwAMWEFiAkrQExYAWLCChATVoCYsALEvsJ6Xdd7H2Zm9ny7pSerAHTGuAGCDj/TDlaYMwAA
+        AABJRU5ErkJggg==
 </value>
   </data>
   <data name="SaveCityBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

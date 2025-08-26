@@ -16,4 +16,14 @@ namespace POS_Shop.DTOs.City
         public string CountryName { get; set; }
         public bool IsActive { get; set; }
     }
+
+    public class SubListForDataGrifDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public bool IsActive { get; set; }
+    }
 }
