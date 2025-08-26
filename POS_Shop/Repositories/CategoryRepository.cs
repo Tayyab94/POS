@@ -5,23 +5,23 @@ using System.Threading.Tasks;
 
 namespace POS_Shop.Repositories
 {
-    public class CountryRepository : Repository<Country>, ICountryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        public CountryRepository(POSDbContext context) : base(context)
+        public CategoryRepository(POSDbContext context) : base(context)
         {
         }
 
-        public Task<bool> UpdateCountry(Country model)
+        public Task<bool> UpdateCategory(Category model)
         {
             try
             {
-                var data = _context.Countries.FirstOrDefault(c => c.Id == model.Id);
+                var data = _context.Categories.FirstOrDefault(c => c.id == model.id);
                 if (data != null)
                 {
-                    data.CountryName = model.CountryName;
-                    data.IsActive = model.IsActive;
+                    data.name = model.name;
+                    data.isActive = model.isActive;
 
-                    _context.Countries.Attach(data);
+                    _context.Categories.Attach(data);
                     _context.Entry(data).State = System.Data.Entity.EntityState.Modified;
                     _context.SaveChanges();
                     return Task.FromResult(true);
@@ -34,7 +34,7 @@ namespace POS_Shop.Repositories
             catch (System.Exception)
             {
                 return Task.FromResult(false);
-              
+
             }
         }
     }

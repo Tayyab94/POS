@@ -21,8 +21,15 @@ namespace POS_Shop
 
         private void cityBtn_Click(object sender, EventArgs e)
         {
+           
+            MainPanel.Padding = new Padding(0);
+            MainPanel.Margin = new Padding(0);
+
+            var userCtrl = new Views.Controllers.City.CityControl();
+            userCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+
             MainPanel.Controls.Clear();
-            MainPanel.Controls.Add(new Views.Controllers.City.CityControl());
+            MainPanel.Controls.Add(userCtrl);
         }
 
         private void CountryBtn_Click(object sender, EventArgs e)
@@ -44,5 +51,6 @@ namespace POS_Shop
             var loginForm = new LoginForm();
             loginForm.Show();
         }
+
     }
 }

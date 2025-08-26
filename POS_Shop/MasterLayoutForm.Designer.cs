@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterLayoutForm));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges10 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges11 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges12 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges13 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges14 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges15 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.sideBarPanel = new System.Windows.Forms.Panel();
             this.CategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.MainLogoImgBtn = new Bunifu.UI.WinForms.BunifuImageButton();
@@ -76,11 +76,11 @@
             this.CategoryBtn.ColorContrastOnClick = 45;
             this.CategoryBtn.ColorContrastOnHover = 45;
             this.CategoryBtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges10.BottomLeft = true;
-            borderEdges10.BottomRight = true;
-            borderEdges10.TopLeft = true;
-            borderEdges10.TopRight = true;
-            this.CategoryBtn.CustomizableEdges = borderEdges10;
+            borderEdges13.BottomLeft = true;
+            borderEdges13.BottomRight = true;
+            borderEdges13.TopLeft = true;
+            borderEdges13.TopRight = true;
+            this.CategoryBtn.CustomizableEdges = borderEdges13;
             this.CategoryBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.CategoryBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.CategoryBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -200,11 +200,11 @@
             this.CountryBtn.ColorContrastOnClick = 45;
             this.CountryBtn.ColorContrastOnHover = 45;
             this.CountryBtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges11.BottomLeft = true;
-            borderEdges11.BottomRight = true;
-            borderEdges11.TopLeft = true;
-            borderEdges11.TopRight = true;
-            this.CountryBtn.CustomizableEdges = borderEdges11;
+            borderEdges14.BottomLeft = true;
+            borderEdges14.BottomRight = true;
+            borderEdges14.TopLeft = true;
+            borderEdges14.TopRight = true;
+            this.CountryBtn.CustomizableEdges = borderEdges14;
             this.CountryBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.CountryBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.CountryBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -290,11 +290,11 @@
             this.cityBtn.ColorContrastOnClick = 45;
             this.cityBtn.ColorContrastOnHover = 45;
             this.cityBtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges12.BottomLeft = true;
-            borderEdges12.BottomRight = true;
-            borderEdges12.TopLeft = true;
-            borderEdges12.TopRight = true;
-            this.cityBtn.CustomizableEdges = borderEdges12;
+            borderEdges15.BottomLeft = true;
+            borderEdges15.BottomRight = true;
+            borderEdges15.TopLeft = true;
+            borderEdges15.TopRight = true;
+            this.cityBtn.CustomizableEdges = borderEdges15;
             this.cityBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.cityBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.cityBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -363,10 +363,11 @@
             // 
             // MainPanel
             // 
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(293, 0);
+            this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainPanel.Location = new System.Drawing.Point(299, 98);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1467, 750);
+            this.MainPanel.Size = new System.Drawing.Size(1181, 640);
             this.MainPanel.TabIndex = 2;
             // 
             // TopNavPanel
@@ -376,7 +377,7 @@
             this.TopNavPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopNavPanel.Location = new System.Drawing.Point(293, 0);
             this.TopNavPanel.Name = "TopNavPanel";
-            this.TopNavPanel.Size = new System.Drawing.Size(1467, 92);
+            this.TopNavPanel.Size = new System.Drawing.Size(1199, 92);
             this.TopNavPanel.TabIndex = 3;
             // 
             // LogoutBtn
@@ -387,7 +388,7 @@
             this.LogoutBtn.AllowToggling = false;
             this.LogoutBtn.AllowZooming = false;
             this.LogoutBtn.AllowZoomingOnFocus = false;
-            this.LogoutBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.LogoutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LogoutBtn.BackColor = System.Drawing.Color.Transparent;
             this.LogoutBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.LogoutBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.ErrorImage")));
@@ -400,7 +401,7 @@
             this.LogoutBtn.ImageSize = new System.Drawing.Size(31, 33);
             this.LogoutBtn.ImageZoomSize = new System.Drawing.Size(37, 39);
             this.LogoutBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.InitialImage")));
-            this.LogoutBtn.Location = new System.Drawing.Point(1406, 27);
+            this.LogoutBtn.Location = new System.Drawing.Point(1121, 22);
             this.LogoutBtn.Name = "LogoutBtn";
             this.LogoutBtn.Rotation = 0;
             this.LogoutBtn.ShowActiveImage = true;
@@ -420,11 +421,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1760, 750);
+            this.ClientSize = new System.Drawing.Size(1492, 750);
             this.Controls.Add(this.TopNavPanel);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.sideBarPanel);
             this.Name = "MasterLayoutForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MasterLayoutForm";
             this.sideBarPanel.ResumeLayout(false);
             this.TopNavPanel.ResumeLayout(false);

@@ -54,7 +54,10 @@
             this.PrintBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.CityPrintPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.CityPrintDocument = new System.Drawing.Printing.PrintDocument();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cityGrdiheadingLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CountryDatagridView)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // CityNameTxt
@@ -84,7 +87,7 @@
             this.CityNameTxt.IconRight = null;
             this.CityNameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.CityNameTxt.Lines = new string[0];
-            this.CityNameTxt.Location = new System.Drawing.Point(201, 127);
+            this.CityNameTxt.Location = new System.Drawing.Point(115, 18);
             this.CityNameTxt.MaxLength = 32767;
             this.CityNameTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.CityNameTxt.Modified = false;
@@ -120,7 +123,7 @@
             this.CityNameTxt.SelectionLength = 0;
             this.CityNameTxt.SelectionStart = 0;
             this.CityNameTxt.ShortcutsEnabled = true;
-            this.CityNameTxt.Size = new System.Drawing.Size(371, 41);
+            this.CityNameTxt.Size = new System.Drawing.Size(342, 41);
             this.CityNameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.CityNameTxt.TabIndex = 1;
             this.CityNameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -136,6 +139,7 @@
             this.SaveCityBtn.AllowAnimations = true;
             this.SaveCityBtn.AllowMouseEffects = true;
             this.SaveCityBtn.AllowToggling = false;
+            this.SaveCityBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SaveCityBtn.AnimationSpeed = 200;
             this.SaveCityBtn.AutoGenerateColors = false;
             this.SaveCityBtn.AutoRoundBorders = false;
@@ -178,7 +182,7 @@
             this.SaveCityBtn.IdleIconLeftImage = null;
             this.SaveCityBtn.IdleIconRightImage = null;
             this.SaveCityBtn.IndicateFocus = false;
-            this.SaveCityBtn.Location = new System.Drawing.Point(1141, 153);
+            this.SaveCityBtn.Location = new System.Drawing.Point(713, 95);
             this.SaveCityBtn.Name = "SaveCityBtn";
             this.SaveCityBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveCityBtn.OnDisabledState.BorderRadius = 1;
@@ -271,13 +275,13 @@
             this.CountryDatagridView.HeaderBackColor = System.Drawing.Color.DodgerBlue;
             this.CountryDatagridView.HeaderBgColor = System.Drawing.Color.Empty;
             this.CountryDatagridView.HeaderForeColor = System.Drawing.Color.White;
-            this.CountryDatagridView.Location = new System.Drawing.Point(22, 281);
+            this.CountryDatagridView.Location = new System.Drawing.Point(17, 263);
             this.CountryDatagridView.Name = "CountryDatagridView";
             this.CountryDatagridView.RowHeadersVisible = false;
             this.CountryDatagridView.RowHeadersWidth = 51;
             this.CountryDatagridView.RowTemplate.Height = 40;
             this.CountryDatagridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CountryDatagridView.Size = new System.Drawing.Size(1277, 435);
+            this.CountryDatagridView.Size = new System.Drawing.Size(1301, 406);
             this.CountryDatagridView.TabIndex = 3;
             this.CountryDatagridView.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CountryDatagridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CountryDatagridView_CellClick);
@@ -316,7 +320,7 @@
             this.CountryDropDownLst.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
             this.CountryDropDownLst.ItemHighLightForeColor = System.Drawing.Color.White;
             this.CountryDropDownLst.ItemTopMargin = 3;
-            this.CountryDropDownLst.Location = new System.Drawing.Point(747, 128);
+            this.CountryDropDownLst.Location = new System.Drawing.Point(574, 20);
             this.CountryDropDownLst.Name = "CountryDropDownLst";
             this.CountryDropDownLst.Size = new System.Drawing.Size(260, 32);
             this.CountryDropDownLst.TabIndex = 2;
@@ -327,7 +331,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(596, 127);
+            this.label3.Location = new System.Drawing.Point(475, 23);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 16);
             this.label3.TabIndex = 5;
@@ -336,7 +340,7 @@
             // lblCityName
             // 
             this.lblCityName.AutoSize = true;
-            this.lblCityName.Location = new System.Drawing.Point(96, 132);
+            this.lblCityName.Location = new System.Drawing.Point(10, 23);
             this.lblCityName.Name = "lblCityName";
             this.lblCityName.Size = new System.Drawing.Size(69, 16);
             this.lblCityName.TabIndex = 0;
@@ -369,7 +373,7 @@
             this.cityIdTxt.IconRight = null;
             this.cityIdTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.cityIdTxt.Lines = new string[0];
-            this.cityIdTxt.Location = new System.Drawing.Point(201, 80);
+            this.cityIdTxt.Location = new System.Drawing.Point(115, 65);
             this.cityIdTxt.MaxLength = 32767;
             this.cityIdTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.cityIdTxt.Modified = false;
@@ -422,6 +426,7 @@
             this.UpdateCitybtn.AllowAnimations = true;
             this.UpdateCitybtn.AllowMouseEffects = true;
             this.UpdateCitybtn.AllowToggling = false;
+            this.UpdateCitybtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UpdateCitybtn.AnimationSpeed = 200;
             this.UpdateCitybtn.AutoGenerateColors = false;
             this.UpdateCitybtn.AutoRoundBorders = false;
@@ -464,7 +469,7 @@
             this.UpdateCitybtn.IdleIconLeftImage = null;
             this.UpdateCitybtn.IdleIconRightImage = null;
             this.UpdateCitybtn.IndicateFocus = false;
-            this.UpdateCitybtn.Location = new System.Drawing.Point(1141, 109);
+            this.UpdateCitybtn.Location = new System.Drawing.Point(557, 94);
             this.UpdateCitybtn.Name = "UpdateCitybtn";
             this.UpdateCitybtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.UpdateCitybtn.OnDisabledState.BorderRadius = 1;
@@ -513,6 +518,8 @@
             this.PrintBtn.AllowAnimations = true;
             this.PrintBtn.AllowMouseEffects = true;
             this.PrintBtn.AllowToggling = false;
+            this.PrintBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PrintBtn.AnimationSpeed = 200;
             this.PrintBtn.AutoGenerateColors = false;
             this.PrintBtn.AutoRoundBorders = false;
@@ -555,7 +562,7 @@
             this.PrintBtn.IdleIconLeftImage = null;
             this.PrintBtn.IdleIconRightImage = null;
             this.PrintBtn.IndicateFocus = false;
-            this.PrintBtn.Location = new System.Drawing.Point(1141, 198);
+            this.PrintBtn.Location = new System.Drawing.Point(401, 94);
             this.PrintBtn.Name = "PrintBtn";
             this.PrintBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.PrintBtn.OnDisabledState.BorderRadius = 1;
@@ -612,22 +619,46 @@
             // 
             this.CityPrintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.CityPrintDocument_PrintPage);
             // 
+            // panel1
+            // 
+            this.panel1.AutoSize = true;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.CityNameTxt);
+            this.panel1.Controls.Add(this.PrintBtn);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.UpdateCitybtn);
+            this.panel1.Controls.Add(this.lblCityName);
+            this.panel1.Controls.Add(this.CountryDropDownLst);
+            this.panel1.Controls.Add(this.SaveCityBtn);
+            this.panel1.Controls.Add(this.cityIdTxt);
+            this.panel1.Location = new System.Drawing.Point(17, 108);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(868, 139);
+            this.panel1.TabIndex = 8;
+            // 
+            // cityGrdiheadingLbl
+            // 
+            this.cityGrdiheadingLbl.AutoSize = true;
+            this.cityGrdiheadingLbl.Font = new System.Drawing.Font("Ravie", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cityGrdiheadingLbl.ForeColor = System.Drawing.Color.SlateBlue;
+            this.cityGrdiheadingLbl.Location = new System.Drawing.Point(154, 69);
+            this.cityGrdiheadingLbl.Name = "cityGrdiheadingLbl";
+            this.cityGrdiheadingLbl.Size = new System.Drawing.Size(266, 27);
+            this.cityGrdiheadingLbl.TabIndex = 10;
+            this.cityGrdiheadingLbl.Text = "City Form and List";
+            // 
             // CityControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.PrintBtn);
-            this.Controls.Add(this.UpdateCitybtn);
-            this.Controls.Add(this.cityIdTxt);
-            this.Controls.Add(this.lblCityName);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.CountryDropDownLst);
+            this.Controls.Add(this.cityGrdiheadingLbl);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.CountryDatagridView);
-            this.Controls.Add(this.SaveCityBtn);
-            this.Controls.Add(this.CityNameTxt);
             this.Name = "CityControl";
             this.Size = new System.Drawing.Size(1352, 745);
             ((System.ComponentModel.ISupportInitialize)(this.CountryDatagridView)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -645,5 +676,7 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton PrintBtn;
         private System.Windows.Forms.PrintPreviewDialog CityPrintPreviewDialog;
         private System.Drawing.Printing.PrintDocument CityPrintDocument;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label cityGrdiheadingLbl;
     }
 }

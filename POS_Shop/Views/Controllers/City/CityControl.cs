@@ -371,7 +371,7 @@ namespace POS_Shop.Views.Controllers.City
         {
             // Thermal printer settings (80mm paper)
             int paperWidth = 280; // pixels for 80mm paper
-            int leftMargin = 10;
+            int leftMargin = 5;
             int currentY = 5;
             int lineHeight = 12;
             int sectionSpacing = 3;

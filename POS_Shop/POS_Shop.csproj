@@ -102,9 +102,11 @@
     <Compile Include="DTOs\Country\CountryListForDataGirdDto.cs" />
     <Compile Include="Helpers\ISectionAware.cs" />
     <Compile Include="Helpers\SessionManager.cs" />
+    <Compile Include="Interfaces\ICategoryRepository.cs" />
     <Compile Include="Interfaces\ICityRepository.cs" />
     <Compile Include="Interfaces\ICountryRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\ISubCategoryRepository.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,16 +123,24 @@
     <Compile Include="Migrations\202508171006408_InitialCreate.Designer.cs">
       <DependentUpon>202508171006408_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202508261223343_category_subCategory_tbl.cs" />
+    <Compile Include="Migrations\202508261223343_category_subCategory_tbl.Designer.cs">
+      <DependentUpon>202508261223343_category_subCategory_tbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\POSDbContext.cs" />
+    <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\CountryRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\SubCategoryRepository.cs" />
     <Compile Include="Views\Account\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202508171006408_InitialCreate.resx">
       <DependentUpon>202508171006408_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508261223343_category_subCategory_tbl.resx">
+      <DependentUpon>202508261223343_category_subCategory_tbl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

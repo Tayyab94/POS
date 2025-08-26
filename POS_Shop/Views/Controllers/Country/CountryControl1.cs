@@ -69,7 +69,8 @@ namespace POS_Shop.Views.Controllers.Country
             {
                 DataGridViewRow row = CountryDatagridView.Rows[e.RowIndex];
                 CountryNameTxt.Text = row.Cells["Name"].Value.ToString();
-
+                countryIdTxt.Text= row.Cells["ID"].Value.ToString();
+                UpdateCountrybtn.Enabled = true;
             }
         }
 
@@ -87,6 +88,36 @@ namespace POS_Shop.Views.Controllers.Country
                 countryRepository.Save();
             }
             MessageBox.Show("City saved successfully!");
+        }
+
+
+        private async void UpdateCountrybtn_Click_1(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(countryIdTxt.Text) || !int.TryParse(countryIdTxt.Text, out int countryId) || countryId <= 0)
+            {
+                MessageBox.Show("Please select Record first", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (var context = new POSDbContext())
+            {
+                ICountryRepository countryRepository = new CountryRepository(context);
+                //ICityRepository cityRepository = new CityRepository(context);
+                var response = await countryRepository.UpdateCountry(new Models.Country()
+                {
+                    Id = Convert.ToInt32(countryId.ToString()),
+                    CountryName = CountryNameTxt.Text,
+                    IsActive = true,
+                });
+
+                if (response)
+                    MessageBox.Show("Record has been Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                LoadCountriesForDataGridView();
+            }
         }
     }
 }
