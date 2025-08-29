@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace POS_Shop.DTOs.City
 {
-    public class CitiesListForDataGrifDto
+    public class CitiesListForDataGridDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -17,7 +17,7 @@ namespace POS_Shop.DTOs.City
         public bool IsActive { get; set; }
     }
 
-    public class SubListForDataGrifDto
+    public class SubListForDataGridDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

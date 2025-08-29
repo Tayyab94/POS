@@ -1,5 +1,6 @@
 ﻿using POS_Shop.Helpers;
 using POS_Shop.Views.Account;
+using POS_Shop.Views.DB_Screens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,5 +53,44 @@ namespace POS_Shop
             loginForm.Show();
         }
 
+        private void backupDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            BackUpForm backupForm = new BackUpForm();
+            backupForm.Owner = this;
+            backupForm.Show();
+        }
+
+        private void restoreDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            RestoreDbForm restoreDbForm = new RestoreDbForm();
+            restoreDbForm.Owner = this;
+            restoreDbForm.Show();
+        }
+
+        private void CategoryBtn_Click(object sender, EventArgs e)
+        {
+            MainPanel.Padding = new Padding(0);
+            MainPanel.Margin = new Padding(0);
+
+            var categoryCtrl = new Views.Controllers.Category.CategoryControl();
+            categoryCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+
+            MainPanel.Controls.Clear();
+            MainPanel.Controls.Add(categoryCtrl);
+        }
+
+        private void SubCategoryBtn_Click(object sender, EventArgs e)
+        {
+            MainPanel.Padding = new Padding(0);
+            MainPanel.Margin = new Padding(0);
+
+            var subcategoryCtrl = new Views.Controllers.SubCategory.SubCategoryForm();
+            subcategoryCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+
+            MainPanel.Controls.Clear();
+            MainPanel.Controls.Add(subcategoryCtrl);
+        }
     }
 }

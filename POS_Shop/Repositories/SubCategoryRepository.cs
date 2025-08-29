@@ -15,9 +15,9 @@ namespace POS_Shop.Repositories
         {
         }
 
-        public async Task<IEnumerable<SubListForDataGrifDto>> GetSubcategoriesListAsync()
+        public async Task<IEnumerable<SubListForDataGridDto>> GetSubcategoriesListAsync()
         {
-            var data = await _context.SubCategories.Include(s => s.categoryId).Select(s => new SubListForDataGrifDto()
+            var data = await _context.SubCategories.Include(s => s.categoryId).Select(s => new SubListForDataGridDto()
             {
                 CategoryId = s.categoryId,
                 CategoryName = s.category.name,
