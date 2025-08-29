@@ -620,6 +620,8 @@ namespace POS_Shop.Views.Controllers.City
             graphics.DrawString(text, font, Brushes.Black, xPos, yPos);
             yPos += (int)textSize.Height + 2;
         }
+
+      
     }
 }
 

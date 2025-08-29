@@ -17,9 +17,9 @@ namespace POS_Shop.Repositories
         {
         }
 
-        public async Task<IEnumerable<CitiesListForDataGrifDto>> GetCitiesListAsync()
+        public async Task<IEnumerable<CitiesListForDataGridDto>> GetCitiesListAsync()
         {
-            var data = await _context.Cities.Include(s => s.CountryId).Select(s => new CitiesListForDataGrifDto()
+            var data = await _context.Cities.Include(s => s.CountryId).Select(s => new CitiesListForDataGridDto()
             {
                 CountryId= s.CountryId,
                 CountryName = s.Country.CountryName,

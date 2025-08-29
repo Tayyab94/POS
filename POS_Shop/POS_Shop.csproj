@@ -75,6 +75,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlClient, Version=4.6.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SqlClient.4.9.0\lib\net462\System.Data.SqlClient.dll</HintPath>
@@ -159,6 +160,12 @@
     <Compile Include="Views\CityForm.Designer.cs">
       <DependentUpon>CityForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\Category\CategoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Category\CategoryControl.Designer.cs">
+      <DependentUpon>CategoryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controllers\City\CityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -170,6 +177,24 @@
     </Compile>
     <Compile Include="Views\Controllers\Country\CountryControl1.Designer.cs">
       <DependentUpon>CountryControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\SubCategory\SubCategoryForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\SubCategory\SubCategoryForm.Designer.cs">
+      <DependentUpon>SubCategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DB_Screens\BackUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DB_Screens\BackUpForm.Designer.cs">
+      <DependentUpon>BackUpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DB_Screens\RestoreDbForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DB_Screens\RestoreDbForm.Designer.cs">
+      <DependentUpon>RestoreDbForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
@@ -205,11 +230,23 @@
     <EmbeddedResource Include="Views\CityForm.resx">
       <DependentUpon>CityForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Category\CategoryControl.resx">
+      <DependentUpon>CategoryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\City\CityControl.resx">
       <DependentUpon>CityControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Country\CountryControl1.resx">
       <DependentUpon>CountryControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\SubCategory\SubCategoryForm.resx">
+      <DependentUpon>SubCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DB_Screens\BackUpForm.resx">
+      <DependentUpon>BackUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DB_Screens\RestoreDbForm.resx">
+      <DependentUpon>RestoreDbForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -34,20 +34,20 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties4 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties5 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties6 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties7 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties8 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.UpdateCountrybtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.countryIdTxt = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.SaveCityBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.CountryNameTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.lblCityName = new System.Windows.Forms.Label();
+            this.SaveCityBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.CountryDatagridView = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.cityGrdiheadingLbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -234,6 +234,90 @@
             this.countryIdTxt.Visible = false;
             this.countryIdTxt.WordWrap = true;
             // 
+            // CountryNameTxt
+            // 
+            this.CountryNameTxt.AcceptsReturn = false;
+            this.CountryNameTxt.AcceptsTab = false;
+            this.CountryNameTxt.AnimationSpeed = 200;
+            this.CountryNameTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.CountryNameTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.CountryNameTxt.BackColor = System.Drawing.Color.Transparent;
+            this.CountryNameTxt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CountryNameTxt.BackgroundImage")));
+            this.CountryNameTxt.BorderColorActive = System.Drawing.Color.DodgerBlue;
+            this.CountryNameTxt.BorderColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.CountryNameTxt.BorderColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.CountryNameTxt.BorderColorIdle = System.Drawing.Color.Silver;
+            this.CountryNameTxt.BorderRadius = 1;
+            this.CountryNameTxt.BorderThickness = 1;
+            this.CountryNameTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.CountryNameTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.CountryNameTxt.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
+            this.CountryNameTxt.DefaultText = "";
+            this.CountryNameTxt.FillColor = System.Drawing.Color.White;
+            this.CountryNameTxt.HideSelection = true;
+            this.CountryNameTxt.IconLeft = null;
+            this.CountryNameTxt.IconLeftCursor = System.Windows.Forms.Cursors.IBeam;
+            this.CountryNameTxt.IconPadding = 10;
+            this.CountryNameTxt.IconRight = null;
+            this.CountryNameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
+            this.CountryNameTxt.Lines = new string[0];
+            this.CountryNameTxt.Location = new System.Drawing.Point(188, 15);
+            this.CountryNameTxt.MaxLength = 32767;
+            this.CountryNameTxt.MinimumSize = new System.Drawing.Size(1, 1);
+            this.CountryNameTxt.Modified = false;
+            this.CountryNameTxt.Multiline = false;
+            this.CountryNameTxt.Name = "CountryNameTxt";
+            stateProperties5.BorderColor = System.Drawing.Color.DodgerBlue;
+            stateProperties5.FillColor = System.Drawing.Color.Empty;
+            stateProperties5.ForeColor = System.Drawing.Color.Empty;
+            stateProperties5.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.CountryNameTxt.OnActiveState = stateProperties5;
+            stateProperties6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            stateProperties6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            stateProperties6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            stateProperties6.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.CountryNameTxt.OnDisabledState = stateProperties6;
+            stateProperties7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            stateProperties7.FillColor = System.Drawing.Color.Empty;
+            stateProperties7.ForeColor = System.Drawing.Color.Empty;
+            stateProperties7.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.CountryNameTxt.OnHoverState = stateProperties7;
+            stateProperties8.BorderColor = System.Drawing.Color.Silver;
+            stateProperties8.FillColor = System.Drawing.Color.White;
+            stateProperties8.ForeColor = System.Drawing.Color.Empty;
+            stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.CountryNameTxt.OnIdleState = stateProperties8;
+            this.CountryNameTxt.Padding = new System.Windows.Forms.Padding(3);
+            this.CountryNameTxt.PasswordChar = '\0';
+            this.CountryNameTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.CountryNameTxt.PlaceholderText = "Enter text";
+            this.CountryNameTxt.ReadOnly = false;
+            this.CountryNameTxt.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.CountryNameTxt.SelectedText = "";
+            this.CountryNameTxt.SelectionLength = 0;
+            this.CountryNameTxt.SelectionStart = 0;
+            this.CountryNameTxt.ShortcutsEnabled = true;
+            this.CountryNameTxt.Size = new System.Drawing.Size(260, 41);
+            this.CountryNameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
+            this.CountryNameTxt.TabIndex = 2;
+            this.CountryNameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.CountryNameTxt.TextMarginBottom = 0;
+            this.CountryNameTxt.TextMarginLeft = 3;
+            this.CountryNameTxt.TextMarginTop = 0;
+            this.CountryNameTxt.TextPlaceholder = "Enter text";
+            this.CountryNameTxt.UseSystemPasswordChar = false;
+            this.CountryNameTxt.WordWrap = true;
+            // 
+            // lblCityName
+            // 
+            this.lblCityName.AutoSize = true;
+            this.lblCityName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCityName.Location = new System.Drawing.Point(36, 24);
+            this.lblCityName.Name = "lblCityName";
+            this.lblCityName.Size = new System.Drawing.Size(123, 22);
+            this.lblCityName.TabIndex = 0;
+            this.lblCityName.Text = "Country Name";
+            // 
             // SaveCityBtn
             // 
             this.SaveCityBtn.AllowAnimations = true;
@@ -323,90 +407,6 @@
             this.SaveCityBtn.TextPadding = new System.Windows.Forms.Padding(0);
             this.SaveCityBtn.UseDefaultRadiusAndThickness = true;
             this.SaveCityBtn.Click += new System.EventHandler(this.SaveCityBtn_Click);
-            // 
-            // CountryNameTxt
-            // 
-            this.CountryNameTxt.AcceptsReturn = false;
-            this.CountryNameTxt.AcceptsTab = false;
-            this.CountryNameTxt.AnimationSpeed = 200;
-            this.CountryNameTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.CountryNameTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.CountryNameTxt.BackColor = System.Drawing.Color.Transparent;
-            this.CountryNameTxt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CountryNameTxt.BackgroundImage")));
-            this.CountryNameTxt.BorderColorActive = System.Drawing.Color.DodgerBlue;
-            this.CountryNameTxt.BorderColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.CountryNameTxt.BorderColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.CountryNameTxt.BorderColorIdle = System.Drawing.Color.Silver;
-            this.CountryNameTxt.BorderRadius = 1;
-            this.CountryNameTxt.BorderThickness = 1;
-            this.CountryNameTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.CountryNameTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.CountryNameTxt.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
-            this.CountryNameTxt.DefaultText = "";
-            this.CountryNameTxt.FillColor = System.Drawing.Color.White;
-            this.CountryNameTxt.HideSelection = true;
-            this.CountryNameTxt.IconLeft = null;
-            this.CountryNameTxt.IconLeftCursor = System.Windows.Forms.Cursors.IBeam;
-            this.CountryNameTxt.IconPadding = 10;
-            this.CountryNameTxt.IconRight = null;
-            this.CountryNameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
-            this.CountryNameTxt.Lines = new string[0];
-            this.CountryNameTxt.Location = new System.Drawing.Point(188, 15);
-            this.CountryNameTxt.MaxLength = 32767;
-            this.CountryNameTxt.MinimumSize = new System.Drawing.Size(1, 1);
-            this.CountryNameTxt.Modified = false;
-            this.CountryNameTxt.Multiline = false;
-            this.CountryNameTxt.Name = "CountryNameTxt";
-            stateProperties5.BorderColor = System.Drawing.Color.DodgerBlue;
-            stateProperties5.FillColor = System.Drawing.Color.Empty;
-            stateProperties5.ForeColor = System.Drawing.Color.Empty;
-            stateProperties5.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.CountryNameTxt.OnActiveState = stateProperties5;
-            stateProperties6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            stateProperties6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            stateProperties6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            stateProperties6.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.CountryNameTxt.OnDisabledState = stateProperties6;
-            stateProperties7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            stateProperties7.FillColor = System.Drawing.Color.Empty;
-            stateProperties7.ForeColor = System.Drawing.Color.Empty;
-            stateProperties7.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.CountryNameTxt.OnHoverState = stateProperties7;
-            stateProperties8.BorderColor = System.Drawing.Color.Silver;
-            stateProperties8.FillColor = System.Drawing.Color.White;
-            stateProperties8.ForeColor = System.Drawing.Color.Empty;
-            stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.CountryNameTxt.OnIdleState = stateProperties8;
-            this.CountryNameTxt.Padding = new System.Windows.Forms.Padding(3);
-            this.CountryNameTxt.PasswordChar = '\0';
-            this.CountryNameTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.CountryNameTxt.PlaceholderText = "Enter text";
-            this.CountryNameTxt.ReadOnly = false;
-            this.CountryNameTxt.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.CountryNameTxt.SelectedText = "";
-            this.CountryNameTxt.SelectionLength = 0;
-            this.CountryNameTxt.SelectionStart = 0;
-            this.CountryNameTxt.ShortcutsEnabled = true;
-            this.CountryNameTxt.Size = new System.Drawing.Size(260, 41);
-            this.CountryNameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
-            this.CountryNameTxt.TabIndex = 2;
-            this.CountryNameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.CountryNameTxt.TextMarginBottom = 0;
-            this.CountryNameTxt.TextMarginLeft = 3;
-            this.CountryNameTxt.TextMarginTop = 0;
-            this.CountryNameTxt.TextPlaceholder = "Enter text";
-            this.CountryNameTxt.UseSystemPasswordChar = false;
-            this.CountryNameTxt.WordWrap = true;
-            // 
-            // lblCityName
-            // 
-            this.lblCityName.AutoSize = true;
-            this.lblCityName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCityName.Location = new System.Drawing.Point(36, 24);
-            this.lblCityName.Name = "lblCityName";
-            this.lblCityName.Size = new System.Drawing.Size(123, 22);
-            this.lblCityName.TabIndex = 0;
-            this.lblCityName.Text = "Country Name";
             // 
             // CountryDatagridView
             // 

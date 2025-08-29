@@ -10,7 +10,7 @@ namespace POS_Shop.Interfaces
 {
     public interface ICityRepository : IRepository<City>
     {
-        Task<IEnumerable<CitiesListForDataGrifDto>> GetCitiesListAsync();
+        Task<IEnumerable<CitiesListForDataGridDto>> GetCitiesListAsync();
 
         Task<bool>UpdateCity(City city);
     }

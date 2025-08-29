@@ -7,7 +7,7 @@ namespace POS_Shop.Interfaces
 {
     public interface ISubCategoryRepository : IRepository<SubCategory>
     {
-        Task<IEnumerable<SubListForDataGrifDto>> GetSubcategoriesListAsync();
+        Task<IEnumerable<SubListForDataGridDto>> GetSubcategoriesListAsync();
 
         Task<bool> UpdateSubCategory(SubCategory model);
     }
