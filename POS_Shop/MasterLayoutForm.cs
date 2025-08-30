@@ -20,23 +20,61 @@ namespace POS_Shop
             InitializeComponent();
         }
 
-        private void cityBtn_Click(object sender, EventArgs e)
+        private async void cityBtn_Click(object sender, EventArgs e)
         {
-           
-            MainPanel.Padding = new Padding(0);
-            MainPanel.Margin = new Padding(0);
 
-            var userCtrl = new Views.Controllers.City.CityControl();
-            userCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+            //MainPanel.Padding = new Padding(0);
+            //MainPanel.Margin = new Padding(0);
 
-            MainPanel.Controls.Clear();
-            MainPanel.Controls.Add(userCtrl);
+            //var userCtrl = new Views.Controllers.City.CityControl();
+            //userCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+
+            //MainPanel.Controls.Clear();
+            //MainPanel.Controls.Add(userCtrl);
+            try
+            {
+                LoadingManager.ShowLoading();
+
+                // Load the city control asynchronously to keep UI responsive
+                //await System.Threading.Tasks.Task.Run(() =>
+                //{
+                //    System.Threading.Thread.Sleep(2000); // Simulating long load
+                //});
+
+                MainPanel.Padding = new Padding(0);
+                MainPanel.Margin = new Padding(0);
+                var userCtrl = new Views.Controllers.City.CityControl();
+                userCtrl.Dock = DockStyle.Fill;
+
+                // Update UI controls on the main thread
+                MainPanel.Invoke(new Action(() =>
+                {
+                    MainPanel.Controls.Clear();
+                    MainPanel.Controls.Add(userCtrl);
+                }));
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
         }
 
         private void CountryBtn_Click(object sender, EventArgs e)
         {
-            MainPanel.Controls.Clear();
-            MainPanel.Controls.Add(new Views.Controllers.Country.CountryControl1());
+            try
+            {
+                LoadingManager.ShowLoading();
+                MainPanel.Controls.Clear();
+                MainPanel.Controls.Add(new Views.Controllers.Country.CountryControl1());
+            }
+            catch (Exception ex)
+            {
+
+            }finally
+            {
+                LoadingManager.HideLoading();
+            }
+            
         }
 
         private void LogoutBtn_Click(object sender, EventArgs e)
@@ -71,26 +109,42 @@ namespace POS_Shop
 
         private void CategoryBtn_Click(object sender, EventArgs e)
         {
-            MainPanel.Padding = new Padding(0);
-            MainPanel.Margin = new Padding(0);
-
-            var categoryCtrl = new Views.Controllers.Category.CategoryControl();
-            categoryCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
-
-            MainPanel.Controls.Clear();
-            MainPanel.Controls.Add(categoryCtrl);
+            try
+                {
+                LoadingManager.ShowLoading();
+                MainPanel.Padding = new Padding(0);
+                MainPanel.Margin = new Padding(0);
+                var categoryCtrl = new Views.Controllers.Category.CategoryControl();
+                categoryCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+                MainPanel.Controls.Clear();
+                MainPanel.Controls.Add(categoryCtrl);
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
+           
         }
 
         private void SubCategoryBtn_Click(object sender, EventArgs e)
         {
-            MainPanel.Padding = new Padding(0);
-            MainPanel.Margin = new Padding(0);
+            try
+                {
+                LoadingManager.ShowLoading();
+                MainPanel.Padding = new Padding(0);
+                MainPanel.Margin = new Padding(0);
 
-            var subcategoryCtrl = new Views.Controllers.SubCategory.SubCategoryForm();
-            subcategoryCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+                var subcategoryCtrl = new Views.Controllers.SubCategory.SubCategoryForm();
+                subcategoryCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
 
-            MainPanel.Controls.Clear();
-            MainPanel.Controls.Add(subcategoryCtrl);
+                MainPanel.Controls.Clear();
+                MainPanel.Controls.Add(subcategoryCtrl);
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
+         
         }
     }
 }

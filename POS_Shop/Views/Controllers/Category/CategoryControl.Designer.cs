@@ -39,13 +39,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.categoryIdTxt = new System.Windows.Forms.TextBox();
             this.updateCategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.SaveCategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.categoryNameTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.categoryNameLbl = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.CategoryDatagridView = new Bunifu.UI.WinForms.BunifuDataGridView();
-            this.categoryIdTxt = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CategoryDatagridView)).BeginInit();
@@ -58,12 +58,21 @@
             this.groupBox1.Controls.Add(this.SaveCategoryBtn);
             this.groupBox1.Controls.Add(this.categoryNameTxt);
             this.groupBox1.Controls.Add(this.categoryNameLbl);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(54, 127);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(987, 165);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Category Form";
+            // 
+            // categoryIdTxt
+            // 
+            this.categoryIdTxt.Location = new System.Drawing.Point(192, 105);
+            this.categoryIdTxt.Name = "categoryIdTxt";
+            this.categoryIdTxt.Size = new System.Drawing.Size(81, 28);
+            this.categoryIdTxt.TabIndex = 4;
+            this.categoryIdTxt.Visible = false;
             // 
             // updateCategoryBtn
             // 
@@ -309,7 +318,7 @@
             this.categoryNameTxt.SelectionLength = 0;
             this.categoryNameTxt.SelectionStart = 0;
             this.categoryNameTxt.ShortcutsEnabled = true;
-            this.categoryNameTxt.Size = new System.Drawing.Size(772, 53);
+            this.categoryNameTxt.Size = new System.Drawing.Size(772, 41);
             this.categoryNameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.categoryNameTxt.TabIndex = 1;
             this.categoryNameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -324,16 +333,17 @@
             // categoryNameLbl
             // 
             this.categoryNameLbl.AutoSize = true;
-            this.categoryNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoryNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoryNameLbl.Location = new System.Drawing.Point(29, 64);
             this.categoryNameLbl.Name = "categoryNameLbl";
-            this.categoryNameLbl.Size = new System.Drawing.Size(125, 20);
+            this.categoryNameLbl.Size = new System.Drawing.Size(125, 18);
             this.categoryNameLbl.TabIndex = 0;
             this.categoryNameLbl.Text = "Category Name";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.CategoryDatagridView);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(49, 330);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1256, 370);
@@ -401,14 +411,6 @@
             this.CategoryDatagridView.TabIndex = 4;
             this.CategoryDatagridView.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CategoryDatagridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CategoryDatagridView_CellClick);
-            // 
-            // categoryIdTxt
-            // 
-            this.categoryIdTxt.Location = new System.Drawing.Point(192, 105);
-            this.categoryIdTxt.Name = "categoryIdTxt";
-            this.categoryIdTxt.Size = new System.Drawing.Size(81, 22);
-            this.categoryIdTxt.TabIndex = 4;
-            this.categoryIdTxt.Visible = false;
             // 
             // CategoryControl
             // 

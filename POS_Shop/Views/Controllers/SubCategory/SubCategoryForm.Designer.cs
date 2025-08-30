@@ -66,6 +66,7 @@
             this.SubcategoryFromGrp.Controls.Add(this.subCategoryLbl);
             this.SubcategoryFromGrp.Controls.Add(this.CategoryDropDownLst);
             this.SubcategoryFromGrp.Controls.Add(this.SubcategoryIdTxt);
+            this.SubcategoryFromGrp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SubcategoryFromGrp.Location = new System.Drawing.Point(32, 107);
             this.SubcategoryFromGrp.Name = "SubcategoryFromGrp";
             this.SubcategoryFromGrp.Size = new System.Drawing.Size(1135, 205);
@@ -283,7 +284,7 @@
             this.subcategoryNameTxt.IconRight = null;
             this.subcategoryNameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.subcategoryNameTxt.Lines = new string[0];
-            this.subcategoryNameTxt.Location = new System.Drawing.Point(155, 49);
+            this.subcategoryNameTxt.Location = new System.Drawing.Point(184, 49);
             this.subcategoryNameTxt.MaxLength = 32767;
             this.subcategoryNameTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.subcategoryNameTxt.Modified = false;
@@ -334,18 +335,20 @@
             // CategoryDropdownLbl
             // 
             this.CategoryDropdownLbl.AutoSize = true;
-            this.CategoryDropdownLbl.Location = new System.Drawing.Point(528, 54);
+            this.CategoryDropdownLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryDropdownLbl.Location = new System.Drawing.Point(553, 54);
             this.CategoryDropdownLbl.Name = "CategoryDropdownLbl";
-            this.CategoryDropdownLbl.Size = new System.Drawing.Size(103, 16);
+            this.CategoryDropdownLbl.Size = new System.Drawing.Size(128, 18);
             this.CategoryDropdownLbl.TabIndex = 10;
             this.CategoryDropdownLbl.Text = "Select Category";
             // 
             // subCategoryLbl
             // 
             this.subCategoryLbl.AutoSize = true;
+            this.subCategoryLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subCategoryLbl.Location = new System.Drawing.Point(17, 54);
             this.subCategoryLbl.Name = "subCategoryLbl";
-            this.subCategoryLbl.Size = new System.Drawing.Size(126, 16);
+            this.subCategoryLbl.Size = new System.Drawing.Size(154, 18);
             this.subCategoryLbl.TabIndex = 7;
             this.subCategoryLbl.Text = "SubCategory Name";
             // 
@@ -379,13 +382,13 @@
             this.CategoryDropDownLst.ItemBackColor = System.Drawing.Color.White;
             this.CategoryDropDownLst.ItemBorderColor = System.Drawing.Color.White;
             this.CategoryDropDownLst.ItemForeColor = System.Drawing.Color.Black;
-            this.CategoryDropDownLst.ItemHeight = 26;
+            this.CategoryDropDownLst.ItemHeight = 28;
             this.CategoryDropDownLst.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
             this.CategoryDropDownLst.ItemHighLightForeColor = System.Drawing.Color.White;
             this.CategoryDropDownLst.ItemTopMargin = 3;
             this.CategoryDropDownLst.Location = new System.Drawing.Point(735, 49);
             this.CategoryDropDownLst.Name = "CategoryDropDownLst";
-            this.CategoryDropDownLst.Size = new System.Drawing.Size(260, 32);
+            this.CategoryDropDownLst.Size = new System.Drawing.Size(260, 34);
             this.CategoryDropDownLst.TabIndex = 2;
             this.CategoryDropDownLst.Text = null;
             this.CategoryDropDownLst.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
@@ -454,7 +457,7 @@
             this.SubcategoryIdTxt.SelectionLength = 0;
             this.SubcategoryIdTxt.SelectionStart = 0;
             this.SubcategoryIdTxt.ShortcutsEnabled = true;
-            this.SubcategoryIdTxt.Size = new System.Drawing.Size(91, 31);
+            this.SubcategoryIdTxt.Size = new System.Drawing.Size(91, 41);
             this.SubcategoryIdTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.SubcategoryIdTxt.TabIndex = 11;
             this.SubcategoryIdTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -469,6 +472,7 @@
             // SubcategoryGridGrup
             // 
             this.SubcategoryGridGrup.Controls.Add(this.SubcategoryDatagridView);
+            this.SubcategoryGridGrup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SubcategoryGridGrup.Location = new System.Drawing.Point(32, 318);
             this.SubcategoryGridGrup.Name = "SubcategoryGridGrup";
             this.SubcategoryGridGrup.Size = new System.Drawing.Size(1271, 394);
@@ -488,7 +492,7 @@
             this.SubcategoryDatagridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
@@ -515,7 +519,7 @@
             this.SubcategoryDatagridView.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;

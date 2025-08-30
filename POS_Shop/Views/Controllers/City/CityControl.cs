@@ -1,4 +1,5 @@
 ﻿using Bunifu.UI.WinForms;
+using POS_Shop.Helpers;
 using POS_Shop.Interfaces;
 using POS_Shop.Models;
 using POS_Shop.Repositories;
@@ -46,30 +47,43 @@ namespace POS_Shop.Views.Controllers.City
         }
         private async void SaveCityBtn_Click(object sender, EventArgs e)
         {
-
-            if (string.IsNullOrEmpty(CityNameTxt.Text))
+            try
             {
-                MessageBox.Show("Please Enter City Name or Select Country", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            int selectedIndex = CountryDropDownLst.SelectedIndex - 1; // Adjust for default item
-
-            using (var context = new POSDbContext())
-            {
-
-                int selectedId = Convert.ToInt32(CountryDropDownLst.SelectedValue);
-                ICityRepository countryRepository = new CityRepository(context);
-
-                countryRepository.Insert(new Models.City()
+                LoadingManager.ShowLoading();
+                if (string.IsNullOrEmpty(CityNameTxt.Text))
                 {
-                    Name = CityNameTxt.Text,
-                    IsActive = true,
-                    CountryId = selectedId,
-                });
-                countryRepository.Save();
+                    MessageBox.Show("Please Enter City Name or Select Country", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                int selectedIndex = CountryDropDownLst.SelectedIndex - 1; // Adjust for default item
+
+                using (var context = new POSDbContext())
+                {
+
+                    int selectedId = Convert.ToInt32(CountryDropDownLst.SelectedValue);
+                    ICityRepository countryRepository = new CityRepository(context);
+
+                    countryRepository.Insert(new Models.City()
+                    {
+                        Name = CityNameTxt.Text,
+                        IsActive = true,
+                        CountryId = selectedId,
+                    });
+                    countryRepository.Save();
+                }
+               
+                await LoadCitiesForDataGridView();
             }
-            MessageBox.Show("City saved successfully!");
-            await LoadCitiesForDataGridView();
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+                MessageBox.Show("City saved successfully!");
+            }
+            
 
         }
 
