@@ -1,6 +1,5 @@
 ﻿using POS_Shop.Helpers;
 using POS_Shop.Views;
-using POS_Shop.Views.Category;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,27 +33,7 @@ namespace POS_Shop
             }
         }
 
-        private void CategoryBtn_Click(object sender, EventArgs e)
-        {
-            if (IsFormOpen<CategoryForm>())
-            {
-                // Bring existing form to front instead of opening a new one
-                var existingForm = Application.OpenForms.OfType<CategoryForm>().First();
-                existingForm.BringToFront();
-                return;
-            }
-
-            // Create and show new category form
-            var categoryForm = new CategoryForm();
-            categoryForm.FormClosed += (s, args) =>
-            {
-                UpdateButtonStates("CategoryForm"); // Re-enable button when form closes
-                NavigationHelper.ReturnToDashboard();
-            };
-            CategoryBtn.Enabled = false; // Immediately disable button
-
-            NavigationHelper.OpenForm(this, categoryForm);
-        }
+    
 
 
 
@@ -81,7 +60,7 @@ namespace POS_Shop
             switch (formName)
             {
                 case "CategoryForm":
-                    CategoryBtn.Enabled = !IsFormOpen<CategoryForm>();
+                    //CategoryBtn.Enabled = !IsFormOpen<CategoryForm>();
                     break;
                 case "CityForm":
                     CitySectionBtn.Enabled = !IsFormOpen<CityForm>();

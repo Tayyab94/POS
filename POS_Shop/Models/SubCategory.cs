@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace POS_Shop.Models
 {
@@ -10,6 +11,7 @@ namespace POS_Shop.Models
         public Category category { get; set; }
         public int categoryId { get; set; }
         public bool isActive { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
 
     }
 }

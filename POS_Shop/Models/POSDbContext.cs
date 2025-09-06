@@ -26,6 +26,9 @@ namespace POS_Shop.Models
         public DbSet<SubCategory> SubCategories { get; set; }
 
 
+        public DbSet<Product> Products { get; set; }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // Fluent API configurations go here
