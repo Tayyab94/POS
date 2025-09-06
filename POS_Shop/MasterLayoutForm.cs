@@ -91,21 +91,7 @@ namespace POS_Shop
             loginForm.Show();
         }
 
-        private void backupDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            BackUpForm backupForm = new BackUpForm();
-            backupForm.Owner = this;
-            backupForm.Show();
-        }
-
-        private void restoreDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            RestoreDbForm restoreDbForm = new RestoreDbForm();
-            restoreDbForm.Owner = this;
-            restoreDbForm.Show();
-        }
+      
 
         private void CategoryBtn_Click(object sender, EventArgs e)
         {
@@ -145,6 +131,56 @@ namespace POS_Shop
                 LoadingManager.HideLoading();
             }
          
+        }
+
+        private void ProductSectrionBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadingManager.ShowLoading();
+                MainPanel.Padding = new Padding(0);
+                MainPanel.Margin = new Padding(0);
+
+                var ProductFormCtrl = new Views.Product.ProductFromControl();
+                ProductFormCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+
+                MainPanel.Controls.Clear();
+                MainPanel.Controls.Add(ProductFormCtrl);
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
+        }
+
+        private void importExcelFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadingManager.ShowLoading();
+                ImportExcelFile importExcelForm = new ImportExcelFile();
+                importExcelForm.Owner = this;
+                importExcelForm.Show();
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
+        }
+
+        private void backupDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            BackUpForm backupForm = new BackUpForm();
+            backupForm.Owner = this;
+            backupForm.Show();
+        }
+
+        private void restoreDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RestoreDbForm restoreDbForm = new RestoreDbForm();
+            restoreDbForm.Owner = this;
+            restoreDbForm.Show();
         }
     }
 }

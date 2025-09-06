@@ -56,6 +56,8 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.UpdateCountrybtn);
             this.panel1.Controls.Add(this.countryIdTxt);
@@ -64,7 +66,7 @@
             this.panel1.Controls.Add(this.SaveCityBtn);
             this.panel1.Location = new System.Drawing.Point(17, 101);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(717, 144);
+            this.panel1.Size = new System.Drawing.Size(699, 144);
             this.panel1.TabIndex = 1;
             // 
             // UpdateCountrybtn
@@ -116,7 +118,7 @@
             this.UpdateCountrybtn.IdleIconLeftImage = null;
             this.UpdateCountrybtn.IdleIconRightImage = null;
             this.UpdateCountrybtn.IndicateFocus = false;
-            this.UpdateCountrybtn.Location = new System.Drawing.Point(561, 53);
+            this.UpdateCountrybtn.Location = new System.Drawing.Point(543, 53);
             this.UpdateCountrybtn.Name = "UpdateCountrybtn";
             this.UpdateCountrybtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.UpdateCountrybtn.OnDisabledState.BorderRadius = 1;
@@ -238,6 +240,8 @@
             // 
             this.CountryNameTxt.AcceptsReturn = false;
             this.CountryNameTxt.AcceptsTab = false;
+            this.CountryNameTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CountryNameTxt.AnimationSpeed = 200;
             this.CountryNameTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.CountryNameTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
@@ -323,6 +327,7 @@
             this.SaveCityBtn.AllowAnimations = true;
             this.SaveCityBtn.AllowMouseEffects = true;
             this.SaveCityBtn.AllowToggling = false;
+            this.SaveCityBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SaveCityBtn.AnimationSpeed = 200;
             this.SaveCityBtn.AutoGenerateColors = false;
             this.SaveCityBtn.AutoRoundBorders = false;
@@ -365,7 +370,7 @@
             this.SaveCityBtn.IdleIconLeftImage = null;
             this.SaveCityBtn.IdleIconRightImage = null;
             this.SaveCityBtn.IndicateFocus = false;
-            this.SaveCityBtn.Location = new System.Drawing.Point(561, 98);
+            this.SaveCityBtn.Location = new System.Drawing.Point(543, 98);
             this.SaveCityBtn.Name = "SaveCityBtn";
             this.SaveCityBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveCityBtn.OnDisabledState.BorderRadius = 1;
@@ -414,6 +419,9 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             this.CountryDatagridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.CountryDatagridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CountryDatagridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CountryDatagridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CountryDatagridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -458,13 +466,13 @@
             this.CountryDatagridView.HeaderBackColor = System.Drawing.Color.DodgerBlue;
             this.CountryDatagridView.HeaderBgColor = System.Drawing.Color.Empty;
             this.CountryDatagridView.HeaderForeColor = System.Drawing.Color.White;
-            this.CountryDatagridView.Location = new System.Drawing.Point(27, 278);
+            this.CountryDatagridView.Location = new System.Drawing.Point(17, 278);
             this.CountryDatagridView.Name = "CountryDatagridView";
             this.CountryDatagridView.RowHeadersVisible = false;
             this.CountryDatagridView.RowHeadersWidth = 51;
             this.CountryDatagridView.RowTemplate.Height = 40;
             this.CountryDatagridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CountryDatagridView.Size = new System.Drawing.Size(1287, 443);
+            this.CountryDatagridView.Size = new System.Drawing.Size(1317, 443);
             this.CountryDatagridView.TabIndex = 4;
             this.CountryDatagridView.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CountryDatagridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CountryDatagridView_CellClick);

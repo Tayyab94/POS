@@ -12,6 +12,8 @@ namespace POS_Shop.Interfaces
     {
         Task<IEnumerable<CitiesListForDataGridDto>> GetCitiesListAsync();
 
+        Task<(int totalCount, IEnumerable<CitiesListForDataGridDto> data)> GetCitiesPagingListAsync(int pageIndex, int pageSize, string search);
+
         Task<bool>UpdateCity(City city);
     }
 }

@@ -71,6 +71,27 @@ namespace POS_Shop.Views.DB_Screens
             this.Close();
         }
 
-      
+        private void X_CloseBtn_Click(object sender, EventArgs e)
+        {
+            this.Owner.Show();
+            this.Close();
+        }
+
+        private void MinimizeBtn_Click(object sender, EventArgs e)
+        {
+            WindowState= FormWindowState.Minimized;
+        }
+
+        private void ExpandBtn_Click(object sender, EventArgs e)
+        {
+            if(WindowState == FormWindowState.Normal)
+            {
+                WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                WindowState = FormWindowState.Normal;
+            }
+        }
     }
 }

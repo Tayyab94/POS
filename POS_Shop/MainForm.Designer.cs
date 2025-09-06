@@ -226,7 +226,7 @@
             this.CategoryBtn.TabIndex = 2;
             this.CategoryBtn.Text = "Category Section";
             this.CategoryBtn.UseVisualStyleBackColor = false;
-            this.CategoryBtn.Click += new System.EventHandler(this.CategoryBtn_Click);
+
             // 
             // MainForm
             // 

@@ -18,6 +18,11 @@ namespace POS_Shop.Views.Controllers.City
 {
     public partial class CityControl : UserControl
     {
+
+        private int PageSize = 30;
+        private int PageIndex = 1;
+        private int RecordCount = 0;
+        private string SearchTerm = "";
         public CityControl()
         {
             InitializeComponent();
@@ -94,8 +99,10 @@ namespace POS_Shop.Views.Controllers.City
             using (var context = new POSDbContext())
             {
                 ICityRepository cityRepository = new CityRepository(context);
-                var cities = await cityRepository.GetCitiesListAsync();
+                //var cities = await cityRepository.GetCitiesListAsync();
 
+                var result= await cityRepository.GetCitiesPagingListAsync(PageIndex, PageSize, SearchTerm);
+                RecordCount = result.totalCount;
                 DataTable dt = new DataTable();
                 dt.Columns.Add("ID", typeof(int));
                 dt.Columns.Add("Name", typeof(string));
@@ -103,7 +110,7 @@ namespace POS_Shop.Views.Controllers.City
                 dt.Columns.Add("Country Name", typeof(string));
                 dt.Columns.Add("IsActive", typeof(string));
 
-                foreach (var country in cities)
+                foreach (var country in result.data)
                 {
                     dt.Rows.Add(country.Id, country.Name, country.CountryId, country.CountryName, country.IsActive);
                 }
@@ -114,8 +121,19 @@ namespace POS_Shop.Views.Controllers.City
 
                 CountryDatagridView.DataSource = dt;
                 CountryDatagridView.Columns[2].Visible = false;
+
+                UpdatePager();
             }
         }
+        private void UpdatePager()
+        {
+            int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
+          //  lblStatus.Text = $"Page {PageIndex} of {totalPages} | Total Records: {RecordCount}";
+
+            PrevBtn.Enabled = PageIndex > 1;
+            NextBtn.Enabled = PageIndex < totalPages;
+        }
+
 
         private void CountryDatagridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -163,6 +181,34 @@ namespace POS_Shop.Views.Controllers.City
                     MessageBox.Show("Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 await LoadCitiesForDataGridView();
+            }
+        }
+
+
+
+        private async void SearchCity_TextChanged(object sender, EventArgs e)
+        {
+            PageIndex = 1;
+            SearchTerm = SearchCityTxt.Text.Trim();
+            await LoadCitiesForDataGridView();
+        }
+
+        private async void NextBtn_Click(object sender, EventArgs e)
+        {
+            int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
+            if (PageIndex < totalPages)
+            {
+                PageIndex++;
+                await LoadCitiesForDataGridView();
+            }
+        }
+
+        private async void PrevBtn_Click(object sender, EventArgs e)
+        {
+            if (PageIndex > 1)
+            {
+                PageIndex--;
+              await  LoadCitiesForDataGridView();
             }
         }
 
@@ -635,7 +681,6 @@ namespace POS_Shop.Views.Controllers.City
             yPos += (int)textSize.Height + 2;
         }
 
-      
     }
 }
 
