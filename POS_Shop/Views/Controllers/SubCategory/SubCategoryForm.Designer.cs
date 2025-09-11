@@ -67,7 +67,7 @@
             this.SubcategoryFromGrp.Controls.Add(this.CategoryDropDownLst);
             this.SubcategoryFromGrp.Controls.Add(this.SubcategoryIdTxt);
             this.SubcategoryFromGrp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SubcategoryFromGrp.Location = new System.Drawing.Point(32, 107);
+            this.SubcategoryFromGrp.Location = new System.Drawing.Point(32, 23);
             this.SubcategoryFromGrp.Name = "SubcategoryFromGrp";
             this.SubcategoryFromGrp.Size = new System.Drawing.Size(1135, 205);
             this.SubcategoryFromGrp.TabIndex = 0;
@@ -471,11 +471,14 @@
             // 
             // SubcategoryGridGrup
             // 
+            this.SubcategoryGridGrup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SubcategoryGridGrup.Controls.Add(this.SubcategoryDatagridView);
             this.SubcategoryGridGrup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SubcategoryGridGrup.Location = new System.Drawing.Point(32, 318);
+            this.SubcategoryGridGrup.Location = new System.Drawing.Point(20, 258);
             this.SubcategoryGridGrup.Name = "SubcategoryGridGrup";
-            this.SubcategoryGridGrup.Size = new System.Drawing.Size(1271, 394);
+            this.SubcategoryGridGrup.Size = new System.Drawing.Size(1138, 350);
             this.SubcategoryGridGrup.TabIndex = 1;
             this.SubcategoryGridGrup.TabStop = false;
             this.SubcategoryGridGrup.Text = "Sub-Category List";
@@ -486,13 +489,16 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             this.SubcategoryDatagridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.SubcategoryDatagridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SubcategoryDatagridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SubcategoryDatagridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.SubcategoryDatagridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.SubcategoryDatagridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
@@ -519,7 +525,7 @@
             this.SubcategoryDatagridView.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
@@ -536,7 +542,7 @@
             this.SubcategoryDatagridView.RowHeadersWidth = 51;
             this.SubcategoryDatagridView.RowTemplate.Height = 40;
             this.SubcategoryDatagridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.SubcategoryDatagridView.Size = new System.Drawing.Size(1245, 345);
+            this.SubcategoryDatagridView.Size = new System.Drawing.Size(1107, 299);
             this.SubcategoryDatagridView.TabIndex = 4;
             this.SubcategoryDatagridView.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.SubcategoryDatagridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SubcategoryDataGridView_CellClick);
@@ -548,7 +554,7 @@
             this.Controls.Add(this.SubcategoryGridGrup);
             this.Controls.Add(this.SubcategoryFromGrp);
             this.Name = "SubCategoryForm";
-            this.Size = new System.Drawing.Size(1337, 735);
+            this.Size = new System.Drawing.Size(1200, 629);
             this.SubcategoryFromGrp.ResumeLayout(false);
             this.SubcategoryFromGrp.PerformLayout();
             this.SubcategoryGridGrup.ResumeLayout(false);

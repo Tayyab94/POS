@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryControl));
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
@@ -46,20 +47,25 @@
             this.categoryNameLbl = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.CategoryDatagridView = new Bunifu.UI.WinForms.BunifuDataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CategoryDatagridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.categoryIdTxt);
             this.groupBox1.Controls.Add(this.updateCategoryBtn);
             this.groupBox1.Controls.Add(this.SaveCategoryBtn);
             this.groupBox1.Controls.Add(this.categoryNameTxt);
             this.groupBox1.Controls.Add(this.categoryNameLbl);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(54, 127);
+            this.groupBox1.Location = new System.Drawing.Point(22, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(987, 165);
             this.groupBox1.TabIndex = 0;
@@ -70,7 +76,7 @@
             // 
             this.categoryIdTxt.Location = new System.Drawing.Point(192, 105);
             this.categoryIdTxt.Name = "categoryIdTxt";
-            this.categoryIdTxt.Size = new System.Drawing.Size(81, 28);
+            this.categoryIdTxt.Size = new System.Drawing.Size(50, 28);
             this.categoryIdTxt.TabIndex = 4;
             this.categoryIdTxt.Visible = false;
             // 
@@ -79,13 +85,14 @@
             this.updateCategoryBtn.AllowAnimations = true;
             this.updateCategoryBtn.AllowMouseEffects = true;
             this.updateCategoryBtn.AllowToggling = false;
+            this.updateCategoryBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.updateCategoryBtn.AnimationSpeed = 200;
             this.updateCategoryBtn.AutoGenerateColors = false;
             this.updateCategoryBtn.AutoRoundBorders = false;
             this.updateCategoryBtn.AutoSizeLeftIcon = true;
             this.updateCategoryBtn.AutoSizeRightIcon = true;
             this.updateCategoryBtn.BackColor = System.Drawing.Color.Transparent;
-            this.updateCategoryBtn.BackColor1 = System.Drawing.Color.DodgerBlue;
+            this.updateCategoryBtn.BackColor1 = System.Drawing.Color.MediumSlateBlue;
             this.updateCategoryBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("updateCategoryBtn.BackgroundImage")));
             this.updateCategoryBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.updateCategoryBtn.ButtonText = "Update";
@@ -115,10 +122,10 @@
             this.updateCategoryBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
             this.updateCategoryBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.updateCategoryBtn.IconSize = 25;
-            this.updateCategoryBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
+            this.updateCategoryBtn.IdleBorderColor = System.Drawing.Color.CornflowerBlue;
             this.updateCategoryBtn.IdleBorderRadius = 1;
             this.updateCategoryBtn.IdleBorderThickness = 1;
-            this.updateCategoryBtn.IdleFillColor = System.Drawing.Color.DodgerBlue;
+            this.updateCategoryBtn.IdleFillColor = System.Drawing.Color.MediumSlateBlue;
             this.updateCategoryBtn.IdleIconLeftImage = null;
             this.updateCategoryBtn.IdleIconRightImage = null;
             this.updateCategoryBtn.IndicateFocus = false;
@@ -140,11 +147,11 @@
             this.updateCategoryBtn.onHoverState.ForeColor = System.Drawing.Color.White;
             this.updateCategoryBtn.onHoverState.IconLeftImage = null;
             this.updateCategoryBtn.onHoverState.IconRightImage = null;
-            this.updateCategoryBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.updateCategoryBtn.OnIdleState.BorderColor = System.Drawing.Color.CornflowerBlue;
             this.updateCategoryBtn.OnIdleState.BorderRadius = 1;
             this.updateCategoryBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.updateCategoryBtn.OnIdleState.BorderThickness = 1;
-            this.updateCategoryBtn.OnIdleState.FillColor = System.Drawing.Color.DodgerBlue;
+            this.updateCategoryBtn.OnIdleState.FillColor = System.Drawing.Color.MediumSlateBlue;
             this.updateCategoryBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
             this.updateCategoryBtn.OnIdleState.IconLeftImage = null;
             this.updateCategoryBtn.OnIdleState.IconRightImage = null;
@@ -170,6 +177,7 @@
             this.SaveCategoryBtn.AllowAnimations = true;
             this.SaveCategoryBtn.AllowMouseEffects = true;
             this.SaveCategoryBtn.AllowToggling = false;
+            this.SaveCategoryBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SaveCategoryBtn.AnimationSpeed = 200;
             this.SaveCategoryBtn.AutoGenerateColors = false;
             this.SaveCategoryBtn.AutoRoundBorders = false;
@@ -259,6 +267,8 @@
             // 
             this.categoryNameTxt.AcceptsReturn = false;
             this.categoryNameTxt.AcceptsTab = false;
+            this.categoryNameTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.categoryNameTxt.AnimationSpeed = 200;
             this.categoryNameTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.categoryNameTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
@@ -282,7 +292,7 @@
             this.categoryNameTxt.IconRight = null;
             this.categoryNameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.categoryNameTxt.Lines = new string[0];
-            this.categoryNameTxt.Location = new System.Drawing.Point(192, 46);
+            this.categoryNameTxt.Location = new System.Drawing.Point(187, 44);
             this.categoryNameTxt.MaxLength = 32767;
             this.categoryNameTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.categoryNameTxt.Modified = false;
@@ -329,6 +339,7 @@
             this.categoryNameTxt.UseSystemPasswordChar = false;
             this.categoryNameTxt.WordWrap = true;
             this.categoryNameTxt.TextChange += new System.EventHandler(this.CategoryNameTxt_Changed);
+            this.categoryNameTxt.Validating += new System.ComponentModel.CancelEventHandler(this.categoryNameTxt_Validating);
             // 
             // categoryNameLbl
             // 
@@ -342,11 +353,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.CategoryDatagridView);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(49, 330);
+            this.groupBox2.Location = new System.Drawing.Point(22, 208);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1256, 370);
+            this.groupBox2.Size = new System.Drawing.Size(1159, 389);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Category List";
@@ -357,13 +371,16 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             this.CategoryDatagridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.CategoryDatagridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CategoryDatagridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CategoryDatagridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CategoryDatagridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.CategoryDatagridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
@@ -390,7 +407,7 @@
             this.CategoryDatagridView.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
@@ -407,23 +424,37 @@
             this.CategoryDatagridView.RowHeadersWidth = 51;
             this.CategoryDatagridView.RowTemplate.Height = 40;
             this.CategoryDatagridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CategoryDatagridView.Size = new System.Drawing.Size(1216, 322);
+            this.CategoryDatagridView.Size = new System.Drawing.Size(1134, 322);
             this.CategoryDatagridView.TabIndex = 4;
             this.CategoryDatagridView.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CategoryDatagridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CategoryDatagridView_CellClick);
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 608);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1200, 21);
+            this.panel1.TabIndex = 2;
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // CategoryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "CategoryControl";
-            this.Size = new System.Drawing.Size(1337, 735);
+            this.Size = new System.Drawing.Size(1200, 629);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CategoryDatagridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -438,5 +469,7 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton SaveCategoryBtn;
         private Bunifu.UI.WinForms.BunifuDataGridView CategoryDatagridView;
         private System.Windows.Forms.TextBox categoryIdTxt;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

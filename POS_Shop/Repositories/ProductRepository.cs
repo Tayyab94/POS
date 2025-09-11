@@ -16,6 +16,17 @@ namespace POS_Shop.Repositories
         {
         }
 
+        public async Task<IEnumerable<Product>> GetAll(List<int> ids)
+        {
+            var data = await _context.Products.Where(e => ids.Contains(e.Id)).ToListAsync();
+            return data;
+        }
+        public async Task<bool> CheckRecoradlreadyExistByName(string name)
+        {
+            return await _context.Products.AnyAsync(x => x.ProductEnglishName.Equals(name,StringComparison.OrdinalIgnoreCase));
+
+        }
+
         public async Task<(int totalCount, IEnumerable<Product> data)> GetProductPagingListAsync(int pageIndex, int pageSize, string search)
         {
             var data = _context.Products.AsQueryable();
