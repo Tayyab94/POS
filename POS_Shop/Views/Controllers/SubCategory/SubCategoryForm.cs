@@ -163,5 +163,7 @@ namespace POS_Shop.Views.Controllers.SubCategory
                 await LoadSubCategoryForDataGridView();
             }
         }
+
+      
     }
 }

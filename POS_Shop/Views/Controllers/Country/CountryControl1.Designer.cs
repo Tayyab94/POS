@@ -66,7 +66,7 @@
             this.panel1.Controls.Add(this.SaveCityBtn);
             this.panel1.Location = new System.Drawing.Point(17, 101);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(699, 144);
+            this.panel1.Size = new System.Drawing.Size(562, 144);
             this.panel1.TabIndex = 1;
             // 
             // UpdateCountrybtn
@@ -118,7 +118,7 @@
             this.UpdateCountrybtn.IdleIconLeftImage = null;
             this.UpdateCountrybtn.IdleIconRightImage = null;
             this.UpdateCountrybtn.IndicateFocus = false;
-            this.UpdateCountrybtn.Location = new System.Drawing.Point(543, 53);
+            this.UpdateCountrybtn.Location = new System.Drawing.Point(406, 53);
             this.UpdateCountrybtn.Name = "UpdateCountrybtn";
             this.UpdateCountrybtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.UpdateCountrybtn.OnDisabledState.BorderRadius = 1;
@@ -301,7 +301,7 @@
             this.CountryNameTxt.SelectionLength = 0;
             this.CountryNameTxt.SelectionStart = 0;
             this.CountryNameTxt.ShortcutsEnabled = true;
-            this.CountryNameTxt.Size = new System.Drawing.Size(260, 41);
+            this.CountryNameTxt.Size = new System.Drawing.Size(191, 41);
             this.CountryNameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.CountryNameTxt.TabIndex = 2;
             this.CountryNameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -370,7 +370,7 @@
             this.SaveCityBtn.IdleIconLeftImage = null;
             this.SaveCityBtn.IdleIconRightImage = null;
             this.SaveCityBtn.IndicateFocus = false;
-            this.SaveCityBtn.Location = new System.Drawing.Point(543, 98);
+            this.SaveCityBtn.Location = new System.Drawing.Point(406, 98);
             this.SaveCityBtn.Name = "SaveCityBtn";
             this.SaveCityBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveCityBtn.OnDisabledState.BorderRadius = 1;
@@ -472,7 +472,7 @@
             this.CountryDatagridView.RowHeadersWidth = 51;
             this.CountryDatagridView.RowTemplate.Height = 40;
             this.CountryDatagridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CountryDatagridView.Size = new System.Drawing.Size(1317, 443);
+            this.CountryDatagridView.Size = new System.Drawing.Size(1180, 337);
             this.CountryDatagridView.TabIndex = 4;
             this.CountryDatagridView.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CountryDatagridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CountryDatagridView_CellClick);
@@ -496,7 +496,7 @@
             this.Controls.Add(this.CountryDatagridView);
             this.Controls.Add(this.panel1);
             this.Name = "CountryControl1";
-            this.Size = new System.Drawing.Size(1337, 735);
+            this.Size = new System.Drawing.Size(1200, 629);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CountryDatagridView)).EndInit();

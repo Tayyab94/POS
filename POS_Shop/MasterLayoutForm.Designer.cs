@@ -30,14 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterLayoutForm));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges11 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges12 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges13 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges14 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges15 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.sideBarPanel = new System.Windows.Forms.Panel();
+            this.ProductSectrionBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.SubCategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.CategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.MainLogoImgBtn = new Bunifu.UI.WinForms.BunifuImageButton();
+            this.CountryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.cityBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.TopNavPanel = new System.Windows.Forms.Panel();
+            this.LogoutBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,13 +52,6 @@
             this.viewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importExcelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.LogoutBtn = new Bunifu.UI.WinForms.BunifuImageButton();
-            this.ProductSectrionBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.SubCategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.CategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.MainLogoImgBtn = new Bunifu.UI.WinForms.BunifuImageButton();
-            this.CountryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.cityBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.sideBarPanel.SuspendLayout();
             this.TopNavPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -67,122 +67,10 @@
             this.sideBarPanel.Controls.Add(this.CountryBtn);
             this.sideBarPanel.Controls.Add(this.cityBtn);
             this.sideBarPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sideBarPanel.Location = new System.Drawing.Point(0, 28);
+            this.sideBarPanel.Location = new System.Drawing.Point(0, 30);
             this.sideBarPanel.Name = "sideBarPanel";
-            this.sideBarPanel.Size = new System.Drawing.Size(293, 722);
+            this.sideBarPanel.Size = new System.Drawing.Size(229, 650);
             this.sideBarPanel.TabIndex = 0;
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MainPanel.Location = new System.Drawing.Point(299, 126);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1251, 612);
-            this.MainPanel.TabIndex = 2;
-            // 
-            // TopNavPanel
-            // 
-            this.TopNavPanel.BackColor = System.Drawing.Color.SlateBlue;
-            this.TopNavPanel.Controls.Add(this.LogoutBtn);
-            this.TopNavPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopNavPanel.Location = new System.Drawing.Point(293, 28);
-            this.TopNavPanel.Name = "TopNavPanel";
-            this.TopNavPanel.Size = new System.Drawing.Size(1257, 92);
-            this.TopNavPanel.TabIndex = 3;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem,
-            this.viewsToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1550, 28);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.backupDatabaseToolStripMenuItem,
-            this.restoreDatabaseToolStripMenuItem});
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            // 
-            // backupDatabaseToolStripMenuItem
-            // 
-            this.backupDatabaseToolStripMenuItem.Name = "backupDatabaseToolStripMenuItem";
-            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
-            this.backupDatabaseToolStripMenuItem.Text = "Backup Database";
-            this.backupDatabaseToolStripMenuItem.Click += new System.EventHandler(this.backupDatabaseToolStripMenuItem_Click);
-            // 
-            // restoreDatabaseToolStripMenuItem
-            // 
-            this.restoreDatabaseToolStripMenuItem.Name = "restoreDatabaseToolStripMenuItem";
-            this.restoreDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
-            this.restoreDatabaseToolStripMenuItem.Text = "Restore Database";
-            this.restoreDatabaseToolStripMenuItem.Click += new System.EventHandler(this.restoreDatabaseToolStripMenuItem_Click);
-            // 
-            // viewsToolStripMenuItem
-            // 
-            this.viewsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importExcelFileToolStripMenuItem});
-            this.viewsToolStripMenuItem.Name = "viewsToolStripMenuItem";
-            this.viewsToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
-            this.viewsToolStripMenuItem.Text = "Views";
-            // 
-            // importExcelFileToolStripMenuItem
-            // 
-            this.importExcelFileToolStripMenuItem.Name = "importExcelFileToolStripMenuItem";
-            this.importExcelFileToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.importExcelFileToolStripMenuItem.Text = "Import Excel File";
-            this.importExcelFileToolStripMenuItem.Click += new System.EventHandler(this.importExcelFileToolStripMenuItem_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // LogoutBtn
-            // 
-            this.LogoutBtn.ActiveImage = null;
-            this.LogoutBtn.AllowAnimations = true;
-            this.LogoutBtn.AllowBuffering = false;
-            this.LogoutBtn.AllowToggling = false;
-            this.LogoutBtn.AllowZooming = false;
-            this.LogoutBtn.AllowZoomingOnFocus = false;
-            this.LogoutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogoutBtn.BackColor = System.Drawing.Color.Transparent;
-            this.LogoutBtn.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.LogoutBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.ErrorImage")));
-            this.LogoutBtn.FadeWhenInactive = false;
-            this.LogoutBtn.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
-            this.LogoutBtn.Image = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.Image")));
-            this.LogoutBtn.ImageActive = null;
-            this.LogoutBtn.ImageLocation = null;
-            this.LogoutBtn.ImageMargin = 6;
-            this.LogoutBtn.ImageSize = new System.Drawing.Size(24, 21);
-            this.LogoutBtn.ImageZoomSize = new System.Drawing.Size(30, 27);
-            this.LogoutBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.InitialImage")));
-            this.LogoutBtn.Location = new System.Drawing.Point(1212, 29);
-            this.LogoutBtn.Name = "LogoutBtn";
-            this.LogoutBtn.Rotation = 0;
-            this.LogoutBtn.ShowActiveImage = true;
-            this.LogoutBtn.ShowCursorChanges = true;
-            this.LogoutBtn.ShowImageBorders = true;
-            this.LogoutBtn.ShowSizeMarkers = false;
-            this.LogoutBtn.Size = new System.Drawing.Size(30, 27);
-            this.LogoutBtn.TabIndex = 0;
-            this.LogoutBtn.ToolTipText = "";
-            this.LogoutBtn.WaitOnLoad = false;
-            this.LogoutBtn.Zoom = 6;
-            this.LogoutBtn.ZoomSpeed = 10;
-            this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
             // 
             // ProductSectrionBtn
             // 
@@ -203,11 +91,11 @@
             this.ProductSectrionBtn.ColorContrastOnClick = 45;
             this.ProductSectrionBtn.ColorContrastOnHover = 45;
             this.ProductSectrionBtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.ProductSectrionBtn.CustomizableEdges = borderEdges1;
+            borderEdges11.BottomLeft = true;
+            borderEdges11.BottomRight = true;
+            borderEdges11.TopLeft = true;
+            borderEdges11.TopRight = true;
+            this.ProductSectrionBtn.CustomizableEdges = borderEdges11;
             this.ProductSectrionBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.ProductSectrionBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.ProductSectrionBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -265,7 +153,7 @@
             this.ProductSectrionBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.ProductSectrionBtn.OnPressedState.IconLeftImage = null;
             this.ProductSectrionBtn.OnPressedState.IconRightImage = null;
-            this.ProductSectrionBtn.Size = new System.Drawing.Size(256, 42);
+            this.ProductSectrionBtn.Size = new System.Drawing.Size(197, 42);
             this.ProductSectrionBtn.TabIndex = 6;
             this.ProductSectrionBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ProductSectrionBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -293,11 +181,11 @@
             this.SubCategoryBtn.ColorContrastOnClick = 45;
             this.SubCategoryBtn.ColorContrastOnHover = 45;
             this.SubCategoryBtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.SubCategoryBtn.CustomizableEdges = borderEdges2;
+            borderEdges12.BottomLeft = true;
+            borderEdges12.BottomRight = true;
+            borderEdges12.TopLeft = true;
+            borderEdges12.TopRight = true;
+            this.SubCategoryBtn.CustomizableEdges = borderEdges12;
             this.SubCategoryBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.SubCategoryBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SubCategoryBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -355,7 +243,7 @@
             this.SubCategoryBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.SubCategoryBtn.OnPressedState.IconLeftImage = null;
             this.SubCategoryBtn.OnPressedState.IconRightImage = null;
-            this.SubCategoryBtn.Size = new System.Drawing.Size(256, 42);
+            this.SubCategoryBtn.Size = new System.Drawing.Size(198, 42);
             this.SubCategoryBtn.TabIndex = 5;
             this.SubCategoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SubCategoryBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -383,11 +271,11 @@
             this.CategoryBtn.ColorContrastOnClick = 45;
             this.CategoryBtn.ColorContrastOnHover = 45;
             this.CategoryBtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            this.CategoryBtn.CustomizableEdges = borderEdges3;
+            borderEdges13.BottomLeft = true;
+            borderEdges13.BottomRight = true;
+            borderEdges13.TopLeft = true;
+            borderEdges13.TopRight = true;
+            this.CategoryBtn.CustomizableEdges = borderEdges13;
             this.CategoryBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.CategoryBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.CategoryBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -445,7 +333,7 @@
             this.CategoryBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.CategoryBtn.OnPressedState.IconLeftImage = null;
             this.CategoryBtn.OnPressedState.IconRightImage = null;
-            this.CategoryBtn.Size = new System.Drawing.Size(256, 42);
+            this.CategoryBtn.Size = new System.Drawing.Size(197, 42);
             this.CategoryBtn.TabIndex = 4;
             this.CategoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CategoryBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -472,8 +360,8 @@
             this.MainLogoImgBtn.ImageActive = null;
             this.MainLogoImgBtn.ImageLocation = null;
             this.MainLogoImgBtn.ImageMargin = 30;
-            this.MainLogoImgBtn.ImageSize = new System.Drawing.Size(263, 62);
-            this.MainLogoImgBtn.ImageZoomSize = new System.Drawing.Size(293, 92);
+            this.MainLogoImgBtn.ImageSize = new System.Drawing.Size(199, 62);
+            this.MainLogoImgBtn.ImageZoomSize = new System.Drawing.Size(229, 92);
             this.MainLogoImgBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("MainLogoImgBtn.InitialImage")));
             this.MainLogoImgBtn.Location = new System.Drawing.Point(0, 0);
             this.MainLogoImgBtn.Name = "MainLogoImgBtn";
@@ -482,7 +370,7 @@
             this.MainLogoImgBtn.ShowCursorChanges = false;
             this.MainLogoImgBtn.ShowImageBorders = true;
             this.MainLogoImgBtn.ShowSizeMarkers = false;
-            this.MainLogoImgBtn.Size = new System.Drawing.Size(293, 92);
+            this.MainLogoImgBtn.Size = new System.Drawing.Size(229, 92);
             this.MainLogoImgBtn.TabIndex = 0;
             this.MainLogoImgBtn.ToolTipText = "";
             this.MainLogoImgBtn.WaitOnLoad = false;
@@ -508,11 +396,11 @@
             this.CountryBtn.ColorContrastOnClick = 45;
             this.CountryBtn.ColorContrastOnHover = 45;
             this.CountryBtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            this.CountryBtn.CustomizableEdges = borderEdges4;
+            borderEdges14.BottomLeft = true;
+            borderEdges14.BottomRight = true;
+            borderEdges14.TopLeft = true;
+            borderEdges14.TopRight = true;
+            this.CountryBtn.CustomizableEdges = borderEdges14;
             this.CountryBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.CountryBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.CountryBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -570,7 +458,7 @@
             this.CountryBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.CountryBtn.OnPressedState.IconLeftImage = null;
             this.CountryBtn.OnPressedState.IconRightImage = null;
-            this.CountryBtn.Size = new System.Drawing.Size(256, 43);
+            this.CountryBtn.Size = new System.Drawing.Size(197, 43);
             this.CountryBtn.TabIndex = 3;
             this.CountryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CountryBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -598,11 +486,11 @@
             this.cityBtn.ColorContrastOnClick = 45;
             this.cityBtn.ColorContrastOnHover = 45;
             this.cityBtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges5.BottomLeft = true;
-            borderEdges5.BottomRight = true;
-            borderEdges5.TopLeft = true;
-            borderEdges5.TopRight = true;
-            this.cityBtn.CustomizableEdges = borderEdges5;
+            borderEdges15.BottomLeft = true;
+            borderEdges15.BottomRight = true;
+            borderEdges15.TopLeft = true;
+            borderEdges15.TopRight = true;
+            this.cityBtn.CustomizableEdges = borderEdges15;
             this.cityBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.cityBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.cityBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -660,7 +548,7 @@
             this.cityBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.cityBtn.OnPressedState.IconLeftImage = null;
             this.cityBtn.OnPressedState.IconRightImage = null;
-            this.cityBtn.Size = new System.Drawing.Size(256, 43);
+            this.cityBtn.Size = new System.Drawing.Size(197, 43);
             this.cityBtn.TabIndex = 0;
             this.cityBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cityBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -669,12 +557,124 @@
             this.cityBtn.UseDefaultRadiusAndThickness = true;
             this.cityBtn.Click += new System.EventHandler(this.cityBtn_Click);
             // 
+            // MainPanel
+            // 
+            this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainPanel.Location = new System.Drawing.Point(235, 126);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(1242, 554);
+            this.MainPanel.TabIndex = 2;
+            // 
+            // TopNavPanel
+            // 
+            this.TopNavPanel.BackColor = System.Drawing.Color.SlateBlue;
+            this.TopNavPanel.Controls.Add(this.LogoutBtn);
+            this.TopNavPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopNavPanel.Location = new System.Drawing.Point(229, 30);
+            this.TopNavPanel.Name = "TopNavPanel";
+            this.TopNavPanel.Size = new System.Drawing.Size(1248, 92);
+            this.TopNavPanel.TabIndex = 3;
+            // 
+            // LogoutBtn
+            // 
+            this.LogoutBtn.ActiveImage = null;
+            this.LogoutBtn.AllowAnimations = true;
+            this.LogoutBtn.AllowBuffering = false;
+            this.LogoutBtn.AllowToggling = false;
+            this.LogoutBtn.AllowZooming = false;
+            this.LogoutBtn.AllowZoomingOnFocus = false;
+            this.LogoutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogoutBtn.BackColor = System.Drawing.Color.Transparent;
+            this.LogoutBtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.LogoutBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.ErrorImage")));
+            this.LogoutBtn.FadeWhenInactive = false;
+            this.LogoutBtn.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
+            this.LogoutBtn.Image = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.Image")));
+            this.LogoutBtn.ImageActive = null;
+            this.LogoutBtn.ImageLocation = null;
+            this.LogoutBtn.ImageMargin = 6;
+            this.LogoutBtn.ImageSize = new System.Drawing.Size(24, 21);
+            this.LogoutBtn.ImageZoomSize = new System.Drawing.Size(30, 27);
+            this.LogoutBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.InitialImage")));
+            this.LogoutBtn.Location = new System.Drawing.Point(1203, 29);
+            this.LogoutBtn.Name = "LogoutBtn";
+            this.LogoutBtn.Rotation = 0;
+            this.LogoutBtn.ShowActiveImage = true;
+            this.LogoutBtn.ShowCursorChanges = true;
+            this.LogoutBtn.ShowImageBorders = true;
+            this.LogoutBtn.ShowSizeMarkers = false;
+            this.LogoutBtn.Size = new System.Drawing.Size(30, 27);
+            this.LogoutBtn.TabIndex = 0;
+            this.LogoutBtn.ToolTipText = "";
+            this.LogoutBtn.WaitOnLoad = false;
+            this.LogoutBtn.Zoom = 6;
+            this.LogoutBtn.ZoomSpeed = 10;
+            this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem,
+            this.viewsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1477, 30);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backupDatabaseToolStripMenuItem,
+            this.restoreDatabaseToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // backupDatabaseToolStripMenuItem
+            // 
+            this.backupDatabaseToolStripMenuItem.Name = "backupDatabaseToolStripMenuItem";
+            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.backupDatabaseToolStripMenuItem.Text = "Backup Database";
+            this.backupDatabaseToolStripMenuItem.Click += new System.EventHandler(this.backupDatabaseToolStripMenuItem_Click);
+            // 
+            // restoreDatabaseToolStripMenuItem
+            // 
+            this.restoreDatabaseToolStripMenuItem.Name = "restoreDatabaseToolStripMenuItem";
+            this.restoreDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.restoreDatabaseToolStripMenuItem.Text = "Restore Database";
+            this.restoreDatabaseToolStripMenuItem.Click += new System.EventHandler(this.restoreDatabaseToolStripMenuItem_Click);
+            // 
+            // viewsToolStripMenuItem
+            // 
+            this.viewsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importExcelFileToolStripMenuItem});
+            this.viewsToolStripMenuItem.Name = "viewsToolStripMenuItem";
+            this.viewsToolStripMenuItem.Size = new System.Drawing.Size(61, 26);
+            this.viewsToolStripMenuItem.Text = "Views";
+            // 
+            // importExcelFileToolStripMenuItem
+            // 
+            this.importExcelFileToolStripMenuItem.Name = "importExcelFileToolStripMenuItem";
+            this.importExcelFileToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
+            this.importExcelFileToolStripMenuItem.Text = "Import Excel File";
+            this.importExcelFileToolStripMenuItem.Click += new System.EventHandler(this.importExcelFileToolStripMenuItem_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // MasterLayoutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1550, 750);
+            this.ClientSize = new System.Drawing.Size(1477, 680);
             this.Controls.Add(this.TopNavPanel);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.sideBarPanel);

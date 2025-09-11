@@ -156,11 +156,11 @@
   </data>
   <data name="PrintBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAANoAAAAnCAYAAABpEVYcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACZSURBVHhe7dOhAYAwAMCwXbKX4T/OwA88WKiKiKnvmPs6
-        5n5dwF/WMd4R+JrRIGA0CBgNAkaDgNEgYDQIGA0CRoOA0SBgNAgYDQJGg4DRIGA0CBgNAkaDgNEgYDQI
-        GA0CRoOA0SBgNAgYDQJGg4DRIGA0CBgNAkaDgNEgYDQIGA0CRoOA0SBgNAgYDQJGg8CY2zqfEfjQts4b
-        ilLBC6LNJ08AAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAQIAAAAnCAYAAADkWUZhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACLSURBVHhe7dQxEQAhEARBlGAZ/CGD/KA2/ZdAB52MgGl9
+        1urzHOBVtdo/Aq8xAsAIACMAjAAIIwCMADACwAiAMALACAAjAIwACCMAjAAwAsAIgDACwAgAIwCMAAgj
+        AIwAMALACIAwAsAIACMAjAAIIwCMADACwAiAMALACAAjAIwAiNZH7W8EHjJqX6AWCiri4gtDAAAAAElF
+        TkSuQmCC
 </value>
   </data>
   <metadata name="CityPrintPreviewDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

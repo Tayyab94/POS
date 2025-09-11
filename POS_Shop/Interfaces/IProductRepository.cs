@@ -9,6 +9,8 @@ namespace POS_Shop.Interfaces
     {
         //Task<bool> UpdateCategory(Category model);
 
-       Task<(int totalCount, IEnumerable<Product> data)> GetProductPagingListAsync(int pageIndex, int pageSize, string search);
+        Task<(int totalCount, IEnumerable<Product> data)> GetProductPagingListAsync(int pageIndex, int pageSize, string search);
+        Task<bool> CheckRecoradlreadyExistByName(string name);
+        Task<IEnumerable<Product>> GetAll(List<int> ids);
     }
 }

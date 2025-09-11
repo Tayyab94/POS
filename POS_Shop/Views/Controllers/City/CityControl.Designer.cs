@@ -67,6 +67,7 @@
             this.SearchCityBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.PrevBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.NextBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.CountryDatagridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -193,7 +194,7 @@
             this.SaveCityBtn.IdleIconLeftImage = null;
             this.SaveCityBtn.IdleIconRightImage = null;
             this.SaveCityBtn.IndicateFocus = false;
-            this.SaveCityBtn.Location = new System.Drawing.Point(781, 95);
+            this.SaveCityBtn.Location = new System.Drawing.Point(1008, 95);
             this.SaveCityBtn.Name = "SaveCityBtn";
             this.SaveCityBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveCityBtn.OnDisabledState.BorderRadius = 1;
@@ -242,8 +243,10 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             this.CountryDatagridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.CountryDatagridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CountryDatagridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.CountryDatagridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CountryDatagridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.CountryDatagridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -286,13 +289,13 @@
             this.CountryDatagridView.HeaderBackColor = System.Drawing.Color.DodgerBlue;
             this.CountryDatagridView.HeaderBgColor = System.Drawing.Color.Empty;
             this.CountryDatagridView.HeaderForeColor = System.Drawing.Color.White;
-            this.CountryDatagridView.Location = new System.Drawing.Point(17, 312);
+            this.CountryDatagridView.Location = new System.Drawing.Point(17, 274);
             this.CountryDatagridView.Name = "CountryDatagridView";
             this.CountryDatagridView.RowHeadersVisible = false;
             this.CountryDatagridView.RowHeadersWidth = 51;
             this.CountryDatagridView.RowTemplate.Height = 40;
             this.CountryDatagridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CountryDatagridView.Size = new System.Drawing.Size(1301, 406);
+            this.CountryDatagridView.Size = new System.Drawing.Size(1156, 328);
             this.CountryDatagridView.TabIndex = 3;
             this.CountryDatagridView.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CountryDatagridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CountryDatagridView_CellClick);
@@ -482,7 +485,7 @@
             this.UpdateCitybtn.IdleIconLeftImage = null;
             this.UpdateCitybtn.IdleIconRightImage = null;
             this.UpdateCitybtn.IndicateFocus = false;
-            this.UpdateCitybtn.Location = new System.Drawing.Point(625, 94);
+            this.UpdateCitybtn.Location = new System.Drawing.Point(852, 94);
             this.UpdateCitybtn.Name = "UpdateCitybtn";
             this.UpdateCitybtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.UpdateCitybtn.OnDisabledState.BorderRadius = 1;
@@ -531,8 +534,7 @@
             this.PrintBtn.AllowAnimations = true;
             this.PrintBtn.AllowMouseEffects = true;
             this.PrintBtn.AllowToggling = false;
-            this.PrintBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PrintBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PrintBtn.AnimationSpeed = 200;
             this.PrintBtn.AutoGenerateColors = false;
             this.PrintBtn.AutoRoundBorders = false;
@@ -575,7 +577,7 @@
             this.PrintBtn.IdleIconLeftImage = null;
             this.PrintBtn.IdleIconRightImage = null;
             this.PrintBtn.IndicateFocus = false;
-            this.PrintBtn.Location = new System.Drawing.Point(401, 94);
+            this.PrintBtn.Location = new System.Drawing.Point(588, 94);
             this.PrintBtn.Name = "PrintBtn";
             this.PrintBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.PrintBtn.OnDisabledState.BorderRadius = 1;
@@ -609,7 +611,7 @@
             this.PrintBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.PrintBtn.OnPressedState.IconLeftImage = null;
             this.PrintBtn.OnPressedState.IconRightImage = null;
-            this.PrintBtn.Size = new System.Drawing.Size(218, 39);
+            this.PrintBtn.Size = new System.Drawing.Size(258, 39);
             this.PrintBtn.TabIndex = 7;
             this.PrintBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.PrintBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -634,6 +636,8 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.CityNameTxt);
@@ -644,9 +648,9 @@
             this.panel1.Controls.Add(this.CountryDropDownLst);
             this.panel1.Controls.Add(this.SaveCityBtn);
             this.panel1.Controls.Add(this.cityIdTxt);
-            this.panel1.Location = new System.Drawing.Point(17, 92);
+            this.panel1.Location = new System.Drawing.Point(17, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(936, 139);
+            this.panel1.Size = new System.Drawing.Size(1163, 139);
             this.panel1.TabIndex = 8;
             // 
             // cityGrdiheadingLbl
@@ -654,7 +658,7 @@
             this.cityGrdiheadingLbl.AutoSize = true;
             this.cityGrdiheadingLbl.Font = new System.Drawing.Font("Ravie", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cityGrdiheadingLbl.ForeColor = System.Drawing.Color.SlateBlue;
-            this.cityGrdiheadingLbl.Location = new System.Drawing.Point(154, 47);
+            this.cityGrdiheadingLbl.Location = new System.Drawing.Point(154, 19);
             this.cityGrdiheadingLbl.Name = "cityGrdiheadingLbl";
             this.cityGrdiheadingLbl.Size = new System.Drawing.Size(266, 27);
             this.cityGrdiheadingLbl.TabIndex = 10;
@@ -687,7 +691,7 @@
             this.SearchCityTxt.IconRight = null;
             this.SearchCityTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.SearchCityTxt.Lines = new string[0];
-            this.SearchCityTxt.Location = new System.Drawing.Point(17, 265);
+            this.SearchCityTxt.Location = new System.Drawing.Point(17, 213);
             this.SearchCityTxt.MaxLength = 32767;
             this.SearchCityTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.SearchCityTxt.Modified = false;
@@ -782,7 +786,7 @@
             this.SearchCityBtn.IdleIconLeftImage = null;
             this.SearchCityBtn.IdleIconRightImage = null;
             this.SearchCityBtn.IndicateFocus = false;
-            this.SearchCityBtn.Location = new System.Drawing.Point(577, 265);
+            this.SearchCityBtn.Location = new System.Drawing.Point(577, 213);
             this.SearchCityBtn.Name = "SearchCityBtn";
             this.SearchCityBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SearchCityBtn.OnDisabledState.BorderRadius = 1;
@@ -829,6 +833,7 @@
             this.PrevBtn.AllowAnimations = true;
             this.PrevBtn.AllowMouseEffects = true;
             this.PrevBtn.AllowToggling = false;
+            this.PrevBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PrevBtn.AnimationSpeed = 200;
             this.PrevBtn.AutoGenerateColors = false;
             this.PrevBtn.AutoRoundBorders = false;
@@ -871,7 +876,7 @@
             this.PrevBtn.IdleIconLeftImage = null;
             this.PrevBtn.IdleIconRightImage = null;
             this.PrevBtn.IndicateFocus = false;
-            this.PrevBtn.Location = new System.Drawing.Point(1191, 265);
+            this.PrevBtn.Location = new System.Drawing.Point(1046, 214);
             this.PrevBtn.Name = "PrevBtn";
             this.PrevBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.PrevBtn.OnDisabledState.BorderRadius = 1;
@@ -919,6 +924,7 @@
             this.NextBtn.AllowAnimations = true;
             this.NextBtn.AllowMouseEffects = true;
             this.NextBtn.AllowToggling = false;
+            this.NextBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NextBtn.AnimationSpeed = 200;
             this.NextBtn.AutoGenerateColors = false;
             this.NextBtn.AutoRoundBorders = false;
@@ -961,7 +967,7 @@
             this.NextBtn.IdleIconLeftImage = null;
             this.NextBtn.IdleIconRightImage = null;
             this.NextBtn.IndicateFocus = false;
-            this.NextBtn.Location = new System.Drawing.Point(1260, 265);
+            this.NextBtn.Location = new System.Drawing.Point(1115, 214);
             this.NextBtn.Name = "NextBtn";
             this.NextBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.NextBtn.OnDisabledState.BorderRadius = 1;
@@ -1004,10 +1010,19 @@
             this.NextBtn.UseDefaultRadiusAndThickness = true;
             this.NextBtn.Click += new System.EventHandler(this.NextBtn_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 608);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1200, 21);
+            this.panel2.TabIndex = 15;
+            // 
             // CityControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.NextBtn);
             this.Controls.Add(this.PrevBtn);
             this.Controls.Add(this.SearchCityBtn);
@@ -1016,7 +1031,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.CountryDatagridView);
             this.Name = "CityControl";
-            this.Size = new System.Drawing.Size(1337, 735);
+            this.Size = new System.Drawing.Size(1200, 629);
             ((System.ComponentModel.ISupportInitialize)(this.CountryDatagridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1043,5 +1058,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton SearchCityBtn;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton PrevBtn;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton NextBtn;
+        private System.Windows.Forms.Panel panel2;
     }
 }

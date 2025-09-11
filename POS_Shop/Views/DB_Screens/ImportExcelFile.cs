@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -19,10 +20,43 @@ namespace POS_Shop.Views.DB_Screens
         public ImportExcelFile()
         {
             InitializeComponent();
-
+            this.Load += ImportExcelFile_Load;
             bindingSource = new BindingSource();
         }
 
+        private async void ImportExcelFile_Load(object sender, EventArgs e)
+        {
+           CheckProductRecordsAndDisableTabs();
+        }
+        private async void CheckProductRecordsAndDisableTabs()
+        {
+            try
+            {
+                using (var context = new POSDbContext())
+                {
+                    if(await context.Products.AnyAsync())
+                    {
+                        tabPage1.Enabled=false;
+                        tabPage1.Text="Products (Already Imported)";
+                        ImportFileTabComtrol.SelectedTab = tabPage2;
+                        tabPage2.Enabled = true;
+                    }
+                    else
+                    {
+                        tabPage1.Enabled = true;
+                        tabPage1.Text = "Products (Not Imported Yet)";
+                        ImportFileTabComtrol.SelectedTab = tabPage1;
+                    }
+
+                }
+              
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         private void BrowsFileBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -205,6 +239,137 @@ namespace POS_Shop.Views.DB_Screens
                 return result;
 
             return null;
+        }
+
+        private void BrowsUpdatedExcelFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            // Set the filter to show only .bak files
+            ofd.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm|All files|*.*";
+            ofd.Title = "Select an Excel File";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                ImportUpdatedFilePathTxt.Text = ofd.FileName;
+                LoadUpdatedDataBtn.Enabled = true;
+            }
+        }
+
+        private void LoadUpdatedDataBtn_Click(object sender, EventArgs e)
+        {
+            using (var stream = File.Open(ImportUpdatedFilePathTxt.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                //// Register encoding provider (needed for older Excel files, e.g., .xls)
+                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    var conf = new ExcelDataSetConfiguration
+                    {
+                        ConfigureDataTable = _ => new ExcelDataTableConfiguration
+                        {
+                            UseHeaderRow = true
+                        }
+                    };
+
+
+                    var dataSet = reader.AsDataSet(conf);
+
+                    if (dataSet.Tables.Count == 0)
+                    {
+                        MessageBox.Show("No worksheets found in the file.", "No data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+
+                    var currentTable = dataSet.Tables[0];
+
+                    DataTable filtered = new DataTable();
+                    // Add only required columns
+                    filtered.Columns.Add("Product ID");
+                    filtered.Columns.Add("Product Name");
+                    filtered.Columns.Add("Urdu Name");
+                    filtered.Columns.Add("Type");
+                    filtered.Columns.Add("Purchase Price");
+                    filtered.Columns.Add("Sale Price");
+                    filtered.Columns.Add("Cost");
+                    filtered.Columns.Add("SubCategory");
+                    
+
+                    // Copy rows
+                    foreach (DataRow row in currentTable.Rows)
+                    {
+                        //// Skip rows that are empty or header duplicates
+                        if (row[0] == DBNull.Value || row[0].ToString() == "ProductID")
+                            continue;
+                        filtered.Rows.Add(
+                            row[0],  
+                            row[1],  
+                            row[2],  
+                            row[3],  
+                            row[4],   
+                            row[5],
+                            row[6],
+                            row[7]
+                        );
+                    }
+
+                    updatedProductLIstGrid.DataSource = filtered;
+                    updatedProductLIstGrid.AllowUserToAddRows = false;
+                    DataGridViewComboBoxColumn typeColumn = new DataGridViewComboBoxColumn();
+                    typeColumn.HeaderText = "Type";
+                    typeColumn.Name = "Type";
+                    typeColumn.DataPropertyName = "Type"; // This is the key - it binds to the DataTable column
+                    typeColumn.Items.AddRange(new object[]
+                    {
+                                "عدد",
+                                "ڈبہ",
+                                "درجن",
+                                "کارٹن",
+                                "پیکٹ",
+                                "رول",
+                                "گز"
+                    });
+
+                    // Remove original and add ComboBox
+                    int typeIndex = updatedProductLIstGrid.Columns["Type"].Index;
+                    updatedProductLIstGrid.Columns.Remove("Type");
+                    updatedProductLIstGrid.Columns.Insert(typeIndex, typeColumn);
+
+                    // Add Delete button column
+                    DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
+                    deleteButtonColumn.HeaderText = "Action";
+                    deleteButtonColumn.Name = "Delete";
+                    deleteButtonColumn.Text = "Delete";
+                    deleteButtonColumn.UseColumnTextForButtonValue = true;
+                    updatedProductLIstGrid.Columns.Add(deleteButtonColumn);
+
+                    // Handle the button click event
+                    updatedProductLIstGrid.CellClick += (sender1, e1) =>
+                    {
+                        if (e1.ColumnIndex == updatedProductLIstGrid.Columns["Delete"].Index && e1.RowIndex >= 0)
+                        {
+                            // Confirm deletion
+                            DialogResult result = MessageBox.Show("Are you sure you want to delete this row?",
+                                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.Yes)
+                            {
+                                // Remove the row from the DataTable
+                                DataRowView rowView = (DataRowView)updatedProductLIstGrid.Rows[e1.RowIndex].DataBoundItem;
+                                DataRow rowToDelete = rowView.Row;
+
+                                // Remove from DataTable
+                                ((DataTable)updatedProductLIstGrid.DataSource).Rows.Remove(rowToDelete);
+
+                                // Optional: Refresh the grid
+                                updatedProductLIstGrid.Refresh();
+                            }
+                        }
+                    };
+                }
+
+            }
         }
 
 

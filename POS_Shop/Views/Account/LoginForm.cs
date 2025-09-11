@@ -24,14 +24,12 @@ namespace POS_Shop.Views.Account
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            // Simple validation
-            if (string.IsNullOrWhiteSpace(userEmailTxt.Text) ||
-                string.IsNullOrWhiteSpace(UserPasswordTxt.Text))
+            if(ValidateChildren(ValidationConstraints.Enabled) == false)
             {
-                MessageBox.Show("Please enter both username and password", "Warning",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // There are invalid controls
+                MessageBox.Show("Please correct the errors before logging in.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
 
             if (AuthenticateUser(userEmailTxt.Text, UserPasswordTxt.Text))
             {
@@ -74,6 +72,36 @@ namespace POS_Shop.Views.Account
             return Guid.NewGuid().ToString();
         }
 
-    
+        private void userEmailTxt_Validating(object sender, CancelEventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(userEmailTxt.Text))
+            {
+                e.Cancel = true;
+                userEmailTxt.BackColor = Color.Red;
+                loginErrorProvider.SetError(userEmailTxt, "User Name is required");
+            }
+            else
+            {
+                e.Cancel = false;
+                userEmailTxt.BackColor = SystemColors.Window;
+                loginErrorProvider.SetError(userEmailTxt, null);
+            }
+        }
+
+        private void UserPasswordTxt_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(UserPasswordTxt.Text))
+            {
+                e.Cancel = true;
+                UserPasswordTxt.BackColor = Color.Red;
+                loginErrorProvider.SetError(UserPasswordTxt, "Password is required");
+            }
+            else
+            {
+                e.Cancel = false;
+                UserPasswordTxt.BackColor = SystemColors.Window;
+                loginErrorProvider.SetError(UserPasswordTxt, null);
+            }
+        }
     }
 }

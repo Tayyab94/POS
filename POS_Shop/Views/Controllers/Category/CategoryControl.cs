@@ -48,12 +48,17 @@ namespace POS_Shop.Views.Controllers.Category
 
         private void SaveCategoryBtn_Click(object sender, EventArgs e)
         {
+            if(!ValidateChildren(ValidationConstraints.Enabled))
+            {
+                // There are invalid controls
+                MessageBox.Show("Please correct the errors before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (Regex.IsMatch(categoryNameTxt.Text, "^[a-zA-Z ]*$")== false)
             {
                 MessageBox.Show("Please enter a valid category name (letters and spaces only).");
                 return;
-
             }
 
             using (var context = new POSDbContext())
@@ -146,6 +151,22 @@ namespace POS_Shop.Views.Controllers.Category
                 categoryIdTxt.Text = row.Cells["ID"].Value.ToString();
                 updateCategoryBtn.Enabled = true;
                 updateCategoryBtn.IdleFillColor = Color.OrangeRed;
+            }
+        }
+
+        private void categoryNameTxt_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(string.IsNullOrEmpty(categoryNameTxt.Text) || !Regex.IsMatch(categoryNameTxt.Text, "^[a-zA-Z ]*$"))
+            {
+                e.Cancel = true; // Cancel the event
+                categoryNameTxt.BackColor = Color.Red;
+                errorProvider.SetError(categoryNameTxt, "Please enter a valid category name (letters and spaces only).");
+            }
+            else
+            {
+                e.Cancel = false; // Allow the event to proceed
+                categoryNameTxt.BackColor = SystemColors.Window;
+                errorProvider.SetError(categoryNameTxt, string.Empty); // Clear any previous error message
             }
         }
 

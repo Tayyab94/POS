@@ -18,6 +18,7 @@ namespace POS_Shop
         public MasterLayoutForm()
         {
             InitializeComponent();
+            this.MinimumSize = new Size(200, 150); // Set to a reasonable small size
         }
 
         private async void cityBtn_Click(object sender, EventArgs e)
