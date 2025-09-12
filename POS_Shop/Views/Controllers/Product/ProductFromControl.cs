@@ -683,6 +683,8 @@ namespace POS_Shop.Views.Product
 
                 updateProductBtn.Visible = true;
                 ProductSaveBtn.Enabled = false;
+
+                ProductFormLbl.Text = "Edit Product";
                 GetAndBindProductForEdit(productId);
 
                 //MessageBox.Show($"Prod ID :{productId} and NAme :{productName} for Edit");
@@ -987,6 +989,7 @@ namespace POS_Shop.Views.Product
         private void ProductResetFormBtn_Click(object sender, EventArgs e)
         {
             ClearFormFunction();
+            ProductFormLbl.Text = "Add Product";
         }
     }
 }
