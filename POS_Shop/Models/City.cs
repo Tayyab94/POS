@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace POS_Shop.Models
 {
@@ -11,5 +13,6 @@ namespace POS_Shop.Models
         public int CountryId { get; set; }
         public bool IsActive { get; set; }
         
+        public ICollection<Customer> Customer { get; set; }
     }
 }
