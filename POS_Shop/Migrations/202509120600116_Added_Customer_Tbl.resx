@@ -117,32 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="loading" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>loading.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="iconNext" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>iconNext.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconLoad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>iconLoad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Expand" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Expand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minimizeSign" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>minimizeSign.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconPrev" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>iconPrev.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconLoad1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>iconLoad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconUpload" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>iconUpload.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>iconSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

@@ -196,6 +196,7 @@
     <Compile Include="Interfaces\ICategoryRepository.cs" />
     <Compile Include="Interfaces\ICityRepository.cs" />
     <Compile Include="Interfaces\ICountryRepository.cs" />
+    <Compile Include="Interfaces\ICustomerRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ISubCategoryRepository.cs" />
@@ -235,6 +236,10 @@
     <Compile Include="Migrations\202509061523340_editProductTbl.Designer.cs">
       <DependentUpon>202509061523340_editProductTbl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202509120600116_Added_Customer_Tbl.cs" />
+    <Compile Include="Migrations\202509120600116_Added_Customer_Tbl.Designer.cs">
+      <DependentUpon>202509120600116_Added_Customer_Tbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
@@ -248,6 +253,7 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\CountryRepository.cs" />
+    <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SubCategoryRepository.cs" />
@@ -280,6 +286,12 @@
     </Compile>
     <Compile Include="Views\Controllers\Country\CountryControl1.Designer.cs">
       <DependentUpon>CountryControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Customers\CustomerFormControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Customers\CustomerFormControl.Designer.cs">
+      <DependentUpon>CustomerFormControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controllers\SubCategory\SubCategoryForm.cs">
       <SubType>UserControl</SubType>
@@ -344,6 +356,9 @@
     <EmbeddedResource Include="Migrations\202509061523340_editProductTbl.resx">
       <DependentUpon>202509061523340_editProductTbl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509120600116_Added_Customer_Tbl.resx">
+      <DependentUpon>202509120600116_Added_Customer_Tbl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -369,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Country\CountryControl1.resx">
       <DependentUpon>CountryControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Customers\CustomerFormControl.resx">
+      <DependentUpon>CustomerFormControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Product\ProductFromControl.resx">
       <DependentUpon>ProductFromControl.cs</DependentUpon>
@@ -438,6 +456,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="pos_icon.ico" />
+    <None Include="Properties\iconSave.png" />
+    <None Include="Properties\iconLoad.png" />
+    <None Include="Properties\iconUpload.png" />
     <None Include="Properties\iconPrev.png" />
     <None Include="Properties\iconNext.png" />
   </ItemGroup>

@@ -33,6 +33,15 @@ namespace POS_Shop.Repositories
 
             // apply search
 
+
+            var searchWords = search.ToLower().Split(' ');
+            // apply search
+
+            foreach (var word in searchWords)
+            {
+                data = data.Where(s => s.ProductEnglishName.Contains(word) || s.Id.ToString().Contains(word));
+                //data = data.Where(s => s.CustomerName.Contains(word) || s.City.Name.Contains(word));
+            }
             if (!string.IsNullOrEmpty(search))
             {
                 data = data.Where(s => s.ProductEnglishName.Contains(search) || s.Id.ToString().Contains(search));

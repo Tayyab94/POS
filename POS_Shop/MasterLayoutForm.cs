@@ -183,5 +183,25 @@ namespace POS_Shop
             restoreDbForm.Owner = this;
             restoreDbForm.Show();
         }
+
+        private void CustomerSectionBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadingManager.ShowLoading();
+                MainPanel.Padding = new Padding(0);
+                MainPanel.Margin = new Padding(0);
+
+                var CustomerFormCtrl = new Views.Controllers.Customers.CustomerFormControl();
+                CustomerFormCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+
+                MainPanel.Controls.Clear();
+                MainPanel.Controls.Add(CustomerFormCtrl);
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
+        }
     }
 }

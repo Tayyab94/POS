@@ -682,6 +682,7 @@ namespace POS_Shop.Views.Product
             {
 
                 updateProductBtn.Visible = true;
+                ProductSaveBtn.Enabled = false;
                 GetAndBindProductForEdit(productId);
 
                 //MessageBox.Show($"Prod ID :{productId} and NAme :{productName} for Edit");
@@ -771,6 +772,7 @@ namespace POS_Shop.Views.Product
             SubCategoryCategoryDropDownLst.DataSource = null;
             SubCategoryCategoryDropDownLst.Items.Clear();
             updateProductBtn.Visible = false;
+            ProductSaveBtn.Enabled = true;
             ProductEngNameTxt.Focus();
             await LoadProductsForDataGridView();
         }
@@ -914,7 +916,7 @@ namespace POS_Shop.Views.Product
         {
             if (selectedProductIds.Count == 0)
             {
-                MessageBox.Show("No products selected for export.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No products selected for export.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -980,6 +982,11 @@ namespace POS_Shop.Views.Product
                    MessageBox.Show("No products found for the selected IDs.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        private void ProductResetFormBtn_Click(object sender, EventArgs e)
+        {
+            ClearFormFunction();
         }
     }
 }
