@@ -7,4 +7,5 @@ namespace POS_Shop.Interfaces
     {
         Task<bool> UpdateCategory(Category model);
     }
+
 }

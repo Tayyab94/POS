@@ -383,9 +383,9 @@
             this.SaveUpdatedPriceBtn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.SaveUpdatedPriceBtn.Image = global::POS_Shop.Properties.Resources.iconSave;
             this.SaveUpdatedPriceBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SaveUpdatedPriceBtn.Location = new System.Drawing.Point(1076, 41);
+            this.SaveUpdatedPriceBtn.Location = new System.Drawing.Point(1061, 42);
             this.SaveUpdatedPriceBtn.Name = "SaveUpdatedPriceBtn";
-            this.SaveUpdatedPriceBtn.Size = new System.Drawing.Size(151, 50);
+            this.SaveUpdatedPriceBtn.Size = new System.Drawing.Size(151, 49);
             this.SaveUpdatedPriceBtn.TabIndex = 11;
             this.SaveUpdatedPriceBtn.Text = "Save to DB";
             this.SaveUpdatedPriceBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -400,7 +400,7 @@
             this.LoadUpdatedDataBtn.Enabled = false;
             this.LoadUpdatedDataBtn.Image = global::POS_Shop.Properties.Resources.iconLoad;
             this.LoadUpdatedDataBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LoadUpdatedDataBtn.Location = new System.Drawing.Point(913, 41);
+            this.LoadUpdatedDataBtn.Location = new System.Drawing.Point(898, 42);
             this.LoadUpdatedDataBtn.Name = "LoadUpdatedDataBtn";
             this.LoadUpdatedDataBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LoadUpdatedDataBtn.Size = new System.Drawing.Size(157, 50);
@@ -492,12 +492,12 @@
             this.BrowsUpdatedExcelFile.BackColor = System.Drawing.Color.SlateBlue;
             this.BrowsUpdatedExcelFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrowsUpdatedExcelFile.ForeColor = System.Drawing.SystemColors.Control;
-            this.BrowsUpdatedExcelFile.Image = global::POS_Shop.Properties.Resources.iconUpload;
+            this.BrowsUpdatedExcelFile.Image = global::POS_Shop.Properties.Resources.iconExcel;
             this.BrowsUpdatedExcelFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BrowsUpdatedExcelFile.Location = new System.Drawing.Point(741, 41);
             this.BrowsUpdatedExcelFile.Margin = new System.Windows.Forms.Padding(1);
             this.BrowsUpdatedExcelFile.Name = "BrowsUpdatedExcelFile";
-            this.BrowsUpdatedExcelFile.Size = new System.Drawing.Size(156, 53);
+            this.BrowsUpdatedExcelFile.Size = new System.Drawing.Size(144, 53);
             this.BrowsUpdatedExcelFile.TabIndex = 7;
             this.BrowsUpdatedExcelFile.Text = "Brows File";
             this.BrowsUpdatedExcelFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

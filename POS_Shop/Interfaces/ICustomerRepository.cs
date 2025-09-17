@@ -8,6 +8,6 @@ namespace POS_Shop.Interfaces
     public interface ICustomerRepository : IRepository<Customer> {
 
         Task<(int totalCount, IEnumerable<CustomerListForDataGridDto> data)> GetCustomerPagingListAsync(int pageIndex, int pageSize, string search);
-        Task<bool> CheckRecoradAlreadyExistByName(string name);
+        Task<bool> CheckRecoradAlreadyExistByName(string name, string address);
     }
 }

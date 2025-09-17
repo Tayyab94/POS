@@ -429,12 +429,13 @@ namespace POS_Shop.Views.DB_Screens
                                 SubcategoryId = Convert.ToInt32(row["SubCategory"])
                             };
 
-                            context.Products.Add(newProduct);
+                            ProductToAddList.Add(newProduct);
                             addedCount++;
                         }
                     }
                   
-                    context.Products.AddRange(ProductToAddList);
+                    if(ProductToAddList.Count > 0)
+                        context.Products.AddRange(ProductToAddList);
                     int savedRecords = context.SaveChanges();
 
                     LoadingManager.HideLoading();

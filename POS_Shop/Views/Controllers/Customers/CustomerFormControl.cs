@@ -202,7 +202,7 @@ namespace POS_Shop.Views.Controllers.Customers
             {
 
                 ICustomerRepository customerRepository = new CustomerRepository(context);
-                if (await customerRepository.CheckRecoradAlreadyExistByName(model.CustomerName))
+                if (await customerRepository.CheckRecoradAlreadyExistByName(model.CustomerName, model.CustomerAddress))
                 {
                     MessageBox.Show($"Product with name '{model.CustomerName}' already exists.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
