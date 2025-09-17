@@ -17,7 +17,7 @@ namespace POS_Shop.Repositories
         {
         }
 
-        public async Task<bool> CheckRecoradAlreadyExistByName(string name) => await _context.Customers.AnyAsync(x => x.CustomerName.Equals(name, StringComparison.OrdinalIgnoreCase));
+        public async Task<bool> CheckRecoradAlreadyExistByName(string name, string address) => await _context.Customers.AnyAsync(x => x.CustomerName.Equals(name, StringComparison.OrdinalIgnoreCase) && x.CustomerAddress.Equals(address, StringComparison.OrdinalIgnoreCase));
 
 
 
@@ -33,10 +33,6 @@ namespace POS_Shop.Repositories
                 data = data.Where(s => s.CustomerName.Contains(word) || s.City.Name.Contains(word));
             }
 
-            //if (!string.IsNullOrEmpty(search))
-            //{
-            //    data = data.Where(s => s.CustomerName.Contains(search) || s.City.Name.Contains(search));
-            //}
             var totalCount = await data.CountAsync();
             var result = await data.OrderByDescending(s => s.Id)
                 .Skip((pageIndex - 1) * pageSize)

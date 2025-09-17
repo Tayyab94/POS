@@ -339,9 +339,11 @@ namespace POS_Shop.Views.Product
 
         private async void ProductFromControl_Load(object sender, EventArgs e)
         {
+            LoadingManager.ShowLoading();
             loadCategiryForDropdown();
             await LoadProductsForDataGridView();
             productTypeDropdown.SelectedItem = "عدد";
+            LoadingManager.HideLoading();
         }
 
 
@@ -821,7 +823,16 @@ namespace POS_Shop.Views.Product
 
         private void UpdateSelectionStatus()
         {
-            selectedProdLbl.Text = $"Selected: {selectedProductIds.Count} product(s)";
+            if(selectedProductIds.Count <= 0)
+            {
+                ClearAllSelectionBtn.Visible = false;
+            }
+            else
+            {
+                ClearAllSelectionBtn.Visible = true;
+            }
+
+                selectedProdLbl.Text = $"Selected: {selectedProductIds.Count} product(s)";
         }
 
         private void UpdatePager()

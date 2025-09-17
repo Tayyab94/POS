@@ -42,10 +42,10 @@ namespace POS_Shop.Repositories
                 data = data.Where(s => s.ProductEnglishName.Contains(word) || s.Id.ToString().Contains(word));
                 //data = data.Where(s => s.CustomerName.Contains(word) || s.City.Name.Contains(word));
             }
-            if (!string.IsNullOrEmpty(search))
-            {
-                data = data.Where(s => s.ProductEnglishName.Contains(search) || s.Id.ToString().Contains(search));
-            }
+            //if (!string.IsNullOrEmpty(search))
+            //{
+            //    data = data.Where(s => s.ProductEnglishName.Contains(search) || s.Id.ToString().Contains(search));
+            //}
             var totalCount = await data.CountAsync();
             var result = await data.OrderBy(s => s.Id)
                 .Skip((pageIndex - 1) * pageSize)

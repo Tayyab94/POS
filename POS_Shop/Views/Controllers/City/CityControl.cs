@@ -216,6 +216,9 @@ namespace POS_Shop.Views.Controllers.City
         {
             CityPrintPreviewDialog.Document = CityPrintDocument;
             //CityPrintPreviewDialog.ShowDialog();
+
+            // Simulate Ctrl + F11 key press, to shift the control automatically because we are using Auto sharing printer usb
+            SendKeys.SendWait("^{F11}");
             CityPrintDocument.Print();
         }
 

@@ -1,5 +1,6 @@
 ﻿using POS_Shop.Helpers;
 using POS_Shop.Views.Account;
+using POS_Shop.Views.BillScreen;
 using POS_Shop.Views.DB_Screens;
 using System;
 using System.Collections.Generic;
@@ -202,6 +203,17 @@ namespace POS_Shop
             {
                 LoadingManager.HideLoading();
             }
+        }
+
+        private void BillPadBtn_Click(object sender, EventArgs e)
+        {
+                var BillPadForm = new BillPadForm();
+                //BillPadForm.Owner = this;
+                //BillPadForm.Show();
+                this.Hide();
+                BillPadForm.ShowDialog();
+                this.Show();
+
         }
     }
 }

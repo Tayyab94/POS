@@ -188,15 +188,19 @@
     </Compile>
     <Compile Include="DTOs\City\CitiesListForDataGrifDto.cs" />
     <Compile Include="DTOs\Country\CountryListForDataGirdDto.cs" />
+    <Compile Include="DTOs\Order\OrdersListDto.cs" />
     <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\ISectionAware.cs" />
     <Compile Include="Helpers\LoadingManager.cs" />
     <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\RegexValidator.cs" />
     <Compile Include="Helpers\SessionManager.cs" />
+    <Compile Include="Helpers\ValidationPattern.cs" />
     <Compile Include="Interfaces\ICategoryRepository.cs" />
     <Compile Include="Interfaces\ICityRepository.cs" />
     <Compile Include="Interfaces\ICountryRepository.cs" />
     <Compile Include="Interfaces\ICustomerRepository.cs" />
+    <Compile Include="Interfaces\IOrderRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ISubCategoryRepository.cs" />
@@ -240,11 +244,21 @@
     <Compile Include="Migrations\202509120600116_Added_Customer_Tbl.Designer.cs">
       <DependentUpon>202509120600116_Added_Customer_Tbl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202509161626173_AddedOrder_OrderDetailtable.cs" />
+    <Compile Include="Migrations\202509161626173_AddedOrder_OrderDetailtable.Designer.cs">
+      <DependentUpon>202509161626173_AddedOrder_OrderDetailtable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202509161627432_added_CreatedDate_IntoOrderDetails.cs" />
+    <Compile Include="Migrations\202509161627432_added_CreatedDate_IntoOrderDetails.Designer.cs">
+      <DependentUpon>202509161627432_added_CreatedDate_IntoOrderDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\POSDbContext.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SubCategory.cs" />
@@ -254,6 +268,7 @@
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\CountryRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SubCategoryRepository.cs" />
@@ -262,6 +277,24 @@
     </Compile>
     <Compile Include="Views\Account\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillScreen\BillPadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BillScreen\BillPadForm.Designer.cs">
+      <DependentUpon>BillPadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillScreen\SearchCustomerUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BillScreen\SearchCustomerUI.Designer.cs">
+      <DependentUpon>SearchCustomerUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillScreen\SearchProductUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BillScreen\SearchProductUI.Designer.cs">
+      <DependentUpon>SearchProductUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CityForm.cs">
       <SubType>Form</SubType>
@@ -292,6 +325,12 @@
     </Compile>
     <Compile Include="Views\Controllers\Customers\CustomerFormControl.Designer.cs">
       <DependentUpon>CustomerFormControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Order\OrdersControlUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Order\OrdersControlUI.Designer.cs">
+      <DependentUpon>OrdersControlUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controllers\SubCategory\SubCategoryForm.cs">
       <SubType>UserControl</SubType>
@@ -359,6 +398,12 @@
     <EmbeddedResource Include="Migrations\202509120600116_Added_Customer_Tbl.resx">
       <DependentUpon>202509120600116_Added_Customer_Tbl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509161626173_AddedOrder_OrderDetailtable.resx">
+      <DependentUpon>202509161626173_AddedOrder_OrderDetailtable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509161627432_added_CreatedDate_IntoOrderDetails.resx">
+      <DependentUpon>202509161627432_added_CreatedDate_IntoOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -372,6 +417,15 @@
     </Compile>
     <EmbeddedResource Include="Views\Account\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BillScreen\BillPadForm.resx">
+      <DependentUpon>BillPadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BillScreen\SearchCustomerUI.resx">
+      <DependentUpon>SearchCustomerUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BillScreen\SearchProductUI.resx">
+      <DependentUpon>SearchProductUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CityForm.resx">
       <DependentUpon>CityForm.cs</DependentUpon>
@@ -387,6 +441,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Customers\CustomerFormControl.resx">
       <DependentUpon>CustomerFormControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Order\OrdersControlUI.resx">
+      <DependentUpon>OrdersControlUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Product\ProductFromControl.resx">
       <DependentUpon>ProductFromControl.cs</DependentUpon>
@@ -456,6 +513,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="pos_icon.ico" />
+    <None Include="Properties\iconExcel.png" />
     <None Include="Properties\iconSave.png" />
     <None Include="Properties\iconLoad.png" />
     <None Include="Properties\iconUpload.png" />

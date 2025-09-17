@@ -30,6 +30,9 @@ namespace POS_Shop.Models
 
         public DbSet<Customer>Customers { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -44,6 +47,10 @@ namespace POS_Shop.Models
              .IsRequired()
              .HasMaxLength(50);
 
+
+            modelBuilder.Entity<OrderDetail>()
+                .HasRequired(s => s.Order).WithMany(s => s.OrderDetails)
+                .HasForeignKey(S => S.OrderId).WillCascadeOnDelete(true);
 
         }
     }

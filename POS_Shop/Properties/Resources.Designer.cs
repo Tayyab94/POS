@@ -73,6 +73,16 @@ namespace POS_Shop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconExcel {
+            get {
+                object obj = ResourceManager.GetObject("iconExcel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconLoad {
             get {
                 object obj = ResourceManager.GetObject("iconLoad", resourceCulture);
