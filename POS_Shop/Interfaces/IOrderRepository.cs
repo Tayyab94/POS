@@ -11,5 +11,6 @@ namespace POS_Shop.Interfaces
         Task<int> AddOrder(Order order);
         Task<(int totalCount, IEnumerable<OrdersListDto> data)> GetOrderPagingListAsync(int pageIndex, int pageSize, string search);
 
+        Task<OrderDto> GetOrderByIdAsync(int id, string invoiceNo);
     }
 }

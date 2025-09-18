@@ -42,6 +42,8 @@
             this.PreviousPageBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.NextPageBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.OrderIDLbl = new System.Windows.Forms.Label();
+            this.InvoiceNoLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.OrderListDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,7 +152,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.OrderListDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.OrderListDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrderListDataGrid.ColumnHeadersHeight = 40;
             this.OrderListDataGrid.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
             this.OrderListDataGrid.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.OrderListDataGrid.CurrentTheme.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Black;
@@ -191,6 +193,7 @@
             this.OrderListDataGrid.Size = new System.Drawing.Size(663, 402);
             this.OrderListDataGrid.TabIndex = 2;
             this.OrderListDataGrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
+            this.OrderListDataGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.OrderListDataGrid_CellMouseClick);
             // 
             // PreviousPageBtn
             // 
@@ -274,10 +277,32 @@
             this.lblStatus.TabIndex = 20;
             this.lblStatus.Text = "Status";
             // 
+            // OrderIDLbl
+            // 
+            this.OrderIDLbl.AutoSize = true;
+            this.OrderIDLbl.Location = new System.Drawing.Point(25, 26);
+            this.OrderIDLbl.Name = "OrderIDLbl";
+            this.OrderIDLbl.Size = new System.Drawing.Size(54, 16);
+            this.OrderIDLbl.TabIndex = 23;
+            this.OrderIDLbl.Text = "OrderID";
+            this.OrderIDLbl.Visible = false;
+            // 
+            // InvoiceNoLbl
+            // 
+            this.InvoiceNoLbl.AutoSize = true;
+            this.InvoiceNoLbl.Location = new System.Drawing.Point(97, 26);
+            this.InvoiceNoLbl.Name = "InvoiceNoLbl";
+            this.InvoiceNoLbl.Size = new System.Drawing.Size(68, 16);
+            this.InvoiceNoLbl.TabIndex = 24;
+            this.InvoiceNoLbl.Text = "InvoiceNo";
+            this.InvoiceNoLbl.Visible = false;
+            // 
             // OrdersControlUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.InvoiceNoLbl);
+            this.Controls.Add(this.OrderIDLbl);
             this.Controls.Add(this.PreviousPageBtn);
             this.Controls.Add(this.NextPageBtn);
             this.Controls.Add(this.lblStatus);
@@ -300,5 +325,7 @@
         private Bunifu.UI.WinForms.BunifuImageButton PreviousPageBtn;
         private Bunifu.UI.WinForms.BunifuImageButton NextPageBtn;
         private System.Windows.Forms.Label lblStatus;
+        public System.Windows.Forms.Label OrderIDLbl;
+        public System.Windows.Forms.Label InvoiceNoLbl;
     }
 }

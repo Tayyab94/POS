@@ -188,6 +188,7 @@
     </Compile>
     <Compile Include="DTOs\City\CitiesListForDataGrifDto.cs" />
     <Compile Include="DTOs\Country\CountryListForDataGirdDto.cs" />
+    <Compile Include="DTOs\Order\OrderDto.cs" />
     <Compile Include="DTOs\Order\OrdersListDto.cs" />
     <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\ISectionAware.cs" />
