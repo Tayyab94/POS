@@ -1,18 +1,13 @@
 ﻿using POS_Shop.Helpers;
-using POS_Shop.Interfaces;
 using POS_Shop.Models;
 using POS_Shop.Repositories;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Common;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Order = POS_Shop.Models.Order;
 
 namespace POS_Shop.Views.BillScreen
 {
@@ -26,6 +21,27 @@ namespace POS_Shop.Views.BillScreen
         public BillPadForm()
         {
             InitializeComponent();
+
+            SetItemGrdiView();
+            InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
+
+            //ProductEngNameTxt.Focus();
+
+            this.Shown += (s, e) => { ProductEngNameTxt.Focus(); };
+
+            // Apply highlighting to all textboxes and comboboxes
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox || control is ComboBox)
+                {
+                    control.Enter += Control_Enter;
+                    control.Leave += Control_Leave;
+                }
+            }
+        }
+
+        private void SetItemGrdiView()
+        {
 
             CartProductList.ColumnCount = 6;
 
@@ -57,23 +73,7 @@ namespace POS_Shop.Views.BillScreen
             CartProductList.Columns["Delete"].Width = 50;
 
 
-            InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
-
-            //ProductEngNameTxt.Focus();
-
-            this.Shown += (s, e) => { ProductEngNameTxt.Focus(); };
-
-            // Apply highlighting to all textboxes and comboboxes
-            foreach (Control control in this.Controls)
-            {
-                if (control is TextBox || control is ComboBox)
-                {
-                    control.Enter += Control_Enter;
-                    control.Leave += Control_Leave;
-                }
-            }
         }
-
         private void Control_Enter(object sender, EventArgs e)
         {
             ((Control)sender).BackColor = Color.LightYellow;
@@ -153,7 +153,7 @@ namespace POS_Shop.Views.BillScreen
             string productName = ProductEngNameTxt.Text;
             string ProductUrduName = prod_U_Name;
             string productType = productTypeDropdown.SelectedItem?.ToString();
-            decimal salePrice = decimal.Parse(ProductSalePrice.Text);
+            decimal salePrice = Math.Round(decimal.Parse(ProductSalePrice.Text), 1);
             int qty = int.Parse(P_StockQtyTxt.Text);
             decimal amount = salePrice * qty;
 
@@ -174,7 +174,7 @@ namespace POS_Shop.Views.BillScreen
                     row.Cells["Qty"].Value = existingQty;
 
                     decimal newAmount = existingQty * salePrice;
-                    row.Cells["Amount"].Value = newAmount;
+                    row.Cells["Amount"].Value = Math.Round(newAmount, 1);
 
                     productExists = true;
                     break;
@@ -381,17 +381,10 @@ namespace POS_Shop.Views.BillScreen
 
         private void ClearCartBtn_Click(object sender, EventArgs e)
         {
-            //PId = string.Empty;
-            //customerId = string.Empty;
-            //CustomerNameTxt.Text = string.Empty;
-            //CartProductList.Rows.Clear();
-
-            //// Also update the totals to zero
-            //TotalItemLbl.Text = "0";
-            //TotalAmountLbl.Text = "Rs 0.00";
-
+          
             ClearCartFunction();
-
+            ClearInputs();
+            InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
             // Optional: Show confirmation message
             MessageBox.Show("Cart cleared successfully!", "Clear Cart", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -406,6 +399,9 @@ namespace POS_Shop.Views.BillScreen
             // Also update the totals to zero
             TotalItemLbl.Text = "0";
             TotalAmountLbl.Text = "0.00";
+            ReceivedAmountTxt.Clear();
+
+            
         }
 
         private void TopBarSearchProductTxt_KeyPress(object sender, KeyPressEventArgs e)
@@ -449,123 +445,404 @@ namespace POS_Shop.Views.BillScreen
             OrderListForm.Width = 830; OrderListForm.Height = 550;
             // Show the new form
             OrderListForm.ShowDialog(); // Use ShowDialog() to open it as a modal dialog
+
+            InvoiceNoLbl.Text = FormCtrl.InvoiceNoLbl.Text;
+            PreviousOrderIdLbl.Text = FormCtrl.OrderIDLbl.Text;
+
+        }
+
+
+        private async void PreviousOrderIdLbl_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && !string.IsNullOrEmpty(InvoiceNoLbl.Text))
+            {
+                using(var context= new POSDbContext())
+                {
+                    var orderRepo = new OrderRepository(context);
+                    var resut = await orderRepo.GetOrderByIdAsync(Convert.ToInt32(PreviousOrderIdLbl.Text), InvoiceNoLbl.Text);
+                    if (resut != null) {
+
+                        CustomerIdLbl.Text = resut.CustomerId.HasValue ? resut.CustomerId.Value.ToString() : string.Empty;
+                        CustomerNameTxt.Text = string.IsNullOrEmpty(CustomerIdLbl.Text) ? "" : resut.CustomerName;
+                        TotalAmountLbl.Text = resut.TotalBill.ToString();
+                        if(resut.paymentType=="Cash")
+                        {
+                            CashRadioBtn.Checked = true;
+                            BankTransferRaadioBtn.Checked = false;
+                        }
+                        else
+                        {
+                            CashRadioBtn.Checked = false;
+                            BankTransferRaadioBtn.Checked = true;
+                        }
+
+
+                        foreach (var order in resut.OrderDetailsList)
+                        {
+                            // Get values from the TextBoxes
+                            string productId = order.ProductId.ToString() ?? "0"; // (or use the label SearchProductUI.ProdIdLbl.Text)
+                            string finalName = order.ProductName;
+                            string productType = order.QuantityType;
+                            decimal salePrice = Math.Round(decimal.Parse(order.Price.ToString()), 1);
+                            int qty = order.Quantity;
+                            decimal amount = salePrice * qty;
+                            CartProductList.Rows.Add(productId, finalName, productType, salePrice, qty, amount);
+                          
+                        }
+                    }
+                }
+            }
         }
 
         private async void SaveAndPrintOrderBtn_Click(object sender, EventArgs e)
         {
 
-            if (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && PreviousOrderIdLbl.Text != "Prev Order Id")
+            if (CartProductList.Rows.Count != 0 && CartProductList.Rows != null)
             {
-                // update the ordear
+
+                bool IsDone = false;
+
+                if (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && PreviousOrderIdLbl.Text != "Prev Order Id")
+                    IsDone = await SaveOrder(true);  //await UpdateOrderSaved();
+                else
+                    IsDone = await SaveOrder(false);  // await NewOrderSaved();
+
+                if (IsDone)
+                {
+                    //OrderPrintPreviewDialog.Document = OrderPrintDocument;
+
+                    //OrderPrintDocument.Print();
+                    ClearInputs();
+                    ClearCartFunction();
+                    ResetCustomerBtn.Visible = false;
+                    InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
+                    SendKeys.SendWait("^{F11}");
+
+                    MessageBox.Show("Order Created Successfully!", "Order Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
             }
             else
             {
-                NewOrderSaved();
-                ClearInputs();
-                ClearCartFunction();
-                ResetCustomerBtn.Visible = false;
-                InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
+                MessageBox.Show("Please Add the Product first", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+           
 
         }
 
-        private async void NewOrderSaved()
+        private async Task<bool> SaveOrder(bool isUpdate = false)
         {
             using (var context = new POSDbContext())
+            using (var dbTransaction = context.Database.BeginTransaction())
             {
-
-                using (var dbTransaction = context.Database.BeginTransaction())
+                try
                 {
+                    var orderRepository = new OrderRepository(context);
 
-                    try
+                    // Get order data
+                    var orderData = await GetOrderData();
+                    if (isUpdate)
                     {
-                        var orderRepository = new OrderRepository(context);
-
-                        int? customerId = null;
-
-                        if (!string.IsNullOrEmpty(CustomerNameTxt.Text) && !string.IsNullOrEmpty(CustomerIdLbl.Text))
-                        {
-                            if (int.TryParse(CustomerIdLbl.Text, out int parsedId))
-                            {
-                                customerId = parsedId;
-                            }
-                            else
-                            {
-                                // Handle parsing error
-                                customerId = null;
-                            }
-                        }
-                        else
-                        {
-                            customerId = null;
-                        }
-
-                        float totalBill;
-                        if (!float.TryParse(TotalAmountLbl.Text, out totalBill))
-                        {
-                            totalBill = 0; // or handle error
-                        }
-
-                        float receiveAmount;
-                        if (!string.IsNullOrWhiteSpace(ReceivedAmountTxt.Text))
-                        {
-                            if (!float.TryParse(ReceivedAmountTxt.Text, out receiveAmount))
-                                receiveAmount = totalBill; // fallback
-                        }
-                        else
-                        {
-                            receiveAmount = totalBill;
-                        }
-                        // Create new order
-                        var order = new Order
-                        {
-                            TotalBill = totalBill,
-                            ReceiveAmount = receiveAmount,
-                            CreatedDate = DateTime.Now,
-                            InvoiceNumber = InvoiceNoLbl.Text,
-                            paymentType = CashRadioBtn.Checked ? "Cash" : "Bank Transfer",
-                            customerId = customerId
-                        };
-
-                        var orderId = await orderRepository.AddOrder(order);
-
-                        var orderDetailList = new List<OrderDetail>();
-
-                        foreach (DataGridViewRow row in CartProductList.Rows)
-                        {
-
-
-                            if (row.Cells[0].Value != null) // Check if row has data
-                            {
-                                var odrDetail = new OrderDetail
-                                {
-                                    ProductId = string.IsNullOrEmpty(row.Cells[0].Value?.ToString()) ?
-                                               (int?)null : int.Parse(row.Cells[0].Value.ToString()),
-                                    OtherProductName = string.IsNullOrEmpty(row.Cells[0].Value?.ToString()) ?
-                                                     row.Cells[1].Value?.ToString() : null,
-                                    Quantity = int.Parse(row.Cells[4].Value?.ToString()),
-                                    QuantityType = row.Cells[2].Value?.ToString(),
-                                    Price = float.Parse(row.Cells[3].Value?.ToString()),
-                                    CreatedDate = DateTime.Now,
-                                    OrderId = orderId,
-                                };
-                                orderDetailList.Add(odrDetail);
-                            }
-                        }
-
-                        context.OrderDetails.AddRange(orderDetailList);
-                        await context.SaveChangesAsync();
-
-                        dbTransaction.Commit();
+                        orderData.Id = int.Parse(PreviousOrderIdLbl.Text);
                     }
-                    catch (Exception ex)
-                    {
-                        dbTransaction.Rollback();
 
-                    }
+                    // Save order
+                    var orderId = isUpdate
+                        ? await UpdateOrder(orderRepository, orderData, context)
+                        : await orderRepository.AddOrder(orderData);
+
+                    // Save order details
+                    await SaveOrderDetails(context, orderId);
+
+                    dbTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbTransaction.Rollback();
+                    return false;
                 }
             }
         }
+
+        private async Task<Order> GetOrderData()
+        {
+            int? customerId = null;
+            if (!string.IsNullOrEmpty(CustomerNameTxt.Text) && !string.IsNullOrEmpty(CustomerIdLbl.Text))
+            {
+                int.TryParse(CustomerIdLbl.Text, out int parsedId);
+                customerId = parsedId;
+            }
+
+            float.TryParse(TotalAmountLbl.Text, out float totalBill);
+
+            float receiveAmount = totalBill;
+            if (!string.IsNullOrWhiteSpace(ReceivedAmountTxt.Text))
+            {
+                float.TryParse(ReceivedAmountTxt.Text, out receiveAmount);
+            }
+
+            return new Order
+            {
+                TotalBill = totalBill,
+                ReceiveAmount = receiveAmount,
+                CreatedDate = DateTime.Now,
+                InvoiceNumber = InvoiceNoLbl.Text,
+                paymentType = CashRadioBtn.Checked ? "Cash" : "Bank Transfer",
+                customerId = customerId
+            };
+        }
+
+        private async Task<int> UpdateOrder(OrderRepository orderRepository, Order order, POSDbContext context)
+        {
+            var orderId = await orderRepository.AddOrder(order);
+
+            // Remove existing order details
+            var existingDetails = context.OrderDetails.Where(s => s.OrderId == orderId).ToList();
+            context.OrderDetails.RemoveRange(existingDetails);
+            await context.SaveChangesAsync();
+
+            return orderId;
+        }
+
+        private async Task SaveOrderDetails(POSDbContext context, int orderId)
+        {
+            var orderDetailList = new List<OrderDetail>();
+
+            foreach (DataGridViewRow row in CartProductList.Rows)
+            {
+                if (row.Cells[0].Value == null) continue;
+
+                var productIdValue = row.Cells[0].Value?.ToString();
+                var odrDetail = new OrderDetail
+                {
+                    ProductId = string.IsNullOrEmpty(productIdValue) ? (int?)null : int.Parse(productIdValue),
+                    OtherProductName = string.IsNullOrEmpty(productIdValue) ? row.Cells[1].Value?.ToString() : null,
+                    Quantity = int.Parse(row.Cells[4].Value?.ToString()),
+                    QuantityType = row.Cells[2].Value?.ToString(),
+                    Price = float.Parse(row.Cells[3].Value?.ToString()),
+                    CreatedDate = DateTime.Now,
+                    OrderId = orderId,
+                };
+                orderDetailList.Add(odrDetail);
+            }
+
+            context.OrderDetails.AddRange(orderDetailList);
+            await context.SaveChangesAsync();
+        }
+
+
+        #region Old code
+
+        //private async Task<bool> NewOrderSaved()
+        //{
+        //    using (var context = new POSDbContext())
+        //    {
+
+        //        using (var dbTransaction = context.Database.BeginTransaction())
+        //        {
+
+        //            try
+        //            {
+        //                var orderRepository = new OrderRepository(context);
+        //                int? customerId = null;
+
+        //                if (!string.IsNullOrEmpty(CustomerNameTxt.Text) && !string.IsNullOrEmpty(CustomerIdLbl.Text))
+        //                {
+        //                    if (int.TryParse(CustomerIdLbl.Text, out int parsedId))
+        //                    {
+        //                        customerId = parsedId;
+        //                    }
+        //                    else
+        //                    {
+        //                        // Handle parsing error
+        //                        customerId = null;
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    customerId = null;
+        //                }
+
+        //                float totalBill;
+        //                if (!float.TryParse(TotalAmountLbl.Text, out totalBill))
+        //                {
+        //                    totalBill = 0; // or handle error
+        //                }
+
+        //                float receiveAmount;
+        //                if (!string.IsNullOrWhiteSpace(ReceivedAmountTxt.Text))
+        //                {
+        //                    if (!float.TryParse(ReceivedAmountTxt.Text, out receiveAmount))
+        //                        receiveAmount = totalBill; // fallback
+        //                }
+        //                else
+        //                {
+        //                    receiveAmount = totalBill;
+        //                }
+        //                // Create new order
+        //                var order = new Order
+        //                {
+
+        //                    TotalBill = totalBill,
+        //                    ReceiveAmount = receiveAmount,
+        //                    CreatedDate = DateTime.Now,
+        //                    InvoiceNumber = InvoiceNoLbl.Text,
+        //                    paymentType = CashRadioBtn.Checked ? "Cash" : "Bank Transfer",
+        //                    customerId = customerId
+        //                };
+
+        //                var orderId = await orderRepository.AddOrder(order);
+
+        //                var orderDetailList = new List<OrderDetail>();
+
+        //                foreach (DataGridViewRow row in CartProductList.Rows)
+        //                {
+
+
+        //                    if (row.Cells[0].Value != null) // Check if row has data
+        //                    {
+        //                        var odrDetail = new OrderDetail
+        //                        {
+        //                            ProductId = string.IsNullOrEmpty(row.Cells[0].Value?.ToString()) ?
+        //                                       (int?)null : int.Parse(row.Cells[0].Value.ToString()),
+        //                            OtherProductName = string.IsNullOrEmpty(row.Cells[0].Value?.ToString()) ?
+        //                                             row.Cells[1].Value?.ToString() : null,
+        //                            Quantity = int.Parse(row.Cells[4].Value?.ToString()),
+        //                            QuantityType = row.Cells[2].Value?.ToString(),
+        //                            Price = float.Parse(row.Cells[3].Value?.ToString()),
+        //                            CreatedDate = DateTime.Now,
+        //                            OrderId = orderId,
+        //                        };
+        //                        orderDetailList.Add(odrDetail);
+        //                    }
+        //                }
+
+        //                context.OrderDetails.AddRange(orderDetailList);
+        //                await context.SaveChangesAsync();
+
+        //                dbTransaction.Commit();
+        //                return true;
+
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                dbTransaction.Rollback();
+        //                return false;
+
+        //            }
+        //        }
+        //    }
+        //}
+
+
+        //private async Task<bool> UpdateOrderSaved()
+        //{
+        //    using (var context = new POSDbContext())
+        //    {
+
+        //        using (var dbTransaction = context.Database.BeginTransaction())
+        //        {
+
+        //            try
+        //            {
+        //                var orderRepository = new OrderRepository(context);
+        //                int? customerId = null;
+
+        //                if (!string.IsNullOrEmpty(CustomerNameTxt.Text) && !string.IsNullOrEmpty(CustomerIdLbl.Text))
+        //                {
+        //                    if (int.TryParse(CustomerIdLbl.Text, out int parsedId))
+        //                    {
+        //                        customerId = parsedId;
+        //                    }
+        //                    else
+        //                    {
+        //                        // Handle parsing error
+        //                        customerId = null;
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    customerId = null;
+        //                }
+
+        //                float totalBill;
+        //                if (!float.TryParse(TotalAmountLbl.Text, out totalBill))
+        //                {
+        //                    totalBill = 0; // or handle error
+        //                }
+
+        //                float receiveAmount;
+        //                if (!string.IsNullOrWhiteSpace(ReceivedAmountTxt.Text))
+        //                {
+        //                    if (!float.TryParse(ReceivedAmountTxt.Text, out receiveAmount))
+        //                        receiveAmount = totalBill; // fallback
+        //                }
+        //                else
+        //                {
+        //                    receiveAmount = totalBill;
+        //                }
+        //                // Create new order
+        //                var order = new Order
+        //                {
+        //                    Id=int.Parse(PreviousOrderIdLbl.Text),
+        //                    TotalBill = totalBill,
+        //                    ReceiveAmount = receiveAmount,
+        //                    CreatedDate = DateTime.Now,
+        //                    InvoiceNumber = InvoiceNoLbl.Text,
+        //                    paymentType = CashRadioBtn.Checked ? "Cash" : "Bank Transfer",
+        //                    customerId = customerId
+        //                };
+
+        //                var orderId = await orderRepository.AddOrder(order);
+
+        //                var orderDetailList = new List<OrderDetail>();
+        //                var Details = context.OrderDetails.Where(s => s.OrderId.Equals(orderId)).ToList();
+        //                context.OrderDetails.RemoveRange(Details);
+        //                context.SaveChanges();
+        //                foreach (DataGridViewRow row in CartProductList.Rows)
+        //                {
+
+
+        //                    if (row.Cells[0].Value != null) // Check if row has data
+        //                    {
+        //                        var odrDetail = new OrderDetail
+        //                        {
+        //                            ProductId = string.IsNullOrEmpty(row.Cells[0].Value?.ToString()) ?
+        //                                       (int?)null : int.Parse(row.Cells[0].Value.ToString()),
+        //                            OtherProductName = string.IsNullOrEmpty(row.Cells[0].Value?.ToString()) ?
+        //                                             row.Cells[1].Value?.ToString() : null,
+        //                            Quantity = int.Parse(row.Cells[4].Value?.ToString()),
+        //                            QuantityType = row.Cells[2].Value?.ToString(),
+        //                            Price = float.Parse(row.Cells[3].Value?.ToString()),
+        //                            CreatedDate = DateTime.Now,
+        //                            OrderId = orderId,
+        //                        };
+        //                        orderDetailList.Add(odrDetail);
+        //                    }
+        //                }
+
+        //                context.OrderDetails.AddRange(orderDetailList);
+        //                await context.SaveChangesAsync();
+
+        //                dbTransaction.Commit();
+        //                return true;
+
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                dbTransaction.Rollback();
+        //                return false;
+
+        //            }
+        //        }
+        //    }
+        //}
+
+
+        #endregion
+
 
         private void TruncateOrder_OrderDetailBtn_Click(object sender, EventArgs e)
         {
@@ -596,28 +873,209 @@ namespace POS_Shop.Views.BillScreen
             }
         }
 
-        //private async void SaveAndPrintOrderBtn_Click(object sender, EventArgs e)
-        //{
-        //    if (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text))
-        //    {
-        //        // update the ordear
-        //    }else
-        //    {
-        //        await NewOrderSaved()l
-        //    }
-        //}
+        private void PrintPreviewBtn_Click(object sender, EventArgs e)
+        {
+            OrderPrintPreviewDialog.Document = OrderPrintDocument;
+            OrderPrintPreviewDialog.ShowDialog();
 
 
-        //private void bunifuButton2_Click(object sender, EventArgs e)
-        //{
-        //    using(var context = new POSDbContext())
-        //    {
-        //       using(var dbTransaction = context.Database.BeginTransaction())
-        //        {
+            //// Simulate Ctrl + F11 key press, to shift the control automatically because we are using Auto sharing printer usb
+            //SendKeys.SendWait("^{F11}");
+        }
+
+        private void OrderPrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Thermal printer settings (80mm paper)
+            int paperWidth = 280; // pixels for 80mm paper
+            int leftMargin = 5;
+            int currentY = 5;
+            int lineHeight = 12;
+            int sectionSpacing = 3;
+
+            // Fonts for thermal printing
+            Font titleFont = new Font("Arial", 11, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 9, FontStyle.Bold);
+            Font regularFont = new Font("Arial", 8, FontStyle.Regular);
+            Font smallFont = new Font("Arial", 7, FontStyle.Regular);
+
+            // Urdu font
+            Font urduFont = new Font("Nafees Web Naskh", 8, FontStyle.Regular);
+            if (urduFont.Name != "Nafees Web Naskh")
+                urduFont = new Font("Arial", 8, FontStyle.Regular);
+
+            // Center alignment
+            StringFormat centerFormat = new StringFormat();
+            centerFormat.Alignment = StringAlignment.Center;
+
+            // Right alignment for numbers
+            StringFormat rightFormat = new StringFormat();
+            rightFormat.Alignment = StringAlignment.Far;
+
+            string dashLine = new string('-', 82);
+
+            // 1. COMPANY HEADER
+
+            //e.Graphics.DrawString("CITY ELECTRONICS", titleFont, Brushes.Black,
+            //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
+            //currentY += lineHeight * 2;
+
+            //e.Graphics.DrawString("Contact: 0551234567", smallFont, Brushes.Black,
+            //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+            //currentY += lineHeight;
+
+            //currentY += lineHeight + 2;
+
+            // 2. INVOICE INFO
+            e.Graphics.DrawString("INVOICE", headerFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            string cName = !string.IsNullOrEmpty(CustomerNameTxt.Text) ? CustomerNameTxt.Text : "";
+            e.Graphics.DrawString($"Customer: {cName}", regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("Date: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("Invoice #:" + InvoiceNoLbl.Text, regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            // 3. TABLE LAYOUT - FIXED COLUMN POSITIONS TO PREVENT OVERLAP
+            int productCol = leftMargin;                    // Product name column
+            int productColWidth = 120;                      // Width for product names
+
+            int typeCol = productCol + productColWidth + 5; // Type column
+            int typeColWidth = 30;
+
+            int qtyCol = typeCol + typeColWidth + 5;        // Qty column
+            int qtyColWidth = 25;
+
+            int priceCol = qtyCol + qtyColWidth + 5;        // Price column
+            int priceColWidth = 40;
+
+            int totalCol = priceCol + priceColWidth + 5;    // Total column
+            int totalColWidth = 40;
+
+            // Draw table headers
+            e.Graphics.DrawString("Product", headerFont, Brushes.Black, productCol, currentY);
+            e.Graphics.DrawString("Type", headerFont, Brushes.Black, typeCol, currentY);
+            e.Graphics.DrawString("Qty", headerFont, Brushes.Black, qtyCol, currentY);
+            e.Graphics.DrawString("Price", headerFont, Brushes.Black, priceCol, currentY);
+            e.Graphics.DrawString("Total", headerFont, Brushes.Black, totalCol, currentY);
+
+            currentY += lineHeight;
+            currentY += 3;
+            e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + totalColWidth, currentY);
+            currentY += 5;
+
+            foreach (DataGridViewRow row in CartProductList.Rows)
+            {
 
 
-        //        }
-        //    }
-        //}
+                if (row.Cells[0].Value != null) // Check if row has data
+                {
+
+
+                    // First line: Product name only (left aligned)
+                    e.Graphics.DrawString(row.Cells["Urdu Name"].Value?.ToString(), regularFont, Brushes.Black, productCol, currentY);
+                    currentY += lineHeight;
+
+                    // Second line: Type, Qty, Price, Total (in columns)
+                    e.Graphics.DrawString(row.Cells[2].Value?.ToString(), urduFont, Brushes.Black, typeCol, currentY);
+                    e.Graphics.DrawString(row.Cells[4].Value?.ToString(), regularFont, Brushes.Black, qtyCol, currentY);
+                    e.Graphics.DrawString(row.Cells[3].Value?.ToString(), regularFont, Brushes.Black, priceCol, currentY);
+                    e.Graphics.DrawString(row.Cells["Amount"].Value.ToString(), regularFont, Brushes.Black, totalCol, currentY);
+                    currentY += lineHeight;
+
+
+                    // Light separator line between items
+                    e.Graphics.DrawLine(Pens.LightGray, leftMargin, currentY, totalCol + totalColWidth, currentY);
+                    currentY += 2;
+                }
+
+            }
+
+            // Bottom line of table
+            e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + totalColWidth, currentY);
+            currentY += lineHeight;
+
+            // 5. TOTALS SECTION - MOVED LEFT FOR BETTER ALIGNMENT
+            decimal subtotal = decimal.Parse(TotalAmountLbl.Text);
+            decimal taxRate = 0.05m;
+            //decimal taxAmount = Math.Round(subtotal * taxRate, 2);
+            decimal taxAmount = Math.Round(0m, 2);
+            decimal total = subtotal + taxAmount;
+
+            // Move totals left by using priceCol-20 instead of priceCol
+            int totalsLabelCol = priceCol - 20; // Move labels 20 pixels left
+            int totalsValueCol = totalCol - 15; // Move values 15 pixels left
+
+            e.Graphics.DrawString("Subtotal:", regularFont, Brushes.Black, totalsLabelCol, currentY);
+            e.Graphics.DrawString(subtotal.ToString("0.00"), regularFont, Brushes.Black, totalsValueCol, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("Tax (0%):", regularFont, Brushes.Black, totalsLabelCol, currentY);
+            e.Graphics.DrawString(taxAmount.ToString("0.00"), regularFont, Brushes.Black, totalsValueCol, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("TOTAL:", headerFont, Brushes.Black, totalsLabelCol, currentY);
+            e.Graphics.DrawString(total.ToString("0.00"), headerFont, Brushes.Black, totalsValueCol, currentY);
+            currentY += lineHeight;
+
+            currentY += lineHeight;
+
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            // 6. PAYMENT INFORMATION
+            e.Graphics.DrawString("Payment Method: CASH", regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            decimal tendered = !string.IsNullOrEmpty(ReceivedAmountTxt.Text) ? decimal.Parse(ReceivedAmountTxt.Text) : decimal.Parse(TotalAmountLbl.Text);
+            decimal change = tendered - total;
+
+            e.Graphics.DrawString("Paid: " + tendered.ToString("0.00"), regularFont, Brushes.Black, leftMargin, currentY);
+            e.Graphics.DrawString("Change: " + change.ToString("0.00"), regularFont, Brushes.Black, (totalsValueCol - 35), currentY);
+            currentY += lineHeight + 2;
+
+            // 7. FOOTER
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("خریدا ہوا سامان واپس یا تبدیل نہیں ہوگا", headerFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+            currentY += lineHeight;
+
+            //e.Graphics.DrawString("7-day return with receipt", smallFont, Brushes.Black,
+            //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+        }
+
+        private void DrawLine(Graphics graphics, int paperWidth, ref int yPos)
+        {
+            graphics.DrawLine(Pens.Black, 10, yPos, paperWidth - 10, yPos);
+            yPos += 5;
+        }
+
+
+        private void DrawCenteredString(Graphics graphics, string text, Font font, int paperWidth, ref int yPos)
+        {
+            SizeF textSize = graphics.MeasureString(text, font);
+            int xPos = (paperWidth - (int)textSize.Width) / 2;
+            graphics.DrawString(text, font, Brushes.Black, xPos, yPos);
+            yPos += (int)textSize.Height + 2;
+        }
+
+        private void productTypeDropdown_Enter(object sender, EventArgs e)
+        {
+            productTypeDropdown.BorderColor = Color.BlueViolet;
+        }
+
+        private void productTypeDropdown_Leave(object sender, EventArgs e)
+        {
+            productTypeDropdown.BorderColor = Color.Silver;
+        }
+
     }
 }

@@ -103,5 +103,18 @@ namespace POS_Shop.Views.Controllers.Order
             SearchTerm = SearchOrderTxt.Text.Trim();
             await LoadOrdersForDataGridView();
         }
+
+        private void OrderListDataGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (OrderListDataGrid.Rows.Count > 0)
+            {
+                OrderIDLbl.Text = Convert.ToInt32(OrderListDataGrid.CurrentRow.Cells[0].Value).ToString();
+                InvoiceNoLbl.Text = (string)OrderListDataGrid.CurrentRow.Cells[1].Value;
+                // Close the parent form
+                Form parentForm = this.FindForm();
+                parentForm?.Close();
+
+            }
+        }
     }
 }

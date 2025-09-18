@@ -44,6 +44,7 @@ namespace POS_Shop.Views.BillScreen
                 DataTable dt = new DataTable();
                 dt.Columns.Add("ID", typeof(int));
                 dt.Columns.Add("Name", typeof(string));
+                dt.Columns.Add("Address", typeof(string));
                 //dt.Columns.Add("Address", typeof(string));
                 //dt.Columns.Add("Phone", typeof(string));
                 //dt.Columns.Add("CityId", typeof(int));
@@ -56,7 +57,7 @@ namespace POS_Shop.Views.BillScreen
                     //dt.Rows.Add(item.Id, item.CustomerName, item.CustomerAddress,
                     //            item.ContactNo, item.CityId, item.CityName, !item.IsDeleted);
 
-                    dt.Rows.Add(item.Id, item.CustomerName,!item.IsDeleted);
+                    dt.Rows.Add(item.Id,item.CustomerName, item.CustomerAddress, !item.IsDeleted);
                 }
 
                 CustomerListDataGrid.ReadOnly = true;
