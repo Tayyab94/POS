@@ -21,6 +21,7 @@ namespace POS_Shop.Helpers
             Properties.Settings.Default.IsLoggedIn = true;
             Properties.Settings.Default.AuthToken = AuthToken;
             Properties.Settings.Default.UserName = username;
+          
             Properties.Settings.Default.Save();
         }
 
@@ -34,6 +35,8 @@ namespace POS_Shop.Helpers
             Properties.Settings.Default.UserName = string.Empty;
             Properties.Settings.Default.Save();
         }
+            
+       
     }
     public static class NavigationHelper
     {

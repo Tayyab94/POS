@@ -52,7 +52,7 @@ namespace POS_Shop.Views.Controllers.Customers
 
                 // Add default option
                 var allItems = new List<object>();
-                allItems.Add(new { Id = 0, Name = "Select Category" });
+                allItems.Add(new { Id = 0, Name = "Select Country" });
                 allItems.AddRange(countriesList);
                 CountryDropDownLst.DataSource = allItems;
                 CountryDropDownLst.DisplayMember = "Name";
@@ -171,6 +171,31 @@ namespace POS_Shop.Views.Controllers.Customers
             e.Cancel = false;
             // If validation passes, clear any previous error
             CustomerFormErrorProvider.SetError(CityDropDownLst, null);
+        }
+
+        private void CountryDropDownLst_Validating(object sender, CancelEventArgs e)
+        {
+            // Check if the dropdown has a null value or no selection (index -1)
+            if (CountryDropDownLst.SelectedItem == null || CountryDropDownLst.SelectedIndex == -1 || (int)CountryDropDownLst.SelectedValue == 0)
+            {
+                // Set error and cancel the validation
+                e.Cancel = true;
+                CustomerFormErrorProvider.SetError(CountryDropDownLst, "Please select a valid Country");
+                return;
+            }
+
+            // Check if the selected value is empty or whitespace only
+            string selectedValue = CountryDropDownLst.SelectedItem.ToString();
+            if (string.IsNullOrWhiteSpace(selectedValue))
+            {
+                e.Cancel = true;
+                CustomerFormErrorProvider.SetError(CountryDropDownLst, "Please select a valid Country");
+                return;
+            }
+
+            e.Cancel = false;
+            // If validation passes, clear any previous error
+            CustomerFormErrorProvider.SetError(CountryDropDownLst, null);
         }
 
         private async void SaveCustomerBtn_Click(object sender, EventArgs e)
@@ -414,6 +439,7 @@ namespace POS_Shop.Views.Controllers.Customers
                 }
             }
         }
+
 
     }
 }

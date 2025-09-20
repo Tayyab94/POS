@@ -25,8 +25,6 @@ namespace POS_Shop.Views.BillScreen
             SetItemGrdiView();
             InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
 
-            //ProductEngNameTxt.Focus();
-
             this.Shown += (s, e) => { ProductEngNameTxt.Focus(); };
 
             // Apply highlighting to all textboxes and comboboxes
@@ -38,7 +36,36 @@ namespace POS_Shop.Views.BillScreen
                     control.Leave += Control_Leave;
                 }
             }
+            this.KeyPreview = true;
+            this.KeyDown += Form_KeyDown;
         }
+
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Don't override Enter for ProductEnglishName
+                if (this.ActiveControl == ProductEngNameTxt)
+                {
+                    return; // let your ProductEngNameTxt_KeyPress logic run
+                }
+                if(this.ActiveControl== CustomerNameTxt)
+                {
+                    return; // let your ProductEngNameTxt_KeyPress logic run
+                }
+                e.SuppressKeyPress = true; // prevent ding
+
+                // Move to next control
+                this.SelectNextControl(
+                    this.ActiveControl,
+                    true,   // forward
+                    true,   // tabStop only
+                    true,   // include nested
+                    true    // wrap around
+                );
+            }
+        }
+
 
         private void SetItemGrdiView()
         {
@@ -158,7 +185,8 @@ namespace POS_Shop.Views.BillScreen
             decimal amount = salePrice * qty;
 
             bool productExists = false;
-            var finalName = OtherProductChk.Checked == false ? $"{ProductUrduName} {ProductDetailTxt.Text}" : productName;
+            var finalName = OtherProductChk.Checked == false ? $"{ProductUrduName} {ProductDetailTxt.Text}" : $"{productName} {ProductDetailTxt.Text}";
+            //var finalName = OtherProductChk.Checked == false ? $"{ProductUrduName} {ProductDetailTxt.Text}" : productName;
             var finalPId = OtherProductChk.Checked == false ? productId : "";
             //if (!OtherProductChk.Checked)
             //{
@@ -197,6 +225,34 @@ namespace POS_Shop.Views.BillScreen
         }
 
 
+        private void CartProductList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ensure the row index is valid
+            if (e.RowIndex >= 0)
+            {
+                var row = CartProductList.Rows[e.RowIndex];
+
+                try
+                {
+                    // Only recalc if Qty or SalePrice column changed
+                    if (CartProductList.Columns[e.ColumnIndex].Name == "Qty" ||
+                        CartProductList.Columns[e.ColumnIndex].Name == "SalePrice")
+                    {
+                        decimal salePrice = Convert.ToDecimal(row.Cells["SalePrice"].Value);
+                        int qty = Convert.ToInt32(row.Cells["Qty"].Value);
+                        decimal newAmount = salePrice * qty;
+                        row.Cells["Amount"].Value = Math.Round(newAmount, 1);
+                        CalculateTotals();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Invalid input. Please enter correct numeric values.");
+                    row.Cells[e.ColumnIndex].Value = 0; // reset wrong cell
+                }
+            }
+        }
+
         private void CalculateTotals()
         {
             int totalItems = 0;
@@ -233,6 +289,7 @@ namespace POS_Shop.Views.BillScreen
             ProductAmount.Clear();
             productTypeDropdown.SelectedIndex = -1;
             ProductDetailTxt.Clear();
+           ResetCustomerBtn.Visible = false;
 
         }
 
@@ -278,8 +335,9 @@ namespace POS_Shop.Views.BillScreen
                     P_StockQtyTxt.Text = "1";
                     var amt = decimal.Parse(ProductSalePrice.Text) * int.Parse(P_StockQtyTxt.Text);
                     ProductAmount.Text = Convert.ToString(amt);
-                    productTypeDropdown.SelectedItem = SearchProductUI.PTypeLbl.Text;
+                    productTypeDropdown.SelectedItem = !string.IsNullOrEmpty(SearchProductUI.PTypeLbl.Text)? SearchProductUI.PTypeLbl.Text: productTypeDropdown.SelectedItem = "عدد";
 
+                    
                     ProductDetailTxt.Focus();
                 }
 
@@ -454,7 +512,7 @@ namespace POS_Shop.Views.BillScreen
 
         private async void PreviousOrderIdLbl_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && !string.IsNullOrEmpty(InvoiceNoLbl.Text))
+            if ((PreviousOrderIdLbl.Text != "OrderID" && InvoiceNoLbl.Text != "InvoiceNo") &&(!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && !string.IsNullOrEmpty(InvoiceNoLbl.Text)))
             {
                 using(var context= new POSDbContext())
                 {
@@ -501,7 +559,6 @@ namespace POS_Shop.Views.BillScreen
             {
 
                 bool IsDone = false;
-
                 if (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && PreviousOrderIdLbl.Text != "Prev Order Id")
                     IsDone = await SaveOrder(true);  //await UpdateOrderSaved();
                 else
@@ -509,26 +566,21 @@ namespace POS_Shop.Views.BillScreen
 
                 if (IsDone)
                 {
-                    //OrderPrintPreviewDialog.Document = OrderPrintDocument;
+                    OrderPrintPreviewDialog.Document = OrderPrintDocument;
 
-                    //OrderPrintDocument.Print();
+                    OrderPrintDocument.Print();
                     ClearInputs();
                     ClearCartFunction();
                     ResetCustomerBtn.Visible = false;
                     InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
                     SendKeys.SendWait("^{F11}");
-
                     MessageBox.Show("Order Created Successfully!", "Order Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
             }
             else
             {
                 MessageBox.Show("Please Add the Product first", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-           
-
         }
 
         private async Task<bool> SaveOrder(bool isUpdate = false)
@@ -870,17 +922,26 @@ namespace POS_Shop.Views.BillScreen
                                              MessageBoxButtons.OK,
                                              MessageBoxIcon.Information);
                 }
+
+                InvoicePageTabControl.SelectedTab = BilPad;
             }
         }
 
         private void PrintPreviewBtn_Click(object sender, EventArgs e)
         {
-            OrderPrintPreviewDialog.Document = OrderPrintDocument;
-            OrderPrintPreviewDialog.ShowDialog();
+            if (CartProductList.Rows.Count != 0 && CartProductList.Rows != null)
+            {
 
 
-            //// Simulate Ctrl + F11 key press, to shift the control automatically because we are using Auto sharing printer usb
-            //SendKeys.SendWait("^{F11}");
+                //// Simulate Ctrl + F11 key press, to shift the control automatically because we are using Auto sharing printer usb
+                //SendKeys.SendWait("^{F11}");
+                OrderPrintPreviewDialog.Document = OrderPrintDocument;
+                OrderPrintPreviewDialog.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please Add the Product first", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void OrderPrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -914,16 +975,19 @@ namespace POS_Shop.Views.BillScreen
             string dashLine = new string('-', 82);
 
             // 1. COMPANY HEADER
+            if (!InvoiceShopName.Checked) 
+            {
+                e.Graphics.DrawString("Electric Shop", titleFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
+                currentY += lineHeight * 2;
 
-            //e.Graphics.DrawString("CITY ELECTRONICS", titleFont, Brushes.Black,
-            //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
-            //currentY += lineHeight * 2;
+                e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                currentY += lineHeight;
 
-            //e.Graphics.DrawString("Contact: 0551234567", smallFont, Brushes.Black,
-            //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-            //currentY += lineHeight;
+                currentY += lineHeight + 2;
+            }
 
-            //currentY += lineHeight + 2;
 
             // 2. INVOICE INFO
             e.Graphics.DrawString("INVOICE", headerFont, Brushes.Black, leftMargin, currentY);
@@ -1077,5 +1141,25 @@ namespace POS_Shop.Views.BillScreen
             productTypeDropdown.BorderColor = Color.Silver;
         }
 
+        private void InvoiceShopName_CheckedChanged(object sender, EventArgs e)
+        {
+            InvoiceShopName.Text = InvoiceShopName.Checked ?  "Hide Shop Name is Invoice": "Show Shop Name is Invoice";
+        }
+
+
+
+        //private void InvoiceShopName_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (InvoiceShopName.Checked)
+        //    {
+        //        InvoiceShopName.Checked = false;
+        //        InvoiceShopName.Text = "Hide Shop Name is Invoice";
+        //    }
+        //    else
+        //    {
+        //        InvoiceShopName.Checked = true;
+        //        InvoiceShopName.Text = "Show Shop Name is Invoice";
+        //    }
+        //}
     }
 }

@@ -3,14 +3,10 @@ using POS_Shop.Helpers;
 using POS_Shop.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POS_Shop.Views.DB_Screens
@@ -149,9 +145,7 @@ namespace POS_Shop.Views.DB_Screens
                     // Find index of Urdu column and insert Unit right after it
                     int urduIndex = ProductDataGrid.Columns["Urdu"].Index;
                     ProductDataGrid.Columns.Remove("Unit");
-                    ProductDataGrid.Columns.Insert(urduIndex + 1, unitColumn);
-                
-                 
+                    ProductDataGrid.Columns.Insert(urduIndex + 1, unitColumn);               
                 }
 
             }
@@ -189,7 +183,8 @@ namespace POS_Shop.Views.DB_Screens
                             ProductType = GetStringOrNull(row["Unit"]),
                             PurchasePrice = GetNullableDecimal(row["Company Rate"]),
                             // Changed to int?
-                            SalePrice = GetNullableDecimal(row["Price (R)"])
+                            SalePrice = GetNullableDecimal(row["Price (R)"]),
+                            SubcategoryId= 1
                         });
                     }
 

@@ -312,7 +312,7 @@
             this.CustomerListDataGrid.TabIndex = 2;
             this.CustomerListDataGrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CustomerListDataGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerListDataGrid_CellMouseClick);
-            this.CustomerListDataGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CustomerListDataGrid_KeyPress);
+            
             // 
             // AddNewCustomerLink
             // 
