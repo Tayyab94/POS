@@ -85,7 +85,7 @@ namespace POS_Shop.Repositories
 
         public async Task<(int totalCount, IEnumerable<OrdersListDto> data)> GetOrderPagingListAsync(int pageIndex, int pageSize, string search)
         {
-            var data = _context.Orders.AsQueryable();
+            var data = _context.Orders.Include(s=>s.Customer).AsQueryable();
 
             // apply search
 
@@ -95,7 +95,7 @@ namespace POS_Shop.Repositories
 
             foreach (var word in searchWords)
             {
-                data = data.Where(s => s.Id.ToString().Contains(word) || s.InvoiceNumber.ToString().Contains(word));
+                data = data.Where(s => s.Id.ToString().Contains(word) || s.InvoiceNumber.ToString().Contains(word) || s.Customer.CustomerName.Contains(word) || s.Customer.CustomerAddress.Contains(word));
                 //data = data.Where(s => s.CustomerName.Contains(word) || s.City.Name.Contains(word));
             }
            

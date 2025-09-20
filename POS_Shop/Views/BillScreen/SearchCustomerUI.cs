@@ -118,32 +118,11 @@ namespace POS_Shop.Views.BillScreen
             if (CustomerListDataGrid.Rows.Count > 0)
             {
                 HandleEnterPressed(CustomerListDataGrid.CurrentRow.Index);
+                this.Close();
             }
         }
 
-        private void CustomerListDataGrid_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter && !e.Handled)
-            {
-                e.Handled = true;
 
-                if (CustomerListDataGrid.CurrentRow != null &&
-                    CustomerListDataGrid.CurrentRow.Index >= 0 &&
-                    CustomerListDataGrid.CurrentRow.Index != CustomerListDataGrid.NewRowIndex)
-                {
-
-                    int currentIndex = CustomerListDataGrid.CurrentRow.Index;
-                    int targetIndex = currentIndex; // default to current row
-
-                    if (currentIndex > 0 && currentIndex < CustomerListDataGrid.Rows.Count - 1)
-                    {
-                        targetIndex = currentIndex - 1; // only go previous if not first/last
-                    }
-                    HandleEnterPressed(targetIndex);
-                    this.Close();
-                }
-            }
-        }
 
         private void HandleEnterPressed(int rowIndex)
         {
@@ -174,5 +153,29 @@ namespace POS_Shop.Views.BillScreen
             // Show the new form
             customerForm.ShowDialog(); // Use ShowDialog() to open it as a modal dialog
         }
+
+        //private void CustomerListDataGrid_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (e.KeyChar == (char)Keys.Enter && !e.Handled)
+        //    {
+        //        e.Handled = true;
+
+        //        if (CustomerListDataGrid.CurrentRow != null &&
+        //            CustomerListDataGrid.CurrentRow.Index >= 0 &&
+        //            CustomerListDataGrid.CurrentRow.Index != CustomerListDataGrid.NewRowIndex)
+        //        {
+
+        //            int currentIndex = CustomerListDataGrid.CurrentRow.Index;
+        //            int targetIndex = currentIndex; // default to current row
+
+        //            if (currentIndex > 0 && currentIndex < CustomerListDataGrid.Rows.Count - 1)
+        //            {
+        //                targetIndex = currentIndex - 1; // only go previous if not first/last
+        //            }
+        //            HandleEnterPressed(targetIndex);
+        //            this.Close();
+        //        }
+        //    }
+        //}
     }
 }
