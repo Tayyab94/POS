@@ -43,9 +43,7 @@ namespace POS_Shop.Views.DB_Screens
                         tabPage1.Text = "Products (Not Imported Yet)";
                         ImportFileTabComtrol.SelectedTab = tabPage1;
                     }
-
                 }
-              
             }
             catch (Exception)
             {
@@ -84,8 +82,6 @@ namespace POS_Shop.Views.DB_Screens
                             UseHeaderRow = true
                         }
                     };
-
-
                     var dataSet = reader.AsDataSet(conf);
 
                     if (dataSet.Tables.Count == 0)
@@ -156,54 +152,60 @@ namespace POS_Shop.Views.DB_Screens
 
         private void ImportToDbBtn_Click(object sender, EventArgs e)
         {
-            try
+            if (ProductDataGrid.Rows.Count != 0 && ProductDataGrid.Rows != null)
             {
-                LoadingManager.ShowLoading();
-                DataTable dataTable = (DataTable)ProductDataGrid.DataSource;
-                if(dataTable == null || dataTable.Rows.Count == 0)
+                try
                 {
-                    MessageBox.Show("No data to import. Please load data from an Excel file first.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                using(var context = new POSDbContext())
-                {
-                    var ProductToAddList = new List<Models.Product>();
-                    foreach (DataRow row in dataTable.Rows)
+                    LoadingManager.ShowLoading();
+                    DataTable dataTable = (DataTable)ProductDataGrid.DataSource;
+                    if (dataTable == null || dataTable.Rows.Count == 0)
                     {
-                        if (row.IsNull("Item Name") || string.IsNullOrEmpty(row["Item Name"].ToString()))
-                            continue;
-
-                        ProductToAddList.Add(new Models.Product()
-                        {
-                            Cost = GetIntOrDefault(row["Cost"]),
-                            ProductEnglishName = GetStringOrNull(row["Item Name"]),
-
-                            ProductUrduName = GetStringOrNull(row["Urdu"]),
-                            ProductType = GetStringOrNull(row["Unit"]),
-                            PurchasePrice = GetNullableDecimal(row["Company Rate"]),
-                            // Changed to int?
-                            SalePrice = GetNullableDecimal(row["Price (R)"]),
-                            SubcategoryId= 1
-                        });
+                        MessageBox.Show("No data to import. Please load data from an Excel file first.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
 
-                    context.Products.AddRange(ProductToAddList);
-                    int savedRecords = context.SaveChanges();
+                    using (var context = new POSDbContext())
+                    {
+                        var ProductToAddList = new List<Models.Product>();
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            if (row.IsNull("Item Name") || string.IsNullOrEmpty(row["Item Name"].ToString()))
+                                continue;
 
-                    MessageBox.Show($"Successfully imported {savedRecords} records to database!",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ProductToAddList.Add(new Models.Product()
+                            {
+                                Cost = GetIntOrDefault(row["Cost"]),
+                                ProductEnglishName = GetStringOrNull(row["Item Name"]),
+
+                                ProductUrduName = GetStringOrNull(row["Urdu"]),
+                                ProductType = GetStringOrNull(row["Unit"]),
+                                PurchasePrice = GetNullableDecimal(row["Company Rate"]),
+                                // Changed to int?
+                                SalePrice = GetNullableDecimal(row["Price (R)"]),
+                                SubcategoryId = 1
+                            });
+                        }
+
+                        context.Products.AddRange(ProductToAddList);
+                        int savedRecords = context.SaveChanges();
+                        LoadingManager.HideLoading();
+
+                        MessageBox.Show($"Successfully imported {savedRecords} records to database!",
+                            "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-            }
-            catch (Exception)
-            {
+                catch (Exception)
+                {
 
-                throw;
-            }
-            finally
-            {
-                LoadingManager.HideLoading();
-            }
+                    throw;
+                }
+                finally
+                {
+                    LoadingManager.HideLoading();
+                }
+            }else
+                MessageBox.Show("Please Upload the Products first", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
         }
 
         private int GetIntOrDefault(object value, int defaultValue = 0)
@@ -370,79 +372,88 @@ namespace POS_Shop.Views.DB_Screens
 
         private void SaveUpdatedPriceBtn_Click(object sender, EventArgs e)
         {
-            try
+            if (updatedProductLIstGrid.Rows.Count != 0 && updatedProductLIstGrid.Rows != null)
             {
-                LoadingManager.ShowLoading();
-                DataTable dataTable = (DataTable)updatedProductLIstGrid.DataSource;
-                if (dataTable == null || dataTable.Rows.Count == 0)
+                try
                 {
-                    MessageBox.Show("No data to import. Please load data from an Excel file first.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                using (var context = new POSDbContext())
-                {
-                    int updatedCount = 0;
-                    int addedCount = 0;
-                    var ProductToAddList = new List<Models.Product>();
-                    foreach (DataRow row in dataTable.Rows)
+                    LoadingManager.ShowLoading();
+                    DataTable dataTable = (DataTable)updatedProductLIstGrid.DataSource;
+                    if (dataTable == null || dataTable.Rows.Count == 0)
                     {
-                        if (row.IsNull("Product ID") || string.IsNullOrEmpty(row["Product Name"].ToString()))
-                            continue;
-
-                        int productId = Convert.ToInt32(row["Product ID"]);
-                        //var existingProduct = context.Products.Find(productId);
-                        var pName = row[1].ToString();
-                        var existingProduct = context.Products.Where(s=>s.ProductEnglishName== pName).FirstOrDefault();
-
-                        if (existingProduct != null)
-                        {
-                            // Update existing product
-                            existingProduct.ProductEnglishName = GetStringOrNull(row["Product Name"]);
-                            existingProduct.ProductUrduName = GetStringOrNull(row["Urdu Name"]);
-                            existingProduct.ProductType = GetStringOrNull(row["Type"]);
-                            existingProduct.PurchasePrice = GetNullableDecimal(row["Purchase Price"]);
-                            existingProduct.SalePrice = GetNullableDecimal(row["Sale Price"]);
-                            existingProduct.Cost = Convert.ToInt32(row["Cost"]);
-                            existingProduct.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
-
-                            context.Entry(existingProduct).State = EntityState.Modified;
-                            updatedCount++;
-                        }
-                        else
-                        {
-                            // Add new product
-                            var newProduct = new Models.Product
-                            {
-                                Id = productId,
-                                ProductEnglishName = GetStringOrNull(row["Product Name"]),
-                                ProductUrduName = GetStringOrNull(row["Urdu Name"]),
-                                ProductType = GetStringOrNull(row["Type"]),
-                                PurchasePrice = GetNullableDecimal(row["Purchase Price"]),
-                                SalePrice = GetNullableDecimal(row["Sale Price"]),
-                                Cost = Convert.ToInt32(row["Cost"]),
-                                SubcategoryId = Convert.ToInt32(row["SubCategory"])
-                            };
-
-                            ProductToAddList.Add(newProduct);
-                            addedCount++;
-                        }
+                        MessageBox.Show("No data to import. Please load data from an Excel file first.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
-                  
-                    if(ProductToAddList.Count > 0)
-                        context.Products.AddRange(ProductToAddList);
-                    int savedRecords = context.SaveChanges();
 
+                    using (var context = new POSDbContext())
+                    {
+                        int updatedCount = 0;
+                        int addedCount = 0;
+                        var ProductToAddList = new List<Models.Product>();
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            if (row.IsNull("Product ID") || string.IsNullOrEmpty(row["Product Name"].ToString()))
+                                continue;
+
+                            int productId = Convert.ToInt32(row["Product ID"]);
+                            //var existingProduct = context.Products.Find(productId);
+                            var pName = row[1].ToString();
+                            var existingProduct = context.Products.Where(s => s.ProductEnglishName == pName).FirstOrDefault();
+
+                            if (existingProduct != null)
+                            {
+                                // Update existing product
+                                existingProduct.ProductEnglishName = GetStringOrNull(row["Product Name"]);
+                                existingProduct.ProductUrduName = GetStringOrNull(row["Urdu Name"]);
+                                existingProduct.ProductType = GetStringOrNull(row["Type"]);
+                                existingProduct.PurchasePrice = GetNullableDecimal(row["Purchase Price"]);
+                                existingProduct.SalePrice = GetNullableDecimal(row["Sale Price"]);
+                                existingProduct.Cost = Convert.ToInt32(row["Cost"]);
+                                existingProduct.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
+
+                                context.Entry(existingProduct).State = EntityState.Modified;
+                                updatedCount++;
+                            }
+                            else
+                            {
+                                // Add new product
+                                var newProduct = new Models.Product
+                                {
+                                    Id = productId,
+                                    ProductEnglishName = GetStringOrNull(row["Product Name"]),
+                                    ProductUrduName = GetStringOrNull(row["Urdu Name"]),
+                                    ProductType = GetStringOrNull(row["Type"]),
+                                    PurchasePrice = GetNullableDecimal(row["Purchase Price"]),
+                                    SalePrice = GetNullableDecimal(row["Sale Price"]),
+                                    Cost = Convert.ToInt32(row["Cost"]),
+                                    SubcategoryId = Convert.ToInt32(row["SubCategory"])
+                                };
+
+                                ProductToAddList.Add(newProduct);
+                                addedCount++;
+                            }
+                        }
+
+                        if (ProductToAddList.Count > 0)
+                            context.Products.AddRange(ProductToAddList);
+                        int savedRecords = context.SaveChanges();
+
+                        LoadingManager.HideLoading();
+                        MessageBox.Show($"Successfully imported {savedRecords} records to database!",
+                            "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception)
+                {
                     LoadingManager.HideLoading();
-                    MessageBox.Show($"Successfully imported {savedRecords} records to database!",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    throw;
                 }
             }
-            catch (Exception)
+            else
             {
-                LoadingManager.HideLoading();
-                throw;
+                MessageBox.Show($"Please Upload the Products first",
+                          "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+               
             
         }
 

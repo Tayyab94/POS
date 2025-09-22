@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchCustomerUI));
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties5 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties6 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties7 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties8 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties29 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties30 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties31 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties32 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.FormCloseLbl = new System.Windows.Forms.Label();
             this.CloseBtn = new System.Windows.Forms.Button();
             this.NextPageBtn = new Bunifu.UI.WinForms.BunifuImageButton();
@@ -58,7 +58,7 @@
             this.FormCloseLbl.Location = new System.Drawing.Point(931, 21);
             this.FormCloseLbl.Name = "FormCloseLbl";
             this.FormCloseLbl.Size = new System.Drawing.Size(76, 16);
-            this.FormCloseLbl.TabIndex = 34;
+            this.FormCloseLbl.TabIndex = 0;
             this.FormCloseLbl.Text = "Form Close";
             this.FormCloseLbl.Visible = false;
             // 
@@ -70,7 +70,7 @@
             this.CloseBtn.Location = new System.Drawing.Point(1055, 6);
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.Size = new System.Drawing.Size(76, 38);
-            this.CloseBtn.TabIndex = 28;
+            this.CloseBtn.TabIndex = 0;
             this.CloseBtn.Text = "X";
             this.CloseBtn.UseVisualStyleBackColor = false;
             this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
@@ -103,7 +103,7 @@
             this.NextPageBtn.ShowImageBorders = true;
             this.NextPageBtn.ShowSizeMarkers = false;
             this.NextPageBtn.Size = new System.Drawing.Size(51, 41);
-            this.NextPageBtn.TabIndex = 32;
+            this.NextPageBtn.TabIndex = 0;
             this.NextPageBtn.ToolTipText = "";
             this.NextPageBtn.WaitOnLoad = false;
             this.NextPageBtn.Zoom = 2;
@@ -138,7 +138,7 @@
             this.PreviousPageBtn.ShowImageBorders = true;
             this.PreviousPageBtn.ShowSizeMarkers = false;
             this.PreviousPageBtn.Size = new System.Drawing.Size(43, 40);
-            this.PreviousPageBtn.TabIndex = 31;
+            this.PreviousPageBtn.TabIndex = 0;
             this.PreviousPageBtn.ToolTipText = "";
             this.PreviousPageBtn.WaitOnLoad = false;
             this.PreviousPageBtn.Zoom = 2;
@@ -178,26 +178,26 @@
             this.SearchCustomerTxt.Modified = false;
             this.SearchCustomerTxt.Multiline = false;
             this.SearchCustomerTxt.Name = "SearchCustomerTxt";
-            stateProperties5.BorderColor = System.Drawing.Color.DodgerBlue;
-            stateProperties5.FillColor = System.Drawing.Color.Empty;
-            stateProperties5.ForeColor = System.Drawing.Color.Empty;
-            stateProperties5.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.SearchCustomerTxt.OnActiveState = stateProperties5;
-            stateProperties6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            stateProperties6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            stateProperties6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            stateProperties6.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.SearchCustomerTxt.OnDisabledState = stateProperties6;
-            stateProperties7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            stateProperties7.FillColor = System.Drawing.Color.Empty;
-            stateProperties7.ForeColor = System.Drawing.Color.Empty;
-            stateProperties7.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.SearchCustomerTxt.OnHoverState = stateProperties7;
-            stateProperties8.BorderColor = System.Drawing.Color.Silver;
-            stateProperties8.FillColor = System.Drawing.Color.White;
-            stateProperties8.ForeColor = System.Drawing.Color.Empty;
-            stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.SearchCustomerTxt.OnIdleState = stateProperties8;
+            stateProperties29.BorderColor = System.Drawing.Color.DodgerBlue;
+            stateProperties29.FillColor = System.Drawing.Color.Empty;
+            stateProperties29.ForeColor = System.Drawing.Color.Empty;
+            stateProperties29.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.SearchCustomerTxt.OnActiveState = stateProperties29;
+            stateProperties30.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            stateProperties30.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            stateProperties30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            stateProperties30.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.SearchCustomerTxt.OnDisabledState = stateProperties30;
+            stateProperties31.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            stateProperties31.FillColor = System.Drawing.Color.Empty;
+            stateProperties31.ForeColor = System.Drawing.Color.Empty;
+            stateProperties31.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.SearchCustomerTxt.OnHoverState = stateProperties31;
+            stateProperties32.BorderColor = System.Drawing.Color.Silver;
+            stateProperties32.FillColor = System.Drawing.Color.White;
+            stateProperties32.ForeColor = System.Drawing.Color.Empty;
+            stateProperties32.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.SearchCustomerTxt.OnIdleState = stateProperties32;
             this.SearchCustomerTxt.Padding = new System.Windows.Forms.Padding(3);
             this.SearchCustomerTxt.PasswordChar = '\0';
             this.SearchCustomerTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
@@ -210,7 +210,7 @@
             this.SearchCustomerTxt.ShortcutsEnabled = true;
             this.SearchCustomerTxt.Size = new System.Drawing.Size(382, 39);
             this.SearchCustomerTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
-            this.SearchCustomerTxt.TabIndex = 30;
+            this.SearchCustomerTxt.TabIndex = 1;
             this.SearchCustomerTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.SearchCustomerTxt.TextMarginBottom = 0;
             this.SearchCustomerTxt.TextMarginLeft = 3;
@@ -228,7 +228,7 @@
             this.label1.Location = new System.Drawing.Point(363, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(378, 55);
-            this.label1.TabIndex = 29;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Search Customer";
             // 
             // lblStatus
@@ -238,7 +238,7 @@
             this.lblStatus.Location = new System.Drawing.Point(825, -3);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(44, 16);
-            this.lblStatus.TabIndex = 18;
+            this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "Status";
             // 
             // CustomerListGroup
@@ -255,21 +255,21 @@
             // CustomerListDataGrid
             // 
             this.CustomerListDataGrid.AllowCustomTheming = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.CustomerListDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.Black;
+            this.CustomerListDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
             this.CustomerListDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CustomerListDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CustomerListDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.CustomerListDataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CustomerListDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CustomerListDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.CustomerListDataGrid.ColumnHeadersHeight = 40;
             this.CustomerListDataGrid.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
             this.CustomerListDataGrid.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
@@ -289,14 +289,14 @@
             this.CustomerListDataGrid.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.Black;
             this.CustomerListDataGrid.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.CustomerListDataGrid.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.CustomerListDataGrid.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.CustomerListDataGrid.DefaultCellStyle = dataGridViewCellStyle24;
             this.CustomerListDataGrid.EnableHeadersVisualStyles = false;
             this.CustomerListDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
             this.CustomerListDataGrid.HeaderBackColor = System.Drawing.Color.DodgerBlue;
@@ -312,7 +312,6 @@
             this.CustomerListDataGrid.TabIndex = 2;
             this.CustomerListDataGrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CustomerListDataGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerListDataGrid_CellMouseClick);
-            
             // 
             // AddNewCustomerLink
             // 
@@ -320,7 +319,7 @@
             this.AddNewCustomerLink.Location = new System.Drawing.Point(757, 98);
             this.AddNewCustomerLink.Name = "AddNewCustomerLink";
             this.AddNewCustomerLink.Size = new System.Drawing.Size(122, 16);
-            this.AddNewCustomerLink.TabIndex = 35;
+            this.AddNewCustomerLink.TabIndex = 0;
             this.AddNewCustomerLink.TabStop = true;
             this.AddNewCustomerLink.Text = "Add New Customer";
             this.AddNewCustomerLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddNewCustomerLink_LinkClicked);
@@ -331,7 +330,7 @@
             this.CustomerIdLbl.Location = new System.Drawing.Point(278, 60);
             this.CustomerIdLbl.Name = "CustomerIdLbl";
             this.CustomerIdLbl.Size = new System.Drawing.Size(78, 16);
-            this.CustomerIdLbl.TabIndex = 36;
+            this.CustomerIdLbl.TabIndex = 0;
             this.CustomerIdLbl.Text = "Customer Id";
             this.CustomerIdLbl.Visible = false;
             // 
@@ -341,7 +340,7 @@
             this.CustomerName.Location = new System.Drawing.Point(275, 94);
             this.CustomerName.Name = "CustomerName";
             this.CustomerName.Size = new System.Drawing.Size(53, 16);
-            this.CustomerName.TabIndex = 37;
+            this.CustomerName.TabIndex = 0;
             this.CustomerName.Text = "CName";
             this.CustomerName.Visible = false;
             // 
@@ -349,6 +348,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1151, 558);
             this.Controls.Add(this.CustomerName);
             this.Controls.Add(this.CustomerIdLbl);

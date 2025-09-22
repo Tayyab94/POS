@@ -425,22 +425,21 @@ namespace POS_Shop.Views.Product
                 dt.Columns.Add("Name", typeof(string));
                 dt.Columns.Add("Type", typeof(string));
                 dt.Columns.Add("Cost", typeof(int));
-                dt.Columns.Add("Sale-Price", typeof(string));
                 dt.Columns.Add("Purchase-Price", typeof(string));
+                dt.Columns.Add("SalePrice", typeof(string));
 
                 foreach (var item in result.data)
                 {
                     // Check if this product is in our selected list
                     bool isSelected = selectedProductIds.Contains(item.Id);
                     dt.Rows.Add(isSelected, item.Id, item.ProductEnglishName, item.ProductType,
-                                item.Cost, item.SalePrice, item.PurchasePrice);
+                                item.Cost, item.PurchasePrice,item.SalePrice);
                 }
 
                 ProductListGrid.ReadOnly = false;
                 ProductListGrid.AllowUserToAddRows = false;
                 ProductListGrid.AutoGenerateColumns = false;
                 ProductListGrid.DataSource = dt;
-
                 ConfigureDataGridView();
                 UpdatePager();
             }
@@ -562,7 +561,7 @@ namespace POS_Shop.Views.Product
                 Name = "ID",
                 DataPropertyName = "ID",
                 HeaderText = "ID",
-                Width = 50,
+                Width = 40,
                 ReadOnly = true
             });
 
@@ -571,7 +570,7 @@ namespace POS_Shop.Views.Product
                 Name = "Name",
                 DataPropertyName = "Name",
                 HeaderText = "Product Name",
-                Width = 150,
+                Width = 200,
                 ReadOnly = true
             });
 
@@ -580,7 +579,7 @@ namespace POS_Shop.Views.Product
                 Name = "Type",
                 DataPropertyName = "Type",
                 HeaderText = "Type",
-                Width = 100,
+                Width = 70,
                 ReadOnly = true
             });
 
@@ -589,32 +588,32 @@ namespace POS_Shop.Views.Product
                 Name = "Cost",
                 DataPropertyName = "Cost",
                 HeaderText = "Cost",
-                Width = 80,
+                Width = 50,
                 ReadOnly = true,
                 DefaultCellStyle = new DataGridViewCellStyle() { Format = "N0" }
             });
 
-            ProductListGrid.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "SalePrice",
-                DataPropertyName = "Sale-Price",
-                HeaderText = "Sale Price",
-                Width = 100,
-                ReadOnly = true,
-                DefaultCellStyle = new DataGridViewCellStyle() { Format = "N2" }
-            });
+          
 
             ProductListGrid.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = "PurchasePrice",
                 DataPropertyName = "Purchase-Price",
                 HeaderText = "Purchase Price",
-                Width = 100,
+                Width = 60,
                 ReadOnly = true,
                 DefaultCellStyle = new DataGridViewCellStyle() { Format = "N2" }
             });
 
-
+            ProductListGrid.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "SalePrice",
+                DataPropertyName = "SalePrice",
+                HeaderText = "Sale Price",
+                Width = 60,
+                ReadOnly = true,
+                DefaultCellStyle = new DataGridViewCellStyle() { Format = "N2" }
+            });
 
 
             // Edit button column

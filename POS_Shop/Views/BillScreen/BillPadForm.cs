@@ -21,12 +21,10 @@ namespace POS_Shop.Views.BillScreen
         public BillPadForm()
         {
             InitializeComponent();
-
-            SetItemGrdiView();
             InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
-
             this.Shown += (s, e) => { ProductEngNameTxt.Focus(); };
 
+            SetItemGrdiView();
             // Apply highlighting to all textboxes and comboboxes
             foreach (Control control in this.Controls)
             {
@@ -46,13 +44,14 @@ namespace POS_Shop.Views.BillScreen
             {
                 // Don't override Enter for ProductEnglishName
                 if (this.ActiveControl == ProductEngNameTxt)
-                {
                     return; // let your ProductEngNameTxt_KeyPress logic run
-                }
-                if(this.ActiveControl== CustomerNameTxt)
-                {
-                    return; // let your ProductEngNameTxt_KeyPress logic run
-                }
+
+                if (this.ActiveControl== CustomerNameTxt)
+                    return; // let your CustomerNameTxt_KeyPress logic run
+
+                if (this.ActiveControl == TopBarSearchProductTxt)
+                    return;  // let your TopBarSearchProductTxt_KeyPress logic run
+
                 e.SuppressKeyPress = true; // prevent ding
 
                 // Move to next control
@@ -76,8 +75,8 @@ namespace POS_Shop.Views.BillScreen
             //CartProductList.Columns[1].Name = "ProductName";
             CartProductList.Columns[1].Name = "Urdu Name";
             CartProductList.Columns[2].Name = "ProductType";
-            CartProductList.Columns[3].Name = "SalePrice";
-            CartProductList.Columns[4].Name = "Qty";
+            CartProductList.Columns[3].Name = "Qty";
+            CartProductList.Columns[4].Name = "SalePrice";
             CartProductList.Columns[5].Name = "Amount";
 
             // Set column widths here
@@ -214,7 +213,7 @@ namespace POS_Shop.Views.BillScreen
             // If product doesn’t exist, add a new row
             if (!productExists)
             {
-                CartProductList.Rows.Add(finalPId, finalName, productType, salePrice, qty, amount);
+                CartProductList.Rows.Add(finalPId, finalName, productType, qty,salePrice, amount);
             }
 
             CalculateTotals();
@@ -544,7 +543,7 @@ namespace POS_Shop.Views.BillScreen
                             decimal salePrice = Math.Round(decimal.Parse(order.Price.ToString()), 1);
                             int qty = order.Quantity;
                             decimal amount = salePrice * qty;
-                            CartProductList.Rows.Add(productId, finalName, productType, salePrice, qty, amount);
+                            CartProductList.Rows.Add(productId, finalName, productType, qty, salePrice, amount);
                           
                         }
                     }

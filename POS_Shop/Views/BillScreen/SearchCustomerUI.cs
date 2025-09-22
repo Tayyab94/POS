@@ -26,6 +26,8 @@ namespace POS_Shop.Views.BillScreen
         {
             InitializeComponent();
             this.Load += SearchCustomerUI_Load;
+            this.Shown += (s, e) => { SearchCustomerTxt.Focus(); };
+
         }
 
         private async void SearchCustomerUI_Load(object sender, EventArgs e)
