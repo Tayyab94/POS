@@ -63,7 +63,7 @@ namespace POS_Shop.Views.Account
         private bool AuthenticateUser(string username, string password)
         {
             // This is a mock authentication - replace with real logic
-            return username == "admin" && password == "password";
+            return username == "admin" && password == "admin";
         }
 
         private string GenerateToken()

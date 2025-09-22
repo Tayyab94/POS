@@ -30,6 +30,10 @@ namespace POS_Shop.Views.Controllers.Order
 
         private async void OrdersControlUI_Load(object sender, EventArgs e)
         {
+
+            OrderIDLbl.Text = string.Empty;
+            InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
+
             LoadingManager.ShowLoading();
             await LoadOrdersForDataGridView();
             LoadingManager.HideLoading();
@@ -113,6 +117,7 @@ namespace POS_Shop.Views.Controllers.Order
                 // Close the parent form
                 Form parentForm = this.FindForm();
                 parentForm?.Close();
+
 
             }
         }

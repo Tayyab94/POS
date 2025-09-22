@@ -270,63 +270,7 @@ namespace POS_Shop.Views.BillScreen
             this.Close();
         }
 
-        private void ProductListGrid_KeyPress(object sender, KeyPressEventArgs e)
-            {
-            if (e.KeyChar == (char)Keys.Enter && !e.Handled)
-            {
-                e.Handled = true;
 
-                if (ProductListGrid.CurrentRow != null &&
-                    ProductListGrid.CurrentRow.Index >= 0)
-                {
-
-                    //int pId = Convert.ToInt32(ProductListGrid.CurrentRow.Cells[0].Value);
-                    //PNameLbl.Text = (string)ProductListGrid.CurrentRow.Cells[1].Value;
-                    //PUNameLbl.Text = (string)ProductListGrid.CurrentRow.Cells[2].Value;
-                    ////PTypeLbl.Text = (string)ProductListGrid.CurrentRow.Cells[3].Value;
-                    //PTypeLbl.Text = ProductListGrid.CurrentRow.Cells[3].Value == null
-                    //            || ProductListGrid.CurrentRow.Cells[3].Value == DBNull.Value
-                    //            ? string.Empty
-                    //            : ProductListGrid.CurrentRow.Cells[3].Value.ToString();
-                    ////ProdSalePriceLbl.Text = (string)ProductListGrid.CurrentRow.Cells[4].Value;
-                    //ProdSalePriceLbl.Text = ProductListGrid.CurrentRow.Cells[4].Value == null
-                    //    || ProductListGrid.CurrentRow.Cells[4].Value == DBNull.Value
-                    //    ? string.Empty
-                    //    : ProductListGrid.CurrentRow.Cells[4].Value.ToString();
-                    //ProdIdLbl.Text = pId.ToString();
-                    //FormCloseLbl.Text = "false";
-                    //int currentIndex = ProductListGrid.CurrentRow.Index;
-                    //int targetIndex;
-
-                    //// Determine target index based on your logic
-                    //if (currentIndex == ProductListGrid.Rows.Count - 1)
-                    //{
-                    //    targetIndex = currentIndex + 1; // Move to next if last row
-                    //}
-                    //else
-                    //{
-                    //    targetIndex = currentIndex - 1; // Move to previous otherwise
-                    //}
-
-                    //int currentIndex = ProductListGrid.CurrentRow.Index;
-                    //int targetIndex = currentIndex - 1; // your logic
-
-                    //if (targetIndex < 0 || targetIndex >= ProductListGrid.Rows.Count)
-                    //    targetIndex = currentIndex; // fallback to current row
-
-                    int currentIndex = ProductListGrid.CurrentRow.Index;
-                        int targetIndex = currentIndex; // default to current row
-
-                        if (currentIndex > 0 && currentIndex < ProductListGrid.Rows.Count - 1)
-                        {
-                            targetIndex = currentIndex - 1; // only go previous if not first/last
-                        }
-
-                    HandleEnterPressed(targetIndex);
-                    this.Close();
-                }
-            }
-        }
 
         private void HandleEnterPressed(int rowIndex)
         {
@@ -349,6 +293,171 @@ namespace POS_Shop.Views.BillScreen
                     ProdIdLbl.Text = pId.ToString();
                     FormCloseLbl.Text = "false";
         }
+
+        private void SearchProductTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Down)
+            {
+                ProductListGrid.Focus();
+
+                if (ProductListGrid.Rows.Count > 0)
+                {
+                    ProductListGrid.Rows[0].Selected = true;
+                    ProductListGrid.CurrentCell = ProductListGrid.Rows[0].Cells[0];
+                }
+
+                e.Handled = true;
+            }
+        }
+
+
+        private void ProductListGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                // If we're on the first row, move focus back to TextBox
+                if (ProductListGrid.CurrentRow != null &&
+                    ProductListGrid.CurrentRow.Index == 0)
+                {
+                    SearchProductTxt.Focus();
+                    SearchProductTxt.SelectAll(); // Optional: select all text
+                    e.Handled = true;
+                }
+            }
+
+            if (e.KeyCode == Keys.Enter && !e.Handled)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // This prevents the beep sound and default behavior
+
+                if (ProductListGrid.CurrentRow != null && ProductListGrid.CurrentRow.Index >= 0)
+                {
+                    HandleRowSelection(ProductListGrid.CurrentRow.Index);
+                }
+            }
+        }
+
+        private void HandleRowSelection(int rowIndex)
+        {
+            try
+            {
+                DataGridViewRow selectedRow = ProductListGrid.Rows[rowIndex];
+
+                // Safely get values with null checking
+                ProdIdLbl.Text = selectedRow.Cells[0].Value?.ToString() ?? string.Empty;
+                PNameLbl.Text = selectedRow.Cells[1].Value?.ToString() ?? string.Empty;
+                PUNameLbl.Text = selectedRow.Cells[2].Value?.ToString() ?? string.Empty;
+                PTypeLbl.Text = selectedRow.Cells[3].Value?.ToString() ?? string.Empty;
+                ProdSalePriceLbl.Text = selectedRow.Cells[4].Value?.ToString() ?? string.Empty;
+
+                FormCloseLbl.Text = "false";
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error selecting product: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        
+
+        //private void HandleEnterPressed(int rowIndex)
+        //{
+
+        //    // Your logic when Enter is pressed on a row
+        //    DataGridViewRow selectedRow = ProductListGrid.Rows[rowIndex];
+        //    int pId = Convert.ToInt32(selectedRow.Cells[0].Value);
+        //    PNameLbl.Text = (string)selectedRow.Cells[1].Value;
+        //    PUNameLbl.Text = (string)selectedRow.Cells[2].Value;
+        //    //PTypeLbl.Text = (string)selectedRow.Cells[3].Value;
+        //    PTypeLbl.Text = selectedRow.Cells[3].Value == null
+        //                || selectedRow.Cells[3].Value == DBNull.Value
+        //                ? string.Empty
+        //                : selectedRow.Cells[3].Value.ToString();
+        //    //ProdSalePriceLbl.Text = (string)selectedRow.Cells[4].Value;
+        //    ProdSalePriceLbl.Text = selectedRow.Cells[4].Value == null
+        //        || selectedRow.Cells[4].Value == DBNull.Value
+        //        ? string.Empty
+        //        : selectedRow.Cells[4].Value.ToString();
+        //    ProdIdLbl.Text = pId.ToString();
+        //    FormCloseLbl.Text = "false";
+        //}
+        //private void ProductListGrid_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (e.KeyChar == (char)Keys.Enter && !e.Handled)
+        //    {
+        //        e.Handled = true;
+
+        //        if (ProductListGrid.CurrentRow != null &&
+        //            ProductListGrid.CurrentRow.Index >= 0)
+        //        {
+
+        //            //int pId = Convert.ToInt32(ProductListGrid.CurrentRow.Cells[0].Value);
+        //            //PNameLbl.Text = (string)ProductListGrid.CurrentRow.Cells[1].Value;
+        //            //PUNameLbl.Text = (string)ProductListGrid.CurrentRow.Cells[2].Value;
+        //            ////PTypeLbl.Text = (string)ProductListGrid.CurrentRow.Cells[3].Value;
+        //            //PTypeLbl.Text = ProductListGrid.CurrentRow.Cells[3].Value == null
+        //            //            || ProductListGrid.CurrentRow.Cells[3].Value == DBNull.Value
+        //            //            ? string.Empty
+        //            //            : ProductListGrid.CurrentRow.Cells[3].Value.ToString();
+        //            ////ProdSalePriceLbl.Text = (string)ProductListGrid.CurrentRow.Cells[4].Value;
+        //            //ProdSalePriceLbl.Text = ProductListGrid.CurrentRow.Cells[4].Value == null
+        //            //    || ProductListGrid.CurrentRow.Cells[4].Value == DBNull.Value
+        //            //    ? string.Empty
+        //            //    : ProductListGrid.CurrentRow.Cells[4].Value.ToString();
+        //            //ProdIdLbl.Text = pId.ToString();
+        //            //FormCloseLbl.Text = "false";
+        //            //int currentIndex = ProductListGrid.CurrentRow.Index;
+        //            //int targetIndex;
+
+        //            //// Determine target index based on your logic
+        //            //if (currentIndex == ProductListGrid.Rows.Count - 1)
+        //            //{
+        //            //    targetIndex = currentIndex + 1; // Move to next if last row
+        //            //}
+        //            //else
+        //            //{
+        //            //    targetIndex = currentIndex - 1; // Move to previous otherwise
+        //            //}
+
+        //            //int currentIndex = ProductListGrid.CurrentRow.Index;
+        //            //int targetIndex = currentIndex - 1; // your logic
+
+        //            //if (targetIndex < 0 || targetIndex >= ProductListGrid.Rows.Count)
+        //            //    targetIndex = currentIndex; // fallback to current row
+
+        //            //int pId = Convert.ToInt32(ProductListGrid.CurrentRow.Cells[0].Value);
+        //            //PNameLbl.Text = (string)ProductListGrid.CurrentRow.Cells[1].Value;
+        //            //int currentIndex = ProductListGrid.CurrentRow.Index;
+
+
+        //            //    int targetIndex = currentIndex; // default to current row
+
+        //            //    if (currentIndex > 0 && currentIndex < ProductListGrid.Rows.Count - 1)
+        //            //    {
+        //            //        targetIndex = currentIndex - 1; // only go previous if not first/last
+        //            //    }
+
+        //            //HandleEnterPressed(targetIndex);
+        //            //this.Close();
+
+
+        //            // Simulate a mouse click on the current row
+        //            int rowIndex = ProductListGrid.CurrentRow.Index;
+        //            int columnIndex = ProductListGrid.CurrentCell?.ColumnIndex ?? 0;
+
+        //            // Create mouse event args and call the mouse click handler
+        //            var mouseArgs = new DataGridViewCellMouseEventArgs(
+        //                columnIndex, rowIndex, 0, 0, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0)
+        //            );
+
+        //            ProductListGrid_CellMouseClick(sender, mouseArgs);
+        //        }
+        //    }
+        //}
+
+
 
     }
 }

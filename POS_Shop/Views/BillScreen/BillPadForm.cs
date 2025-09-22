@@ -3,6 +3,7 @@ using POS_Shop.Models;
 using POS_Shop.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,7 +47,7 @@ namespace POS_Shop.Views.BillScreen
                 if (this.ActiveControl == ProductEngNameTxt)
                     return; // let your ProductEngNameTxt_KeyPress logic run
 
-                if (this.ActiveControl== CustomerNameTxt)
+                if (this.ActiveControl == CustomerNameTxt)
                     return; // let your CustomerNameTxt_KeyPress logic run
 
                 if (this.ActiveControl == TopBarSearchProductTxt)
@@ -71,21 +72,24 @@ namespace POS_Shop.Views.BillScreen
 
             CartProductList.ColumnCount = 6;
 
-            CartProductList.Columns[0].Name = "ProductId";
-            //CartProductList.Columns[1].Name = "ProductName";
-            CartProductList.Columns[1].Name = "Urdu Name";
-            CartProductList.Columns[2].Name = "ProductType";
-            CartProductList.Columns[3].Name = "Qty";
-            CartProductList.Columns[4].Name = "SalePrice";
-            CartProductList.Columns[5].Name = "Amount";
+            CartProductList.Columns[0].Name = "Amount";
+            CartProductList.Columns[1].Name = "SalePrice";
+            CartProductList.Columns[2].Name = "Urdu Name";
+            CartProductList.Columns[3].Name = "ProductType";
+            CartProductList.Columns[4].Name = "Qty";
+            CartProductList.Columns[5].Name = "ProductId";
 
             // Set column widths here
-            CartProductList.Columns[0].Width = 50;
-            CartProductList.Columns[1].Width = 190;
-            CartProductList.Columns[2].Width = 70;
-            CartProductList.Columns[3].Width = 50;
-            CartProductList.Columns[4].Width = 60;
-            CartProductList.Columns[5].Width = 100;
+
+            CartProductList.Columns[0].Width = 100;
+            CartProductList.Columns[1].Width = 60;
+            CartProductList.Columns[2].Width = 190;
+            CartProductList.Columns[3].Width = 30;
+            CartProductList.Columns[4].Width = 50;
+            CartProductList.Columns[5].Width = 50;
+
+            CartProductList.Columns[5].Visible = false;
+
 
             // Add delete button column
             DataGridViewButtonColumn btnCol = new DataGridViewButtonColumn();
@@ -93,13 +97,14 @@ namespace POS_Shop.Views.BillScreen
             btnCol.HeaderText = "Action";
             btnCol.Text = "Delete";
             btnCol.UseColumnTextForButtonValue = true;  // Always show "Delete"
-            CartProductList.Columns.Add(btnCol);
+                                                        // Insert at position 0 (first column)
+            CartProductList.Columns.Insert(0, btnCol);
+            //CartProductList.Columns.Add(btnCol);
 
             // Set the width of the button column
             CartProductList.Columns["Delete"].Width = 50;
-
-
         }
+
         private void Control_Enter(object sender, EventArgs e)
         {
             ((Control)sender).BackColor = Color.LightYellow;
@@ -185,7 +190,7 @@ namespace POS_Shop.Views.BillScreen
 
             bool productExists = false;
             var finalName = OtherProductChk.Checked == false ? $"{ProductUrduName} {ProductDetailTxt.Text}" : $"{productName} {ProductDetailTxt.Text}";
-            //var finalName = OtherProductChk.Checked == false ? $"{ProductUrduName} {ProductDetailTxt.Text}" : productName;
+
             var finalPId = OtherProductChk.Checked == false ? productId : "";
             //if (!OtherProductChk.Checked)
             //{
@@ -209,11 +214,11 @@ namespace POS_Shop.Views.BillScreen
             }
             //}
 
-
             // If product doesn’t exist, add a new row
             if (!productExists)
             {
-                CartProductList.Rows.Add(finalPId, finalName, productType, qty,salePrice, amount);
+                //CartProductList.Rows.Add(finalPId, finalName, productType, qty,salePrice, amount);
+                CartProductList.Rows.Add(null, amount, salePrice, finalName, productType, qty, finalPId);
             }
 
             CalculateTotals();
@@ -288,7 +293,7 @@ namespace POS_Shop.Views.BillScreen
             ProductAmount.Clear();
             productTypeDropdown.SelectedIndex = -1;
             ProductDetailTxt.Clear();
-           ResetCustomerBtn.Visible = false;
+            ResetCustomerBtn.Visible = false;
 
         }
 
@@ -334,9 +339,9 @@ namespace POS_Shop.Views.BillScreen
                     P_StockQtyTxt.Text = "1";
                     var amt = decimal.Parse(ProductSalePrice.Text) * int.Parse(P_StockQtyTxt.Text);
                     ProductAmount.Text = Convert.ToString(amt);
-                    productTypeDropdown.SelectedItem = !string.IsNullOrEmpty(SearchProductUI.PTypeLbl.Text)? SearchProductUI.PTypeLbl.Text: productTypeDropdown.SelectedItem = "عدد";
+                    productTypeDropdown.SelectedItem = !string.IsNullOrEmpty(SearchProductUI.PTypeLbl.Text) ? SearchProductUI.PTypeLbl.Text : productTypeDropdown.SelectedItem = "عدد";
 
-                    
+
                     ProductDetailTxt.Focus();
                 }
 
@@ -434,16 +439,45 @@ namespace POS_Shop.Views.BillScreen
                     ReceivedAmountTxt.SelectionStart = validText.Length;
                 }
             }
+
+
+            if(!string.IsNullOrEmpty(TotalAmountLbl.Text) && TotalAmountLbl.Text != "0")
+            {
+                // Calculate remaining amount
+                decimal totalAmount = Convert.ToDecimal(TotalAmountLbl.Text); // Your total amount
+
+                if (string.IsNullOrWhiteSpace(ReceivedAmountTxt.Text))
+                {
+                    lblRemainingAmount.Text = $"Remaining: Rs. {totalAmount}";
+                    return;
+                }
+
+                if (decimal.TryParse(ReceivedAmountTxt.Text, out decimal receivedAmount))
+                {
+                    decimal remainingAmount = totalAmount - receivedAmount;
+                    lblRemainingAmount.Text = remainingAmount >= 0
+                        ? $"Remaining:  Rs. {remainingAmount}"
+                        : $"Exceeded by:  Rs. {Math.Abs(remainingAmount)}";
+                    lblRemainingAmount.ForeColor = remainingAmount >= 0 ? Color.Black : Color.Red;
+                }
+            }
+            else
+            {
+                lblRemainingAmount.Text = "Remaining: Rs. 0";
+            }
+            
         }
 
         private void ClearCartBtn_Click(object sender, EventArgs e)
         {
-          
+
             ClearCartFunction();
             ClearInputs();
             InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
             // Optional: Show confirmation message
+            ProductEngNameTxt.Focus();
             MessageBox.Show("Cart cleared successfully!", "Clear Cart", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        
         }
 
         private void ClearCartFunction()
@@ -458,7 +492,7 @@ namespace POS_Shop.Views.BillScreen
             TotalAmountLbl.Text = "0.00";
             ReceivedAmountTxt.Clear();
 
-            
+
         }
 
         private void TopBarSearchProductTxt_KeyPress(object sender, KeyPressEventArgs e)
@@ -487,6 +521,7 @@ namespace POS_Shop.Views.BillScreen
 
         private void SearchInvoiceLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            PreviousOrderIdLbl.Text = string.Empty;
             // Create a new instance of your Form
             Form OrderListForm = new Form();
             OrderListForm.Text = "Order List";
@@ -511,18 +546,19 @@ namespace POS_Shop.Views.BillScreen
 
         private async void PreviousOrderIdLbl_TextChanged(object sender, EventArgs e)
         {
-            if ((PreviousOrderIdLbl.Text != "OrderID" && InvoiceNoLbl.Text != "InvoiceNo") &&(!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && !string.IsNullOrEmpty(InvoiceNoLbl.Text)))
+            if ((PreviousOrderIdLbl.Text != "OrderID" && InvoiceNoLbl.Text != "InvoiceNo") && (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && !string.IsNullOrEmpty(InvoiceNoLbl.Text)))
             {
-                using(var context= new POSDbContext())
+                using (var context = new POSDbContext())
                 {
                     var orderRepo = new OrderRepository(context);
                     var resut = await orderRepo.GetOrderByIdAsync(Convert.ToInt32(PreviousOrderIdLbl.Text), InvoiceNoLbl.Text);
-                    if (resut != null) {
+                    if (resut != null)
+                    {
 
                         CustomerIdLbl.Text = resut.CustomerId.HasValue ? resut.CustomerId.Value.ToString() : string.Empty;
                         CustomerNameTxt.Text = string.IsNullOrEmpty(CustomerIdLbl.Text) ? "" : resut.CustomerName;
                         TotalAmountLbl.Text = resut.TotalBill.ToString();
-                        if(resut.paymentType=="Cash")
+                        if (resut.paymentType == "Cash")
                         {
                             CashRadioBtn.Checked = true;
                             BankTransferRaadioBtn.Checked = false;
@@ -533,6 +569,8 @@ namespace POS_Shop.Views.BillScreen
                             BankTransferRaadioBtn.Checked = true;
                         }
 
+                        if(resut.OrderDetailsList.Count > 0)
+                            CartProductList.Rows.Clear();
 
                         foreach (var order in resut.OrderDetailsList)
                         {
@@ -543,9 +581,12 @@ namespace POS_Shop.Views.BillScreen
                             decimal salePrice = Math.Round(decimal.Parse(order.Price.ToString()), 1);
                             int qty = order.Quantity;
                             decimal amount = salePrice * qty;
-                            CartProductList.Rows.Add(productId, finalName, productType, qty, salePrice, amount);
-                          
+                            //CartProductList.Rows.Add(productId, finalName, productType, qty, salePrice, amount);
+                            CartProductList.Rows.Add(null, amount, salePrice, finalName, productType, qty, productId);
+
                         }
+
+                        CalculateTotals();
                     }
                 }
             }
@@ -574,6 +615,10 @@ namespace POS_Shop.Views.BillScreen
                     InvoiceNoLbl.Text = DateTime.Now.ToString("MMddyyy-HHmmss");
                     SendKeys.SendWait("^{F11}");
                     MessageBox.Show("Order Created Successfully!", "Order Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Order Creation Failed!", "Order Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -609,7 +654,7 @@ namespace POS_Shop.Views.BillScreen
                     dbTransaction.Commit();
                     return true;
                 }
-                catch (Exception ex)
+                catch (DbException ex)
                 {
                     dbTransaction.Rollback();
                     return false;
@@ -663,16 +708,16 @@ namespace POS_Shop.Views.BillScreen
 
             foreach (DataGridViewRow row in CartProductList.Rows)
             {
-                if (row.Cells[0].Value == null) continue;
+                if (row.Cells["ProductId"].Value == null) continue;
 
-                var productIdValue = row.Cells[0].Value?.ToString();
+                var productIdValue = row.Cells["ProductId"].Value?.ToString();
                 var odrDetail = new OrderDetail
                 {
                     ProductId = string.IsNullOrEmpty(productIdValue) ? (int?)null : int.Parse(productIdValue),
-                    OtherProductName = string.IsNullOrEmpty(productIdValue) ? row.Cells[1].Value?.ToString() : null,
-                    Quantity = int.Parse(row.Cells[4].Value?.ToString()),
-                    QuantityType = row.Cells[2].Value?.ToString(),
-                    Price = float.Parse(row.Cells[3].Value?.ToString()),
+                    OtherProductName = string.IsNullOrEmpty(productIdValue) ? row.Cells["Urdu Name"].Value?.ToString() : null,
+                    Quantity = int.Parse(row.Cells["Qty"].Value?.ToString()),
+                    QuantityType = row.Cells["ProductType"].Value?.ToString(),
+                    Price = float.Parse(row.Cells["SalePrice"].Value?.ToString()),
                     CreatedDate = DateTime.Now,
                     OrderId = orderId,
                 };
@@ -974,7 +1019,338 @@ namespace POS_Shop.Views.BillScreen
             string dashLine = new string('-', 82);
 
             // 1. COMPANY HEADER
-            if (!InvoiceShopName.Checked) 
+            if (!InvoiceShopName.Checked)
+            {
+                e.Graphics.DrawString("Electric Shop", titleFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
+                currentY += lineHeight * 2;
+                e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                currentY += lineHeight;
+                currentY += lineHeight + 2;
+            }
+
+
+            // 2. INVOICE INFO
+            e.Graphics.DrawString("INVOICE", headerFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            string cName = !string.IsNullOrEmpty(CustomerNameTxt.Text) ? CustomerNameTxt.Text : "";
+            e.Graphics.DrawString($"Customer: {cName}", regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("Date: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("Invoice #:" + InvoiceNoLbl.Text, regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            // 3. TABLE LAYOUT - FIXED COLUMN POSITIONS TO PREVENT OVERLAP
+            int productCol = leftMargin;                    // Product name column
+            int productColWidth = 120;                      // Width for product names
+
+            int typeCol = productCol + productColWidth + 5; // Type column
+            int typeColWidth = 30;
+
+            int qtyCol = typeCol + typeColWidth + 5;        // Qty column
+            int qtyColWidth = 25;
+
+            int priceCol = qtyCol + qtyColWidth + 5;        // Price column
+            int priceColWidth = 40;
+
+            int totalCol = priceCol + priceColWidth + 5;    // Total column
+            int totalColWidth = 90;
+
+            // Draw table headers
+            e.Graphics.DrawString("پروڈکٹ", headerFont, Brushes.Black, productCol, currentY);
+            e.Graphics.DrawString(" ", headerFont, Brushes.Black, typeCol, currentY);
+            e.Graphics.DrawString("مقدار", headerFont, Brushes.Black, qtyCol, currentY);
+            e.Graphics.DrawString("قیمت", headerFont, Brushes.Black, priceCol, currentY);
+            e.Graphics.DrawString("کل", headerFont, Brushes.Black, totalCol, currentY);
+
+            currentY += lineHeight;
+            currentY += 3;
+            e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + totalColWidth, currentY);
+            currentY += 5;
+
+            foreach (DataGridViewRow row in CartProductList.Rows)
+            {
+
+
+                if (row.Cells[0].Value != null) // Check if row has data
+                {
+                    // First line: Product name only (left aligned)
+                    e.Graphics.DrawString(row.Cells["Urdu Name"].Value?.ToString(), regularFont, Brushes.Black, productCol, currentY);
+                    currentY += lineHeight;
+
+                    // Second line: Type, Qty, Price, Total (in columns)
+                   e.Graphics.DrawString(row.Cells["ProductType"].Value?.ToString(), urduFont, Brushes.Black, typeCol, currentY);
+                    
+                    e.Graphics.DrawString($"{row.Cells["Qty"].Value?.ToString()}", regularFont, Brushes.Black, qtyCol, currentY);
+                    e.Graphics.DrawString(row.Cells["SalePrice"].Value?.ToString(), regularFont, Brushes.Black, priceCol, currentY);
+                    e.Graphics.DrawString(row.Cells["Amount"].Value.ToString(), regularFont, Brushes.Black, totalCol, currentY);
+                    currentY += lineHeight;
+
+                    //e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+                    //currentY += lineHeight + 2;
+                }
+                e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + totalColWidth, currentY);
+                currentY += lineHeight;
+            }
+
+            
+            // 5. TOTALS SECTION - MOVED LEFT FOR BETTER ALIGNMENT
+            decimal subtotal = decimal.Parse(TotalAmountLbl.Text);
+            decimal taxRate = 0.05m;
+            //decimal taxAmount = Math.Round(subtotal * taxRate, 2);
+            decimal taxAmount = Math.Round(0m, 2);
+            decimal total = subtotal + taxAmount;
+
+            // Move totals left by using priceCol-20 instead of priceCol
+            int totalsLabelCol = priceCol - 20; // Move labels 20 pixels left
+            int totalsValueCol = totalCol - 15; // Move values 15 pixels left
+
+
+            e.Graphics.DrawString("Subtotal:", regularFont, Brushes.Black, totalsLabelCol, currentY);
+            e.Graphics.DrawString(subtotal.ToString("0.0"), regularFont, Brushes.Black, totalsValueCol, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("Tax (0%):", regularFont, Brushes.Black, totalsLabelCol, currentY);
+            e.Graphics.DrawString(taxAmount.ToString("0.0"), regularFont, Brushes.Black, totalsValueCol, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("TOTAL:", headerFont, Brushes.Black, totalsLabelCol, currentY);
+            e.Graphics.DrawString(total.ToString("0.0"), headerFont, Brushes.Black, totalsValueCol, currentY);
+            currentY += lineHeight;
+
+            currentY += lineHeight;
+
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            // 6. PAYMENT INFORMATION
+            e.Graphics.DrawString("Payment Method: CASH", regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            decimal tendered = !string.IsNullOrEmpty(ReceivedAmountTxt.Text) ? decimal.Parse(ReceivedAmountTxt.Text) : decimal.Parse(TotalAmountLbl.Text);
+            decimal change = tendered - total;
+
+            e.Graphics.DrawString("Paid: " + tendered.ToString("0.00"), regularFont, Brushes.Black, leftMargin, currentY);
+            e.Graphics.DrawString("Change: " + change.ToString("0.00"), regularFont, Brushes.Black, (totalsValueCol - 35), currentY);
+            currentY += lineHeight + 2;
+
+            // 7. FOOTER
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("خریدا ہوا سامان واپس یا تبدیل نہیں ہوگا۔", headerFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("چائنہ مال کی وارنٹی نہیں۔", headerFont, Brushes.Black,
+                               new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+            currentY += lineHeight +2;
+          
+            //e.Graphics.DrawString("7-day return with receipt", smallFont, Brushes.Black,
+            //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+        }
+
+
+        private void OrderPrintDocument_PrintPage_2(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Thermal printer settings (80mm paper)
+            int paperWidth = 280;
+            int leftMargin = 5;
+            int currentY = 5;
+            int lineHeight = 16;
+
+            // Fonts
+            Font titleFont = new Font("Nafees Web Naskh", 12, FontStyle.Bold);
+            Font headerFont = new Font("Nafees Web Naskh", 10, FontStyle.Bold);
+            Font regularFont = new Font("Nafees Web Naskh", 9, FontStyle.Regular);
+            Font smallFont = new Font("Nafees Web Naskh", 8, FontStyle.Regular);
+
+            // Alignment
+            StringFormat centerFormat = new StringFormat() { Alignment = StringAlignment.Center };
+            StringFormat rightFormat = new StringFormat() { Alignment = StringAlignment.Far };
+
+            string dashLine = new string('-', 40);
+
+            // 1. Header (Shop Name + Contact)
+            if (!InvoiceShopName.Checked)
+            {
+                e.Graphics.DrawString("الیکٹرک شاپ", titleFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
+                currentY += lineHeight * 2;
+
+                e.Graphics.DrawString("رابطہ: 1234567", smallFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                currentY += lineHeight * 2;
+            }
+
+            // 2. Invoice info
+            e.Graphics.DrawString("انوائس", headerFont, Brushes.Black,
+                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+            currentY += lineHeight + 2;
+
+            string cName = !string.IsNullOrEmpty(CustomerNameTxt.Text) ? CustomerNameTxt.Text : "";
+            e.Graphics.DrawString("گاہک: " + cName, regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("تاریخ: " + DateTime.Now.ToString("dd-MM-yyyy HH:mm"), regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("انوائس نمبر: " + InvoiceNoLbl.Text, regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            // 3. Table Layout
+            int productCol = leftMargin;         // پروڈکٹ
+            int productColWidth = 110;
+
+            int qtyCol = productCol + productColWidth + 5; // مقدار
+            int typeCol = qtyCol + 35;                     // قسم
+            int priceCol = typeCol + 35;                   // قیمت
+            int totalCol = priceCol + 45;                  // کل
+
+            // Right-to-left Urdu layout
+            StringFormat urduRightAlign = new StringFormat()
+            {
+                Alignment = StringAlignment.Near,
+                FormatFlags = StringFormatFlags.DirectionRightToLeft
+            };
+
+
+
+            e.Graphics.DrawString("پروڈکٹ", headerFont, Brushes.Black, productCol, currentY);
+            e.Graphics.DrawString("مقدار", headerFont, Brushes.Black, qtyCol, currentY);
+            //e.Graphics.DrawString("قسم", headerFont, Brushes.Black, typeCol, currentY);
+            e.Graphics.DrawString("قیمت", headerFont, Brushes.Black, priceCol, currentY);
+            e.Graphics.DrawString("کل", headerFont, Brushes.Black, totalCol, currentY);
+
+            currentY += lineHeight;
+            e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + 40, currentY);
+            currentY += 4;
+
+            // ===== Table Rows =====
+            decimal subtotal = 0m;
+            foreach (DataGridViewRow row in CartProductList.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    string product = row.Cells["Urdu Name"].Value?.ToString();
+                    string qty = row.Cells["Qty"].Value?.ToString();
+                    string type = row.Cells["ProductType"].Value?.ToString();
+                    string price = row.Cells["SalePrice"].Value?.ToString();
+                    string amount = row.Cells["Amount"].Value?.ToString();
+
+                    // ✅ Product with word-wrap
+                    RectangleF productRect = new RectangleF(productCol, currentY, productColWidth, lineHeight * 3);
+                    e.Graphics.DrawString(product, regularFont, Brushes.Black, productRect);
+
+                    SizeF productSize = e.Graphics.MeasureString(product, regularFont, productColWidth);
+                    int productLines = (int)Math.Ceiling(productSize.Height / lineHeight);
+                    int rowHeight = productLines * lineHeight;
+
+                    // Other columns (single-line)
+                    e.Graphics.DrawString($"{qty}-{type}", regularFont, Brushes.Black, qtyCol, currentY);
+                    //e.Graphics.DrawString(qty, regularFont, Brushes.Black, qtyCol, currentY);
+                    //e.Graphics.DrawString(type, regularFont, Brushes.Black, typeCol, currentY);
+                    e.Graphics.DrawString(price, regularFont, Brushes.Black, priceCol, currentY);
+                    e.Graphics.DrawString(amount, regularFont, Brushes.Black, totalCol, currentY);
+
+                    if (decimal.TryParse(amount, out decimal amt))
+                        subtotal += amt;
+
+                    currentY += rowHeight;
+                }
+                e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + 40, currentY);
+                currentY += lineHeight;
+            }
+
+            //// Final line
+            //e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + 40, currentY);
+            //currentY += lineHeight;
+
+            // 4. Totals
+            decimal taxAmount = 0m;
+            decimal total = subtotal + taxAmount;
+
+            e.Graphics.DrawString("ذیلی کل:", regularFont, Brushes.Black, priceCol, currentY);
+            e.Graphics.DrawString(subtotal.ToString("0.0"), regularFont, Brushes.Black, totalCol + 30, currentY, rightFormat);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("ٹیکس 0:", regularFont, Brushes.Black, priceCol, currentY);
+            e.Graphics.DrawString(taxAmount.ToString("0.0"), regularFont, Brushes.Black, totalCol + 30, currentY, rightFormat);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("کل:", headerFont, Brushes.Black, priceCol, currentY);
+            e.Graphics.DrawString(total.ToString("0.0"), headerFont, Brushes.Black, totalCol + 30, currentY, rightFormat);
+            currentY += lineHeight + 2;
+
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            // 5. Payment
+            e.Graphics.DrawString("ادائیگی کا طریقہ: نقد", regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            decimal tendered = !string.IsNullOrEmpty(ReceivedAmountTxt.Text) ? decimal.Parse(ReceivedAmountTxt.Text) : subtotal;
+            decimal change = tendered - total;
+
+            e.Graphics.DrawString("ادا کیا گیا: " + tendered.ToString("0.0"), regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("بقایا رقم: " + change.ToString("0.0"), regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            // 6. Footer
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("خریدا ہوا سامان واپس یا تبدیل نہیں ہوگا", headerFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+            currentY += lineHeight;
+        }
+
+
+        private void OrderPrintDocument_PrintPage_1(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Thermal printer settings (80mm paper)
+            int paperWidth = 280; // pixels for 80mm paper
+            int leftMargin = 5;
+            int currentY = 5;
+            int lineHeight = 12;
+            int sectionSpacing = 3;
+
+            // Fonts for thermal printing
+            Font titleFont = new Font("Arial", 11, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 9, FontStyle.Bold);
+            Font regularFont = new Font("Arial", 8, FontStyle.Regular);
+            Font smallFont = new Font("Arial", 7, FontStyle.Regular);
+
+            // Urdu font
+            Font urduFont = new Font("Nafees Web Naskh", 8, FontStyle.Regular);
+            if (urduFont.Name != "Nafees Web Naskh")
+                urduFont = new Font("Arial", 8, FontStyle.Regular);
+
+            // Center alignment
+            StringFormat centerFormat = new StringFormat();
+            centerFormat.Alignment = StringAlignment.Center;
+
+            // Right alignment for numbers
+            StringFormat rightFormat = new StringFormat();
+            rightFormat.Alignment = StringAlignment.Far;
+
+            string dashLine = new string('-', 82);
+
+            // 1. COMPANY HEADER
+            if (!InvoiceShopName.Checked)
             {
                 e.Graphics.DrawString("Electric Shop", titleFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
@@ -1039,16 +1415,14 @@ namespace POS_Shop.Views.BillScreen
 
                 if (row.Cells[0].Value != null) // Check if row has data
                 {
-
-
                     // First line: Product name only (left aligned)
                     e.Graphics.DrawString(row.Cells["Urdu Name"].Value?.ToString(), regularFont, Brushes.Black, productCol, currentY);
                     currentY += lineHeight;
 
                     // Second line: Type, Qty, Price, Total (in columns)
-                    e.Graphics.DrawString(row.Cells[2].Value?.ToString(), urduFont, Brushes.Black, typeCol, currentY);
-                    e.Graphics.DrawString(row.Cells[4].Value?.ToString(), regularFont, Brushes.Black, qtyCol, currentY);
-                    e.Graphics.DrawString(row.Cells[3].Value?.ToString(), regularFont, Brushes.Black, priceCol, currentY);
+                    e.Graphics.DrawString(row.Cells["ProductType"].Value?.ToString(), urduFont, Brushes.Black, typeCol, currentY);
+                    e.Graphics.DrawString(row.Cells["Qty"].Value?.ToString(), regularFont, Brushes.Black, qtyCol, currentY);
+                    e.Graphics.DrawString(row.Cells["SalePrice"].Value?.ToString(), regularFont, Brushes.Black, priceCol, currentY);
                     e.Graphics.DrawString(row.Cells["Amount"].Value.ToString(), regularFont, Brushes.Black, totalCol, currentY);
                     currentY += lineHeight;
 
@@ -1142,8 +1516,9 @@ namespace POS_Shop.Views.BillScreen
 
         private void InvoiceShopName_CheckedChanged(object sender, EventArgs e)
         {
-            InvoiceShopName.Text = InvoiceShopName.Checked ?  "Hide Shop Name is Invoice": "Show Shop Name is Invoice";
+            InvoiceShopName.Text = InvoiceShopName.Checked ? "Hide Shop Name is Invoice" : "Show Shop Name is Invoice";
         }
+
 
 
 
