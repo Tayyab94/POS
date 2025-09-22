@@ -30,6 +30,9 @@ namespace POS_Shop.Views.BillScreen
             
             LoadingManager.HideLoading();
 
+
+            this.Shown += (s, e) => { SearchProductTxt.Focus(); };
+
         }
 
         private async void SearchProductUI_Load(object sender, EventArgs e)
@@ -268,14 +271,13 @@ namespace POS_Shop.Views.BillScreen
         }
 
         private void ProductListGrid_KeyPress(object sender, KeyPressEventArgs e)
-        {
+            {
             if (e.KeyChar == (char)Keys.Enter && !e.Handled)
             {
                 e.Handled = true;
 
                 if (ProductListGrid.CurrentRow != null &&
-                    ProductListGrid.CurrentRow.Index >= 0 &&
-                    ProductListGrid.CurrentRow.Index != ProductListGrid.NewRowIndex)
+                    ProductListGrid.CurrentRow.Index >= 0)
                 {
 
                     //int pId = Convert.ToInt32(ProductListGrid.CurrentRow.Cells[0].Value);
@@ -313,12 +315,12 @@ namespace POS_Shop.Views.BillScreen
                     //    targetIndex = currentIndex; // fallback to current row
 
                     int currentIndex = ProductListGrid.CurrentRow.Index;
-int targetIndex = currentIndex; // default to current row
+                        int targetIndex = currentIndex; // default to current row
 
-if (currentIndex > 0 && currentIndex < ProductListGrid.Rows.Count - 1)
-{
-    targetIndex = currentIndex - 1; // only go previous if not first/last
-}
+                        if (currentIndex > 0 && currentIndex < ProductListGrid.Rows.Count - 1)
+                        {
+                            targetIndex = currentIndex - 1; // only go previous if not first/last
+                        }
 
                     HandleEnterPressed(targetIndex);
                     this.Close();

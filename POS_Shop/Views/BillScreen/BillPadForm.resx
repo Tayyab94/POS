@@ -584,38 +584,38 @@
   </data>
   <data name="ProductAmount.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGcAAAApCAYAAAAoEzflAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACTSURBVHhe7dGxCcRAEARB5R/VHRfGh6EAJNYRfAZtVMM4
-        49Z1qd0557fWeqyx8fhw5lCn8YATDU44OOHghIMTDk44OOHghIMTDk44OOHghIMTDk44OOHghIMTDk44
-        OOHghIMTDk44OOHghIMTDk44OOHghIMTDk44OOHghIMTDk44OOHghPvD2Xvfc1hj4/HhqNkLqjiF7XX0
-        fBwAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAHsAAAApCAYAAAAVgVaDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACUSURBVHhe7dGxCcQwAARB91+VhMr4MlyAjRLDt6CdhUsu
+        netSq7XWb4zx2Jnbvh/2PnRu2xd2JNihYIeCHQp2KNihYIeCHQp2KNihYIeCHQp2KNihYIeCHQp2KNih
+        YIeCHQp2KNihYIeCHQp2KNihYIeCHQp2KNihYIeCHQp2KNihYIeCHeoPe85578PO3Pb9sNXoBcBdjOnD
+        2No4AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="ProductSalePrice.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGAAAAApCAYAAADKzyycAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACRSURBVGhD7dExDcQwEEXB8EdlyzAORgAkchPpCPg1M9Jv
-        ttx3XfTWWr8xxmPntn/+BdgHzto/FyAkQEyAmAAxAWICxASICRATICZATICYADEBYgLEBIgJEBMgJkBM
-        gJgAMQFiAsQEiAkQEyAmQEyAmAAxAWICxASICRATICZATICYALG/AHPOex/s3PbPvwB0XrsYUEtU8ocd
-        AAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAAIsAAAApCAYAAAAFzdoaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACcSURBVHhe7dKxCcQwAARB91+VhMr4MlzAGyWGBxv28xm4
+        5OI9DvjHWuszxviaPW33cceyD3iz+xALiVjIxEImFjKxkImFTCxkYiETC5lYyMRCJhYysZCJhUwsZGIh
+        EwuZWMjEQiYWMrGQiYVMLGRiIRMLmVjIxEImFjKxkImFTCxkYiETC5lYyMRCJhayn1jmnOc+zJ62+7hj
+        geICRDAsH4dH+p0AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="P_StockQtyTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEUAAAApCAYAAABju+QIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACGSURBVGhD7dDBCcMwAARB91+VhMpIGSnARnkYHLYDz8J9
-        7jnHoW6t9RljnG/fdrhR9qHzBwPlLygRlAhKBCWCEkGJoERQIigRlAhKBCWCEkGJoERQIigRlAhKBCWC
-        EkGJoERQIigRlAhKBCWCEkGJoERQIigRlAhK9ECZc3738fZthxtFzy5wMhOtMgYZLAAAAABJRU5ErkJg
-        gg==
+        iVBORw0KGgoAAAANSUhEUgAAAFsAAAApCAYAAABa3FVTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACPSURBVGhD7dCxCcQwAARB91+VhMr4MlyAjRLDF6CNZuGS
+        C+e61LbW+o0xHjuz7fth70Pn2r6wo2CHwQ6DHQY7DHYY7DDYYbDDYIfBDoMdBjsMdhjsMNhhsMNgh8EO
+        gx0GOwx2GOww2GGww2CHwQ6DHQY7DHYY7DDYYbDDYIfBDoMd9oc957z3YWe2fT9sNb3G106MdTy8ngAA
+        AABJRU5ErkJggg==
 </value>
   </data>
   <data name="ProductEngNameTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAOgAAAApCAYAAAA/HWVpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACuSURBVHhe7dOxCcRAEARB5R/VHRfGh6EAJNYRfAZtVME4
-        4/d1AW3nnN9a6zGzxqbJL9A5gI5pUqAQJVAIEyiECRTCBAphAoUwgUKYQCFMoBAmUAgTKIQJFMIECmEC
-        hTCBQphAIUygECZQCBMohAkUwgQKYQKFMIFCmEAhTKAQJlAIEyiECRTCBAphAoUwgUKYQCFMoBAmUAgT
-        KIQJFML+At1733OYWWPT5Bco0PQClZYZaTtA9xUAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAUgAAAApCAYAAABXy7B4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAC8SURBVHhe7dRRCQMxAETB868qITIqowJyhMJBaZ+DGdif
+        FfCuC4C21nqNMbaZmY19mvgE8hwAfJwmCiTAHwIJEAQSIAgkQBBIgCCQAEEgAYJAAgSBBAgCCRAEEiAI
+        JEAQSIAgkABBIAGCQAIEgQQIAgkQBBIgCCRAEEiAIJAAQSABgkACBIEECAIJEAQSIAgkQBBIgCCQAEEg
+        AYJAAgSBBAgCCRAEEiAIJED4CuSc830OMzMb+zTxCSQAv24ScNSAY1uIzAAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="CustomerNameTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

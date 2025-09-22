@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchProductUI));
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties4 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties33 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties34 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties35 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties36 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             this.label1 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.CloseBtn = new System.Windows.Forms.Button();
@@ -73,7 +73,7 @@
             this.lblStatus.Location = new System.Drawing.Point(859, -3);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(44, 16);
-            this.lblStatus.TabIndex = 18;
+            this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "Status";
             // 
             // CloseBtn
@@ -92,21 +92,21 @@
             // ProductListGrid
             // 
             this.ProductListGrid.AllowCustomTheming = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.ProductListGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.Black;
+            this.ProductListGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
             this.ProductListGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ProductListGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ProductListGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.ProductListGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductListGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductListGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
             this.ProductListGrid.ColumnHeadersHeight = 40;
             this.ProductListGrid.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
             this.ProductListGrid.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
@@ -126,14 +126,14 @@
             this.ProductListGrid.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.Black;
             this.ProductListGrid.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.ProductListGrid.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ProductListGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ProductListGrid.DefaultCellStyle = dataGridViewCellStyle27;
             this.ProductListGrid.EnableHeadersVisualStyles = false;
             this.ProductListGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
             this.ProductListGrid.HeaderBackColor = System.Drawing.Color.DodgerBlue;
@@ -158,7 +158,7 @@
             this.ProdicListGroup.Location = new System.Drawing.Point(12, 159);
             this.ProdicListGroup.Name = "ProdicListGroup";
             this.ProdicListGroup.Size = new System.Drawing.Size(1172, 434);
-            this.ProdicListGroup.TabIndex = 21;
+            this.ProdicListGroup.TabIndex = 0;
             this.ProdicListGroup.TabStop = false;
             this.ProdicListGroup.Text = "Product List";
             // 
@@ -168,7 +168,7 @@
             this.ProdIdLbl.Location = new System.Drawing.Point(51, 26);
             this.ProdIdLbl.Name = "ProdIdLbl";
             this.ProdIdLbl.Size = new System.Drawing.Size(50, 16);
-            this.ProdIdLbl.TabIndex = 22;
+            this.ProdIdLbl.TabIndex = 0;
             this.ProdIdLbl.Text = "Prod Id";
             this.ProdIdLbl.Visible = false;
             // 
@@ -178,7 +178,7 @@
             this.PNameLbl.Location = new System.Drawing.Point(51, 62);
             this.PNameLbl.Name = "PNameLbl";
             this.PNameLbl.Size = new System.Drawing.Size(79, 16);
-            this.PNameLbl.TabIndex = 23;
+            this.PNameLbl.TabIndex = 0;
             this.PNameLbl.Text = "Prodt Name";
             this.PNameLbl.Visible = false;
             // 
@@ -188,7 +188,7 @@
             this.PUNameLbl.Location = new System.Drawing.Point(53, 104);
             this.PUNameLbl.Name = "PUNameLbl";
             this.PUNameLbl.Size = new System.Drawing.Size(108, 16);
-            this.PUNameLbl.TabIndex = 24;
+            this.PUNameLbl.TabIndex = 0;
             this.PUNameLbl.Text = "Prod Urdu Name";
             this.PUNameLbl.Visible = false;
             // 
@@ -198,7 +198,7 @@
             this.PTypeLbl.Location = new System.Drawing.Point(149, 26);
             this.PTypeLbl.Name = "PTypeLbl";
             this.PTypeLbl.Size = new System.Drawing.Size(71, 16);
-            this.PTypeLbl.TabIndex = 25;
+            this.PTypeLbl.TabIndex = 0;
             this.PTypeLbl.Text = "Prod Type";
             this.PTypeLbl.Visible = false;
             // 
@@ -209,7 +209,7 @@
             this.ProdSalePriceLbl.Name = "ProdSalePriceLbl";
             this.ProdSalePriceLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ProdSalePriceLbl.Size = new System.Drawing.Size(101, 16);
-            this.ProdSalePriceLbl.TabIndex = 26;
+            this.ProdSalePriceLbl.TabIndex = 0;
             this.ProdSalePriceLbl.Text = "Prod Sale Price";
             this.ProdSalePriceLbl.Visible = false;
             // 
@@ -219,7 +219,7 @@
             this.FormCloseLbl.Location = new System.Drawing.Point(977, 23);
             this.FormCloseLbl.Name = "FormCloseLbl";
             this.FormCloseLbl.Size = new System.Drawing.Size(76, 16);
-            this.FormCloseLbl.TabIndex = 27;
+            this.FormCloseLbl.TabIndex = 0;
             this.FormCloseLbl.Text = "Form Close";
             this.FormCloseLbl.Visible = false;
             // 
@@ -251,7 +251,7 @@
             this.NextPageBtn.ShowImageBorders = true;
             this.NextPageBtn.ShowSizeMarkers = false;
             this.NextPageBtn.Size = new System.Drawing.Size(51, 41);
-            this.NextPageBtn.TabIndex = 4;
+            this.NextPageBtn.TabIndex = 0;
             this.NextPageBtn.ToolTipText = "";
             this.NextPageBtn.WaitOnLoad = false;
             this.NextPageBtn.Zoom = 2;
@@ -286,7 +286,7 @@
             this.PreviousPageBtn.ShowImageBorders = true;
             this.PreviousPageBtn.ShowSizeMarkers = false;
             this.PreviousPageBtn.Size = new System.Drawing.Size(43, 40);
-            this.PreviousPageBtn.TabIndex = 3;
+            this.PreviousPageBtn.TabIndex = 0;
             this.PreviousPageBtn.ToolTipText = "";
             this.PreviousPageBtn.WaitOnLoad = false;
             this.PreviousPageBtn.Zoom = 2;
@@ -326,26 +326,26 @@
             this.SearchProductTxt.Modified = false;
             this.SearchProductTxt.Multiline = false;
             this.SearchProductTxt.Name = "SearchProductTxt";
-            stateProperties1.BorderColor = System.Drawing.Color.DodgerBlue;
-            stateProperties1.FillColor = System.Drawing.Color.Empty;
-            stateProperties1.ForeColor = System.Drawing.Color.Empty;
-            stateProperties1.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.SearchProductTxt.OnActiveState = stateProperties1;
-            stateProperties2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            stateProperties2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            stateProperties2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            stateProperties2.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.SearchProductTxt.OnDisabledState = stateProperties2;
-            stateProperties3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            stateProperties3.FillColor = System.Drawing.Color.Empty;
-            stateProperties3.ForeColor = System.Drawing.Color.Empty;
-            stateProperties3.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.SearchProductTxt.OnHoverState = stateProperties3;
-            stateProperties4.BorderColor = System.Drawing.Color.Silver;
-            stateProperties4.FillColor = System.Drawing.Color.White;
-            stateProperties4.ForeColor = System.Drawing.Color.Empty;
-            stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.SearchProductTxt.OnIdleState = stateProperties4;
+            stateProperties33.BorderColor = System.Drawing.Color.DodgerBlue;
+            stateProperties33.FillColor = System.Drawing.Color.Empty;
+            stateProperties33.ForeColor = System.Drawing.Color.Empty;
+            stateProperties33.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.SearchProductTxt.OnActiveState = stateProperties33;
+            stateProperties34.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            stateProperties34.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            stateProperties34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            stateProperties34.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.SearchProductTxt.OnDisabledState = stateProperties34;
+            stateProperties35.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            stateProperties35.FillColor = System.Drawing.Color.Empty;
+            stateProperties35.ForeColor = System.Drawing.Color.Empty;
+            stateProperties35.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.SearchProductTxt.OnHoverState = stateProperties35;
+            stateProperties36.BorderColor = System.Drawing.Color.Silver;
+            stateProperties36.FillColor = System.Drawing.Color.White;
+            stateProperties36.ForeColor = System.Drawing.Color.Empty;
+            stateProperties36.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.SearchProductTxt.OnIdleState = stateProperties36;
             this.SearchProductTxt.Padding = new System.Windows.Forms.Padding(3);
             this.SearchProductTxt.PasswordChar = '\0';
             this.SearchProductTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
