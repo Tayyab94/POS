@@ -156,6 +156,50 @@ namespace POS_Shop.Views.BillScreen
             customerForm.ShowDialog(); // Use ShowDialog() to open it as a modal dialog
         }
 
+        private void CustomerListDataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                // If we're on the first row, move focus back to TextBox
+                if (CustomerListDataGrid.CurrentRow != null &&
+                    CustomerListDataGrid.CurrentRow.Index == 0)
+                {
+                    SearchCustomerTxt.Focus();
+                    SearchCustomerTxt.SelectAll(); // Optional: select all text
+                    e.Handled = true;
+                }
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true; // Prevent default behavior
+                if (CustomerListDataGrid.CurrentRow != null &&
+                    CustomerListDataGrid.CurrentRow.Index >= 0 &&
+                    CustomerListDataGrid.CurrentRow.Index != CustomerListDataGrid.NewRowIndex)
+                {
+                    int currentIndex = CustomerListDataGrid.CurrentRow.Index;
+                    HandleEnterPressed(currentIndex);
+                    this.Close();
+                }
+            }
+
+        }
+
+        private void SearchCustomerTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Down)
+            {
+                CustomerListDataGrid.Focus();
+
+                if (CustomerListDataGrid.Rows.Count > 0)
+                {
+                    CustomerListDataGrid.Rows[1].Selected = true;
+                    CustomerListDataGrid.CurrentCell = CustomerListDataGrid.Rows[1].Cells[1];
+                }
+
+                e.Handled = true;
+            }
+        }
         //private void CustomerListDataGrid_KeyPress(object sender, KeyPressEventArgs e)
         //{
         //    if (e.KeyChar == (char)Keys.Enter && !e.Handled)
