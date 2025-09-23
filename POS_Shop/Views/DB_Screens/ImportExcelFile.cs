@@ -179,9 +179,9 @@ namespace POS_Shop.Views.DB_Screens
 
                                 ProductUrduName = GetStringOrNull(row["Urdu"]),
                                 ProductType = GetStringOrNull(row["Unit"]),
-                                PurchasePrice = GetNullableDecimal(row["Company Rate"]),
+                                PurchasePrice = GetIntOrDefault(row["Company Rate"]),
                                 // Changed to int?
-                                SalePrice = GetNullableDecimal(row["Price (R)"]),
+                                SalePrice = GetIntOrDefault(row["Price (R)"]),
                                 SubcategoryId = 1
                             });
                         }
@@ -405,8 +405,8 @@ namespace POS_Shop.Views.DB_Screens
                                 existingProduct.ProductEnglishName = GetStringOrNull(row["Product Name"]);
                                 existingProduct.ProductUrduName = GetStringOrNull(row["Urdu Name"]);
                                 existingProduct.ProductType = GetStringOrNull(row["Type"]);
-                                existingProduct.PurchasePrice = GetNullableDecimal(row["Purchase Price"]);
-                                existingProduct.SalePrice = GetNullableDecimal(row["Sale Price"]);
+                                existingProduct.PurchasePrice = GetIntOrDefault(row["Purchase Price"]);
+                                existingProduct.SalePrice = GetIntOrDefault(row["Sale Price"]);
                                 existingProduct.Cost = Convert.ToInt32(row["Cost"]);
                                 existingProduct.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
 
@@ -422,8 +422,8 @@ namespace POS_Shop.Views.DB_Screens
                                     ProductEnglishName = GetStringOrNull(row["Product Name"]),
                                     ProductUrduName = GetStringOrNull(row["Urdu Name"]),
                                     ProductType = GetStringOrNull(row["Type"]),
-                                    PurchasePrice = GetNullableDecimal(row["Purchase Price"]),
-                                    SalePrice = GetNullableDecimal(row["Sale Price"]),
+                                    PurchasePrice = GetIntOrDefault(row["Purchase Price"]),
+                                    SalePrice = GetIntOrDefault(row["Sale Price"]),
                                     Cost = Convert.ToInt32(row["Cost"]),
                                     SubcategoryId = Convert.ToInt32(row["SubCategory"])
                                 };

@@ -453,9 +453,9 @@ namespace POS_Shop.Views.Product
                 ProductEnglishName = ProductEngNameTxt.Text,
                 ProductUrduName = ProductUrduNameTxt.Text,
                 SubcategoryId = Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue),
-                PurchasePrice = ConversionHelper.ParseDecimalSafe(PurchasePriceTxt.Text),
+                PurchasePrice = ConversionHelper.ParseInt(PurchasePriceTxt.Text),
                 ProductType = Convert.ToString(productTypeDropdown.SelectedItem),
-                SalePrice = ConversionHelper.ParseDecimalSafe(P_SalePriceTxt.Text),
+                SalePrice = ConversionHelper.ParseInt(P_SalePriceTxt.Text),
                 Cost = ConversionHelper.ParseInt(p_costTxt.Text)
                 //isActive = ProductIsActiveChk.Checked
             };
@@ -501,9 +501,9 @@ namespace POS_Shop.Views.Product
                 ProductEnglishName = ProductEngNameTxt.Text,
                 ProductUrduName = ProductUrduNameTxt.Text,
                 SubcategoryId = Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue),
-                PurchasePrice = ConversionHelper.ParseDecimalSafe(PurchasePriceTxt.Text),
+                PurchasePrice = ConversionHelper.ParseInt(PurchasePriceTxt.Text),
                 ProductType = Convert.ToString(productTypeDropdown.SelectedItem),
-                SalePrice = ConversionHelper.ParseDecimalSafe(P_SalePriceTxt.Text),
+                SalePrice = ConversionHelper.ParseInt(P_SalePriceTxt.Text),
                 Cost = ConversionHelper.ParseInt(p_costTxt.Text)
             };
             if (!model.IsValid(out var results))
