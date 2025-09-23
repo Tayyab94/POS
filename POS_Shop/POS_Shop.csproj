@@ -253,6 +253,10 @@
     <Compile Include="Migrations\202509161627432_added_CreatedDate_IntoOrderDetails.Designer.cs">
       <DependentUpon>202509161627432_added_CreatedDate_IntoOrderDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202509231004346_TypeChane_Decimal_To_Int_PrductTbl.cs" />
+    <Compile Include="Migrations\202509231004346_TypeChane_Decimal_To_Int_PrductTbl.Designer.cs">
+      <DependentUpon>202509231004346_TypeChane_Decimal_To_Int_PrductTbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
@@ -404,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202509161627432_added_CreatedDate_IntoOrderDetails.resx">
       <DependentUpon>202509161627432_added_CreatedDate_IntoOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509231004346_TypeChane_Decimal_To_Int_PrductTbl.resx">
+      <DependentUpon>202509231004346_TypeChane_Decimal_To_Int_PrductTbl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
