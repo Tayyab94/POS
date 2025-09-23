@@ -174,59 +174,59 @@ namespace POS_Shop.Views.BillScreen
         }
 
 
-        private void AddToCardBtn_Click(object sender, EventArgs e)
-        {
-            if (!ValidateInputs())
-                return; // stop if validation fails
-
-            // Get values from the TextBoxes
-            string productId = PId; // (or use the label SearchProductUI.ProdIdLbl.Text)
-            string productName = ProductEngNameTxt.Text;
-            string ProductUrduName = prod_U_Name;
-            string productType = productTypeDropdown.SelectedItem?.ToString();
-            decimal salePrice = Math.Round(decimal.Parse(ProductSalePrice.Text), 1);
-            int qty = int.Parse(P_StockQtyTxt.Text);
-            decimal amount = salePrice * qty;
-
-            bool productExists = false;
-            var finalName = OtherProductChk.Checked == false ? $"{ProductUrduName} {ProductDetailTxt.Text}" : $"{productName} {ProductDetailTxt.Text}";
-
-            var finalPId = OtherProductChk.Checked == false ? productId : "";
-            //if (!OtherProductChk.Checked)
-            //{
-            // Loop through DataGridView rows to check if product already exists
-            foreach (DataGridViewRow row in CartProductList.Rows)
+            private void AddToCardBtn_Click(object sender, EventArgs e)
             {
-                if (row.Cells[1].Value != null &&
-                    row.Cells[1].Value.ToString() == finalName)
+                if (!ValidateInputs())
+                    return; // stop if validation fails
+
+                // Get values from the TextBoxes
+                string productId = PId; // (or use the label SearchProductUI.ProdIdLbl.Text)
+                string productName = ProductEngNameTxt.Text;
+                string ProductUrduName = prod_U_Name;
+                string productType = productTypeDropdown.SelectedItem?.ToString();
+                decimal salePrice = Math.Round(decimal.Parse(ProductSalePrice.Text), 1);
+                int qty = int.Parse(P_StockQtyTxt.Text);
+                decimal amount = salePrice * qty;
+
+                bool productExists = false;
+                var finalName = OtherProductChk.Checked == false ? $"{ProductUrduName} {ProductDetailTxt.Text}" : $"{productName} {ProductDetailTxt.Text}";
+
+                var finalPId = OtherProductChk.Checked == false ? productId : "";
+                //if (!OtherProductChk.Checked)
+                //{
+                // Loop through DataGridView rows to check if product already exists
+                foreach (DataGridViewRow row in CartProductList.Rows)
                 {
-                    // Product already exists → increase Qty & update Amount
-                    int existingQty = Convert.ToInt32(row.Cells["Qty"].Value);
-                    existingQty += qty;
-                    row.Cells["Qty"].Value = existingQty;
+                    if (row.Cells["Urdu Name"].Value != null &&
+                        row.Cells["Urdu Name"].Value.ToString() == finalName)
+                    {
+                        // Product already exists → increase Qty & update Amount
+                        int existingQty = Convert.ToInt32(row.Cells["Qty"].Value);
+                        existingQty += qty;
+                        row.Cells["Qty"].Value = existingQty;
 
-                    decimal newAmount = existingQty * salePrice;
-                    row.Cells["Amount"].Value = Math.Round(newAmount, 1);
+                        decimal newAmount = existingQty * salePrice;
+                        row.Cells["Amount"].Value = Math.Round(newAmount, 1);
 
-                    productExists = true;
-                    break;
+                        productExists = true;
+                        break;
+                    }
                 }
+                //}
+
+                // If product doesn’t exist, add a new row
+                if (!productExists)
+                {
+                    //CartProductList.Rows.Add(finalPId, finalName, productType, qty,salePrice, amount);
+                    CartProductList.Rows.Add(null, amount, salePrice, finalName, productType, qty, finalPId);
+                }
+
+                CalculateTotals();
+
+                // Clear input fields after adding
+                ClearInputs();
+                ProductEngNameTxt.Focus();
             }
-            //}
-
-            // If product doesn’t exist, add a new row
-            if (!productExists)
-            {
-                //CartProductList.Rows.Add(finalPId, finalName, productType, qty,salePrice, amount);
-                CartProductList.Rows.Add(null, amount, salePrice, finalName, productType, qty, finalPId);
-            }
-
-            CalculateTotals();
-
-            // Clear input fields after adding
-            ClearInputs();
-            ProductEngNameTxt.Focus();
-        }
 
 
         private void CartProductList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -1089,9 +1089,14 @@ namespace POS_Shop.Views.BillScreen
                     // Second line: Type, Qty, Price, Total (in columns)
                    e.Graphics.DrawString(row.Cells["ProductType"].Value?.ToString(), urduFont, Brushes.Black, typeCol, currentY);
                     
-                    e.Graphics.DrawString($"{row.Cells["Qty"].Value?.ToString()}", regularFont, Brushes.Black, qtyCol, currentY);
-                    e.Graphics.DrawString(row.Cells["SalePrice"].Value?.ToString(), regularFont, Brushes.Black, priceCol, currentY);
-                    e.Graphics.DrawString(row.Cells["Amount"].Value.ToString(), regularFont, Brushes.Black, totalCol, currentY);
+                    //e.Graphics.DrawString($"{row.Cells["Qty"].Value?.ToString()}", regularFont, Brushes.Black, qtyCol, currentY);
+                    //e.Graphics.DrawString(row.Cells["SalePrice"].Value?.ToString(), regularFont, Brushes.Black, priceCol, currentY);
+                    //e.Graphics.DrawString(row.Cells["Amount"].Value.ToString(), regularFont, Brushes.Black, totalCol, currentY);
+
+                    e.Graphics.DrawString($"{Convert.ToDecimal(row.Cells["Qty"].Value):0}", regularFont, Brushes.Black, qtyCol, currentY);
+                    e.Graphics.DrawString($"{Convert.ToDecimal(row.Cells["SalePrice"].Value):0}", regularFont, Brushes.Black, priceCol, currentY);
+                    e.Graphics.DrawString($"{Convert.ToDecimal(row.Cells["Amount"].Value):0}", regularFont, Brushes.Black, totalCol, currentY);
+
                     currentY += lineHeight;
 
                     //e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
@@ -1115,15 +1120,15 @@ namespace POS_Shop.Views.BillScreen
 
 
             e.Graphics.DrawString("Subtotal:", regularFont, Brushes.Black, totalsLabelCol, currentY);
-            e.Graphics.DrawString(subtotal.ToString("0.0"), regularFont, Brushes.Black, totalsValueCol, currentY);
+            e.Graphics.DrawString(subtotal.ToString("0"), regularFont, Brushes.Black, totalsValueCol, currentY);
             currentY += lineHeight;
 
             e.Graphics.DrawString("Tax (0%):", regularFont, Brushes.Black, totalsLabelCol, currentY);
-            e.Graphics.DrawString(taxAmount.ToString("0.0"), regularFont, Brushes.Black, totalsValueCol, currentY);
+            e.Graphics.DrawString(taxAmount.ToString("0"), regularFont, Brushes.Black, totalsValueCol, currentY);
             currentY += lineHeight;
 
             e.Graphics.DrawString("TOTAL:", headerFont, Brushes.Black, totalsLabelCol, currentY);
-            e.Graphics.DrawString(total.ToString("0.0"), headerFont, Brushes.Black, totalsValueCol, currentY);
+            e.Graphics.DrawString(total.ToString("0"), headerFont, Brushes.Black, totalsValueCol, currentY);
             currentY += lineHeight;
 
             currentY += lineHeight;
@@ -1138,8 +1143,8 @@ namespace POS_Shop.Views.BillScreen
             decimal tendered = !string.IsNullOrEmpty(ReceivedAmountTxt.Text) ? decimal.Parse(ReceivedAmountTxt.Text) : decimal.Parse(TotalAmountLbl.Text);
             decimal change = tendered - total;
 
-            e.Graphics.DrawString("Paid: " + tendered.ToString("0.00"), regularFont, Brushes.Black, leftMargin, currentY);
-            e.Graphics.DrawString("Change: " + change.ToString("0.00"), regularFont, Brushes.Black, (totalsValueCol - 35), currentY);
+            e.Graphics.DrawString("Paid: " +$"{Convert.ToDecimal(tendered):0}", regularFont, Brushes.Black, leftMargin, currentY);
+            e.Graphics.DrawString("Change: " + $"{Convert.ToDecimal(change):0}", regularFont, Brushes.Black, (totalsValueCol - 35), currentY);
             currentY += lineHeight + 2;
 
             // 7. FOOTER
@@ -1517,6 +1522,27 @@ namespace POS_Shop.Views.BillScreen
         private void InvoiceShopName_CheckedChanged(object sender, EventArgs e)
         {
             InvoiceShopName.Text = InvoiceShopName.Checked ? "Hide Shop Name is Invoice" : "Show Shop Name is Invoice";
+        }
+
+        private void BillPadForm_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if(e.KeyCode == Keys.S && e.Control) // Ctrl + S to Save and Print
+            {
+                SaveAndPrintOrderBtn.PerformClick();
+            }
+            else if(e.KeyCode == Keys.P && e.Control) // Ctrl + P to Print Preview
+            {
+                PrintPreviewBtn.PerformClick();
+            }
+            else if(e.KeyCode == Keys.N && e.Control) // Ctrl + N to New Invoice
+            {
+                ClearCartBtn.PerformClick();
+            }
+            else if(e.KeyCode == Keys.Escape) // Esc to Clear Cart
+            {
+                ClearCartBtn.PerformClick();
+            }
         }
 
 
