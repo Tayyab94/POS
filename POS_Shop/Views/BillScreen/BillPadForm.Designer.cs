@@ -94,6 +94,7 @@
             this.TotalAmountLbl = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.ProductListGroup = new System.Windows.Forms.GroupBox();
+            this.SuggestionGrid = new System.Windows.Forms.DataGridView();
             this.CartProductList = new System.Windows.Forms.DataGridView();
             this.ProductGroup = new System.Windows.Forms.GroupBox();
             this.OtherProductChk = new System.Windows.Forms.CheckBox();
@@ -127,6 +128,7 @@
             this.OrdersGroup.SuspendLayout();
             this.BillPadGrou.SuspendLayout();
             this.ProductListGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SuggestionGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CartProductList)).BeginInit();
             this.ProductGroup.SuspendLayout();
             this.CustomerGroup.SuspendLayout();
@@ -916,6 +918,7 @@
             this.ProductListGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductListGroup.Controls.Add(this.SuggestionGrid);
             this.ProductListGroup.Controls.Add(this.CartProductList);
             this.ProductListGroup.Location = new System.Drawing.Point(8, 190);
             this.ProductListGroup.Name = "ProductListGroup";
@@ -923,6 +926,21 @@
             this.ProductListGroup.TabIndex = 2;
             this.ProductListGroup.TabStop = false;
             this.ProductListGroup.Text = "Items List";
+            // 
+            // SuggestionGrid
+            // 
+            this.SuggestionGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SuggestionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SuggestionGrid.Location = new System.Drawing.Point(17, -1);
+            this.SuggestionGrid.Name = "SuggestionGrid";
+            this.SuggestionGrid.ReadOnly = true;
+            this.SuggestionGrid.RowHeadersWidth = 51;
+            this.SuggestionGrid.RowTemplate.Height = 30;
+            this.SuggestionGrid.Size = new System.Drawing.Size(912, 373);
+            this.SuggestionGrid.TabIndex = 0;
+            this.SuggestionGrid.Visible = false;
+            this.SuggestionGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SuggestionGrid_CellMouseClick);
+            this.SuggestionGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SuggestionGrid_KeyDown);
             // 
             // CartProductList
             // 
@@ -1474,6 +1492,8 @@
             this.ProductEngNameTxt.TextPlaceholder = "Product Name";
             this.ProductEngNameTxt.UseSystemPasswordChar = false;
             this.ProductEngNameTxt.WordWrap = true;
+            this.ProductEngNameTxt.TextChange += new System.EventHandler(this.ProductEngNameTxt_TextChange);
+            this.ProductEngNameTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProductEngNameTxt_KeyDown);
             this.ProductEngNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ProductEngNameTxt_KeyPress);
             // 
             // CustomerGroup
@@ -1744,6 +1764,7 @@
             this.BillPadGrou.ResumeLayout(false);
             this.BillPadGrou.PerformLayout();
             this.ProductListGroup.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SuggestionGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CartProductList)).EndInit();
             this.ProductGroup.ResumeLayout(false);
             this.ProductGroup.PerformLayout();
@@ -1807,8 +1828,9 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton TruncateOrder_OrderDetailBtn;
         private System.Windows.Forms.PrintPreviewDialog OrderPrintPreviewDialog;
         private System.Drawing.Printing.PrintDocument OrderPrintDocument;
-        private Bunifu.UI.WinForms.BunifuTextBox ProductEngNameTxt;
         private System.Windows.Forms.CheckBox InvoiceShopName;
         private System.Windows.Forms.Label lblRemainingAmount;
+        private Bunifu.UI.WinForms.BunifuTextBox ProductEngNameTxt;
+        private System.Windows.Forms.DataGridView SuggestionGrid;
     }
 }
