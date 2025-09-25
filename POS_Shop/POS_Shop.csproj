@@ -190,6 +190,7 @@
     <Compile Include="DTOs\Country\CountryListForDataGirdDto.cs" />
     <Compile Include="DTOs\Order\OrderDto.cs" />
     <Compile Include="DTOs\Order\OrdersListDto.cs" />
+    <Compile Include="DTOs\Product\ProductSuggestion.cs" />
     <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\ISectionAware.cs" />
     <Compile Include="Helpers\LoadingManager.cs" />

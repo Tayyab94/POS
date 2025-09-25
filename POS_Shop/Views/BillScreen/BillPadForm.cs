@@ -1,13 +1,17 @@
-﻿using POS_Shop.Helpers;
+﻿using POS_Shop.DTOs.Product;
+using POS_Shop.Helpers;
 using POS_Shop.Models;
 using POS_Shop.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Color = System.Drawing.Color;
+using Font = System.Drawing.Font;
 using Order = POS_Shop.Models.Order;
 
 namespace POS_Shop.Views.BillScreen
@@ -26,46 +30,79 @@ namespace POS_Shop.Views.BillScreen
             this.Shown += (s, e) => { ProductEngNameTxt.Focus(); };
 
             SetItemGrdiView();
-            // Apply highlighting to all textboxes and comboboxes
-            foreach (Control control in this.Controls)
-            {
-                if (control is TextBox || control is ComboBox)
-                {
-                    control.Enter += Control_Enter;
-                    control.Leave += Control_Leave;
-                }
-            }
+           
             this.KeyPreview = true;
             this.KeyDown += Form_KeyDown;
         }
 
+        //private void Form_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
+        //        // Don't override Enter for ProductEnglishName
+        //        if (this.ActiveControl == ProductEngNameTxt)
+        //            return; // let your ProductEngNameTxt_KeyPress logic run
+
+        //        if (this.ActiveControl == CustomerNameTxt)
+        //            return; // let your CustomerNameTxt_KeyPress logic run
+
+        //        if (this.ActiveControl == TopBarSearchProductTxt)
+        //            return;  // let your TopBarSearchProductTxt_KeyPress logic run
+
+        //        e.SuppressKeyPress = true; // prevent ding
+
+        //        //    // Move to next control
+        //        this.SelectNextControl(
+        //            this.ActiveControl,
+        //            true,   // forward
+        //            true,   // tabStop only
+        //            true,   // include nested
+        //            true    // wrap around
+        //        );
+
+        //    }
+        //}
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Right )
             {
-                // Don't override Enter for ProductEnglishName
-                if (this.ActiveControl == ProductEngNameTxt)
-                    return; // let your ProductEngNameTxt_KeyPress logic run
 
-                if (this.ActiveControl == CustomerNameTxt)
-                    return; // let your CustomerNameTxt_KeyPress logic run
+                if (SuggestionGrid.Visible && this.ActiveControl == SuggestionGrid)
+                    return;
 
-                if (this.ActiveControl == TopBarSearchProductTxt)
-                    return;  // let your TopBarSearchProductTxt_KeyPress logic run
+                // Don't override Enter for these controls
+                if (this.ActiveControl == ProductEngNameTxt ||
+                    this.ActiveControl == CustomerNameTxt ||
+                    this.ActiveControl == TopBarSearchProductTxt)
+                    return;
 
-                e.SuppressKeyPress = true; // prevent ding
+                e.SuppressKeyPress = true;
 
-                // Move to next control
                 this.SelectNextControl(
                     this.ActiveControl,
-                    true,   // forward
-                    true,   // tabStop only
-                    true,   // include nested
-                    true    // wrap around
+                    true, true, true, true
+                );
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+
+                if (SuggestionGrid.Visible && this.ActiveControl == SuggestionGrid)
+                    return;
+
+                // Don't override Enter for these controls
+                if (this.ActiveControl == ProductEngNameTxt ||
+                    this.ActiveControl == CustomerNameTxt ||
+                    this.ActiveControl == TopBarSearchProductTxt)
+                    return;
+
+                e.SuppressKeyPress = true;
+
+                this.SelectNextControl(
+                    this.ActiveControl,
+                    false, true, true, true
                 );
             }
         }
-
 
         private void SetItemGrdiView()
         {
@@ -103,16 +140,6 @@ namespace POS_Shop.Views.BillScreen
 
             // Set the width of the button column
             CartProductList.Columns["Delete"].Width = 50;
-        }
-
-        private void Control_Enter(object sender, EventArgs e)
-        {
-            ((Control)sender).BackColor = Color.LightYellow;
-        }
-
-        private void Control_Leave(object sender, EventArgs e)
-        {
-            ((Control)sender).BackColor = SystemColors.Window;
         }
 
 
@@ -318,34 +345,166 @@ namespace POS_Shop.Views.BillScreen
 
         private void ProductEngNameTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
+
+            #region Show the products list as Modal.. Don't Remove this code
+
+            //if (e.KeyChar == (char)Keys.Enter)
+            //{
+            //    LoadingManager.ShowLoading();
+
+            //    e.Handled = true; // Prevents the default beep sound
+            //    //MessageBox.Show($"Enter Pressed :{Keys.Enter}");
+            //    Task.Delay(5000);
+
+            //    OtherProductChk.Checked = false;
+            //    var SearchProductUI = new SearchProductUI();
+            //    SearchProductUI.ShowDialog();
+
+            //    if (Convert.ToBoolean(SearchProductUI.FormCloseLbl.Text) == false)
+            //    {
+            //        ProductEngNameTxt.Text = SearchProductUI.PNameLbl.Text;
+            //        prod_U_Name = SearchProductUI.PUNameLbl.Text;
+            //        PId = SearchProductUI.ProdIdLbl.Text;
+            //        ProductSalePrice.Text = SearchProductUI.ProdSalePriceLbl.Text;
+            //        P_StockQtyTxt.Text = "1";
+            //        var amt = decimal.Parse(ProductSalePrice.Text) * int.Parse(P_StockQtyTxt.Text);
+            //        ProductAmount.Text = Convert.ToString(amt);
+            //        productTypeDropdown.SelectedItem = !string.IsNullOrEmpty(SearchProductUI.PTypeLbl.Text) ? SearchProductUI.PTypeLbl.Text : productTypeDropdown.SelectedItem = "عدد";
+
+
+            //        ProductDetailTxt.Focus();
+            //    }
+
+            //}
+
+            #endregion
+
+
             if (e.KeyChar == (char)Keys.Enter)
             {
-                LoadingManager.ShowLoading();
+                ShowSuggestions(ProductEngNameTxt.Text);
 
-                e.Handled = true; // Prevents the default beep sound
-                //MessageBox.Show($"Enter Pressed :{Keys.Enter}");
-                Task.Delay(5000);
-
-                OtherProductChk.Checked = false;
-                var SearchProductUI = new SearchProductUI();
-                SearchProductUI.ShowDialog();
-
-                if (Convert.ToBoolean(SearchProductUI.FormCloseLbl.Text) == false)
-                {
-                    ProductEngNameTxt.Text = SearchProductUI.PNameLbl.Text;
-                    prod_U_Name = SearchProductUI.PUNameLbl.Text;
-                    PId = SearchProductUI.ProdIdLbl.Text;
-                    ProductSalePrice.Text = SearchProductUI.ProdSalePriceLbl.Text;
-                    P_StockQtyTxt.Text = "1";
-                    var amt = decimal.Parse(ProductSalePrice.Text) * int.Parse(P_StockQtyTxt.Text);
-                    ProductAmount.Text = Convert.ToString(amt);
-                    productTypeDropdown.SelectedItem = !string.IsNullOrEmpty(SearchProductUI.PTypeLbl.Text) ? SearchProductUI.PTypeLbl.Text : productTypeDropdown.SelectedItem = "عدد";
-
-
-                    ProductDetailTxt.Focus();
-                }
+                e.Handled = true;
 
             }
+        }
+
+        private void ProductEngNameTxt_TextChange(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ProductEngNameTxt.Text) || ProductEngNameTxt.Text.Length < 2)
+            {
+                SuggestionGrid.Visible = false;
+                return;
+            }
+
+            ShowSuggestions(ProductEngNameTxt.Text);
+        }
+
+
+
+        private void ProductEngNameTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && SuggestionGrid.Visible)
+            {
+                if (SuggestionGrid.Rows.Count > 0)
+                {
+                    SuggestionGrid.Focus();
+                    SuggestionGrid.Rows[0].Selected = true;
+                    e.Handled = true;
+                }
+            }
+            else if (e.KeyCode == Keys.Escape && SuggestionGrid.Visible)
+            {
+                SuggestionGrid.Visible = false;
+                ProductEngNameTxt.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void ShowSuggestions(string searchText)
+        {
+            try
+            {
+                // Get suggestions from your data source
+                var suggestions = GetProductSuggestions(searchText);
+
+                if (suggestions.Any())
+                {
+                   
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("ID", typeof(int));
+                    dt.Columns.Add("Name", typeof(string));
+                    dt.Columns.Add("U-Name", typeof(string));
+                    //dt.Columns.Add("P-Price", typeof(string));
+
+                    //dt.Columns.Add("C-p", typeof(int));
+                    dt.Columns.Add("Type", typeof(string));
+                    dt.Columns.Add("S-P", typeof(string));
+
+
+                    foreach (var item in suggestions)
+                    {
+                        dt.Rows.Add(item.ProductId, item.ProductName, item.ProductUrduName, item.ProductType, item.Price);
+                    }
+
+                    SuggestionGrid.ReadOnly = true;
+                    SuggestionGrid.AllowUserToAddRows = false;
+                    SuggestionGrid.DataSource = dt;
+
+                    SuggestionGrid.Columns[0].Width = 40;
+                    SuggestionGrid.Columns[1].Width = 190;
+                    SuggestionGrid.Columns[2].Width = 190;
+                    SuggestionGrid.Columns[3].Width = 40;
+                    SuggestionGrid.Columns[4].Width = 50;
+                    SuggestionGrid.Visible = true;
+                    SuggestionGrid.BringToFront();
+                }
+                else
+                {
+                    SuggestionGrid.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                SuggestionGrid.Visible = false;
+                // Log error
+            }
+        }
+
+        private List<ProductSuggestion> GetProductSuggestions(string searchText)
+        {
+            // Replace this with your actual data access logic
+            var suggestions = new List<ProductSuggestion>();
+
+            using (var _context = new POSDbContext())
+            {
+                var data = _context.Products.AsQueryable();
+
+                // apply search
+
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    var searchWords = searchText.ToLower().Split(' ');
+                    // apply search
+
+                    foreach (var word in searchWords)
+                    {
+                        data = data.Where(s => s.ProductEnglishName.Contains(word) || s.Id.ToString().Contains(word));
+                        //data = data.Where(s => s.CustomerName.Contains(word) || s.City.Name.Contains(word));
+                    }
+                }
+
+                var result = data.OrderBy(s => s.Id).Select(s=>new ProductSuggestion()
+                {
+                    ProductId = s.Id,
+                    ProductName = s.ProductEnglishName,
+                    ProductUrduName= s.ProductUrduName,
+                    ProductType= s.ProductType,
+                    Price = s.SalePrice.HasValue ? s.SalePrice.Value : 0
+                }).Take(40).ToList();
+
+                return result;
+            };
         }
 
 
@@ -679,12 +838,13 @@ namespace POS_Shop.Views.BillScreen
                 float.TryParse(ReceivedAmountTxt.Text, out receiveAmount);
             }
 
+            
             return new Order
             {
                 TotalBill = totalBill,
                 ReceiveAmount = receiveAmount,
                 CreatedDate = DateTime.Now,
-                InvoiceNumber = InvoiceNoLbl.Text,
+                InvoiceNumber = !string.IsNullOrEmpty(InvoiceNoLbl.Text)? InvoiceNoLbl.Text: DateTime.Now.ToString("MMddyyy-HHmmss"),
                 paymentType = CashRadioBtn.Checked ? "Cash" : "Bank Transfer",
                 customerId = customerId
             };
@@ -992,13 +1152,215 @@ namespace POS_Shop.Views.BillScreen
         {
             // Thermal printer settings (80mm paper)
             int paperWidth = 280; // pixels for 80mm paper
+            int leftMargin = 0;
+            int currentY = 5;
+            int lineHeight = 12;
+            int sectionSpacing = 3;
+
+            // Fonts for thermal printing
+            System.Drawing.Font titleFont = new System.Drawing.Font("Arial", 11, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 9, FontStyle.Bold);
+            Font regularFont = new Font("Arial", 8, FontStyle.Regular);
+            Font smallFont = new Font("Arial", 7, FontStyle.Regular);
+
+            // Urdu font
+            Font urduFont = new Font("Nafees Web Naskh", 9, FontStyle.Regular);
+            if (urduFont.Name != "Nafees Web Naskh")
+                urduFont = new Font("Arial", 8, FontStyle.Regular);
+
+            // Center alignment
+            StringFormat centerFormat = new StringFormat();
+            centerFormat.Alignment = StringAlignment.Center;
+
+            // Right alignment for Urdu (right-to-left)
+            StringFormat rightFormat = new StringFormat();
+            rightFormat.Alignment = StringAlignment.Far;
+            rightFormat.FormatFlags = StringFormatFlags.DirectionRightToLeft;
+
+            // Left alignment for English text
+            StringFormat leftFormat = new StringFormat();
+            leftFormat.Alignment = StringAlignment.Near;
+
+            string dashLine = new string('-', 82);
+
+            // 1. COMPANY HEADER
+            if (!InvoiceShopName.Checked)
+            {
+                e.Graphics.DrawString("Electric Shop", titleFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
+                currentY += lineHeight * 2;
+                e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                currentY += lineHeight;
+                currentY += lineHeight + 2;
+            }
+
+            // 2. INVOICE INFO - Mixed Urdu and English
+            e.Graphics.DrawString("انوائس", headerFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight;
+
+            string cName = !string.IsNullOrEmpty(CustomerNameTxt.Text) ? CustomerNameTxt.Text : "";
+            e.Graphics.DrawString($"کسٹمر: {cName}", urduFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("تاریخ: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), urduFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("انوائس نمبر:" + InvoiceNoLbl.Text, urduFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight + 2;
+
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            // 3. TABLE LAYOUT - URDU COLUMN HEADERS (RIGHT-TO-LEFT ORDER)
+            // پروڈکٹ on RIGHT side, then قسم, مقدار, قیمت, کل on LEFT side
+            int col1 = leftMargin;                    // کل (Total) - FAR RIGHT in RTL
+            int col1Width = 40;
+
+            int col2 = col1 + col1Width + 5;          // قیمت (Price)
+            int col2Width = 40;
+
+            int col3 = col2 + col2Width + 5;          // مقدار (Quantity)
+            int col3Width = 40;
+
+            int col4 = col3 + col3Width + 5;          // قسم (Type)
+            int col4Width = 40;
+
+            int productCol = col4 + col4Width + 5;    // پروڈکٹ (Product name) - FAR LEFT in RTL
+            int productColWidth = paperWidth - productCol - 5;
+
+            // Draw Urdu table headers - Right aligned (RTL order)
+            e.Graphics.DrawString("کل", headerFont, Brushes.Black,
+                                 new Rectangle(col1, currentY, col1Width, lineHeight), rightFormat);
+            e.Graphics.DrawString("قیمت", headerFont, Brushes.Black,
+                                 new Rectangle(col2, currentY, col2Width, lineHeight), rightFormat);
+            e.Graphics.DrawString("مقدار", headerFont, Brushes.Black,
+                                 new Rectangle(col3, currentY, col3Width, lineHeight), rightFormat);
+            e.Graphics.DrawString("قسم", headerFont, Brushes.Black,
+                                 new Rectangle(col4, currentY, col4Width, lineHeight), rightFormat);
+            e.Graphics.DrawString("پروڈکٹ", headerFont, Brushes.Black,
+                                 new Rectangle(productCol, currentY, productColWidth, lineHeight), rightFormat);
+
+            currentY += lineHeight;
+            e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, paperWidth, currentY);
+            currentY += 5;
+
+            // 4. TABLE ROWS - PRODUCT NAME ON FIRST ROW, DETAILS ON SECOND ROW (RTL ORDER)
+            foreach (DataGridViewRow row in CartProductList.Rows)
+            {
+                if (row.Cells[0].Value != null) // Check if row has data
+                {
+                    // Extract values with null checking
+                    decimal amount = row.Cells["Amount"]?.Value != null ? Convert.ToDecimal(row.Cells["Amount"].Value) : 0;
+                    decimal salePrice = row.Cells["SalePrice"]?.Value != null ? Convert.ToDecimal(row.Cells["SalePrice"].Value) : 0;
+                    decimal qty = row.Cells["Qty"]?.Value != null ? Convert.ToDecimal(row.Cells["Qty"].Value) : 0;
+                    string productType = row.Cells["ProductType"]?.Value?.ToString() ?? "";
+                    string urduName = row.Cells["Urdu Name"]?.Value?.ToString() ?? "";
+
+                    // FIRST ROW: Only Product Name on the RIGHT side (پروڈکٹ column)
+                    //e.Graphics.DrawString(urduName, urduFont, Brushes.Black,
+                    //                     new Rectangle(productCol, currentY, productColWidth, lineHeight), rightFormat);
+
+                    RectangleF productRect = new RectangleF(productCol, currentY, productColWidth, lineHeight * 3);
+                    e.Graphics.DrawString(urduName, urduFont, Brushes.Black, productRect);
+
+                    SizeF productSize = e.Graphics.MeasureString(urduName, urduFont, productColWidth);
+                    int productLines = (int)Math.Ceiling(productSize.Height / lineHeight);
+                    int rowHeight = productLines * lineHeight;
+                    currentY += lineHeight;
+
+                    // SECOND ROW: Details (Type, Quantity, Price, Total) - RTL order
+                    e.Graphics.DrawString($"{amount:0}", regularFont, Brushes.Black,
+                                         new Rectangle(col1, currentY, col1Width, lineHeight), leftFormat);
+                    e.Graphics.DrawString($"{salePrice:0}", regularFont, Brushes.Black,
+                                         new Rectangle(col2, currentY, col2Width, lineHeight), leftFormat);
+                    e.Graphics.DrawString($"{qty:0}", regularFont, Brushes.Black,
+                                         new Rectangle(col3, currentY, col3Width, lineHeight), leftFormat);
+                    e.Graphics.DrawString(productType, urduFont, Brushes.Black,
+                                         new Rectangle(col4, currentY, col4Width, lineHeight), rightFormat);
+
+                    // Leave product column empty on second row since we used it in first row
+                    e.Graphics.DrawString("", regularFont, Brushes.Black,
+                                         new Rectangle(productCol, currentY, productColWidth, lineHeight), rightFormat);
+
+                    currentY += lineHeight;
+                    e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, paperWidth, currentY);
+                    currentY += 5; // Extra spacing between products
+                }
+            }
+
+            currentY += sectionSpacing;
+
+            // 5. TOTALS SECTION - Urdu labels
+            decimal subtotal = decimal.Parse(TotalAmountLbl.Text);
+            decimal taxAmount = 0m; // 0% tax
+            decimal total = subtotal + taxAmount;
+
+            // Totals section with Urdu labels
+            e.Graphics.DrawString($"سب ٹوٹل: {subtotal:0}", urduFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString($"ٹیکس (0%): {taxAmount:0}", urduFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString($"کل رقم: {total:0}", headerFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight;
+
+            currentY += lineHeight;
+
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            // 6. PAYMENT INFORMATION - Urdu
+            e.Graphics.DrawString("ادائیگی کا طریقہ: نقد", urduFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight;
+
+            decimal tendered = !string.IsNullOrEmpty(ReceivedAmountTxt.Text) ? decimal.Parse(ReceivedAmountTxt.Text) : decimal.Parse(TotalAmountLbl.Text);
+            decimal change = tendered - total;
+
+            e.Graphics.DrawString($"ادا کی گئی رقم: {tendered:0}", urduFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString($"واپسی: {change:0}", urduFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight + 2;
+
+            // 7. URDU FOOTER TEXT
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            string footerText1 = "خریدا ہوا سامان واپس یا تبدیل نہیں ہوگا۔";
+            string footerText2 = "چائنہ مال کی وارنٹی نہیں۔";
+
+            e.Graphics.DrawString(footerText1, headerFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString(footerText2, headerFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), rightFormat);
+            currentY += lineHeight;
+        }
+
+        private void OrderPrintDocument_PrintPage_12_PreviousUsingCode(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Thermal printer settings (80mm paper)
+            int paperWidth = 280; // pixels for 80mm paper
             int leftMargin = 5;
             int currentY = 5;
             int lineHeight = 12;
             int sectionSpacing = 3;
 
             // Fonts for thermal printing
-            Font titleFont = new Font("Arial", 11, FontStyle.Bold);
+            System.Drawing.Font titleFont = new System.Drawing.Font("Arial", 11, FontStyle.Bold);
             Font headerFont = new Font("Arial", 9, FontStyle.Bold);
             Font regularFont = new Font("Arial", 8, FontStyle.Regular);
             Font smallFont = new Font("Arial", 7, FontStyle.Regular);
@@ -1164,336 +1526,6 @@ namespace POS_Shop.Views.BillScreen
         }
 
 
-        private void OrderPrintDocument_PrintPage_2(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            // Thermal printer settings (80mm paper)
-            int paperWidth = 280;
-            int leftMargin = 5;
-            int currentY = 5;
-            int lineHeight = 16;
-
-            // Fonts
-            Font titleFont = new Font("Nafees Web Naskh", 12, FontStyle.Bold);
-            Font headerFont = new Font("Nafees Web Naskh", 10, FontStyle.Bold);
-            Font regularFont = new Font("Nafees Web Naskh", 9, FontStyle.Regular);
-            Font smallFont = new Font("Nafees Web Naskh", 8, FontStyle.Regular);
-
-            // Alignment
-            StringFormat centerFormat = new StringFormat() { Alignment = StringAlignment.Center };
-            StringFormat rightFormat = new StringFormat() { Alignment = StringAlignment.Far };
-
-            string dashLine = new string('-', 40);
-
-            // 1. Header (Shop Name + Contact)
-            if (!InvoiceShopName.Checked)
-            {
-                e.Graphics.DrawString("الیکٹرک شاپ", titleFont, Brushes.Black,
-                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
-                currentY += lineHeight * 2;
-
-                e.Graphics.DrawString("رابطہ: 1234567", smallFont, Brushes.Black,
-                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-                currentY += lineHeight * 2;
-            }
-
-            // 2. Invoice info
-            e.Graphics.DrawString("انوائس", headerFont, Brushes.Black,
-                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-            currentY += lineHeight + 2;
-
-            string cName = !string.IsNullOrEmpty(CustomerNameTxt.Text) ? CustomerNameTxt.Text : "";
-            e.Graphics.DrawString("گاہک: " + cName, regularFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("تاریخ: " + DateTime.Now.ToString("dd-MM-yyyy HH:mm"), regularFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("انوائس نمبر: " + InvoiceNoLbl.Text, regularFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight + 2;
-
-            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            // 3. Table Layout
-            int productCol = leftMargin;         // پروڈکٹ
-            int productColWidth = 110;
-
-            int qtyCol = productCol + productColWidth + 5; // مقدار
-            int typeCol = qtyCol + 35;                     // قسم
-            int priceCol = typeCol + 35;                   // قیمت
-            int totalCol = priceCol + 45;                  // کل
-
-            // Right-to-left Urdu layout
-            StringFormat urduRightAlign = new StringFormat()
-            {
-                Alignment = StringAlignment.Near,
-                FormatFlags = StringFormatFlags.DirectionRightToLeft
-            };
-
-
-
-            e.Graphics.DrawString("پروڈکٹ", headerFont, Brushes.Black, productCol, currentY);
-            e.Graphics.DrawString("مقدار", headerFont, Brushes.Black, qtyCol, currentY);
-            //e.Graphics.DrawString("قسم", headerFont, Brushes.Black, typeCol, currentY);
-            e.Graphics.DrawString("قیمت", headerFont, Brushes.Black, priceCol, currentY);
-            e.Graphics.DrawString("کل", headerFont, Brushes.Black, totalCol, currentY);
-
-            currentY += lineHeight;
-            e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + 40, currentY);
-            currentY += 4;
-
-            // ===== Table Rows =====
-            decimal subtotal = 0m;
-            foreach (DataGridViewRow row in CartProductList.Rows)
-            {
-                if (row.Cells[0].Value != null)
-                {
-                    string product = row.Cells["Urdu Name"].Value?.ToString();
-                    string qty = row.Cells["Qty"].Value?.ToString();
-                    string type = row.Cells["ProductType"].Value?.ToString();
-                    string price = row.Cells["SalePrice"].Value?.ToString();
-                    string amount = row.Cells["Amount"].Value?.ToString();
-
-                    // ✅ Product with word-wrap
-                    RectangleF productRect = new RectangleF(productCol, currentY, productColWidth, lineHeight * 3);
-                    e.Graphics.DrawString(product, regularFont, Brushes.Black, productRect);
-
-                    SizeF productSize = e.Graphics.MeasureString(product, regularFont, productColWidth);
-                    int productLines = (int)Math.Ceiling(productSize.Height / lineHeight);
-                    int rowHeight = productLines * lineHeight;
-
-                    // Other columns (single-line)
-                    e.Graphics.DrawString($"{qty}-{type}", regularFont, Brushes.Black, qtyCol, currentY);
-                    //e.Graphics.DrawString(qty, regularFont, Brushes.Black, qtyCol, currentY);
-                    //e.Graphics.DrawString(type, regularFont, Brushes.Black, typeCol, currentY);
-                    e.Graphics.DrawString(price, regularFont, Brushes.Black, priceCol, currentY);
-                    e.Graphics.DrawString(amount, regularFont, Brushes.Black, totalCol, currentY);
-
-                    if (decimal.TryParse(amount, out decimal amt))
-                        subtotal += amt;
-
-                    currentY += rowHeight;
-                }
-                e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + 40, currentY);
-                currentY += lineHeight;
-            }
-
-            //// Final line
-            //e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + 40, currentY);
-            //currentY += lineHeight;
-
-            // 4. Totals
-            decimal taxAmount = 0m;
-            decimal total = subtotal + taxAmount;
-
-            e.Graphics.DrawString("ذیلی کل:", regularFont, Brushes.Black, priceCol, currentY);
-            e.Graphics.DrawString(subtotal.ToString("0.0"), regularFont, Brushes.Black, totalCol + 30, currentY, rightFormat);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("ٹیکس 0:", regularFont, Brushes.Black, priceCol, currentY);
-            e.Graphics.DrawString(taxAmount.ToString("0.0"), regularFont, Brushes.Black, totalCol + 30, currentY, rightFormat);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("کل:", headerFont, Brushes.Black, priceCol, currentY);
-            e.Graphics.DrawString(total.ToString("0.0"), headerFont, Brushes.Black, totalCol + 30, currentY, rightFormat);
-            currentY += lineHeight + 2;
-
-            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            // 5. Payment
-            e.Graphics.DrawString("ادائیگی کا طریقہ: نقد", regularFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            decimal tendered = !string.IsNullOrEmpty(ReceivedAmountTxt.Text) ? decimal.Parse(ReceivedAmountTxt.Text) : subtotal;
-            decimal change = tendered - total;
-
-            e.Graphics.DrawString("ادا کیا گیا: " + tendered.ToString("0.0"), regularFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("بقایا رقم: " + change.ToString("0.0"), regularFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight + 2;
-
-            // 6. Footer
-            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("خریدا ہوا سامان واپس یا تبدیل نہیں ہوگا", headerFont, Brushes.Black,
-                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-            currentY += lineHeight;
-        }
-
-
-        private void OrderPrintDocument_PrintPage_1(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            // Thermal printer settings (80mm paper)
-            int paperWidth = 280; // pixels for 80mm paper
-            int leftMargin = 5;
-            int currentY = 5;
-            int lineHeight = 12;
-            int sectionSpacing = 3;
-
-            // Fonts for thermal printing
-            Font titleFont = new Font("Arial", 11, FontStyle.Bold);
-            Font headerFont = new Font("Arial", 9, FontStyle.Bold);
-            Font regularFont = new Font("Arial", 8, FontStyle.Regular);
-            Font smallFont = new Font("Arial", 7, FontStyle.Regular);
-
-            // Urdu font
-            Font urduFont = new Font("Nafees Web Naskh", 8, FontStyle.Regular);
-            if (urduFont.Name != "Nafees Web Naskh")
-                urduFont = new Font("Arial", 8, FontStyle.Regular);
-
-            // Center alignment
-            StringFormat centerFormat = new StringFormat();
-            centerFormat.Alignment = StringAlignment.Center;
-
-            // Right alignment for numbers
-            StringFormat rightFormat = new StringFormat();
-            rightFormat.Alignment = StringAlignment.Far;
-
-            string dashLine = new string('-', 82);
-
-            // 1. COMPANY HEADER
-            if (!InvoiceShopName.Checked)
-            {
-                e.Graphics.DrawString("Electric Shop", titleFont, Brushes.Black,
-                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
-                currentY += lineHeight * 2;
-
-                e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
-                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-                currentY += lineHeight;
-
-                currentY += lineHeight + 2;
-            }
-
-
-            // 2. INVOICE INFO
-            e.Graphics.DrawString("INVOICE", headerFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            string cName = !string.IsNullOrEmpty(CustomerNameTxt.Text) ? CustomerNameTxt.Text : "";
-            e.Graphics.DrawString($"Customer: {cName}", regularFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("Date: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), regularFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("Invoice #:" + InvoiceNoLbl.Text, regularFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight + 2;
-
-            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight + 2;
-
-            // 3. TABLE LAYOUT - FIXED COLUMN POSITIONS TO PREVENT OVERLAP
-            int productCol = leftMargin;                    // Product name column
-            int productColWidth = 120;                      // Width for product names
-
-            int typeCol = productCol + productColWidth + 5; // Type column
-            int typeColWidth = 30;
-
-            int qtyCol = typeCol + typeColWidth + 5;        // Qty column
-            int qtyColWidth = 25;
-
-            int priceCol = qtyCol + qtyColWidth + 5;        // Price column
-            int priceColWidth = 40;
-
-            int totalCol = priceCol + priceColWidth + 5;    // Total column
-            int totalColWidth = 40;
-
-            // Draw table headers
-            e.Graphics.DrawString("Product", headerFont, Brushes.Black, productCol, currentY);
-            e.Graphics.DrawString("Type", headerFont, Brushes.Black, typeCol, currentY);
-            e.Graphics.DrawString("Qty", headerFont, Brushes.Black, qtyCol, currentY);
-            e.Graphics.DrawString("Price", headerFont, Brushes.Black, priceCol, currentY);
-            e.Graphics.DrawString("Total", headerFont, Brushes.Black, totalCol, currentY);
-
-            currentY += lineHeight;
-            currentY += 3;
-            e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + totalColWidth, currentY);
-            currentY += 5;
-
-            foreach (DataGridViewRow row in CartProductList.Rows)
-            {
-
-
-                if (row.Cells[0].Value != null) // Check if row has data
-                {
-                    // First line: Product name only (left aligned)
-                    e.Graphics.DrawString(row.Cells["Urdu Name"].Value?.ToString(), regularFont, Brushes.Black, productCol, currentY);
-                    currentY += lineHeight;
-
-                    // Second line: Type, Qty, Price, Total (in columns)
-                    e.Graphics.DrawString(row.Cells["ProductType"].Value?.ToString(), urduFont, Brushes.Black, typeCol, currentY);
-                    e.Graphics.DrawString(row.Cells["Qty"].Value?.ToString(), regularFont, Brushes.Black, qtyCol, currentY);
-                    e.Graphics.DrawString(row.Cells["SalePrice"].Value?.ToString(), regularFont, Brushes.Black, priceCol, currentY);
-                    e.Graphics.DrawString(row.Cells["Amount"].Value.ToString(), regularFont, Brushes.Black, totalCol, currentY);
-                    currentY += lineHeight;
-
-
-                    // Light separator line between items
-                    e.Graphics.DrawLine(Pens.LightGray, leftMargin, currentY, totalCol + totalColWidth, currentY);
-                    currentY += 2;
-                }
-
-            }
-
-            // Bottom line of table
-            e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + totalColWidth, currentY);
-            currentY += lineHeight;
-
-            // 5. TOTALS SECTION - MOVED LEFT FOR BETTER ALIGNMENT
-            decimal subtotal = decimal.Parse(TotalAmountLbl.Text);
-            decimal taxRate = 0.05m;
-            //decimal taxAmount = Math.Round(subtotal * taxRate, 2);
-            decimal taxAmount = Math.Round(0m, 2);
-            decimal total = subtotal + taxAmount;
-
-            // Move totals left by using priceCol-20 instead of priceCol
-            int totalsLabelCol = priceCol - 20; // Move labels 20 pixels left
-            int totalsValueCol = totalCol - 15; // Move values 15 pixels left
-
-            e.Graphics.DrawString("Subtotal:", regularFont, Brushes.Black, totalsLabelCol, currentY);
-            e.Graphics.DrawString(subtotal.ToString("0.00"), regularFont, Brushes.Black, totalsValueCol, currentY);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("Tax (0%):", regularFont, Brushes.Black, totalsLabelCol, currentY);
-            e.Graphics.DrawString(taxAmount.ToString("0.00"), regularFont, Brushes.Black, totalsValueCol, currentY);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("TOTAL:", headerFont, Brushes.Black, totalsLabelCol, currentY);
-            e.Graphics.DrawString(total.ToString("0.00"), headerFont, Brushes.Black, totalsValueCol, currentY);
-            currentY += lineHeight;
-
-            currentY += lineHeight;
-
-            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight + 2;
-
-            // 6. PAYMENT INFORMATION
-            e.Graphics.DrawString("Payment Method: CASH", regularFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            decimal tendered = !string.IsNullOrEmpty(ReceivedAmountTxt.Text) ? decimal.Parse(ReceivedAmountTxt.Text) : decimal.Parse(TotalAmountLbl.Text);
-            decimal change = tendered - total;
-
-            e.Graphics.DrawString("Paid: " + tendered.ToString("0.00"), regularFont, Brushes.Black, leftMargin, currentY);
-            e.Graphics.DrawString("Change: " + change.ToString("0.00"), regularFont, Brushes.Black, (totalsValueCol - 35), currentY);
-            currentY += lineHeight + 2;
-
-            // 7. FOOTER
-            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
-            currentY += lineHeight;
-
-            e.Graphics.DrawString("خریدا ہوا سامان واپس یا تبدیل نہیں ہوگا", headerFont, Brushes.Black,
-                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-            currentY += lineHeight;
-
-            //e.Graphics.DrawString("7-day return with receipt", smallFont, Brushes.Black,
-            //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-        }
-
         private void DrawLine(Graphics graphics, int paperWidth, ref int yPos)
         {
             graphics.DrawLine(Pens.Black, 10, yPos, paperWidth - 10, yPos);
@@ -1545,21 +1577,121 @@ namespace POS_Shop.Views.BillScreen
             }
         }
 
+        private void SuggestionGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            
 
+            if (e.KeyCode == Keys.Up)
+            {
+                // If we're on the first row, move focus back to TextBox
+                if (SuggestionGrid.CurrentRow != null &&
+                    SuggestionGrid.CurrentRow.Index == 0)
+                {
+                    ProductEngNameTxt.Focus();
+                    ProductEngNameTxt.SelectAll(); // Optional: select all text
 
+                    SuggestionGrid.Visible= false;
+                    e.Handled = true;
+                }
+            }
+            else if(e.KeyCode == Keys.Left)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                ProductEngNameTxt.Focus();
+                ProductEngNameTxt.SelectAll(); // Optional: select all text
 
-        //private void InvoiceShopName_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (InvoiceShopName.Checked)
-        //    {
-        //        InvoiceShopName.Checked = false;
-        //        InvoiceShopName.Text = "Hide Shop Name is Invoice";
-        //    }
-        //    else
-        //    {
-        //        InvoiceShopName.Checked = true;
-        //        InvoiceShopName.Text = "Show Shop Name is Invoice";
-        //    }
-        //}
+                SuggestionGrid.Visible = false;
+
+            }
+            else if (e.KeyCode == Keys.Enter && !e.Handled)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // This prevents the beep sound and default behavior
+
+                if (SuggestionGrid.CurrentRow != null && SuggestionGrid.CurrentRow.Index >= 0)
+                {
+
+                    int pId = Convert.ToInt32(SuggestionGrid.CurrentRow.Cells[0].Value);
+                    ProductEngNameTxt.Text = (string)SuggestionGrid.CurrentRow.Cells[1].Value;
+                    prod_U_Name = (string)SuggestionGrid.CurrentRow.Cells[2].Value;
+                    ////PTypeLbl.Text = (string)ProductListGrid.CurrentRow.Cells[3].Value;
+                    //productTypeDropdown.SelectedItem = SuggestionGrid.CurrentRow.Cells[3].Value == null
+                    //            || SuggestionGrid.CurrentRow.Cells[3].Value == DBNull.Value
+                    //            ? "عدد"
+                    //            : SuggestionGrid.CurrentRow.Cells[3].Value.ToString();
+
+                    //ProductSalePrice.Text = SuggestionGrid.CurrentRow.Cells[4].Value == null
+                    //    || SuggestionGrid.CurrentRow.Cells[4].Value == DBNull.Value
+                    //    ? string.Empty
+                    //    : SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
+                    //PId = pId.ToString();
+
+                    //P_StockQtyTxt.Text = "1";
+                    //SuggestionGrid.Visible = false;
+
+                    DataGridViewRow foundRow = null;
+
+                    foreach (DataGridViewRow row in SuggestionGrid.Rows)
+                    {
+                        if (row.Cells[0].Value != null &&
+                            Convert.ToInt32(row.Cells[0].Value) == pId)
+                        {
+                            foundRow = row;
+                            break;
+                        }
+                    }
+
+                    if (foundRow != null)
+                    {
+                        pId = Convert.ToInt32(foundRow.Cells[0].Value);
+                        ProductEngNameTxt.Text = (string)foundRow.Cells[1].Value;
+                        prod_U_Name = (string)foundRow.Cells[2].Value;
+                        productTypeDropdown.SelectedItem = foundRow.Cells[3].Value == null
+                                    || foundRow.Cells[3].Value == DBNull.Value
+                                    ? "عدد"
+                                    : foundRow.Cells[3].Value.ToString();
+
+                        ProductSalePrice.Text = foundRow.Cells[4].Value == null
+                            || foundRow.Cells[4].Value == DBNull.Value
+                            ? string.Empty
+                            : foundRow.Cells[4].Value.ToString();
+                        PId = pId.ToString();
+                        P_StockQtyTxt.Text = "1";
+                        SuggestionGrid.Visible = false;
+
+                    }
+                    ProductDetailTxt.Focus();
+
+                }
+            }
+        }
+
+        private void SuggestionGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
+
+            if (SuggestionGrid.Rows.Count > 0)
+            {
+              
+                int pId = Convert.ToInt32(SuggestionGrid.CurrentRow.Cells[0].Value);
+                ProductEngNameTxt.Text = (string)SuggestionGrid.CurrentRow.Cells[1].Value;
+                prod_U_Name = (string)SuggestionGrid.CurrentRow.Cells[2].Value;
+                productTypeDropdown.SelectedItem = SuggestionGrid.CurrentRow.Cells[3].Value == null
+                            || SuggestionGrid.CurrentRow.Cells[3].Value == DBNull.Value
+                            ? "عدد"
+                            : SuggestionGrid.CurrentRow.Cells[3].Value.ToString();
+                ProductSalePrice.Text = SuggestionGrid.CurrentRow.Cells[4].Value == null
+                    || SuggestionGrid.CurrentRow.Cells[4].Value == DBNull.Value
+                    ? string.Empty
+                    : SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
+                PId = pId.ToString();
+
+                P_StockQtyTxt.Text = "1";
+                SuggestionGrid.Visible = false;
+                ProductDetailTxt.Focus();
+            }
+        }
+
     }
 }
