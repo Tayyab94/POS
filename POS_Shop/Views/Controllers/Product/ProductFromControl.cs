@@ -308,6 +308,7 @@ using POS_Shop.Helpers;
 using POS_Shop.Interfaces;
 using POS_Shop.Models;
 using POS_Shop.Repositories;
+using POS_Shop.Views.DB_Screens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -423,6 +424,7 @@ namespace POS_Shop.Views.Product
                 dt.Columns.Add("IsSelected", typeof(bool)); // Add selection column
                 dt.Columns.Add("ID", typeof(int));
                 dt.Columns.Add("Name", typeof(string));
+                dt.Columns.Add("SearchBy", typeof(string));
                 dt.Columns.Add("Type", typeof(string));
                 dt.Columns.Add("Cost", typeof(int));
                 dt.Columns.Add("Purchase-Price", typeof(string));
@@ -432,7 +434,7 @@ namespace POS_Shop.Views.Product
                 {
                     // Check if this product is in our selected list
                     bool isSelected = selectedProductIds.Contains(item.Id);
-                    dt.Rows.Add(isSelected, item.Id, item.ProductEnglishName, item.ProductType,
+                    dt.Rows.Add(isSelected, item.Id, item.ProductEnglishName,item.SearchByProductCode ,item.ProductType,
                                 item.Cost, item.PurchasePrice,item.SalePrice);
                 }
 
@@ -453,10 +455,12 @@ namespace POS_Shop.Views.Product
                 ProductEnglishName = ProductEngNameTxt.Text,
                 ProductUrduName = ProductUrduNameTxt.Text,
                 SubcategoryId = Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue),
-                PurchasePrice = ConversionHelper.ParseInt(PurchasePriceTxt.Text),
+                //PurchasePrice = ConversionHelper.ParseInt(PurchasePriceTxt.Text),
+                PurchasePrice = PurchasePriceTxt.Text,
                 ProductType = Convert.ToString(productTypeDropdown.SelectedItem),
                 SalePrice = ConversionHelper.ParseInt(P_SalePriceTxt.Text),
-                Cost = ConversionHelper.ParseInt(p_costTxt.Text)
+                Cost = ConversionHelper.ParseInt(p_costTxt.Text),
+                SearchByProductCode= SearchBynameTxt.Text,
                 //isActive = ProductIsActiveChk.Checked
             };
 
@@ -501,10 +505,12 @@ namespace POS_Shop.Views.Product
                 ProductEnglishName = ProductEngNameTxt.Text,
                 ProductUrduName = ProductUrduNameTxt.Text,
                 SubcategoryId = Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue),
-                PurchasePrice = ConversionHelper.ParseInt(PurchasePriceTxt.Text),
+                //PurchasePrice = ConversionHelper.ParseInt(PurchasePriceTxt.Text),
+                PurchasePrice =PurchasePriceTxt.Text,
                 ProductType = Convert.ToString(productTypeDropdown.SelectedItem),
                 SalePrice = ConversionHelper.ParseInt(P_SalePriceTxt.Text),
-                Cost = ConversionHelper.ParseInt(p_costTxt.Text)
+                Cost = ConversionHelper.ParseInt(p_costTxt.Text),
+                SearchByProductCode= SearchBynameTxt.Text
             };
             if (!model.IsValid(out var results))
             {
@@ -570,6 +576,14 @@ namespace POS_Shop.Views.Product
                 Name = "Name",
                 DataPropertyName = "Name",
                 HeaderText = "Product Name",
+                Width = 200,
+                ReadOnly = true
+            });
+            ProductListGrid.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "SearchBy",
+                DataPropertyName = "SearchBy",
+                HeaderText = "SearchByName",
                 Width = 200,
                 ReadOnly = true
             });
@@ -716,6 +730,7 @@ namespace POS_Shop.Views.Product
                     p_costTxt.Text = product.Cost.ToString();
                     P_SalePriceTxt.Text = product.SalePrice.ToString();
                     productTypeDropdown.SelectedItem = product.ProductType;
+                    SearchBynameTxt.Text = product.SearchByProductCode;
                     // Set category and subcategory dropdowns
                     var subCategory = context.SubCategories.Find(product.SubcategoryId);
                     if (subCategory != null)
@@ -777,6 +792,7 @@ namespace POS_Shop.Views.Product
             updateProductBtn.Visible = false;
             ProductSaveBtn.Enabled = true;
             ProductEngNameTxt.Focus();
+            SearchBynameTxt.Clear();
             await LoadProductsForDataGridView();
         }
 
@@ -947,8 +963,9 @@ namespace POS_Shop.Views.Product
                     exportTable.Columns.Add("ProductID", typeof(int));
                     exportTable.Columns.Add("ProductName", typeof(string));
                     exportTable.Columns.Add("UrduName", typeof(string));
+                    exportTable.Columns.Add("SearchByProductName", typeof(string));
                     exportTable.Columns.Add("Type", typeof(string));
-                    exportTable.Columns.Add("PurchasePrice", typeof(decimal));
+                    exportTable.Columns.Add("PurchasePrice", typeof(string));
                     exportTable.Columns.Add("SalePrice", typeof(decimal));
                     exportTable.Columns.Add("Cost", typeof(int));
                     exportTable.Columns.Add("SubCategory", typeof(int));
@@ -960,6 +977,7 @@ namespace POS_Shop.Views.Product
                             product.Id,
                             product.ProductEnglishName,
                             product.ProductUrduName,
+                            product.SearchByProductCode,
                             product.ProductType,
                             product.PurchasePrice,
                             product.SalePrice,
@@ -988,6 +1006,7 @@ namespace POS_Shop.Views.Product
                     }
                     // Export logic here - for demo, we'll just show count
                     MessageBox.Show($"{selectedProducts.Count()} products ready for export.", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearSelection();
                 }
                 else
                 {
@@ -1000,6 +1019,46 @@ namespace POS_Shop.Views.Product
         {
             ClearFormFunction();
             ProductFormLbl.Text = "Add Product";
+        }
+
+        private void productTypeDropdown_Enter(object sender, EventArgs e)
+        {
+
+            productTypeDropdown.BorderColor = Color.BlueViolet;
+        }
+
+        private void productTypeDropdown_Leave(object sender, EventArgs e)
+        {
+
+            productTypeDropdown.BorderColor = Color.Silver;
+        }
+
+        private void ImportFilBtn_Click(object sender, EventArgs e)
+        {
+                              // Create a new instance of your Form
+            //Form ProductForm = new Form();
+            //ProductForm.Text = "Import File Form";
+            //ProductForm.StartPosition = FormStartPosition.CenterScreen;
+
+            //// Create an instance of your User Control
+            //// Replace 'YourUserControl' with the actual name of your User Control
+            //var FormCtrl = new Views.DB_Screens.ImportExcelFile();
+            //FormCtrl.Dock = DockStyle.Fill; // Dock it to fill the entire form
+
+            //// Add the User Control to the new Form's controls collection
+            //ProductForm.Controls.Add(FormCtrl);
+            //ProductForm.Width = 1050; ProductForm.Height = 625;
+            //// Show the new form
+            //ProductForm.ShowDialog(); // Use ShowDialog() to open it as a modal dialog
+
+
+
+            LoadingManager.ShowLoading();
+            ImportExcelFile importExcelForm = new ImportExcelFile();
+          
+            importExcelForm.Show();
+
+            LoadingManager.HideLoading();
         }
     }
 }

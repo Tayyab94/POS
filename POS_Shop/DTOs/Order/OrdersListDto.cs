@@ -1,4 +1,6 @@
-﻿using System;
+﻿using POS_Shop.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -19,6 +21,8 @@ namespace POS_Shop.DTOs.Order
         public string InvoiceNumber { get; set; }
 
         public string paymentType { get; set; }
+
+        public int ? customerId { get; set; }
         public string CustomerName {  get; set; }
     }
 }

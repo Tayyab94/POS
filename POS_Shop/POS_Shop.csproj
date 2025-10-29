@@ -72,6 +72,9 @@
     </Win32Resource>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="Bunifu.Licensing, Version=3.2.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b" />
     <Reference Include="Bunifu.UI.WinForms.BunifuButton">
       <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
@@ -133,8 +136,32 @@
     <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.8.0.1\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.8.0.1\lib\net462\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.8.0.2\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="RBush, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c77e27b81f4d0187, processorArchitecture=MSIL">
       <HintPath>..\packages\RBush.Signed.4.0.0\lib\net47\RBush.dll</HintPath>
@@ -153,6 +180,9 @@
       <HintPath>..\packages\System.Data.SqlClient.4.9.0\lib\net462\System.Data.SqlClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Design" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -162,12 +192,29 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.8.0.1\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
     </Reference>
     <Reference Include="System.Text.Encoding.CodePages, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encoding.CodePages.4.7.1\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
     </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.5\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -177,6 +224,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ToastNotifications, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.2.5.1\lib\net40\ToastNotifications.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -190,13 +240,20 @@
     <Compile Include="DTOs\Country\CountryListForDataGirdDto.cs" />
     <Compile Include="DTOs\Order\OrderDto.cs" />
     <Compile Include="DTOs\Order\OrdersListDto.cs" />
+    <Compile Include="DTOs\Order\TempOrderListDto.cs" />
     <Compile Include="DTOs\Product\ProductSuggestion.cs" />
     <Compile Include="Helpers\ConversionHelper.cs" />
+    <Compile Include="Helpers\InvoicePDFGenerator.cs" />
     <Compile Include="Helpers\ISectionAware.cs" />
     <Compile Include="Helpers\LoadingManager.cs" />
     <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\PrintToPdfGenerator.cs" />
     <Compile Include="Helpers\RegexValidator.cs" />
     <Compile Include="Helpers\SessionManager.cs" />
+    <Compile Include="Helpers\InvoicePrintHelper.cs" />
+    <Compile Include="Helpers\SimpleWhatsAppSender.cs" />
+    <Compile Include="Helpers\TextFormatHelper.cs" />
+    <Compile Include="Helpers\ToastHelper.cs" />
     <Compile Include="Helpers\ValidationPattern.cs" />
     <Compile Include="Interfaces\ICategoryRepository.cs" />
     <Compile Include="Interfaces\ICityRepository.cs" />
@@ -258,6 +315,30 @@
     <Compile Include="Migrations\202509231004346_TypeChane_Decimal_To_Int_PrductTbl.Designer.cs">
       <DependentUpon>202509231004346_TypeChane_Decimal_To_Int_PrductTbl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202509261458443_Add_SearchByProdCodeField.cs" />
+    <Compile Include="Migrations\202509261458443_Add_SearchByProdCodeField.Designer.cs">
+      <DependentUpon>202509261458443_Add_SearchByProdCodeField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202509301027319_addTempOrder_temoOrderDetail.cs" />
+    <Compile Include="Migrations\202509301027319_addTempOrder_temoOrderDetail.Designer.cs">
+      <DependentUpon>202509301027319_addTempOrder_temoOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510112055201_edit_SalePriceCol_Type.cs" />
+    <Compile Include="Migrations\202510112055201_edit_SalePriceCol_Type.Designer.cs">
+      <DependentUpon>202510112055201_edit_SalePriceCol_Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510122126155_Remove_Require_contactNo.cs" />
+    <Compile Include="Migrations\202510122126155_Remove_Require_contactNo.Designer.cs">
+      <DependentUpon>202510122126155_Remove_Require_contactNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510141053305_AddProductDetailCol_in_OrderDetailAndTempOrderDetail.cs" />
+    <Compile Include="Migrations\202510141053305_AddProductDetailCol_in_OrderDetailAndTempOrderDetail.Designer.cs">
+      <DependentUpon>202510141053305_AddProductDetailCol_in_OrderDetailAndTempOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510151633301_AddClusterPropertiesWithName.cs" />
+    <Compile Include="Migrations\202510151633301_AddClusterPropertiesWithName.Designer.cs">
+      <DependentUpon>202510151633301_AddClusterPropertiesWithName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
@@ -268,6 +349,8 @@
     <Compile Include="Models\POSDbContext.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SubCategory.cs" />
+    <Compile Include="Models\TempOrder.cs" />
+    <Compile Include="Models\TempOrderDetail.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -278,6 +361,7 @@
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SubCategoryRepository.cs" />
+    <Compile Include="Services\DailyBackgroundService.cs" />
     <Compile Include="Views\Account\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -332,11 +416,29 @@
     <Compile Include="Views\Controllers\Customers\CustomerFormControl.Designer.cs">
       <DependentUpon>CustomerFormControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\HomeControlUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\HomeControlUI.Designer.cs">
+      <DependentUpon>HomeControlUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Order\OrderReportControlUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Order\OrderReportControlUI.Designer.cs">
+      <DependentUpon>OrderReportControlUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controllers\Order\OrdersControlUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\Controllers\Order\OrdersControlUI.Designer.cs">
       <DependentUpon>OrdersControlUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Order\TempOrderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Order\TempOrderControl.Designer.cs">
+      <DependentUpon>TempOrderControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controllers\SubCategory\SubCategoryForm.cs">
       <SubType>UserControl</SubType>
@@ -361,6 +463,12 @@
     </Compile>
     <Compile Include="Views\DB_Screens\RestoreDbForm.Designer.cs">
       <DependentUpon>RestoreDbForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\InputDialog.Designer.cs">
+      <DependentUpon>InputDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Loader\LoadingForm.cs">
       <SubType>Form</SubType>
@@ -413,6 +521,24 @@
     <EmbeddedResource Include="Migrations\202509231004346_TypeChane_Decimal_To_Int_PrductTbl.resx">
       <DependentUpon>202509231004346_TypeChane_Decimal_To_Int_PrductTbl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509261458443_Add_SearchByProdCodeField.resx">
+      <DependentUpon>202509261458443_Add_SearchByProdCodeField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509301027319_addTempOrder_temoOrderDetail.resx">
+      <DependentUpon>202509301027319_addTempOrder_temoOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510112055201_edit_SalePriceCol_Type.resx">
+      <DependentUpon>202510112055201_edit_SalePriceCol_Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510122126155_Remove_Require_contactNo.resx">
+      <DependentUpon>202510122126155_Remove_Require_contactNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510141053305_AddProductDetailCol_in_OrderDetailAndTempOrderDetail.resx">
+      <DependentUpon>202510141053305_AddProductDetailCol_in_OrderDetailAndTempOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510151633301_AddClusterPropertiesWithName.resx">
+      <DependentUpon>202510151633301_AddClusterPropertiesWithName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -451,8 +577,17 @@
     <EmbeddedResource Include="Views\Controllers\Customers\CustomerFormControl.resx">
       <DependentUpon>CustomerFormControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\HomeControlUI.resx">
+      <DependentUpon>HomeControlUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Order\OrderReportControlUI.resx">
+      <DependentUpon>OrderReportControlUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Order\OrdersControlUI.resx">
       <DependentUpon>OrdersControlUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Order\TempOrderControl.resx">
+      <DependentUpon>TempOrderControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Product\ProductFromControl.resx">
       <DependentUpon>ProductFromControl.cs</DependentUpon>
@@ -471,6 +606,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\RestoreDbForm.resx">
       <DependentUpon>RestoreDbForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\InputDialog.resx">
+      <DependentUpon>InputDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Loader\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>

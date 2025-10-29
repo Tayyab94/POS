@@ -164,6 +164,18 @@ namespace POS_Shop.Views.Controllers.SubCategory
             }
         }
 
-      
+        private async void ResetFromBtn_Click(object sender, EventArgs e)
+        {
+            ClearFormFunction();
+            await LoadSubCategoryForDataGridView();
+        }
+
+        private void ClearFormFunction()
+        {
+            // Clear all input fields
+            subcategoryNameTxt.Clear();
+            SubcategoryIdTxt.Clear();   
+            CategoryDropDownLst.SelectedIndex = 0;
+        }
     }
 }

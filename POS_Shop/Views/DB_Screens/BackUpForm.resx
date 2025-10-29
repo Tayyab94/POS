@@ -158,13 +158,12 @@
   </data>
   <data name="BrowsFilePathTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAtgAAAApCAYAAAAPgl6QAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAELSURBVHhe7daxCcQwAARB91+VhMr4MlyAjRLDp2LDGbjk
+        iVBORw0KGgoAAAANSUhEUgAAAtgAAAAjCAYAAACuGX32AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAADtSURBVHhe7daxCcQwAARB91+VhMr4MlyAjRLDp2LDGbjk
         KtjrAgAAWmut3xjjMTMzMzOzs+2m/gJ7HwAAwLnd1AIbAAAiAhsAAEICGwAAQgIbAABCAhsAAEICGwAA
         QgIbAABCAhsAAEICGwAAQgIbAABCAhsAAEICGwAAQgIbAABCAhsAAEICGwAAQgIbAABCAhsAAEICGwAA
         QgIbAABCAhsAAEICGwAAQgIbAABCAhsAAEICGwAAQgIbAABCAhsAAEICGwAAQgIbAABCAhsAAEICGwAA
-        QgIbAABCAhsAAEICGwAAQgIbAABCAhsAAEICGwAAQn+BPee892FmZmZmZmfbTf0FNgAA0HgBiSlgPyNm
-        uEIAAAAASUVORK5CYII=
+        Qn+BPee892FmZmZmZmfbTf0FNgAA0HgBjWCZL5prWIUAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="BrowsFilePathTxt.Location" type="System.Drawing.Point, System.Drawing">
@@ -177,7 +176,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="BrowsFilePathTxt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>728, 41</value>
+    <value>728, 35</value>
   </data>
   <data name="BrowsFilePathTxt.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>

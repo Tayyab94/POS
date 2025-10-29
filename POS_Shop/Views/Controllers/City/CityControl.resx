@@ -342,6 +342,15 @@
   <metadata name="CityPrintDocument.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>212, 17</value>
   </metadata>
+  <data name="ResetFromBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAJYAAAAnCAYAAADtl7EyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACcSURBVHhe7dKxCQJAEADBr0QwtFMTwf6sQsxMXs4afrMJ
+        BraAXbf7+3V57g2nzFNrYq8Fx8xTxuI4Y5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFglj
+        kTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWOR+I91fXw/E3DK
+        PPUDVDOGs4WBjt8AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="SearchCityTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAioAAAApCAYAAAAbOwI0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

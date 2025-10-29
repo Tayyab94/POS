@@ -17,10 +17,12 @@ namespace POS_Shop.Models
         public string ProductUrduName { get; set; }
 
         public string ProductType { get; set; }
-        public int? PurchasePrice { get; set; }
+        public string PurchasePrice { get; set; }
         public int? SalePrice { get; set; }
 
         public int? Cost { get; set; }
+
+        public string SearchByProductCode { get; set; }
 
         public int? SubcategoryId { get; set; }
         [ForeignKey("SubcategoryId")]

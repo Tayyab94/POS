@@ -46,7 +46,7 @@ namespace POS_Shop.Views.DB_Screens
                 {
                     string sqlcommand = $"use master; ALTER Database POSDB SET Single_User With RollBack Immediate;";
 
-                    sqlcommand += $"RESTORE DATABASE POSDB FROM DISK = '{RestoreFilePathTxt.Text}' WITH REPLACE;";
+                    sqlcommand += $"RESTORE DATABASE ShopPOSDB FROM DISK = '{RestoreFilePathTxt.Text}' WITH REPLACE;";
                     using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["POSDbConnectionstring"].ConnectionString))
                     {
                         conn.Open();

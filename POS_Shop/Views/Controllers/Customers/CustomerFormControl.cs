@@ -20,7 +20,7 @@ namespace POS_Shop.Views.Controllers.Customers
     {
 
 
-        private int PageSize = 50;
+        private int PageSize = 20;
         private int PageIndex = 1;
         private int RecordCount = 0;
         private string SearchTerm = "";
@@ -100,112 +100,10 @@ namespace POS_Shop.Views.Controllers.Customers
 
             }
         }
-        private void CustomerNameTxt_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(CustomerNameTxt.Text))
-            {
-
-                e.Cancel = true;
-                CustomerFormErrorProvider.SetError(CustomerNameTxt, "Customer Name is required.");
-            }
-            else
-            {
-                e.Cancel = false;
-                CustomerFormErrorProvider.SetError(CustomerNameTxt, null);
-            }
-        }
-   
-
-        private void CustomerPhoneTxt_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(CustomerPhoneTxt.Text))
-            {
-
-                e.Cancel = true;
-                CustomerFormErrorProvider.SetError(CustomerPhoneTxt, "Customer Phone No. is required.");
-            }
-            else
-            {
-                e.Cancel = false;
-                CustomerFormErrorProvider.SetError(CustomerPhoneTxt, null);
-            }
-        }
-
-
-
-        private void CustomerAddressTxt_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(CustomerAddressTxt.Text))
-            {
-
-                e.Cancel = true;
-                CustomerFormErrorProvider.SetError(CustomerAddressTxt, "Customer Address is required.");
-            }
-            else
-            {
-                e.Cancel = false;
-                CustomerFormErrorProvider.SetError(CustomerAddressTxt, null);
-            }
-        }
-
-        private void CityDropDownLst_Validating(object sender, CancelEventArgs e)
-        {
-            // Check if the dropdown has a null value or no selection (index -1)
-            if (CityDropDownLst.SelectedItem == null || CityDropDownLst.SelectedIndex == -1 || (int)CityDropDownLst.SelectedValue==0)
-            {
-                // Set error and cancel the validation
-                e.Cancel = true;
-                CustomerFormErrorProvider.SetError(CityDropDownLst, "Please select a valid city");
-                return;
-            }
-
-            // Check if the selected value is empty or whitespace only
-            string selectedValue = CityDropDownLst.SelectedItem.ToString();
-            if (string.IsNullOrWhiteSpace(selectedValue))
-            {
-                e.Cancel = true;
-                CustomerFormErrorProvider.SetError(CityDropDownLst, "Please select a valid city");
-                return;
-            }
-
-            e.Cancel = false;
-            // If validation passes, clear any previous error
-            CustomerFormErrorProvider.SetError(CityDropDownLst, null);
-        }
-
-        private void CountryDropDownLst_Validating(object sender, CancelEventArgs e)
-        {
-            // Check if the dropdown has a null value or no selection (index -1)
-            if (CountryDropDownLst.SelectedItem == null || CountryDropDownLst.SelectedIndex == -1 || (int)CountryDropDownLst.SelectedValue == 0)
-            {
-                // Set error and cancel the validation
-                e.Cancel = true;
-                CustomerFormErrorProvider.SetError(CountryDropDownLst, "Please select a valid Country");
-                return;
-            }
-
-            // Check if the selected value is empty or whitespace only
-            string selectedValue = CountryDropDownLst.SelectedItem.ToString();
-            if (string.IsNullOrWhiteSpace(selectedValue))
-            {
-                e.Cancel = true;
-                CustomerFormErrorProvider.SetError(CountryDropDownLst, "Please select a valid Country");
-                return;
-            }
-
-            e.Cancel = false;
-            // If validation passes, clear any previous error
-            CustomerFormErrorProvider.SetError(CountryDropDownLst, null);
-        }
 
         private async void SaveCustomerBtn_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled) == false)
-            {
-                // There are invalid controls
-                MessageBox.Show("Please correct the errors before Submitting", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            
 
             var model = new Models.Customer()
                 {
@@ -215,13 +113,14 @@ namespace POS_Shop.Views.Controllers.Customers
                 CityId = Convert.ToInt32(CityDropDownLst.SelectedValue),
                 IsDeleted = false
             };
-
+            var errors =new  StringBuilder();
             if (!model.IsValid(out var results))
             {
-                var errors = string.Join("\n", results.Select(r => r.ErrorMessage));
+                 errors.AppendLine(string.Join("\n", results.Select(r => r.ErrorMessage)));
                 MessageBox.Show($"{errors}", "Validation Errors", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+           
 
             using (var context = new POSDbContext())
             {
@@ -440,6 +339,11 @@ namespace POS_Shop.Views.Controllers.Customers
             }
         }
 
+        private async void ResetFormBtn_Click(object sender, EventArgs e)
+        {
+            ClearFormFunction();
+            await LoadCustomersForDataGridView();
+        }
 
     }
 }

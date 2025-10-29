@@ -20,11 +20,49 @@ namespace POS_Shop
         {
             InitializeComponent();
             this.MinimumSize = new Size(200, 150); // Set to a reasonable small size
-
-
+           
+            this.KeyPreview = true; // Enable form to capture key events
+            this.KeyDown += MasterLayoutForm_KeyDown;
+            this.Load += MasterLayoutForm_Load;
         }
 
-        
+        private void MasterLayoutForm_Load(object sender, EventArgs e)
+        {
+            LoadHomeUI();
+        }
+
+        private void LoadHomeUI()
+        {
+            //MainPanel.Controls.Add(userCtrl);
+            try
+            {
+                LoadingManager.ShowLoading();
+
+                MainPanel.Padding = new Padding(0);
+                MainPanel.Margin = new Padding(0);
+                var userCtrl = new Views.Controllers.HomeControlUI();
+                userCtrl.Dock = DockStyle.Fill;
+
+                // Update UI controls on the main thread
+                MainPanel.Invoke(new Action(() =>
+                {
+                    MainPanel.Controls.Clear();
+                    MainPanel.Controls.Add(userCtrl);
+                }));
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
+            //MainPanel.Padding = new Padding(0);
+            //MainPanel.Margin = new Padding(0);
+            //var userCtrl = new Views.Controllers.HomeControlUI();
+            //userCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+            //MainPanel.Controls.Clear();
+            //MainPanel.Controls.Add(userCtrl);
+        }
+
+
         private async void cityBtn_Click(object sender, EventArgs e)
         {
 
@@ -217,7 +255,21 @@ namespace POS_Shop
                 BillPadForm.ShowDialog();
                 this.Show();
 
+            LoadHomeUI();
+        }
+        private void MasterLayoutForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.B && e.Control) // Ctrl + S to Save and Print
+            {
+
+                BillPadBtn.PerformClick();
+            }
+        }
+        private void MainLogoImgBtn_Click(object sender, EventArgs e)
+        {
+            LoadHomeUI();
         }
 
+       
     }
 }

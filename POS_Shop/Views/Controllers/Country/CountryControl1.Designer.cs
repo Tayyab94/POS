@@ -88,7 +88,7 @@
             this.UpdateCountrybtn.ButtonTextMarginLeft = 0;
             this.UpdateCountrybtn.ColorContrastOnClick = 45;
             this.UpdateCountrybtn.ColorContrastOnHover = 45;
-            this.UpdateCountrybtn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.UpdateCountrybtn.Cursor = System.Windows.Forms.Cursors.Hand;
             borderEdges1.BottomLeft = true;
             borderEdges1.BottomRight = true;
             borderEdges1.TopLeft = true;
@@ -341,7 +341,7 @@
             this.SaveCityBtn.ButtonTextMarginLeft = 0;
             this.SaveCityBtn.ColorContrastOnClick = 45;
             this.SaveCityBtn.ColorContrastOnHover = 45;
-            this.SaveCityBtn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.SaveCityBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             borderEdges2.BottomLeft = true;
             borderEdges2.BottomRight = true;
             borderEdges2.TopLeft = true;
@@ -370,7 +370,7 @@
             this.SaveCityBtn.IdleIconLeftImage = null;
             this.SaveCityBtn.IdleIconRightImage = null;
             this.SaveCityBtn.IndicateFocus = false;
-            this.SaveCityBtn.Location = new System.Drawing.Point(406, 98);
+            this.SaveCityBtn.Location = new System.Drawing.Point(406, 100);
             this.SaveCityBtn.Name = "SaveCityBtn";
             this.SaveCityBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveCityBtn.OnDisabledState.BorderRadius = 1;

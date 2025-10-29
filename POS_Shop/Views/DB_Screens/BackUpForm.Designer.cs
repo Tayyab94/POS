@@ -35,6 +35,7 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties4 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.BrowsFilePathTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.BrowsFileBtn = new System.Windows.Forms.Button();
             this.BackupBtn = new System.Windows.Forms.Button();
             this.BackScreenBtn = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.MinimizeBtn = new System.Windows.Forms.Button();
             this.ExpandBtn = new System.Windows.Forms.Button();
-            this.BrowsFilePathTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -60,65 +60,6 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
-            // BrowsFileBtn
-            // 
-            resources.ApplyResources(this.BrowsFileBtn, "BrowsFileBtn");
-            this.BrowsFileBtn.Name = "BrowsFileBtn";
-            this.BrowsFileBtn.UseVisualStyleBackColor = true;
-            this.BrowsFileBtn.Click += new System.EventHandler(this.BrowsFileBtn_Click);
-            // 
-            // BackupBtn
-            // 
-            resources.ApplyResources(this.BackupBtn, "BackupBtn");
-            this.BackupBtn.Name = "BackupBtn";
-            this.BackupBtn.UseVisualStyleBackColor = true;
-            this.BackupBtn.Click += new System.EventHandler(this.BackupBtn_Click);
-            // 
-            // BackScreenBtn
-            // 
-            resources.ApplyResources(this.BackScreenBtn, "BackScreenBtn");
-            this.BackScreenBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BackScreenBtn.Name = "BackScreenBtn";
-            this.BackScreenBtn.UseVisualStyleBackColor = true;
-            this.BackScreenBtn.Click += new System.EventHandler(this.BackScreenBtn_Click);
-            // 
-            // X_CloseBtn
-            // 
-            resources.ApplyResources(this.X_CloseBtn, "X_CloseBtn");
-            this.X_CloseBtn.BackColor = System.Drawing.Color.Red;
-            this.X_CloseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.X_CloseBtn.Name = "X_CloseBtn";
-            this.X_CloseBtn.Click += new System.EventHandler(this.X_CloseBtn_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.SlateBlue;
-            this.panel1.Controls.Add(this.MinimizeBtn);
-            this.panel1.Controls.Add(this.ExpandBtn);
-            this.panel1.Controls.Add(this.X_CloseBtn);
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Name = "panel1";
-            // 
-            // MinimizeBtn
-            // 
-            resources.ApplyResources(this.MinimizeBtn, "MinimizeBtn");
-            this.MinimizeBtn.BackColor = System.Drawing.Color.Yellow;
-            this.MinimizeBtn.BackgroundImage = global::POS_Shop.Properties.Resources.minimizeSign;
-            this.MinimizeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MinimizeBtn.Name = "MinimizeBtn";
-            this.MinimizeBtn.UseVisualStyleBackColor = false;
-            this.MinimizeBtn.Click += new System.EventHandler(this.MinimizeBtn_Click);
-            // 
-            // ExpandBtn
-            // 
-            resources.ApplyResources(this.ExpandBtn, "ExpandBtn");
-            this.ExpandBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ExpandBtn.BackgroundImage = global::POS_Shop.Properties.Resources.Expand;
-            this.ExpandBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ExpandBtn.Name = "ExpandBtn";
-            this.ExpandBtn.UseVisualStyleBackColor = false;
-            this.ExpandBtn.Click += new System.EventHandler(this.ExpandBtn_Click);
             // 
             // BrowsFilePathTxt
             // 
@@ -188,6 +129,68 @@
             this.BrowsFilePathTxt.TextPlaceholder = "Enter text";
             this.BrowsFilePathTxt.UseSystemPasswordChar = false;
             this.BrowsFilePathTxt.WordWrap = true;
+            // 
+            // BrowsFileBtn
+            // 
+            resources.ApplyResources(this.BrowsFileBtn, "BrowsFileBtn");
+            this.BrowsFileBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BrowsFileBtn.Name = "BrowsFileBtn";
+            this.BrowsFileBtn.UseVisualStyleBackColor = true;
+            this.BrowsFileBtn.Click += new System.EventHandler(this.BrowsFileBtn_Click);
+            // 
+            // BackupBtn
+            // 
+            resources.ApplyResources(this.BackupBtn, "BackupBtn");
+            this.BackupBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BackupBtn.Name = "BackupBtn";
+            this.BackupBtn.UseVisualStyleBackColor = true;
+            this.BackupBtn.Click += new System.EventHandler(this.BackupBtn_Click);
+            // 
+            // BackScreenBtn
+            // 
+            resources.ApplyResources(this.BackScreenBtn, "BackScreenBtn");
+            this.BackScreenBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BackScreenBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.BackScreenBtn.Name = "BackScreenBtn";
+            this.BackScreenBtn.UseVisualStyleBackColor = true;
+            this.BackScreenBtn.Click += new System.EventHandler(this.BackScreenBtn_Click);
+            // 
+            // X_CloseBtn
+            // 
+            resources.ApplyResources(this.X_CloseBtn, "X_CloseBtn");
+            this.X_CloseBtn.BackColor = System.Drawing.Color.Red;
+            this.X_CloseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.X_CloseBtn.Name = "X_CloseBtn";
+            this.X_CloseBtn.Click += new System.EventHandler(this.X_CloseBtn_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.SlateBlue;
+            this.panel1.Controls.Add(this.MinimizeBtn);
+            this.panel1.Controls.Add(this.ExpandBtn);
+            this.panel1.Controls.Add(this.X_CloseBtn);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
+            // 
+            // MinimizeBtn
+            // 
+            resources.ApplyResources(this.MinimizeBtn, "MinimizeBtn");
+            this.MinimizeBtn.BackColor = System.Drawing.Color.Yellow;
+            this.MinimizeBtn.BackgroundImage = global::POS_Shop.Properties.Resources.minimizeSign;
+            this.MinimizeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MinimizeBtn.Name = "MinimizeBtn";
+            this.MinimizeBtn.UseVisualStyleBackColor = false;
+            this.MinimizeBtn.Click += new System.EventHandler(this.MinimizeBtn_Click);
+            // 
+            // ExpandBtn
+            // 
+            resources.ApplyResources(this.ExpandBtn, "ExpandBtn");
+            this.ExpandBtn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.ExpandBtn.BackgroundImage = global::POS_Shop.Properties.Resources.Expand;
+            this.ExpandBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExpandBtn.Name = "ExpandBtn";
+            this.ExpandBtn.UseVisualStyleBackColor = false;
+            this.ExpandBtn.Click += new System.EventHandler(this.ExpandBtn_Click);
             // 
             // BackUpForm
             // 

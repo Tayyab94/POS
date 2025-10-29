@@ -9,7 +9,8 @@ namespace POS_Shop.Helpers
         // Common regex patterns
         public const string LettersAndSpaces = "^[a-zA-Z ]*$";
         public const string NumbersOnly = "^[0-9]*$";
-        public const string NumbersWithDecimal = "^[0-9]*\\.?[0-9]*$";
+       // public const string NumbersWithDecimal = "^[0-9]*\\.?[0-9]*$";  // Accept only Positive Number
+        public const string NumbersWithDecimal = "^-?[0-9]*\\.?[0-9]*$";
         public const string Alphanumeric = "^[a-zA-Z0-9 ]*$";
         public const string Email = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$";
 

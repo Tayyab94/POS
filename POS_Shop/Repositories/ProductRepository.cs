@@ -40,7 +40,7 @@ namespace POS_Shop.Repositories
 
                 foreach (var word in searchWords)
                 {
-                    data = data.Where(s => s.ProductEnglishName.Contains(word) || s.Id.ToString().Contains(word));
+                    data = data.Where(s => s.ProductEnglishName.Contains(word) || s.Id.ToString().Contains(word) || s.SearchByProductCode.Contains(word));
                     //data = data.Where(s => s.CustomerName.Contains(word) || s.City.Name.Contains(word));
                 }
             }

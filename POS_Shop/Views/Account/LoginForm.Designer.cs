@@ -213,6 +213,7 @@
             this.UserPasswordTxt.TextPlaceholder = "Enter text";
             this.UserPasswordTxt.UseSystemPasswordChar = true;
             this.UserPasswordTxt.WordWrap = true;
+            this.UserPasswordTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UserPasswordTxt_KeyPress);
             this.UserPasswordTxt.Validating += new System.ComponentModel.CancelEventHandler(this.UserPasswordTxt_Validating);
             // 
             // loginBtn

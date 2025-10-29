@@ -30,7 +30,7 @@ namespace POS_Shop.Repositories
 
             foreach (var word in searchWords)
             {
-                data = data.Where(s => s.CustomerName.Contains(word) || s.City.Name.Contains(word));
+                data = data.Where(s => s.CustomerName.Contains(word) || s.CustomerAddress.Contains(word) || s.City.Name.Contains(word));
             }
 
             var totalCount = await data.CountAsync();
