@@ -632,11 +632,11 @@
   </data>
   <data name="BillPadBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAJEAAAArCAYAAAB4iWowAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACiSURBVHhe7dKxDcIwAABB7xGFWRiPJhL7MQZ0KYKcEfzt
-        FSf9AD+21+/zeF8XrJj/jBljPGHJ/Y+JKExEZiIyE5GZiMxEZCYiMxGZichMRGYiMhORmYjMRGQmIjMR
-        mYnITERmIjITkZmIzERkJiIzEZmJyExEZiIyE5GZiMxEZCYiMxGZichMRGYiMhORmYjMRGQmIjMR2f3P
-        fpzfGbBi/vMHQGptDnVUjpkAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAMkAAAArCAYAAADSSqyMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACpSURBVHhe7dOxDcJAAMDA3wOFWRgvTST2YwzoKBJ92oC8
+        wBUneQGP2/p53Z/7DlzNP8aMMR7AD+cfJoH/TALBJBBMAsEkEEwCwSQQTALBJBBMAsEkEEwCwSQQTALB
+        JBBMAsEkEEwCwSQQTALBJBBMAsEkEEwCwSQQTALBJBBMAsEkEEwCwSQQTALBJBBMAsEkEEwCwSQQTALB
+        JBBMAuH8Y9m+7xnA1fzjAB1PxgqEBktWAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="LogoutBtn.ErrorImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -23,5 +23,7 @@ namespace POS_Shop.DTOs.Order
 
         public float Price { get; set; }
 
+        public string ProductDetail { get; set; } = string.Empty;
+
     }
 }

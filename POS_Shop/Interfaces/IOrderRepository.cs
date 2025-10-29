@@ -12,5 +12,11 @@ namespace POS_Shop.Interfaces
         Task<(int totalCount, IEnumerable<OrdersListDto> data)> GetOrderPagingListAsync(int pageIndex, int pageSize, string search);
 
         Task<OrderDto> GetOrderByIdAsync(int id, string invoiceNo);
+
+        Task<string>AddTempOrder(TempOrder tempOrder);
+
+        Task<(int totalCount, IEnumerable<TempOrderListDto> data)> GetTempOrderPagingListAsync(int pageIndex, int pageSize, string search);
+
+        List<TempOrderDetail>GetTempOrderDetailByInvoice(string invoiceNo);
     }
 }

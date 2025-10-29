@@ -33,9 +33,24 @@ namespace POS_Shop.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
+        // Temporary Tables for Order Processing
+        public DbSet<TempOrder> TempOrders { get; set; }
+        public DbSet<TempOrderDetail> TempOrderDetails { get; set; }
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
+            // Index with specific configuration
+            modelBuilder.Entity<Product>()
+                .HasIndex(p => p.ProductEnglishName)
+                .HasName("IX_Product_EnglishName")
+                .IsClustered(false) // Non-clustered index
+                .IsUnique(false);   // Allow duplicates
+
+            
+
             // Fluent API configurations go here
             modelBuilder.Entity<City>()
                 .Property(c => c.Name)

@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerFormControl));
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -53,6 +54,7 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties16 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ResetFormBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.CustomerIdTxt = new System.Windows.Forms.TextBox();
             this.RemoveCustomerBtn = new System.Windows.Forms.Button();
             this.UpdateCustomerBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -94,6 +96,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ResetFormBtn);
             this.groupBox1.Controls.Add(this.CustomerIdTxt);
             this.groupBox1.Controls.Add(this.RemoveCustomerBtn);
             this.groupBox1.Controls.Add(this.UpdateCustomerBtn);
@@ -117,6 +120,97 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Customer Form";
             // 
+            // ResetFormBtn
+            // 
+            this.ResetFormBtn.AllowAnimations = true;
+            this.ResetFormBtn.AllowMouseEffects = true;
+            this.ResetFormBtn.AllowToggling = false;
+            this.ResetFormBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResetFormBtn.AnimationSpeed = 200;
+            this.ResetFormBtn.AutoGenerateColors = false;
+            this.ResetFormBtn.AutoRoundBorders = false;
+            this.ResetFormBtn.AutoSizeLeftIcon = true;
+            this.ResetFormBtn.AutoSizeRightIcon = true;
+            this.ResetFormBtn.BackColor = System.Drawing.Color.Transparent;
+            this.ResetFormBtn.BackColor1 = System.Drawing.Color.SaddleBrown;
+            this.ResetFormBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ResetFormBtn.BackgroundImage")));
+            this.ResetFormBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.ResetFormBtn.ButtonText = "Reset";
+            this.ResetFormBtn.ButtonTextMarginLeft = 0;
+            this.ResetFormBtn.ColorContrastOnClick = 45;
+            this.ResetFormBtn.ColorContrastOnHover = 45;
+            this.ResetFormBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.ResetFormBtn.CustomizableEdges = borderEdges1;
+            this.ResetFormBtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.ResetFormBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.ResetFormBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.ResetFormBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.ResetFormBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.ResetFormBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ResetFormBtn.ForeColor = System.Drawing.Color.White;
+            this.ResetFormBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ResetFormBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.ResetFormBtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.ResetFormBtn.IconMarginLeft = 11;
+            this.ResetFormBtn.IconPadding = 10;
+            this.ResetFormBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ResetFormBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.ResetFormBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.ResetFormBtn.IconSize = 25;
+            this.ResetFormBtn.IdleBorderColor = System.Drawing.Color.Orange;
+            this.ResetFormBtn.IdleBorderRadius = 1;
+            this.ResetFormBtn.IdleBorderThickness = 1;
+            this.ResetFormBtn.IdleFillColor = System.Drawing.Color.SaddleBrown;
+            this.ResetFormBtn.IdleIconLeftImage = null;
+            this.ResetFormBtn.IdleIconRightImage = null;
+            this.ResetFormBtn.IndicateFocus = false;
+            this.ResetFormBtn.Location = new System.Drawing.Point(943, 81);
+            this.ResetFormBtn.Name = "ResetFormBtn";
+            this.ResetFormBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.ResetFormBtn.OnDisabledState.BorderRadius = 1;
+            this.ResetFormBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.ResetFormBtn.OnDisabledState.BorderThickness = 1;
+            this.ResetFormBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.ResetFormBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.ResetFormBtn.OnDisabledState.IconLeftImage = null;
+            this.ResetFormBtn.OnDisabledState.IconRightImage = null;
+            this.ResetFormBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.ResetFormBtn.onHoverState.BorderRadius = 1;
+            this.ResetFormBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.ResetFormBtn.onHoverState.BorderThickness = 1;
+            this.ResetFormBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.ResetFormBtn.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.ResetFormBtn.onHoverState.IconLeftImage = null;
+            this.ResetFormBtn.onHoverState.IconRightImage = null;
+            this.ResetFormBtn.OnIdleState.BorderColor = System.Drawing.Color.Orange;
+            this.ResetFormBtn.OnIdleState.BorderRadius = 1;
+            this.ResetFormBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.ResetFormBtn.OnIdleState.BorderThickness = 1;
+            this.ResetFormBtn.OnIdleState.FillColor = System.Drawing.Color.SaddleBrown;
+            this.ResetFormBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.ResetFormBtn.OnIdleState.IconLeftImage = null;
+            this.ResetFormBtn.OnIdleState.IconRightImage = null;
+            this.ResetFormBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.ResetFormBtn.OnPressedState.BorderRadius = 1;
+            this.ResetFormBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.ResetFormBtn.OnPressedState.BorderThickness = 1;
+            this.ResetFormBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.ResetFormBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.ResetFormBtn.OnPressedState.IconLeftImage = null;
+            this.ResetFormBtn.OnPressedState.IconRightImage = null;
+            this.ResetFormBtn.Size = new System.Drawing.Size(72, 39);
+            this.ResetFormBtn.TabIndex = 12;
+            this.ResetFormBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ResetFormBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ResetFormBtn.TextMarginLeft = 0;
+            this.ResetFormBtn.TextPadding = new System.Windows.Forms.Padding(0);
+            this.ResetFormBtn.UseDefaultRadiusAndThickness = true;
+            this.ResetFormBtn.Click += new System.EventHandler(this.ResetFormBtn_Click);
+            // 
             // CustomerIdTxt
             // 
             this.CustomerIdTxt.Location = new System.Drawing.Point(20, 57);
@@ -129,9 +223,10 @@
             // 
             this.RemoveCustomerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.RemoveCustomerBtn.BackColor = System.Drawing.Color.Red;
+            this.RemoveCustomerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RemoveCustomerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RemoveCustomerBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RemoveCustomerBtn.Location = new System.Drawing.Point(810, 79);
+            this.RemoveCustomerBtn.Location = new System.Drawing.Point(724, 79);
             this.RemoveCustomerBtn.Name = "RemoveCustomerBtn";
             this.RemoveCustomerBtn.Size = new System.Drawing.Size(123, 43);
             this.RemoveCustomerBtn.TabIndex = 0;
@@ -159,12 +254,12 @@
             this.UpdateCustomerBtn.ButtonTextMarginLeft = 0;
             this.UpdateCustomerBtn.ColorContrastOnClick = 45;
             this.UpdateCustomerBtn.ColorContrastOnHover = 45;
-            this.UpdateCustomerBtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.UpdateCustomerBtn.CustomizableEdges = borderEdges1;
+            this.UpdateCustomerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges2.BottomLeft = true;
+            borderEdges2.BottomRight = true;
+            borderEdges2.TopLeft = true;
+            borderEdges2.TopRight = true;
+            this.UpdateCustomerBtn.CustomizableEdges = borderEdges2;
             this.UpdateCustomerBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.UpdateCustomerBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.UpdateCustomerBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -188,7 +283,7 @@
             this.UpdateCustomerBtn.IdleIconLeftImage = null;
             this.UpdateCustomerBtn.IdleIconRightImage = null;
             this.UpdateCustomerBtn.IndicateFocus = false;
-            this.UpdateCustomerBtn.Location = new System.Drawing.Point(941, 81);
+            this.UpdateCustomerBtn.Location = new System.Drawing.Point(860, 81);
             this.UpdateCustomerBtn.Name = "UpdateCustomerBtn";
             this.UpdateCustomerBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.UpdateCustomerBtn.OnDisabledState.BorderRadius = 1;
@@ -251,12 +346,12 @@
             this.SaveCustomerBtn.ButtonTextMarginLeft = 0;
             this.SaveCustomerBtn.ColorContrastOnClick = 45;
             this.SaveCustomerBtn.ColorContrastOnHover = 45;
-            this.SaveCustomerBtn.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.SaveCustomerBtn.CustomizableEdges = borderEdges2;
+            this.SaveCustomerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.SaveCustomerBtn.CustomizableEdges = borderEdges3;
             this.SaveCustomerBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.SaveCustomerBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveCustomerBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -328,7 +423,7 @@
             this.CustomerActiveChkBox.AutoSize = true;
             this.CustomerActiveChkBox.Checked = true;
             this.CustomerActiveChkBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CustomerActiveChkBox.Location = new System.Drawing.Point(586, 88);
+            this.CustomerActiveChkBox.Location = new System.Drawing.Point(569, 88);
             this.CustomerActiveChkBox.Name = "CustomerActiveChkBox";
             this.CustomerActiveChkBox.Size = new System.Drawing.Size(69, 23);
             this.CustomerActiveChkBox.TabIndex = 6;
@@ -386,7 +481,6 @@
             this.CityDropDownLst.Text = null;
             this.CityDropDownLst.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
             this.CityDropDownLst.TextLeftMargin = 5;
-            this.CityDropDownLst.Validating += new System.ComponentModel.CancelEventHandler(this.CityDropDownLst_Validating);
             // 
             // CountryDropDownLst
             // 
@@ -430,7 +524,6 @@
             this.CountryDropDownLst.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
             this.CountryDropDownLst.TextLeftMargin = 5;
             this.CountryDropDownLst.SelectedIndexChanged += new System.EventHandler(this.CountryDropDownLst_SelectedIndexChanged);
-            this.CountryDropDownLst.Validating += new System.ComponentModel.CancelEventHandler(this.CountryDropDownLst_Validating);
             // 
             // CategoryDropdownLbl
             // 
@@ -515,7 +608,6 @@
             this.CustomerPhoneTxt.TextPlaceholder = "Enter text";
             this.CustomerPhoneTxt.UseSystemPasswordChar = false;
             this.CustomerPhoneTxt.WordWrap = true;
-            this.CustomerPhoneTxt.Validating += new System.ComponentModel.CancelEventHandler(this.CustomerPhoneTxt_Validating);
             // 
             // label4
             // 
@@ -600,7 +692,6 @@
             this.CustomerAddressTxt.TextPlaceholder = "Enter text";
             this.CustomerAddressTxt.UseSystemPasswordChar = false;
             this.CustomerAddressTxt.WordWrap = true;
-            this.CustomerAddressTxt.Validating += new System.ComponentModel.CancelEventHandler(this.CustomerAddressTxt_Validating);
             // 
             // CustAddress
             // 
@@ -685,7 +776,6 @@
             this.CustomerNameTxt.TextPlaceholder = "Enter text";
             this.CustomerNameTxt.UseSystemPasswordChar = false;
             this.CustomerNameTxt.WordWrap = true;
-            this.CustomerNameTxt.Validating += new System.ComponentModel.CancelEventHandler(this.CustomerNameTxt_Validating);
             // 
             // label3
             // 
@@ -864,6 +954,7 @@
             this.PreviousPageBtn.AllowZoomingOnFocus = false;
             this.PreviousPageBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PreviousPageBtn.BackColor = System.Drawing.Color.Transparent;
+            this.PreviousPageBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PreviousPageBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.PreviousPageBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("PreviousPageBtn.ErrorImage")));
             this.PreviousPageBtn.FadeWhenInactive = false;
@@ -900,6 +991,7 @@
             this.NextPageBtn.AllowZoomingOnFocus = false;
             this.NextPageBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NextPageBtn.BackColor = System.Drawing.Color.Transparent;
+            this.NextPageBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NextPageBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.NextPageBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("NextPageBtn.ErrorImage")));
             this.NextPageBtn.FadeWhenInactive = false;
@@ -984,5 +1076,6 @@
         private Bunifu.UI.WinForms.BunifuImageButton NextPageBtn;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox CustomerIdTxt;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton ResetFormBtn;
     }
 }

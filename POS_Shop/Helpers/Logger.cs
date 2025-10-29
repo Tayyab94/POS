@@ -36,7 +36,8 @@ namespace POS_Shop.Helpers
                 // Use a lock to prevent multiple threads from writing at the same time
                 lock (lockObj)
                 {
-                    File.AppendAllText(logFilePath, logEntry + Environment.NewLine);
+                    File.WriteAllText(logFilePath, logEntry + Environment.NewLine);
+                  //  File.AppendAllText(logFilePath, logEntry + Environment.NewLine);
                 }
             }
             catch (Exception ex)

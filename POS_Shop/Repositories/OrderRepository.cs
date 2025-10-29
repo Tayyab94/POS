@@ -1,4 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Vml;
 using POS_Shop.DTOs.Order;
 using POS_Shop.Interfaces;
@@ -11,17 +13,17 @@ using System.Threading.Tasks;
 
 namespace POS_Shop.Repositories
 {
-    public class OrderRepository : Repository<Order>, IOrderRepository
+    public class OrderRepository : Repository<Models.Order>, IOrderRepository
     {
         public OrderRepository(POSDbContext context) : base(context)
         {
         }
 
-        public async Task<int> AddOrder(Order order)
+        public async Task<int> AddOrder(Models.Order order)
         {
             if(order.Id == 0)
             {
-                var orderData = new Order()
+                var orderData = new Models.Order()
                 {
                     CreatedDate = DateTime.Now,
                     TotalBill = order.TotalBill,
@@ -32,7 +34,7 @@ namespace POS_Shop.Repositories
                 };
                 _context.Orders.Add(order);
                 _context.SaveChanges();
-                return order.Id;
+                
             }
 
             var prevOrder= await _context.Orders.Where(s=>s.Id== order.Id && s.InvoiceNumber==order.InvoiceNumber).FirstOrDefaultAsync();
@@ -44,12 +46,62 @@ namespace POS_Shop.Repositories
                 prevOrder.InvoiceNumber = order.InvoiceNumber;
                 prevOrder.customerId = order.customerId > 0 ? order.customerId : null;
                 prevOrder.paymentType = order.paymentType;
+                _context.Entry(prevOrder).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+              
             }
-            _context.Entry(prevOrder).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            return order.Id;
+            
+        }
 
-            return prevOrder.Id;
-           
+        public async Task<string> AddTempOrder(TempOrder order)
+        {
+
+
+
+            //var orderData = new TempOrder()
+            //{
+            //    CreatedDate = DateTime.Now,
+            //    TotalBill = order.TotalBill,
+            //    InvoiceNumber = order.InvoiceNumber,
+            //    customerId = order.customerId > 0 ? order.customerId : null,
+            //    CustomerName = order.CustomerName,
+
+            //};
+            //_context.TempOrders.Add(order);
+            //_context.SaveChanges();
+            //return order.InvoiceNumber;
+
+            // Check if a record with the same InvoiceNumber already exists
+            var existingOrder = await _context.TempOrders
+                .FirstOrDefaultAsync(o => o.InvoiceNumber == order.InvoiceNumber);
+
+            if (existingOrder != null)
+            {
+                // Update existing record
+                existingOrder.CreatedDate = DateTime.Now;
+                existingOrder.TotalBill = order.TotalBill;
+                existingOrder.customerId = order.customerId > 0 ? order.customerId : null;
+                existingOrder.CustomerName = order.CustomerName;
+                _context.Entry(existingOrder).State = EntityState.Modified;
+               
+            }
+            else
+            {
+                // Add new record
+                var orderData = new TempOrder()
+                {
+                    CreatedDate = DateTime.Now,
+                    TotalBill = order.TotalBill,
+                    InvoiceNumber = order.InvoiceNumber,
+                    customerId = order.customerId > 0 ? order.customerId : null,
+                    CustomerName = order.CustomerName,
+                };
+                _context.TempOrders.Add(orderData);
+            }
+
+            await _context.SaveChangesAsync();
+            return order.InvoiceNumber;
         }
 
         public async Task<OrderDto> GetOrderByIdAsync(int id, string invoiceNo)
@@ -75,7 +127,7 @@ namespace POS_Shop.Repositories
                          ProductName=o.ProductId.HasValue? o.Product.ProductUrduName: o.OtherProductName,
                          Quantity = o.Quantity,
                          QuantityType = o.QuantityType,
-                            
+                           ProductDetail= o.ProductDetail
                       }).ToList()
                       
                 }).FirstOrDefaultAsync();
@@ -110,9 +162,46 @@ namespace POS_Shop.Repositories
                     InvoiceNumber = s.InvoiceNumber,
                   paymentType=s.paymentType,
                    CreatedDate = s.CreatedDate,
-                    CustomerName= s.customerId == null? "No":s.Customer.CustomerName.ToString(),
+                   customerId= s.customerId.HasValue? s.customerId: null,
+                    CustomerName = s.customerId == null? "No":s.Customer.CustomerName.ToString(),
                     ReceiveAmount= s.ReceiveAmount, 
                      TotalBill  = s.TotalBill,
+                }).ToListAsync();
+
+            return (totalCount, result);
+        }
+
+        public List<TempOrderDetail> GetTempOrderDetailByInvoice(string invoiceNo)
+        {
+            var data= _context.TempOrderDetails.Where(s => s.TempInvoiceNumber == invoiceNo)
+                .ToList();
+            return data;
+        }
+
+        public async Task<(int totalCount, IEnumerable<TempOrderListDto> data)> GetTempOrderPagingListAsync(int pageIndex, int pageSize, string search)
+        {
+            var data = _context.TempOrders.AsQueryable();
+
+            var searchWords = search.ToLower().Split(' ');
+            // apply search
+
+            foreach (var word in searchWords)
+            {
+                data = data.Where(s => s.CustomerName.ToString().Contains(word));
+            }
+
+            var totalCount = await data.CountAsync();
+
+            var result = await data.OrderByDescending(s => s.InvoiceNumber)
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .Select(s => new TempOrderListDto()
+                {
+                    InvoiceNumber = s.InvoiceNumber,
+                    CreatedDate = s.CreatedDate,
+                    customerId = s.customerId.HasValue ? s.customerId : null,
+                    CustomerName = s.CustomerName.ToString(),
+                    TotalBill = s.TotalBill,
                 }).ToListAsync();
 
             return (totalCount, result);

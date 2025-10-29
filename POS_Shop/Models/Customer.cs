@@ -17,9 +17,11 @@ namespace POS_Shop.Models
         public string CustomerName { get; set; }
         [Required]
         public string CustomerAddress { get; set; }
-        [Required]
+      
         public string ContactNo { get; set; }
 
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a valid city")]
         public int CityId { get; set; }
         [ForeignKey("CityId")]
         public City City { get; set; }

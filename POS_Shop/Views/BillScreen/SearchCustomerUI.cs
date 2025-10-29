@@ -47,10 +47,6 @@ namespace POS_Shop.Views.BillScreen
                 dt.Columns.Add("ID", typeof(int));
                 dt.Columns.Add("Name", typeof(string));
                 dt.Columns.Add("Address", typeof(string));
-                //dt.Columns.Add("Address", typeof(string));
-                //dt.Columns.Add("Phone", typeof(string));
-                //dt.Columns.Add("CityId", typeof(int));
-                //dt.Columns.Add("City Name", typeof(string));
                 dt.Columns.Add("Active", typeof(bool));
 
                 foreach (var item in result.data)

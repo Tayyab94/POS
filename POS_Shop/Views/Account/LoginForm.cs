@@ -31,7 +31,7 @@ namespace POS_Shop.Views.Account
                 return;
             }
 
-            if (AuthenticateUser(userEmailTxt.Text, UserPasswordTxt.Text))
+            if (AuthenticateUser(userEmailTxt.Text.ToLower(), UserPasswordTxt.Text))
             {
 
                 SessionManager.Login(userEmailTxt.Text);
@@ -63,7 +63,7 @@ namespace POS_Shop.Views.Account
         private bool AuthenticateUser(string username, string password)
         {
             // This is a mock authentication - replace with real logic
-            return username == "admin" && password == "admin";
+            return (username == "city" || username== "sa") && password == "admin";
         }
 
         private string GenerateToken()
@@ -101,6 +101,15 @@ namespace POS_Shop.Views.Account
                 e.Cancel = false;
                 UserPasswordTxt.BackColor = SystemColors.Window;
                 loginErrorProvider.SetError(UserPasswordTxt, null);
+            }
+        }
+
+        private void UserPasswordTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                loginBtn.PerformClick();
             }
         }
     }

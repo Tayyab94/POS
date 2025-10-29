@@ -79,6 +79,11 @@ namespace POS_Shop.Views.Controllers.Country
         {
             using (var context = new POSDbContext())
             {
+                if(context.Countries.Any(s=>s.CountryName== CountryNameTxt.Text.Trim()))
+                {
+                    MessageBox.Show("Country name is already exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 ICountryRepository countryRepository = new CountryRepository(context);
 
@@ -88,7 +93,7 @@ namespace POS_Shop.Views.Controllers.Country
                 });
                 countryRepository.Save();
             }
-            MessageBox.Show("City saved successfully!");
+            MessageBox.Show("Country saved successfully!");
         }
 
 

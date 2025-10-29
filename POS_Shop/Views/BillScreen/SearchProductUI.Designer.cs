@@ -79,6 +79,7 @@
             // CloseBtn
             // 
             this.CloseBtn.BackColor = System.Drawing.Color.Red;
+            this.CloseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CloseBtn.ForeColor = System.Drawing.SystemColors.Control;
             this.CloseBtn.Location = new System.Drawing.Point(1101, 8);
@@ -232,6 +233,7 @@
             this.NextPageBtn.AllowZooming = false;
             this.NextPageBtn.AllowZoomingOnFocus = false;
             this.NextPageBtn.BackColor = System.Drawing.Color.Transparent;
+            this.NextPageBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NextPageBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.NextPageBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("NextPageBtn.ErrorImage")));
             this.NextPageBtn.FadeWhenInactive = false;
@@ -267,6 +269,7 @@
             this.PreviousPageBtn.AllowZooming = false;
             this.PreviousPageBtn.AllowZoomingOnFocus = false;
             this.PreviousPageBtn.BackColor = System.Drawing.Color.Transparent;
+            this.PreviousPageBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PreviousPageBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.PreviousPageBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("PreviousPageBtn.ErrorImage")));
             this.PreviousPageBtn.FadeWhenInactive = false;

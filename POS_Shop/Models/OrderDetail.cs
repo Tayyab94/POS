@@ -22,5 +22,7 @@ namespace POS_Shop.Models
 
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }
+
+        public string ProductDetail { get; set; }= string.Empty;    
     }
 }

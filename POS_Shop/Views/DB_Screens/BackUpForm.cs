@@ -40,7 +40,7 @@ namespace POS_Shop.Views.DB_Screens
                         conn.Open();
                         string backupFileName = $"DatabaseBackup_{DateTime.Now:yyyyMMddHHmmss}.bak";
                         string backupFilePath = System.IO.Path.Combine(BrowsFilePathTxt.Text, backupFileName);
-                        string sqlQueryString = $"BACKUP DATABASE POSDB TO DISK = '{backupFilePath}'";
+                        string sqlQueryString = $"BACKUP DATABASE ShopPOSDB TO DISK = '{backupFilePath}'";
                         using (SqlCommand cmd = new SqlCommand(sqlQueryString, conn))
                         {
                             if(conn.State != ConnectionState.Open)
