@@ -26,4 +26,10 @@ namespace POS_Shop.DTOs.Order
         public string ProductDetail { get; set; } = string.Empty;
 
     }
+
+    public class OrderAmountSummaryDto
+    {
+        public float TotalAmount { get; set; }
+        public float ReceivedAmount { get; set; }
+    }
 }

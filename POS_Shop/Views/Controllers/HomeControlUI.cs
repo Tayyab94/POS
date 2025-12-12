@@ -1,15 +1,11 @@
 ﻿using POS_Shop.Models;
 using POS_Shop.Views.Controllers.Order;
+using POS_Shop.Views.Reports;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace POS_Shop.Views.Controllers
 {
@@ -40,8 +36,6 @@ namespace POS_Shop.Views.Controllers
                     TodayTotalOrderLbl.Text = TodayOrderCount.ToString();
                     TempTotalOrderLbl.Text = TodayTempOrderCount.ToString();
                 }));
-
-                
             }
         }
 
@@ -52,7 +46,7 @@ namespace POS_Shop.Views.Controllers
             bool showDialog = true;
             while (showDialog)
             {
-                using (var dialog = new InputDialog("Enter Password:", "Analysus Info", isTextBoxProtected: true))
+                using (var dialog = new InputDialog("Enter Password:", title:"Analysis Info", isTextBoxProtected: true))
                 {
                     if (dialog.ShowDialog() != DialogResult.OK) return;
 
@@ -76,13 +70,58 @@ namespace POS_Shop.Views.Controllers
                         ProductForm.ShowDialog(); // Use ShowDialog() to open it as a modal dialog
                     }
                     else
-                    {
                         MessageBox.Show("Invalid Input", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
             }
             
         }
 
+        private void SalesReportBtn_Click(object sender, EventArgs e)
+        {
+            bool showDialog = true;
+            while (showDialog)
+            {
+                using (var dialog = new InputDialog("Enter Password:", title: "Sales Chart Report", isTextBoxProtected: true))
+                {
+                    if (dialog.ShowDialog() != DialogResult.OK) return;
+
+                    string userInput = dialog.InputValue;
+                    if (!string.IsNullOrWhiteSpace(userInput) && userInput.ToLower() == "show")
+                    {
+                        showDialog = false;
+                        var saleChartForm = new SalesChartForm();
+                        saleChartForm.ShowDialog();
+                        this.Show();
+                    }
+                    else
+                        MessageBox.Show("Invalid Input", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+          
+        }
+
+        private void ProductSaleTrendBtn_Click(object sender, EventArgs e)
+        {
+            bool showDialog = true;
+            while (showDialog)
+            {
+                using (var dialog = new InputDialog("Enter Password:", title: "Sales Chart Report", isTextBoxProtected: true))
+                {
+                    if (dialog.ShowDialog() != DialogResult.OK) return;
+
+                    string userInput = dialog.InputValue;
+                    if (!string.IsNullOrWhiteSpace(userInput) && userInput.ToLower() == "show")
+                    {
+                        showDialog = false;
+                        var saleChartForm = new ProductSalesTrendForm();
+                        saleChartForm.ShowDialog();
+                        this.Show();
+                    }
+                    else
+                        MessageBox.Show("Invalid Input", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+        }
     }
 }

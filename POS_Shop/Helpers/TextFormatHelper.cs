@@ -78,6 +78,22 @@ namespace POS_Shop.Helpers
                        .Replace("\u200D", "")  // Zero Width Joiner
                        .Replace("\uFEFF", ""); // Zero Width No-Break Space
         }
+
+
+        public static string GetPrefix(string userName)
+        {
+            switch (userName)
+            {
+                case "sa":
+                    return "INS-";
+                case "city":
+                    return "INC-";
+                case "ta":
+                    return "INT-";
+                default:
+                    return "DEF-"; // Default prefix for other users
+            }
+        }
     }
 
     

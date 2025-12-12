@@ -41,6 +41,7 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties7 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties8 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             this.ImportExcelFiuleGroup = new System.Windows.Forms.GroupBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.ImportToDbBtn = new System.Windows.Forms.Button();
             this.loadDataBtn = new System.Windows.Forms.Button();
             this.ImportFilePathTxt = new Bunifu.UI.WinForms.BunifuTextBox();
@@ -59,7 +60,6 @@
             this.ImportUpdatedFilePathTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.BrowsUpdatedExcelFile = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.ImportExcelFiuleGroup.SuspendLayout();
             this.peoductGirdGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGrid)).BeginInit();
@@ -87,6 +87,14 @@
             this.ImportExcelFiuleGroup.TabIndex = 0;
             this.ImportExcelFiuleGroup.TabStop = false;
             this.ImportExcelFiuleGroup.Text = "Import Products";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(384, 20);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(752, 23);
+            this.progressBar1.TabIndex = 1;
+            this.progressBar1.Visible = false;
             // 
             // ImportToDbBtn
             // 
@@ -508,13 +516,6 @@
             this.label2.Size = new System.Drawing.Size(340, 18);
             this.label2.TabIndex = 6;
             this.label2.Text = "Brows Updated Price file to Load the data into Grid";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(384, 20);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(752, 23);
-            this.progressBar1.TabIndex = 1;
             // 
             // ImportExcelFile
             // 

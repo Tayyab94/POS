@@ -32,6 +32,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,6 +52,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>C7EEBA551F4DC885139CDA6C05C7F1396B06231A</ManifestCertificateThumbprint>
@@ -75,39 +77,41 @@
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
-    <Reference Include="Bunifu.Licensing, Version=3.2.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b" />
+    <Reference Include="Bunifu.Licensing, Version=3.2.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b">
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.Licensing.dll</HintPath>
+    </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuButton">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuDataGridView">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuDataGridView.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuDataGridView.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuDropdown">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuDropdown.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuDropdown.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuGradientPanel">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuGradientPanel.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuGradientPanel.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuGroupBox">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuGroupBox.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuGroupBox.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuImageButton">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuImageButton.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuImageButton.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuLabel">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuLabel.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuLabel.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuPanel">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuPanel.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuPanel.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuScrollBar">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuScrollBar.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuScrollBar.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuSlider">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuSlider.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuSlider.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuTextbox">
-      <HintPath>..\..\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuTextbox.dll</HintPath>
+      <HintPath>V:\Bunifu_UI\BunifuCrack\Bunifu.UI.WinForms.BunifuTextbox.dll</HintPath>
     </Reference>
     <Reference Include="ClosedXML, Version=0.105.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.105.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
@@ -162,6 +166,9 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="RBush, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c77e27b81f4d0187, processorArchitecture=MSIL">
       <HintPath>..\packages\RBush.Signed.4.0.0\lib\net47\RBush.dll</HintPath>
@@ -241,6 +248,8 @@
     <Compile Include="DTOs\Order\OrderDto.cs" />
     <Compile Include="DTOs\Order\OrdersListDto.cs" />
     <Compile Include="DTOs\Order\TempOrderListDto.cs" />
+    <Compile Include="DTOs\Product\ProductOrderHistoryDetails.cs" />
+    <Compile Include="DTOs\Product\ProductSalesData.cs" />
     <Compile Include="DTOs\Product\ProductSuggestion.cs" />
     <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\InvoicePDFGenerator.cs" />
@@ -452,6 +461,12 @@
     <Compile Include="Views\DB_Screens\BackUpForm.Designer.cs">
       <DependentUpon>BackUpForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\DB_Screens\ImportCustomerFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DB_Screens\ImportCustomerFile.Designer.cs">
+      <DependentUpon>ImportCustomerFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\DB_Screens\ImportExcelFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -481,6 +496,18 @@
     </Compile>
     <Compile Include="Views\Controllers\Product\ProductFromControl.Designer.cs">
       <DependentUpon>ProductFromControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\ProductSalesTrendForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reports\ProductSalesTrendForm.Designer.cs">
+      <DependentUpon>ProductSalesTrendForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\SalesChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reports\SalesChartForm.Designer.cs">
+      <DependentUpon>SalesChartForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
@@ -601,6 +628,9 @@
     <EmbeddedResource Include="Views\DB_Screens\BackUpForm.ur.resx">
       <DependentUpon>BackUpForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\DB_Screens\ImportCustomerFile.resx">
+      <DependentUpon>ImportCustomerFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\ImportExcelFile.resx">
       <DependentUpon>ImportExcelFile.cs</DependentUpon>
     </EmbeddedResource>
@@ -612,6 +642,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Loader\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reports\SalesChartForm.resx">
+      <DependentUpon>SalesChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="POS_Shop_TemporaryKey.pfx" />
@@ -660,6 +693,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="pos_icon.ico" />
+    <None Include="Properties\loupe.png" />
     <None Include="Properties\iconExcel.png" />
     <None Include="Properties\iconSave.png" />
     <None Include="Properties\iconLoad.png" />
@@ -676,4 +710,18 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Target Name="CleanLanguageFolders" AfterTargets="AfterBuild">
+    <RemoveDir Directories="$(OutputPath)\de" />
+    <RemoveDir Directories="$(OutputPath)\fr" />
+    <RemoveDir Directories="$(OutputPath)\it" />
+    <RemoveDir Directories="$(OutputPath)\es" />
+    <RemoveDir Directories="$(OutputPath)\ja" />
+    <RemoveDir Directories="$(OutputPath)\ko" />
+    <RemoveDir Directories="$(OutputPath)\pl" />
+    <RemoveDir Directories="$(OutputPath)\pt-BR" />
+    <RemoveDir Directories="$(OutputPath)\ru" />
+    <RemoveDir Directories="$(OutputPath)\tr" />
+    <RemoveDir Directories="$(OutputPath)\zh-Hans" />
+    <RemoveDir Directories="$(OutputPath)\zh-Hant" />
+  </Target>
 </Project>

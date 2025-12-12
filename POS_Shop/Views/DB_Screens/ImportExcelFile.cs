@@ -82,8 +82,8 @@ namespace POS_Shop.Views.DB_Screens
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
         }
 
-        //private BindingSource bindingSource;
-        //private void loadDataBtn_Click(object sender, EventArgs e)
+        ////private BindingSource bindingSource;
+        //private void loadDataBtn_Click1(object sender, EventArgs e)
         //{
         //    using (var stream = File.Open(ImportFilePathTxt.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
         //    {
@@ -108,7 +108,7 @@ namespace POS_Shop.Views.DB_Screens
         //            }
 
 
-        //           var currentTable = dataSet.Tables[2];
+        //            var currentTable = dataSet.Tables[2];
 
         //            DataTable filtered = new DataTable();
         //            // Add only required columns
@@ -136,7 +136,7 @@ namespace POS_Shop.Views.DB_Screens
         //                    row[4],  // Company Rate
         //                    row[5],  // Cost
         //                    row[8]   // Price (R)
-        //                    ,row[6]  // Category (2nd col in Excel
+        //                    , row[6]  // Category (2nd col in Excel
         //                );
         //            }
 
@@ -164,7 +164,7 @@ namespace POS_Shop.Views.DB_Screens
         //            // Find index of Urdu column and insert Unit right after it
         //            int urduIndex = ProductDataGrid.Columns["Urdu"].Index;
         //            ProductDataGrid.Columns.Remove("Unit");
-        //            ProductDataGrid.Columns.Insert(urduIndex + 1, unitColumn);               
+        //            ProductDataGrid.Columns.Insert(urduIndex + 1, unitColumn);
         //        }
 
         //    }
@@ -184,7 +184,6 @@ namespace POS_Shop.Views.DB_Screens
                               MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             // Disable UI during processing
             SetUIState(false);
 
@@ -368,7 +367,7 @@ namespace POS_Shop.Views.DB_Screens
             filtered.Columns.Add("Item Name", typeof(string));
             filtered.Columns.Add("Urdu", typeof(string));
             filtered.Columns.Add("Unit", typeof(string));
-            filtered.Columns.Add("Company Rate", typeof(decimal));
+            filtered.Columns.Add("Company Rate", typeof(string));
             filtered.Columns.Add("Cost", typeof(decimal));
             filtered.Columns.Add("Price (R)", typeof(decimal));
             filtered.Columns.Add("Category", typeof(string));
@@ -390,7 +389,7 @@ namespace POS_Shop.Views.DB_Screens
                 newRow["Item Name"] = GetSafeStringFromObject(row[2]);
                 newRow["Urdu"] = GetSafeStringFromObject(row[3]);
                 newRow["Unit"] = string.Empty; // Empty for user selection
-                newRow["Company Rate"] = GetSafeDecimalFromObject(row[4]);
+                newRow["Company Rate"] = GetSafeStringFromObject(row[4]);
                 newRow["Cost"] = GetSafeDecimalFromObject(row[5]);
                 newRow["Price (R)"] = GetSafeDecimalFromObject(row[8]);
                 newRow["Category"] = GetSafeStringFromObject(row[6]);
@@ -465,8 +464,20 @@ namespace POS_Shop.Views.DB_Screens
             unitColumn.DataPropertyName = "Unit";
             unitColumn.Items.AddRange(new object[]
             {
-        "عدد", "ڈبہ", "درجن", "کارٹن", "پیکٹ", "رول",
-        "گز", "بنڈل", "ڈبی", "کلو", "جوڑی", "سابقہ"
+        //"عدد", "ڈبہ", "درجن", "کارٹن", "پیکٹ", "رول",
+        //"گز", "بنڈل", "ڈبی", "کلو", "جوڑی", "سابقہ"
+            "عدد",    // Piece/Unit
+            "ڈبہ",    // Box
+            "درجن",   // Dozen
+            "پیکٹ",   // Packet
+            "بنڈل",   // Bundle
+            "کارٹن",  // Carton (corrected)
+            "رول",    // Roll
+            "ڈبی",
+            "کلو",    // Kilogram
+            "گز",     // Yard
+            "جوڑی",   // Pair
+            "سابقہ"    // Lesson/Set
             });
 
             // Find Urdu column index and insert Unit column after it
@@ -725,14 +736,15 @@ namespace POS_Shop.Views.DB_Screens
                     filtered.Columns.Add("Sale Price");
                     filtered.Columns.Add("Cost");
                     filtered.Columns.Add("SubCategory");
-                    
+                    filtered.Columns.Add("ProductOldName");
+
 
                     // Copy rows
                     foreach (DataRow row in currentTable.Rows)
                     {
-                        //// Skip rows that are empty or header duplicates
-                        if (row[0] == DBNull.Value || row[0].ToString() == "ProductID")
-                            continue;
+                        ////// Skip rows that are empty or header duplicates
+                        //if (row[0] == DBNull.Value || row[0].ToString() == "ProductID")
+                        //    continue;
                         filtered.Rows.Add(
                             row[0],  
                             row[1],  
@@ -742,7 +754,8 @@ namespace POS_Shop.Views.DB_Screens
                             row[5],
                             row[6],
                             row[7],
-                            row[8]
+                            row[8],
+                            row[9]
                         );
                     }
 
@@ -754,18 +767,18 @@ namespace POS_Shop.Views.DB_Screens
                     typeColumn.DataPropertyName = "Type"; // This is the key - it binds to the DataTable column
                     typeColumn.Items.AddRange(new object[]
                     {
-                            "عدد",
-                            "ڈبہ",
-                            "درجن",
-                            "کارٹن",
-                            "پیکٹ",
-                            "رول",
-                            "گز",
-                            "بنڈل",
-                            "ڈبی",
-                            "کلو",
-                            "جوڑی",
-                            "سابقہ"
+                            "عدد",    // Piece/Unit
+                            "ڈبہ",    // Box
+                            "درجن",   // Dozen
+                            "پیکٹ",   // Packet
+                            "بنڈل",   // Bundle
+                            "کارٹن",  // Carton (corrected)
+                            "رول",    // Roll
+                             "ڈبی",
+                            "کلو",    // Kilogram
+                            "گز",     // Yard
+                            "جوڑی",   // Pair
+                            "سابقہ"    // Lesson/Set
                     });
 
                     // Remove original and add ComboBox
@@ -804,6 +817,7 @@ namespace POS_Shop.Views.DB_Screens
                             }
                         }
                     };
+                    updatedProductLIstGrid.Columns["ProductOldName"].Visible = false;
                 }
 
             }
@@ -811,96 +825,295 @@ namespace POS_Shop.Views.DB_Screens
 
         private void SaveUpdatedPriceBtn_Click(object sender, EventArgs e)
         {
-            if (updatedProductLIstGrid.Rows.Count != 0 && updatedProductLIstGrid.Rows != null)
+            if (updatedProductLIstGrid.Rows.Count == 0 || updatedProductLIstGrid.DataSource == null)
             {
-                try
+                MessageBox.Show("Please upload products first", "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                LoadingManager.ShowLoading();
+
+                var dataTable = (DataTable)updatedProductLIstGrid.DataSource;
+                if (dataTable?.Rows.Count == 0)
                 {
-                    LoadingManager.ShowLoading();
-                    DataTable dataTable = (DataTable)updatedProductLIstGrid.DataSource;
-                    if (dataTable == null || dataTable.Rows.Count == 0)
-                    {
-                        MessageBox.Show("No data to import. Please load data from an Excel file first.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    using (var context = new POSDbContext())
-                    {
-                        int updatedCount = 0;
-                        int addedCount = 0;
-                        var ProductToAddList = new List<Models.Product>();
-                        foreach (DataRow row in dataTable.Rows)
-                        {
-                            if (row.IsNull("Product ID") || string.IsNullOrEmpty(row["Product Name"].ToString()))
-                                continue;
-
-                            int productId = Convert.ToInt32(row["Product ID"]);
-                            //var existingProduct = context.Products.Find(productId);
-                            var pName = row[1].ToString();
-                            var existingProduct = context.Products.Where(s => s.ProductEnglishName == pName).FirstOrDefault();
-
-                            if (existingProduct != null)
-                            {
-                                // Update existing product
-                                existingProduct.ProductEnglishName = GetStringOrNull(row["Product Name"]);
-                                existingProduct.ProductUrduName = GetStringOrNull(row["Urdu Name"]);
-                                existingProduct.ProductType = GetStringOrNull(row["Type"]);
-                                existingProduct.SearchByProductCode = GetStringOrNull(row["SearchByProductName"]);
-                                //existingProduct.PurchasePrice = GetIntOrDefault(row["Purchase Price"]);
-                                existingProduct.PurchasePrice = GetStringOrNull(row["Purchase Price"]);
-                                existingProduct.SalePrice = GetIntOrDefault(row["Sale Price"]);
-                                existingProduct.Cost = Convert.ToInt32(row["Cost"]);
-                                existingProduct.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
-
-                                context.Entry(existingProduct).State = EntityState.Modified;
-                                updatedCount++;
-                            }
-                            else
-                            {
-                                // Add new product
-                                var newProduct = new Models.Product
-                                {
-                                    Id = productId,
-                                    ProductEnglishName = GetStringOrNull(row["Product Name"]),
-                                    ProductUrduName = GetStringOrNull(row["Urdu Name"]),
-                                    ProductType = GetStringOrNull(row["Type"]),
-                                    //PurchasePrice = GetIntOrDefault(row["Purchase Price"]),
-                                    PurchasePrice = GetStringOrNull(row["Purchase Price"]),
-                                    SalePrice = GetIntOrDefault(row["Sale Price"]),
-                                    Cost = Convert.ToInt32(row["Cost"]),
-                                    SubcategoryId = Convert.ToInt32(row["SubCategory"]),
-                                    SearchByProductCode = GetStringOrNull(row["SearchByProductName"])
-                                };
-
-                                ProductToAddList.Add(newProduct);
-                                addedCount++;
-                            }
-                        }
-
-                        if (ProductToAddList.Count > 0)
-                            context.Products.AddRange(ProductToAddList);
-                        int savedRecords = context.SaveChanges();
-
-                        LoadingManager.HideLoading();
-                        MessageBox.Show($"Successfully imported {(addedCount+updatedCount)} records to database!",
-                            "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        this.Close();
-                    }
+                    MessageBox.Show("No data to import. Please load data from an Excel file first.",
+                        "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                catch (Exception)
+
+                using (var context = new POSDbContext())
                 {
+                    int totalUpdated = 0;
+                    int totalAdded = 0;
+                    var productsToAdd = new List<Models.Product>();
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        var (updatedCount, addedCount, newProducts) = ProcessProductRow(row, context);
+                        totalUpdated += updatedCount;
+                        totalAdded += addedCount;
+                        productsToAdd.AddRange(newProducts);
+                    }
+
+                    if (productsToAdd.Count > 0)
+                        context.Products.AddRange(productsToAdd);
+
+                    context.SaveChanges();
+
                     LoadingManager.HideLoading();
-                    throw;
+                    MessageBox.Show($"Successfully processed {totalAdded + totalUpdated} records! " +
+                                   $"(Added: {totalAdded}, Updated: {totalUpdated})",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                LoadingManager.HideLoading();
+                MessageBox.Show($"Error saving data: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Consider logging the exception
+            }
+        }
+
+        private (int updatedCount, int addedCount, List<Models.Product> productsToAdd) ProcessProductRow(DataRow row, POSDbContext context)
+        {
+            int updatedCount = 0;
+            int addedCount = 0;
+            var productsToAdd = new List<Models.Product>();
+
+            var productName = GetStringOrNull(row["Product Name"]);
+            var oldName = GetStringOrNull(row["ProductOldName"]);
+
+            // Use old name to find existing product, regardless of name change
+            var existingProduct = context.Products
+                .FirstOrDefault(s => s.ProductEnglishName == oldName);
+
+            if (existingProduct != null)
+            {
+                // Update existing product
+                UpdateProductFromRow(existingProduct, row);
+                context.Entry(existingProduct).State = EntityState.Modified;
+                updatedCount++;
             }
             else
             {
-                MessageBox.Show($"Please Upload the Products first",
-                          "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Add new product
+                var newProduct = CreateProductFromRow(row);
+                productsToAdd.Add(newProduct);
+                addedCount++;
             }
-               
-            
+
+            return (updatedCount, addedCount, productsToAdd);
         }
+
+        private void UpdateProductFromRow(Models.Product product, DataRow row)
+        {
+            product.ProductEnglishName = GetStringOrNull(row["Product Name"]);
+            product.ProductUrduName = GetStringOrNull(row["Urdu Name"]);
+            product.ProductType = GetStringOrNull(row["Type"]);
+            product.SearchByProductCode = GetStringOrNull(row["SearchByProductName"]);
+            product.PurchasePrice = GetStringOrNull(row["Purchase Price"]);
+            product.SalePrice = GetIntOrDefault(row["Sale Price"]);
+            product.Cost = Convert.ToInt32(row["Cost"]);
+            product.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
+        }
+
+        private Models.Product CreateProductFromRow(DataRow row)
+        {
+            return new Models.Product
+            {
+                ProductEnglishName = GetStringOrNull(row["Product Name"]),
+                ProductUrduName = GetStringOrNull(row["Urdu Name"]),
+                ProductType = GetStringOrNull(row["Type"]),
+                PurchasePrice = GetStringOrNull(row["Purchase Price"]),
+                SalePrice = GetIntOrDefault(row["Sale Price"]),
+                Cost = Convert.ToInt32(row["Cost"]),
+                SubcategoryId = Convert.ToInt32(row["SubCategory"]),
+                SearchByProductCode = GetStringOrNull(row["SearchByProductName"])
+            };
+        }
+
+        //private void SaveUpdatedPriceBtn_Click(object sender, EventArgs e)
+        //{
+        //    if (updatedProductLIstGrid.Rows.Count != 0 && updatedProductLIstGrid.Rows != null)
+        //    {
+        //        try
+        //        {
+        //            LoadingManager.ShowLoading();
+        //            DataTable dataTable = (DataTable)updatedProductLIstGrid.DataSource;
+        //            if (dataTable == null || dataTable.Rows.Count == 0)
+        //            {
+        //                MessageBox.Show("No data to import. Please load data from an Excel file first.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //                return;
+        //            }
+
+        //            using (var context = new POSDbContext())
+        //            {
+        //                int updatedCount = 0;
+        //                int addedCount = 0;
+        //                var ProductToAddList = new List<Models.Product>();
+        //                foreach (DataRow row in dataTable.Rows)
+        //                {
+        //                    //if (row.IsNull("Product ID") || string.IsNullOrEmpty(row["Product Name"].ToString()))
+        //                    //    continue;
+
+        //                    //int productId = Convert.ToInt32(row["Product ID"]);
+        //                    //var existingProduct = context.Products.Find(productId);
+        //                    var pName = row[1].ToString();
+
+        //                    var oldName= row["ProductOldName"].ToString();
+        //                    if(pName.Equals(oldName, StringComparison.OrdinalIgnoreCase))
+        //                    {
+        //                        var existingProduct = context.Products.Where(s => s.ProductEnglishName == oldName).FirstOrDefault();
+
+        //                        if (existingProduct != null)
+        //                        {
+        //                            // Update existing product
+        //                            existingProduct.ProductEnglishName = GetStringOrNull(row["Product Name"]);
+        //                            existingProduct.ProductUrduName = GetStringOrNull(row["Urdu Name"]);
+        //                            existingProduct.ProductType = GetStringOrNull(row["Type"]);
+        //                            existingProduct.SearchByProductCode = GetStringOrNull(row["SearchByProductName"]);
+        //                            //existingProduct.PurchasePrice = GetIntOrDefault(row["Purchase Price"]);
+        //                            existingProduct.PurchasePrice = GetStringOrNull(row["Purchase Price"]);
+        //                            existingProduct.SalePrice = GetIntOrDefault(row["Sale Price"]);
+        //                            existingProduct.Cost = Convert.ToInt32(row["Cost"]);
+        //                            existingProduct.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
+
+        //                            context.Entry(existingProduct).State = EntityState.Modified;
+        //                            updatedCount++;
+        //                        }
+        //                        else
+        //                        {
+        //                            // Add new product
+        //                            var newProduct = new Models.Product
+        //                            {
+        //                                //Id = productId,
+        //                                ProductEnglishName = GetStringOrNull(row["Product Name"]),
+        //                                ProductUrduName = GetStringOrNull(row["Urdu Name"]),
+        //                                ProductType = GetStringOrNull(row["Type"]),
+        //                                //PurchasePrice = GetIntOrDefault(row["Purchase Price"]),
+        //                                PurchasePrice = GetStringOrNull(row["Purchase Price"]),
+        //                                SalePrice = GetIntOrDefault(row["Sale Price"]),
+        //                                Cost = Convert.ToInt32(row["Cost"]),
+        //                                SubcategoryId = Convert.ToInt32(row["SubCategory"]),
+        //                                SearchByProductCode = GetStringOrNull(row["SearchByProductName"])
+        //                            };
+
+        //                            ProductToAddList.Add(newProduct);
+        //                            addedCount++;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+
+        //                        var existingProduct = context.Products.Where(s => s.ProductEnglishName == oldName).FirstOrDefault();
+
+        //                        if (existingProduct != null)
+        //                        {
+        //                            // Update existing product
+        //                            existingProduct.ProductEnglishName = GetStringOrNull(row["Product Name"]);
+        //                            existingProduct.ProductUrduName = GetStringOrNull(row["Urdu Name"]);
+        //                            existingProduct.ProductType = GetStringOrNull(row["Type"]);
+        //                            existingProduct.SearchByProductCode = GetStringOrNull(row["SearchByProductName"]);
+        //                            //existingProduct.PurchasePrice = GetIntOrDefault(row["Purchase Price"]);
+        //                            existingProduct.PurchasePrice = GetStringOrNull(row["Purchase Price"]);
+        //                            existingProduct.SalePrice = GetIntOrDefault(row["Sale Price"]);
+        //                            existingProduct.Cost = Convert.ToInt32(row["Cost"]);
+        //                            existingProduct.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
+
+        //                            context.Entry(existingProduct).State = EntityState.Modified;
+        //                            updatedCount++;
+        //                        }
+        //                        else
+        //                        {
+        //                            // Add new product
+        //                            var newProduct = new Models.Product
+        //                            {
+        //                                //Id = productId,
+        //                                ProductEnglishName = GetStringOrNull(row["Product Name"]),
+        //                                ProductUrduName = GetStringOrNull(row["Urdu Name"]),
+        //                                ProductType = GetStringOrNull(row["Type"]),
+        //                                //PurchasePrice = GetIntOrDefault(row["Purchase Price"]),
+        //                                PurchasePrice = GetStringOrNull(row["Purchase Price"]),
+        //                                SalePrice = GetIntOrDefault(row["Sale Price"]),
+        //                                Cost = Convert.ToInt32(row["Cost"]),
+        //                                SubcategoryId = Convert.ToInt32(row["SubCategory"]),
+        //                                SearchByProductCode = GetStringOrNull(row["SearchByProductName"])
+        //                            };
+
+        //                            ProductToAddList.Add(newProduct);
+        //                            addedCount++;
+        //                        }
+        //                    }
+        //                    ////   var existingProduct = context.Products.Where(s => s.ProductEnglishName == pName).FirstOrDefault();
+
+        //                    //if (existingProduct != null)
+        //                    //{
+        //                    //    // Update existing product
+        //                    //    existingProduct.ProductEnglishName = GetStringOrNull(row["Product Name"]);
+        //                    //    existingProduct.ProductUrduName = GetStringOrNull(row["Urdu Name"]);
+        //                    //    existingProduct.ProductType = GetStringOrNull(row["Type"]);
+        //                    //    existingProduct.SearchByProductCode = GetStringOrNull(row["SearchByProductName"]);
+        //                    //    //existingProduct.PurchasePrice = GetIntOrDefault(row["Purchase Price"]);
+        //                    //    existingProduct.PurchasePrice = GetStringOrNull(row["Purchase Price"]);
+        //                    //    existingProduct.SalePrice = GetIntOrDefault(row["Sale Price"]);
+        //                    //    existingProduct.Cost = Convert.ToInt32(row["Cost"]);
+        //                    //    existingProduct.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
+
+        //                    //    context.Entry(existingProduct).State = EntityState.Modified;
+        //                    //    updatedCount++;
+        //                    //}
+        //                    //else
+        //                    //{
+        //                    //    // Add new product
+        //                    //    var newProduct = new Models.Product
+        //                    //    {
+        //                    //        //Id = productId,
+        //                    //        ProductEnglishName = GetStringOrNull(row["Product Name"]),
+        //                    //        ProductUrduName = GetStringOrNull(row["Urdu Name"]),
+        //                    //        ProductType = GetStringOrNull(row["Type"]),
+        //                    //        //PurchasePrice = GetIntOrDefault(row["Purchase Price"]),
+        //                    //        PurchasePrice = GetStringOrNull(row["Purchase Price"]),
+        //                    //        SalePrice = GetIntOrDefault(row["Sale Price"]),
+        //                    //        Cost = Convert.ToInt32(row["Cost"]),
+        //                    //        SubcategoryId = Convert.ToInt32(row["SubCategory"]),
+        //                    //        SearchByProductCode = GetStringOrNull(row["SearchByProductName"])
+        //                    //    };
+
+        //                    //    ProductToAddList.Add(newProduct);
+        //                    //    addedCount++;
+        //                    //}
+        //                }
+
+        //                if (ProductToAddList.Count > 0)
+        //                    context.Products.AddRange(ProductToAddList);
+        //                int savedRecords = context.SaveChanges();
+
+        //                LoadingManager.HideLoading();
+        //                MessageBox.Show($"Successfully imported {(addedCount+updatedCount)} records to database!",
+        //                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        //                this.Close();
+        //            }
+        //        }
+        //        catch (Exception)
+        //        {
+        //            LoadingManager.HideLoading();
+        //            throw;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show($"Please Upload the Products first",
+        //                  "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+
+        //}
 
 
         //public void LoadDataFromExcel(string filePath, string ext, string hdr)

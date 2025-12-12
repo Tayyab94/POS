@@ -9,5 +9,7 @@ namespace POS_Shop.Interfaces
 
         Task<(int totalCount, IEnumerable<CustomerListForDataGridDto> data)> GetCustomerPagingListAsync(int pageIndex, int pageSize, string search);
         Task<bool> CheckRecoradAlreadyExistByName(string name, string address);
+
+       Task<IEnumerable<Customer>> GetAll(List<int> ids);
     }
 }

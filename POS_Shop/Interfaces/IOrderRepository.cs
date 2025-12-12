@@ -18,5 +18,6 @@ namespace POS_Shop.Interfaces
         Task<(int totalCount, IEnumerable<TempOrderListDto> data)> GetTempOrderPagingListAsync(int pageIndex, int pageSize, string search);
 
         List<TempOrderDetail>GetTempOrderDetailByInvoice(string invoiceNo);
+       OrderAmountSummaryDto GetLatestOrderAmountSummaryByCustomerId(int customerId);
     }
 }

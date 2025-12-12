@@ -488,7 +488,7 @@
             this.UpdateCitybtn.IdleIconLeftImage = null;
             this.UpdateCitybtn.IdleIconRightImage = null;
             this.UpdateCitybtn.IndicateFocus = false;
-            this.UpdateCitybtn.Location = new System.Drawing.Point(692, 93);
+            this.UpdateCitybtn.Location = new System.Drawing.Point(692, 95);
             this.UpdateCitybtn.Name = "UpdateCitybtn";
             this.UpdateCitybtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.UpdateCitybtn.OnDisabledState.BorderRadius = 1;
@@ -522,7 +522,7 @@
             this.UpdateCitybtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.UpdateCitybtn.OnPressedState.IconLeftImage = null;
             this.UpdateCitybtn.OnPressedState.IconRightImage = null;
-            this.UpdateCitybtn.Size = new System.Drawing.Size(150, 39);
+            this.UpdateCitybtn.Size = new System.Drawing.Size(150, 37);
             this.UpdateCitybtn.TabIndex = 4;
             this.UpdateCitybtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.UpdateCitybtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -706,7 +706,7 @@
             this.ResetFromBtn.IdleIconLeftImage = null;
             this.ResetFromBtn.IdleIconRightImage = null;
             this.ResetFromBtn.IndicateFocus = false;
-            this.ResetFromBtn.Location = new System.Drawing.Point(850, 93);
+            this.ResetFromBtn.Location = new System.Drawing.Point(850, 95);
             this.ResetFromBtn.Name = "ResetFromBtn";
             this.ResetFromBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.ResetFromBtn.OnDisabledState.BorderRadius = 1;
@@ -740,7 +740,7 @@
             this.ResetFromBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.ResetFromBtn.OnPressedState.IconLeftImage = null;
             this.ResetFromBtn.OnPressedState.IconRightImage = null;
-            this.ResetFromBtn.Size = new System.Drawing.Size(150, 39);
+            this.ResetFromBtn.Size = new System.Drawing.Size(150, 37);
             this.ResetFromBtn.TabIndex = 8;
             this.ResetFromBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ResetFromBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;

@@ -2,6 +2,7 @@
 using POS_Shop.Views.Account;
 using POS_Shop.Views.BillScreen;
 using POS_Shop.Views.DB_Screens;
+using POS_Shop.Views.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -270,6 +271,27 @@ namespace POS_Shop
             LoadHomeUI();
         }
 
-       
+        private void SaleReportBtn_Click(object sender, EventArgs e)
+        {
+            var saleChartForm = new SalesChartForm();
+            saleChartForm.ShowDialog();
+            this.Show();
+
+        }
+
+        private void importCustomerExcelFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadingManager.ShowLoading();
+                ImportCustomerFile importExcelForm = new ImportCustomerFile();
+                importExcelForm.Owner = this;
+                importExcelForm.Show();
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
+        }
     }
 }

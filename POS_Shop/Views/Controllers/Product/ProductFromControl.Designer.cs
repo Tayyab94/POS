@@ -92,7 +92,6 @@
             this.ProductEngNameTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.ExportProdBtn = new System.Windows.Forms.Button();
             this.ClearAllSelectionBtn = new System.Windows.Forms.Button();
             this.SelectAllBtn = new System.Windows.Forms.Button();
             this.selectedProdLbl = new System.Windows.Forms.Label();
@@ -102,10 +101,11 @@
             this.ProductListGrid = new System.Windows.Forms.DataGridView();
             this.lblStatus = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ProductFormLbl = new System.Windows.Forms.Label();
+            this.ExportProdBtn = new System.Windows.Forms.Button();
             this.PreviousPageBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.NextPageBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.ProdSearchTxt = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.ProductFormLbl = new System.Windows.Forms.Label();
             this.ProductFromGrp.SuspendLayout();
             this.ProductListGridGrp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductListGrid)).BeginInit();
@@ -195,7 +195,7 @@
             this.ImportFilBtn.IdleIconLeftImage = null;
             this.ImportFilBtn.IdleIconRightImage = null;
             this.ImportFilBtn.IndicateFocus = false;
-            this.ImportFilBtn.Location = new System.Drawing.Point(768, 132);
+            this.ImportFilBtn.Location = new System.Drawing.Point(768, 134);
             this.ImportFilBtn.Name = "ImportFilBtn";
             this.ImportFilBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.ImportFilBtn.OnDisabledState.BorderRadius = 1;
@@ -229,7 +229,7 @@
             this.ImportFilBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.ImportFilBtn.OnPressedState.IconLeftImage = null;
             this.ImportFilBtn.OnPressedState.IconRightImage = null;
-            this.ImportFilBtn.Size = new System.Drawing.Size(138, 39);
+            this.ImportFilBtn.Size = new System.Drawing.Size(138, 37);
             this.ImportFilBtn.TabIndex = 25;
             this.ImportFilBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ImportFilBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -265,7 +265,7 @@
             this.SearchBynameTxt.IconRight = null;
             this.SearchBynameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.SearchBynameTxt.Lines = new string[0];
-            this.SearchBynameTxt.Location = new System.Drawing.Point(853, 17);
+            this.SearchBynameTxt.Location = new System.Drawing.Point(880, 17);
             this.SearchBynameTxt.MaxLength = 32767;
             this.SearchBynameTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.SearchBynameTxt.Modified = false;
@@ -301,7 +301,7 @@
             this.SearchBynameTxt.SelectionLength = 0;
             this.SearchBynameTxt.SelectionStart = 0;
             this.SearchBynameTxt.ShortcutsEnabled = true;
-            this.SearchBynameTxt.Size = new System.Drawing.Size(227, 41);
+            this.SearchBynameTxt.Size = new System.Drawing.Size(294, 41);
             this.SearchBynameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.SearchBynameTxt.TabIndex = 3;
             this.SearchBynameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -316,7 +316,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(715, 25);
+            this.label5.Location = new System.Drawing.Point(748, 26);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(123, 16);
             this.label5.TabIndex = 24;
@@ -468,13 +468,13 @@
             "عدد",
             "ڈبہ",
             "درجن",
-            "کارٹن",
             "پیکٹ",
-            "رول",
-            "گز",
             "بنڈل",
+            "کارٹن",
+            "رول",
             "ڈبی",
             "کلو",
+            "گز",
             "جوڑی",
             "سابقہ"});
             this.productTypeDropdown.ItemTopMargin = 3;
@@ -620,7 +620,7 @@
             this.updateProductBtn.IdleIconLeftImage = null;
             this.updateProductBtn.IdleIconRightImage = null;
             this.updateProductBtn.IndicateFocus = false;
-            this.updateProductBtn.Location = new System.Drawing.Point(684, 133);
+            this.updateProductBtn.Location = new System.Drawing.Point(679, 134);
             this.updateProductBtn.Name = "updateProductBtn";
             this.updateProductBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.updateProductBtn.OnDisabledState.BorderRadius = 1;
@@ -654,7 +654,7 @@
             this.updateProductBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.updateProductBtn.OnPressedState.IconLeftImage = null;
             this.updateProductBtn.OnPressedState.IconRightImage = null;
-            this.updateProductBtn.Size = new System.Drawing.Size(72, 39);
+            this.updateProductBtn.Size = new System.Drawing.Size(77, 38);
             this.updateProductBtn.TabIndex = 0;
             this.updateProductBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.updateProductBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1139,7 +1139,7 @@
             this.ProductUrduNameTxt.IconRight = null;
             this.ProductUrduNameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.ProductUrduNameTxt.Lines = new string[0];
-            this.ProductUrduNameTxt.Location = new System.Drawing.Point(452, 12);
+            this.ProductUrduNameTxt.Location = new System.Drawing.Point(477, 12);
             this.ProductUrduNameTxt.MaxLength = 32767;
             this.ProductUrduNameTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.ProductUrduNameTxt.Modified = false;
@@ -1176,7 +1176,7 @@
             this.ProductUrduNameTxt.SelectionLength = 0;
             this.ProductUrduNameTxt.SelectionStart = 0;
             this.ProductUrduNameTxt.ShortcutsEnabled = true;
-            this.ProductUrduNameTxt.Size = new System.Drawing.Size(248, 41);
+            this.ProductUrduNameTxt.Size = new System.Drawing.Size(267, 41);
             this.ProductUrduNameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.ProductUrduNameTxt.TabIndex = 2;
             this.ProductUrduNameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1214,7 +1214,7 @@
             this.ProductEngNameTxt.IconRight = null;
             this.ProductEngNameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.ProductEngNameTxt.Lines = new string[0];
-            this.ProductEngNameTxt.Location = new System.Drawing.Point(124, 12);
+            this.ProductEngNameTxt.Location = new System.Drawing.Point(121, 12);
             this.ProductEngNameTxt.MaxLength = 32767;
             this.ProductEngNameTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.ProductEngNameTxt.Modified = false;
@@ -1250,7 +1250,7 @@
             this.ProductEngNameTxt.SelectionLength = 0;
             this.ProductEngNameTxt.SelectionStart = 0;
             this.ProductEngNameTxt.ShortcutsEnabled = true;
-            this.ProductEngNameTxt.Size = new System.Drawing.Size(227, 41);
+            this.ProductEngNameTxt.Size = new System.Drawing.Size(255, 41);
             this.ProductEngNameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.ProductEngNameTxt.TabIndex = 1;
             this.ProductEngNameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1265,7 +1265,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(361, 24);
+            this.label2.Location = new System.Drawing.Point(386, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 16);
             this.label2.TabIndex = 0;
@@ -1280,24 +1280,6 @@
             this.label1.Size = new System.Drawing.Size(105, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Product Name";
-            // 
-            // ExportProdBtn
-            // 
-            this.ExportProdBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportProdBtn.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ExportProdBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ExportProdBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExportProdBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ExportProdBtn.Image = global::POS_Shop.Properties.Resources.iconExcel;
-            this.ExportProdBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ExportProdBtn.Location = new System.Drawing.Point(765, 242);
-            this.ExportProdBtn.Name = "ExportProdBtn";
-            this.ExportProdBtn.Size = new System.Drawing.Size(107, 43);
-            this.ExportProdBtn.TabIndex = 0;
-            this.ExportProdBtn.Text = "Export";
-            this.ExportProdBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ExportProdBtn.UseVisualStyleBackColor = false;
-            this.ExportProdBtn.Click += new System.EventHandler(this.ExportProdBtn_Click);
             // 
             // ClearAllSelectionBtn
             // 
@@ -1388,6 +1370,36 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // ProductFormLbl
+            // 
+            this.ProductFormLbl.AutoSize = true;
+            this.ProductFormLbl.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.ProductFormLbl.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductFormLbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ProductFormLbl.Location = new System.Drawing.Point(482, 3);
+            this.ProductFormLbl.Name = "ProductFormLbl";
+            this.ProductFormLbl.Size = new System.Drawing.Size(133, 26);
+            this.ProductFormLbl.TabIndex = 20;
+            this.ProductFormLbl.Text = "Add Proudct";
+            // 
+            // ExportProdBtn
+            // 
+            this.ExportProdBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExportProdBtn.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.ExportProdBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExportProdBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExportProdBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ExportProdBtn.Image = global::POS_Shop.Properties.Resources.iconExcel;
+            this.ExportProdBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ExportProdBtn.Location = new System.Drawing.Point(765, 242);
+            this.ExportProdBtn.Name = "ExportProdBtn";
+            this.ExportProdBtn.Size = new System.Drawing.Size(114, 43);
+            this.ExportProdBtn.TabIndex = 0;
+            this.ExportProdBtn.Text = "Export";
+            this.ExportProdBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ExportProdBtn.UseVisualStyleBackColor = false;
+            this.ExportProdBtn.Click += new System.EventHandler(this.ExportProdBtn_Click);
             // 
             // PreviousPageBtn
             // 
@@ -1537,18 +1549,6 @@
             this.ProdSearchTxt.UseSystemPasswordChar = false;
             this.ProdSearchTxt.WordWrap = true;
             this.ProdSearchTxt.TextChange += new System.EventHandler(this.ProdSearchTxt_TextChanged);
-            // 
-            // ProductFormLbl
-            // 
-            this.ProductFormLbl.AutoSize = true;
-            this.ProductFormLbl.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ProductFormLbl.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProductFormLbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ProductFormLbl.Location = new System.Drawing.Point(482, 3);
-            this.ProductFormLbl.Name = "ProductFormLbl";
-            this.ProductFormLbl.Size = new System.Drawing.Size(133, 26);
-            this.ProductFormLbl.TabIndex = 20;
-            this.ProductFormLbl.Text = "Add Proudct";
             // 
             // ProductFromControl
             // 

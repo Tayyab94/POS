@@ -120,20 +120,20 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="updateCategoryBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAHYAAAAqCAYAAABm66+dAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACSSURBVHhe7dExCYBQAABRwyrYwRaC6cygiwGUP1jieMOD
+        iVBORw0KGgoAAAANSUhEUgAAAHYAAAAlCAYAAACXvR1IAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACHSURBVHhe7dExCYBQAABRwyrYwRaC6cygiwGUP1jieMOD
         229a9uucj+ulYzydRmzrTch4amyQsVHGRhkbZWyUsVHGRhkbZWyUsVHGRhkbZWyUsVHGRhkbZWyUsVHG
-        RhkbZWyUsVHGRhkbZWyUsVHGRhkbZWyUsVHGRhkbZWyUsVHGRhkbZWyUsVHGRv1jnxGkPB+S+Y9zARRX
-        /AAAAABJRU5ErkJggg==
+        RhkbZWyUsVHGRhkbZWyUsVHGRhkbZWyUsVHGRhkbZWyUsVH/2GcEKc8H7XIS55ystXAAAAAASUVORK5C
+        YII=
 </value>
   </data>
   <data name="SaveCategoryBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAALQAAAAnCAYAAACmP2LfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACUSURBVHhe7dIxEYAwAMDAKqll8IcM9sIOCpr74ZfMGfNc
+        iVBORw0KGgoAAAANSUhEUgAAALQAAAAlCAYAAADr98PUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACPSURBVHhe7dIxEYAwAMDAKqll8IcM9sIOCpr74ZfMGfNc
         1zyfB/a3rvGPsC9Dk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxN
-        iqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJGfNY9zfClo51v5gmSHJZ
-        JBv0AAAAAElFTkSuQmCC
+        iqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUsY81v2NsKVj3S+fw4ZWUzDfxgAA
+        AABJRU5ErkJggg==
 </value>
   </data>
   <data name="categoryNameTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
