@@ -583,14 +583,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS_Shop.exe" size="1705384">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS_Shop.exe" size="1718184">
       <assemblyIdentity name="POS_Shop" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0qK2SQpNH3llwhx4vUpC+EpLcUJ0Kal+EMwizGxLnLY=</dsig:DigestValue>
+        <dsig:DigestValue>jOzM5uAXvQ6rsnJFTTPZsN8Y3dSb3O5xEk6Bn3FEBTY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -602,7 +602,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Y+fL3APyKVDPBvtKu25mlOpcPQESnihI3SBBSqfEolc=</dsig:DigestValue>
+        <dsig:DigestValue>OF4Ua15G5LE8daqBjNcPYQzGflwqSUGDf5Vqiz6bMls=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -795,13 +795,13 @@
       <dsig:DigestValue>xMdbFoEVyJkm99t+fkpn/OTN1ISVXV3xLu1km5sB4CI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="POS_Shop.exe.config" size="4561">
+  <file name="POS_Shop.exe.config" size="4656">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>kbH9JMm4v534nwK332/6L1YzD1N8jU8EOqkH5eqAPjM=</dsig:DigestValue>
+      <dsig:DigestValue>N3D2QzJ+42/ZHxMaZ5eja9nMtvx5GjYvKKs3VzMSsEc=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

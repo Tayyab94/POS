@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POS_Shop.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -10,13 +11,75 @@ namespace POS_Shop.Models
     public class POSDbContext: DbContext
     {
 
-        public POSDbContext():base("name=POSDbConnectionstring")
+        //public POSDbContext():base("name=POSDbConnectionstring")
+        //{
+
+        //    //string dbname = @"Server=(localdb)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\dbName.mdf;Integrated Security=true;";
+        //    //Optional Initializer  
+        //    Database.SetInitializer(new CreateDatabaseIfNotExists<POSDbContext>());
+        //}
+
+
+        public POSDbContext() : base(DatabasePathManager.GetConnectionString())
         {
 
             //string dbname = @"Server=(localdb)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\dbName.mdf;Integrated Security=true;";
             //Optional Initializer  
-            Database.SetInitializer(new CreateDatabaseIfNotExists<POSDbContext>());
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<POSDbContext>());
+
+            // Disable initializer since you have existing database
+            Database.SetInitializer<POSDbContext>(null);
+
+            // Configuration for better performance
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.AutoDetectChangesEnabled = true;
+            Configuration.ValidateOnSaveEnabled = true;
+
+            // Set longer timeout for complex queries
+            Database.CommandTimeout = 180; // 3 minutes
         }
+
+        /// <summary>
+        /// Tests database connection
+        /// </summary>
+        /// 
+        public bool TestConnection()
+        {
+            try
+            {
+                Database.Connection.Open();
+
+                bool isConnected = Database.Connection.State == System.Data.ConnectionState.Open;
+                Database.Connection.Close();
+                return isConnected;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Get Database Information
+        /// </summary>
+
+        public string GetDatabaseInfo()
+        {
+            try
+            {
+                Database.Connection.Open();
+                string databaseName = Database.Connection.Database;
+                string dataSource = Database.Connection.DataSource;
+                Database.Connection.Close();
+                return $"Database: {databaseName}, Data Source: {dataSource}";
+            }
+            catch (Exception ex)
+            {
+                return $"Error retrieving database info: {ex.Message}";
+            }
+        }
+
         public DbSet<City> Cities { get; set; }
 
         public DbSet<Country> Countries { get; set; }

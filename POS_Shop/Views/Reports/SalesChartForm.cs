@@ -464,7 +464,7 @@ namespace POS_Shop.Views.Reports
                             TotalQuantity = x.TotalQuantity,
                             TotalRevenue = x.TotalRevenue,
                             QuantityType = quantityType
-                        })
+                        }).OrderByDescending(s=>s.TotalQuantity)
                         .ToList();
 
                     return productsData;
