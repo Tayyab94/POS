@@ -308,3 +308,4 @@ V:\POS\POS_Shop\obj\Debug\POS_Shop.application
 V:\POS\POS_Shop\obj\Debug\POS_Shop.csproj.Up2Date
 V:\POS\POS_Shop\obj\Debug\POS_Shop.exe
 V:\POS\POS_Shop\obj\Debug\POS_Shop.pdb
+V:\POS\POS_Shop\obj\Debug\POS_Shop.Views.DB_Screens.SettingsForm.resources

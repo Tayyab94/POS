@@ -16,6 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <PublishUrl>D:\POSBuild\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -32,7 +33,6 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -252,6 +252,7 @@
     <Compile Include="DTOs\Product\ProductSalesData.cs" />
     <Compile Include="DTOs\Product\ProductSuggestion.cs" />
     <Compile Include="Helpers\ConversionHelper.cs" />
+    <Compile Include="Helpers\DatabasePathManager.cs" />
     <Compile Include="Helpers\InvoicePDFGenerator.cs" />
     <Compile Include="Helpers\ISectionAware.cs" />
     <Compile Include="Helpers\LoadingManager.cs" />
@@ -479,6 +480,12 @@
     <Compile Include="Views\DB_Screens\RestoreDbForm.Designer.cs">
       <DependentUpon>RestoreDbForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\DB_Screens\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DB_Screens\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\InputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -636,6 +643,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\RestoreDbForm.resx">
       <DependentUpon>RestoreDbForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DB_Screens\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>

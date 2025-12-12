@@ -293,5 +293,19 @@ namespace POS_Shop
                 LoadingManager.HideLoading();
             }
         }
+
+        private void databaseSettingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var settingsForm = new SettingsForm())
+            {
+                settingsForm.ShowDialog();
+                //LoadDatabaseInfo(); // Refresh status
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace POS_Shop
 {
     internal static class Program
     {
+        private static Mutex _mutex;
         private  static DailyBackgroundService _backgroundService;
         /// <summary>
         /// The main entry point for the application.
@@ -20,6 +21,20 @@ namespace POS_Shop
         [STAThread]
         static void Main()
         {
+
+            // Ensure only one instance runs
+            bool createdNew;
+            _mutex = new Mutex(true, "POSAppInstance", out createdNew);
+
+            if (!createdNew)
+            {
+                MessageBox.Show("Application is already running!",
+                              "POS System",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Information);
+                return;
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -33,6 +48,16 @@ namespace POS_Shop
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // Show splash screen (optional)
+            ShowSplashScreen();
+
+            // Initialize database - THIS HAPPENS ONCE PER INSTALLATION
+            if (!InitializeApplication())
+            {
+                // Initialization failed
+                return;
+            }
 
             // Initialize background service
             InitializeBackgroundService();
@@ -74,10 +99,74 @@ namespace POS_Shop
 
             }
 
+            // Keep mutex alive
+            GC.KeepAlive(_mutex);
             _backgroundService?.Dispose();
 
         }
 
+        /// <summary>
+        /// Shows splash screen (optional)
+        /// </summary>
+        private static void ShowSplashScreen()
+        {
+            // You can create a simple splash form or skip this
+            // For now, just show loading cursor
+            Cursor.Current = Cursors.WaitCursor;
+        }
+
+        /// <summary>
+        /// Initializes application and database
+        /// </summary>
+        public static bool InitializeApplication()
+        {
+            try
+            {
+                // This will:
+                // 1. First time: Ask user to locate database (ONCE)
+                // 2. Subsequent times: Use saved path automatically
+
+                if(!DatabasePathManager.Initialize())
+                {
+                    MessageBox.Show("Application cannot start without a valid database.",
+                              "Initialization Failed",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
+                    return false;
+                }
+
+                // Test Entity Framework connection
+                using (var db = new POSDbContext())
+                {
+                    if (!db.TestConnection())
+                    {
+                        MessageBox.Show("Cannot connect to database using Entity Framework.",
+                                      "Database Error",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    // Optional: Log successful initialization
+                    Console.WriteLine("✓ Database initialized successfully");
+                    Console.WriteLine($"✓ {db.GetDatabaseInfo()}");
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Application initialization failed:\n{ex.Message}",
+                             "Fatal Error",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
 
         private static void InitializeCountryCityDbCheck()
         {
