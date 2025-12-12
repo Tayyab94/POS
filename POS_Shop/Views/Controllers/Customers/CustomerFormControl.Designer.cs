@@ -53,7 +53,7 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties15 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties16 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CustomerFormGroup = new System.Windows.Forms.GroupBox();
             this.ResetFormBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.CustomerIdTxt = new System.Windows.Forms.TextBox();
             this.RemoveCustomerBtn = new System.Windows.Forms.Button();
@@ -71,13 +71,17 @@
             this.CustomerNameTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.CustomerListGroup = new System.Windows.Forms.GroupBox();
+            this.ExportAllBtn = new System.Windows.Forms.Button();
+            this.selectedProdLbl = new System.Windows.Forms.Label();
+            this.SelectAllBtn = new System.Windows.Forms.Button();
+            this.ClearAllSelectionBtn = new System.Windows.Forms.Button();
             this.CustomerListDataGrid = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.CustomerSearchTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.CustomerFormErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblStatus = new System.Windows.Forms.Label();
             this.PreviousPageBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.NextPageBtn = new Bunifu.UI.WinForms.BunifuImageButton();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.CustomerFormGroup.SuspendLayout();
             this.CustomerListGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerListDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerFormErrorProvider)).BeginInit();
@@ -88,37 +92,37 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Ravie", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label1.Location = new System.Drawing.Point(434, 14);
+            this.label1.Location = new System.Drawing.Point(434, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(371, 44);
             this.label1.TabIndex = 0;
             this.label1.Text = "Customer Form";
             // 
-            // groupBox1
+            // CustomerFormGroup
             // 
-            this.groupBox1.Controls.Add(this.ResetFormBtn);
-            this.groupBox1.Controls.Add(this.CustomerIdTxt);
-            this.groupBox1.Controls.Add(this.RemoveCustomerBtn);
-            this.groupBox1.Controls.Add(this.UpdateCustomerBtn);
-            this.groupBox1.Controls.Add(this.SaveCustomerBtn);
-            this.groupBox1.Controls.Add(this.CustomerActiveChkBox);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.CityDropDownLst);
-            this.groupBox1.Controls.Add(this.CountryDropDownLst);
-            this.groupBox1.Controls.Add(this.CategoryDropdownLbl);
-            this.groupBox1.Controls.Add(this.CustomerPhoneTxt);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.CustomerAddressTxt);
-            this.groupBox1.Controls.Add(this.CustAddress);
-            this.groupBox1.Controls.Add(this.CustomerNameTxt);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 59);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1172, 139);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Customer Form";
+            this.CustomerFormGroup.Controls.Add(this.ResetFormBtn);
+            this.CustomerFormGroup.Controls.Add(this.CustomerIdTxt);
+            this.CustomerFormGroup.Controls.Add(this.RemoveCustomerBtn);
+            this.CustomerFormGroup.Controls.Add(this.UpdateCustomerBtn);
+            this.CustomerFormGroup.Controls.Add(this.SaveCustomerBtn);
+            this.CustomerFormGroup.Controls.Add(this.CustomerActiveChkBox);
+            this.CustomerFormGroup.Controls.Add(this.label2);
+            this.CustomerFormGroup.Controls.Add(this.CityDropDownLst);
+            this.CustomerFormGroup.Controls.Add(this.CountryDropDownLst);
+            this.CustomerFormGroup.Controls.Add(this.CategoryDropdownLbl);
+            this.CustomerFormGroup.Controls.Add(this.CustomerPhoneTxt);
+            this.CustomerFormGroup.Controls.Add(this.label4);
+            this.CustomerFormGroup.Controls.Add(this.CustomerAddressTxt);
+            this.CustomerFormGroup.Controls.Add(this.CustAddress);
+            this.CustomerFormGroup.Controls.Add(this.CustomerNameTxt);
+            this.CustomerFormGroup.Controls.Add(this.label3);
+            this.CustomerFormGroup.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerFormGroup.Location = new System.Drawing.Point(12, 53);
+            this.CustomerFormGroup.Name = "CustomerFormGroup";
+            this.CustomerFormGroup.Size = new System.Drawing.Size(1172, 147);
+            this.CustomerFormGroup.TabIndex = 1;
+            this.CustomerFormGroup.TabStop = false;
+            this.CustomerFormGroup.Text = "Customer Form";
             // 
             // ResetFormBtn
             // 
@@ -168,7 +172,7 @@
             this.ResetFormBtn.IdleIconLeftImage = null;
             this.ResetFormBtn.IdleIconRightImage = null;
             this.ResetFormBtn.IndicateFocus = false;
-            this.ResetFormBtn.Location = new System.Drawing.Point(943, 81);
+            this.ResetFormBtn.Location = new System.Drawing.Point(997, 98);
             this.ResetFormBtn.Name = "ResetFormBtn";
             this.ResetFormBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.ResetFormBtn.OnDisabledState.BorderRadius = 1;
@@ -202,7 +206,7 @@
             this.ResetFormBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.ResetFormBtn.OnPressedState.IconLeftImage = null;
             this.ResetFormBtn.OnPressedState.IconRightImage = null;
-            this.ResetFormBtn.Size = new System.Drawing.Size(72, 39);
+            this.ResetFormBtn.Size = new System.Drawing.Size(72, 32);
             this.ResetFormBtn.TabIndex = 12;
             this.ResetFormBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ResetFormBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -213,7 +217,7 @@
             // 
             // CustomerIdTxt
             // 
-            this.CustomerIdTxt.Location = new System.Drawing.Point(20, 57);
+            this.CustomerIdTxt.Location = new System.Drawing.Point(108, 14);
             this.CustomerIdTxt.Name = "CustomerIdTxt";
             this.CustomerIdTxt.Size = new System.Drawing.Size(25, 25);
             this.CustomerIdTxt.TabIndex = 0;
@@ -226,9 +230,9 @@
             this.RemoveCustomerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RemoveCustomerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RemoveCustomerBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.RemoveCustomerBtn.Location = new System.Drawing.Point(724, 79);
+            this.RemoveCustomerBtn.Location = new System.Drawing.Point(778, 96);
             this.RemoveCustomerBtn.Name = "RemoveCustomerBtn";
-            this.RemoveCustomerBtn.Size = new System.Drawing.Size(123, 43);
+            this.RemoveCustomerBtn.Size = new System.Drawing.Size(123, 34);
             this.RemoveCustomerBtn.TabIndex = 0;
             this.RemoveCustomerBtn.Text = "Delete";
             this.RemoveCustomerBtn.UseVisualStyleBackColor = false;
@@ -283,7 +287,7 @@
             this.UpdateCustomerBtn.IdleIconLeftImage = null;
             this.UpdateCustomerBtn.IdleIconRightImage = null;
             this.UpdateCustomerBtn.IndicateFocus = false;
-            this.UpdateCustomerBtn.Location = new System.Drawing.Point(860, 81);
+            this.UpdateCustomerBtn.Location = new System.Drawing.Point(914, 98);
             this.UpdateCustomerBtn.Name = "UpdateCustomerBtn";
             this.UpdateCustomerBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.UpdateCustomerBtn.OnDisabledState.BorderRadius = 1;
@@ -317,7 +321,7 @@
             this.UpdateCustomerBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.UpdateCustomerBtn.OnPressedState.IconLeftImage = null;
             this.UpdateCustomerBtn.OnPressedState.IconRightImage = null;
-            this.UpdateCustomerBtn.Size = new System.Drawing.Size(72, 39);
+            this.UpdateCustomerBtn.Size = new System.Drawing.Size(72, 30);
             this.UpdateCustomerBtn.TabIndex = 0;
             this.UpdateCustomerBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.UpdateCustomerBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -375,7 +379,7 @@
             this.SaveCustomerBtn.IdleIconLeftImage = null;
             this.SaveCustomerBtn.IdleIconRightImage = null;
             this.SaveCustomerBtn.IndicateFocus = false;
-            this.SaveCustomerBtn.Location = new System.Drawing.Point(1024, 81);
+            this.SaveCustomerBtn.Location = new System.Drawing.Point(1078, 98);
             this.SaveCustomerBtn.Name = "SaveCustomerBtn";
             this.SaveCustomerBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveCustomerBtn.OnDisabledState.BorderRadius = 1;
@@ -409,7 +413,7 @@
             this.SaveCustomerBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.SaveCustomerBtn.OnPressedState.IconLeftImage = null;
             this.SaveCustomerBtn.OnPressedState.IconRightImage = null;
-            this.SaveCustomerBtn.Size = new System.Drawing.Size(79, 39);
+            this.SaveCustomerBtn.Size = new System.Drawing.Size(79, 32);
             this.SaveCustomerBtn.TabIndex = 7;
             this.SaveCustomerBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SaveCustomerBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -423,7 +427,7 @@
             this.CustomerActiveChkBox.AutoSize = true;
             this.CustomerActiveChkBox.Checked = true;
             this.CustomerActiveChkBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CustomerActiveChkBox.Location = new System.Drawing.Point(569, 88);
+            this.CustomerActiveChkBox.Location = new System.Drawing.Point(567, 102);
             this.CustomerActiveChkBox.Name = "CustomerActiveChkBox";
             this.CustomerActiveChkBox.Size = new System.Drawing.Size(69, 23);
             this.CustomerActiveChkBox.TabIndex = 6;
@@ -434,7 +438,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(288, 88);
+            this.label2.Location = new System.Drawing.Point(277, 103);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 16);
             this.label2.TabIndex = 10;
@@ -474,7 +478,7 @@
             this.CityDropDownLst.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
             this.CityDropDownLst.ItemHighLightForeColor = System.Drawing.Color.White;
             this.CityDropDownLst.ItemTopMargin = 3;
-            this.CityDropDownLst.Location = new System.Drawing.Point(342, 81);
+            this.CityDropDownLst.Location = new System.Drawing.Point(331, 94);
             this.CityDropDownLst.Name = "CityDropDownLst";
             this.CityDropDownLst.Size = new System.Drawing.Size(211, 32);
             this.CityDropDownLst.TabIndex = 5;
@@ -516,7 +520,7 @@
             this.CountryDropDownLst.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
             this.CountryDropDownLst.ItemHighLightForeColor = System.Drawing.Color.White;
             this.CountryDropDownLst.ItemTopMargin = 3;
-            this.CountryDropDownLst.Location = new System.Drawing.Point(103, 81);
+            this.CountryDropDownLst.Location = new System.Drawing.Point(78, 95);
             this.CountryDropDownLst.Name = "CountryDropDownLst";
             this.CountryDropDownLst.Size = new System.Drawing.Size(171, 32);
             this.CountryDropDownLst.TabIndex = 4;
@@ -529,7 +533,7 @@
             // 
             this.CategoryDropdownLbl.AutoSize = true;
             this.CategoryDropdownLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategoryDropdownLbl.Location = new System.Drawing.Point(20, 90);
+            this.CategoryDropdownLbl.Location = new System.Drawing.Point(13, 103);
             this.CategoryDropdownLbl.Name = "CategoryDropdownLbl";
             this.CategoryDropdownLbl.Size = new System.Drawing.Size(59, 16);
             this.CategoryDropdownLbl.TabIndex = 11;
@@ -562,7 +566,7 @@
             this.CustomerPhoneTxt.IconRight = null;
             this.CustomerPhoneTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.CustomerPhoneTxt.Lines = new string[0];
-            this.CustomerPhoneTxt.Location = new System.Drawing.Point(844, 21);
+            this.CustomerPhoneTxt.Location = new System.Drawing.Point(899, 35);
             this.CustomerPhoneTxt.MaxLength = 32767;
             this.CustomerPhoneTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.CustomerPhoneTxt.Modified = false;
@@ -613,7 +617,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(756, 38);
+            this.label4.Location = new System.Drawing.Point(897, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 16);
             this.label4.TabIndex = 5;
@@ -646,7 +650,7 @@
             this.CustomerAddressTxt.IconRight = null;
             this.CustomerAddressTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.CustomerAddressTxt.Lines = new string[0];
-            this.CustomerAddressTxt.Location = new System.Drawing.Point(467, 21);
+            this.CustomerAddressTxt.Location = new System.Drawing.Point(625, 37);
             this.CustomerAddressTxt.MaxLength = 32767;
             this.CustomerAddressTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.CustomerAddressTxt.Modified = false;
@@ -697,7 +701,7 @@
             // 
             this.CustAddress.AutoSize = true;
             this.CustAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustAddress.Location = new System.Drawing.Point(394, 38);
+            this.CustAddress.Location = new System.Drawing.Point(627, 18);
             this.CustAddress.Name = "CustAddress";
             this.CustAddress.Size = new System.Drawing.Size(65, 16);
             this.CustAddress.TabIndex = 3;
@@ -730,7 +734,7 @@
             this.CustomerNameTxt.IconRight = null;
             this.CustomerNameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.CustomerNameTxt.Lines = new string[0];
-            this.CustomerNameTxt.Location = new System.Drawing.Point(108, 21);
+            this.CustomerNameTxt.Location = new System.Drawing.Point(6, 39);
             this.CustomerNameTxt.MaxLength = 32767;
             this.CustomerNameTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.CustomerNameTxt.Modified = false;
@@ -766,7 +770,7 @@
             this.CustomerNameTxt.SelectionLength = 0;
             this.CustomerNameTxt.SelectionStart = 0;
             this.CustomerNameTxt.ShortcutsEnabled = true;
-            this.CustomerNameTxt.Size = new System.Drawing.Size(260, 41);
+            this.CustomerNameTxt.Size = new System.Drawing.Size(613, 41);
             this.CustomerNameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.CustomerNameTxt.TabIndex = 1;
             this.CustomerNameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -781,7 +785,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(17, 38);
+            this.label3.Location = new System.Drawing.Point(7, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 16);
             this.label3.TabIndex = 1;
@@ -792,6 +796,10 @@
             this.CustomerListGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.CustomerListGroup.Controls.Add(this.ExportAllBtn);
+            this.CustomerListGroup.Controls.Add(this.selectedProdLbl);
+            this.CustomerListGroup.Controls.Add(this.SelectAllBtn);
+            this.CustomerListGroup.Controls.Add(this.ClearAllSelectionBtn);
             this.CustomerListGroup.Controls.Add(this.CustomerListDataGrid);
             this.CustomerListGroup.Controls.Add(this.CustomerSearchTxt);
             this.CustomerListGroup.Location = new System.Drawing.Point(12, 217);
@@ -800,6 +808,57 @@
             this.CustomerListGroup.TabIndex = 2;
             this.CustomerListGroup.TabStop = false;
             this.CustomerListGroup.Text = "Customer List";
+            // 
+            // ExportAllBtn
+            // 
+            this.ExportAllBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExportAllBtn.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.ExportAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExportAllBtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.ExportAllBtn.Location = new System.Drawing.Point(1018, 26);
+            this.ExportAllBtn.Name = "ExportAllBtn";
+            this.ExportAllBtn.Size = new System.Drawing.Size(147, 36);
+            this.ExportAllBtn.TabIndex = 27;
+            this.ExportAllBtn.Text = "Export All";
+            this.ExportAllBtn.UseVisualStyleBackColor = false;
+            this.ExportAllBtn.Click += new System.EventHandler(this.ExportAllBtn_Click);
+            // 
+            // selectedProdLbl
+            // 
+            this.selectedProdLbl.AutoSize = true;
+            this.selectedProdLbl.Location = new System.Drawing.Point(476, 0);
+            this.selectedProdLbl.Name = "selectedProdLbl";
+            this.selectedProdLbl.Size = new System.Drawing.Size(45, 16);
+            this.selectedProdLbl.TabIndex = 26;
+            this.selectedProdLbl.Text = "Select";
+            // 
+            // SelectAllBtn
+            // 
+            this.SelectAllBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectAllBtn.BackColor = System.Drawing.Color.OliveDrab;
+            this.SelectAllBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SelectAllBtn.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.SelectAllBtn.Location = new System.Drawing.Point(886, 26);
+            this.SelectAllBtn.Name = "SelectAllBtn";
+            this.SelectAllBtn.Size = new System.Drawing.Size(126, 36);
+            this.SelectAllBtn.TabIndex = 22;
+            this.SelectAllBtn.Text = "Select All";
+            this.SelectAllBtn.UseVisualStyleBackColor = false;
+            this.SelectAllBtn.Click += new System.EventHandler(this.SelectAllBtn_Click);
+            // 
+            // ClearAllSelectionBtn
+            // 
+            this.ClearAllSelectionBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClearAllSelectionBtn.BackColor = System.Drawing.Color.Peru;
+            this.ClearAllSelectionBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearAllSelectionBtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.ClearAllSelectionBtn.Location = new System.Drawing.Point(781, 26);
+            this.ClearAllSelectionBtn.Name = "ClearAllSelectionBtn";
+            this.ClearAllSelectionBtn.Size = new System.Drawing.Size(100, 36);
+            this.ClearAllSelectionBtn.TabIndex = 21;
+            this.ClearAllSelectionBtn.Text = "Clear All";
+            this.ClearAllSelectionBtn.UseVisualStyleBackColor = false;
+            this.ClearAllSelectionBtn.Click += new System.EventHandler(this.ClearAllSelectionBtn_Click);
             // 
             // CustomerListDataGrid
             // 
@@ -864,6 +923,7 @@
             this.CustomerListDataGrid.TabIndex = 0;
             this.CustomerListDataGrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CustomerListDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerListDataGrid_CellClick);
+            this.CustomerListDataGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.CustomerListDataGrid_CurrentCellDirtyStateChanged);
             // 
             // CustomerSearchTxt
             // 
@@ -944,6 +1004,16 @@
             // 
             this.CustomerFormErrorProvider.ContainerControl = this;
             // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(819, 216);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(44, 16);
+            this.lblStatus.TabIndex = 22;
+            this.lblStatus.Text = "Status";
+            // 
             // PreviousPageBtn
             // 
             this.PreviousPageBtn.ActiveImage = null;
@@ -1018,16 +1088,6 @@
             this.NextPageBtn.ZoomSpeed = 10;
             this.NextPageBtn.Click += new System.EventHandler(this.NextPageBtn_Click);
             // 
-            // lblStatus
-            // 
-            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(860, 216);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(44, 16);
-            this.lblStatus.TabIndex = 22;
-            this.lblStatus.Text = "Status";
-            // 
             // CustomerFormControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1036,13 +1096,14 @@
             this.Controls.Add(this.NextPageBtn);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.CustomerListGroup);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.CustomerFormGroup);
             this.Controls.Add(this.label1);
             this.Name = "CustomerFormControl";
             this.Size = new System.Drawing.Size(1200, 629);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.CustomerFormGroup.ResumeLayout(false);
+            this.CustomerFormGroup.PerformLayout();
             this.CustomerListGroup.ResumeLayout(false);
+            this.CustomerListGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerListDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerFormErrorProvider)).EndInit();
             this.ResumeLayout(false);
@@ -1053,7 +1114,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox CustomerFormGroup;
         private System.Windows.Forms.GroupBox CustomerListGroup;
         private Bunifu.UI.WinForms.BunifuTextBox CustomerNameTxt;
         private System.Windows.Forms.Label label3;
@@ -1077,5 +1138,9 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox CustomerIdTxt;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton ResetFormBtn;
+        private System.Windows.Forms.Button SelectAllBtn;
+        private System.Windows.Forms.Button ClearAllSelectionBtn;
+        private System.Windows.Forms.Label selectedProdLbl;
+        private System.Windows.Forms.Button ExportAllBtn;
     }
 }

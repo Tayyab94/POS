@@ -452,8 +452,7 @@ namespace POS_Shop.Helpers
             // HEADER
             if (!hideShopName)
             {
-               ;
-                e.Graphics.DrawString(Properties.Settings.Default.UserName == "sa" ? "ایس اے الیکٹرک اسٹور" : " سٹی الیکٹرونکس", titleFont, Brushes.Black,
+                e.Graphics.DrawString(Properties.Settings.Default.UserName == "city" ? " سٹی الیکٹرونکس" : "ایس اے الیکٹرک اسٹور", titleFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
                 currentY += lineHeight * 2;
                 //e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
@@ -465,6 +464,7 @@ namespace POS_Shop.Helpers
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 2;
 
+            //string cName= !string.IsNullOrEmpty(customerName) ? customerName.Split('-')[1].Trim() : "";
             e.Graphics.DrawString($"کسٹمر: {customerName}", headerFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 2;
@@ -477,7 +477,8 @@ namespace POS_Shop.Helpers
                               new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 2;
 
-            e.Graphics.DrawString("انوائس نمبر:" + invoiceNo, urduFont, Brushes.Black,
+
+            e.Graphics.DrawString($"انوائس :" + invoiceNo, urduFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 2;
 
@@ -578,6 +579,198 @@ namespace POS_Shop.Helpers
 
             e.Graphics.DrawString("چائنہ مال کی وارنٹی نہیں۔", headerFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
+        }
+
+        public static void PrintEnglishInvoice(PrintPageEventArgs e, DataGridView cartProductList,
+                    string customerName, string invoiceNo, string totalAmount,
+                    bool isCashPayment, string receivedAmount, bool hideShopName)
+        {
+            // Thermal printer settings (80mm paper)
+            int paperWidth = 280; // pixels for 80mm paper
+            int leftMargin = 5;
+            int currentY = 5;
+            int lineHeight = 12;
+            int sectionSpacing = 3;
+
+            // Fonts for thermal printing
+            Font titleFont = new Font("Arial", 11, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 9, FontStyle.Bold);
+            Font regularFont = new Font("Arial", 8, FontStyle.Regular);
+            Font smallFont = new Font("Arial", 7, FontStyle.Regular);
+
+            // Urdu font
+            Font urduFont = new Font("Nafees Web Naskh", 8, FontStyle.Regular);
+            if (urduFont.Name != "Nafees Web Naskh")
+                urduFont = new Font("Arial", 8, FontStyle.Regular);
+
+            // Center alignment
+            StringFormat centerFormat = new StringFormat();
+            centerFormat.Alignment = StringAlignment.Center;
+
+            // Right alignment for numbers
+            StringFormat rightFormat = new StringFormat();
+            rightFormat.Alignment = StringAlignment.Far;
+
+            string dashLine = new string('-', 82);
+
+            // 1. COMPANY HEADER
+            if (!hideShopName)
+            {
+                e.Graphics.DrawString("Electric Shop", titleFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
+                currentY += lineHeight * 2;
+
+                e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                currentY += lineHeight;
+
+                currentY += lineHeight + 2;
+            }
+
+
+            // 2. INVOICE INFO
+            e.Graphics.DrawString("INVOICE", headerFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            string cName = !string.IsNullOrEmpty(customerName) ? customerName : "";
+            e.Graphics.DrawString($"Customer: {cName}", regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("Date: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("Invoice #:" + invoiceNo, regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            // 3. TABLE LAYOUT - FIXED COLUMN POSITIONS TO PREVENT OVERLAP
+            int productCol = leftMargin;                    // Product name column
+            int productColWidth = 120;                      // Width for product names
+
+            int typeCol = productCol + productColWidth + 5; // Type column
+            int typeColWidth = 30;
+
+            int qtyCol = typeCol + typeColWidth + 5;        // Qty column
+            int qtyColWidth = 25;
+
+            int priceCol = qtyCol + qtyColWidth + 5;        // Price column
+            int priceColWidth = 40;
+
+            int totalCol = priceCol + priceColWidth + 5;    // Total column
+            int totalColWidth = 40;
+
+            // Draw table headers
+            e.Graphics.DrawString("Product", headerFont, Brushes.Black, productCol, currentY);
+            e.Graphics.DrawString("Type", headerFont, Brushes.Black, typeCol, currentY);
+            e.Graphics.DrawString("Qty", headerFont, Brushes.Black, qtyCol, currentY);
+            e.Graphics.DrawString("Price", headerFont, Brushes.Black, priceCol, currentY);
+            e.Graphics.DrawString("Total", headerFont, Brushes.Black, totalCol, currentY);
+
+            currentY += lineHeight;
+            currentY += 3;
+            e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + totalColWidth, currentY);
+            currentY += 5;
+
+            foreach (DataGridViewRow row in cartProductList.Rows)
+            {
+
+
+                if (row.Cells[0].Value != null) // Check if row has data
+                {
+                    // First line: Product name only (left aligned)
+                    e.Graphics.DrawString(row.Cells["Urdu Name"].Value?.ToString(), regularFont, Brushes.Black, productCol, currentY);
+                    currentY += lineHeight;
+
+                    // Second line: Type, Qty, Price, Total (in columns)
+                    e.Graphics.DrawString(row.Cells["ProductType"].Value?.ToString(), urduFont, Brushes.Black, typeCol, currentY);
+                    e.Graphics.DrawString(row.Cells["Qty"].Value?.ToString(), regularFont, Brushes.Black, qtyCol, currentY);
+                    e.Graphics.DrawString(row.Cells["SalePrice"].Value?.ToString(), regularFont, Brushes.Black, priceCol, currentY);
+                    e.Graphics.DrawString(row.Cells["Amount"].Value.ToString(), regularFont, Brushes.Black, totalCol, currentY);
+                    currentY += lineHeight;
+
+
+                    // Light separator line between items
+                    e.Graphics.DrawLine(Pens.LightGray, leftMargin, currentY, totalCol + totalColWidth, currentY);
+                    currentY += 2;
+                }
+
+            }
+
+            // Bottom line of table
+            e.Graphics.DrawLine(Pens.Black, leftMargin, currentY, totalCol + totalColWidth, currentY);
+            currentY += lineHeight;
+
+            // 5. TOTALS SECTION - MOVED LEFT FOR BETTER ALIGNMENT
+            decimal subtotal = decimal.Parse(totalAmount);
+            decimal taxRate = 0.05m;
+            //decimal taxAmount = Math.Round(subtotal * taxRate, 2);
+            decimal taxAmount = Math.Round(0m, 2);
+            decimal total = subtotal + taxAmount;
+
+            // Move totals left by using priceCol-20 instead of priceCol
+            int totalsLabelCol = priceCol - 20; // Move labels 20 pixels left
+            int totalsValueCol = totalCol - 15; // Move values 15 pixels left
+
+            e.Graphics.DrawString("Subtotal:", regularFont, Brushes.Black, totalsLabelCol, currentY);
+            e.Graphics.DrawString(subtotal.ToString("0"), regularFont, Brushes.Black, totalsValueCol, currentY);
+            currentY += lineHeight;
+
+            //e.Graphics.DrawString("Tax (0%):", regularFont, Brushes.Black, totalsLabelCol, currentY);
+            //e.Graphics.DrawString(taxAmount.ToString("0.00"), regularFont, Brushes.Black, totalsValueCol, currentY);
+            //currentY += lineHeight;
+
+            e.Graphics.DrawString("TOTAL:", headerFont, Brushes.Black, totalsLabelCol, currentY);
+            e.Graphics.DrawString(total.ToString("0"), headerFont, Brushes.Black, totalsValueCol, currentY);
+            currentY += lineHeight;
+
+            currentY += lineHeight;
+
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            // 6. PAYMENT INFORMATION
+
+            string method = isCashPayment ? "Cash" : "Bank Transger";
+            e.Graphics.DrawString($"Payment Method: {method}", regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            decimal tendered = !string.IsNullOrEmpty(receivedAmount) ? decimal.Parse(receivedAmount) : decimal.Parse(totalAmount);
+            decimal change = tendered - total;
+
+            e.Graphics.DrawString("Paid: " + tendered.ToString("0"), regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            var changeLabel = change < 0 ? "Remaining: " : "Return: ";
+            e.Graphics.DrawString($"{changeLabel}: {change.ToString("0")}", regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight + 2;
+
+            // 7. FOOTER
+            e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
+            e.Graphics.DrawString("خریدا ہوا سامان واپس یا تبدیل نہیں ہوگا", headerFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+            currentY += lineHeight;
+
+            //e.Graphics.DrawString("7-day return with receipt", smallFont, Brushes.Black,
+            //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+        }
+
+        private static void DrawLine(Graphics graphics, int paperWidth, ref int yPos)
+        {
+            graphics.DrawLine(Pens.Black, 10, yPos, paperWidth - 10, yPos);
+            yPos += 5;
+        }
+
+
+        private static void DrawCenteredString(Graphics graphics, string text, Font font, int paperWidth, ref int yPos)
+        {
+            SizeF textSize = graphics.MeasureString(text, font);
+            int xPos = (paperWidth - (int)textSize.Width) / 2;
+            graphics.DrawString(text, font, Brushes.Black, xPos, yPos);
+            yPos += (int)textSize.Height + 2;
         }
 
         //public static void PrintInvoice(PrintPageEventArgs e, DataGridView cartProductList,
@@ -746,3 +939,4 @@ namespace POS_Shop.Helpers
         }
     }
 }
+ 

@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -113,61 +115,173 @@ namespace POS_Shop.Views.Controllers.Order
         }
 
 
+        //private List<DailySales> GetWeeklySalesData()
+        //{
+        //    // This method gets data from your database
+        //    // Replace 'YourDbContext' with your actual DbContext class name
+
+        //    List<DailySales> weeklySales = new List<DailySales>();
+
+        //    try
+        //    {
+        //        using (var context = new POSDbContext()) // CHANGE THIS to your DbContext name
+        //        {
+        //            // Calculate start of current week (Sunday)
+        //            DateTime startDate = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
+        //            // Calculate end of current week (Saturday)
+        //            DateTime endDate = startDate.AddDays(7);
+
+        //            // Query to get sales data grouped by day of week
+        //            var salesData = context.Orders
+        //                .AsNoTracking()
+        //                .Where(o => o.CreatedDate >= startDate && o.CreatedDate < endDate)
+        //                .GroupBy(o => o.CreatedDate.DayOfWeek)
+        //                .Select(g => new
+        //                {
+        //                    DayOfWeek = g.Key,
+        //                    DayName = g.Key.ToString(),
+        //                    TotalSales = g.Sum(o => o.TotalBill)
+        //                })
+        //                .OrderBy(x => x.DayOfWeek)
+        //                .ToList();
+
+        //            // Convert to DailySales list
+        //            foreach (var item in salesData)
+        //            {
+        //                weeklySales.Add(new DailySales
+        //                {
+        //                    Day = item.DayName,
+        //                    Sales = (decimal)item.TotalSales
+        //                });
+        //            }
+
+        //            // If no data found, show sample data
+        //            if (weeklySales.Count == 0)
+        //            {
+        //                weeklySales = GetSampleData();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // If there's an error (like database connection), show sample data
+        //        MessageBox.Show("Using sample data. Database error: " + ex.Message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        weeklySales = GetSampleData();
+        //    }
+
+        //    return weeklySales;
+        //}
+
+
+        //private List<DailySales> GetWeeklySalesData()
+        //{
+        //    try
+        //    {
+        //        using (var context = new POSDbContext())
+        //        {
+        //            // Calculate start of current week (Sunday)
+        //            DateTime startDate = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
+        //            DateTime endDate = startDate.AddDays(7);
+
+        //            // Get all 7 days with SQL aggregation
+        //            var salesByDate = context.Orders
+        //                .AsNoTracking()
+        //                .Where(o => o.CreatedDate >= startDate &&
+        //                           o.CreatedDate < endDate)
+        //                .GroupBy(o => EntityFunctions.TruncateTime(o.CreatedDate))
+        //                .Select(g => new
+        //                {
+        //                    Date = g.Key,
+        //                    TotalSales = g.Sum(o => o.TotalBill)  // Handle nulls in SQL
+        //                })
+        //                .ToList();  // Only ~7 rows returned!
+
+        //            // Create full week structure (Sunday to Saturday)
+        //            var weeklySales = new List<DailySales>();
+
+        //            for (int i = 0; i < 7; i++)
+        //            {
+        //                DateTime currentDate = startDate.AddDays(i);
+        //                var dayData = salesByDate.FirstOrDefault(x => x.Date == currentDate);
+
+        //                weeklySales.Add(new DailySales
+        //                {
+        //                    Day = currentDate.DayOfWeek.ToString(),
+        //                    Sales =(decimal)( dayData?.TotalSales ?? 0)  // Default to 0 if no sales
+        //                });
+        //            }
+
+        //            // If no sales at all, show sample data
+        //            if (weeklySales.All(x => x.Sales == 0))
+        //            {
+        //                return GetSampleData();
+        //            }
+
+        //            return weeklySales;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Using sample data. Database error: " + ex.Message,
+        //                       "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return GetSampleData();
+        //    }
+        //}
+
         private List<DailySales> GetWeeklySalesData()
         {
-            // This method gets data from your database
-            // Replace 'YourDbContext' with your actual DbContext class name
-
-            List<DailySales> weeklySales = new List<DailySales>();
-
             try
             {
-                using (var context = new POSDbContext()) // CHANGE THIS to your DbContext name
+                using (var context = new POSDbContext())
                 {
-                    // Calculate start of current week (Sunday)
                     DateTime startDate = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
-                    // Calculate end of current week (Saturday)
                     DateTime endDate = startDate.AddDays(7);
 
-                    // Query to get sales data grouped by day of week
-                    var salesData = context.Orders
+                    // Load only date and amount (minimal data)
+                    var weekOrders = context.Orders
+                        .AsNoTracking()
                         .Where(o => o.CreatedDate >= startDate && o.CreatedDate < endDate)
-                        .AsEnumerable() // Switch to client-side for grouping
-                        .GroupBy(o => o.CreatedDate.DayOfWeek)
-                        .Select(g => new
-                        {
-                            DayOfWeek = g.Key,
-                            DayName = g.Key.ToString(),
-                            TotalSales = g.Sum(o => o.TotalBill)
-                        })
-                        .OrderBy(x => x.DayOfWeek)
+                        .Select(o => new { o.CreatedDate, o.ReceiveAmount })
                         .ToList();
 
-                    // Convert to DailySales list
-                    foreach (var item in salesData)
+                    // Group in memory
+                    var salesByDate = weekOrders
+                        .GroupBy(o => o.CreatedDate.Date)
+                        .Select(g => new
+                        {
+                            Date = g.Key,
+                            TotalSales =(decimal)g.Sum(o => o.ReceiveAmount)  // ✅ Handle nulls here
+                        })
+                        .ToList();
+
+                    var weeklySales = new List<DailySales>();
+
+                    for (int i = 0; i < 7; i++)
                     {
+                        DateTime currentDate = startDate.AddDays(i);
+                        var dayData = salesByDate.FirstOrDefault(x => x.Date == currentDate);
+
                         weeklySales.Add(new DailySales
                         {
-                            Day = item.DayName,
-                            Sales = (decimal)item.TotalSales
+                            Day = currentDate.DayOfWeek.ToString(),
+                            Sales = dayData?.TotalSales ?? 0m  // ✅ FIXED: Default to 0m if null
                         });
                     }
 
-                    // If no data found, show sample data
-                    if (weeklySales.Count == 0)
+                    if (weeklySales.All(x => x.Sales == 0))
                     {
-                        weeklySales = GetSampleData();
+                        return GetSampleData();
                     }
+
+                    return weeklySales;
                 }
             }
             catch (Exception ex)
             {
-                // If there's an error (like database connection), show sample data
-                MessageBox.Show("Using sample data. Database error: " + ex.Message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                weeklySales = GetSampleData();
+                MessageBox.Show("Using sample data. Database error: " + ex.Message,
+                               "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return GetSampleData();
             }
-
-            return weeklySales;
         }
 
         // Sample data in case database is not available
@@ -209,7 +323,4 @@ namespace POS_Shop.Views.Controllers.Order
             public decimal Sales { get; set; }
         }
     }
-
-
-
-    }
+}

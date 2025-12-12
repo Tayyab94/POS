@@ -118,7 +118,7 @@
             this.UpdateCountrybtn.IdleIconLeftImage = null;
             this.UpdateCountrybtn.IdleIconRightImage = null;
             this.UpdateCountrybtn.IndicateFocus = false;
-            this.UpdateCountrybtn.Location = new System.Drawing.Point(406, 53);
+            this.UpdateCountrybtn.Location = new System.Drawing.Point(406, 72);
             this.UpdateCountrybtn.Name = "UpdateCountrybtn";
             this.UpdateCountrybtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.UpdateCountrybtn.OnDisabledState.BorderRadius = 1;
@@ -152,7 +152,7 @@
             this.UpdateCountrybtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.UpdateCountrybtn.OnPressedState.IconLeftImage = null;
             this.UpdateCountrybtn.OnPressedState.IconRightImage = null;
-            this.UpdateCountrybtn.Size = new System.Drawing.Size(150, 39);
+            this.UpdateCountrybtn.Size = new System.Drawing.Size(150, 30);
             this.UpdateCountrybtn.TabIndex = 8;
             this.UpdateCountrybtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.UpdateCountrybtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -370,7 +370,7 @@
             this.SaveCityBtn.IdleIconLeftImage = null;
             this.SaveCityBtn.IdleIconRightImage = null;
             this.SaveCityBtn.IndicateFocus = false;
-            this.SaveCityBtn.Location = new System.Drawing.Point(406, 100);
+            this.SaveCityBtn.Location = new System.Drawing.Point(406, 110);
             this.SaveCityBtn.Name = "SaveCityBtn";
             this.SaveCityBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveCityBtn.OnDisabledState.BorderRadius = 1;
@@ -404,7 +404,7 @@
             this.SaveCityBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.SaveCityBtn.OnPressedState.IconLeftImage = null;
             this.SaveCityBtn.OnPressedState.IconRightImage = null;
-            this.SaveCityBtn.Size = new System.Drawing.Size(150, 39);
+            this.SaveCityBtn.Size = new System.Drawing.Size(150, 29);
             this.SaveCityBtn.TabIndex = 3;
             this.SaveCityBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SaveCityBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;

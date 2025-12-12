@@ -1,13 +1,10 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Drawing.Charts;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
-using DocumentFormat.OpenXml.Vml;
-using POS_Shop.DTOs.Order;
+﻿using POS_Shop.DTOs.Order;
 using POS_Shop.Interfaces;
 using POS_Shop.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,18 +37,17 @@ namespace POS_Shop.Repositories
             var prevOrder= await _context.Orders.Where(s=>s.Id== order.Id && s.InvoiceNumber==order.InvoiceNumber).FirstOrDefaultAsync();
             if(prevOrder!=null)
             {
-                prevOrder.CreatedDate = DateTime.Now;
-                prevOrder.TotalBill = order.TotalBill;
-                prevOrder.ReceiveAmount = order.ReceiveAmount;
-                prevOrder.InvoiceNumber = order.InvoiceNumber;
-                prevOrder.customerId = order.customerId > 0 ? order.customerId : null;
-                prevOrder.paymentType = order.paymentType;
-                _context.Entry(prevOrder).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-              
+                    prevOrder.CreatedDate = DateTime.Now;
+                    prevOrder.TotalBill = order.TotalBill;
+                    prevOrder.ReceiveAmount = order.ReceiveAmount;
+                    prevOrder.InvoiceNumber = order.InvoiceNumber;
+                    prevOrder.customerId = order.customerId > 0 ? order.customerId : null;
+                    prevOrder.paymentType = order.paymentType;
+                    _context.Entry(prevOrder).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
             }
+
             return order.Id;
-            
         }
 
         public async Task<string> AddTempOrder(TempOrder order)
@@ -135,22 +131,71 @@ namespace POS_Shop.Repositories
             return data;
         }
 
+        //public async Task<(int totalCount, IEnumerable<OrdersListDto> data)> GetOrderPagingListAsync(int pageIndex, int pageSize, string search)
+        //{
+        //    var data = _context.Orders.Include(s=>s.Customer).AsNoTracking().AsQueryable();
+
+        //    // apply search
+
+        //    if(!string.IsNullOrWhiteSpace(search))
+        //    {
+        //        var searchWords = search.Trim().ToLower().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        //        // apply search
+
+        //        //foreach (var word in searchWords)
+        //        //{
+        //        //    data = data.Where(s => s.Id.ToString().Contains(word)
+        //        //    || s.InvoiceNumber.ToString().ToLower().Contains(word)
+        //        //    || s.Customer.CustomerName.ToLower().Contains(word)
+        //        //    || s.Customer.CustomerAddress.ToLower().Contains(word));
+        //        //    //data = data.Where(s => s.CustomerName.Contains(word) || s.City.Name.Contains(word));
+        //        //}
+
+        //        // Build a single WHERE clause with all conditions
+        //        data = data.Where(s =>
+        //            searchWords.Any(word =>
+        //                SqlFunctions.StringConvert((double)s.Id).Contains(word) ||
+        //                s.InvoiceNumber.ToLower().Contains(word) ||
+        //                (s.Customer != null && (
+        //                    s.Customer.CustomerName.ToLower().Contains(word) ||
+        //                    s.Customer.CustomerAddress.ToLower().Contains(word)
+        //                ))
+        //            )
+        //        );
+
+        //    }
+
+        //    var totalCount = await data.CountAsync();
+
+        //    var result = await data.OrderByDescending(s => s.Id)
+        //        .Skip((pageIndex - 1) * pageSize)
+        //        .Take(pageSize)
+        //        .Select(s => new OrdersListDto()
+        //        {
+        //            Id = s.Id,
+        //            InvoiceNumber = s.InvoiceNumber,
+        //          paymentType=s.paymentType,
+        //           CreatedDate = s.CreatedDate,
+        //           customerId= s.customerId.HasValue? s.customerId: null,
+        //            CustomerName = s.customerId == null? "No":s.Customer.CustomerName.ToString(),
+        //            ReceiveAmount= s.ReceiveAmount, 
+        //             TotalBill  = s.TotalBill,
+        //        }).ToListAsync();
+
+        //    return (totalCount, result);
+        //}
+
         public async Task<(int totalCount, IEnumerable<OrdersListDto> data)> GetOrderPagingListAsync(int pageIndex, int pageSize, string search)
         {
-            var data = _context.Orders.Include(s=>s.Customer).AsQueryable();
+            var data = _context.Orders.Include(s => s.Customer).AsNoTracking().AsQueryable();
 
             // apply search
-
-
             var searchWords = search.ToLower().Split(' ');
             // apply search
 
             foreach (var word in searchWords)
-            {
                 data = data.Where(s => s.Id.ToString().Contains(word) || s.InvoiceNumber.ToString().Contains(word) || s.Customer.CustomerName.Contains(word) || s.Customer.CustomerAddress.Contains(word));
-                //data = data.Where(s => s.CustomerName.Contains(word) || s.City.Name.Contains(word));
-            }
-           
+
             var totalCount = await data.CountAsync();
 
             var result = await data.OrderByDescending(s => s.Id)
@@ -160,12 +205,12 @@ namespace POS_Shop.Repositories
                 {
                     Id = s.Id,
                     InvoiceNumber = s.InvoiceNumber,
-                  paymentType=s.paymentType,
-                   CreatedDate = s.CreatedDate,
-                   customerId= s.customerId.HasValue? s.customerId: null,
-                    CustomerName = s.customerId == null? "No":s.Customer.CustomerName.ToString(),
-                    ReceiveAmount= s.ReceiveAmount, 
-                     TotalBill  = s.TotalBill,
+                    paymentType = s.paymentType,
+                    CreatedDate = s.CreatedDate,
+                    customerId = s.customerId.HasValue ? s.customerId : null,
+                    CustomerName = s.customerId == null ? "No" : s.Customer.CustomerName.ToString(),
+                    ReceiveAmount = s.ReceiveAmount,
+                    TotalBill = s.TotalBill,
                 }).ToListAsync();
 
             return (totalCount, result);
@@ -205,6 +250,19 @@ namespace POS_Shop.Repositories
                 }).ToListAsync();
 
             return (totalCount, result);
+        }
+
+        public OrderAmountSummaryDto GetLatestOrderAmountSummaryByCustomerId(int customerId)
+        {
+
+            var data = _context.Orders.Where(s => s.customerId == customerId).OrderByDescending(s => s.Id)
+                .Select(s => new OrderAmountSummaryDto()
+                {
+                    TotalAmount = s.TotalBill,
+                    ReceivedAmount = s.ReceiveAmount
+                }).FirstOrDefault();
+            return data;
+
         }
     }
 }

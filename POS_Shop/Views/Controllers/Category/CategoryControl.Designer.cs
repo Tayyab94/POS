@@ -129,7 +129,7 @@
             this.updateCategoryBtn.IdleIconLeftImage = null;
             this.updateCategoryBtn.IdleIconRightImage = null;
             this.updateCategoryBtn.IndicateFocus = false;
-            this.updateCategoryBtn.Location = new System.Drawing.Point(647, 110);
+            this.updateCategoryBtn.Location = new System.Drawing.Point(647, 122);
             this.updateCategoryBtn.Name = "updateCategoryBtn";
             this.updateCategoryBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.updateCategoryBtn.OnDisabledState.BorderRadius = 1;
@@ -163,7 +163,7 @@
             this.updateCategoryBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.updateCategoryBtn.OnPressedState.IconLeftImage = null;
             this.updateCategoryBtn.OnPressedState.IconRightImage = null;
-            this.updateCategoryBtn.Size = new System.Drawing.Size(118, 42);
+            this.updateCategoryBtn.Size = new System.Drawing.Size(118, 37);
             this.updateCategoryBtn.TabIndex = 3;
             this.updateCategoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.updateCategoryBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -220,7 +220,7 @@
             this.SaveCategoryBtn.IdleIconLeftImage = null;
             this.SaveCategoryBtn.IdleIconRightImage = null;
             this.SaveCategoryBtn.IndicateFocus = false;
-            this.SaveCategoryBtn.Location = new System.Drawing.Point(784, 111);
+            this.SaveCategoryBtn.Location = new System.Drawing.Point(784, 122);
             this.SaveCategoryBtn.Name = "SaveCategoryBtn";
             this.SaveCategoryBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveCategoryBtn.OnDisabledState.BorderRadius = 1;
@@ -254,7 +254,7 @@
             this.SaveCategoryBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.SaveCategoryBtn.OnPressedState.IconLeftImage = null;
             this.SaveCategoryBtn.OnPressedState.IconRightImage = null;
-            this.SaveCategoryBtn.Size = new System.Drawing.Size(180, 39);
+            this.SaveCategoryBtn.Size = new System.Drawing.Size(180, 37);
             this.SaveCategoryBtn.TabIndex = 2;
             this.SaveCategoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SaveCategoryBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;

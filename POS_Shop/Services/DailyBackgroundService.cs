@@ -23,10 +23,8 @@ namespace POS_Shop.Services
 
         public void InitializeScheduler()
         {
-
             var now = DateTime.Now;
             var todayScheduled = DateTime.Today.Add(_scheduledTime);
-
             try
             {
                 if (now > todayScheduled)
@@ -48,8 +46,6 @@ namespace POS_Shop.Services
             {
                 Logger.LogMessage("Background Service started initialized to run at " + todayScheduled.ToString());
             }
-
-
         }
 
         private async void ExecuteDailyTask()
@@ -61,16 +57,14 @@ namespace POS_Shop.Services
             }
             catch (Exception e)
             {
-
                 throw;
             }
-
         }
 
         private void PerformDailyOperations()
         {
             DeleteTemSavedRecords();
-            DeleteThreeMonthOldOrders();
+            DeleteSixMonthOldOrders();
         }
         private void DeleteTemSavedRecords()
         {
@@ -100,7 +94,7 @@ namespace POS_Shop.Services
         }
 
 
-        private void DeleteThreeMonthOldOrders()
+        private void DeleteSixMonthOldOrders()
         {
             try
             {
@@ -127,10 +121,10 @@ namespace POS_Shop.Services
                         FROM OrderDetails
                         WHERE OrderId IN(
                             SELECT Id
-                            FROM Orders   WHERE CreatedDate <= DATEADD(month, -3, GETDATE()));");
+                            FROM Orders   WHERE CreatedDate <= DATEADD(month, -6, GETDATE()));");
 
                         // Optional: Reset identity seed if needed
-                        ctx.Database.ExecuteSqlCommand(@"DELETE FROM Orders   WHERE CreatedDate <= DATEADD(month, -3, GETDATE());");
+                        ctx.Database.ExecuteSqlCommand(@"DELETE FROM Orders   WHERE CreatedDate <= DATEADD(month, -6, GETDATE());");
 
                         Logger.LogMessage($"Data Cleanup Successful. All records older than 3 months have been permanently purged.");
                     }

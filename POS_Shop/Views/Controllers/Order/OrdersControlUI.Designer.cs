@@ -44,14 +44,22 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.OrderIDLbl = new System.Windows.Forms.Label();
             this.InvoiceNoLbl = new System.Windows.Forms.Label();
+            this.OrderDetailGroup = new System.Windows.Forms.GroupBox();
+            this.OrderDetailList = new System.Windows.Forms.DataGridView();
+            this.InvNumbnerLbl = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.OrderListGroup = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.OrderListDataGrid)).BeginInit();
+            this.OrderDetailGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderDetailList)).BeginInit();
+            this.OrderListGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(130, 57);
+            this.label1.Location = new System.Drawing.Point(21, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(366, 29);
             this.label1.TabIndex = 0;
@@ -84,7 +92,7 @@
             this.SearchOrderTxt.IconRight = null;
             this.SearchOrderTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.SearchOrderTxt.Lines = new string[0];
-            this.SearchOrderTxt.Location = new System.Drawing.Point(59, 89);
+            this.SearchOrderTxt.Location = new System.Drawing.Point(18, 93);
             this.SearchOrderTxt.MaxLength = 32767;
             this.SearchOrderTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.SearchOrderTxt.Modified = false;
@@ -138,8 +146,6 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
             this.OrderListDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.OrderListDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.OrderListDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.OrderListDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.OrderListDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -184,16 +190,15 @@
             this.OrderListDataGrid.HeaderBackColor = System.Drawing.Color.DodgerBlue;
             this.OrderListDataGrid.HeaderBgColor = System.Drawing.Color.Empty;
             this.OrderListDataGrid.HeaderForeColor = System.Drawing.Color.White;
-            this.OrderListDataGrid.Location = new System.Drawing.Point(15, 171);
+            this.OrderListDataGrid.Location = new System.Drawing.Point(6, 21);
             this.OrderListDataGrid.Name = "OrderListDataGrid";
             this.OrderListDataGrid.RowHeadersVisible = false;
             this.OrderListDataGrid.RowHeadersWidth = 51;
             this.OrderListDataGrid.RowTemplate.Height = 40;
             this.OrderListDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.OrderListDataGrid.Size = new System.Drawing.Size(663, 402);
+            this.OrderListDataGrid.Size = new System.Drawing.Size(1047, 634);
             this.OrderListDataGrid.TabIndex = 2;
             this.OrderListDataGrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
-            this.OrderListDataGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.OrderListDataGrid_CellMouseClick);
             // 
             // PreviousPageBtn
             // 
@@ -203,7 +208,6 @@
             this.PreviousPageBtn.AllowToggling = false;
             this.PreviousPageBtn.AllowZooming = false;
             this.PreviousPageBtn.AllowZoomingOnFocus = false;
-            this.PreviousPageBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PreviousPageBtn.BackColor = System.Drawing.Color.Transparent;
             this.PreviousPageBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PreviousPageBtn.DialogResult = System.Windows.Forms.DialogResult.None;
@@ -217,7 +221,7 @@
             this.PreviousPageBtn.ImageSize = new System.Drawing.Size(33, 36);
             this.PreviousPageBtn.ImageZoomSize = new System.Drawing.Size(35, 38);
             this.PreviousPageBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("PreviousPageBtn.InitialImage")));
-            this.PreviousPageBtn.Location = new System.Drawing.Point(592, 127);
+            this.PreviousPageBtn.Location = new System.Drawing.Point(987, 130);
             this.PreviousPageBtn.Name = "PreviousPageBtn";
             this.PreviousPageBtn.Rotation = 0;
             this.PreviousPageBtn.ShowActiveImage = true;
@@ -240,7 +244,6 @@
             this.NextPageBtn.AllowToggling = false;
             this.NextPageBtn.AllowZooming = false;
             this.NextPageBtn.AllowZoomingOnFocus = false;
-            this.NextPageBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NextPageBtn.BackColor = System.Drawing.Color.Transparent;
             this.NextPageBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NextPageBtn.DialogResult = System.Windows.Forms.DialogResult.None;
@@ -254,7 +257,7 @@
             this.NextPageBtn.ImageSize = new System.Drawing.Size(33, 36);
             this.NextPageBtn.ImageZoomSize = new System.Drawing.Size(35, 38);
             this.NextPageBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("NextPageBtn.InitialImage")));
-            this.NextPageBtn.Location = new System.Drawing.Point(632, 127);
+            this.NextPageBtn.Location = new System.Drawing.Point(1028, 130);
             this.NextPageBtn.Name = "NextPageBtn";
             this.NextPageBtn.Rotation = 0;
             this.NextPageBtn.ShowActiveImage = true;
@@ -271,9 +274,8 @@
             // 
             // lblStatus
             // 
-            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(443, 149);
+            this.lblStatus.Location = new System.Drawing.Point(98, 152);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(44, 16);
             this.lblStatus.TabIndex = 20;
@@ -299,21 +301,68 @@
             this.InvoiceNoLbl.Text = "InvoiceNo";
             this.InvoiceNoLbl.Visible = false;
             // 
+            // OrderDetailGroup
+            // 
+            this.OrderDetailGroup.Controls.Add(this.OrderDetailList);
+            this.OrderDetailGroup.Controls.Add(this.InvNumbnerLbl);
+            this.OrderDetailGroup.Location = new System.Drawing.Point(1089, 171);
+            this.OrderDetailGroup.Name = "OrderDetailGroup";
+            this.OrderDetailGroup.Size = new System.Drawing.Size(747, 670);
+            this.OrderDetailGroup.TabIndex = 25;
+            this.OrderDetailGroup.TabStop = false;
+            this.OrderDetailGroup.Text = "Order Detail";
+            // 
+            // OrderDetailList
+            // 
+            this.OrderDetailList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.OrderDetailList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrderDetailList.Location = new System.Drawing.Point(9, 22);
+            this.OrderDetailList.Name = "OrderDetailList";
+            this.OrderDetailList.RowHeadersWidth = 51;
+            this.OrderDetailList.RowTemplate.Height = 24;
+            this.OrderDetailList.Size = new System.Drawing.Size(724, 642);
+            this.OrderDetailList.TabIndex = 0;
+            // 
+            // InvNumbnerLbl
+            // 
+            this.InvNumbnerLbl.AutoSize = true;
+            this.InvNumbnerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InvNumbnerLbl.Location = new System.Drawing.Point(117, -5);
+            this.InvNumbnerLbl.Name = "InvNumbnerLbl";
+            this.InvNumbnerLbl.Size = new System.Drawing.Size(125, 18);
+            this.InvNumbnerLbl.TabIndex = 26;
+            this.InvNumbnerLbl.Text = "Invoice Number";
+            // 
+            // OrderListGroup
+            // 
+            this.OrderListGroup.Controls.Add(this.OrderListDataGrid);
+            this.OrderListGroup.Location = new System.Drawing.Point(14, 171);
+            this.OrderListGroup.Name = "OrderListGroup";
+            this.OrderListGroup.Size = new System.Drawing.Size(1059, 670);
+            this.OrderListGroup.TabIndex = 26;
+            this.OrderListGroup.TabStop = false;
+            this.OrderListGroup.Text = "Order List";
+            // 
             // OrdersControlUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.OrderListGroup);
+            this.Controls.Add(this.OrderDetailGroup);
             this.Controls.Add(this.InvoiceNoLbl);
             this.Controls.Add(this.OrderIDLbl);
             this.Controls.Add(this.PreviousPageBtn);
             this.Controls.Add(this.NextPageBtn);
             this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.OrderListDataGrid);
             this.Controls.Add(this.SearchOrderTxt);
             this.Controls.Add(this.label1);
             this.Name = "OrdersControlUI";
-            this.Size = new System.Drawing.Size(696, 594);
+            this.Size = new System.Drawing.Size(1849, 864);
             ((System.ComponentModel.ISupportInitialize)(this.OrderListDataGrid)).EndInit();
+            this.OrderDetailGroup.ResumeLayout(false);
+            this.OrderDetailGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderDetailList)).EndInit();
+            this.OrderListGroup.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,5 +378,10 @@
         private System.Windows.Forms.Label lblStatus;
         public System.Windows.Forms.Label OrderIDLbl;
         public System.Windows.Forms.Label InvoiceNoLbl;
+        private System.Windows.Forms.GroupBox OrderDetailGroup;
+        private System.Windows.Forms.DataGridView OrderDetailList;
+        private System.Windows.Forms.Label InvNumbnerLbl;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox OrderListGroup;
     }
 }

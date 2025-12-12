@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterLayoutForm));
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
@@ -36,20 +37,10 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.sideBarPanel = new System.Windows.Forms.Panel();
             this.FooterLbl = new System.Windows.Forms.Label();
-            this.CustomerSectionBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.ProductSectrionBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.SubCategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.CategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.MainLogoImgBtn = new Bunifu.UI.WinForms.BunifuImageButton();
-            this.CountryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.cityBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.TopNavPanel = new System.Windows.Forms.Panel();
-            this.BillPadBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.LogoutBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +48,16 @@
             this.viewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importExcelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.importCustomerExcelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BillPadBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.LogoutBtn = new Bunifu.UI.WinForms.BunifuImageButton();
+            this.CustomerSectionBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.ProductSectrionBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.SubCategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.CategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.MainLogoImgBtn = new Bunifu.UI.WinForms.BunifuImageButton();
+            this.CountryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.cityBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.sideBarPanel.SuspendLayout();
             this.TopNavPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -74,9 +75,9 @@
             this.sideBarPanel.Controls.Add(this.CountryBtn);
             this.sideBarPanel.Controls.Add(this.cityBtn);
             this.sideBarPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sideBarPanel.Location = new System.Drawing.Point(0, 30);
+            this.sideBarPanel.Location = new System.Drawing.Point(0, 28);
             this.sideBarPanel.Name = "sideBarPanel";
-            this.sideBarPanel.Size = new System.Drawing.Size(229, 650);
+            this.sideBarPanel.Size = new System.Drawing.Size(229, 652);
             this.sideBarPanel.TabIndex = 0;
             // 
             // FooterLbl
@@ -85,11 +86,222 @@
             this.FooterLbl.AutoSize = true;
             this.FooterLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FooterLbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.FooterLbl.Location = new System.Drawing.Point(21, 616);
+            this.FooterLbl.Location = new System.Drawing.Point(21, 618);
             this.FooterLbl.Name = "FooterLbl";
             this.FooterLbl.Size = new System.Drawing.Size(183, 16);
             this.FooterLbl.TabIndex = 2;
             this.FooterLbl.Text = "POS App - Cortex Studios";
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainPanel.Location = new System.Drawing.Point(235, 126);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(1143, 554);
+            this.MainPanel.TabIndex = 2;
+            // 
+            // TopNavPanel
+            // 
+            this.TopNavPanel.BackColor = System.Drawing.Color.SlateBlue;
+            this.TopNavPanel.Controls.Add(this.BillPadBtn);
+            this.TopNavPanel.Controls.Add(this.LogoutBtn);
+            this.TopNavPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopNavPanel.Location = new System.Drawing.Point(229, 28);
+            this.TopNavPanel.Name = "TopNavPanel";
+            this.TopNavPanel.Size = new System.Drawing.Size(1149, 92);
+            this.TopNavPanel.TabIndex = 3;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem,
+            this.viewsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1378, 28);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backupDatabaseToolStripMenuItem,
+            this.restoreDatabaseToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // backupDatabaseToolStripMenuItem
+            // 
+            this.backupDatabaseToolStripMenuItem.Name = "backupDatabaseToolStripMenuItem";
+            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.backupDatabaseToolStripMenuItem.Text = "Backup Database";
+            this.backupDatabaseToolStripMenuItem.Click += new System.EventHandler(this.backupDatabaseToolStripMenuItem_Click);
+            // 
+            // restoreDatabaseToolStripMenuItem
+            // 
+            this.restoreDatabaseToolStripMenuItem.Name = "restoreDatabaseToolStripMenuItem";
+            this.restoreDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.restoreDatabaseToolStripMenuItem.Text = "Restore Database";
+            this.restoreDatabaseToolStripMenuItem.Click += new System.EventHandler(this.restoreDatabaseToolStripMenuItem_Click);
+            // 
+            // viewsToolStripMenuItem
+            // 
+            this.viewsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importExcelFileToolStripMenuItem,
+            this.importCustomerExcelFileToolStripMenuItem});
+            this.viewsToolStripMenuItem.Name = "viewsToolStripMenuItem";
+            this.viewsToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.viewsToolStripMenuItem.Text = "Views";
+            // 
+            // importExcelFileToolStripMenuItem
+            // 
+            this.importExcelFileToolStripMenuItem.Name = "importExcelFileToolStripMenuItem";
+            this.importExcelFileToolStripMenuItem.Size = new System.Drawing.Size(269, 26);
+            this.importExcelFileToolStripMenuItem.Text = "Import Excel File";
+            this.importExcelFileToolStripMenuItem.Click += new System.EventHandler(this.importExcelFileToolStripMenuItem_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // importCustomerExcelFileToolStripMenuItem
+            // 
+            this.importCustomerExcelFileToolStripMenuItem.Name = "importCustomerExcelFileToolStripMenuItem";
+            this.importCustomerExcelFileToolStripMenuItem.Size = new System.Drawing.Size(269, 26);
+            this.importCustomerExcelFileToolStripMenuItem.Text = "Import Customer Excel File";
+            this.importCustomerExcelFileToolStripMenuItem.Click += new System.EventHandler(this.importCustomerExcelFileToolStripMenuItem_Click);
+            // 
+            // BillPadBtn
+            // 
+            this.BillPadBtn.AllowAnimations = true;
+            this.BillPadBtn.AllowMouseEffects = true;
+            this.BillPadBtn.AllowToggling = false;
+            this.BillPadBtn.AnimationSpeed = 200;
+            this.BillPadBtn.AutoGenerateColors = false;
+            this.BillPadBtn.AutoRoundBorders = false;
+            this.BillPadBtn.AutoSizeLeftIcon = true;
+            this.BillPadBtn.AutoSizeRightIcon = true;
+            this.BillPadBtn.BackColor = System.Drawing.Color.Transparent;
+            this.BillPadBtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.BillPadBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BillPadBtn.BackgroundImage")));
+            this.BillPadBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.BillPadBtn.ButtonText = "Bill Pad (Ctrl+B)";
+            this.BillPadBtn.ButtonTextMarginLeft = 0;
+            this.BillPadBtn.ColorContrastOnClick = 45;
+            this.BillPadBtn.ColorContrastOnHover = 45;
+            this.BillPadBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges7.BottomLeft = true;
+            borderEdges7.BottomRight = true;
+            borderEdges7.TopLeft = true;
+            borderEdges7.TopRight = true;
+            this.BillPadBtn.CustomizableEdges = borderEdges7;
+            this.BillPadBtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.BillPadBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.BillPadBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.BillPadBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.BillPadBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.BillPadBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BillPadBtn.ForeColor = System.Drawing.Color.White;
+            this.BillPadBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BillPadBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.BillPadBtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.BillPadBtn.IconMarginLeft = 11;
+            this.BillPadBtn.IconPadding = 10;
+            this.BillPadBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BillPadBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.BillPadBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.BillPadBtn.IconSize = 25;
+            this.BillPadBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
+            this.BillPadBtn.IdleBorderRadius = 1;
+            this.BillPadBtn.IdleBorderThickness = 1;
+            this.BillPadBtn.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.BillPadBtn.IdleIconLeftImage = global::POS_Shop.Properties.Resources.iconLoad1;
+            this.BillPadBtn.IdleIconRightImage = null;
+            this.BillPadBtn.IndicateFocus = false;
+            this.BillPadBtn.Location = new System.Drawing.Point(15, 29);
+            this.BillPadBtn.Name = "BillPadBtn";
+            this.BillPadBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.BillPadBtn.OnDisabledState.BorderRadius = 1;
+            this.BillPadBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.BillPadBtn.OnDisabledState.BorderThickness = 1;
+            this.BillPadBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.BillPadBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.BillPadBtn.OnDisabledState.IconLeftImage = null;
+            this.BillPadBtn.OnDisabledState.IconRightImage = null;
+            this.BillPadBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.BillPadBtn.onHoverState.BorderRadius = 1;
+            this.BillPadBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.BillPadBtn.onHoverState.BorderThickness = 1;
+            this.BillPadBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.BillPadBtn.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.BillPadBtn.onHoverState.IconLeftImage = null;
+            this.BillPadBtn.onHoverState.IconRightImage = null;
+            this.BillPadBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.BillPadBtn.OnIdleState.BorderRadius = 1;
+            this.BillPadBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.BillPadBtn.OnIdleState.BorderThickness = 1;
+            this.BillPadBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.BillPadBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.BillPadBtn.OnIdleState.IconLeftImage = global::POS_Shop.Properties.Resources.iconLoad1;
+            this.BillPadBtn.OnIdleState.IconRightImage = null;
+            this.BillPadBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.BillPadBtn.OnPressedState.BorderRadius = 1;
+            this.BillPadBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.BillPadBtn.OnPressedState.BorderThickness = 1;
+            this.BillPadBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.BillPadBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.BillPadBtn.OnPressedState.IconLeftImage = null;
+            this.BillPadBtn.OnPressedState.IconRightImage = null;
+            this.BillPadBtn.Size = new System.Drawing.Size(201, 43);
+            this.BillPadBtn.TabIndex = 8;
+            this.BillPadBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.BillPadBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.BillPadBtn.TextMarginLeft = 0;
+            this.BillPadBtn.TextPadding = new System.Windows.Forms.Padding(0);
+            this.BillPadBtn.UseDefaultRadiusAndThickness = true;
+            this.BillPadBtn.Click += new System.EventHandler(this.BillPadBtn_Click);
+            // 
+            // LogoutBtn
+            // 
+            this.LogoutBtn.ActiveImage = null;
+            this.LogoutBtn.AllowAnimations = true;
+            this.LogoutBtn.AllowBuffering = false;
+            this.LogoutBtn.AllowToggling = false;
+            this.LogoutBtn.AllowZooming = false;
+            this.LogoutBtn.AllowZoomingOnFocus = false;
+            this.LogoutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogoutBtn.BackColor = System.Drawing.Color.Transparent;
+            this.LogoutBtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.LogoutBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.ErrorImage")));
+            this.LogoutBtn.FadeWhenInactive = false;
+            this.LogoutBtn.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
+            this.LogoutBtn.Image = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.Image")));
+            this.LogoutBtn.ImageActive = null;
+            this.LogoutBtn.ImageLocation = null;
+            this.LogoutBtn.ImageMargin = 6;
+            this.LogoutBtn.ImageSize = new System.Drawing.Size(24, 21);
+            this.LogoutBtn.ImageZoomSize = new System.Drawing.Size(30, 27);
+            this.LogoutBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.InitialImage")));
+            this.LogoutBtn.Location = new System.Drawing.Point(1104, 29);
+            this.LogoutBtn.Name = "LogoutBtn";
+            this.LogoutBtn.Rotation = 0;
+            this.LogoutBtn.ShowActiveImage = true;
+            this.LogoutBtn.ShowCursorChanges = true;
+            this.LogoutBtn.ShowImageBorders = true;
+            this.LogoutBtn.ShowSizeMarkers = false;
+            this.LogoutBtn.Size = new System.Drawing.Size(30, 27);
+            this.LogoutBtn.TabIndex = 0;
+            this.LogoutBtn.ToolTipText = "";
+            this.LogoutBtn.WaitOnLoad = false;
+            this.LogoutBtn.Zoom = 6;
+            this.LogoutBtn.ZoomSpeed = 10;
+            this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
             // 
             // CustomerSectionBtn
             // 
@@ -668,209 +880,6 @@
             this.cityBtn.UseDefaultRadiusAndThickness = true;
             this.cityBtn.Click += new System.EventHandler(this.cityBtn_Click);
             // 
-            // MainPanel
-            // 
-            this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MainPanel.Location = new System.Drawing.Point(235, 126);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1143, 554);
-            this.MainPanel.TabIndex = 2;
-            // 
-            // TopNavPanel
-            // 
-            this.TopNavPanel.BackColor = System.Drawing.Color.SlateBlue;
-            this.TopNavPanel.Controls.Add(this.BillPadBtn);
-            this.TopNavPanel.Controls.Add(this.LogoutBtn);
-            this.TopNavPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopNavPanel.Location = new System.Drawing.Point(229, 30);
-            this.TopNavPanel.Name = "TopNavPanel";
-            this.TopNavPanel.Size = new System.Drawing.Size(1149, 92);
-            this.TopNavPanel.TabIndex = 3;
-            // 
-            // BillPadBtn
-            // 
-            this.BillPadBtn.AllowAnimations = true;
-            this.BillPadBtn.AllowMouseEffects = true;
-            this.BillPadBtn.AllowToggling = false;
-            this.BillPadBtn.AnimationSpeed = 200;
-            this.BillPadBtn.AutoGenerateColors = false;
-            this.BillPadBtn.AutoRoundBorders = false;
-            this.BillPadBtn.AutoSizeLeftIcon = true;
-            this.BillPadBtn.AutoSizeRightIcon = true;
-            this.BillPadBtn.BackColor = System.Drawing.Color.Transparent;
-            this.BillPadBtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.BillPadBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BillPadBtn.BackgroundImage")));
-            this.BillPadBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.BillPadBtn.ButtonText = "Bill Pad (Ctrl+B)";
-            this.BillPadBtn.ButtonTextMarginLeft = 0;
-            this.BillPadBtn.ColorContrastOnClick = 45;
-            this.BillPadBtn.ColorContrastOnHover = 45;
-            this.BillPadBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges7.BottomLeft = true;
-            borderEdges7.BottomRight = true;
-            borderEdges7.TopLeft = true;
-            borderEdges7.TopRight = true;
-            this.BillPadBtn.CustomizableEdges = borderEdges7;
-            this.BillPadBtn.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.BillPadBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.BillPadBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.BillPadBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.BillPadBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.BillPadBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.BillPadBtn.ForeColor = System.Drawing.Color.White;
-            this.BillPadBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BillPadBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.BillPadBtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.BillPadBtn.IconMarginLeft = 11;
-            this.BillPadBtn.IconPadding = 10;
-            this.BillPadBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BillPadBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.BillPadBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.BillPadBtn.IconSize = 25;
-            this.BillPadBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.BillPadBtn.IdleBorderRadius = 1;
-            this.BillPadBtn.IdleBorderThickness = 1;
-            this.BillPadBtn.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.BillPadBtn.IdleIconLeftImage = global::POS_Shop.Properties.Resources.iconLoad1;
-            this.BillPadBtn.IdleIconRightImage = null;
-            this.BillPadBtn.IndicateFocus = false;
-            this.BillPadBtn.Location = new System.Drawing.Point(15, 29);
-            this.BillPadBtn.Name = "BillPadBtn";
-            this.BillPadBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.BillPadBtn.OnDisabledState.BorderRadius = 1;
-            this.BillPadBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.BillPadBtn.OnDisabledState.BorderThickness = 1;
-            this.BillPadBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.BillPadBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.BillPadBtn.OnDisabledState.IconLeftImage = null;
-            this.BillPadBtn.OnDisabledState.IconRightImage = null;
-            this.BillPadBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.BillPadBtn.onHoverState.BorderRadius = 1;
-            this.BillPadBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.BillPadBtn.onHoverState.BorderThickness = 1;
-            this.BillPadBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.BillPadBtn.onHoverState.ForeColor = System.Drawing.Color.White;
-            this.BillPadBtn.onHoverState.IconLeftImage = null;
-            this.BillPadBtn.onHoverState.IconRightImage = null;
-            this.BillPadBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.BillPadBtn.OnIdleState.BorderRadius = 1;
-            this.BillPadBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.BillPadBtn.OnIdleState.BorderThickness = 1;
-            this.BillPadBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.BillPadBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
-            this.BillPadBtn.OnIdleState.IconLeftImage = global::POS_Shop.Properties.Resources.iconLoad1;
-            this.BillPadBtn.OnIdleState.IconRightImage = null;
-            this.BillPadBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.BillPadBtn.OnPressedState.BorderRadius = 1;
-            this.BillPadBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.BillPadBtn.OnPressedState.BorderThickness = 1;
-            this.BillPadBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.BillPadBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
-            this.BillPadBtn.OnPressedState.IconLeftImage = null;
-            this.BillPadBtn.OnPressedState.IconRightImage = null;
-            this.BillPadBtn.Size = new System.Drawing.Size(201, 43);
-            this.BillPadBtn.TabIndex = 8;
-            this.BillPadBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.BillPadBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.BillPadBtn.TextMarginLeft = 0;
-            this.BillPadBtn.TextPadding = new System.Windows.Forms.Padding(0);
-            this.BillPadBtn.UseDefaultRadiusAndThickness = true;
-            this.BillPadBtn.Click += new System.EventHandler(this.BillPadBtn_Click);
-            // 
-            // LogoutBtn
-            // 
-            this.LogoutBtn.ActiveImage = null;
-            this.LogoutBtn.AllowAnimations = true;
-            this.LogoutBtn.AllowBuffering = false;
-            this.LogoutBtn.AllowToggling = false;
-            this.LogoutBtn.AllowZooming = false;
-            this.LogoutBtn.AllowZoomingOnFocus = false;
-            this.LogoutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogoutBtn.BackColor = System.Drawing.Color.Transparent;
-            this.LogoutBtn.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.LogoutBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.ErrorImage")));
-            this.LogoutBtn.FadeWhenInactive = false;
-            this.LogoutBtn.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
-            this.LogoutBtn.Image = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.Image")));
-            this.LogoutBtn.ImageActive = null;
-            this.LogoutBtn.ImageLocation = null;
-            this.LogoutBtn.ImageMargin = 6;
-            this.LogoutBtn.ImageSize = new System.Drawing.Size(24, 21);
-            this.LogoutBtn.ImageZoomSize = new System.Drawing.Size(30, 27);
-            this.LogoutBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.InitialImage")));
-            this.LogoutBtn.Location = new System.Drawing.Point(1104, 29);
-            this.LogoutBtn.Name = "LogoutBtn";
-            this.LogoutBtn.Rotation = 0;
-            this.LogoutBtn.ShowActiveImage = true;
-            this.LogoutBtn.ShowCursorChanges = true;
-            this.LogoutBtn.ShowImageBorders = true;
-            this.LogoutBtn.ShowSizeMarkers = false;
-            this.LogoutBtn.Size = new System.Drawing.Size(30, 27);
-            this.LogoutBtn.TabIndex = 0;
-            this.LogoutBtn.ToolTipText = "";
-            this.LogoutBtn.WaitOnLoad = false;
-            this.LogoutBtn.Zoom = 6;
-            this.LogoutBtn.ZoomSpeed = 10;
-            this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem,
-            this.viewsToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1378, 30);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.backupDatabaseToolStripMenuItem,
-            this.restoreDatabaseToolStripMenuItem});
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            // 
-            // backupDatabaseToolStripMenuItem
-            // 
-            this.backupDatabaseToolStripMenuItem.Name = "backupDatabaseToolStripMenuItem";
-            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
-            this.backupDatabaseToolStripMenuItem.Text = "Backup Database";
-            this.backupDatabaseToolStripMenuItem.Click += new System.EventHandler(this.backupDatabaseToolStripMenuItem_Click);
-            // 
-            // restoreDatabaseToolStripMenuItem
-            // 
-            this.restoreDatabaseToolStripMenuItem.Name = "restoreDatabaseToolStripMenuItem";
-            this.restoreDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
-            this.restoreDatabaseToolStripMenuItem.Text = "Restore Database";
-            this.restoreDatabaseToolStripMenuItem.Click += new System.EventHandler(this.restoreDatabaseToolStripMenuItem_Click);
-            // 
-            // viewsToolStripMenuItem
-            // 
-            this.viewsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importExcelFileToolStripMenuItem});
-            this.viewsToolStripMenuItem.Name = "viewsToolStripMenuItem";
-            this.viewsToolStripMenuItem.Size = new System.Drawing.Size(61, 26);
-            this.viewsToolStripMenuItem.Text = "Views";
-            // 
-            // importExcelFileToolStripMenuItem
-            // 
-            this.importExcelFileToolStripMenuItem.Name = "importExcelFileToolStripMenuItem";
-            this.importExcelFileToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
-            this.importExcelFileToolStripMenuItem.Text = "Import Excel File";
-            this.importExcelFileToolStripMenuItem.Click += new System.EventHandler(this.importExcelFileToolStripMenuItem_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // MasterLayoutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -920,5 +929,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton CustomerSectionBtn;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton BillPadBtn;
         private System.Windows.Forms.Label FooterLbl;
+        private System.Windows.Forms.ToolStripMenuItem importCustomerExcelFileToolStripMenuItem;
     }
 }

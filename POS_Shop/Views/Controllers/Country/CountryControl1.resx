@@ -120,11 +120,11 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="UpdateCountrybtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAJYAAAAnCAYAAADtl7EyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACgSURBVHhe7dIxDQJRFADBUwINCpBJQa7FEw6QQQs58tDw
+        iVBORw0KGgoAAAANSUhEUgAAAJYAAAAeCAYAAADO4udXAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACJSURBVHhe7dIxDQJRFADBUwINCpBJQa7FEw6QQQs58tDw
         t5tikhWw2+X2eZ3244BV5qlt4nF9wjLzlLFYzlgkjEXCWCSMRcJYJIxFwlgkjEXCWCSMRcJYJIxFwlgk
-        jEXCWCSMRcJYJIxFwlgkjEXCWCSMRcJYJIxFwlgkjEXCWCSMRcJYJIxFwlgkjEXCWCSMRcJYJP5jne/f
-        9wSsMk/9AIMDOuqwAt+9AAAAAElFTkSuQmCC
+        jEXCWCSMRcJYJIxFwlgkjEXCWCSMRcJYJIxFwlgkjEXiP9b5/n1PwCrz1A//qpWIB+Th7QAAAABJRU5E
+        rkJggg==
 </value>
   </data>
   <data name="countryIdTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -147,11 +147,10 @@
   </data>
   <data name="SaveCityBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAJYAAAAnCAYAAADtl7EyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACPSURBVHhe7dKhAYAwAMCwXbKX4T/OwA88SKiLiKnumPs6
+        iVBORw0KGgoAAAANSUhEUgAAAJYAAAAdCAYAAABIdpX5AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAB2SURBVHhe7dKhAYAwAMCwXbKX4T/OwA88SKiLiKnumPs6
         5n5d8J91jHeE74xFwlgkjEXCWCSMRcJYJIxFwlgkjEXCWCSMRcJYJIxFwlgkjEXCWCSMRcJYJIxFwlgk
-        jEXCWCSMRcJYJIxFwlgkjEXCWCSMRcJYJIxFwlgkjEXCWCSMRcJYJMbc1vmM8Mm2zhuxfRGmrPlByAAA
-        AABJRU5ErkJggg==
+        jEXCWCSMRcJYJIxFwlgkxtzW+YzwybbOG02daOYhMyDAAAAAAElFTkSuQmCC
 </value>
   </data>
 </root>

@@ -424,6 +424,7 @@ namespace POS_Shop.Views.Product
                 dt.Columns.Add("IsSelected", typeof(bool)); // Add selection column
                 dt.Columns.Add("ID", typeof(int));
                 dt.Columns.Add("Name", typeof(string));
+                dt.Columns.Add("UName", typeof(string));
                 dt.Columns.Add("SearchBy", typeof(string));
                 dt.Columns.Add("Type", typeof(string));
                 dt.Columns.Add("Cost", typeof(int));
@@ -434,7 +435,7 @@ namespace POS_Shop.Views.Product
                 {
                     // Check if this product is in our selected list
                     bool isSelected = selectedProductIds.Contains(item.Id);
-                    dt.Rows.Add(isSelected, item.Id, item.ProductEnglishName,item.SearchByProductCode ,item.ProductType,
+                    dt.Rows.Add(isSelected, item.Id, item.ProductEnglishName, TextFormatHelper.FormatMixedText(item.ProductUrduName),item.SearchByProductCode ,item.ProductType,
                                 item.Cost, item.PurchasePrice,item.SalePrice);
                 }
 
@@ -535,6 +536,7 @@ namespace POS_Shop.Views.Product
                 existingProduct.ProductType = model.ProductType;
                 existingProduct.SalePrice = model.SalePrice;
                 existingProduct.Cost = model.Cost;
+                existingProduct.SearchByProductCode= model.SearchByProductCode;
                 productRepository.Update(existingProduct);
                 productRepository.Save();
                 MessageBox.Show("Product updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -576,6 +578,14 @@ namespace POS_Shop.Views.Product
                 Name = "Name",
                 DataPropertyName = "Name",
                 HeaderText = "Product Name",
+                Width = 200,
+                ReadOnly = true
+            });
+            ProductListGrid.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "UName",
+                DataPropertyName = "UName",
+                HeaderText = "Urdu Name",
                 Width = 200,
                 ReadOnly = true
             });
@@ -726,7 +736,7 @@ namespace POS_Shop.Views.Product
                     // Populate form fields for editing
                     ProductEngNameTxt.Text = product.ProductEnglishName;
                     ProductUrduNameTxt.Text = product.ProductUrduName;
-                    PurchasePriceTxt.Text = product.PurchasePrice.ToString();
+                    PurchasePriceTxt.Text =string.IsNullOrEmpty(product.PurchasePrice)?"0":product.PurchasePrice.ToString();
                     p_costTxt.Text = product.Cost.ToString();
                     P_SalePriceTxt.Text = product.SalePrice.ToString();
                     productTypeDropdown.SelectedItem = product.ProductType;
@@ -969,6 +979,7 @@ namespace POS_Shop.Views.Product
                     exportTable.Columns.Add("SalePrice", typeof(decimal));
                     exportTable.Columns.Add("Cost", typeof(int));
                     exportTable.Columns.Add("SubCategory", typeof(int));
+                    exportTable.Columns.Add("ProductOldName", typeof(string));
 
                     // Add rows
                     foreach (var product in selectedProducts)
@@ -982,7 +993,8 @@ namespace POS_Shop.Views.Product
                             product.PurchasePrice,
                             product.SalePrice,
                             product.Cost,
-                            product.SubcategoryId
+                            product.SubcategoryId,
+                            product.ProductEnglishName
                         );
                     }
 

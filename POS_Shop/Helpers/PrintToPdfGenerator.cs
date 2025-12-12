@@ -85,6 +85,8 @@ namespace POS_Shop.Helpers
                 yPos += 12;
                 g.DrawString($"انوائس نمبر: {invoiceNumber}", normalFont, Brushes.Black, rightMargin, yPos, _rightFormat);
                 yPos += 12;
+
+                //string cName= string.IsNullOrEmpty(customerName)==true? "" : customerName.Split('-')[1].Trim();
                 g.DrawString($"گاہک: {customerName}", normalFont, Brushes.Black, rightMargin, yPos, _rightFormat);
                 yPos += 15;
                 g.DrawLine(Pens.Black, leftMargin, yPos, rightMargin, yPos);
