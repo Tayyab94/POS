@@ -1438,6 +1438,7 @@ namespace POS_Shop.Views.BillScreen
         }
 
 
+
         private void productTypeDropdown_Enter(object sender, EventArgs e)
         {
             productTypeDropdown.BorderColor = Color.BlueViolet;
@@ -1740,60 +1741,77 @@ namespace POS_Shop.Views.BillScreen
             // Show the new form
             ProductForm.ShowDialog(); // Use ShowDialog() to open it as a modal dialog
 
-            if (!string.IsNullOrEmpty(FormCtrl.InvoiceNoLbl.Text)) InvoiceNoLbl.Text = FormCtrl.InvoiceNoLbl.Text;
+            if (FormCtrl.isRecordSelected == true)
+            {
+                if (!string.IsNullOrEmpty(FormCtrl.InvoiceNoLbl.Text)) InvoiceNoLbl.Text = FormCtrl.InvoiceNoLbl.Text;
 
-            if (FormCtrl.CustomerId != 0)
-            {
-                CustomerIdLbl.Text = FormCtrl.CustomerId.ToString();
-                CustomerNameTxt.Text = FormCtrl.CustomerName;
-                this.ResetCustomerBtn.Visible = true;
-                this.ResetCustomerBtn.Enabled = true;
-            }
-            else
-            {
-                CustomerIdLbl.Text = string.Empty;
-                CustomerNameTxt.Text = string.Empty;
-                this.ResetCustomerBtn.Visible = false;
-                this.ResetCustomerBtn.Enabled = false;
-            }
 
-            if (InvoiceNoLbl.Text != "InvoiceNo" && !string.IsNullOrEmpty(InvoiceNoLbl.Text))
-            {
-                // CHECK FOR EXISTING ITEMS BEFORE LOADING
-                if (CartProductList.Rows.Count > 0)
+                if (InvoiceNoLbl.Text != "InvoiceNo" && !string.IsNullOrEmpty(InvoiceNoLbl.Text))
                 {
-                    var result = MessageBox.Show("Loading this order will clear current cart. Continue?",
-                                               "Confirm", MessageBoxButtons.YesNo);
-                    if (result != DialogResult.Yes) return;
-                }
-
-                ClearCustomerPreviousTransactionGroup();
-                using (var context = new POSDbContext())
-                {
-                    var orderRepo = new OrderRepository(context);
-                    var result = orderRepo.GetTempOrderDetailByInvoice(InvoiceNoLbl.Text);
-
-                    if (result != null && result.Count > 0)
+                    // CHECK FOR EXISTING ITEMS BEFORE LOADING
+                    if (CartProductList.Rows.Count > 0)
                     {
-                        isTempSaved = true;
-                        // CLEAR BEFORE ADDING to prevent duplicates
-                        CartProductList.Rows.Clear();
+                        var result = MessageBox.Show("Loading this order will clear current cart. Continue?",
+                                                   "Confirm", MessageBoxButtons.YesNo);
+                        if (result != DialogResult.Yes) return;
+                    }
 
-                        foreach (var order in result)
+
+                    if (FormCtrl.CustomerId != 0)
+                    {
+                        CustomerIdLbl.Text = FormCtrl.CustomerId.ToString();
+                        CustomerNameTxt.Text = FormCtrl.CustomerName;
+                        this.ResetCustomerBtn.Visible = true;
+                        this.ResetCustomerBtn.Enabled = true;
+
+                        ProductEngNameTxt.Focus();
+                        ProductEngNameTxt.SelectAll();
+
+                        // Hide the DataGridView after selection
+                        CustomerListDataGrid.Visible = false;
+                        using (var context = new POSDbContext())
                         {
-                            string productId = order.ProductId.ToString() ?? "0";
-                            string finalName = !string.IsNullOrEmpty(order.ProductDetail) ?
-                                $"{order.ProductName} {order.ProductDetail}" : order.ProductName;
-                            string productType = order.QuantityType;
-                            decimal salePrice = Math.Round(decimal.Parse(order.Price.ToString()), 1);
-                            int qty = order.Quantity;
-                            decimal amount = salePrice * qty;
-
-                            CartProductList.Rows.Add(null, amount, salePrice, finalName,
-                                                   productType, qty, productId, order.ProductDetail);
+                            IOrderRepository orderRepo = new OrderRepository(context);
+                            var customerPreviousDue = orderRepo.GetLatestOrderAmountSummaryByCustomerId(FormCtrl.CustomerId);
+                            UpdatePreviousOrderSummary(customerPreviousDue);
                         }
+                    }
+                    else
+                    {
 
-                        CalculateTotals();
+                        ClearCustomerPreviousTransactionGroup();
+                        CustomerIdLbl.Text = string.Empty;
+                        CustomerNameTxt.Text = string.Empty;
+                        this.ResetCustomerBtn.Visible = false;
+                        this.ResetCustomerBtn.Enabled = false;
+                    }
+
+                    using (var context = new POSDbContext())
+                    {
+                        var orderRepo = new OrderRepository(context);
+                        var result = orderRepo.GetTempOrderDetailByInvoice(InvoiceNoLbl.Text);
+
+                        if (result != null && result.Count > 0)
+                        {
+                            isTempSaved = true;
+                            // CLEAR BEFORE ADDING to prevent duplicates
+                            CartProductList.Rows.Clear();
+
+                            foreach (var order in result)
+                            {
+                                string productId = order.ProductId.ToString() ?? "0";
+                                string finalName = !string.IsNullOrEmpty(order.ProductDetail) ?
+                                    $"{order.ProductName} {order.ProductDetail}" : order.ProductName;
+                                string productType = order.QuantityType;
+                                decimal salePrice = Math.Round(decimal.Parse(order.Price.ToString()), 1);
+                                int qty = order.Quantity;
+                                decimal amount = salePrice * qty;
+
+                                CartProductList.Rows.Add(null, amount, salePrice, finalName,
+                                                       productType, qty, productId, order.ProductDetail);
+                            }
+                            CalculateTotals();
+                        }
                     }
                 }
             }

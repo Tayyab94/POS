@@ -80,7 +80,7 @@ namespace POS_Shop.Views.Loader
             this.pictureBoxLoading.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxLoading.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxLoading.Name = "pictureBoxLoading";
-            this.pictureBoxLoading.Size = new System.Drawing.Size(472, 123);
+            this.pictureBoxLoading.Size = new System.Drawing.Size(206, 123);
             this.pictureBoxLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLoading.TabIndex = 0;
             this.pictureBoxLoading.TabStop = false;

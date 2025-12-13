@@ -21,7 +21,7 @@ namespace POS_Shop.Views.Controllers.Order
         private int PageIndex = 1;
         private int RecordCount = 0;
         private string SearchTerm = "";
-
+        public bool isRecordSelected = false;
         public string CustomerName { get; set; } = string.Empty;
         public int CustomerId { get; set; } = 0;
        
@@ -29,7 +29,7 @@ namespace POS_Shop.Views.Controllers.Order
         {
             InitializeComponent();
             this.InvoiceNoLbl.Text = string.Empty;
-
+            this.isRecordSelected = false;
             this.Load += OrdersControlUI_Load;
 
             
@@ -122,6 +122,8 @@ namespace POS_Shop.Views.Controllers.Order
                 InvoiceNoLbl.Text = (string)OrderListDataGrid.CurrentRow.Cells[0].Value;
                 CustomerName = OrderListDataGrid.CurrentRow.Cells[2].Value != DBNull.Value ? (string)OrderListDataGrid.CurrentRow.Cells[2].Value : string.Empty;
                 CustomerId = OrderListDataGrid.CurrentRow.Cells[3].Value != DBNull.Value ? Convert.ToInt32(OrderListDataGrid.CurrentRow.Cells[3].Value) : 0;
+
+                isRecordSelected = true;
                 // Close the parent form
                 Form parentForm = this.FindForm();
                 parentForm?.Close();

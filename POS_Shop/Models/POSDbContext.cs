@@ -13,7 +13,6 @@ namespace POS_Shop.Models
 
         //public POSDbContext():base("name=POSDbConnectionstring")
         //{
-
         //    //string dbname = @"Server=(localdb)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\dbName.mdf;Integrated Security=true;";
         //    //Optional Initializer  
         //    Database.SetInitializer(new CreateDatabaseIfNotExists<POSDbContext>());
@@ -22,11 +21,6 @@ namespace POS_Shop.Models
 
         public POSDbContext() : base(DatabasePathManager.GetConnectionString())
         {
-
-            //string dbname = @"Server=(localdb)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\dbName.mdf;Integrated Security=true;";
-            //Optional Initializer  
-            //Database.SetInitializer(new CreateDatabaseIfNotExists<POSDbContext>());
-
             // Disable initializer since you have existing database
             Database.SetInitializer<POSDbContext>(null);
 

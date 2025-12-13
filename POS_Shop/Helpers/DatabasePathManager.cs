@@ -25,32 +25,6 @@ namespace POS_Shop.Helpers
         /// Initializes database connection - called once at app startup
         /// </summary>
         
-        //public static bool InitializeDatabasePath(string customPath = null)
-        //{
-        //    if (_isInitialized)
-        //        return true;
-        //    lock (_lock)
-        //    {
-        //        if (_isInitialized)
-        //            return true;
-        //        try
-        //        {
-        //            // Determine the database path
-        //            _cachedPath = !string.IsNullOrEmpty(customPath)
-        //                ? customPath
-        //                : System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "POSDatabase.mdf");
-        //            // Here you can add code to verify the path, create directories, etc.
-        //            _isInitialized = true;
-        //            return true;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            // Log exception as needed
-        //            Console.WriteLine($"Error initializing database path: {ex.Message}");
-        //            return false;
-        //        }
-        //    }
-        //}
 
         public static bool Initialize()
         {
