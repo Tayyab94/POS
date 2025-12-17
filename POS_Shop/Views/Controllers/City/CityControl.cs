@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -498,6 +500,39 @@ namespace POS_Shop.Views.Controllers.City
             CountryDropDownLst.SelectedIndex = 0;
         }
 
+        private async void RemoveCityBtn_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to delete this City?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirmResult == DialogResult.Yes)
+            {
+
+                var catId = Convert.ToInt32(cityIdTxt.Text);
+                using (var context = new POSDbContext())
+                {
+                    var categoryRepo = new CityRepository(context);
+                    var data = categoryRepo.GetById(catId);
+                    if (data != null)
+                    {
+                        try
+                        {
+                            categoryRepo.Delete(catId);
+                            categoryRepo.Save();
+                            MessageBox.Show("City deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            await LoadCitiesForDataGridView();
+                        }
+
+                        catch (DbUpdateException dbEx) when (dbEx.InnerException is SqlException sqlEx && sqlEx.Number == 547)
+                        {
+                            MessageBox.Show("This City is being used by other records and cannot be deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // Don't navigate away, stay on current page
+                            context.ChangeTracker.DetectChanges();
+                        }
+                    }
+                    else
+                        MessageBox.Show("City not found for deletion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
 

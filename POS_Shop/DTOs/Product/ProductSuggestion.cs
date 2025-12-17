@@ -13,7 +13,7 @@ namespace POS_Shop.DTOs.Product
         public string ProductUrduName { get; set; }
 
         public string ProductType { get; set; }
-
+        public int Qty { get; set; }
         public string purchasePrice { get; set; }
         public int Price { get; set; }
     }

@@ -737,6 +737,7 @@ namespace POS_Shop.Views.DB_Screens
                     filtered.Columns.Add("Cost");
                     filtered.Columns.Add("SubCategory");
                     filtered.Columns.Add("ProductOldName");
+                    filtered.Columns.Add("Qty");
 
 
                     // Copy rows
@@ -755,7 +756,8 @@ namespace POS_Shop.Views.DB_Screens
                             row[6],
                             row[7],
                             row[8],
-                            row[9]
+                            row[9],
+                            row[10]
                         );
                     }
 
@@ -921,6 +923,7 @@ namespace POS_Shop.Views.DB_Screens
             product.SalePrice = GetIntOrDefault(row["Sale Price"]);
             product.Cost = Convert.ToInt32(row["Cost"]);
             product.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
+            product.Qty = Convert.ToInt32(row["Qty"]);
         }
 
         private Models.Product CreateProductFromRow(DataRow row)
@@ -934,7 +937,8 @@ namespace POS_Shop.Views.DB_Screens
                 SalePrice = GetIntOrDefault(row["Sale Price"]),
                 Cost = Convert.ToInt32(row["Cost"]),
                 SubcategoryId = Convert.ToInt32(row["SubCategory"]),
-                SearchByProductCode = GetStringOrNull(row["SearchByProductName"])
+                SearchByProductCode = GetStringOrNull(row["SearchByProductName"]),
+                Qty = Convert.ToInt32(row["Qty"])
             };
         }
 

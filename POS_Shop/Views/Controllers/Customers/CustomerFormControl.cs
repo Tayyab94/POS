@@ -24,7 +24,7 @@ namespace POS_Shop.Views.Controllers.Customers
     public partial class CustomerFormControl : UserControl
     {
 
-        private int PageSize = 30;
+        private int PageSize = 100;
         private int PageIndex = 1;
         private int RecordCount = 0;
         private string SearchTerm = "";

@@ -278,12 +278,19 @@ namespace POS_Shop.Views.BillScreen
             string productDetail = ProductDetailTxt.Text;
 
             bool productExists = false;
-            var finalName = OtherProductChk.Checked == false ?
-                $"{ProductUrduName} {productDetail}" :
-                $"{productName} {productDetail}";
+            var finalName = OtherProductChk.Checked == false ? $"{ProductUrduName} {productDetail}" : $"{productName} {productDetail}";
 
             string formattedText = TextFormatHelper.FormatMixedText(finalName);
             var finalPId = OtherProductChk.Checked == false ? productId : "";
+
+
+            //// checking the available stock
+            //int availableQty =int.Parse(Prod_Qty.Text);
+            //if(qty > availableQty)
+            //{
+            //    MessageBox.Show($"Available stock is {availableQty}. Please enter a valid quantity.", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             // IMPROVED DUPLICATE CHECK - Compare multiple properties
             foreach (DataGridViewRow row in CartProductList.Rows)
@@ -399,6 +406,7 @@ namespace POS_Shop.Views.BillScreen
             productTypeDropdown.SelectedIndex = -1;
             ProductDetailTxt.Clear();
             OtherProductChk.Checked = false;
+            Prod_Qty.Clear();
 
             ProductOrderHistoryDataGrid.DataSource = null;
 
@@ -520,11 +528,12 @@ namespace POS_Shop.Views.BillScreen
                     dt.Columns.Add("Name", typeof(string));
                     dt.Columns.Add("U-Name", typeof(string));
                     dt.Columns.Add("Type", typeof(string));
+                    dt.Columns.Add("Qty", typeof(int));
                     dt.Columns.Add("Sale-P", typeof(string));
 
                     foreach (var item in suggestions)
                     {
-                        dt.Rows.Add(item.ProductId, item.purchasePrice, item.ProductName, TextFormatHelper.FormatMixedText(item.ProductUrduName), item.ProductType, item.Price);
+                        dt.Rows.Add(item.ProductId, item.purchasePrice, item.ProductName, TextFormatHelper.FormatMixedText(item.ProductUrduName), item.ProductType,item.Qty, item.Price);
                     }
 
                     SuggestionGrid.ReadOnly = true;
@@ -649,6 +658,7 @@ namespace POS_Shop.Views.BillScreen
                     ProductEnglishName AS ProductName,
                     ProductUrduName,
                     ProductType,
+                    Qty,
                     ISNULL(SalePrice, 0) AS Price,
                     PurchasePrice
                 FROM Products WITH (NOLOCK)
@@ -666,6 +676,7 @@ namespace POS_Shop.Views.BillScreen
                                         p.ProductEnglishName AS ProductName,
                                         p.ProductUrduName,
                                         p.ProductType,
+                                        p.Qty,
                                         ISNULL(p.SalePrice, 0) AS Price,
                                         p.PurchasePrice
                                     FROM Products p WITH (NOLOCK)
@@ -709,6 +720,7 @@ namespace POS_Shop.Views.BillScreen
                                 p.ProductEnglishName AS ProductName,
                                 p.ProductUrduName,
                                 p.ProductType,
+                                p.Qty,      
                                 ISNULL(p.SalePrice, 0) AS Price,
                                 p.PurchasePrice
                             FROM Products p WITH (NOLOCK)
@@ -1574,10 +1586,12 @@ namespace POS_Shop.Views.BillScreen
                                     ? "ڈبہ"
                                     : foundRow.Cells[4].Value.ToString();
 
-                        ProductSalePrice.Text = foundRow.Cells[5].Value == null
-                            || foundRow.Cells[5].Value == DBNull.Value
+                        Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[5].Value.ToString();
+
+                        ProductSalePrice.Text = foundRow.Cells[6].Value == null
+                            || foundRow.Cells[6].Value == DBNull.Value
                             ? string.Empty
-                            : foundRow.Cells[5].Value.ToString();
+                            : foundRow.Cells[6].Value.ToString();
                         PId = pId.ToString();
                         P_StockQtyTxt.Text = "1";
                         SuggestionGrid.Visible = false;
@@ -1601,16 +1615,23 @@ namespace POS_Shop.Views.BillScreen
             if (SuggestionGrid.Rows.Count > 0)
             {
                 int pId = Convert.ToInt32(SuggestionGrid.CurrentRow.Cells[0].Value);
+                
                 ProductEngNameTxt.Text = (string)SuggestionGrid.CurrentRow.Cells[2].Value;
+                
                 prod_U_Name = (string)SuggestionGrid.CurrentRow.Cells[3].Value;
+                
                 productTypeDropdown.SelectedItem = SuggestionGrid.CurrentRow.Cells[4].Value == null
                             || SuggestionGrid.CurrentRow.Cells[4].Value == DBNull.Value
                             ? "ڈبہ"
                             : SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
-                ProductSalePrice.Text = SuggestionGrid.CurrentRow.Cells[5].Value == null
-                    || SuggestionGrid.CurrentRow.Cells[5].Value == DBNull.Value
+
+                Prod_Qty.Text = (string)SuggestionGrid.CurrentRow.Cells[5].Value;
+
+                ProductSalePrice.Text = SuggestionGrid.CurrentRow.Cells[6].Value == null
+                    || SuggestionGrid.CurrentRow.Cells[6].Value == DBNull.Value
                     ? string.Empty
-                    : SuggestionGrid.CurrentRow.Cells[5].Value.ToString();
+                    : SuggestionGrid.CurrentRow.Cells[6].Value.ToString();
+               
                 PId = pId.ToString();
 
                 P_StockQtyTxt.Text = "1";

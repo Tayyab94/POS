@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -72,6 +74,7 @@ namespace POS_Shop.Views.Controllers.Country
                 CountryNameTxt.Text = row.Cells["Name"].Value.ToString();
                 countryIdTxt.Text= row.Cells["ID"].Value.ToString();
                 UpdateCountrybtn.Enabled = true;
+                RemoveCountryBtn.Visible = true;
             }
         }
 
@@ -126,5 +129,38 @@ namespace POS_Shop.Views.Controllers.Country
             }
         }
 
+        private void RemoveCountryBtn_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to delete this Country?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirmResult == DialogResult.Yes)
+            {
+
+                var conId = Convert.ToInt32(countryIdTxt.Text);
+                using (var context = new POSDbContext())
+                {
+                    var countryRepo = new CountryRepository(context);
+                    var data = countryRepo.GetById(conId);
+                    if (data != null)
+                    {
+                        try
+                        {
+                            countryRepo.Delete(conId);
+                            countryRepo.Save();
+                            MessageBox.Show("Country deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadCountriesForDataGridView();
+                        }
+
+                        catch (DbUpdateException dbEx) when (dbEx.InnerException is SqlException sqlEx && sqlEx.Number == 547)
+                        {
+                            MessageBox.Show("This Country is being used by other records and cannot be deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // Don't navigate away, stay on current page
+                            context.ChangeTracker.DetectChanges();
+                        }
+                    }
+                    else
+                        MessageBox.Show("Country not found for deletion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

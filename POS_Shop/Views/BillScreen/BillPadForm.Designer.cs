@@ -152,6 +152,7 @@
             this.TruncateOrder_OrderDetailBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.OrderPrintPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.OrderPrintDocument = new System.Drawing.Printing.PrintDocument();
+            this.Prod_Qty = new System.Windows.Forms.TextBox();
             this.TopPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.InvoicePageTabControl.SuspendLayout();
@@ -397,9 +398,9 @@
             this.label13.ForeColor = System.Drawing.Color.SlateBlue;
             this.label13.Location = new System.Drawing.Point(6, 51);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 20);
+            this.label13.Size = new System.Drawing.Size(116, 20);
             this.label13.TabIndex = 13;
-            this.label13.Text = "وصول رقم";
+            this.label13.Text = "Received Amt";
             // 
             // previousBillLbl
             // 
@@ -408,9 +409,9 @@
             this.previousBillLbl.ForeColor = System.Drawing.Color.SlateBlue;
             this.previousBillLbl.Location = new System.Drawing.Point(6, 22);
             this.previousBillLbl.Name = "previousBillLbl";
-            this.previousBillLbl.Size = new System.Drawing.Size(60, 20);
+            this.previousBillLbl.Size = new System.Drawing.Size(108, 20);
             this.previousBillLbl.TabIndex = 11;
-            this.previousBillLbl.Text = "سابقہ بل";
+            this.previousBillLbl.Text = "Previous Bill";
             // 
             // PreOrderGroup
             // 
@@ -475,11 +476,11 @@
             this.TemOrderBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TemOrderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TemOrderBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.TemOrderBtn.Location = new System.Drawing.Point(231, 16);
+            this.TemOrderBtn.Location = new System.Drawing.Point(234, 20);
             this.TemOrderBtn.Name = "TemOrderBtn";
             this.TemOrderBtn.Size = new System.Drawing.Size(134, 30);
             this.TemOrderBtn.TabIndex = 0;
-            this.TemOrderBtn.Text = "عارضی آرڈر";
+            this.TemOrderBtn.Text = "Temp Orders";
             this.TemOrderBtn.UseVisualStyleBackColor = false;
             this.TemOrderBtn.Click += new System.EventHandler(this.TemOrderBtn_Click);
             // 
@@ -595,7 +596,7 @@
             this.ExportBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.ExportBtn.IconSize = 25;
             this.ExportBtn.IdleBorderColor = System.Drawing.Color.DarkOrange;
-            this.ExportBtn.IdleBorderRadius = 1;
+            this.ExportBtn.IdleBorderRadius = 20;
             this.ExportBtn.IdleBorderThickness = 1;
             this.ExportBtn.IdleFillColor = System.Drawing.Color.DarkGoldenrod;
             this.ExportBtn.IdleIconLeftImage = null;
@@ -604,7 +605,7 @@
             this.ExportBtn.Location = new System.Drawing.Point(286, 428);
             this.ExportBtn.Name = "ExportBtn";
             this.ExportBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.ExportBtn.OnDisabledState.BorderRadius = 1;
+            this.ExportBtn.OnDisabledState.BorderRadius = 20;
             this.ExportBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ExportBtn.OnDisabledState.BorderThickness = 1;
             this.ExportBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -612,7 +613,7 @@
             this.ExportBtn.OnDisabledState.IconLeftImage = null;
             this.ExportBtn.OnDisabledState.IconRightImage = null;
             this.ExportBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.ExportBtn.onHoverState.BorderRadius = 1;
+            this.ExportBtn.onHoverState.BorderRadius = 20;
             this.ExportBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ExportBtn.onHoverState.BorderThickness = 1;
             this.ExportBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -620,7 +621,7 @@
             this.ExportBtn.onHoverState.IconLeftImage = null;
             this.ExportBtn.onHoverState.IconRightImage = null;
             this.ExportBtn.OnIdleState.BorderColor = System.Drawing.Color.DarkOrange;
-            this.ExportBtn.OnIdleState.BorderRadius = 1;
+            this.ExportBtn.OnIdleState.BorderRadius = 20;
             this.ExportBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ExportBtn.OnIdleState.BorderThickness = 1;
             this.ExportBtn.OnIdleState.FillColor = System.Drawing.Color.DarkGoldenrod;
@@ -628,7 +629,7 @@
             this.ExportBtn.OnIdleState.IconLeftImage = null;
             this.ExportBtn.OnIdleState.IconRightImage = null;
             this.ExportBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.ExportBtn.OnPressedState.BorderRadius = 1;
+            this.ExportBtn.OnPressedState.BorderRadius = 20;
             this.ExportBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ExportBtn.OnPressedState.BorderThickness = 1;
             this.ExportBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -658,7 +659,7 @@
             this.SaveOrderWithoutPrintBtn.BackColor1 = System.Drawing.Color.DarkOrchid;
             this.SaveOrderWithoutPrintBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SaveOrderWithoutPrintBtn.BackgroundImage")));
             this.SaveOrderWithoutPrintBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.SaveOrderWithoutPrintBtn.ButtonText = "سیو (Ctrl+D)";
+            this.SaveOrderWithoutPrintBtn.ButtonText = "Save (Ctrl+D)";
             this.SaveOrderWithoutPrintBtn.ButtonTextMarginLeft = 0;
             this.SaveOrderWithoutPrintBtn.ColorContrastOnClick = 45;
             this.SaveOrderWithoutPrintBtn.ColorContrastOnHover = 45;
@@ -685,7 +686,7 @@
             this.SaveOrderWithoutPrintBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.SaveOrderWithoutPrintBtn.IconSize = 25;
             this.SaveOrderWithoutPrintBtn.IdleBorderColor = System.Drawing.Color.DarkOrchid;
-            this.SaveOrderWithoutPrintBtn.IdleBorderRadius = 1;
+            this.SaveOrderWithoutPrintBtn.IdleBorderRadius = 20;
             this.SaveOrderWithoutPrintBtn.IdleBorderThickness = 1;
             this.SaveOrderWithoutPrintBtn.IdleFillColor = System.Drawing.Color.DarkOrchid;
             this.SaveOrderWithoutPrintBtn.IdleIconLeftImage = null;
@@ -694,7 +695,7 @@
             this.SaveOrderWithoutPrintBtn.Location = new System.Drawing.Point(191, 327);
             this.SaveOrderWithoutPrintBtn.Name = "SaveOrderWithoutPrintBtn";
             this.SaveOrderWithoutPrintBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.SaveOrderWithoutPrintBtn.OnDisabledState.BorderRadius = 1;
+            this.SaveOrderWithoutPrintBtn.OnDisabledState.BorderRadius = 20;
             this.SaveOrderWithoutPrintBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveOrderWithoutPrintBtn.OnDisabledState.BorderThickness = 1;
             this.SaveOrderWithoutPrintBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -702,7 +703,7 @@
             this.SaveOrderWithoutPrintBtn.OnDisabledState.IconLeftImage = null;
             this.SaveOrderWithoutPrintBtn.OnDisabledState.IconRightImage = null;
             this.SaveOrderWithoutPrintBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.SaveOrderWithoutPrintBtn.onHoverState.BorderRadius = 1;
+            this.SaveOrderWithoutPrintBtn.onHoverState.BorderRadius = 20;
             this.SaveOrderWithoutPrintBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveOrderWithoutPrintBtn.onHoverState.BorderThickness = 1;
             this.SaveOrderWithoutPrintBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -710,7 +711,7 @@
             this.SaveOrderWithoutPrintBtn.onHoverState.IconLeftImage = null;
             this.SaveOrderWithoutPrintBtn.onHoverState.IconRightImage = null;
             this.SaveOrderWithoutPrintBtn.OnIdleState.BorderColor = System.Drawing.Color.DarkOrchid;
-            this.SaveOrderWithoutPrintBtn.OnIdleState.BorderRadius = 1;
+            this.SaveOrderWithoutPrintBtn.OnIdleState.BorderRadius = 20;
             this.SaveOrderWithoutPrintBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveOrderWithoutPrintBtn.OnIdleState.BorderThickness = 1;
             this.SaveOrderWithoutPrintBtn.OnIdleState.FillColor = System.Drawing.Color.DarkOrchid;
@@ -718,7 +719,7 @@
             this.SaveOrderWithoutPrintBtn.OnIdleState.IconLeftImage = null;
             this.SaveOrderWithoutPrintBtn.OnIdleState.IconRightImage = null;
             this.SaveOrderWithoutPrintBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.SaveOrderWithoutPrintBtn.OnPressedState.BorderRadius = 1;
+            this.SaveOrderWithoutPrintBtn.OnPressedState.BorderRadius = 20;
             this.SaveOrderWithoutPrintBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveOrderWithoutPrintBtn.OnPressedState.BorderThickness = 1;
             this.SaveOrderWithoutPrintBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -748,7 +749,7 @@
             this.GenerateInvoicePdfBtn.BackColor1 = System.Drawing.Color.CornflowerBlue;
             this.GenerateInvoicePdfBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("GenerateInvoicePdfBtn.BackgroundImage")));
             this.GenerateInvoicePdfBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.GenerateInvoicePdfBtn.ButtonText = "PDF فائل  (Ctrl+R)";
+            this.GenerateInvoicePdfBtn.ButtonText = "PDF File (Ctrl+R)";
             this.GenerateInvoicePdfBtn.ButtonTextMarginLeft = 0;
             this.GenerateInvoicePdfBtn.ColorContrastOnClick = 45;
             this.GenerateInvoicePdfBtn.ColorContrastOnHover = 45;
@@ -775,7 +776,7 @@
             this.GenerateInvoicePdfBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.GenerateInvoicePdfBtn.IconSize = 25;
             this.GenerateInvoicePdfBtn.IdleBorderColor = System.Drawing.Color.PeachPuff;
-            this.GenerateInvoicePdfBtn.IdleBorderRadius = 1;
+            this.GenerateInvoicePdfBtn.IdleBorderRadius = 20;
             this.GenerateInvoicePdfBtn.IdleBorderThickness = 1;
             this.GenerateInvoicePdfBtn.IdleFillColor = System.Drawing.Color.CornflowerBlue;
             this.GenerateInvoicePdfBtn.IdleIconLeftImage = null;
@@ -784,7 +785,7 @@
             this.GenerateInvoicePdfBtn.Location = new System.Drawing.Point(10, 427);
             this.GenerateInvoicePdfBtn.Name = "GenerateInvoicePdfBtn";
             this.GenerateInvoicePdfBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.GenerateInvoicePdfBtn.OnDisabledState.BorderRadius = 1;
+            this.GenerateInvoicePdfBtn.OnDisabledState.BorderRadius = 20;
             this.GenerateInvoicePdfBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.GenerateInvoicePdfBtn.OnDisabledState.BorderThickness = 1;
             this.GenerateInvoicePdfBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -792,7 +793,7 @@
             this.GenerateInvoicePdfBtn.OnDisabledState.IconLeftImage = null;
             this.GenerateInvoicePdfBtn.OnDisabledState.IconRightImage = null;
             this.GenerateInvoicePdfBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.GenerateInvoicePdfBtn.onHoverState.BorderRadius = 1;
+            this.GenerateInvoicePdfBtn.onHoverState.BorderRadius = 20;
             this.GenerateInvoicePdfBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.GenerateInvoicePdfBtn.onHoverState.BorderThickness = 1;
             this.GenerateInvoicePdfBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -800,7 +801,7 @@
             this.GenerateInvoicePdfBtn.onHoverState.IconLeftImage = null;
             this.GenerateInvoicePdfBtn.onHoverState.IconRightImage = null;
             this.GenerateInvoicePdfBtn.OnIdleState.BorderColor = System.Drawing.Color.PeachPuff;
-            this.GenerateInvoicePdfBtn.OnIdleState.BorderRadius = 1;
+            this.GenerateInvoicePdfBtn.OnIdleState.BorderRadius = 20;
             this.GenerateInvoicePdfBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.GenerateInvoicePdfBtn.OnIdleState.BorderThickness = 1;
             this.GenerateInvoicePdfBtn.OnIdleState.FillColor = System.Drawing.Color.CornflowerBlue;
@@ -808,7 +809,7 @@
             this.GenerateInvoicePdfBtn.OnIdleState.IconLeftImage = null;
             this.GenerateInvoicePdfBtn.OnIdleState.IconRightImage = null;
             this.GenerateInvoicePdfBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.GenerateInvoicePdfBtn.OnPressedState.BorderRadius = 1;
+            this.GenerateInvoicePdfBtn.OnPressedState.BorderRadius = 20;
             this.GenerateInvoicePdfBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.GenerateInvoicePdfBtn.OnPressedState.BorderThickness = 1;
             this.GenerateInvoicePdfBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -857,7 +858,7 @@
             this.ClearCartBtn.BackColor1 = System.Drawing.Color.Red;
             this.ClearCartBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ClearCartBtn.BackgroundImage")));
             this.ClearCartBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.ClearCartBtn.ButtonText = "کلئیر کریں (Ctrl+N)";
+            this.ClearCartBtn.ButtonText = "Clear Cart (Ctrl+N)";
             this.ClearCartBtn.ButtonTextMarginLeft = 0;
             this.ClearCartBtn.ColorContrastOnClick = 45;
             this.ClearCartBtn.ColorContrastOnHover = 45;
@@ -884,7 +885,7 @@
             this.ClearCartBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.ClearCartBtn.IconSize = 25;
             this.ClearCartBtn.IdleBorderColor = System.Drawing.Color.Red;
-            this.ClearCartBtn.IdleBorderRadius = 1;
+            this.ClearCartBtn.IdleBorderRadius = 20;
             this.ClearCartBtn.IdleBorderThickness = 1;
             this.ClearCartBtn.IdleFillColor = System.Drawing.Color.Red;
             this.ClearCartBtn.IdleIconLeftImage = null;
@@ -893,7 +894,7 @@
             this.ClearCartBtn.Location = new System.Drawing.Point(147, 428);
             this.ClearCartBtn.Name = "ClearCartBtn";
             this.ClearCartBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.ClearCartBtn.OnDisabledState.BorderRadius = 1;
+            this.ClearCartBtn.OnDisabledState.BorderRadius = 20;
             this.ClearCartBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ClearCartBtn.OnDisabledState.BorderThickness = 1;
             this.ClearCartBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -901,7 +902,7 @@
             this.ClearCartBtn.OnDisabledState.IconLeftImage = null;
             this.ClearCartBtn.OnDisabledState.IconRightImage = null;
             this.ClearCartBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.ClearCartBtn.onHoverState.BorderRadius = 1;
+            this.ClearCartBtn.onHoverState.BorderRadius = 20;
             this.ClearCartBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ClearCartBtn.onHoverState.BorderThickness = 1;
             this.ClearCartBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -909,7 +910,7 @@
             this.ClearCartBtn.onHoverState.IconLeftImage = null;
             this.ClearCartBtn.onHoverState.IconRightImage = null;
             this.ClearCartBtn.OnIdleState.BorderColor = System.Drawing.Color.Red;
-            this.ClearCartBtn.OnIdleState.BorderRadius = 1;
+            this.ClearCartBtn.OnIdleState.BorderRadius = 20;
             this.ClearCartBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ClearCartBtn.OnIdleState.BorderThickness = 1;
             this.ClearCartBtn.OnIdleState.FillColor = System.Drawing.Color.Red;
@@ -917,7 +918,7 @@
             this.ClearCartBtn.OnIdleState.IconLeftImage = null;
             this.ClearCartBtn.OnIdleState.IconRightImage = null;
             this.ClearCartBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.ClearCartBtn.OnPressedState.BorderRadius = 1;
+            this.ClearCartBtn.OnPressedState.BorderRadius = 20;
             this.ClearCartBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ClearCartBtn.OnPressedState.BorderThickness = 1;
             this.ClearCartBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -947,7 +948,7 @@
             this.PrintPreviewBtn.BackColor1 = System.Drawing.Color.DodgerBlue;
             this.PrintPreviewBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PrintPreviewBtn.BackgroundImage")));
             this.PrintPreviewBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.PrintPreviewBtn.ButtonText = "پرنٹ (Ctrl+P)";
+            this.PrintPreviewBtn.ButtonText = "Print (Ctrl+P)";
             this.PrintPreviewBtn.ButtonTextMarginLeft = 0;
             this.PrintPreviewBtn.ColorContrastOnClick = 45;
             this.PrintPreviewBtn.ColorContrastOnHover = 45;
@@ -974,7 +975,7 @@
             this.PrintPreviewBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.PrintPreviewBtn.IconSize = 25;
             this.PrintPreviewBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.PrintPreviewBtn.IdleBorderRadius = 1;
+            this.PrintPreviewBtn.IdleBorderRadius = 20;
             this.PrintPreviewBtn.IdleBorderThickness = 1;
             this.PrintPreviewBtn.IdleFillColor = System.Drawing.Color.DodgerBlue;
             this.PrintPreviewBtn.IdleIconLeftImage = null;
@@ -983,7 +984,7 @@
             this.PrintPreviewBtn.Location = new System.Drawing.Point(12, 380);
             this.PrintPreviewBtn.Name = "PrintPreviewBtn";
             this.PrintPreviewBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.PrintPreviewBtn.OnDisabledState.BorderRadius = 1;
+            this.PrintPreviewBtn.OnDisabledState.BorderRadius = 20;
             this.PrintPreviewBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.PrintPreviewBtn.OnDisabledState.BorderThickness = 1;
             this.PrintPreviewBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -991,7 +992,7 @@
             this.PrintPreviewBtn.OnDisabledState.IconLeftImage = null;
             this.PrintPreviewBtn.OnDisabledState.IconRightImage = null;
             this.PrintPreviewBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.PrintPreviewBtn.onHoverState.BorderRadius = 1;
+            this.PrintPreviewBtn.onHoverState.BorderRadius = 20;
             this.PrintPreviewBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.PrintPreviewBtn.onHoverState.BorderThickness = 1;
             this.PrintPreviewBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -999,7 +1000,7 @@
             this.PrintPreviewBtn.onHoverState.IconLeftImage = null;
             this.PrintPreviewBtn.onHoverState.IconRightImage = null;
             this.PrintPreviewBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.PrintPreviewBtn.OnIdleState.BorderRadius = 1;
+            this.PrintPreviewBtn.OnIdleState.BorderRadius = 20;
             this.PrintPreviewBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.PrintPreviewBtn.OnIdleState.BorderThickness = 1;
             this.PrintPreviewBtn.OnIdleState.FillColor = System.Drawing.Color.DodgerBlue;
@@ -1007,7 +1008,7 @@
             this.PrintPreviewBtn.OnIdleState.IconLeftImage = null;
             this.PrintPreviewBtn.OnIdleState.IconRightImage = null;
             this.PrintPreviewBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.PrintPreviewBtn.OnPressedState.BorderRadius = 1;
+            this.PrintPreviewBtn.OnPressedState.BorderRadius = 20;
             this.PrintPreviewBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.PrintPreviewBtn.OnPressedState.BorderThickness = 1;
             this.PrintPreviewBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -1037,7 +1038,7 @@
             this.SaveAndPrintOrderBtn.BackColor1 = System.Drawing.Color.DarkOrange;
             this.SaveAndPrintOrderBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SaveAndPrintOrderBtn.BackgroundImage")));
             this.SaveAndPrintOrderBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.SaveAndPrintOrderBtn.ButtonText = "سیو اور پرنٹ (Ctrl+S)";
+            this.SaveAndPrintOrderBtn.ButtonText = "Save / Print (Ctrl+S)";
             this.SaveAndPrintOrderBtn.ButtonTextMarginLeft = 0;
             this.SaveAndPrintOrderBtn.ColorContrastOnClick = 45;
             this.SaveAndPrintOrderBtn.ColorContrastOnHover = 45;
@@ -1064,7 +1065,7 @@
             this.SaveAndPrintOrderBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.SaveAndPrintOrderBtn.IconSize = 25;
             this.SaveAndPrintOrderBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.SaveAndPrintOrderBtn.IdleBorderRadius = 1;
+            this.SaveAndPrintOrderBtn.IdleBorderRadius = 20;
             this.SaveAndPrintOrderBtn.IdleBorderThickness = 1;
             this.SaveAndPrintOrderBtn.IdleFillColor = System.Drawing.Color.DarkOrange;
             this.SaveAndPrintOrderBtn.IdleIconLeftImage = null;
@@ -1073,7 +1074,7 @@
             this.SaveAndPrintOrderBtn.Location = new System.Drawing.Point(12, 327);
             this.SaveAndPrintOrderBtn.Name = "SaveAndPrintOrderBtn";
             this.SaveAndPrintOrderBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.SaveAndPrintOrderBtn.OnDisabledState.BorderRadius = 1;
+            this.SaveAndPrintOrderBtn.OnDisabledState.BorderRadius = 20;
             this.SaveAndPrintOrderBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveAndPrintOrderBtn.OnDisabledState.BorderThickness = 1;
             this.SaveAndPrintOrderBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -1081,7 +1082,7 @@
             this.SaveAndPrintOrderBtn.OnDisabledState.IconLeftImage = null;
             this.SaveAndPrintOrderBtn.OnDisabledState.IconRightImage = null;
             this.SaveAndPrintOrderBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.SaveAndPrintOrderBtn.onHoverState.BorderRadius = 1;
+            this.SaveAndPrintOrderBtn.onHoverState.BorderRadius = 20;
             this.SaveAndPrintOrderBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveAndPrintOrderBtn.onHoverState.BorderThickness = 1;
             this.SaveAndPrintOrderBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -1089,7 +1090,7 @@
             this.SaveAndPrintOrderBtn.onHoverState.IconLeftImage = null;
             this.SaveAndPrintOrderBtn.onHoverState.IconRightImage = null;
             this.SaveAndPrintOrderBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.SaveAndPrintOrderBtn.OnIdleState.BorderRadius = 1;
+            this.SaveAndPrintOrderBtn.OnIdleState.BorderRadius = 20;
             this.SaveAndPrintOrderBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveAndPrintOrderBtn.OnIdleState.BorderThickness = 1;
             this.SaveAndPrintOrderBtn.OnIdleState.FillColor = System.Drawing.Color.DarkOrange;
@@ -1097,7 +1098,7 @@
             this.SaveAndPrintOrderBtn.OnIdleState.IconLeftImage = null;
             this.SaveAndPrintOrderBtn.OnIdleState.IconRightImage = null;
             this.SaveAndPrintOrderBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.SaveAndPrintOrderBtn.OnPressedState.BorderRadius = 1;
+            this.SaveAndPrintOrderBtn.OnPressedState.BorderRadius = 20;
             this.SaveAndPrintOrderBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveAndPrintOrderBtn.OnPressedState.BorderThickness = 1;
             this.SaveAndPrintOrderBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -1127,7 +1128,7 @@
             this.SaveBillBtn.BackColor1 = System.Drawing.Color.ForestGreen;
             this.SaveBillBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SaveBillBtn.BackgroundImage")));
             this.SaveBillBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.SaveBillBtn.ButtonText = "عارضی سیو (Ctrl+T)";
+            this.SaveBillBtn.ButtonText = "Temporary Save (Ctrl+T)";
             this.SaveBillBtn.ButtonTextMarginLeft = 0;
             this.SaveBillBtn.ColorContrastOnClick = 45;
             this.SaveBillBtn.ColorContrastOnHover = 45;
@@ -1154,7 +1155,7 @@
             this.SaveBillBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.SaveBillBtn.IconSize = 25;
             this.SaveBillBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.SaveBillBtn.IdleBorderRadius = 1;
+            this.SaveBillBtn.IdleBorderRadius = 20;
             this.SaveBillBtn.IdleBorderThickness = 1;
             this.SaveBillBtn.IdleFillColor = System.Drawing.Color.ForestGreen;
             this.SaveBillBtn.IdleIconLeftImage = null;
@@ -1163,7 +1164,7 @@
             this.SaveBillBtn.Location = new System.Drawing.Point(193, 381);
             this.SaveBillBtn.Name = "SaveBillBtn";
             this.SaveBillBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.SaveBillBtn.OnDisabledState.BorderRadius = 1;
+            this.SaveBillBtn.OnDisabledState.BorderRadius = 20;
             this.SaveBillBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveBillBtn.OnDisabledState.BorderThickness = 1;
             this.SaveBillBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -1171,7 +1172,7 @@
             this.SaveBillBtn.OnDisabledState.IconLeftImage = null;
             this.SaveBillBtn.OnDisabledState.IconRightImage = null;
             this.SaveBillBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.SaveBillBtn.onHoverState.BorderRadius = 1;
+            this.SaveBillBtn.onHoverState.BorderRadius = 20;
             this.SaveBillBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveBillBtn.onHoverState.BorderThickness = 1;
             this.SaveBillBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -1179,7 +1180,7 @@
             this.SaveBillBtn.onHoverState.IconLeftImage = null;
             this.SaveBillBtn.onHoverState.IconRightImage = null;
             this.SaveBillBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.SaveBillBtn.OnIdleState.BorderRadius = 1;
+            this.SaveBillBtn.OnIdleState.BorderRadius = 20;
             this.SaveBillBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveBillBtn.OnIdleState.BorderThickness = 1;
             this.SaveBillBtn.OnIdleState.FillColor = System.Drawing.Color.ForestGreen;
@@ -1187,7 +1188,7 @@
             this.SaveBillBtn.OnIdleState.IconLeftImage = null;
             this.SaveBillBtn.OnIdleState.IconRightImage = null;
             this.SaveBillBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.SaveBillBtn.OnPressedState.BorderRadius = 1;
+            this.SaveBillBtn.OnPressedState.BorderRadius = 20;
             this.SaveBillBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveBillBtn.OnPressedState.BorderThickness = 1;
             this.SaveBillBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -1414,6 +1415,7 @@
             // 
             this.ProductGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductGroup.Controls.Add(this.Prod_Qty);
             this.ProductGroup.Controls.Add(this.InvoiceShopName);
             this.ProductGroup.Controls.Add(this.OtherProductChk);
             this.ProductGroup.Controls.Add(this.label5);
@@ -1554,7 +1556,7 @@
             this.AddToCardBtn.Name = "AddToCardBtn";
             this.AddToCardBtn.Size = new System.Drawing.Size(154, 50);
             this.AddToCardBtn.TabIndex = 7;
-            this.AddToCardBtn.Text = " محفوظ کریں";
+            this.AddToCardBtn.Text = "Add To Cart";
             this.AddToCardBtn.UseVisualStyleBackColor = false;
             this.AddToCardBtn.Click += new System.EventHandler(this.AddToCardBtn_Click);
             // 
@@ -2017,7 +2019,7 @@
             this.ResetCustomerBtn.Name = "ResetCustomerBtn";
             this.ResetCustomerBtn.Size = new System.Drawing.Size(124, 39);
             this.ResetCustomerBtn.TabIndex = 0;
-            this.ResetCustomerBtn.Text = "  کسٹمر ڈیلیٹ";
+            this.ResetCustomerBtn.Text = "Customer Delete";
             this.ResetCustomerBtn.UseVisualStyleBackColor = false;
             this.ResetCustomerBtn.Visible = false;
             this.ResetCustomerBtn.Click += new System.EventHandler(this.ResetCustomerBtn_Click);
@@ -2474,6 +2476,14 @@
             // 
             this.OrderPrintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.OrderPrintDocument_PrintPage);
             // 
+            // Prod_Qty
+            // 
+            this.Prod_Qty.Location = new System.Drawing.Point(1253, 48);
+            this.Prod_Qty.Name = "Prod_Qty";
+            this.Prod_Qty.Size = new System.Drawing.Size(19, 22);
+            this.Prod_Qty.TabIndex = 8;
+            this.Prod_Qty.Visible = false;
+            // 
             // BillPadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2598,5 +2608,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label PreviousOrderSummaryLbl;
+        private System.Windows.Forms.TextBox Prod_Qty;
     }
 }
