@@ -38,12 +38,10 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges13 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges14 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.sideBarPanel = new System.Windows.Forms.Panel();
-            this.FooterLbl = new System.Windows.Forms.Label();
             this.CustomerSectionBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.ProductSectrionBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.SubCategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.CategoryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.MainLogoImgBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.CountryBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.cityBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.MainPanel = new System.Windows.Forms.Panel();
@@ -54,12 +52,14 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importExcelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importCustomerExcelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.databaseSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FooterLbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.sideBarPanel.SuspendLayout();
             this.TopNavPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -68,31 +68,19 @@
             // sideBarPanel
             // 
             this.sideBarPanel.BackColor = System.Drawing.Color.SlateBlue;
+            this.sideBarPanel.Controls.Add(this.label1);
             this.sideBarPanel.Controls.Add(this.FooterLbl);
             this.sideBarPanel.Controls.Add(this.CustomerSectionBtn);
             this.sideBarPanel.Controls.Add(this.ProductSectrionBtn);
             this.sideBarPanel.Controls.Add(this.SubCategoryBtn);
             this.sideBarPanel.Controls.Add(this.CategoryBtn);
-            this.sideBarPanel.Controls.Add(this.MainLogoImgBtn);
             this.sideBarPanel.Controls.Add(this.CountryBtn);
             this.sideBarPanel.Controls.Add(this.cityBtn);
             this.sideBarPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sideBarPanel.Location = new System.Drawing.Point(0, 28);
+            this.sideBarPanel.Location = new System.Drawing.Point(0, 30);
             this.sideBarPanel.Name = "sideBarPanel";
-            this.sideBarPanel.Size = new System.Drawing.Size(229, 652);
+            this.sideBarPanel.Size = new System.Drawing.Size(229, 650);
             this.sideBarPanel.TabIndex = 0;
-            // 
-            // FooterLbl
-            // 
-            this.FooterLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.FooterLbl.AutoSize = true;
-            this.FooterLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FooterLbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.FooterLbl.Location = new System.Drawing.Point(21, 618);
-            this.FooterLbl.Name = "FooterLbl";
-            this.FooterLbl.Size = new System.Drawing.Size(183, 16);
-            this.FooterLbl.TabIndex = 2;
-            this.FooterLbl.Text = "POS App - Cortex Studios";
             // 
             // CustomerSectionBtn
             // 
@@ -135,7 +123,7 @@
             this.CustomerSectionBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.CustomerSectionBtn.IconSize = 25;
             this.CustomerSectionBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.CustomerSectionBtn.IdleBorderRadius = 1;
+            this.CustomerSectionBtn.IdleBorderRadius = 30;
             this.CustomerSectionBtn.IdleBorderThickness = 1;
             this.CustomerSectionBtn.IdleFillColor = System.Drawing.Color.SlateBlue;
             this.CustomerSectionBtn.IdleIconLeftImage = null;
@@ -144,7 +132,7 @@
             this.CustomerSectionBtn.Location = new System.Drawing.Point(12, 463);
             this.CustomerSectionBtn.Name = "CustomerSectionBtn";
             this.CustomerSectionBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.CustomerSectionBtn.OnDisabledState.BorderRadius = 1;
+            this.CustomerSectionBtn.OnDisabledState.BorderRadius = 30;
             this.CustomerSectionBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CustomerSectionBtn.OnDisabledState.BorderThickness = 1;
             this.CustomerSectionBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -152,7 +140,7 @@
             this.CustomerSectionBtn.OnDisabledState.IconLeftImage = null;
             this.CustomerSectionBtn.OnDisabledState.IconRightImage = null;
             this.CustomerSectionBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.CustomerSectionBtn.onHoverState.BorderRadius = 1;
+            this.CustomerSectionBtn.onHoverState.BorderRadius = 30;
             this.CustomerSectionBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CustomerSectionBtn.onHoverState.BorderThickness = 1;
             this.CustomerSectionBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -160,7 +148,7 @@
             this.CustomerSectionBtn.onHoverState.IconLeftImage = null;
             this.CustomerSectionBtn.onHoverState.IconRightImage = null;
             this.CustomerSectionBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.CustomerSectionBtn.OnIdleState.BorderRadius = 1;
+            this.CustomerSectionBtn.OnIdleState.BorderRadius = 30;
             this.CustomerSectionBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CustomerSectionBtn.OnIdleState.BorderThickness = 1;
             this.CustomerSectionBtn.OnIdleState.FillColor = System.Drawing.Color.SlateBlue;
@@ -168,7 +156,7 @@
             this.CustomerSectionBtn.OnIdleState.IconLeftImage = null;
             this.CustomerSectionBtn.OnIdleState.IconRightImage = null;
             this.CustomerSectionBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.CustomerSectionBtn.OnPressedState.BorderRadius = 1;
+            this.CustomerSectionBtn.OnPressedState.BorderRadius = 30;
             this.CustomerSectionBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CustomerSectionBtn.OnPressedState.BorderThickness = 1;
             this.CustomerSectionBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -225,7 +213,7 @@
             this.ProductSectrionBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.ProductSectrionBtn.IconSize = 25;
             this.ProductSectrionBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.ProductSectrionBtn.IdleBorderRadius = 1;
+            this.ProductSectrionBtn.IdleBorderRadius = 30;
             this.ProductSectrionBtn.IdleBorderThickness = 1;
             this.ProductSectrionBtn.IdleFillColor = System.Drawing.Color.SlateBlue;
             this.ProductSectrionBtn.IdleIconLeftImage = null;
@@ -234,7 +222,7 @@
             this.ProductSectrionBtn.Location = new System.Drawing.Point(12, 409);
             this.ProductSectrionBtn.Name = "ProductSectrionBtn";
             this.ProductSectrionBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.ProductSectrionBtn.OnDisabledState.BorderRadius = 1;
+            this.ProductSectrionBtn.OnDisabledState.BorderRadius = 30;
             this.ProductSectrionBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ProductSectrionBtn.OnDisabledState.BorderThickness = 1;
             this.ProductSectrionBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -242,7 +230,7 @@
             this.ProductSectrionBtn.OnDisabledState.IconLeftImage = null;
             this.ProductSectrionBtn.OnDisabledState.IconRightImage = null;
             this.ProductSectrionBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.ProductSectrionBtn.onHoverState.BorderRadius = 1;
+            this.ProductSectrionBtn.onHoverState.BorderRadius = 30;
             this.ProductSectrionBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ProductSectrionBtn.onHoverState.BorderThickness = 1;
             this.ProductSectrionBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -250,7 +238,7 @@
             this.ProductSectrionBtn.onHoverState.IconLeftImage = null;
             this.ProductSectrionBtn.onHoverState.IconRightImage = null;
             this.ProductSectrionBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.ProductSectrionBtn.OnIdleState.BorderRadius = 1;
+            this.ProductSectrionBtn.OnIdleState.BorderRadius = 30;
             this.ProductSectrionBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ProductSectrionBtn.OnIdleState.BorderThickness = 1;
             this.ProductSectrionBtn.OnIdleState.FillColor = System.Drawing.Color.SlateBlue;
@@ -258,7 +246,7 @@
             this.ProductSectrionBtn.OnIdleState.IconLeftImage = null;
             this.ProductSectrionBtn.OnIdleState.IconRightImage = null;
             this.ProductSectrionBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.ProductSectrionBtn.OnPressedState.BorderRadius = 1;
+            this.ProductSectrionBtn.OnPressedState.BorderRadius = 30;
             this.ProductSectrionBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.ProductSectrionBtn.OnPressedState.BorderThickness = 1;
             this.ProductSectrionBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -315,7 +303,7 @@
             this.SubCategoryBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.SubCategoryBtn.IconSize = 25;
             this.SubCategoryBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.SubCategoryBtn.IdleBorderRadius = 1;
+            this.SubCategoryBtn.IdleBorderRadius = 30;
             this.SubCategoryBtn.IdleBorderThickness = 1;
             this.SubCategoryBtn.IdleFillColor = System.Drawing.Color.SlateBlue;
             this.SubCategoryBtn.IdleIconLeftImage = null;
@@ -324,7 +312,7 @@
             this.SubCategoryBtn.Location = new System.Drawing.Point(11, 356);
             this.SubCategoryBtn.Name = "SubCategoryBtn";
             this.SubCategoryBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.SubCategoryBtn.OnDisabledState.BorderRadius = 1;
+            this.SubCategoryBtn.OnDisabledState.BorderRadius = 30;
             this.SubCategoryBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SubCategoryBtn.OnDisabledState.BorderThickness = 1;
             this.SubCategoryBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -332,7 +320,7 @@
             this.SubCategoryBtn.OnDisabledState.IconLeftImage = null;
             this.SubCategoryBtn.OnDisabledState.IconRightImage = null;
             this.SubCategoryBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.SubCategoryBtn.onHoverState.BorderRadius = 1;
+            this.SubCategoryBtn.onHoverState.BorderRadius = 30;
             this.SubCategoryBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SubCategoryBtn.onHoverState.BorderThickness = 1;
             this.SubCategoryBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -340,7 +328,7 @@
             this.SubCategoryBtn.onHoverState.IconLeftImage = null;
             this.SubCategoryBtn.onHoverState.IconRightImage = null;
             this.SubCategoryBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.SubCategoryBtn.OnIdleState.BorderRadius = 1;
+            this.SubCategoryBtn.OnIdleState.BorderRadius = 30;
             this.SubCategoryBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SubCategoryBtn.OnIdleState.BorderThickness = 1;
             this.SubCategoryBtn.OnIdleState.FillColor = System.Drawing.Color.SlateBlue;
@@ -348,7 +336,7 @@
             this.SubCategoryBtn.OnIdleState.IconLeftImage = null;
             this.SubCategoryBtn.OnIdleState.IconRightImage = null;
             this.SubCategoryBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.SubCategoryBtn.OnPressedState.BorderRadius = 1;
+            this.SubCategoryBtn.OnPressedState.BorderRadius = 30;
             this.SubCategoryBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SubCategoryBtn.OnPressedState.BorderThickness = 1;
             this.SubCategoryBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -405,7 +393,7 @@
             this.CategoryBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.CategoryBtn.IconSize = 25;
             this.CategoryBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.CategoryBtn.IdleBorderRadius = 1;
+            this.CategoryBtn.IdleBorderRadius = 30;
             this.CategoryBtn.IdleBorderThickness = 1;
             this.CategoryBtn.IdleFillColor = System.Drawing.Color.SlateBlue;
             this.CategoryBtn.IdleIconLeftImage = null;
@@ -414,7 +402,7 @@
             this.CategoryBtn.Location = new System.Drawing.Point(12, 299);
             this.CategoryBtn.Name = "CategoryBtn";
             this.CategoryBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.CategoryBtn.OnDisabledState.BorderRadius = 1;
+            this.CategoryBtn.OnDisabledState.BorderRadius = 30;
             this.CategoryBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CategoryBtn.OnDisabledState.BorderThickness = 1;
             this.CategoryBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -422,7 +410,7 @@
             this.CategoryBtn.OnDisabledState.IconLeftImage = null;
             this.CategoryBtn.OnDisabledState.IconRightImage = null;
             this.CategoryBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.CategoryBtn.onHoverState.BorderRadius = 1;
+            this.CategoryBtn.onHoverState.BorderRadius = 30;
             this.CategoryBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CategoryBtn.onHoverState.BorderThickness = 1;
             this.CategoryBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -430,7 +418,7 @@
             this.CategoryBtn.onHoverState.IconLeftImage = null;
             this.CategoryBtn.onHoverState.IconRightImage = null;
             this.CategoryBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.CategoryBtn.OnIdleState.BorderRadius = 1;
+            this.CategoryBtn.OnIdleState.BorderRadius = 30;
             this.CategoryBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CategoryBtn.OnIdleState.BorderThickness = 1;
             this.CategoryBtn.OnIdleState.FillColor = System.Drawing.Color.SlateBlue;
@@ -438,7 +426,7 @@
             this.CategoryBtn.OnIdleState.IconLeftImage = null;
             this.CategoryBtn.OnIdleState.IconRightImage = null;
             this.CategoryBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.CategoryBtn.OnPressedState.BorderRadius = 1;
+            this.CategoryBtn.OnPressedState.BorderRadius = 30;
             this.CategoryBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CategoryBtn.OnPressedState.BorderThickness = 1;
             this.CategoryBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -453,43 +441,6 @@
             this.CategoryBtn.TextPadding = new System.Windows.Forms.Padding(0);
             this.CategoryBtn.UseDefaultRadiusAndThickness = true;
             this.CategoryBtn.Click += new System.EventHandler(this.CategoryBtn_Click);
-            // 
-            // MainLogoImgBtn
-            // 
-            this.MainLogoImgBtn.ActiveImage = null;
-            this.MainLogoImgBtn.AllowAnimations = true;
-            this.MainLogoImgBtn.AllowBuffering = false;
-            this.MainLogoImgBtn.AllowToggling = false;
-            this.MainLogoImgBtn.AllowZooming = false;
-            this.MainLogoImgBtn.AllowZoomingOnFocus = false;
-            this.MainLogoImgBtn.BackColor = System.Drawing.Color.Transparent;
-            this.MainLogoImgBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MainLogoImgBtn.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.MainLogoImgBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.MainLogoImgBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("MainLogoImgBtn.ErrorImage")));
-            this.MainLogoImgBtn.FadeWhenInactive = false;
-            this.MainLogoImgBtn.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
-            this.MainLogoImgBtn.Image = ((System.Drawing.Image)(resources.GetObject("MainLogoImgBtn.Image")));
-            this.MainLogoImgBtn.ImageActive = null;
-            this.MainLogoImgBtn.ImageLocation = null;
-            this.MainLogoImgBtn.ImageMargin = 30;
-            this.MainLogoImgBtn.ImageSize = new System.Drawing.Size(199, 62);
-            this.MainLogoImgBtn.ImageZoomSize = new System.Drawing.Size(229, 92);
-            this.MainLogoImgBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("MainLogoImgBtn.InitialImage")));
-            this.MainLogoImgBtn.Location = new System.Drawing.Point(0, 0);
-            this.MainLogoImgBtn.Name = "MainLogoImgBtn";
-            this.MainLogoImgBtn.Rotation = 0;
-            this.MainLogoImgBtn.ShowActiveImage = true;
-            this.MainLogoImgBtn.ShowCursorChanges = false;
-            this.MainLogoImgBtn.ShowImageBorders = true;
-            this.MainLogoImgBtn.ShowSizeMarkers = false;
-            this.MainLogoImgBtn.Size = new System.Drawing.Size(229, 92);
-            this.MainLogoImgBtn.TabIndex = 0;
-            this.MainLogoImgBtn.ToolTipText = "";
-            this.MainLogoImgBtn.WaitOnLoad = false;
-            this.MainLogoImgBtn.Zoom = 30;
-            this.MainLogoImgBtn.ZoomSpeed = 10;
-            this.MainLogoImgBtn.Click += new System.EventHandler(this.MainLogoImgBtn_Click);
             // 
             // CountryBtn
             // 
@@ -532,7 +483,7 @@
             this.CountryBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.CountryBtn.IconSize = 25;
             this.CountryBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.CountryBtn.IdleBorderRadius = 1;
+            this.CountryBtn.IdleBorderRadius = 30;
             this.CountryBtn.IdleBorderThickness = 1;
             this.CountryBtn.IdleFillColor = System.Drawing.Color.SlateBlue;
             this.CountryBtn.IdleIconLeftImage = null;
@@ -541,7 +492,7 @@
             this.CountryBtn.Location = new System.Drawing.Point(12, 243);
             this.CountryBtn.Name = "CountryBtn";
             this.CountryBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.CountryBtn.OnDisabledState.BorderRadius = 1;
+            this.CountryBtn.OnDisabledState.BorderRadius = 30;
             this.CountryBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CountryBtn.OnDisabledState.BorderThickness = 1;
             this.CountryBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -549,7 +500,7 @@
             this.CountryBtn.OnDisabledState.IconLeftImage = null;
             this.CountryBtn.OnDisabledState.IconRightImage = null;
             this.CountryBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.CountryBtn.onHoverState.BorderRadius = 1;
+            this.CountryBtn.onHoverState.BorderRadius = 30;
             this.CountryBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CountryBtn.onHoverState.BorderThickness = 1;
             this.CountryBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -557,7 +508,7 @@
             this.CountryBtn.onHoverState.IconLeftImage = null;
             this.CountryBtn.onHoverState.IconRightImage = null;
             this.CountryBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.CountryBtn.OnIdleState.BorderRadius = 1;
+            this.CountryBtn.OnIdleState.BorderRadius = 30;
             this.CountryBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CountryBtn.OnIdleState.BorderThickness = 1;
             this.CountryBtn.OnIdleState.FillColor = System.Drawing.Color.SlateBlue;
@@ -565,7 +516,7 @@
             this.CountryBtn.OnIdleState.IconLeftImage = null;
             this.CountryBtn.OnIdleState.IconRightImage = null;
             this.CountryBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.CountryBtn.OnPressedState.BorderRadius = 1;
+            this.CountryBtn.OnPressedState.BorderRadius = 30;
             this.CountryBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.CountryBtn.OnPressedState.BorderThickness = 1;
             this.CountryBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -622,7 +573,7 @@
             this.cityBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.cityBtn.IconSize = 25;
             this.cityBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.cityBtn.IdleBorderRadius = 1;
+            this.cityBtn.IdleBorderRadius = 30;
             this.cityBtn.IdleBorderThickness = 1;
             this.cityBtn.IdleFillColor = System.Drawing.Color.SlateBlue;
             this.cityBtn.IdleIconLeftImage = null;
@@ -631,7 +582,7 @@
             this.cityBtn.Location = new System.Drawing.Point(7, 185);
             this.cityBtn.Name = "cityBtn";
             this.cityBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.cityBtn.OnDisabledState.BorderRadius = 1;
+            this.cityBtn.OnDisabledState.BorderRadius = 30;
             this.cityBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.cityBtn.OnDisabledState.BorderThickness = 1;
             this.cityBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -639,7 +590,7 @@
             this.cityBtn.OnDisabledState.IconLeftImage = null;
             this.cityBtn.OnDisabledState.IconRightImage = null;
             this.cityBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.cityBtn.onHoverState.BorderRadius = 1;
+            this.cityBtn.onHoverState.BorderRadius = 30;
             this.cityBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.cityBtn.onHoverState.BorderThickness = 1;
             this.cityBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
@@ -647,7 +598,7 @@
             this.cityBtn.onHoverState.IconLeftImage = null;
             this.cityBtn.onHoverState.IconRightImage = null;
             this.cityBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.cityBtn.OnIdleState.BorderRadius = 1;
+            this.cityBtn.OnIdleState.BorderRadius = 30;
             this.cityBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.cityBtn.OnIdleState.BorderThickness = 1;
             this.cityBtn.OnIdleState.FillColor = System.Drawing.Color.SlateBlue;
@@ -655,7 +606,7 @@
             this.cityBtn.OnIdleState.IconLeftImage = null;
             this.cityBtn.OnIdleState.IconRightImage = null;
             this.cityBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.cityBtn.OnPressedState.BorderRadius = 1;
+            this.cityBtn.OnPressedState.BorderRadius = 30;
             this.cityBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.cityBtn.OnPressedState.BorderThickness = 1;
             this.cityBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -687,7 +638,7 @@
             this.TopNavPanel.Controls.Add(this.BillPadBtn);
             this.TopNavPanel.Controls.Add(this.LogoutBtn);
             this.TopNavPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopNavPanel.Location = new System.Drawing.Point(229, 28);
+            this.TopNavPanel.Location = new System.Drawing.Point(229, 30);
             this.TopNavPanel.Name = "TopNavPanel";
             this.TopNavPanel.Size = new System.Drawing.Size(1149, 92);
             this.TopNavPanel.TabIndex = 3;
@@ -703,7 +654,7 @@
             this.BillPadBtn.AutoSizeLeftIcon = true;
             this.BillPadBtn.AutoSizeRightIcon = true;
             this.BillPadBtn.BackColor = System.Drawing.Color.Transparent;
-            this.BillPadBtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.BillPadBtn.BackColor1 = System.Drawing.Color.DarkSlateBlue;
             this.BillPadBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BillPadBtn.BackgroundImage")));
             this.BillPadBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.BillPadBtn.ButtonText = "Bill Pad (Ctrl+B)";
@@ -733,40 +684,40 @@
             this.BillPadBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
             this.BillPadBtn.IconSize = 25;
             this.BillPadBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.BillPadBtn.IdleBorderRadius = 1;
+            this.BillPadBtn.IdleBorderRadius = 30;
             this.BillPadBtn.IdleBorderThickness = 1;
-            this.BillPadBtn.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.BillPadBtn.IdleFillColor = System.Drawing.Color.DarkSlateBlue;
             this.BillPadBtn.IdleIconLeftImage = global::POS_Shop.Properties.Resources.iconLoad1;
             this.BillPadBtn.IdleIconRightImage = null;
             this.BillPadBtn.IndicateFocus = false;
             this.BillPadBtn.Location = new System.Drawing.Point(15, 29);
             this.BillPadBtn.Name = "BillPadBtn";
             this.BillPadBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.BillPadBtn.OnDisabledState.BorderRadius = 1;
+            this.BillPadBtn.OnDisabledState.BorderRadius = 30;
             this.BillPadBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.BillPadBtn.OnDisabledState.BorderThickness = 1;
             this.BillPadBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.BillPadBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.BillPadBtn.OnDisabledState.IconLeftImage = null;
             this.BillPadBtn.OnDisabledState.IconRightImage = null;
-            this.BillPadBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.BillPadBtn.onHoverState.BorderRadius = 1;
+            this.BillPadBtn.onHoverState.BorderColor = System.Drawing.Color.BlueViolet;
+            this.BillPadBtn.onHoverState.BorderRadius = 30;
             this.BillPadBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.BillPadBtn.onHoverState.BorderThickness = 1;
-            this.BillPadBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.BillPadBtn.onHoverState.FillColor = System.Drawing.Color.OliveDrab;
             this.BillPadBtn.onHoverState.ForeColor = System.Drawing.Color.White;
             this.BillPadBtn.onHoverState.IconLeftImage = null;
             this.BillPadBtn.onHoverState.IconRightImage = null;
             this.BillPadBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.BillPadBtn.OnIdleState.BorderRadius = 1;
+            this.BillPadBtn.OnIdleState.BorderRadius = 30;
             this.BillPadBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.BillPadBtn.OnIdleState.BorderThickness = 1;
-            this.BillPadBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.BillPadBtn.OnIdleState.FillColor = System.Drawing.Color.DarkSlateBlue;
             this.BillPadBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
             this.BillPadBtn.OnIdleState.IconLeftImage = global::POS_Shop.Properties.Resources.iconLoad1;
             this.BillPadBtn.OnIdleState.IconRightImage = null;
             this.BillPadBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.BillPadBtn.OnPressedState.BorderRadius = 1;
+            this.BillPadBtn.OnPressedState.BorderRadius = 30;
             this.BillPadBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.BillPadBtn.OnPressedState.BorderThickness = 1;
             this.BillPadBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -826,7 +777,7 @@
             this.viewsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1378, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1378, 30);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -844,16 +795,30 @@
             // backupDatabaseToolStripMenuItem
             // 
             this.backupDatabaseToolStripMenuItem.Name = "backupDatabaseToolStripMenuItem";
-            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.backupDatabaseToolStripMenuItem.Text = "Backup Database";
             this.backupDatabaseToolStripMenuItem.Click += new System.EventHandler(this.backupDatabaseToolStripMenuItem_Click);
             // 
             // restoreDatabaseToolStripMenuItem
             // 
             this.restoreDatabaseToolStripMenuItem.Name = "restoreDatabaseToolStripMenuItem";
-            this.restoreDatabaseToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.restoreDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.restoreDatabaseToolStripMenuItem.Text = "Restore Database";
             this.restoreDatabaseToolStripMenuItem.Click += new System.EventHandler(this.restoreDatabaseToolStripMenuItem_Click);
+            // 
+            // databaseSettingToolStripMenuItem
+            // 
+            this.databaseSettingToolStripMenuItem.Name = "databaseSettingToolStripMenuItem";
+            this.databaseSettingToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.databaseSettingToolStripMenuItem.Text = "Database Setting";
+            this.databaseSettingToolStripMenuItem.Click += new System.EventHandler(this.databaseSettingToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // viewsToolStripMenuItem
             // 
@@ -884,19 +849,28 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // databaseSettingToolStripMenuItem
+            // FooterLbl
             // 
-            this.databaseSettingToolStripMenuItem.Name = "databaseSettingToolStripMenuItem";
-            this.databaseSettingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.databaseSettingToolStripMenuItem.Text = "Database Setting";
-            this.databaseSettingToolStripMenuItem.Click += new System.EventHandler(this.databaseSettingToolStripMenuItem_Click);
+            this.FooterLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.FooterLbl.AutoSize = true;
+            this.FooterLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FooterLbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.FooterLbl.Location = new System.Drawing.Point(21, 616);
+            this.FooterLbl.Name = "FooterLbl";
+            this.FooterLbl.Size = new System.Drawing.Size(183, 16);
+            this.FooterLbl.TabIndex = 2;
+            this.FooterLbl.Text = "POS App - Cortex Studios";
             // 
-            // exitToolStripMenuItem
+            // label1
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Ravie", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(19, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(199, 27);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "POS Software";
             // 
             // MasterLayoutForm
             // 
@@ -927,7 +901,6 @@
         #endregion
 
         private System.Windows.Forms.Panel sideBarPanel;
-        private Bunifu.UI.WinForms.BunifuImageButton MainLogoImgBtn;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton CountryBtn;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton cityBtn;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton CategoryBtn;
@@ -946,9 +919,10 @@
         private System.Windows.Forms.ToolStripMenuItem importExcelFileToolStripMenuItem;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton CustomerSectionBtn;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton BillPadBtn;
-        private System.Windows.Forms.Label FooterLbl;
         private System.Windows.Forms.ToolStripMenuItem importCustomerExcelFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseSettingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Label FooterLbl;
+        private System.Windows.Forms.Label label1;
     }
 }

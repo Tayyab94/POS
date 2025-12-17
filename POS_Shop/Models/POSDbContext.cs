@@ -11,28 +11,28 @@ namespace POS_Shop.Models
     public class POSDbContext: DbContext
     {
 
-        //public POSDbContext():base("name=POSDbConnectionstring")
-        //{
-        //    //string dbname = @"Server=(localdb)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\dbName.mdf;Integrated Security=true;";
-        //    //Optional Initializer  
-        //    Database.SetInitializer(new CreateDatabaseIfNotExists<POSDbContext>());
-        //}
-
-
-        public POSDbContext() : base(DatabasePathManager.GetConnectionString())
+        public POSDbContext() : base("name=POSDbConnectionstring")
         {
-            // Disable initializer since you have existing database
-            Database.SetInitializer<POSDbContext>(null);
-
-            // Configuration for better performance
-            Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;
-            Configuration.AutoDetectChangesEnabled = true;
-            Configuration.ValidateOnSaveEnabled = true;
-
-            // Set longer timeout for complex queries
-            Database.CommandTimeout = 180; // 3 minutes
+            //string dbname = @"Server=(localdb)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\dbName.mdf;Integrated Security=true;";
+            //Optional Initializer  
+            Database.SetInitializer(new CreateDatabaseIfNotExists<POSDbContext>());
         }
+
+
+        //public POSDbContext() : base(DatabasePathManager.GetConnectionString())
+        //{
+        //    // Disable initializer since you have existing database
+        //    Database.SetInitializer<POSDbContext>(null);
+
+        //    // Configuration for better performance
+        //    Configuration.LazyLoadingEnabled = false;
+        //    Configuration.ProxyCreationEnabled = false;
+        //    Configuration.AutoDetectChangesEnabled = true;
+        //    Configuration.ValidateOnSaveEnabled = true;
+
+        //    // Set longer timeout for complex queries
+        //    Database.CommandTimeout = 180; // 3 minutes
+        //}
 
         /// <summary>
         /// Tests database connection

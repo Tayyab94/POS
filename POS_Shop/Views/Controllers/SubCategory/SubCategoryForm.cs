@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -176,6 +178,45 @@ namespace POS_Shop.Views.Controllers.SubCategory
             subcategoryNameTxt.Clear();
             SubcategoryIdTxt.Clear();   
             CategoryDropDownLst.SelectedIndex = 0;
+        }
+
+        private async void RemoveSubCategoryBtn_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to delete this Subcategory?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirmResult == DialogResult.Yes)
+            {
+
+                var catId = Convert.ToInt32(SubcategoryIdTxt.Text);
+                using (var context = new POSDbContext())
+                {
+                    var categoryRepo = new SubCategoryRepository(context);
+                    var data = categoryRepo.GetById(catId);
+                    if (data != null)
+                    {
+                        try
+                        {
+
+                            categoryRepo.Delete(catId);
+                            categoryRepo.Save();
+                            MessageBox.Show("Subcategory deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            await LoadSubCategoryForDataGridView();
+                        }
+
+                        catch (DbUpdateException dbEx) when (dbEx.InnerException is SqlException sqlEx && sqlEx.Number == 547)
+                        {
+                            MessageBox.Show("This Category is being used by other records and cannot be deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // Don't navigate away, stay on current page
+                            context.ChangeTracker.DetectChanges();
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Subcategory not found for deletion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

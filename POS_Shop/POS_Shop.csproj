@@ -349,6 +349,10 @@
     <Compile Include="Migrations\202510151633301_AddClusterPropertiesWithName.Designer.cs">
       <DependentUpon>202510151633301_AddClusterPropertiesWithName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202512161836217_add_qty_ProdTbl.cs" />
+    <Compile Include="Migrations\202512161836217_add_qty_ProdTbl.Designer.cs">
+      <DependentUpon>202512161836217_add_qty_ProdTbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
@@ -443,6 +447,12 @@
     </Compile>
     <Compile Include="Views\Controllers\Order\OrdersControlUI.Designer.cs">
       <DependentUpon>OrdersControlUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Order\SalesReportDataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Order\SalesReportDataControl.Designer.cs">
+      <DependentUpon>SalesReportDataControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controllers\Order\TempOrderControl.cs">
       <SubType>UserControl</SubType>
@@ -573,6 +583,9 @@
     <EmbeddedResource Include="Migrations\202510151633301_AddClusterPropertiesWithName.resx">
       <DependentUpon>202510151633301_AddClusterPropertiesWithName.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202512161836217_add_qty_ProdTbl.resx">
+      <DependentUpon>202512161836217_add_qty_ProdTbl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -619,6 +632,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Order\OrdersControlUI.resx">
       <DependentUpon>OrdersControlUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Order\SalesReportDataControl.resx">
+      <DependentUpon>SalesReportDataControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Order\TempOrderControl.resx">
       <DependentUpon>TempOrderControl.cs</DependentUpon>
@@ -703,6 +719,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="pos_icon.ico" />
+    <None Include="Resources\Homedashboard.png" />
     <None Include="Properties\loupe.png" />
     <None Include="Properties\iconExcel.png" />
     <None Include="Properties\iconSave.png" />

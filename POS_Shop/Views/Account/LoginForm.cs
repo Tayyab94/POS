@@ -112,5 +112,7 @@ namespace POS_Shop.Views.Account
                 loginBtn.PerformClick();
             }
         }
+
+      
     }
 }

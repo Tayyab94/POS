@@ -3,6 +3,8 @@ using POS_Shop.Models;
 using POS_Shop.Repositories;
 using System;
 using System.Data;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -150,7 +152,8 @@ namespace POS_Shop.Views.Controllers.Category
                 categoryNameTxt.Text = row.Cells["Name"].Value.ToString();
                 categoryIdTxt.Text = row.Cells["ID"].Value.ToString();
                 updateCategoryBtn.Enabled = true;
-                updateCategoryBtn.IdleFillColor = Color.OrangeRed;
+                RemoveCategoryBtn.Enabled = true;
+                RemoveCategoryBtn.Visible = true;
             }
         }
 
@@ -167,6 +170,44 @@ namespace POS_Shop.Views.Controllers.Category
                 e.Cancel = false; // Allow the event to proceed
                 categoryNameTxt.BackColor = SystemColors.Window;
                 errorProvider.SetError(categoryNameTxt, string.Empty); // Clear any previous error message
+            }
+        }
+
+        private void RemoveCategoryBtn_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to delete this Category?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirmResult == DialogResult.Yes)
+            {
+
+                var catId = Convert.ToInt32(categoryIdTxt.Text);
+                using (var context = new POSDbContext())
+                {
+                    var categoryRepo = new CategoryRepository(context);
+                    var data = categoryRepo.GetById(catId);
+                    if (data != null)
+                    {
+                        try
+                        {
+                            categoryRepo.Delete(catId);
+                            categoryRepo.Save();
+                            MessageBox.Show("Category deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            LoadCategoriesForDataGridView();
+                        }
+
+                        catch (DbUpdateException dbEx) when (dbEx.InnerException is SqlException sqlEx && sqlEx.Number == 547)
+                        {
+                            MessageBox.Show("This Category is being used by other records and cannot be deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // Don't navigate away, stay on current page
+                            context.ChangeTracker.DetectChanges();
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Category not found for deletion.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 

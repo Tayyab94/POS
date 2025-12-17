@@ -22,6 +22,8 @@ namespace POS_Shop.Models
 
         public int? Cost { get; set; }
 
+        public int Qty { get; set; }
+
         public string SearchByProductCode { get; set; }
 
         public int? SubcategoryId { get; set; }
