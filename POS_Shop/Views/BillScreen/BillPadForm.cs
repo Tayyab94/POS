@@ -1492,16 +1492,21 @@ namespace POS_Shop.Views.BillScreen
 
                 SuggestionGrid.Visible = false;
             }
-            else if (e.KeyCode == Keys.F1) // F1 to Focus on Product TextBox
+            else if (e.KeyCode == Keys.D1 && e.Control) // 1 to Focus on Product TextBox
             {
                 ProductEngNameTxt.Focus();
                 ProductEngNameTxt.SelectAll();
+            }
+            else if (e.KeyCode == Keys.D2 && e.Control) // 2 to Focus on Product TextBox
+            {
+                CustomerNameTxt.Focus();
+                CustomerNameTxt.SelectAll();
             }
             else if (e.KeyCode == Keys.R && e.Control)
             {
                 GenerateInvoicePdfBtn.PerformClick();
             }
-            else if (e.KeyCode == Keys.Q && e.Control)
+            else if (e.KeyCode == Keys.Q && e.Control)  
             {
                 e.Handled = true;
                 GotoFirstRow();
