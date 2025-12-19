@@ -3,6 +3,7 @@ using POS_Shop.Views.Account;
 using POS_Shop.Views.BillScreen;
 using POS_Shop.Views.DB_Screens;
 using POS_Shop.Views.Reports;
+using POS_Shop.Views.Settings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -306,6 +307,13 @@ namespace POS_Shop
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void printersScannersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Views.Settings.PirntersAndScanners printerScannerForm = new PirntersAndScanners();
+            printerScannerForm.Owner = this;
+            printerScannerForm.Show();
         }
     }
 }
