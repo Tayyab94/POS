@@ -12,9 +12,7 @@ namespace POS_Shop.Repositories
 {
     public class OrderRepository : Repository<Models.Order>, IOrderRepository
     {
-        public OrderRepository(POSDbContext context) : base(context)
-        {
-        }
+        public OrderRepository(POSDbContext context) : base(context) { }
 
         public async Task<int> AddOrder(Models.Order order)
         {
