@@ -452,13 +452,15 @@ namespace POS_Shop.Helpers
             // HEADER
             if (!hideShopName)
             {
-                e.Graphics.DrawString(Properties.Settings.Default.UserName == "city" ? " سٹی الیکٹرونکس" : "ایس اے الیکٹرک اسٹور", titleFont, Brushes.Black,
+                var InvoiceInfo = ConfigurationManager.Configuration.InvoiceSettings;
+
+                e.Graphics.DrawString(InvoiceInfo.ShopName, titleFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
                 currentY += lineHeight * 2;
-                e.Graphics.DrawString("Address: Shop #12, Street X, Main Bazar Gujranwala", smallFont, Brushes.Black,
+                e.Graphics.DrawString(InvoiceInfo.ShopAddress, smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
                 currentY += lineHeight + 2;
-                e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
+                e.Graphics.DrawString(InvoiceInfo.ContactNumber, smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
                 currentY += lineHeight + 2;
             }
@@ -619,15 +621,29 @@ namespace POS_Shop.Helpers
             // 1. COMPANY HEADER
             if (!hideShopName)
             {
-                e.Graphics.DrawString("Electric Shop", titleFont, Brushes.Black,
+
+                var InvoiceInfo = ConfigurationManager.Configuration.InvoiceSettings;
+
+                e.Graphics.DrawString(InvoiceInfo.ShopName, titleFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
                 currentY += lineHeight * 2;
-
-                e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
+                e.Graphics.DrawString(InvoiceInfo.ShopAddress, smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-                currentY += lineHeight;
-
                 currentY += lineHeight + 2;
+                e.Graphics.DrawString(InvoiceInfo.ContactNumber, smallFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                currentY += lineHeight + 2;
+
+
+                //e.Graphics.DrawString("Electric Shop", titleFont, Brushes.Black,
+                //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
+                //currentY += lineHeight * 2;
+
+                //e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
+                //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                //currentY += lineHeight;
+
+                //currentY += lineHeight + 2;
             }
 
 

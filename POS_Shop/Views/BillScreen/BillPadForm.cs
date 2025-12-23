@@ -1258,7 +1258,12 @@ namespace POS_Shop.Views.BillScreen
         private async Task<int> UpdateOrder(OrderRepository orderRepository, Order order, POSDbContext context)
         {
             var orderId = await orderRepository.AddOrder(order);
-            UpdateStockQuantity(orderId);
+
+            // Checking User has Enabled the Stock Qty Update Feature
+            var config = ConfigurationManager.Configuration.Features.EnableUpdateQty;
+            if (config)
+                UpdateStockQuantity(orderId);
+
             // Remove existing order details
             var existingDetails = context.OrderDetails.Where(s => s.OrderId == orderId).ToList();
             context.OrderDetails.RemoveRange(existingDetails);
@@ -1326,13 +1331,17 @@ namespace POS_Shop.Views.BillScreen
                 };
                 orderDetailList.Add(odrDetail);
 
-
-                if (!string.IsNullOrEmpty(productIdValue))
+                // Checking User has Enabled the Stock Qty Update Feature
+                var config = ConfigurationManager.Configuration.Features.EnableUpdateQty;
+                if(config)
                 {
-                    var pid = int.Parse(productIdValue);
-                    var product = context.Products.Find(pid);
-                    product.Qty -= odrDetail.Quantity;
-                    context.Entry(product).State = EntityState.Modified;
+                    if (!string.IsNullOrEmpty(productIdValue))
+                    {
+                        var pid = int.Parse(productIdValue);
+                        var product = context.Products.Find(pid);
+                        product.Qty -= odrDetail.Quantity;
+                        context.Entry(product).State = EntityState.Modified;
+                    }
                 }
             }
 
