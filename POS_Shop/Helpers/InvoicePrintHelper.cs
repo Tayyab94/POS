@@ -455,9 +455,12 @@ namespace POS_Shop.Helpers
                 e.Graphics.DrawString(Properties.Settings.Default.UserName == "city" ? " سٹی الیکٹرونکس" : "ایس اے الیکٹرک اسٹور", titleFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
                 currentY += lineHeight * 2;
-                //e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
-                //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-                //currentY += lineHeight + 2;
+                e.Graphics.DrawString("Address: Shop #12, Street X, Main Bazar Gujranwala", smallFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                currentY += lineHeight + 2;
+                e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                currentY += lineHeight + 2;
             }
 
             e.Graphics.DrawString("انوائس", headerFont, Brushes.Black,

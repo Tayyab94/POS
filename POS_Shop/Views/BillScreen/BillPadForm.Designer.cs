@@ -119,6 +119,7 @@
             this.SuggestionGrid = new System.Windows.Forms.DataGridView();
             this.CartProductList = new System.Windows.Forms.DataGridView();
             this.ProductGroup = new System.Windows.Forms.GroupBox();
+            this.Prod_Qty = new System.Windows.Forms.TextBox();
             this.InvoiceShopName = new System.Windows.Forms.CheckBox();
             this.OtherProductChk = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -152,7 +153,6 @@
             this.TruncateOrder_OrderDetailBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.OrderPrintPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.OrderPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.Prod_Qty = new System.Windows.Forms.TextBox();
             this.TopPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.InvoicePageTabControl.SuspendLayout();
@@ -1438,6 +1438,14 @@
             this.ProductGroup.TabStop = false;
             this.ProductGroup.Text = "Product Section";
             // 
+            // Prod_Qty
+            // 
+            this.Prod_Qty.Location = new System.Drawing.Point(1253, 48);
+            this.Prod_Qty.Name = "Prod_Qty";
+            this.Prod_Qty.Size = new System.Drawing.Size(19, 22);
+            this.Prod_Qty.TabIndex = 8;
+            this.Prod_Qty.Visible = false;
+            // 
             // InvoiceShopName
             // 
             this.InvoiceShopName.AutoSize = true;
@@ -2475,14 +2483,6 @@
             // OrderPrintDocument
             // 
             this.OrderPrintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.OrderPrintDocument_PrintPage);
-            // 
-            // Prod_Qty
-            // 
-            this.Prod_Qty.Location = new System.Drawing.Point(1253, 48);
-            this.Prod_Qty.Name = "Prod_Qty";
-            this.Prod_Qty.Size = new System.Drawing.Size(19, 22);
-            this.Prod_Qty.TabIndex = 8;
-            this.Prod_Qty.Visible = false;
             // 
             // BillPadForm
             // 

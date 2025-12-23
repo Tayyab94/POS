@@ -1258,13 +1258,34 @@ namespace POS_Shop.Views.BillScreen
         private async Task<int> UpdateOrder(OrderRepository orderRepository, Order order, POSDbContext context)
         {
             var orderId = await orderRepository.AddOrder(order);
-
+            UpdateStockQuantity(orderId);
             // Remove existing order details
             var existingDetails = context.OrderDetails.Where(s => s.OrderId == orderId).ToList();
             context.OrderDetails.RemoveRange(existingDetails);
-            await context.SaveChangesAsync();
-
+            context.SaveChanges();
             return orderId;
+        }
+
+        private void UpdateStockQuantity(int orderId)
+        {
+            using (var context = new POSDbContext())
+            {
+                var existingDetails = context.OrderDetails.Where(s => s.OrderId == orderId).ToList();
+                foreach (var item in existingDetails)
+                {
+                    if (item.ProductId.HasValue)
+                    {
+                        var product = context.Products.Find(item.ProductId);
+                        if (product != null)
+                        {
+                            product.Qty += item.Quantity;
+                            context.Entry(product).State = EntityState.Modified;
+                        }
+                    }
+                }
+
+                context.SaveChanges();
+            }
         }
 
         private async Task SaveOrderDetails(POSDbContext context, int orderId)
@@ -1276,6 +1297,22 @@ namespace POS_Shop.Views.BillScreen
                 if (row.Cells["ProductId"].Value == null) continue;
 
                 var productIdValue = row.Cells["ProductId"].Value?.ToString();
+
+
+                var q = int.Parse(row.Cells["Qty"].Value?.ToString());
+                if (!string.IsNullOrEmpty(productIdValue))
+                {
+                    var productCheck = context.Products.Find(int.Parse(productIdValue));
+                    if (productCheck.Qty < 0 || productCheck.Qty < q)
+                    {
+                        MessageBox.Show($"Insufficient stock for product {productCheck.ProductEnglishName}",
+                           "Error",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Error);
+                        throw new Exception($"Insufficient stock for product ID {productIdValue}");
+                    }
+
+                }
                 var odrDetail = new OrderDetail
                 {
                     ProductId = string.IsNullOrEmpty(productIdValue) ? (int?)null : int.Parse(productIdValue),
@@ -1288,6 +1325,15 @@ namespace POS_Shop.Views.BillScreen
                     ProductDetail = row.Cells["ProductDetail"].Value?.ToString()
                 };
                 orderDetailList.Add(odrDetail);
+
+
+                if (!string.IsNullOrEmpty(productIdValue))
+                {
+                    var pid = int.Parse(productIdValue);
+                    var product = context.Products.Find(pid);
+                    product.Qty -= odrDetail.Quantity;
+                    context.Entry(product).State = EntityState.Modified;
+                }
             }
 
             context.OrderDetails.AddRange(orderDetailList);
@@ -1630,7 +1676,7 @@ namespace POS_Shop.Views.BillScreen
                             ? "ڈبہ"
                             : SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
 
-                Prod_Qty.Text = (string)SuggestionGrid.CurrentRow.Cells[5].Value;
+                Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[5].Value.ToString();
 
                 ProductSalePrice.Text = SuggestionGrid.CurrentRow.Cells[6].Value == null
                     || SuggestionGrid.CurrentRow.Cells[6].Value == DBNull.Value
