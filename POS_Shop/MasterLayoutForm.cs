@@ -315,5 +315,11 @@ namespace POS_Shop
             printerScannerForm.Owner = this;
             printerScannerForm.Show();
         }
+
+        private void systemConfigToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var settingsForm = new POS_Shop.Views.Settings.ConfigSettingForm();
+            settingsForm.ShowDialog();
+        }
     }
 }

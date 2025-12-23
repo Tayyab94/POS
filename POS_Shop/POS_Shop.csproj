@@ -170,6 +170,9 @@
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RBush, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c77e27b81f4d0187, processorArchitecture=MSIL">
       <HintPath>..\packages\RBush.Signed.4.0.0\lib\net47\RBush.dll</HintPath>
     </Reference>
@@ -354,8 +357,10 @@
       <DependentUpon>202512161836217_add_qty_ProdTbl.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Helpers\ConfigurationManager.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Order.cs" />
@@ -525,6 +530,12 @@
     </Compile>
     <Compile Include="Views\Reports\SalesChartForm.Designer.cs">
       <DependentUpon>SalesChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\ConfigSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Settings\ConfigSettingForm.Designer.cs">
+      <DependentUpon>ConfigSettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\PirntersAndScanners.cs">
       <SubType>Form</SubType>
