@@ -1488,8 +1488,8 @@ namespace POS_Shop.Views.BillScreen
                       invoiceNo: InvoiceNoLbl.Text,
                       totalAmount: TotalAmountLbl.Text,
                       isCashPayment: CashRadioBtn.Checked,
-                      receivedAmount: ReceivedAmountTxt.Text,
-                      hideShopName: InvoiceShopName.Checked
+                      receivedAmount: ReceivedAmountTxt.Text
+                      //hideShopName: InvoiceShopName.Checked
                   );
             else
                 InvoicePrintHelper.PrintInvoice(
@@ -1499,8 +1499,8 @@ namespace POS_Shop.Views.BillScreen
                       invoiceNo: InvoiceNoLbl.Text,
                       totalAmount: TotalAmountLbl.Text,
                       isCashPayment: CashRadioBtn.Checked,
-                      receivedAmount: ReceivedAmountTxt.Text,
-                      hideShopName: InvoiceShopName.Checked
+                      receivedAmount: ReceivedAmountTxt.Text
+                     // hideShopName: InvoiceShopName.Checked
                   );
         }
 

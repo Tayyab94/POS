@@ -21,6 +21,9 @@ namespace POS_Shop.Views.Settings
         private Button btnReset;
         private Label lblConfigPath;
 
+        private CheckBox chkShowHideShopName;
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -135,22 +138,32 @@ namespace POS_Shop.Views.Settings
             this.chkEnableUpdateQty.Name = "chkEnableUpdateQty";
             this.chkEnableUpdateQty.Text = "Enable Quantity Update in Sales";
             this.chkEnableUpdateQty.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
-            this.chkEnableUpdateQty.Location = new Point(20, 60);
+            this.chkEnableUpdateQty.Location = new Point(20, 50);
             this.chkEnableUpdateQty.Size = new Size(350, 25);
 
-            // Description
+            // Description - COMES RIGHT AFTER chkEnableUpdateQty
             var lblFeatureDescription = new Label();
             lblFeatureDescription.Text = "When enabled, cashiers can modify product quantities during sales transactions.";
-            lblFeatureDescription.Location = new Point(40, 90);
+            lblFeatureDescription.Location = new Point(40, 80); // Positioned right below the checkbox
             lblFeatureDescription.Size = new Size(600, 40);
             lblFeatureDescription.ForeColor = SystemColors.ControlDarkDark;
             lblFeatureDescription.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
 
+            // Show/Hide Shop Name checkbox - COMES AFTER THE DESCRIPTION
+            this.chkShowHideShopName = new CheckBox();
+            this.chkShowHideShopName.Name = "chkShowHideShopName";
+            this.chkShowHideShopName.Text = "Show Shop Name on Receipt";
+            this.chkShowHideShopName.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
+            this.chkShowHideShopName.Location = new Point(20, 130); // Below description (80 + 40 + 10 = 130)
+            this.chkShowHideShopName.Size = new Size(350, 25);
+
             tab.Controls.AddRange(new Control[] {
-                lblHeader,
-                this.chkEnableUpdateQty,
-                lblFeatureDescription
-            });
+    lblHeader,
+    this.chkEnableUpdateQty,
+    lblFeatureDescription,     // Description added here
+    this.chkShowHideShopName   // Shop name checkbox added last
+});
+
         }
 
         private void InitializeInvoiceTab(TabPage tab)

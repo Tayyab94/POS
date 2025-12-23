@@ -35,10 +35,9 @@ namespace POS_Shop.Views.Settings
             try
             {
                 var config = ConfigurationManager.Configuration;
-
                 // Load feature settings
                 chkEnableUpdateQty.Checked = config.Features.EnableUpdateQty;
-
+                chkShowHideShopName.Checked = config.Features.ShowHideShopName;
                 // Load invoice settings
                 txtShopName.Text = config.InvoiceSettings.ShopName ?? "";
                 txtShopAddress.Text = config.InvoiceSettings.ShopAddress ?? "";
@@ -75,6 +74,7 @@ namespace POS_Shop.Views.Settings
 
                 // Save features
                 config.Features.EnableUpdateQty = chkEnableUpdateQty.Checked;
+                config.Features.ShowHideShopName = chkShowHideShopName.Checked;
 
                 // Save invoice settings
                 config.InvoiceSettings.ShopName = txtShopName.Text.Trim();
