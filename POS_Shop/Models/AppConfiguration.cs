@@ -17,6 +17,7 @@ namespace POS_Shop.Models
     public class FeatureSettings
     {
         public bool EnableUpdateQty { get; set; } = false; // Default value
+        public bool ShowHideShopName { get; set; } = true; // Default value
         // Add more feature flags as needed
     }
 

@@ -415,7 +415,7 @@ namespace POS_Shop.Helpers
 
         public static void PrintInvoice(PrintPageEventArgs e, DataGridView cartProductList,
                               string customerName, string invoiceNo, string totalAmount,
-                              bool isCashPayment, string receivedAmount, bool hideShopName)
+                              bool isCashPayment, string receivedAmount)
         {
             // 1️⃣  Dynamic height calculation
             int baseHeight = 350; // header, totals, footer space
@@ -450,7 +450,7 @@ namespace POS_Shop.Helpers
             string dashLine = new string('-', 82);
 
             // HEADER
-            if (!hideShopName)
+            if (ConfigurationManager.Configuration.Features.ShowHideShopName)
             {
                 var InvoiceInfo = ConfigurationManager.Configuration.InvoiceSettings;
 
@@ -588,7 +588,7 @@ namespace POS_Shop.Helpers
 
         public static void PrintEnglishInvoice(PrintPageEventArgs e, DataGridView cartProductList,
                     string customerName, string invoiceNo, string totalAmount,
-                    bool isCashPayment, string receivedAmount, bool hideShopName)
+                    bool isCashPayment, string receivedAmount)
         {
             // Thermal printer settings (80mm paper)
             int paperWidth = 280; // pixels for 80mm paper
@@ -619,7 +619,7 @@ namespace POS_Shop.Helpers
             string dashLine = new string('-', 82);
 
             // 1. COMPANY HEADER
-            if (!hideShopName)
+            if (ConfigurationManager.Configuration.Features.ShowHideShopName)
             {
 
                 var InvoiceInfo = ConfigurationManager.Configuration.InvoiceSettings;
@@ -954,7 +954,7 @@ namespace POS_Shop.Helpers
                                       string customerName, string invoiceNo, string totalAmount)
         {
             PrintInvoice(e, cartProductList, customerName, invoiceNo, totalAmount,
-                        true, totalAmount, false);
+                        true, totalAmount);
         }
     }
 }
