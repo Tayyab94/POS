@@ -1,7 +1,9 @@
 ﻿using POS_Shop.Helpers;
+using POS_Shop.Models.LicenseModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Annotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,11 @@ namespace POS_Shop.Models
             //string dbname = @"Server=(localdb)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\dbName.mdf;Integrated Security=true;";
             //Optional Initializer  
             Database.SetInitializer(new CreateDatabaseIfNotExists<POSDbContext>());
+
+            //// Performance optimizations
+            //Configuration.LazyLoadingEnabled = false;
+            //Configuration.ProxyCreationEnabled = false;
+            //Configuration.AutoDetectChangesEnabled = false;
         }
 
 
@@ -94,10 +101,14 @@ namespace POS_Shop.Models
         public DbSet<TempOrder> TempOrders { get; set; }
         public DbSet<TempOrderDetail> TempOrderDetails { get; set; }
 
+        public DbSet<AppLicense> Licenses { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
 
             // Index with specific configuration
             modelBuilder.Entity<Product>()
@@ -123,6 +134,35 @@ namespace POS_Shop.Models
             modelBuilder.Entity<OrderDetail>()
                 .HasRequired(s => s.Order).WithMany(s => s.OrderDetails)
                 .HasForeignKey(S => S.OrderId).WillCascadeOnDelete(true);
+
+            // Configure AppLicense entity
+            modelBuilder.Entity<AppLicense>()
+                .Property(e => e.UserName)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            modelBuilder.Entity<AppLicense>()
+                .Property(e => e.LicenseKey)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            modelBuilder.Entity<AppLicense>()
+                .HasIndex(e => e.LicenseKey)
+                .IsUnique();
+
+            modelBuilder.Entity<AppLicense>()
+                .Property(e => e.MacAddress)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            modelBuilder.Entity<AppLicense>()
+                .Property(e => e.HardwareId)
+                .IsRequired()
+                .HasMaxLength(200);
+
+            modelBuilder.Entity<AppLicense>()
+                .Property(e => e.LicenseType)
+                .IsRequired();
 
         }
     }

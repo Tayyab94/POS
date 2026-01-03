@@ -456,7 +456,7 @@
             // 
             // OrdersGroup
             // 
-            this.OrdersGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.OrdersGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OrdersGroup.Controls.Add(this.TemOrderBtn);
             this.OrdersGroup.Controls.Add(this.PreviousOrderIdLbl);
@@ -528,7 +528,7 @@
             // 
             // BillPadGrou
             // 
-            this.BillPadGrou.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.BillPadGrou.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BillPadGrou.Controls.Add(this.ExportBtn);
             this.BillPadGrou.Controls.Add(this.SaveOrderWithoutPrintBtn);
@@ -1355,8 +1355,8 @@
             // 
             // ProductListGroup
             // 
-            this.ProductListGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.ProductListGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductListGroup.Controls.Add(this.label9);
             this.ProductListGroup.Controls.Add(this.SuggestionGrid);
@@ -1396,8 +1396,8 @@
             // CartProductList
             // 
             this.CartProductList.AllowUserToAddRows = false;
-            this.CartProductList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.CartProductList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CartProductList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CartProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1413,7 +1413,7 @@
             // 
             // ProductGroup
             // 
-            this.ProductGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ProductGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductGroup.Controls.Add(this.Prod_Qty);
             this.ProductGroup.Controls.Add(this.InvoiceShopName);
@@ -2131,7 +2131,7 @@
             // 
             // LoadOrderExcelFileGroup
             // 
-            this.LoadOrderExcelFileGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LoadOrderExcelFileGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LoadOrderExcelFileGroup.Controls.Add(this.LoadOrderExcelFileBtn);
             this.LoadOrderExcelFileGroup.Controls.Add(this.ImportUpdatedFilePathTxt);
@@ -2166,7 +2166,7 @@
             // 
             this.ImportUpdatedFilePathTxt.AcceptsReturn = false;
             this.ImportUpdatedFilePathTxt.AcceptsTab = false;
-            this.ImportUpdatedFilePathTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ImportUpdatedFilePathTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ImportUpdatedFilePathTxt.AnimationSpeed = 200;
             this.ImportUpdatedFilePathTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;

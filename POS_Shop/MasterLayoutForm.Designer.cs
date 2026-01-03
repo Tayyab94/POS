@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterLayoutForm));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges15 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges16 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges17 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges18 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges19 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges20 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.sideBarPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.FooterLbl = new System.Windows.Forms.Label();
@@ -55,13 +55,15 @@
             this.backupDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printersScannersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importExcelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importCustomerExcelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inforToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.systemConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sideBarPanel.SuspendLayout();
             this.TopNavPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -87,11 +89,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Ravie", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Ravie", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(19, 29);
+            this.label1.Location = new System.Drawing.Point(3, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(199, 27);
+            this.label1.Size = new System.Drawing.Size(230, 32);
             this.label1.TabIndex = 11;
             this.label1.Text = "POS Software";
             // 
@@ -126,11 +128,11 @@
             this.CustomerSectionBtn.ColorContrastOnClick = 45;
             this.CustomerSectionBtn.ColorContrastOnHover = 45;
             this.CustomerSectionBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges15.BottomLeft = true;
-            borderEdges15.BottomRight = true;
-            borderEdges15.TopLeft = true;
-            borderEdges15.TopRight = true;
-            this.CustomerSectionBtn.CustomizableEdges = borderEdges15;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.CustomerSectionBtn.CustomizableEdges = borderEdges1;
             this.CustomerSectionBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.CustomerSectionBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.CustomerSectionBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -216,11 +218,11 @@
             this.ProductSectrionBtn.ColorContrastOnClick = 45;
             this.ProductSectrionBtn.ColorContrastOnHover = 45;
             this.ProductSectrionBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges16.BottomLeft = true;
-            borderEdges16.BottomRight = true;
-            borderEdges16.TopLeft = true;
-            borderEdges16.TopRight = true;
-            this.ProductSectrionBtn.CustomizableEdges = borderEdges16;
+            borderEdges2.BottomLeft = true;
+            borderEdges2.BottomRight = true;
+            borderEdges2.TopLeft = true;
+            borderEdges2.TopRight = true;
+            this.ProductSectrionBtn.CustomizableEdges = borderEdges2;
             this.ProductSectrionBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.ProductSectrionBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.ProductSectrionBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -306,11 +308,11 @@
             this.SubCategoryBtn.ColorContrastOnClick = 45;
             this.SubCategoryBtn.ColorContrastOnHover = 45;
             this.SubCategoryBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges17.BottomLeft = true;
-            borderEdges17.BottomRight = true;
-            borderEdges17.TopLeft = true;
-            borderEdges17.TopRight = true;
-            this.SubCategoryBtn.CustomizableEdges = borderEdges17;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.SubCategoryBtn.CustomizableEdges = borderEdges3;
             this.SubCategoryBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.SubCategoryBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SubCategoryBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -396,11 +398,11 @@
             this.CategoryBtn.ColorContrastOnClick = 45;
             this.CategoryBtn.ColorContrastOnHover = 45;
             this.CategoryBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges18.BottomLeft = true;
-            borderEdges18.BottomRight = true;
-            borderEdges18.TopLeft = true;
-            borderEdges18.TopRight = true;
-            this.CategoryBtn.CustomizableEdges = borderEdges18;
+            borderEdges4.BottomLeft = true;
+            borderEdges4.BottomRight = true;
+            borderEdges4.TopLeft = true;
+            borderEdges4.TopRight = true;
+            this.CategoryBtn.CustomizableEdges = borderEdges4;
             this.CategoryBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.CategoryBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.CategoryBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -486,11 +488,11 @@
             this.CountryBtn.ColorContrastOnClick = 45;
             this.CountryBtn.ColorContrastOnHover = 45;
             this.CountryBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges19.BottomLeft = true;
-            borderEdges19.BottomRight = true;
-            borderEdges19.TopLeft = true;
-            borderEdges19.TopRight = true;
-            this.CountryBtn.CustomizableEdges = borderEdges19;
+            borderEdges5.BottomLeft = true;
+            borderEdges5.BottomRight = true;
+            borderEdges5.TopLeft = true;
+            borderEdges5.TopRight = true;
+            this.CountryBtn.CustomizableEdges = borderEdges5;
             this.CountryBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.CountryBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.CountryBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -576,11 +578,11 @@
             this.cityBtn.ColorContrastOnClick = 45;
             this.cityBtn.ColorContrastOnHover = 45;
             this.cityBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges20.BottomLeft = true;
-            borderEdges20.BottomRight = true;
-            borderEdges20.TopLeft = true;
-            borderEdges20.TopRight = true;
-            this.cityBtn.CustomizableEdges = borderEdges20;
+            borderEdges6.BottomLeft = true;
+            borderEdges6.BottomRight = true;
+            borderEdges6.TopLeft = true;
+            borderEdges6.TopRight = true;
+            this.cityBtn.CustomizableEdges = borderEdges6;
             this.cityBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.cityBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.cityBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -652,9 +654,9 @@
             this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.MainPanel.Location = new System.Drawing.Point(235, 126);
+            this.MainPanel.Location = new System.Drawing.Point(235, 90);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1143, 554);
+            this.MainPanel.Size = new System.Drawing.Size(1143, 590);
             this.MainPanel.TabIndex = 2;
             // 
             // TopNavPanel
@@ -665,7 +667,7 @@
             this.TopNavPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopNavPanel.Location = new System.Drawing.Point(229, 28);
             this.TopNavPanel.Name = "TopNavPanel";
-            this.TopNavPanel.Size = new System.Drawing.Size(1149, 92);
+            this.TopNavPanel.Size = new System.Drawing.Size(1149, 56);
             this.TopNavPanel.TabIndex = 3;
             // 
             // BillPadBtn
@@ -687,11 +689,11 @@
             this.BillPadBtn.ColorContrastOnClick = 45;
             this.BillPadBtn.ColorContrastOnHover = 45;
             this.BillPadBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges21.BottomLeft = true;
-            borderEdges21.BottomRight = true;
-            borderEdges21.TopLeft = true;
-            borderEdges21.TopRight = true;
-            this.BillPadBtn.CustomizableEdges = borderEdges21;
+            borderEdges7.BottomLeft = true;
+            borderEdges7.BottomRight = true;
+            borderEdges7.TopLeft = true;
+            borderEdges7.TopRight = true;
+            this.BillPadBtn.CustomizableEdges = borderEdges7;
             this.BillPadBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BillPadBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BillPadBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -715,7 +717,7 @@
             this.BillPadBtn.IdleIconLeftImage = global::POS_Shop.Properties.Resources.iconLoad1;
             this.BillPadBtn.IdleIconRightImage = null;
             this.BillPadBtn.IndicateFocus = false;
-            this.BillPadBtn.Location = new System.Drawing.Point(15, 29);
+            this.BillPadBtn.Location = new System.Drawing.Point(15, 5);
             this.BillPadBtn.Name = "BillPadBtn";
             this.BillPadBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BillPadBtn.OnDisabledState.BorderRadius = 30;
@@ -749,7 +751,7 @@
             this.BillPadBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.BillPadBtn.OnPressedState.IconLeftImage = null;
             this.BillPadBtn.OnPressedState.IconRightImage = null;
-            this.BillPadBtn.Size = new System.Drawing.Size(201, 43);
+            this.BillPadBtn.Size = new System.Drawing.Size(200, 45);
             this.BillPadBtn.TabIndex = 8;
             this.BillPadBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.BillPadBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -779,7 +781,7 @@
             this.LogoutBtn.ImageSize = new System.Drawing.Size(24, 21);
             this.LogoutBtn.ImageZoomSize = new System.Drawing.Size(30, 27);
             this.LogoutBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("LogoutBtn.InitialImage")));
-            this.LogoutBtn.Location = new System.Drawing.Point(1104, 29);
+            this.LogoutBtn.Location = new System.Drawing.Point(1104, 8);
             this.LogoutBtn.Name = "LogoutBtn";
             this.LogoutBtn.Rotation = 0;
             this.LogoutBtn.ShowActiveImage = true;
@@ -799,7 +801,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
-            this.viewsToolStripMenuItem});
+            this.viewsToolStripMenuItem,
+            this.inforToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1378, 28);
@@ -822,23 +825,30 @@
             // backupDatabaseToolStripMenuItem
             // 
             this.backupDatabaseToolStripMenuItem.Name = "backupDatabaseToolStripMenuItem";
-            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
+            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.backupDatabaseToolStripMenuItem.Text = "Backup Database";
             this.backupDatabaseToolStripMenuItem.Click += new System.EventHandler(this.backupDatabaseToolStripMenuItem_Click);
             // 
             // restoreDatabaseToolStripMenuItem
             // 
             this.restoreDatabaseToolStripMenuItem.Name = "restoreDatabaseToolStripMenuItem";
-            this.restoreDatabaseToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
+            this.restoreDatabaseToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.restoreDatabaseToolStripMenuItem.Text = "Restore Database";
             this.restoreDatabaseToolStripMenuItem.Click += new System.EventHandler(this.restoreDatabaseToolStripMenuItem_Click);
             // 
             // databaseSettingToolStripMenuItem
             // 
             this.databaseSettingToolStripMenuItem.Name = "databaseSettingToolStripMenuItem";
-            this.databaseSettingToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
+            this.databaseSettingToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.databaseSettingToolStripMenuItem.Text = "Database Setting";
             this.databaseSettingToolStripMenuItem.Click += new System.EventHandler(this.databaseSettingToolStripMenuItem_Click);
+            // 
+            // systemConfigToolStripMenuItem
+            // 
+            this.systemConfigToolStripMenuItem.Name = "systemConfigToolStripMenuItem";
+            this.systemConfigToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
+            this.systemConfigToolStripMenuItem.Text = "System Configuration";
+            this.systemConfigToolStripMenuItem.Click += new System.EventHandler(this.systemConfigToolStripMenuItem_Click);
             // 
             // printersScannersToolStripMenuItem
             // 
@@ -850,7 +860,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -867,7 +877,7 @@
             // 
             this.importExcelFileToolStripMenuItem.Name = "importExcelFileToolStripMenuItem";
             this.importExcelFileToolStripMenuItem.Size = new System.Drawing.Size(269, 26);
-            this.importExcelFileToolStripMenuItem.Text = "Import Excel File";
+            this.importExcelFileToolStripMenuItem.Text = "Import Product Excel File";
             this.importExcelFileToolStripMenuItem.Click += new System.EventHandler(this.importExcelFileToolStripMenuItem_Click);
             // 
             // importCustomerExcelFileToolStripMenuItem
@@ -877,18 +887,26 @@
             this.importCustomerExcelFileToolStripMenuItem.Text = "Import Customer Excel File";
             this.importCustomerExcelFileToolStripMenuItem.Click += new System.EventHandler(this.importCustomerExcelFileToolStripMenuItem_Click);
             // 
+            // inforToolStripMenuItem
+            // 
+            this.inforToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.infoToolStripMenuItem});
+            this.inforToolStripMenuItem.Name = "inforToolStripMenuItem";
+            this.inforToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.inforToolStripMenuItem.Text = "Help";
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.infoToolStripMenuItem.Text = "About POS";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // systemConfigToolStripMenuItem
-            // 
-            this.systemConfigToolStripMenuItem.Name = "systemConfigToolStripMenuItem";
-            this.systemConfigToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
-            this.systemConfigToolStripMenuItem.Text = "System Configuration";
-            this.systemConfigToolStripMenuItem.Click += new System.EventHandler(this.systemConfigToolStripMenuItem_Click);
             // 
             // MasterLayoutForm
             // 
@@ -944,5 +962,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem printersScannersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem systemConfigToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inforToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
     }
 }

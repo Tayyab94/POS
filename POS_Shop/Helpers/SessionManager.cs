@@ -59,17 +59,17 @@ namespace POS_Shop.Helpers
         public static void ReturnToDashboard()
         {
             // Bring dashboard to front if it exists
-            var dashboard = Application.OpenForms.OfType<DashboardForm>().FirstOrDefault();
-            if (dashboard != null)
-            {
-                dashboard.BringToFront();
-            }
-            else
-            {
-                // Optional: Create new dashboard if none exists
-                // var newDashboard = new YourDashboardForm();
-                // newDashboard.Show();
-            }
+            //var dashboard = Application.OpenForms.OfType<DashboardForm>().FirstOrDefault();
+            //if (dashboard != null)
+            //{
+            //    dashboard.BringToFront();
+            //}
+            //else
+            //{
+            //    // Optional: Create new dashboard if none exists
+            //    // var newDashboard = new YourDashboardForm();
+            //    // newDashboard.Show();
+            //}
         }
     }
 
