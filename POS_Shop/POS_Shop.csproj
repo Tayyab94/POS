@@ -195,6 +195,7 @@
     </Reference>
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -240,12 +241,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DashboardForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DashboardForm.Designer.cs">
-      <DependentUpon>DashboardForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="DTOs\City\CitiesListForDataGrifDto.cs" />
     <Compile Include="DTOs\Country\CountryListForDataGirdDto.cs" />
     <Compile Include="DTOs\Order\OrderDto.cs" />
@@ -272,6 +267,8 @@
     <Compile Include="Interfaces\ICityRepository.cs" />
     <Compile Include="Interfaces\ICountryRepository.cs" />
     <Compile Include="Interfaces\ICustomerRepository.cs" />
+    <Compile Include="Interfaces\IEncryptionService.cs" />
+    <Compile Include="Interfaces\ILicenseService.cs" />
     <Compile Include="Interfaces\IOrderRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
@@ -288,73 +285,13 @@
     <Compile Include="MasterLayoutForm.Designer.cs">
       <DependentUpon>MasterLayoutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202508171006408_InitialCreate.cs" />
-    <Compile Include="Migrations\202508171006408_InitialCreate.Designer.cs">
-      <DependentUpon>202508171006408_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202601031721226_init.cs" />
+    <Compile Include="Migrations\202601031721226_init.Designer.cs">
+      <DependentUpon>202601031721226_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202508261223343_category_subCategory_tbl.cs" />
-    <Compile Include="Migrations\202508261223343_category_subCategory_tbl.Designer.cs">
-      <DependentUpon>202508261223343_category_subCategory_tbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202509060759324_added_productTbl.cs" />
-    <Compile Include="Migrations\202509060759324_added_productTbl.Designer.cs">
-      <DependentUpon>202509060759324_added_productTbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202509060819129_product_TblChanged.cs" />
-    <Compile Include="Migrations\202509060819129_product_TblChanged.Designer.cs">
-      <DependentUpon>202509060819129_product_TblChanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202509060823299_applyFullValidationInProductTbl.cs" />
-    <Compile Include="Migrations\202509060823299_applyFullValidationInProductTbl.Designer.cs">
-      <DependentUpon>202509060823299_applyFullValidationInProductTbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202509061523340_editProductTbl.cs" />
-    <Compile Include="Migrations\202509061523340_editProductTbl.Designer.cs">
-      <DependentUpon>202509061523340_editProductTbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202509120600116_Added_Customer_Tbl.cs" />
-    <Compile Include="Migrations\202509120600116_Added_Customer_Tbl.Designer.cs">
-      <DependentUpon>202509120600116_Added_Customer_Tbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202509161626173_AddedOrder_OrderDetailtable.cs" />
-    <Compile Include="Migrations\202509161626173_AddedOrder_OrderDetailtable.Designer.cs">
-      <DependentUpon>202509161626173_AddedOrder_OrderDetailtable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202509161627432_added_CreatedDate_IntoOrderDetails.cs" />
-    <Compile Include="Migrations\202509161627432_added_CreatedDate_IntoOrderDetails.Designer.cs">
-      <DependentUpon>202509161627432_added_CreatedDate_IntoOrderDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202509231004346_TypeChane_Decimal_To_Int_PrductTbl.cs" />
-    <Compile Include="Migrations\202509231004346_TypeChane_Decimal_To_Int_PrductTbl.Designer.cs">
-      <DependentUpon>202509231004346_TypeChane_Decimal_To_Int_PrductTbl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202509261458443_Add_SearchByProdCodeField.cs" />
-    <Compile Include="Migrations\202509261458443_Add_SearchByProdCodeField.Designer.cs">
-      <DependentUpon>202509261458443_Add_SearchByProdCodeField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202509301027319_addTempOrder_temoOrderDetail.cs" />
-    <Compile Include="Migrations\202509301027319_addTempOrder_temoOrderDetail.Designer.cs">
-      <DependentUpon>202509301027319_addTempOrder_temoOrderDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202510112055201_edit_SalePriceCol_Type.cs" />
-    <Compile Include="Migrations\202510112055201_edit_SalePriceCol_Type.Designer.cs">
-      <DependentUpon>202510112055201_edit_SalePriceCol_Type.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202510122126155_Remove_Require_contactNo.cs" />
-    <Compile Include="Migrations\202510122126155_Remove_Require_contactNo.Designer.cs">
-      <DependentUpon>202510122126155_Remove_Require_contactNo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202510141053305_AddProductDetailCol_in_OrderDetailAndTempOrderDetail.cs" />
-    <Compile Include="Migrations\202510141053305_AddProductDetailCol_in_OrderDetailAndTempOrderDetail.Designer.cs">
-      <DependentUpon>202510141053305_AddProductDetailCol_in_OrderDetailAndTempOrderDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202510151633301_AddClusterPropertiesWithName.cs" />
-    <Compile Include="Migrations\202510151633301_AddClusterPropertiesWithName.Designer.cs">
-      <DependentUpon>202510151633301_AddClusterPropertiesWithName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202512161836217_add_qty_ProdTbl.cs" />
-    <Compile Include="Migrations\202512161836217_add_qty_ProdTbl.Designer.cs">
-      <DependentUpon>202512161836217_add_qty_ProdTbl.cs</DependentUpon>
+    <Compile Include="Migrations\202601031828467_added_LincenseKyeMode.cs" />
+    <Compile Include="Migrations\202601031828467_added_LincenseKyeMode.Designer.cs">
+      <DependentUpon>202601031828467_added_LincenseKyeMode.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
@@ -363,6 +300,9 @@
     <Compile Include="Helpers\ConfigurationManager.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\LicenseModels\AppLicense.cs" />
+    <Compile Include="Models\LicenseModels\DTO\LicenseInfo.cs" />
+    <Compile Include="Models\LicenseModels\LicenseType.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\POSDbContext.cs" />
@@ -376,6 +316,8 @@
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\CountryRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="Repositories\EncryptionService.cs" />
+    <Compile Include="Repositories\LicenseService.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -404,12 +346,6 @@
     </Compile>
     <Compile Include="Views\BillScreen\SearchProductUI.Designer.cs">
       <DependentUpon>SearchProductUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CityForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\CityForm.Designer.cs">
-      <DependentUpon>CityForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controllers\Category\CategoryControl.cs">
       <SubType>UserControl</SubType>
@@ -507,6 +443,15 @@
     <Compile Include="Views\InputDialog.Designer.cs">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\LicenseManagement\LicenseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LicenseManagement\LicenseForm.Designer.cs">
+      <DependentUpon>LicenseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LicenseManagement\ActivationLicenseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\Loader\LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -543,65 +488,14 @@
     <Compile Include="Views\Settings\PirntersAndScanners.Designer.cs">
       <DependentUpon>PirntersAndScanners.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DashboardForm.resx">
-      <DependentUpon>DashboardForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MasterLayoutForm.resx">
       <DependentUpon>MasterLayoutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202508171006408_InitialCreate.resx">
-      <DependentUpon>202508171006408_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202601031721226_init.resx">
+      <DependentUpon>202601031721226_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202508261223343_category_subCategory_tbl.resx">
-      <DependentUpon>202508261223343_category_subCategory_tbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509060759324_added_productTbl.resx">
-      <DependentUpon>202509060759324_added_productTbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509060819129_product_TblChanged.resx">
-      <DependentUpon>202509060819129_product_TblChanged.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509060823299_applyFullValidationInProductTbl.resx">
-      <DependentUpon>202509060823299_applyFullValidationInProductTbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509061523340_editProductTbl.resx">
-      <DependentUpon>202509061523340_editProductTbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509120600116_Added_Customer_Tbl.resx">
-      <DependentUpon>202509120600116_Added_Customer_Tbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509161626173_AddedOrder_OrderDetailtable.resx">
-      <DependentUpon>202509161626173_AddedOrder_OrderDetailtable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509161627432_added_CreatedDate_IntoOrderDetails.resx">
-      <DependentUpon>202509161627432_added_CreatedDate_IntoOrderDetails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509231004346_TypeChane_Decimal_To_Int_PrductTbl.resx">
-      <DependentUpon>202509231004346_TypeChane_Decimal_To_Int_PrductTbl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509261458443_Add_SearchByProdCodeField.resx">
-      <DependentUpon>202509261458443_Add_SearchByProdCodeField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509301027319_addTempOrder_temoOrderDetail.resx">
-      <DependentUpon>202509301027319_addTempOrder_temoOrderDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202510112055201_edit_SalePriceCol_Type.resx">
-      <DependentUpon>202510112055201_edit_SalePriceCol_Type.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202510122126155_Remove_Require_contactNo.resx">
-      <DependentUpon>202510122126155_Remove_Require_contactNo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202510141053305_AddProductDetailCol_in_OrderDetailAndTempOrderDetail.resx">
-      <DependentUpon>202510141053305_AddProductDetailCol_in_OrderDetailAndTempOrderDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202510151633301_AddClusterPropertiesWithName.resx">
-      <DependentUpon>202510151633301_AddClusterPropertiesWithName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202512161836217_add_qty_ProdTbl.resx">
-      <DependentUpon>202512161836217_add_qty_ProdTbl.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202601031828467_added_LincenseKyeMode.resx">
+      <DependentUpon>202601031828467_added_LincenseKyeMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -625,9 +519,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\BillScreen\SearchProductUI.resx">
       <DependentUpon>SearchProductUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\CityForm.resx">
-      <DependentUpon>CityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Category\CategoryControl.resx">
       <DependentUpon>CategoryControl.cs</DependentUpon>

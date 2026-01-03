@@ -2,6 +2,7 @@
 using POS_Shop.Views.Account;
 using POS_Shop.Views.BillScreen;
 using POS_Shop.Views.DB_Screens;
+using POS_Shop.Views.LicenseManagement;
 using POS_Shop.Views.Reports;
 using POS_Shop.Views.Settings;
 using System;
@@ -250,7 +251,7 @@ namespace POS_Shop
 
         private void BillPadBtn_Click(object sender, EventArgs e)
         {
-                var BillPadForm = new BillPadForm();
+                var BillPadForm = new POS_Shop.Views.BillScreen.BillPadForm();
                 //BillPadForm.Owner = this;
                 //BillPadForm.Show();
                 this.Hide();
@@ -320,6 +321,15 @@ namespace POS_Shop
         {
             var settingsForm = new POS_Shop.Views.Settings.ConfigSettingForm();
             settingsForm.ShowDialog();
+        }
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var settingsForm = new LicenseForm())
+            {
+                settingsForm.ShowDialog();
+                //LoadDatabaseInfo(); // Refresh status
+            }
         }
     }
 }

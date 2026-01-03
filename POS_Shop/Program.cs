@@ -1,9 +1,14 @@
 ﻿using POS_Shop.Helpers;
+using POS_Shop.Interfaces;
 using POS_Shop.Models;
+using POS_Shop.Models.LicenseModels;
+using POS_Shop.Repositories;
 using POS_Shop.Services;
 using POS_Shop.Views.Account;
+using POS_Shop.Views.LicenseManagement;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +20,10 @@ namespace POS_Shop
     {
         private static Mutex _mutex;
         private static DailyBackgroundService _backgroundService;
+
+
+        private static readonly ILicenseService _licenseService = new LicenseService();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -37,6 +46,8 @@ namespace POS_Shop
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+
 
             // Set the unhandled exception mode for the UI thread
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
@@ -64,6 +75,49 @@ namespace POS_Shop
 
 
             InitializeCountryCityDbCheck();
+            InitializeCategorySubcategoryDbCheck();
+
+            InitializeLic();
+
+
+            // Check license on startup
+            if (!CheckLicense())
+            {
+                // Show license activation form
+                //using (var licenseForm = new ActivationLicenseForm())
+                using (var licenseForm = new LicenseForm())
+                {
+                    licenseForm.ShowDialog();
+
+                    // 
+                    //if (licenseForm.ShowDialog() != DialogResult.OK)
+                    //{
+                    //    MessageBox.Show("Application requires a valid license to run.\n\n" +
+                    //                  "Please contact support for a license key.",
+                    //                  "License Required",
+                    //                  MessageBoxButtons.OK,
+                    //                  MessageBoxIcon.Warning);
+                    //    return;
+                    //}
+
+                    ShowLoginAndMainApplication();
+                }
+            }else
+            {
+                ShowLoginAndMainApplication();
+            }
+
+               
+
+            // Keep mutex alive
+            GC.KeepAlive(_mutex);
+            _backgroundService?.Dispose();
+
+        }
+
+
+        private static void ShowLoginAndMainApplication()
+        {
             while (true)
             {
                 // Show login if not authenticated
@@ -80,7 +134,7 @@ namespace POS_Shop
                     }
                 }
 
-                // Show main profile form
+                // Show main profile form (MasterLayoutForm)
                 using (var profile = new MasterLayoutForm())
                 {
                     Application.Run(profile);
@@ -94,16 +148,125 @@ namespace POS_Shop
                     {
                         break; // Exit application if profile closed normally
                     }
+                }
+            }
+        }
 
+        static void InitializeLic()
+        {
+            using(var context = new POSDbContext())
+            {
+                if (!context.Licenses.Any())
+                {
+                    context.Licenses.AddOrUpdate(
+                        new AppLicense
+                        {
+                            UserName = "Admin",
+                            LicenseKey = "TRIAL-1234-5678-9012",
+                            MacAddress = "00-00-00-00-00-00",
+                            HardwareId = "sample-hardware-id",
+                            LicenseType = LicenseType.Trial,
+                            IssueDate = DateTime.Now,
+                            ExpiryDate = DateTime.Now.AddDays(15),
+                            IsActive = true
+                        },
+                        new AppLicense
+                        {
+                            UserName = "Admin",
+                            LicenseKey = "YEARLY-ABCD-EFGH-IJKL",
+                            MacAddress = "00-00-00-00-00-00",
+                            HardwareId = "sample-hardware-id",
+                            LicenseType = LicenseType.OneYear,
+                            IssueDate = DateTime.Now,
+                            ExpiryDate = DateTime.Now.AddYears(1),
+                            IsActive = true
+                        },
+                        new AppLicense
+                        {
+                            UserName = "Admin",
+                            LicenseKey = "LIFETIME-MNOP-QRST-UVWX",
+                            MacAddress = "00-00-00-00-00-00",
+                            HardwareId = "sample-hardware-id",
+                            LicenseType = LicenseType.Lifetime,
+                            IssueDate = DateTime.Now,
+                            ExpiryDate = DateTime.MaxValue,
+                            IsActive = true
+                        }
+                    );
+
+                    context.SaveChanges();
+                }
+            }
+            // Seed sample data
+          
+        }
+
+        private static bool CheckLicense()
+        {
+            try
+            {
+                if (!_licenseService.CheckLicenseFileExists())
+                {
+                    // No license file found
+                    return false;
                 }
 
+                var licenseInfo = _licenseService.ReadLicenseFile();
+                if (licenseInfo == null || !licenseInfo.IsValid)
+                {
+                    // Show appropriate message
+                    if (licenseInfo != null)
+                    {
+                        if (licenseInfo.LicenseType == LicenseType.Trial)
+                        {
+                            int remaining = _licenseService.GetRemainingDays();
+                            if (remaining <= 0)
+                            {
+                                MessageBox.Show($"Your trial period has expired.\n\n" +
+                                              $"Please purchase a full license to continue using the software.",
+                                              "Trial Expired",
+                                              MessageBoxButtons.OK,
+                                              MessageBoxIcon.Information);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Your license has expired or is invalid.\n\n" +
+                                          $"Please renew your license to continue.",
+                                          "License Expired",
+                                          MessageBoxButtons.OK,
+                                          MessageBoxIcon.Warning);
+                        }
+                    }
+                    return false;
+                }
+
+                // Show remaining days for trial
+                if (licenseInfo.LicenseType == LicenseType.Trial)
+                {
+                    int remainingDays = _licenseService.GetRemainingDays();
+                    if (remainingDays <= 3)
+                    {
+                        MessageBox.Show($"Trial Version\n" +
+                                      $"Remaining Days: {remainingDays}\n\n" +
+                                      $"Please purchase a full license before your trial expires.",
+                                      "Trial Version",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Information);
+                    }
+                }
+
+                return true;
             }
-
-            // Keep mutex alive
-            GC.KeepAlive(_mutex);
-            _backgroundService?.Dispose();
-
+            catch (Exception ex)
+            {
+                MessageBox.Show($"License validation error: {ex.Message}",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
+
+
 
         /// <summary>
         /// Shows splash screen (optional)
@@ -205,6 +368,40 @@ namespace POS_Shop
             }
         }
 
+
+        private static void InitializeCategorySubcategoryDbCheck()
+        {
+            using (var context = new POSDbContext())
+            {
+                var HasCategory = context.Categories.Any();
+                var HasSubcategory = context.SubCategories.Any();
+
+                if (!HasCategory)
+                {
+
+                    context.Categories.Add(new Category()
+                    {
+                        name = "Other Category",
+                         isActive=true
+                    });
+
+                    context.SaveChanges();
+
+                }
+
+                if (!HasSubcategory)
+                {
+                    var categoryId = context.Categories.FirstOrDefault(x => x.name == "Other Category").id;
+                    context.SubCategories.Add(new SubCategory()
+                    {
+                        name = "Other Subcategory",
+                        isActive = true,
+                        categoryId= categoryId
+                    });
+                    context.SaveChanges();
+                }
+            }
+        }
         private static void InitializeBackgroundService()
         {
             try
