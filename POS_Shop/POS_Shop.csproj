@@ -293,6 +293,10 @@
     <Compile Include="Migrations\202601031828467_added_LincenseKyeMode.Designer.cs">
       <DependentUpon>202601031828467_added_LincenseKyeMode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202601032056025_licenseModelUpdate.cs" />
+    <Compile Include="Migrations\202601032056025_licenseModelUpdate.Designer.cs">
+      <DependentUpon>202601032056025_licenseModelUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -318,6 +322,7 @@
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\EncryptionService.cs" />
     <Compile Include="Repositories\LicenseService.cs" />
+    <Compile Include="Repositories\LicenseServices\LicenseKeyManager.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -497,6 +502,9 @@
     <EmbeddedResource Include="Migrations\202601031828467_added_LincenseKyeMode.resx">
       <DependentUpon>202601031828467_added_LincenseKyeMode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601032056025_licenseModelUpdate.resx">
+      <DependentUpon>202601032056025_licenseModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -573,6 +581,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LicenseManagement\LicenseForm.resx">
+      <DependentUpon>LicenseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Loader\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>

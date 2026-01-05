@@ -33,9 +33,17 @@ namespace POS_Shop.Views.Controllers.Order
 
             // Add this line
             OrderListDataGrid.CellClick += OrderListDataGrid_CellClick;
-
+            OrderListDataGrid.KeyDown += OrderListDataGrid_KeyDown;
 
             SetItemGridView();
+
+            // Make sure control can receive focus
+            this.SetStyle(ControlStyles.Selectable, true);
+            this.TabStop = true;
+
+            // Click/Enter events to ensure control gets focus
+            this.Enter += (s, e) => this.Focus();
+            this.Click += (s, e) => this.Focus();
 
         }
 
@@ -213,6 +221,77 @@ namespace POS_Shop.Views.Controllers.Order
             await LoadOrdersForDataGridView();
         }
 
+
+        private async Task HandleRowAction(int rowIndex, bool isDetailsColumn = false)
+        {
+            if (isDetailsColumn)
+            {
+                if (OrderListDataGrid.Rows[rowIndex].Cells[0].Value != null)
+                {
+                    int orderId = Convert.ToInt32(OrderListDataGrid.Rows[rowIndex].Cells[0].Value);
+                    string invoiceNo = OrderListDataGrid.Rows[rowIndex].Cells[1].Value.ToString();
+                    await ShowOrderDetails(orderId, invoiceNo);
+                    InvNumbnerLbl.Text = invoiceNo;
+                }
+            }
+            else
+            {
+                SelectRow(rowIndex);
+            }
+        }
+
+        // Updated CellClick event
+        //private async void OrderListDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+        //    {
+        //        bool isDetailsColumn = OrderListDataGrid.Columns[e.ColumnIndex].Name == "DetailsColumn";
+        //        await HandleRowAction(e.RowIndex, isDetailsColumn);
+        //    }
+        //}
+
+        // Updated KeyDown event
+        private async void OrderListDataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                if (OrderListDataGrid.CurrentRow != null &&
+                    OrderListDataGrid.CurrentRow.Index == 0)
+                {
+                    SearchOrderTxt.Focus();
+                    SearchOrderTxt.SelectAll();
+                    e.Handled = true;
+                    return;
+                }
+            }
+            else if (e.KeyCode == Keys.Escape && OrderListDataGrid.Visible)
+            {
+                SearchOrderTxt.Focus();
+                e.Handled = true;
+                return;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                if (OrderListDataGrid.CurrentRow != null && OrderListDataGrid.CurrentRow.Index >= 0)
+                {
+                    int rowIndex = OrderListDataGrid.CurrentRow.Index;
+                    bool isDetailsColumn = false;
+
+                    // Check if current cell is in Details column
+                    if (OrderListDataGrid.CurrentCell != null)
+                    {
+                        isDetailsColumn = OrderListDataGrid.CurrentCell.OwningColumn.Name == "DetailsColumn";
+                    }
+
+                    await HandleRowAction(rowIndex, isDetailsColumn);
+                }
+            }
+        }
+
+
         private async void OrderListDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Check if the click is on the button column and not on header
@@ -310,6 +389,19 @@ namespace POS_Shop.Views.Controllers.Order
             {
                 MessageBox.Show($"Error loading order details: {ex.Message}", "Error",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SearchOrderTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && OrderListDataGrid.Visible)
+            {
+                if (OrderListDataGrid.Rows.Count > 0)
+                {
+                    OrderListDataGrid.Focus();
+                    OrderListDataGrid.Rows[0].Selected = true;
+                    e.Handled = true;
+                }
             }
         }
     }

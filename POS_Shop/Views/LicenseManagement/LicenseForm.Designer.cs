@@ -2,15 +2,25 @@
 {
     partial class LicenseForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.Panel panelActivation;
+        private System.Windows.Forms.Panel panelLicenseInfo;
+        private System.Windows.Forms.Label lblActivationTitle;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.Label lblLicenseKey;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.TextBox txtLicenseKey;
+        private System.Windows.Forms.Button btnActivate;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblLicenseInfoTitle;
+        private System.Windows.Forms.Button btnContinue;
+        private System.Windows.Forms.TextBox txtLicenseInfo;
+        private System.Windows.Forms.LinkLabel linkLabelHelp;
+        private System.Windows.Forms.Button btnActivateNew;
+        private System.Windows.Forms.Button btnDeactivate;
+        private System.Windows.Forms.Button btnCopyLicenseInfo;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,15 +30,8 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LicenseForm));
             this.panelActivation = new System.Windows.Forms.Panel();
             this.linkLabelHelp = new System.Windows.Forms.LinkLabel();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -46,10 +49,9 @@
             this.txtLicenseInfo = new System.Windows.Forms.TextBox();
             this.btnContinue = new System.Windows.Forms.Button();
             this.lblLicenseInfoTitle = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelActivation.SuspendLayout();
             this.panelLicenseInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelActivation
@@ -65,7 +67,7 @@
             this.panelActivation.Controls.Add(this.lblLicenseKey);
             this.panelActivation.Controls.Add(this.lblUserName);
             this.panelActivation.Controls.Add(this.lblActivationTitle);
-            this.panelActivation.Location = new System.Drawing.Point(30, 120);
+            this.panelActivation.Location = new System.Drawing.Point(26, 120);
             this.panelActivation.Name = "panelActivation";
             this.panelActivation.Size = new System.Drawing.Size(520, 300);
             this.panelActivation.TabIndex = 0;
@@ -75,7 +77,7 @@
             this.linkLabelHelp.AutoSize = true;
             this.linkLabelHelp.Location = new System.Drawing.Point(200, 270);
             this.linkLabelHelp.Name = "linkLabelHelp";
-            this.linkLabelHelp.Size = new System.Drawing.Size(120, 17);
+            this.linkLabelHelp.Size = new System.Drawing.Size(139, 16);
             this.linkLabelHelp.TabIndex = 8;
             this.linkLabelHelp.TabStop = true;
             this.linkLabelHelp.Text = "Need help? Click here";
@@ -90,7 +92,6 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 20);
             this.lblStatus.TabIndex = 7;
-            this.lblStatus.TextChanged += new System.EventHandler(this.lblStatus_TextChanged);
             // 
             // btnExit
             // 
@@ -125,6 +126,7 @@
             this.txtLicenseKey.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtLicenseKey.Location = new System.Drawing.Point(200, 120);
             this.txtLicenseKey.Name = "txtLicenseKey";
+            this.txtLicenseKey.PasswordChar = '●';
             this.txtLicenseKey.Size = new System.Drawing.Size(250, 30);
             this.txtLicenseKey.TabIndex = 2;
             this.txtLicenseKey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLicenseKey_KeyPress);
@@ -144,7 +146,7 @@
             this.lblLicenseKey.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblLicenseKey.Location = new System.Drawing.Point(70, 123);
             this.lblLicenseKey.Name = "lblLicenseKey";
-            this.lblLicenseKey.Size = new System.Drawing.Size(100, 23);
+            this.lblLicenseKey.Size = new System.Drawing.Size(106, 23);
             this.lblLicenseKey.TabIndex = 2;
             this.lblLicenseKey.Text = "License Key:";
             // 
@@ -154,7 +156,7 @@
             this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblUserName.Location = new System.Drawing.Point(70, 73);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(96, 23);
+            this.lblUserName.Size = new System.Drawing.Size(102, 23);
             this.lblUserName.TabIndex = 1;
             this.lblUserName.Text = "User Name:";
             // 
@@ -164,9 +166,9 @@
             this.lblActivationTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblActivationTitle.Location = new System.Drawing.Point(150, 20);
             this.lblActivationTitle.Name = "lblActivationTitle";
-            this.lblActivationTitle.Size = new System.Drawing.Size(220, 32);
+            this.lblActivationTitle.Size = new System.Drawing.Size(275, 32);
             this.lblActivationTitle.TabIndex = 0;
-            this.lblActivationTitle.Text = "Activate Your License";
+            this.lblActivationTitle.Text = "Activate Your Software";
             // 
             // panelLicenseInfo
             // 
@@ -182,6 +184,7 @@
             this.panelLicenseInfo.Name = "panelLicenseInfo";
             this.panelLicenseInfo.Size = new System.Drawing.Size(520, 400);
             this.panelLicenseInfo.TabIndex = 1;
+            this.panelLicenseInfo.Visible = false;
             // 
             // btnCopyLicenseInfo
             // 
@@ -234,7 +237,7 @@
             this.txtLicenseInfo.Name = "txtLicenseInfo";
             this.txtLicenseInfo.ReadOnly = true;
             this.txtLicenseInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLicenseInfo.Size = new System.Drawing.Size(480, 250);
+            this.txtLicenseInfo.Size = new System.Drawing.Size(480, 214);
             this.txtLicenseInfo.TabIndex = 1;
             // 
             // btnContinue
@@ -243,7 +246,7 @@
             this.btnContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnContinue.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnContinue.ForeColor = System.Drawing.Color.White;
-            this.btnContinue.Location = new System.Drawing.Point(200, 280);
+            this.btnContinue.Location = new System.Drawing.Point(185, 290);
             this.btnContinue.Name = "btnContinue";
             this.btnContinue.Size = new System.Drawing.Size(150, 40);
             this.btnContinue.TabIndex = 0;
@@ -257,19 +260,20 @@
             this.lblLicenseInfoTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblLicenseInfoTitle.Location = new System.Drawing.Point(150, 20);
             this.lblLicenseInfoTitle.Name = "lblLicenseInfoTitle";
-            this.lblLicenseInfoTitle.Size = new System.Drawing.Size(220, 32);
+            this.lblLicenseInfoTitle.Size = new System.Drawing.Size(242, 32);
             this.lblLicenseInfoTitle.TabIndex = 0;
             this.lblLicenseInfoTitle.Text = "License Information";
             // 
-            // pictureBox1
+            // label1
             // 
-            //this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(30, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Ravie", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.SlateBlue;
+            this.label1.Location = new System.Drawing.Point(108, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(398, 54);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "POS Software";
             // 
             // LicenseForm
             // 
@@ -277,45 +281,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(580, 550);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panelLicenseInfo);
             this.Controls.Add(this.panelActivation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-          //  this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LicenseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ERP/POS System - License Management";
-            this.Load += new System.EventHandler(this.LicenseForm_Load);
             this.panelActivation.ResumeLayout(false);
             this.panelActivation.PerformLayout();
             this.panelLicenseInfo.ResumeLayout(false);
             this.panelLicenseInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
-        #endregion
-
-        private System.Windows.Forms.Panel panelActivation;
-        private System.Windows.Forms.Panel panelLicenseInfo;
-        private System.Windows.Forms.Label lblActivationTitle;
-        private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.Label lblLicenseKey;
-        private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.TextBox txtLicenseKey;
-        private System.Windows.Forms.Button btnActivate;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label lblLicenseInfoTitle;
-        private System.Windows.Forms.Button btnContinue;
-        private System.Windows.Forms.TextBox txtLicenseInfo;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.LinkLabel linkLabelHelp;
-        private System.Windows.Forms.Button btnActivateNew;
-        private System.Windows.Forms.Button btnDeactivate;
-        private System.Windows.Forms.Button btnCopyLicenseInfo;
+        private System.Windows.Forms.Label label1;
     }
 }

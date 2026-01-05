@@ -24,98 +24,64 @@ namespace POS_Shop.Views.LicenseManagement
         {
             InitializeComponent();
             _licenseService = new LicenseService();
+            this.Load += LicenseForm_Load;
         }
 
         private void LicenseForm_Load(object sender, EventArgs e)
         {
-            LoadLicenseStatus();
-        }
-
-        private void LoadLicenseStatus()
-        {
-            try
+            // Check if we have a valid license already
+            if (_licenseService.IsLicenseValid())
             {
-                // Check if license already exists and is valid
-                if (_licenseService.IsLicenseValid())
-                {
-                    ShowLicenseInfo();
-                }
-                else
-                {
-                    ShowActivationForm();
-                }
+                ShowLicenseInfo();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error loading license information: {ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowActivationForm();
             }
         }
 
         private void ShowLicenseInfo()
         {
-            try
+            var licenseInfo = _licenseService.GetCurrentLicenseInfo();
+            if (licenseInfo != null)
             {
-                var licenseInfo = _licenseService.GetCurrentLicenseInfo();
-                if (licenseInfo != null)
+                txtLicenseInfo.Text = GenerateLicenseInfoText(licenseInfo);
+                panelLicenseInfo.Visible = true;
+                panelActivation.Visible = false;
+
+                // Update button text based on license type
+                if (licenseInfo.LicenseType == LicenseType.Trial)
                 {
-                    txtLicenseInfo.Text = GenerateLicenseInfoText(licenseInfo);
+                    int remainingDays = _licenseService.GetRemainingDays();
+                    btnContinue.Text = $"Continue ({remainingDays} days left)";
 
-                    panelLicenseInfo.Visible = true;
-                    panelActivation.Visible = false;
-
-                    // Update button based on license status
-                    if (licenseInfo.LicenseType == LicenseType.Trial)
+                    if (remainingDays <= 3)
                     {
-                        int remainingDays = _licenseService.GetRemainingDays();
-                        btnContinue.Text = $"Continue (Trial: {remainingDays} days left)";
-
-                        if (remainingDays <= 3)
-                        {
-                            btnContinue.BackColor = System.Drawing.Color.Orange;
-                        }
-                    }
-                    else
-                    {
-                        btnContinue.Text = "Continue to Application";
+                        btnContinue.BackColor = Color.Orange;
                     }
                 }
-                else
-                {
-                    ShowActivationForm();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error showing license info: {ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ShowActivationForm();
             }
         }
 
         private string GenerateLicenseInfoText(LicenseInfo licenseInfo)
         {
-            return $"User Name: {licenseInfo.UserName}\n" +
-                   $"License Key: {licenseInfo.LicenseKey}\n" +
-                   $"License Type: {licenseInfo.LicenseType}\n" +
-                   $"Issue Date: {licenseInfo.IssueDate:dd/MM/yyyy HH:mm}\n" +
-                   $"Expiry Date: {licenseInfo.ExpiryDate:dd/MM/yyyy HH:mm}\n" +
-                   $"Status: {(licenseInfo.IsValid ? "VALID" : "INVALID")}\n" +
-                   $"MAC Address: {licenseInfo.MacAddress}\n" +
-                   $"Hardware ID: {licenseInfo.HardwareId}";
+            return $"👤 User Name: {licenseInfo.UserName}\n" +
+                   $"🔑 License Key: {licenseInfo.LicenseKey}\n" +
+                   $"📋 License Type: {licenseInfo.LicenseType}\n" +
+                   $"📅 Issue Date: {licenseInfo.IssueDate:dd/MM/yyyy HH:mm}\n" +
+                   $"⏰ Expiry Date: {licenseInfo.ExpiryDate:dd/MM/yyyy HH:mm}\n" +
+                   $"✅ Status: {(licenseInfo.IsValid ? "VALID" : "INVALID")}\n";
+                   //+ $"🔗 MAC Address: {licenseInfo.MacAddress}\n" +
+                   //$"🖥️ Hardware ID: {licenseInfo.HardwareId}";
         }
 
         private void ShowActivationForm()
         {
             panelActivation.Visible = true;
             panelLicenseInfo.Visible = false;
-
-            // Clear fields
-            txtUserName.Text = "";
-            txtLicenseKey.Text = "";
+            txtUserName.Clear();
+            txtLicenseKey.Clear();
             lblStatus.Text = "";
-
-            // Set focus
             txtUserName.Focus();
         }
 
@@ -124,81 +90,70 @@ namespace POS_Shop.Views.LicenseManagement
             ActivateLicense();
         }
 
-        private void ActivateLicense()
+        private bool ActivateLicense()
         {
+            string userName = txtUserName.Text.Trim();
+            string licenseKey = txtLicenseKey.Text.Trim();
+
+            // Validation
+            if (string.IsNullOrEmpty(userName))
+            {
+                lblStatus.Text = "Please enter your name!";
+                lblStatus.ForeColor = Color.Red;
+                txtUserName.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(licenseKey))
+            {
+                lblStatus.Text = "Please enter license key!";
+                lblStatus.ForeColor = Color.Red;
+                txtLicenseKey.Focus();
+                return false;
+            }
+
+            // Show processing
+            lblStatus.Text = "Activating license...";
+            lblStatus.ForeColor = Color.Blue;
+            this.Cursor = Cursors.WaitCursor;
+            btnActivate.Enabled = false;
+            Application.DoEvents();
+
             try
             {
-                string userName = txtUserName.Text.Trim();
-                string licenseKey = txtLicenseKey.Text.Trim();
-
-                // Validate inputs
-                if (string.IsNullOrEmpty(userName))
-                {
-                    lblStatus.Text = "Please enter your user name!";
-                    lblStatus.ForeColor = System.Drawing.Color.Red;
-                    txtUserName.Focus();
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(licenseKey))
-                {
-                    lblStatus.Text = "Please enter your license key!";
-                    lblStatus.ForeColor = System.Drawing.Color.Red;
-                    txtLicenseKey.Focus();
-                    return;
-                }
-
-                // Show processing
-                lblStatus.Text = "Activating license, please wait...";
-                lblStatus.ForeColor = System.Drawing.Color.Blue;
-                this.Cursor = Cursors.WaitCursor;
-                btnActivate.Enabled = false;
-                Application.DoEvents();
-
                 // Perform activation
                 bool activated = _licenseService.ActivateLicense(userName, licenseKey);
 
                 if (activated)
                 {
-                    lblStatus.Text = "License activated successfully!";
-                    lblStatus.ForeColor = System.Drawing.Color.Green;
-
-                    // Show success message
-                    MessageBox.Show("License activated successfully!\n\nYou can now use the application.",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Update UI to show license info
-                    //   LoadLicenseStatus();
+                    // Activation successful - close form
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
-                 
+                    return true;
                 }
                 else
                 {
-                    lblStatus.Text = "Activation failed. Please check your license key.";
-                    lblStatus.ForeColor = System.Drawing.Color.Red;
+                    lblStatus.Text = "Activation failed. Check key and try again.";
+                    lblStatus.ForeColor = Color.Red;
+                    return false;
                 }
             }
             catch (Exception ex)
             {
-                lblStatus.Text = $"Activation error: {ex.Message}";
-                lblStatus.ForeColor = System.Drawing.Color.Red;
-
-                MessageBox.Show($"Activation failed: {ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblStatus.Text = $"Error: {ex.Message}";
+                lblStatus.ForeColor = Color.Red;
+                return false;
             }
             finally
             {
                 this.Cursor = Cursors.Default;
                 btnActivate.Enabled = true;
-
-                this.Hide();
-                var loginform = new LoginForm();
-                loginform.ShowDialog();
             }
         }
 
         private void btnContinue_Click(object sender, EventArgs e)
         {
+            // Continue to application
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -233,14 +188,15 @@ namespace POS_Shop.Views.LicenseManagement
 
         private void linkLabelHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("License Types:\n\n" +
-                          "1. Trial License - 15 days free trial\n" +
-                          "2. Yearly License - Valid for 1 year\n" +
-                          "3. Lifetime License - No expiration\n\n" +
-                          "Contact support for license keys.",
-                          "License Help",
-                          MessageBoxButtons.OK,
-                          MessageBoxIcon.Information);
+            MessageBox.Show(
+                "Available License Types:\n\n" +
+                "1. 🔓 TRIAL-XXXX-XXXX-XXXX - 15 days free trial\n" +
+                "2. 📅 YEARLY-XXXX-XXXX-XXXX - 1 year license\n" +
+                "3. ⭐ LIFETIME-XXXX-XXXX-XXXX - Permanent license\n\n" +
+                "Contact support for license keys.",
+                "License Help",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void btnCopyLicenseInfo_Click(object sender, EventArgs e)
@@ -248,15 +204,15 @@ namespace POS_Shop.Views.LicenseManagement
             if (!string.IsNullOrEmpty(txtLicenseInfo.Text))
             {
                 Clipboard.SetText(txtLicenseInfo.Text);
-                MessageBox.Show("License information copied to clipboard.",
-                    "Copy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("License info copied to clipboard.",
+                    "Copied", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
-                "Are you sure you want to deactivate the license on this computer?\n\n" +
+                "Are you sure you want to deactivate the license?\n\n" +
                 "You will need to reactivate to use the application.",
                 "Confirm Deactivation",
                 MessageBoxButtons.YesNo,
@@ -267,11 +223,10 @@ namespace POS_Shop.Views.LicenseManagement
                 try
                 {
                     _licenseService.DeleteLicenseFile();
-                    MessageBox.Show("License deactivated successfully.\n\n" +
-                                  "Please restart the application to activate a new license.",
-                                  "Deactivated",
-                                  MessageBoxButtons.OK,
-                                  MessageBoxIcon.Information);
+                    MessageBox.Show("License deactivated. Restart to activate new license.",
+                        "Deactivated",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     Application.Exit();
                 }
                 catch (Exception ex)
@@ -281,16 +236,6 @@ namespace POS_Shop.Views.LicenseManagement
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-            }
-        }
-
-        private void lblStatus_TextChanged(object sender, EventArgs e)
-        {
-            // Auto-size the label to fit text
-            using (var g = lblStatus.CreateGraphics())
-            {
-                var size = g.MeasureString(lblStatus.Text, lblStatus.Font);
-                lblStatus.Height = (int)Math.Ceiling(size.Height);
             }
         }
     }

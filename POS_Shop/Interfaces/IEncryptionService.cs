@@ -1,5 +1,6 @@
 ﻿namespace POS_Shop.Interfaces
 {
+
     public interface IEncryptionService
     {
         string Encrypt(string plainText);

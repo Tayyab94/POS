@@ -14,7 +14,6 @@ namespace POS_Shop.Interfaces
         bool IsLicenseValid();
         LicenseInfo GetCurrentLicenseInfo();
         int GetRemainingDays();
-        bool ValidateLicenseKey(string licenseKey);
-        LicenseType GetLicenseTypeFromKey(string licenseKey);
+        bool VerifyLicenseKeyInFile();
     }
 }

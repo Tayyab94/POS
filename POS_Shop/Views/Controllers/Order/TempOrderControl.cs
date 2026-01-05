@@ -31,8 +31,31 @@ namespace POS_Shop.Views.Controllers.Order
             this.InvoiceNoLbl.Text = string.Empty;
             this.isRecordSelected = false;
             this.Load += OrdersControlUI_Load;
+            // Make sure control can receive focus
+            this.SetStyle(ControlStyles.Selectable, true);
+            this.TabStop = true;
 
-            
+            // Click/Enter events to ensure control gets focus
+            this.Enter += (s, e) => this.Focus();
+            this.Click += (s, e) => this.Focus();
+
+
+
+            OrderListDataGrid.KeyDown += OrderListDataGrid_KeyDown;
+
+        }
+
+        // Override ProcessCmdKey to intercept keyboard shortcuts
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            // Check for Escape
+            if (keyData == (Keys.F4 | Keys.Alt))
+            {
+                Form parentForm = this.FindForm();
+                parentForm?.Close();
+                return true; // Key has been handled
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private async void OrdersControlUI_Load(object sender, EventArgs e)
@@ -115,19 +138,96 @@ namespace POS_Shop.Views.Controllers.Order
             }
         }
 
-        private void OrderListDataGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        //private void OrderListDataGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        //{
+        //    if (OrderListDataGrid.Rows.Count > 0)
+        //    {
+        //        InvoiceNoLbl.Text = (string)OrderListDataGrid.CurrentRow.Cells[0].Value;
+        //        CustomerName = OrderListDataGrid.CurrentRow.Cells[2].Value != DBNull.Value ? (string)OrderListDataGrid.CurrentRow.Cells[2].Value : string.Empty;
+        //        CustomerId = OrderListDataGrid.CurrentRow.Cells[3].Value != DBNull.Value ? Convert.ToInt32(OrderListDataGrid.CurrentRow.Cells[3].Value) : 0;
+
+        //        isRecordSelected = true;
+        //        // Close the parent form
+        //        Form parentForm = this.FindForm();
+        //        parentForm?.Close();
+
+        //    }
+        //}
+
+
+        private void SelectCurrentRowAndClose()
         {
-            if (OrderListDataGrid.Rows.Count > 0)
+            if (OrderListDataGrid.Rows.Count > 0 &&
+                OrderListDataGrid.CurrentRow != null &&
+                OrderListDataGrid.CurrentRow.Index >= 0)
             {
-                InvoiceNoLbl.Text = (string)OrderListDataGrid.CurrentRow.Cells[0].Value;
-                CustomerName = OrderListDataGrid.CurrentRow.Cells[2].Value != DBNull.Value ? (string)OrderListDataGrid.CurrentRow.Cells[2].Value : string.Empty;
-                CustomerId = OrderListDataGrid.CurrentRow.Cells[3].Value != DBNull.Value ? Convert.ToInt32(OrderListDataGrid.CurrentRow.Cells[3].Value) : 0;
+                DataGridViewRow currentRow = OrderListDataGrid.CurrentRow;
+
+                if (currentRow.Cells[0].Value != null)
+                {
+                    InvoiceNoLbl.Text = currentRow.Cells[0].Value.ToString();
+                }
+
+                CustomerName = currentRow.Cells[2].Value != DBNull.Value
+                    ? (string)currentRow.Cells[2].Value
+                    : string.Empty;
+
+                CustomerId = currentRow.Cells[3].Value != DBNull.Value
+                    ? Convert.ToInt32(currentRow.Cells[3].Value)
+                    : 0;
 
                 isRecordSelected = true;
-                // Close the parent form
+
                 Form parentForm = this.FindForm();
                 parentForm?.Close();
+            }
+        }
 
+        private void OrderListDataGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                SelectCurrentRowAndClose();
+            }
+        }
+
+        private void OrderListDataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                if (OrderListDataGrid.CurrentRow != null &&
+                    OrderListDataGrid.CurrentRow.Index == 0)
+                {
+                    SearchOrderTxt.Focus();
+                    SearchOrderTxt.SelectAll();
+                    e.Handled = true;
+                    return;
+                }
+            }
+            else if (e.KeyCode == Keys.Escape && OrderListDataGrid.Visible)
+            {
+                SearchOrderTxt.Focus();
+                e.Handled = true;
+                return;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                SelectCurrentRowAndClose();
+            }
+        }
+
+        private void SearchOrderTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && OrderListDataGrid.Visible)
+            {
+                if (OrderListDataGrid.Rows.Count > 0)
+                {
+                    OrderListDataGrid.Focus();
+                    OrderListDataGrid.Rows[0].Selected = true;
+                    e.Handled = true;
+                }
             }
         }
     }
