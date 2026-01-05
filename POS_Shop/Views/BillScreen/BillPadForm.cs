@@ -1305,19 +1305,26 @@ namespace POS_Shop.Views.BillScreen
 
 
                 var q = int.Parse(row.Cells["Qty"].Value?.ToString());
-                if (!string.IsNullOrEmpty(productIdValue))
-                {
-                    var productCheck = context.Products.Find(int.Parse(productIdValue));
-                    if (productCheck.Qty < 0 || productCheck.Qty < q)
-                    {
-                        MessageBox.Show($"Insufficient stock for product {productCheck.ProductEnglishName}",
-                           "Error",
-                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Error);
-                        throw new Exception($"Insufficient stock for product ID {productIdValue}");
-                    }
 
+                // Checking User has Enabled the Stock Qty Update Feature
+                var config = ConfigurationManager.Configuration.Features.EnableUpdateQty;
+                if(config)
+                {
+                    if (!string.IsNullOrEmpty(productIdValue))
+                    {
+                        var productCheck = context.Products.Find(int.Parse(productIdValue));
+                        if (productCheck.Qty < 0 || productCheck.Qty < q)
+                        {
+                            MessageBox.Show($"Insufficient stock for product {productCheck.ProductEnglishName}",
+                               "Error",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
+                            throw new Exception($"Insufficient stock for product ID {productIdValue}");
+                        }
+
+                    }
                 }
+               
                 var odrDetail = new OrderDetail
                 {
                     ProductId = string.IsNullOrEmpty(productIdValue) ? (int?)null : int.Parse(productIdValue),
@@ -1332,7 +1339,7 @@ namespace POS_Shop.Views.BillScreen
                 orderDetailList.Add(odrDetail);
 
                 // Checking User has Enabled the Stock Qty Update Feature
-                var config = ConfigurationManager.Configuration.Features.EnableUpdateQty;
+              
                 if(config)
                 {
                     if (!string.IsNullOrEmpty(productIdValue))

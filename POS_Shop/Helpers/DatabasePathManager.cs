@@ -111,7 +111,7 @@ namespace POS_Shop.Helpers
             {
                 dialog.Title = "Locate ShopPOSDB.mdf Database File";
                 dialog.Filter = "SQL Server Database (*.mdf)|*.mdf|All Files (*.*)|*.*";
-                dialog.FileName = "ShopPOSDB.mdf";
+                dialog.FileName = "POSDB.mdf";
                 dialog.CheckFileExists = true;
                 dialog.CheckPathExists = true;
 
@@ -145,7 +145,7 @@ namespace POS_Shop.Helpers
                     {
                         MessageBox.Show(
                             "The selected file doesn't appear to be a valid SQL Server database.\n" +
-                            "Please select a valid 'ShopPOSDB.mdf' file.",
+                            "Please select a valid 'POSDB.mdf' file.",
                             "Invalid File",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
@@ -300,7 +300,7 @@ namespace POS_Shop.Helpers
             {
                 dialog.Title = "Select New Database File";
                 dialog.Filter = "SQL Server Database (*.mdf)|*.mdf";
-                dialog.FileName = "ShopPOSDB.mdf";
+                dialog.FileName = "POSDB.mdf";
                 dialog.CheckFileExists = true;
 
                 if (dialog.ShowDialog() == DialogResult.OK)

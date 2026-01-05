@@ -870,8 +870,8 @@
             this.importExcelFileToolStripMenuItem,
             this.importCustomerExcelFileToolStripMenuItem});
             this.viewsToolStripMenuItem.Name = "viewsToolStripMenuItem";
-            this.viewsToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
-            this.viewsToolStripMenuItem.Text = "Views";
+            this.viewsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
+            this.viewsToolStripMenuItem.Text = "Tools";
             // 
             // importExcelFileToolStripMenuItem
             // 
@@ -898,7 +898,7 @@
             // infoToolStripMenuItem
             // 
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.infoToolStripMenuItem.Text = "About POS";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 

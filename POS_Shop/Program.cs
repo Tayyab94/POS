@@ -31,23 +31,26 @@ namespace POS_Shop
         static void Main()
         {
 
-            // Ensure only one instance runs
-            bool createdNew;
-            _mutex = new Mutex(true, "POSAppInstance", out createdNew);
 
-            if (!createdNew)
-            {
-                MessageBox.Show("Application is already running!",
-                              "POS System",
-                              MessageBoxButtons.OK,
-                              MessageBoxIcon.Information);
-                return;
-            }
+            #region Code For to bind the db file, if the db file is not found in the configured path
+            //// Ensure only one instance runs
+            //bool createdNew;
+            //_mutex = new Mutex(true, "POSAppInstance", out createdNew);
+
+            //if (!createdNew)
+            //{
+            //    MessageBox.Show("Application is already running!",
+            //                  "POS System",
+            //                  MessageBoxButtons.OK,
+            //                  MessageBoxIcon.Information);
+            //    return;
+            //}
+
+            #endregion
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-
 
             // Set the unhandled exception mode for the UI thread
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
@@ -60,16 +63,18 @@ namespace POS_Shop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Show splash screen (optional)
-            ShowSplashScreen();
+            #region Code For to bind the db file, if the db file is not found in the configured path
+            //// Show splash screen (optional)
+            //ShowSplashScreen();
 
-            // Initialize database - THIS HAPPENS ONCE PER INSTALLATION
-            if (!InitializeApplication())
-            {
-                // Initialization failed
-                return;
-            }
+            //// Initialize database - THIS HAPPENS ONCE PER INSTALLATION
+            //if (!InitializeApplication())
+            //{
+            //    // Initialization failed
+            //    return;
+            //}
 
+            #endregion
             // Initialize background service
             InitializeBackgroundService();
 
@@ -77,37 +82,40 @@ namespace POS_Shop
             InitializeCountryCityDbCheck();
             InitializeCategorySubcategoryDbCheck();
 
-            InitializeLic();
+            #region Old Code for License Check and Loginq
+            //InitializeLic();
+
+            //// Check license on startup
+            //if (!CheckLicense())
+            //{
+            //    // Show license activation form
+            //    //using (var licenseForm = new ActivationLicenseForm())
+            //    using (var licenseForm = new LicenseForm())
+            //    {
+            //        licenseForm.ShowDialog();
+
+            //        // 
+            //        //if (licenseForm.ShowDialog() != DialogResult.OK)
+            //        //{
+            //        //    MessageBox.Show("Application requires a valid license to run.\n\n" +
+            //        //                  "Please contact support for a license key.",
+            //        //                  "License Required",
+            //        //                  MessageBoxButtons.OK,
+            //        //                  MessageBoxIcon.Warning);
+            //        //    return;
+            //        //}
+
+            //        ShowLoginAndMainApplication();
+            //    }
+            //}else
+            //{
+            //    ShowLoginAndMainApplication();
+            //}
+            #endregion
+
+            RunApplication();
 
 
-            // Check license on startup
-            if (!CheckLicense())
-            {
-                // Show license activation form
-                //using (var licenseForm = new ActivationLicenseForm())
-                using (var licenseForm = new LicenseForm())
-                {
-                    licenseForm.ShowDialog();
-
-                    // 
-                    //if (licenseForm.ShowDialog() != DialogResult.OK)
-                    //{
-                    //    MessageBox.Show("Application requires a valid license to run.\n\n" +
-                    //                  "Please contact support for a license key.",
-                    //                  "License Required",
-                    //                  MessageBoxButtons.OK,
-                    //                  MessageBoxIcon.Warning);
-                    //    return;
-                    //}
-
-                    ShowLoginAndMainApplication();
-                }
-            }else
-            {
-                ShowLoginAndMainApplication();
-            }
-
-               
 
             // Keep mutex alive
             GC.KeepAlive(_mutex);
@@ -115,6 +123,70 @@ namespace POS_Shop
 
         }
 
+
+        private static void RunApplication()
+        {
+            // STEP 1: LICENSE CHECK
+            var licenseService = new LicenseService();
+
+            if (!licenseService.IsLicenseValid())
+            {
+                // Show license activation form
+                ShowLicenseActivation(licenseService);
+
+                // Check again after activation
+                if (!licenseService.IsLicenseValid())
+                {
+                    MessageBox.Show("License activation is required to use the application.",
+                        "License Required",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            // STEP 2: LOGIN
+            if (!ShowLogin())
+            {
+                return; // User cancelled login
+            }
+            // STEP 3: MAIN APPLICATION
+            RunMainApplication();
+        }
+
+        private static void ShowLicenseActivation(ILicenseService licenseService)
+        {
+            using (var licenseForm = new LicenseForm())
+            {
+                var result = licenseForm.ShowDialog();
+
+                // If user cancels or closes without activation
+                if (result != DialogResult.OK)
+                {
+                    // Optionally show message
+                }
+            }
+        }
+
+        private static bool ShowLogin()
+        {
+            using (var loginForm = new LoginForm())
+            {
+                var result = loginForm.ShowDialog();
+                // Return true if login successful (DialogResult.OK)
+                // Return false if user cancelled
+                return result == DialogResult.OK;
+            }
+        }
+
+        private static void RunMainApplication()
+        {
+            // Create and run main application form
+            using (var mainForm = new MasterLayoutForm())
+            {
+                Application.Run(mainForm);
+            }
+        }
 
         private static void ShowLoginAndMainApplication()
         {
@@ -162,7 +234,6 @@ namespace POS_Shop
                         new AppLicense
                         {
                             UserName = "Admin",
-                            LicenseKey = "TRIAL-1234-5678-9012",
                             MacAddress = "00-00-00-00-00-00",
                             HardwareId = "sample-hardware-id",
                             LicenseType = LicenseType.Trial,
@@ -173,7 +244,6 @@ namespace POS_Shop
                         new AppLicense
                         {
                             UserName = "Admin",
-                            LicenseKey = "YEARLY-ABCD-EFGH-IJKL",
                             MacAddress = "00-00-00-00-00-00",
                             HardwareId = "sample-hardware-id",
                             LicenseType = LicenseType.OneYear,
@@ -184,7 +254,6 @@ namespace POS_Shop
                         new AppLicense
                         {
                             UserName = "Admin",
-                            LicenseKey = "LIFETIME-MNOP-QRST-UVWX",
                             MacAddress = "00-00-00-00-00-00",
                             HardwareId = "sample-hardware-id",
                             LicenseType = LicenseType.Lifetime,

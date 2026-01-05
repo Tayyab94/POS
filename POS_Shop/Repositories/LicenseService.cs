@@ -3,6 +3,7 @@ using POS_Shop.Interfaces;
 using POS_Shop.Models;
 using POS_Shop.Models.LicenseModels;
 using POS_Shop.Models.LicenseModels.DTO;
+using POS_Shop.Repositories.LicenseServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,7 +43,6 @@ namespace POS_Shop.Repositories
 
                 var licenseInfo = JsonConvert.DeserializeObject<LicenseInfo>(decryptedContent);
 
-               //licenseInfo.ExpiryDate = DateTime.Now.AddDays(-4);
                 // Validate the license
                 licenseInfo.IsValid = ValidateLicense(licenseInfo);
 
@@ -61,26 +61,29 @@ namespace POS_Shop.Repositories
             if (licenseInfo == null)
                 return false;
 
-            // Check expiry
+            // 1. Check expiry
             if (DateTime.Now > licenseInfo.ExpiryDate)
                 return false;
 
-            // Validate with database using EF6
+            // 2. Verify license key is valid (against hardcoded keys)
+            if (!LicenseKeyManager.IsValidLicenseKey(licenseInfo.LicenseKey))
+                return false;
+
+            // 3. Check with database
             using (var context = new POSDbContext())
             {
                 var license = context.Licenses
-                    .FirstOrDefault(l => l.LicenseKey == licenseInfo.LicenseKey
-                                        && l.MacAddress == licenseInfo.MacAddress
+                    .FirstOrDefault(l => l.MacAddress == licenseInfo.MacAddress
                                         && l.HardwareId == licenseInfo.HardwareId
+                                        && l.LicenseType == licenseInfo.LicenseType
                                         && l.IsActive);
 
                 if (license == null)
                     return false;
 
-                // Check if expired
+                // Check if expired in database
                 if (DateTime.Now > license.ExpiryDate)
                 {
-                    // Update status if expired
                     license.IsActive = false;
                     license.LastModifiedDate = DateTime.Now;
                     context.SaveChanges();
@@ -88,12 +91,12 @@ namespace POS_Shop.Repositories
                 }
             }
 
-            // Check if MAC address matches current system
+            // 4. Check if MAC address matches current system
             string currentMacAddress = _encryptionService.GetMacAddress();
             if (licenseInfo.MacAddress != currentMacAddress)
                 return false;
 
-            // Check hardware ID
+            // 5. Check hardware ID
             string currentHardwareId = _encryptionService.GenerateHardwareId();
             if (licenseInfo.HardwareId != currentHardwareId)
                 return false;
@@ -101,62 +104,33 @@ namespace POS_Shop.Repositories
             return true;
         }
 
-        public bool ValidateLicenseKey(string licenseKey)
-        {
-            using (var context = new POSDbContext())
-            {
-                return context.Licenses.Any(l => l.LicenseKey == licenseKey);
-            }
-        }
-
-        public LicenseType GetLicenseTypeFromKey(string licenseKey)
-        {
-            using (var context = new POSDbContext())
-            {
-                var license = context.Licenses.FirstOrDefault(l => l.LicenseKey == licenseKey);
-                return license?.LicenseType ?? LicenseType.Trial;
-            }
-        }
-
-        public DateTime CalculateExpiryDate(LicenseType licenseType)
-        {
-            DateTime _expire;
-            switch(licenseType)
-            {
-                case LicenseType.Trial:
-                   _expire= DateTime.Now.AddDays(15);
-                    break;
-                case LicenseType.OneYear:
-                    _expire = DateTime.Now.AddYears(1);
-                    break;
-                case LicenseType.Lifetime:
-                    _expire = DateTime.MaxValue;
-                    break;
-                default:
-                    _expire = DateTime.Now.AddDays(15);
-                    break;
-            }
-
-            return _expire;
-        }
-
         public bool ActivateLicense(string userName, string licenseKey)
         {
             try
             {
-                // Validate the key exists in database
-                if (!ValidateLicenseKey(licenseKey))
+                if (CheckLicenseFileExists())
                 {
-                    MessageBox.Show("Invalid license key!", "Activation Failed",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    File.Delete(LicenseFileName);
+                }
+                // 1. Validate license key using hardcoded validation
+                var validationResult = LicenseKeyManager.ValidateLicenseKey(licenseKey);
+                if (!validationResult.IsValid)
+                {
+                    MessageBox.Show($"Invalid license key: {validationResult.ErrorMessage}",
+                        "Activation Failed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     return false;
                 }
 
-                // Get current hardware info
+                LicenseType licenseType = validationResult.LicenseType.Value;
+                DateTime expiryDate = validationResult.ExpiryDate.Value;
+
+                // 2. Get current hardware info
                 string macAddress = _encryptionService.GetMacAddress();
                 string hardwareId = _encryptionService.GenerateHardwareId();
 
-                // Check if this hardware already has an active license
+                // 3. Check for existing license on this hardware
                 using (var context = new POSDbContext())
                 {
                     var existingLicense = context.Licenses
@@ -167,55 +141,63 @@ namespace POS_Shop.Repositories
                     if (existingLicense != null)
                     {
                         DialogResult result = MessageBox.Show(
-                            "This computer already has an active license. Do you want to replace it?",
+                            "This computer already has an active license.\nDo you want to deactivate it and activate a new one?",
                             "Existing License Found",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question);
 
                         if (result != DialogResult.Yes)
                             return false;
+
+                        // Deactivate existing license
+                        existingLicense.IsActive = false;
+                        existingLicense.LastModifiedDate = DateTime.Now;
                     }
-                }
 
-                // Get license type and create/update license in database
-                using (var context = new POSDbContext())
-                {
-                    var license = context.Licenses.FirstOrDefault(l => l.LicenseKey == licenseKey);
-
-                    if (license == null)
+                    // 4. Create new license record (NO LICENSE KEY STORED)
+                    var newLicense = new AppLicense
                     {
-                        MessageBox.Show("License key not found in database!", "Activation Failed",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
+                        UserName = userName,
+                        MacAddress = macAddress,
+                        HardwareId = hardwareId,
+                        LicenseType = licenseType,
+                        IssueDate = DateTime.Now,
+                        ExpiryDate = expiryDate,
+                        IsActive = true,
+                        CreatedDate = DateTime.Now,
+                        LastModifiedDate = DateTime.Now
+                    };
 
-                    // Update license with current hardware info
-                    license.UserName = userName;
-                    license.MacAddress = macAddress;
-                    license.HardwareId = hardwareId;
-                    license.LicenseType = GetLicenseTypeFromKey(licenseKey);
-                    license.IssueDate = DateTime.Now;
-                    license.ExpiryDate = CalculateExpiryDate(license.LicenseType);
-                    license.IsActive = true;
-                    license.LastModifiedDate = DateTime.Now;
-
+                    context.Licenses.Add(newLicense);
                     context.SaveChanges();
 
-                    // Create license file
-                    var licenseInfo = LicenseInfo.FromEntity(license);
+                    // 5. Create license file (license key stored here only)
+                    var licenseInfo = new LicenseInfo
+                    {
+                        UserName = userName,
+                        LicenseKey = licenseKey, // Key stored in file, not DB
+                        MacAddress = macAddress,
+                        HardwareId = hardwareId,
+                        LicenseType = licenseType,
+                        IssueDate = DateTime.Now,
+                        ExpiryDate = expiryDate,
+                        IsValid = true
+                    };
+
                     CreateLicenseFile(licenseInfo);
 
                     _currentLicense = licenseInfo;
 
-                    // Show success message
-                    string message = $"License activated successfully!\n\n" +
-                                   $"User: {userName}\n" +
-                                   $"Type: {license.LicenseType}\n" +
-                                   $"Expires: {license.ExpiryDate:dd/MM/yyyy}\n\n";
+                    // 6. Show success message
+                    string message = $"✅ License Activated Successfully!\n\n" +
+                                   $"👤 User: {userName}\n" +
+                                   $"🔑 Type: {licenseType}\n" +
+                                   $"📅 Expires: {expiryDate:dd/MM/yyyy}\n\n";
 
-                    if (license.LicenseType == LicenseType.Trial)
+                    if (licenseType == LicenseType.Trial)
                     {
-                        message += $"Trial Period: 15 days";
+                        int days = (expiryDate - DateTime.Now).Days;
+                        message += $"⏳ Trial Period: {days} days remaining";
                     }
 
                     MessageBox.Show(message, "Activation Successful",
@@ -226,7 +208,7 @@ namespace POS_Shop.Repositories
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Activation failed: {ex.Message}\n\nDetails: {ex.InnerException?.Message}",
+                MessageBox.Show($"❌ Activation failed:\n{ex.Message}",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -236,18 +218,14 @@ namespace POS_Shop.Repositories
         {
             try
             {
-                if (CheckLicenseFileExists())
-                {
-                    File.Delete(LicenseFileName);
-                }
-
                 string jsonContent = JsonConvert.SerializeObject(licenseInfo, Formatting.Indented);
                 string encryptedContent = _encryptionService.Encrypt(jsonContent);
 
                 File.WriteAllText(LicenseFileName, encryptedContent);
 
-                // Hide the license file (optional)
-                File.SetAttributes(LicenseFileName, File.GetAttributes(LicenseFileName) | FileAttributes.Hidden);
+                // Make file hidden
+                File.SetAttributes(LicenseFileName,
+                    File.GetAttributes(LicenseFileName) | FileAttributes.Hidden);
             }
             catch (Exception ex)
             {
@@ -289,6 +267,15 @@ namespace POS_Shop.Repositories
 
             var remaining = licenseInfo.ExpiryDate - DateTime.Now;
             return remaining.Days > 0 ? remaining.Days : 0;
+        }
+
+        public bool VerifyLicenseKeyInFile()
+        {
+            var licenseInfo = GetCurrentLicenseInfo();
+            if (licenseInfo == null)
+                return false;
+
+            return LicenseKeyManager.IsValidLicenseKey(licenseInfo.LicenseKey);
         }
     }
 }

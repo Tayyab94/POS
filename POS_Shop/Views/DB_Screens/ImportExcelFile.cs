@@ -27,34 +27,37 @@ namespace POS_Shop.Views.DB_Screens
 
         private async void ImportExcelFile_Load(object sender, EventArgs e)
         {
-           CheckProductRecordsAndDisableTabs();
+            CheckProductRecordsAndDisableTabs();
         }
         private async void CheckProductRecordsAndDisableTabs()
         {
-            try
-            {
-                using (var context = new POSDbContext())
-                {
-                    if(await context.Products.AnyAsync())
-                    {
-                        tabPage1.Enabled=false;
-                        tabPage1.Text="Products (Already Imported)";
-                        ImportFileTabComtrol.SelectedTab = tabPage2;
-                        tabPage2.Enabled = true;
-                    }
-                    else
-                    {
-                        tabPage1.Enabled = true;
-                        tabPage1.Text = "Products (Not Imported Yet)";
-                        ImportFileTabComtrol.SelectedTab = tabPage1;
-                    }
-                }
-            }
-            catch (Exception)
-            {
+           
+            //try
+            //{
+            //    using (var context = new POSDbContext())
+            //    {
+            //        if (await context.Products.AnyAsync())
+            //        {
+            //            tabPage1.Enabled = false;
+            //            tabPage1.Text = "Products (Already Imported)";
+            //            ImportFileTabComtrol.SelectedTab = tabPage2;
+            //            tabPage2.Enabled = true;
+            //        }
+            //        else
+            //        {
+            //            tabPage1.Enabled = true;
+            //            tabPage1.Text = "Products (Not Imported Yet)";
+            //            ImportFileTabComtrol.SelectedTab = tabPage1;
+            //        }
+            //    }
+            //}
+            //catch (Exception)
+            //{
 
-                throw;
-            }
+            //    throw;
+            //}
+
+            ImportFileTabComtrol.TabPages.Remove(tabPage1);
         }
         private void BrowsFileBtn_Click(object sender, EventArgs e)
         {
@@ -190,7 +193,7 @@ namespace POS_Shop.Views.DB_Screens
             // Show progress
             progressBar1.Visible = true;
             progressBar1.Style = ProgressBarStyle.Marquee;
-         //   lblStatus.Text = "Reading Excel file...";
+            //   lblStatus.Text = "Reading Excel file...";
 
             try
             {
@@ -216,7 +219,7 @@ namespace POS_Shop.Views.DB_Screens
         {
             if (e.UserState != null)
             {
-           //     lblStatus.Text = e.UserState.ToString();
+                //     lblStatus.Text = e.UserState.ToString();
             }
 
             if (e.ProgressPercentage >= 0)
@@ -232,7 +235,7 @@ namespace POS_Shop.Views.DB_Screens
             {
                 MessageBox.Show($"Error reading file: {e.Error.Message}", "Error",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
-             //   lblStatus.Text = "Error occurred";
+                //   lblStatus.Text = "Error occurred";
             }
             else if (e.Result != null)
             {
@@ -242,7 +245,7 @@ namespace POS_Shop.Views.DB_Screens
                     ProductDataGrid.DataSource = result.DataTable;
                     AddUnitComboBoxColumn();
                     ImportToDbBtn.Enabled = true;
-                  //  lblStatus.Text = $"Successfully loaded {result.DataTable.Rows.Count} products";
+                    //  lblStatus.Text = $"Successfully loaded {result.DataTable.Rows.Count} products";
 
                     MessageBox.Show($"File imported successfully! Loaded {result.DataTable.Rows.Count} products.",
                                   "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -251,7 +254,7 @@ namespace POS_Shop.Views.DB_Screens
                 {
                     MessageBox.Show(result.ErrorMessage ?? "No valid data found in the file.", "Warning",
                                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                  //  lblStatus.Text = "No data found";
+                    //  lblStatus.Text = "No data found";
                 }
             }
 
@@ -611,7 +614,7 @@ namespace POS_Shop.Views.DB_Screens
                                 PurchasePrice = GetStringOrNull(row["Company Rate"]),
                                 // Changed to int?
                                 SalePrice = GetIntOrDefault(row["Price (R)"]),
-                                SearchByProductCode=GetStringOrNull(row["Category"]),
+                                SearchByProductCode = GetStringOrNull(row["Category"]),
                                 SubcategoryId = 1
                             });
                         }
@@ -634,9 +637,10 @@ namespace POS_Shop.Views.DB_Screens
                 {
                     LoadingManager.HideLoading();
 
-                 
+
                 }
-            }else
+            }
+            else
                 MessageBox.Show("Please Upload the Products first", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
         }
@@ -737,7 +741,6 @@ namespace POS_Shop.Views.DB_Screens
                     filtered.Columns.Add("Cost");
                     filtered.Columns.Add("SubCategory");
                     filtered.Columns.Add("ProductOldName");
-                    filtered.Columns.Add("Qty");
 
 
                     // Copy rows
@@ -747,17 +750,16 @@ namespace POS_Shop.Views.DB_Screens
                         //if (row[0] == DBNull.Value || row[0].ToString() == "ProductID")
                         //    continue;
                         filtered.Rows.Add(
-                            row[0],  
-                            row[1],  
-                            row[2],  
-                            row[3],  
-                            row[4],   
+                            row[0],
+                            row[1],
+                            row[2],
+                            row[3],
+                            row[4],
                             row[5],
                             row[6],
                             row[7],
                             row[8],
-                            row[9],
-                            row[10]
+                            row[9]
                         );
                     }
 
@@ -923,7 +925,6 @@ namespace POS_Shop.Views.DB_Screens
             product.SalePrice = GetIntOrDefault(row["Sale Price"]);
             product.Cost = Convert.ToInt32(row["Cost"]);
             product.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
-            product.Qty = Convert.ToInt32(row["Qty"]);
         }
 
         private Models.Product CreateProductFromRow(DataRow row)
@@ -937,8 +938,7 @@ namespace POS_Shop.Views.DB_Screens
                 SalePrice = GetIntOrDefault(row["Sale Price"]),
                 Cost = Convert.ToInt32(row["Cost"]),
                 SubcategoryId = Convert.ToInt32(row["SubCategory"]),
-                SearchByProductCode = GetStringOrNull(row["SearchByProductName"]),
-                Qty = Convert.ToInt32(row["Qty"])
+                SearchByProductCode = GetStringOrNull(row["SearchByProductName"])
             };
         }
 
@@ -1167,3 +1167,4 @@ namespace POS_Shop.Views.DB_Screens
         //}
     }
 }
+

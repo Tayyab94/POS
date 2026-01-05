@@ -9,7 +9,7 @@ namespace POS_Shop.Models.LicenseModels.DTO
     public class LicenseInfo
     {
         public string UserName { get; set; }
-        public string LicenseKey { get; set; }
+        public string LicenseKey { get; set; }  // Only in license file, NOT in DB
         public string MacAddress { get; set; }
         public string HardwareId { get; set; }
         public LicenseType LicenseType { get; set; }
@@ -22,12 +22,12 @@ namespace POS_Shop.Models.LicenseModels.DTO
             IssueDate = DateTime.Now;
         }
 
-        public static LicenseInfo FromEntity(AppLicense entity)
+        public static LicenseInfo FromEntity(AppLicense entity, string licenseKey = "")
         {
             return new LicenseInfo
             {
                 UserName = entity.UserName,
-                LicenseKey = entity.LicenseKey,
+                LicenseKey = licenseKey,
                 MacAddress = entity.MacAddress,
                 HardwareId = entity.HardwareId,
                 LicenseType = entity.LicenseType,

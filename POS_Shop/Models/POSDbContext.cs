@@ -137,18 +137,9 @@ namespace POS_Shop.Models
 
             // Configure AppLicense entity
             modelBuilder.Entity<AppLicense>()
-                .Property(e => e.UserName)
-                .IsRequired()
-                .HasMaxLength(100);
-
-            modelBuilder.Entity<AppLicense>()
-                .Property(e => e.LicenseKey)
-                .IsRequired()
-                .HasMaxLength(100);
-
-            modelBuilder.Entity<AppLicense>()
-                .HasIndex(e => e.LicenseKey)
-                .IsUnique();
+               .Property(e => e.UserName)
+               .IsRequired()
+               .HasMaxLength(100);
 
             modelBuilder.Entity<AppLicense>()
                 .Property(e => e.MacAddress)
@@ -163,6 +154,19 @@ namespace POS_Shop.Models
             modelBuilder.Entity<AppLicense>()
                 .Property(e => e.LicenseType)
                 .IsRequired();
+
+            // Create indexes
+            modelBuilder.Entity<AppLicense>()
+                .HasIndex(e => e.MacAddress)
+                .HasName("IX_MacAddress");
+
+            modelBuilder.Entity<AppLicense>()
+                .HasIndex(e => e.HardwareId)
+                .HasName("IX_HardwareId");
+
+            modelBuilder.Entity<AppLicense>()
+                .HasIndex(e => e.IsActive)
+                .HasName("IX_IsActive");
 
         }
     }

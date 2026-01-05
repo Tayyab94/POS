@@ -21,10 +21,8 @@ namespace POS_Shop.Models.LicenseModels
         [StringLength(100)]
         public string UserName { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        [Index("IX_LicenseKey", IsUnique = true)]
-        public string LicenseKey { get; set; }
+        // IMPORTANT: We DON'T store license key in database
+        // Only store hardware info and license type
 
         [Required]
         [StringLength(50)]
