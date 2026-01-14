@@ -18,10 +18,20 @@ namespace POS_Shop.Views.Product
 {
     public partial class ProductFromControl : UserControl
     {
+        //private int PageSize = 100;
+        //private int PageIndex = 1;
+        //private int RecordCount = 0;
+        //private string SearchTerm = "";
+
+
         private int PageSize = 100;
-        private int PageIndex = 1;
+        private int? CurrentCursor = null; // Current page's last ID
+        private int? PreviousCursor = null; // Previous page's last ID
+        private Stack<int> CursorHistory = new Stack<int>(); // Track navigation history
         private int RecordCount = 0;
         private string SearchTerm = "";
+        private bool IsFirstPage = true;
+        private bool HasMoreRecords = false;
 
         // Store selected IDs across all pages
         private HashSet<int> selectedProductIds = new HashSet<int>();
@@ -112,8 +122,18 @@ namespace POS_Shop.Views.Product
             using (var context = new POSDbContext())
             {
                 IProductRepository productRepository = new ProductRepository(context);
-                var result = await productRepository.GetProductPagingListAsync(PageIndex, PageSize, SearchTerm);
+                //var result = await productRepository.GetProductPagingListAsync(PageIndex, PageSize, SearchTerm);
+                //RecordCount = result.totalCount;
+
+                var result = await productRepository.GetProductCursorPagingListAsync(CurrentCursor, PageSize, SearchTerm);
                 RecordCount = result.totalCount;
+                HasMoreRecords = result.hasMore;
+
+                // Update cursor for next page
+                if (result.data.Any())
+                {
+                    CurrentCursor = result.data.Last().Id;
+                }
 
                 DataTable dt = new DataTable();
                 dt.Columns.Add("IsSelected", typeof(bool)); // Add selection column
@@ -191,7 +211,8 @@ namespace POS_Shop.Views.Product
                 MessageBox.Show("Product saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-
+            CurrentCursor = 0;
+            await LoadProductsForDataGridView();
             // var selectedId =Convert.ToString(productTypeDropdown.SelectedItem);
             //MessageBox.Show(selectedId.ToString());
         }
@@ -255,8 +276,10 @@ namespace POS_Shop.Views.Product
                 MessageBox.Show("Product updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 updateProductBtn.Visible = false;
 
-                await LoadProductsForDataGridView();
                 ClearFormFunction();
+                // Reset cursor to load from beginning
+                CurrentCursor = 0; // or use -1, null, or your initial cursor value
+                await LoadProductsForDataGridView();
             }
 
         }
@@ -527,7 +550,8 @@ namespace POS_Shop.Views.Product
             ProductSaveBtn.Enabled = true;
             ProductEngNameTxt.Focus();
             SearchBynameTxt.Clear();
-            await LoadProductsForDataGridView();
+            P_StockQtyTxt.Clear();
+            //await LoadProductsForDataGridView();
         }
 
 
@@ -586,11 +610,20 @@ namespace POS_Shop.Views.Product
 
         private void UpdatePager()
         {
-            int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
-            lblStatus.Text = $"Page {PageIndex} of {totalPages} | Total Records: {RecordCount}";
+            //int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
+            //lblStatus.Text = $"Page {PageIndex} of {totalPages} | Total Records: {RecordCount}";
 
-            PreviousPageBtn.Enabled = PageIndex > 1;
-            NextPageBtn.Enabled = PageIndex < totalPages;
+            //PreviousPageBtn.Enabled = PageIndex > 1;
+            //NextPageBtn.Enabled = PageIndex < totalPages;
+
+
+            int currentPage = CursorHistory.Count + 1;
+            int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
+
+            lblStatus.Text = $"Page {currentPage} of {totalPages} | Total Records: {RecordCount}";
+
+            PreviousPageBtn.Enabled = !IsFirstPage && CursorHistory.Count > 0;
+            NextPageBtn.Enabled = HasMoreRecords;
 
             // Update selection status
             UpdateSelectionStatus();
@@ -630,27 +663,70 @@ namespace POS_Shop.Views.Product
         // Your existing pagination and search methods
         private async void ProdSearchTxt_TextChanged(object sender, EventArgs e)
         {
-            PageIndex = 1;
+            //PageIndex = 1;
+            //SearchTerm = ProdSearchTxt.Text.Trim();
+            //await LoadProductsForDataGridView();
             SearchTerm = ProdSearchTxt.Text.Trim();
+            ResetPagination();
             await LoadProductsForDataGridView();
+        }
+
+        // Reset pagination (call when search changes)
+        private void ResetPagination()
+        {
+            CurrentCursor = null;
+            PreviousCursor = null;
+            CursorHistory.Clear();
+            IsFirstPage = true;
+            HasMoreRecords = false;
         }
 
 
         private async void NextPageBtn_Click(object sender, EventArgs e)
         {
-            int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
-            if (PageIndex < totalPages)
+            //int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
+            //if (PageIndex < totalPages)
+            //{
+            //    PageIndex++;
+            //    await LoadProductsForDataGridView();
+            //}
+
+            if (HasMoreRecords && CurrentCursor.HasValue)
             {
-                PageIndex++;
+                // Save current cursor to history
+                CursorHistory.Push(CurrentCursor.Value);
+                IsFirstPage = false;
+
                 await LoadProductsForDataGridView();
             }
         }
 
         private async void PreviousPageBtn_Click(object sender, EventArgs e)
         {
-            if (PageIndex > 1)
+            //if (PageIndex > 1)
+            //{
+            //    PageIndex--;
+            //    await LoadProductsForDataGridView();
+            //}
+
+
+            if (CursorHistory.Count > 0)
             {
-                PageIndex--;
+                // Pop the last cursor
+                CursorHistory.Pop();
+
+                if (CursorHistory.Count > 0)
+                {
+                    // Set cursor to previous page
+                    CurrentCursor = CursorHistory.Peek();
+                }
+                else
+                {
+                    // Back to first page
+                    CurrentCursor = null;
+                    IsFirstPage = true;
+                }
+
                 await LoadProductsForDataGridView();
             }
         }
@@ -752,7 +828,7 @@ namespace POS_Shop.Views.Product
            // UpdateSelectionStatus();
             selectedProductIds.RemoveWhere(id => true);
             selectedProdLbl.Text = $"Selected: {selectedProductIds.Count} Customer(s)";
-            PageIndex = 1;
+            CurrentCursor = 0;
             await LoadProductsForDataGridView();
         }
 

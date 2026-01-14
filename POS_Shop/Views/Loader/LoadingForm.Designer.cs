@@ -80,7 +80,7 @@ namespace POS_Shop.Views.Loader
             this.pictureBoxLoading.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxLoading.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxLoading.Name = "pictureBoxLoading";
-            this.pictureBoxLoading.Size = new System.Drawing.Size(206, 123);
+            this.pictureBoxLoading.Size = new System.Drawing.Size(257, 123);
             this.pictureBoxLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLoading.TabIndex = 0;
             this.pictureBoxLoading.TabStop = false;
@@ -90,10 +90,10 @@ namespace POS_Shop.Views.Loader
             this.labelLoading.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelLoading.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.labelLoading.ForeColor = System.Drawing.Color.Gray;
-            this.labelLoading.Location = new System.Drawing.Point(0, 140);
+            this.labelLoading.Location = new System.Drawing.Point(0, 125);
             this.labelLoading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLoading.Name = "labelLoading";
-            this.labelLoading.Size = new System.Drawing.Size(472, 37);
+            this.labelLoading.Size = new System.Drawing.Size(257, 37);
             this.labelLoading.TabIndex = 1;
             this.labelLoading.Text = "Please wait...";
             this.labelLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -103,7 +103,7 @@ namespace POS_Shop.Views.Loader
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(472, 177);
+            this.ClientSize = new System.Drawing.Size(257, 162);
             this.Controls.Add(this.labelLoading);
             this.Controls.Add(this.pictureBoxLoading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

@@ -1,5 +1,7 @@
 ﻿using POS_Shop.Helpers;
+using POS_Shop.Models.AuthModel;
 using POS_Shop.Views.Account;
+using POS_Shop.Views.Account.Auth;
 using POS_Shop.Views.BillScreen;
 using POS_Shop.Views.DB_Screens;
 using POS_Shop.Views.LicenseManagement;
@@ -31,6 +33,13 @@ namespace POS_Shop
 
         private void MasterLayoutForm_Load(object sender, EventArgs e)
         {
+            if(Properties.Settings.Default.UserRole== AuthUserRole.Cashier.ToString())
+            {
+                // Restrict access to certain features for Cashier role
+          
+                userManagementToolStripMenuItem.Visible= false;
+              
+            }
             LoadHomeUI();
         }
 
@@ -330,6 +339,22 @@ namespace POS_Shop
                 settingsForm.ShowDialog();
                 //LoadDatabaseInfo(); // Refresh status
             }
+        }
+
+        private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Check if user has permission
+            if (Properties.Settings.Default.UserRole != AuthUserRole.SuperAdmin.ToString())
+            {
+                MessageBox.Show("Only administrators can manage users.",
+                    "Access Denied",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            var userManagementForm = new UserManagementForm();
+            userManagementForm.ShowDialog();
         }
     }
 }

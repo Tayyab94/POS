@@ -5,7 +5,7 @@
     <Setting Name="IsLoggedIn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="AuthToken" Type="System.String" Scope="User">
+    <Setting Name="UserRole" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="UserName" Type="System.String" Scope="User">

@@ -262,5 +262,50 @@ namespace POS_Shop.Repositories
             return data;
 
         }
+
+        public async Task<(int totalCount, bool hasMore, IEnumerable<OrdersListDto> data)> GetOrderCursorPagingListAsync(int? cursor, int pageSize, string search)
+        {
+            var query = _context.Orders.Include(s => s.Customer).AsNoTracking().AsQueryable();
+
+            // apply search
+            var searchWords = search.ToLower().Split(' ');
+            // apply search
+
+            foreach (var word in searchWords)
+                query = query.Where(s => s.Id.ToString().Contains(word) || s.InvoiceNumber.ToString().Contains(word) || s.Customer.CustomerName.Contains(word) || s.Customer.CustomerAddress.Contains(word));
+
+            var totalCount = await query.CountAsync();
+
+            // Apply cursor filter (fetch records after the cursor)
+            if (cursor.HasValue)
+            {
+                query = query.Where(s => s.Id < cursor.Value);
+            }
+
+            // Fetch pageSize + 1 to determine if there are more records
+            var result = await query
+                .OrderByDescending(s => s.Id)
+                .Take(pageSize + 1)
+                .Select(s => new OrdersListDto()
+                {
+                    Id = s.Id,
+                    InvoiceNumber = s.InvoiceNumber,
+                    paymentType = s.paymentType,
+                    CreatedDate = s.CreatedDate,
+                    customerId = s.customerId.HasValue ? s.customerId : null,
+                    CustomerName = s.customerId == null ? "No" : s.Customer.CustomerName.ToString(),
+                    ReceiveAmount = s.ReceiveAmount,
+                    TotalBill = s.TotalBill,
+                })
+                .ToListAsync();
+
+            // Check if there are more records
+            bool hasMore = result.Count > pageSize;
+
+            // Return only pageSize records
+            var data = hasMore ? result.Take(pageSize).ToList() : result;
+
+            return (totalCount, hasMore, data);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using POS_Shop.Helpers;
+using POS_Shop.Models.AuthModel;
 using POS_Shop.Models.LicenseModels;
 using System;
 using System.Collections.Generic;
@@ -103,6 +104,7 @@ namespace POS_Shop.Models
 
         public DbSet<AppLicense> Licenses { get; set; }
 
+        public DbSet<AuthUser> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -168,6 +170,8 @@ namespace POS_Shop.Models
                 .HasIndex(e => e.IsActive)
                 .HasName("IX_IsActive");
 
+
+        
         }
     }
 }

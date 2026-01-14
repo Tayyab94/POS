@@ -13,26 +13,48 @@ namespace POS_Shop.Helpers
         public static string AuthToken { get; set; }
         public static string UserName { get; set; }
 
-        public static void Login(string username)
+        //public static void Login(string username)
+        //{
+        //    AuthToken = Guid.NewGuid().ToString();
+        //    UserName = username;
+
+        //    Properties.Settings.Default.IsLoggedIn = true;
+        //    Properties.Settings.Default.UserRole = AuthToken;
+        //    Properties.Settings.Default.UserName = username;
+
+        //    Properties.Settings.Default.Save();
+        //}
+
+        public static void Login(string username, int userId, string userRole)
         {
             AuthToken = Guid.NewGuid().ToString();
             UserName = username;
 
             Properties.Settings.Default.IsLoggedIn = true;
-            Properties.Settings.Default.AuthToken = AuthToken;
+            Properties.Settings.Default.UserRole = userRole;
             Properties.Settings.Default.UserName = username;
-          
+            Properties.Settings.Default.UserId = userId.ToString();
             Properties.Settings.Default.Save();
         }
 
         public static void Logout()
         {
+            //AuthToken = string.Empty;
+            //UserName = string.Empty;
+
+            //Properties.Settings.Default.IsLoggedIn = false;
+            //Properties.Settings.Default.UserRole = string.Empty;
+            //Properties.Settings.Default.UserName = string.Empty;
+            //Properties.Settings.Default.Save();
+
+
             AuthToken = string.Empty;
             UserName = string.Empty;
 
             Properties.Settings.Default.IsLoggedIn = false;
-            Properties.Settings.Default.AuthToken = string.Empty;
+            Properties.Settings.Default.UserRole = string.Empty;
             Properties.Settings.Default.UserName = string.Empty;
+            Properties.Settings.Default.UserId = string.Empty;
             Properties.Settings.Default.Save();
         }
             
