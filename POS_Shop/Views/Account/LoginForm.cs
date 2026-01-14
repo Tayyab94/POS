@@ -1,4 +1,5 @@
 ﻿using POS_Shop.Helpers;
+using POS_Shop.Repositories.AuthRepos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,32 +32,62 @@ namespace POS_Shop.Views.Account
                 return;
             }
 
-            if (AuthenticateUser(userEmailTxt.Text.ToLower(), UserPasswordTxt.Text))
+            using (var userRepo = new UserRepository())
             {
+              var  LoggedInUser = userRepo.Authenticate(userEmailTxt.Text, UserPasswordTxt.Text);
 
-                SessionManager.Login(userEmailTxt.Text);
+                if (LoggedInUser != null)
+                {
+                    //LoggedInUser = userRepo.GetUserById(LoggedInUser.Id);
 
-                //Properties.Settings.Default.IsLoggedIn = true;
-                //Properties.Settings.Default.AuthToken = GenerateToken();
-                //Properties.Settings.Default.UserName = userEmailTxt.Text;
-                //Properties.Settings.Default.Save();
+                    //// Update last login time
+                    //LoggedInUser.LastLogin = DateTime.Now;
+                    //userRepo.UpdateUser(LoggedInUser)
 
-
-                // this.Hide(); // Hide login form instead of closing if you might need it again
-                //UserProfile profileForm = new UserProfile();
-                //profileForm.Show();
-
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-
-
+                    SessionManager.Login(userEmailTxt.Text, LoggedInUser.Id, LoggedInUser.Role.ToString());
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+                else
+                {
+                    //lblError.Text = "Invalid username or password.";
+                    //lblError.ForeColor = Color.Red;
+                    //lblError.Font = new Font(FontFamily.GenericSerif, emSize: 16);
+                    //UserPasswordTxt.Focus();
+                    //UserPasswordTxt.SelectAll();
+                    MessageBox.Show("Invalid username or password.", "Login Failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UserPasswordTxt.Clear();
+                    UserPasswordTxt.Focus();
+                }
             }
-            else
-            {
-                MessageBox.Show("Invalid username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            }
+            //if (AuthenticateUser(userEmailTxt.Text.ToLower(), UserPasswordTxt.Text))
+            //{
+
+            //    SessionManager.Login(userEmailTxt.Text);
+
+            //    //Properties.Settings.Default.IsLoggedIn = true;
+            //    //Properties.Settings.Default.AuthToken = GenerateToken();
+            //    //Properties.Settings.Default.UserName = userEmailTxt.Text;
+            //    //Properties.Settings.Default.Save();
+
+
+            //    // this.Hide(); // Hide login form instead of closing if you might need it again
+            //    //UserProfile profileForm = new UserProfile();
+            //    //profileForm.Show();
+
+
+            //    this.DialogResult = DialogResult.OK;
+            //    this.Close();
+
+
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Invalid username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            //}
         }
 
 

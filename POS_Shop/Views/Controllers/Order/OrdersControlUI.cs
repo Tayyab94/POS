@@ -2,7 +2,9 @@
 using POS_Shop.Models;
 using POS_Shop.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -10,10 +12,23 @@ namespace POS_Shop.Views.Controllers.Order
 {
     public partial class OrdersControlUI : UserControl
     {
+        //private int PageSize = 100;
+        //private int PageIndex = 1;
+        //private int RecordCount = 0;
+        //private string SearchTerm = "";
+
+
+
         private int PageSize = 100;
-        private int PageIndex = 1;
+        private int? CurrentCursor = null; // Current page's last ID
+        private int? PreviousCursor = null; // Previous page's last ID
+        private Stack<int> CursorHistory = new Stack<int>(); // Track navigation history
         private int RecordCount = 0;
         private string SearchTerm = "";
+        private bool IsFirstPage = true;
+        private bool HasMoreRecords = false;
+
+
         public bool isRecordSelected = false;
         public float ReceiveAmount { get; set; }
         public float TotalBill { get; set; }
@@ -98,8 +113,22 @@ namespace POS_Shop.Views.Controllers.Order
                 var orderRepository = new OrderRepository(context);
                 //var cities = await cityRepository.GetCitiesListAsync();
 
-                var result = await orderRepository.GetOrderPagingListAsync(PageIndex, PageSize, SearchTerm);
+                //var result = await orderRepository.GetOrderPagingListAsync(PageIndex, PageSize, SearchTerm);
+                //RecordCount = result.totalCount;
+
+
+                var result = await orderRepository.GetOrderCursorPagingListAsync(CurrentCursor, PageSize, SearchTerm);
+
                 RecordCount = result.totalCount;
+
+                HasMoreRecords = result.hasMore;
+
+                // Update cursor for next page
+                if (result.data.Any())
+                {
+                    CurrentCursor = result.data.Last().Id;
+                }
+
                 DataTable dt = new DataTable();
                 dt.Columns.Add("ID", typeof(int));
                 dt.Columns.Add("Invoice No", typeof(string));
@@ -136,7 +165,7 @@ namespace POS_Shop.Views.Controllers.Order
                 OrderListDataGrid.Columns["Received"].Width = 75;
                 OrderListDataGrid.Columns["Type"].Width = 35;
                 OrderListDataGrid.Columns["Customer"].Width = 160;
-                OrderListDataGrid.Columns["Date"].Width = 150;
+                OrderListDataGrid.Columns["Date"].Width = 120;
 
                 // Add button column programmatically (better approach)
                 AddButtonColumnToDataGridView();
@@ -188,39 +217,90 @@ namespace POS_Shop.Views.Controllers.Order
 
         private void UpdatePager()
         {
-            int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
-             lblStatus.Text = $"Page {PageIndex} of {totalPages} | Total Records: {RecordCount}";
+            //int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
+            // lblStatus.Text = $"Page {PageIndex} of {totalPages} | Total Records: {RecordCount}";
 
-            PreviousPageBtn.Enabled = PageIndex > 1;
-            NextPageBtn.Enabled = PageIndex < totalPages;
+            //PreviousPageBtn.Enabled = PageIndex > 1;
+            //NextPageBtn.Enabled = PageIndex < totalPages;
+
+
+            int currentPage = CursorHistory.Count + 1;
+            int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
+
+            lblStatus.Text = $"Page {currentPage} of {totalPages} | Total Records: {RecordCount}";
+
+            PreviousPageBtn.Enabled = !IsFirstPage && CursorHistory.Count > 0;
+            NextPageBtn.Enabled = HasMoreRecords;
         }
 
         private async void NextPageBtn_Click(object sender, EventArgs e)
         {
-            int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
-            if (PageIndex < totalPages)
+            //int totalPages = (int)Math.Ceiling((double)RecordCount / PageSize);
+            //if (PageIndex < totalPages)
+            //{
+            //    PageIndex++;
+            //    await LoadOrdersForDataGridView();
+            //}
+
+            if (HasMoreRecords && CurrentCursor.HasValue)
             {
-                PageIndex++;
+                // Save current cursor to history
+                CursorHistory.Push(CurrentCursor.Value);
+                IsFirstPage = false;
+
                 await LoadOrdersForDataGridView();
             }
         }
 
         private async void PreviousPageBtn_Click(object sender, EventArgs e)
         {
-            if (PageIndex > 1)
+            //if (PageIndex > 1)
+            //{
+            //    PageIndex--;
+            //    await LoadOrdersForDataGridView();
+            //}
+
+            if (CursorHistory.Count > 0)
             {
-                PageIndex--;
+                // Pop the last cursor
+                CursorHistory.Pop();
+
+                if (CursorHistory.Count > 0)
+                {
+                    // Set cursor to previous page
+                    CurrentCursor = CursorHistory.Peek();
+                }
+                else
+                {
+                    // Back to first page
+                    CurrentCursor = null;
+                    IsFirstPage = true;
+                }
+
                 await LoadOrdersForDataGridView();
             }
         }
 
         private async void SearchOrderTxt_TextChange(object sender, EventArgs e)
         {
-            PageIndex = 1;
+            //PageIndex = 1;
+            //SearchTerm = SearchOrderTxt.Text.Trim();
+            //await LoadOrdersForDataGridView();
+
+
             SearchTerm = SearchOrderTxt.Text.Trim();
+            ResetPagination();
             await LoadOrdersForDataGridView();
         }
 
+        private void ResetPagination()
+        {
+            CurrentCursor = null;
+            PreviousCursor = null;
+            CursorHistory.Clear();
+            IsFirstPage = true;
+            HasMoreRecords = false;
+        }
 
         private async Task HandleRowAction(int rowIndex, bool isDetailsColumn = false)
         {

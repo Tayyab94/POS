@@ -5,6 +5,7 @@ using POS_Shop.DTOs.Product;
 using POS_Shop.Helpers;
 using POS_Shop.Interfaces;
 using POS_Shop.Models;
+using POS_Shop.Models.AuthModel;
 using POS_Shop.Repositories;
 using POS_Shop.Views.Controllers.Order;
 using System;
@@ -52,6 +53,15 @@ namespace POS_Shop.Views.BillScreen
 
             this.KeyPreview = true;
             this.KeyDown += Form_KeyDown;
+
+            // Use .ToString() or check for null
+            string savedRole = Properties.Settings.Default.UserRole?.ToString() ?? string.Empty;
+
+            if (!savedRole.Equals(AuthUserRole.SuperAdmin.ToString(), StringComparison.OrdinalIgnoreCase))
+            {
+                InvoicePageTabControl.TabPages.Remove(TruncateTableTab);
+                // InvoicePageTabControl.TabPages.Remove(ImpoertOrderFileTab);
+            }
         }
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
@@ -136,10 +146,30 @@ namespace POS_Shop.Views.BillScreen
             CartProductList.Columns["Delete"].Width = 50;
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (CartProductList.Rows.Count != 0 && CartProductList.Rows != null)
+            {
+                MessageBox.Show("Please Clear the Cart First...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
+                return;
+            }
+            else
+            {
+                base.OnFormClosing(e);
+            }
+
+        }
+
         private void BackScreenBtn_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            if (CartProductList.Rows.Count != 0 && CartProductList.Rows != null)
+                MessageBox.Show("Please Clear the Cart First...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
 
         private bool ValidateInputs()

@@ -38,12 +38,12 @@ namespace POS_Shop.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string AuthToken {
+        public string UserRole {
             get {
-                return ((string)(this["AuthToken"]));
+                return ((string)(this["UserRole"]));
             }
             set {
-                this["AuthToken"] = value;
+                this["UserRole"] = value;
             }
         }
         

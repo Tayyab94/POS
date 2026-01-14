@@ -225,6 +225,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -255,6 +256,7 @@
     <Compile Include="Helpers\ISectionAware.cs" />
     <Compile Include="Helpers\LoadingManager.cs" />
     <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\PasswordHasher.cs" />
     <Compile Include="Helpers\PrintToPdfGenerator.cs" />
     <Compile Include="Helpers\RegexValidator.cs" />
     <Compile Include="Helpers\SessionManager.cs" />
@@ -297,8 +299,17 @@
     <Compile Include="Migrations\202601032056025_licenseModelUpdate.Designer.cs">
       <DependentUpon>202601032056025_licenseModelUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202601111637020_UserTableAdded.cs" />
+    <Compile Include="Migrations\202601111637020_UserTableAdded.Designer.cs">
+      <DependentUpon>202601111637020_UserTableAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601111925438_added_IsActive_LoginDateTime.cs" />
+    <Compile Include="Migrations\202601111925438_added_IsActive_LoginDateTime.Designer.cs">
+      <DependentUpon>202601111925438_added_IsActive_LoginDateTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
+    <Compile Include="Models\AuthModel\AuthUser.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Helpers\ConfigurationManager.cs" />
@@ -316,6 +327,7 @@
     <Compile Include="Models\TempOrderDetail.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AuthRepos\UserRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\CountryRepository.cs" />
@@ -328,6 +340,18 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SubCategoryRepository.cs" />
     <Compile Include="Services\DailyBackgroundService.cs" />
+    <Compile Include="Views\Account\Auth\AddEditUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Account\Auth\AddEditUserForm.Designer.cs">
+      <DependentUpon>AddEditUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Account\Auth\UserManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Account\Auth\UserManagementForm.Designer.cs">
+      <DependentUpon>UserManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -504,6 +528,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202601032056025_licenseModelUpdate.resx">
       <DependentUpon>202601032056025_licenseModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601111637020_UserTableAdded.resx">
+      <DependentUpon>202601111637020_UserTableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601111925438_added_IsActive_LoginDateTime.resx">
+      <DependentUpon>202601111925438_added_IsActive_LoginDateTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

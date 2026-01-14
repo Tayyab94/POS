@@ -14,5 +14,8 @@ namespace POS_Shop.Interfaces
         Task<bool> CheckRecoradlreadyExistByName(string name);
         Task<IEnumerable<Product>> GetAll(List<int> ids);
         IEnumerable<ProductOrderHistoryDetails> ProductPreviousPriceInRecentOrderByCustomerId(int customerId, int productId);
+
+        Task<(int totalCount, bool hasMore, IEnumerable<Product> data)> GetProductCursorPagingListAsync(int? cursor, int pageSize, string search);
+
     }
 }

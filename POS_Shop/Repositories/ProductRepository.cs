@@ -92,5 +92,49 @@ namespace POS_Shop.Repositories
 
             return data;
         }
+
+        public async Task<(int totalCount, bool hasMore, IEnumerable<Product> data)> GetProductCursorPagingListAsync(int? cursor, int pageSize, string search)
+        {
+
+            var query = _context.Products.AsNoTracking().AsQueryable();
+
+            // Apply search filter
+            if (!string.IsNullOrEmpty(search))
+            {
+                var searchWords = search.Trim().ToLower()
+                    .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var word in searchWords)
+                {
+                    query = query.Where(s =>
+                        s.ProductEnglishName.ToLower().Contains(word) ||
+                        s.Id.ToString().Contains(word) ||
+                        s.SearchByProductCode.ToLower().Contains(word));
+                }
+            }
+
+            // Get total count (cached if possible)
+            var totalCount = await query.CountAsync();
+
+            // Apply cursor filter (fetch records after the cursor)
+            if (cursor.HasValue)
+            {
+                query = query.Where(s => s.Id > cursor.Value);
+            }
+
+            // Fetch pageSize + 1 to determine if there are more records
+            var result = await query
+                .OrderBy(s => s.Id)
+                .Take(pageSize + 1)
+                .ToListAsync();
+
+            // Check if there are more records
+            bool hasMore = result.Count > pageSize;
+
+            // Return only pageSize records
+            var data = hasMore ? result.Take(pageSize).ToList() : result;
+
+            return (totalCount, hasMore, data);
+        }
     }
 }

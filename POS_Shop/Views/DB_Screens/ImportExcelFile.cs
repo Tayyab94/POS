@@ -1,5 +1,4 @@
 ﻿using ExcelDataReader;
-using Org.BouncyCastle.Asn1.Cmp;
 using POS_Shop.Helpers;
 using POS_Shop.Models;
 using System;
@@ -10,7 +9,6 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace POS_Shop.Views.DB_Screens
 {

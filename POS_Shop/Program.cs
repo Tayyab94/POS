@@ -1,6 +1,7 @@
 ﻿using POS_Shop.Helpers;
 using POS_Shop.Interfaces;
 using POS_Shop.Models;
+using POS_Shop.Models.AuthModel;
 using POS_Shop.Models.LicenseModels;
 using POS_Shop.Repositories;
 using POS_Shop.Services;
@@ -8,6 +9,7 @@ using POS_Shop.Views.Account;
 using POS_Shop.Views.LicenseManagement;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading;
@@ -30,7 +32,6 @@ namespace POS_Shop
         [STAThread]
         static void Main()
         {
-
 
             #region Code For to bind the db file, if the db file is not found in the configured path
             //// Ensure only one instance runs
@@ -81,6 +82,7 @@ namespace POS_Shop
 
             InitializeCountryCityDbCheck();
             InitializeCategorySubcategoryDbCheck();
+            InitializeSuperAdminUser();
 
             #region Old Code for License Check and Loginq
             //InitializeLic();
@@ -194,7 +196,7 @@ namespace POS_Shop
             {
                 // Show login if not authenticated
                 if (!Properties.Settings.Default.IsLoggedIn ||
-                    string.IsNullOrEmpty(Properties.Settings.Default.AuthToken))
+                    string.IsNullOrEmpty(Properties.Settings.Default.UserRole))
                 {
                     using (var login = new LoginForm())
                     {
@@ -469,6 +471,33 @@ namespace POS_Shop
                     });
                     context.SaveChanges();
                 }
+            }
+        }
+
+        private static void InitializeSuperAdminUser()
+        {
+            using (var context = new POSDbContext())
+            {
+                if (!context.Users.Any(s =>
+                        s.Username.Equals("superadmin", StringComparison.OrdinalIgnoreCase) &&
+                        s.Role.ToString().Equals(AuthUserRole.SuperAdmin.ToString(),
+                        StringComparison.OrdinalIgnoreCase)))
+                {
+                    {
+                        var superAdminUser = new AuthUser
+                        {
+                            Username = "superadmin",
+                            Email = "superadmin@pos.com",
+                            PasswordHash = PasswordHasher.HashPassword("superadmin@"),
+                            Role = AuthUserRole.SuperAdmin,
+                            CreatedAt = DateTime.Now,
+                            IsActive= true
+                        };
+                        context.Users.Add(superAdminUser);
+                        context.SaveChanges();
+                    }
+                }
+
             }
         }
         private static void InitializeBackgroundService()
