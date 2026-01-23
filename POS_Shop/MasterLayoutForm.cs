@@ -3,6 +3,7 @@ using POS_Shop.Models.AuthModel;
 using POS_Shop.Views.Account;
 using POS_Shop.Views.Account.Auth;
 using POS_Shop.Views.BillScreen;
+using POS_Shop.Views.Controllers.Product;
 using POS_Shop.Views.DB_Screens;
 using POS_Shop.Views.LicenseManagement;
 using POS_Shop.Views.Reports;
@@ -355,6 +356,46 @@ namespace POS_Shop
 
             var userManagementForm = new UserManagementForm();
             userManagementForm.ShowDialog();
+        }
+
+        private void ProductUnitBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadingManager.ShowLoading();
+                MainPanel.Padding = new Padding(0);
+                MainPanel.Margin = new Padding(0);
+
+                var ProductUnitFormCtrl = new ProductUnitControl();
+                ProductUnitFormCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+
+                MainPanel.Controls.Clear();
+                MainPanel.Controls.Add(ProductUnitFormCtrl);
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
+        }
+
+        private void ProductListBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadingManager.ShowLoading();
+                MainPanel.Padding = new Padding(0);
+                MainPanel.Margin = new Padding(0);
+
+                var ProductFormCtrl = new ProductListControl();
+                ProductFormCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+
+                MainPanel.Controls.Clear();
+                MainPanel.Controls.Add(ProductFormCtrl);
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
         }
     }
 }

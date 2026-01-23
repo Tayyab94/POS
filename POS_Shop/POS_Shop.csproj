@@ -273,6 +273,7 @@
     <Compile Include="Interfaces\ILicenseService.cs" />
     <Compile Include="Interfaces\IOrderRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
+    <Compile Include="Interfaces\IProductUnitRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ISubCategoryRepository.cs" />
     <Compile Include="MainForm.cs">
@@ -307,6 +308,10 @@
     <Compile Include="Migrations\202601111925438_added_IsActive_LoginDateTime.Designer.cs">
       <DependentUpon>202601111925438_added_IsActive_LoginDateTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202601181805560_ProductUniTableAdded.cs" />
+    <Compile Include="Migrations\202601181805560_ProductUniTableAdded.Designer.cs">
+      <DependentUpon>202601181805560_ProductUniTableAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\AuthModel\AuthUser.cs" />
@@ -322,6 +327,7 @@
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\POSDbContext.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductUnit.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\TempOrder.cs" />
     <Compile Include="Models\TempOrderDetail.cs" />
@@ -337,6 +343,7 @@
     <Compile Include="Repositories\LicenseServices\LicenseKeyManager.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ProductUnitRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SubCategoryRepository.cs" />
     <Compile Include="Services\DailyBackgroundService.cs" />
@@ -429,6 +436,18 @@
     </Compile>
     <Compile Include="Views\Controllers\Order\TempOrderControl.Designer.cs">
       <DependentUpon>TempOrderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Product\ProductListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Product\ProductListControl.Designer.cs">
+      <DependentUpon>ProductListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Product\ProductUnitControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Product\ProductUnitControl.Designer.cs">
+      <DependentUpon>ProductUnitControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controllers\SubCategory\SubCategoryForm.cs">
       <SubType>UserControl</SubType>
@@ -535,6 +554,9 @@
     <EmbeddedResource Include="Migrations\202601111925438_added_IsActive_LoginDateTime.resx">
       <DependentUpon>202601111925438_added_IsActive_LoginDateTime.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601181805560_ProductUniTableAdded.resx">
+      <DependentUpon>202601181805560_ProductUniTableAdded.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -587,6 +609,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Product\ProductFromControl.resx">
       <DependentUpon>ProductFromControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Product\ProductListControl.resx">
+      <DependentUpon>ProductListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Product\ProductUnitControl.resx">
+      <DependentUpon>ProductUnitControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\SubCategory\SubCategoryForm.resx">
       <DependentUpon>SubCategoryForm.cs</DependentUpon>

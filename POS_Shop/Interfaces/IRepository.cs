@@ -16,7 +16,7 @@ namespace POS_Shop.Interfaces
         void Update(T entity);
         void Delete(int id);
         void Save();
-
+        Task SaveAsync();
 
 
     }
