@@ -105,6 +105,7 @@ namespace POS_Shop.Models
         public DbSet<AppLicense> Licenses { get; set; }
 
         public DbSet<AuthUser> Users { get; set; }
+        public DbSet<ProductUnit> ProductUnits { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

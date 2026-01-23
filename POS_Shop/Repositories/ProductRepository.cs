@@ -63,7 +63,6 @@ namespace POS_Shop.Repositories
                 {
 
                     var query = context.OrderDetails.AsNoTracking()
-                       .Include(s => s.Order)
                        .Where(s => s.ProductId == productId && s.Order.customerId== customerId);
 
                     //// Only filter by customer if a specific customerId is provided
@@ -73,7 +72,7 @@ namespace POS_Shop.Repositories
                     //}
 
                     data = query
-                       .OrderByDescending(s => s.Order.Id)
+                       .OrderByDescending(s => s.OrderId)
                         .Take(4)
                         .AsEnumerable()
                         .Select(s => new ProductOrderHistoryDetails()

@@ -42,8 +42,6 @@ namespace POS_Shop.Views.BillScreen
             CustomerIdLbl.Text = string.Empty;
             CustomerNameTxt.Text = string.Empty;
             PreviousOrderIdLbl.Text = string.Empty;
-
-            //string invRef = Properties.Settings.Default.UserName == "sa" ? "INS-"
             string invRef = TextFormatHelper.GetPrefix(Properties.Settings.Default.UserName);
             InvoiceNoLbl.Text = invRef + DateTime.Now.ToString("ddMMyy-HHmmss");
             this.Shown += (s, e) => { ProductEngNameTxt.Focus(); };
@@ -62,6 +60,34 @@ namespace POS_Shop.Views.BillScreen
                 InvoicePageTabControl.TabPages.Remove(TruncateTableTab);
                 // InvoicePageTabControl.TabPages.Remove(ImpoertOrderFileTab);
             }
+
+            using(var context =new POSDbContext())
+            {
+                var productUnitRepo= new ProductUnitRepository(context);
+
+                
+                var productUnit = productUnitRepo.GetAll().Select(s => new ProductUnit()
+                {
+                    Id=s.Id,
+                    Name= s.Name,
+
+                }).ToList();
+                productTypeDropdown.Items.Clear();
+
+                // Add default option
+                var allItems = new List<ProductUnit>();
+                allItems.Add(new ProductUnit { Id = 0, Name = "" });
+                allItems.AddRange(productUnit);
+                productTypeDropdown.DataSource = allItems;
+                productTypeDropdown.DisplayMember = "Name";
+                productTypeDropdown.ValueMember = "Name";
+
+
+                //productTypeDropdown.DataSource = productUnit;
+                //productTypeDropdown.DisplayMember = "Name";
+                //productTypeDropdown.ValueMember = "Id";
+            }
+
         }
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
@@ -301,7 +327,7 @@ namespace POS_Shop.Views.BillScreen
             string productId = PId;
             string productName = ProductEngNameTxt.Text;
             string ProductUrduName = prod_U_Name;
-            string productType = productTypeDropdown.SelectedItem?.ToString();
+            string productType = productTypeDropdown.SelectedValue?.ToString();
             decimal salePrice = Math.Round(decimal.Parse(ProductSalePrice.Text), 1);
             int qty = int.Parse(P_StockQtyTxt.Text);
             decimal amount = salePrice * qty;
@@ -2380,5 +2406,6 @@ namespace POS_Shop.Views.BillScreen
             ImportUpdatedFilePathTxt.Text = string.Empty;
             InvoicePageTabControl.SelectedTab = BilPad;
         }
+
     }
 }

@@ -7,11 +7,8 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace POS_Shop.Views.Controllers.Category
 {
     public partial class CategoryControl : UserControl
@@ -116,8 +113,6 @@ namespace POS_Shop.Views.Controllers.Category
 
                 try
                 {
-                    //ICityRepository cityRepository = new CityRepository(context);
-                   
                     var response = await categoryRepo.UpdateCategory(new Models.Category()
                     {
                         id = categoryId,
@@ -128,7 +123,6 @@ namespace POS_Shop.Views.Controllers.Category
                         MessageBox.Show("Record has been Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else
                         MessageBox.Show("Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 }
                 catch (Exception ex)
                 {

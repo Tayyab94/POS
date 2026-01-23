@@ -147,11 +147,11 @@ namespace POS_Shop
                 }
             }
 
-            // STEP 2: LOGIN
-            if (!ShowLogin())
-            {
-                return; // User cancelled login
-            }
+            //// STEP 2: LOGIN
+            //if (!ShowLogin())
+            //{
+            //    return; // User cancelled login
+            //}
             // STEP 3: MAIN APPLICATION
             RunMainApplication();
         }
