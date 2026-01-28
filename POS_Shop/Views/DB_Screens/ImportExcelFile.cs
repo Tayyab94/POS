@@ -607,7 +607,6 @@ namespace POS_Shop.Views.DB_Screens
                                 ProductEnglishName = GetStringOrNull(row["Item Name"]),
 
                                 ProductUrduName = GetStringOrNull(row["Urdu"]),
-                                ProductType = GetStringOrNull(row["Unit"]),
                                 //PurchasePrice = GetIntOrDefaultFromDecimalValue(row["Company Rate"]),
                                 PurchasePrice = GetStringOrNull(row["Company Rate"]),
                                 // Changed to int?
@@ -917,7 +916,7 @@ namespace POS_Shop.Views.DB_Screens
         {
             product.ProductEnglishName = GetStringOrNull(row["Product Name"]);
             product.ProductUrduName = GetStringOrNull(row["Urdu Name"]);
-            product.ProductType = GetStringOrNull(row["Type"]);
+         
             product.SearchByProductCode = GetStringOrNull(row["SearchByProductName"]);
             product.PurchasePrice = GetStringOrNull(row["Purchase Price"]);
             product.SalePrice = GetIntOrDefault(row["Sale Price"]);
@@ -931,7 +930,7 @@ namespace POS_Shop.Views.DB_Screens
             {
                 ProductEnglishName = GetStringOrNull(row["Product Name"]),
                 ProductUrduName = GetStringOrNull(row["Urdu Name"]),
-                ProductType = GetStringOrNull(row["Type"]),
+               
                 PurchasePrice = GetStringOrNull(row["Purchase Price"]),
                 SalePrice = GetIntOrDefault(row["Sale Price"]),
                 Cost = Convert.ToInt32(row["Cost"]),

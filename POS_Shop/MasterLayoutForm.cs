@@ -75,7 +75,12 @@ namespace POS_Shop
             //MainPanel.Controls.Add(userCtrl);
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            SessionManager.Logout();
 
+            base.OnFormClosing(e);
+        }
         private async void cityBtn_Click(object sender, EventArgs e)
         {
 
@@ -197,7 +202,7 @@ namespace POS_Shop
                 MainPanel.Padding = new Padding(0);
                 MainPanel.Margin = new Padding(0);
 
-                var ProductFormCtrl = new Views.Product.ProductFromControl();
+                var ProductFormCtrl = new ProductListControl();
                 ProductFormCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
 
                 MainPanel.Controls.Clear();

@@ -21,5 +21,7 @@ namespace POS_Shop.Models
 
         public DateTime CreatedAt { get; set; }
         public bool IsActive { get; set; }
+
+        public virtual ICollection<ProductPrice> ProductPrices { get; set; }
     }
 }

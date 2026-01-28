@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BillPadForm));
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties4 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
@@ -74,9 +69,12 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties36 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges9 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BillPadForm));
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties4 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             this.TopPanel = new System.Windows.Forms.Panel();
-            this.TopBarSearchProductTxt = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.BackScreenBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.BillPadPageHeadingLbl = new System.Windows.Forms.Label();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.InvoicePageTabControl = new System.Windows.Forms.TabControl();
@@ -97,18 +95,10 @@
             this.InvoiceNoLbl = new System.Windows.Forms.Label();
             this.InvoiceNoHeading = new System.Windows.Forms.Label();
             this.BillPadGrou = new System.Windows.Forms.GroupBox();
-            this.ExportBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.SaveOrderWithoutPrintBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.GenerateInvoicePdfBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.EnglishInvoiceChk = new System.Windows.Forms.CheckBox();
             this.lblRemainingAmount = new System.Windows.Forms.Label();
-            this.ClearCartBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.PrintPreviewBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.SaveAndPrintOrderBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.SaveBillBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.BankTransferRaadioBtn = new System.Windows.Forms.RadioButton();
             this.CashRadioBtn = new System.Windows.Forms.RadioButton();
-            this.ReceivedAmountTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.TotalItemLbl = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -123,36 +113,46 @@
             this.InvoiceShopName = new System.Windows.Forms.CheckBox();
             this.OtherProductChk = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.ProductDetailTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.AddToCardBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.ProductAmount = new Bunifu.UI.WinForms.BunifuTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.ProductSalePrice = new Bunifu.UI.WinForms.BunifuTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.StockQtyLbl = new System.Windows.Forms.Label();
             this.P_typeLbl = new System.Windows.Forms.Label();
             this.productTypeDropdown = new Bunifu.UI.WinForms.BunifuDropdown();
-            this.P_StockQtyTxt = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.ProductEngNameTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.CustomerGroup = new System.Windows.Forms.GroupBox();
             this.AddNewCustomerLink = new System.Windows.Forms.LinkLabel();
             this.CustomerIdLbl = new System.Windows.Forms.Label();
             this.ResetCustomerBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.CustomerNameTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.ImpoertOrderFileTab = new System.Windows.Forms.TabPage();
             this.LoadOrderExcelFileGroup = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TruncateTableTab = new System.Windows.Forms.TabPage();
+            this.ClearProductTblBtn = new System.Windows.Forms.Button();
+            this.OrderPrintPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
+            this.OrderPrintDocument = new System.Drawing.Printing.PrintDocument();
+            this.ExportBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.SaveOrderWithoutPrintBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.GenerateInvoicePdfBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.ClearCartBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.PrintPreviewBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.SaveAndPrintOrderBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.SaveBillBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.ReceivedAmountTxt = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.ProductDetailTxt = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.ProductAmount = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.ProductSalePrice = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.P_StockQtyTxt = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.ProductEngNameTxt = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.CustomerNameTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.LoadOrderExcelFileBtn = new System.Windows.Forms.Button();
             this.ImportUpdatedFilePathTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.BrowsOrderExcelFile = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.TruncateTableTab = new System.Windows.Forms.TabPage();
             this.ClearTempOrderTabls = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.ClearProductTblBtn = new System.Windows.Forms.Button();
             this.TruncateOrder_OrderDetailBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.OrderPrintPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
-            this.OrderPrintDocument = new System.Drawing.Printing.PrintDocument();
+            this.TopBarSearchProductTxt = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.BackScreenBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.TopPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.InvoicePageTabControl.SuspendLayout();
@@ -185,116 +185,6 @@
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(1776, 43);
             this.TopPanel.TabIndex = 0;
-            // 
-            // TopBarSearchProductTxt
-            // 
-            this.TopBarSearchProductTxt.AcceptsReturn = false;
-            this.TopBarSearchProductTxt.AcceptsTab = false;
-            this.TopBarSearchProductTxt.AnimationSpeed = 200;
-            this.TopBarSearchProductTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.TopBarSearchProductTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TopBarSearchProductTxt.BackColor = System.Drawing.Color.Transparent;
-            this.TopBarSearchProductTxt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TopBarSearchProductTxt.BackgroundImage")));
-            this.TopBarSearchProductTxt.BorderColorActive = System.Drawing.Color.DodgerBlue;
-            this.TopBarSearchProductTxt.BorderColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.TopBarSearchProductTxt.BorderColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.TopBarSearchProductTxt.BorderColorIdle = System.Drawing.Color.Silver;
-            this.TopBarSearchProductTxt.BorderRadius = 1;
-            this.TopBarSearchProductTxt.BorderThickness = 1;
-            this.TopBarSearchProductTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.TopBarSearchProductTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TopBarSearchProductTxt.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
-            this.TopBarSearchProductTxt.DefaultText = "";
-            this.TopBarSearchProductTxt.FillColor = System.Drawing.Color.White;
-            this.TopBarSearchProductTxt.HideSelection = true;
-            this.TopBarSearchProductTxt.IconLeft = null;
-            this.TopBarSearchProductTxt.IconLeftCursor = System.Windows.Forms.Cursors.IBeam;
-            this.TopBarSearchProductTxt.IconPadding = 10;
-            this.TopBarSearchProductTxt.IconRight = null;
-            this.TopBarSearchProductTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
-            this.TopBarSearchProductTxt.Lines = new string[0];
-            this.TopBarSearchProductTxt.Location = new System.Drawing.Point(80, 3);
-            this.TopBarSearchProductTxt.MaxLength = 32767;
-            this.TopBarSearchProductTxt.MinimumSize = new System.Drawing.Size(1, 1);
-            this.TopBarSearchProductTxt.Modified = false;
-            this.TopBarSearchProductTxt.Multiline = false;
-            this.TopBarSearchProductTxt.Name = "TopBarSearchProductTxt";
-            stateProperties1.BorderColor = System.Drawing.Color.DodgerBlue;
-            stateProperties1.FillColor = System.Drawing.Color.Empty;
-            stateProperties1.ForeColor = System.Drawing.Color.Empty;
-            stateProperties1.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.TopBarSearchProductTxt.OnActiveState = stateProperties1;
-            stateProperties2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            stateProperties2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            stateProperties2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            stateProperties2.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.TopBarSearchProductTxt.OnDisabledState = stateProperties2;
-            stateProperties3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            stateProperties3.FillColor = System.Drawing.Color.Empty;
-            stateProperties3.ForeColor = System.Drawing.Color.Empty;
-            stateProperties3.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.TopBarSearchProductTxt.OnHoverState = stateProperties3;
-            stateProperties4.BorderColor = System.Drawing.Color.Silver;
-            stateProperties4.FillColor = System.Drawing.Color.White;
-            stateProperties4.ForeColor = System.Drawing.Color.Empty;
-            stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.TopBarSearchProductTxt.OnIdleState = stateProperties4;
-            this.TopBarSearchProductTxt.Padding = new System.Windows.Forms.Padding(3);
-            this.TopBarSearchProductTxt.PasswordChar = '\0';
-            this.TopBarSearchProductTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.TopBarSearchProductTxt.PlaceholderText = "Search......";
-            this.TopBarSearchProductTxt.ReadOnly = false;
-            this.TopBarSearchProductTxt.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TopBarSearchProductTxt.SelectedText = "";
-            this.TopBarSearchProductTxt.SelectionLength = 0;
-            this.TopBarSearchProductTxt.SelectionStart = 0;
-            this.TopBarSearchProductTxt.ShortcutsEnabled = true;
-            this.TopBarSearchProductTxt.Size = new System.Drawing.Size(307, 38);
-            this.TopBarSearchProductTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
-            this.TopBarSearchProductTxt.TabIndex = 0;
-            this.TopBarSearchProductTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.TopBarSearchProductTxt.TextMarginBottom = 0;
-            this.TopBarSearchProductTxt.TextMarginLeft = 3;
-            this.TopBarSearchProductTxt.TextMarginTop = 0;
-            this.TopBarSearchProductTxt.TextPlaceholder = "Search......";
-            this.TopBarSearchProductTxt.UseSystemPasswordChar = false;
-            this.TopBarSearchProductTxt.WordWrap = true;
-            this.TopBarSearchProductTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TopBarSearchProductTxt_KeyPress);
-            // 
-            // BackScreenBtn
-            // 
-            this.BackScreenBtn.ActiveImage = null;
-            this.BackScreenBtn.AllowAnimations = true;
-            this.BackScreenBtn.AllowBuffering = false;
-            this.BackScreenBtn.AllowToggling = false;
-            this.BackScreenBtn.AllowZooming = true;
-            this.BackScreenBtn.AllowZoomingOnFocus = false;
-            this.BackScreenBtn.BackColor = System.Drawing.Color.Transparent;
-            this.BackScreenBtn.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.BackScreenBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BackScreenBtn.ErrorImage")));
-            this.BackScreenBtn.FadeWhenInactive = false;
-            this.BackScreenBtn.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
-            this.BackScreenBtn.Image = global::POS_Shop.Properties.Resources.iconPrev;
-            this.BackScreenBtn.ImageActive = null;
-            this.BackScreenBtn.ImageLocation = null;
-            this.BackScreenBtn.ImageMargin = 0;
-            this.BackScreenBtn.ImageSize = new System.Drawing.Size(43, 36);
-            this.BackScreenBtn.ImageZoomSize = new System.Drawing.Size(44, 37);
-            this.BackScreenBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("BackScreenBtn.InitialImage")));
-            this.BackScreenBtn.Location = new System.Drawing.Point(5, 5);
-            this.BackScreenBtn.Name = "BackScreenBtn";
-            this.BackScreenBtn.Rotation = 0;
-            this.BackScreenBtn.ShowActiveImage = true;
-            this.BackScreenBtn.ShowCursorChanges = true;
-            this.BackScreenBtn.ShowImageBorders = true;
-            this.BackScreenBtn.ShowSizeMarkers = false;
-            this.BackScreenBtn.Size = new System.Drawing.Size(44, 37);
-            this.BackScreenBtn.TabIndex = 1;
-            this.BackScreenBtn.ToolTipText = "";
-            this.BackScreenBtn.WaitOnLoad = false;
-            this.BackScreenBtn.Zoom = 0;
-            this.BackScreenBtn.ZoomSpeed = 10;
-            this.BackScreenBtn.Click += new System.EventHandler(this.BackScreenBtn_Click);
             // 
             // BillPadPageHeadingLbl
             // 
@@ -554,6 +444,480 @@
             this.BillPadGrou.TabIndex = 0;
             this.BillPadGrou.TabStop = false;
             this.BillPadGrou.Text = "Summary";
+            // 
+            // EnglishInvoiceChk
+            // 
+            this.EnglishInvoiceChk.AutoSize = true;
+            this.EnglishInvoiceChk.Location = new System.Drawing.Point(9, 25);
+            this.EnglishInvoiceChk.Name = "EnglishInvoiceChk";
+            this.EnglishInvoiceChk.Size = new System.Drawing.Size(161, 24);
+            this.EnglishInvoiceChk.TabIndex = 10;
+            this.EnglishInvoiceChk.Text = "Invoice In English";
+            this.EnglishInvoiceChk.UseVisualStyleBackColor = true;
+            // 
+            // lblRemainingAmount
+            // 
+            this.lblRemainingAmount.AutoSize = true;
+            this.lblRemainingAmount.Location = new System.Drawing.Point(57, 285);
+            this.lblRemainingAmount.Name = "lblRemainingAmount";
+            this.lblRemainingAmount.Size = new System.Drawing.Size(137, 20);
+            this.lblRemainingAmount.TabIndex = 9;
+            this.lblRemainingAmount.Text = "Remaining: Rs. 0";
+            // 
+            // BankTransferRaadioBtn
+            // 
+            this.BankTransferRaadioBtn.AutoSize = true;
+            this.BankTransferRaadioBtn.Location = new System.Drawing.Point(140, 172);
+            this.BankTransferRaadioBtn.Name = "BankTransferRaadioBtn";
+            this.BankTransferRaadioBtn.Size = new System.Drawing.Size(136, 24);
+            this.BankTransferRaadioBtn.TabIndex = 0;
+            this.BankTransferRaadioBtn.Text = "Bank Transfer";
+            this.BankTransferRaadioBtn.UseVisualStyleBackColor = true;
+            // 
+            // CashRadioBtn
+            // 
+            this.CashRadioBtn.AutoSize = true;
+            this.CashRadioBtn.Checked = true;
+            this.CashRadioBtn.Location = new System.Drawing.Point(42, 171);
+            this.CashRadioBtn.Name = "CashRadioBtn";
+            this.CashRadioBtn.Size = new System.Drawing.Size(74, 24);
+            this.CashRadioBtn.TabIndex = 0;
+            this.CashRadioBtn.TabStop = true;
+            this.CashRadioBtn.Text = "Cash ";
+            this.CashRadioBtn.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.SlateBlue;
+            this.label7.Location = new System.Drawing.Point(76, 202);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(202, 29);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Received Amount";
+            // 
+            // TotalItemLbl
+            // 
+            this.TotalItemLbl.AutoSize = true;
+            this.TotalItemLbl.Location = new System.Drawing.Point(277, 129);
+            this.TotalItemLbl.Name = "TotalItemLbl";
+            this.TotalItemLbl.Size = new System.Drawing.Size(18, 20);
+            this.TotalItemLbl.TabIndex = 0;
+            this.TotalItemLbl.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.SlateBlue;
+            this.label8.Location = new System.Drawing.Point(15, 124);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(153, 32);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Total Items";
+            // 
+            // TotalAmountLbl
+            // 
+            this.TotalAmountLbl.AutoSize = true;
+            this.TotalAmountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalAmountLbl.Location = new System.Drawing.Point(118, 93);
+            this.TotalAmountLbl.Name = "TotalAmountLbl";
+            this.TotalAmountLbl.Size = new System.Drawing.Size(31, 32);
+            this.TotalAmountLbl.TabIndex = 0;
+            this.TotalAmountLbl.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.SlateBlue;
+            this.label6.Location = new System.Drawing.Point(53, 61);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(176, 32);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Total Amount";
+            // 
+            // ProductListGroup
+            // 
+            this.ProductListGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductListGroup.Controls.Add(this.label9);
+            this.ProductListGroup.Controls.Add(this.SuggestionGrid);
+            this.ProductListGroup.Controls.Add(this.CartProductList);
+            this.ProductListGroup.Location = new System.Drawing.Point(8, 190);
+            this.ProductListGroup.Name = "ProductListGroup";
+            this.ProductListGroup.Size = new System.Drawing.Size(1339, 604);
+            this.ProductListGroup.TabIndex = 2;
+            this.ProductListGroup.TabStop = false;
+            this.ProductListGroup.Text = "Items List";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(144, 11);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(182, 16);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "پہلے ریکارڈ پر جائیں: Ctrl+Q";
+            // 
+            // SuggestionGrid
+            // 
+            this.SuggestionGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SuggestionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SuggestionGrid.Location = new System.Drawing.Point(22, 0);
+            this.SuggestionGrid.Name = "SuggestionGrid";
+            this.SuggestionGrid.ReadOnly = true;
+            this.SuggestionGrid.RowHeadersWidth = 51;
+            this.SuggestionGrid.RowTemplate.Height = 30;
+            this.SuggestionGrid.Size = new System.Drawing.Size(925, 397);
+            this.SuggestionGrid.TabIndex = 0;
+            this.SuggestionGrid.Visible = false;
+            this.SuggestionGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SuggestionGrid_CellMouseClick);
+            this.SuggestionGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SuggestionGrid_KeyDown);
+            // 
+            // CartProductList
+            // 
+            this.CartProductList.AllowUserToAddRows = false;
+            this.CartProductList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CartProductList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.CartProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CartProductList.Location = new System.Drawing.Point(9, 40);
+            this.CartProductList.Name = "CartProductList";
+            this.CartProductList.RowHeadersWidth = 51;
+            this.CartProductList.RowTemplate.Height = 24;
+            this.CartProductList.Size = new System.Drawing.Size(1315, 558);
+            this.CartProductList.TabIndex = 0;
+            this.CartProductList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CartProductList_CellClick);
+            this.CartProductList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CartProductList_CellEndEdit);
+            this.CartProductList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CartProductList_KeyDown);
+            // 
+            // ProductGroup
+            // 
+            this.ProductGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductGroup.Controls.Add(this.Prod_Qty);
+            this.ProductGroup.Controls.Add(this.InvoiceShopName);
+            this.ProductGroup.Controls.Add(this.OtherProductChk);
+            this.ProductGroup.Controls.Add(this.label5);
+            this.ProductGroup.Controls.Add(this.ProductDetailTxt);
+            this.ProductGroup.Controls.Add(this.AddToCardBtn);
+            this.ProductGroup.Controls.Add(this.label4);
+            this.ProductGroup.Controls.Add(this.ProductAmount);
+            this.ProductGroup.Controls.Add(this.label3);
+            this.ProductGroup.Controls.Add(this.ProductSalePrice);
+            this.ProductGroup.Controls.Add(this.label2);
+            this.ProductGroup.Controls.Add(this.StockQtyLbl);
+            this.ProductGroup.Controls.Add(this.P_typeLbl);
+            this.ProductGroup.Controls.Add(this.productTypeDropdown);
+            this.ProductGroup.Controls.Add(this.P_StockQtyTxt);
+            this.ProductGroup.Controls.Add(this.ProductEngNameTxt);
+            this.ProductGroup.Location = new System.Drawing.Point(8, 85);
+            this.ProductGroup.Name = "ProductGroup";
+            this.ProductGroup.Size = new System.Drawing.Size(1334, 99);
+            this.ProductGroup.TabIndex = 0;
+            this.ProductGroup.TabStop = false;
+            this.ProductGroup.Text = "Product Section";
+            // 
+            // Prod_Qty
+            // 
+            this.Prod_Qty.Location = new System.Drawing.Point(1253, 48);
+            this.Prod_Qty.Name = "Prod_Qty";
+            this.Prod_Qty.Size = new System.Drawing.Size(19, 22);
+            this.Prod_Qty.TabIndex = 8;
+            this.Prod_Qty.Visible = false;
+            // 
+            // InvoiceShopName
+            // 
+            this.InvoiceShopName.AutoSize = true;
+            this.InvoiceShopName.Checked = true;
+            this.InvoiceShopName.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.InvoiceShopName.Location = new System.Drawing.Point(1104, 17);
+            this.InvoiceShopName.Name = "InvoiceShopName";
+            this.InvoiceShopName.Size = new System.Drawing.Size(184, 20);
+            this.InvoiceShopName.TabIndex = 0;
+            this.InvoiceShopName.Text = "Hide Shop Name in Invice";
+            this.InvoiceShopName.UseVisualStyleBackColor = true;
+            this.InvoiceShopName.CheckedChanged += new System.EventHandler(this.InvoiceShopName_CheckedChanged);
+            // 
+            // OtherProductChk
+            // 
+            this.OtherProductChk.AutoSize = true;
+            this.OtherProductChk.Location = new System.Drawing.Point(157, 23);
+            this.OtherProductChk.Name = "OtherProductChk";
+            this.OtherProductChk.Size = new System.Drawing.Size(117, 20);
+            this.OtherProductChk.TabIndex = 0;
+            this.OtherProductChk.TabStop = false;
+            this.OtherProductChk.Text = "Other Procduct";
+            this.OtherProductChk.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(353, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(105, 16);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Product Detail";
+            // 
+            // AddToCardBtn
+            // 
+            this.AddToCardBtn.BackColor = System.Drawing.Color.SlateBlue;
+            this.AddToCardBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddToCardBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddToCardBtn.ForeColor = System.Drawing.Color.AliceBlue;
+            this.AddToCardBtn.Location = new System.Drawing.Point(1076, 39);
+            this.AddToCardBtn.Name = "AddToCardBtn";
+            this.AddToCardBtn.Size = new System.Drawing.Size(154, 50);
+            this.AddToCardBtn.TabIndex = 7;
+            this.AddToCardBtn.Text = "Add To Cart";
+            this.AddToCardBtn.UseVisualStyleBackColor = false;
+            this.AddToCardBtn.Click += new System.EventHandler(this.AddToCardBtn_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(959, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 16);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Amount";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(799, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 16);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Rate";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(19, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 16);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Product Name";
+            // 
+            // StockQtyLbl
+            // 
+            this.StockQtyLbl.AutoSize = true;
+            this.StockQtyLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StockQtyLbl.Location = new System.Drawing.Point(603, 27);
+            this.StockQtyLbl.Name = "StockQtyLbl";
+            this.StockQtyLbl.Size = new System.Drawing.Size(30, 16);
+            this.StockQtyLbl.TabIndex = 0;
+            this.StockQtyLbl.Text = "Qty";
+            // 
+            // P_typeLbl
+            // 
+            this.P_typeLbl.AutoSize = true;
+            this.P_typeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.P_typeLbl.Location = new System.Drawing.Point(694, 27);
+            this.P_typeLbl.Name = "P_typeLbl";
+            this.P_typeLbl.Size = new System.Drawing.Size(43, 16);
+            this.P_typeLbl.TabIndex = 0;
+            this.P_typeLbl.Text = "Type";
+            // 
+            // productTypeDropdown
+            // 
+            this.productTypeDropdown.BackColor = System.Drawing.Color.Transparent;
+            this.productTypeDropdown.BackgroundColor = System.Drawing.Color.White;
+            this.productTypeDropdown.BorderColor = System.Drawing.Color.Silver;
+            this.productTypeDropdown.BorderRadius = 1;
+            this.productTypeDropdown.Color = System.Drawing.Color.Silver;
+            this.productTypeDropdown.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
+            this.productTypeDropdown.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.productTypeDropdown.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.productTypeDropdown.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.productTypeDropdown.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.productTypeDropdown.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
+            this.productTypeDropdown.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.productTypeDropdown.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
+            this.productTypeDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.productTypeDropdown.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.productTypeDropdown.FillDropDown = true;
+            this.productTypeDropdown.FillIndicator = false;
+            this.productTypeDropdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.productTypeDropdown.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.productTypeDropdown.ForeColor = System.Drawing.Color.Black;
+            this.productTypeDropdown.FormattingEnabled = true;
+            this.productTypeDropdown.Icon = null;
+            this.productTypeDropdown.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.productTypeDropdown.IndicatorColor = System.Drawing.Color.Gray;
+            this.productTypeDropdown.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.productTypeDropdown.ItemBackColor = System.Drawing.Color.White;
+            this.productTypeDropdown.ItemBorderColor = System.Drawing.Color.White;
+            this.productTypeDropdown.ItemForeColor = System.Drawing.Color.Black;
+            this.productTypeDropdown.ItemHeight = 26;
+            this.productTypeDropdown.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
+            this.productTypeDropdown.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.productTypeDropdown.Items.AddRange(new object[] {
+            "عدد",
+            "ڈبہ",
+            "درجن",
+            "پیکٹ",
+            "بنڈل",
+            "کارٹن",
+            "رول",
+            "ڈبی",
+            "کلو",
+            "گز",
+            "جوڑی",
+            "سابقہ"});
+            this.productTypeDropdown.ItemTopMargin = 3;
+            this.productTypeDropdown.Location = new System.Drawing.Point(693, 48);
+            this.productTypeDropdown.Name = "productTypeDropdown";
+            this.productTypeDropdown.Size = new System.Drawing.Size(96, 32);
+            this.productTypeDropdown.TabIndex = 4;
+            this.productTypeDropdown.Text = null;
+            this.productTypeDropdown.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.productTypeDropdown.TextLeftMargin = 1;
+            this.productTypeDropdown.SelectedIndexChanged += new System.EventHandler(this.productTypeDropdown_SelectedIndexChanged);
+            this.productTypeDropdown.Enter += new System.EventHandler(this.productTypeDropdown_Enter);
+            this.productTypeDropdown.Leave += new System.EventHandler(this.productTypeDropdown_Leave);
+            // 
+            // CustomerGroup
+            // 
+            this.CustomerGroup.Controls.Add(this.AddNewCustomerLink);
+            this.CustomerGroup.Controls.Add(this.CustomerIdLbl);
+            this.CustomerGroup.Controls.Add(this.ResetCustomerBtn);
+            this.CustomerGroup.Controls.Add(this.label1);
+            this.CustomerGroup.Controls.Add(this.CustomerNameTxt);
+            this.CustomerGroup.Location = new System.Drawing.Point(8, 6);
+            this.CustomerGroup.Name = "CustomerGroup";
+            this.CustomerGroup.Size = new System.Drawing.Size(932, 73);
+            this.CustomerGroup.TabIndex = 0;
+            this.CustomerGroup.TabStop = false;
+            this.CustomerGroup.Text = "Customer Secion";
+            // 
+            // AddNewCustomerLink
+            // 
+            this.AddNewCustomerLink.AutoSize = true;
+            this.AddNewCustomerLink.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddNewCustomerLink.Location = new System.Drawing.Point(806, 8);
+            this.AddNewCustomerLink.Name = "AddNewCustomerLink";
+            this.AddNewCustomerLink.Size = new System.Drawing.Size(122, 16);
+            this.AddNewCustomerLink.TabIndex = 5;
+            this.AddNewCustomerLink.TabStop = true;
+            this.AddNewCustomerLink.Text = "Add New Customer";
+            this.AddNewCustomerLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddNewCustomerLink_LinkClicked);
+            // 
+            // CustomerIdLbl
+            // 
+            this.CustomerIdLbl.AutoSize = true;
+            this.CustomerIdLbl.Location = new System.Drawing.Point(6, 46);
+            this.CustomerIdLbl.Name = "CustomerIdLbl";
+            this.CustomerIdLbl.Size = new System.Drawing.Size(77, 16);
+            this.CustomerIdLbl.TabIndex = 0;
+            this.CustomerIdLbl.Text = "CustomerID";
+            this.CustomerIdLbl.Visible = false;
+            // 
+            // ResetCustomerBtn
+            // 
+            this.ResetCustomerBtn.BackColor = System.Drawing.Color.Red;
+            this.ResetCustomerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ResetCustomerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResetCustomerBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ResetCustomerBtn.Location = new System.Drawing.Point(799, 25);
+            this.ResetCustomerBtn.Name = "ResetCustomerBtn";
+            this.ResetCustomerBtn.Size = new System.Drawing.Size(124, 39);
+            this.ResetCustomerBtn.TabIndex = 0;
+            this.ResetCustomerBtn.Text = "Customer Delete";
+            this.ResetCustomerBtn.UseVisualStyleBackColor = false;
+            this.ResetCustomerBtn.Visible = false;
+            this.ResetCustomerBtn.Click += new System.EventHandler(this.ResetCustomerBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Customer Name";
+            // 
+            // ImpoertOrderFileTab
+            // 
+            this.ImpoertOrderFileTab.Controls.Add(this.LoadOrderExcelFileGroup);
+            this.ImpoertOrderFileTab.Location = new System.Drawing.Point(4, 25);
+            this.ImpoertOrderFileTab.Name = "ImpoertOrderFileTab";
+            this.ImpoertOrderFileTab.Size = new System.Drawing.Size(1768, 802);
+            this.ImpoertOrderFileTab.TabIndex = 3;
+            this.ImpoertOrderFileTab.Text = "Impoert Order File ";
+            this.ImpoertOrderFileTab.UseVisualStyleBackColor = true;
+            // 
+            // LoadOrderExcelFileGroup
+            // 
+            this.LoadOrderExcelFileGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoadOrderExcelFileGroup.Controls.Add(this.LoadOrderExcelFileBtn);
+            this.LoadOrderExcelFileGroup.Controls.Add(this.ImportUpdatedFilePathTxt);
+            this.LoadOrderExcelFileGroup.Controls.Add(this.BrowsOrderExcelFile);
+            this.LoadOrderExcelFileGroup.Controls.Add(this.label11);
+            this.LoadOrderExcelFileGroup.Location = new System.Drawing.Point(17, 22);
+            this.LoadOrderExcelFileGroup.Name = "LoadOrderExcelFileGroup";
+            this.LoadOrderExcelFileGroup.Size = new System.Drawing.Size(1273, 95);
+            this.LoadOrderExcelFileGroup.TabIndex = 3;
+            this.LoadOrderExcelFileGroup.TabStop = false;
+            this.LoadOrderExcelFileGroup.Text = "Import Excel";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 20);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(288, 16);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Brows Order Excel file to Load the data into Grid";
+            // 
+            // TruncateTableTab
+            // 
+            this.TruncateTableTab.Controls.Add(this.ClearTempOrderTabls);
+            this.TruncateTableTab.Controls.Add(this.ClearProductTblBtn);
+            this.TruncateTableTab.Controls.Add(this.TruncateOrder_OrderDetailBtn);
+            this.TruncateTableTab.Location = new System.Drawing.Point(4, 25);
+            this.TruncateTableTab.Name = "TruncateTableTab";
+            this.TruncateTableTab.Size = new System.Drawing.Size(1768, 802);
+            this.TruncateTableTab.TabIndex = 2;
+            this.TruncateTableTab.Text = "Truncate Table ";
+            this.TruncateTableTab.UseVisualStyleBackColor = true;
+            // 
+            // ClearProductTblBtn
+            // 
+            this.ClearProductTblBtn.BackColor = System.Drawing.Color.DarkKhaki;
+            this.ClearProductTblBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ClearProductTblBtn.Location = new System.Drawing.Point(378, 55);
+            this.ClearProductTblBtn.Name = "ClearProductTblBtn";
+            this.ClearProductTblBtn.Size = new System.Drawing.Size(364, 61);
+            this.ClearProductTblBtn.TabIndex = 1;
+            this.ClearProductTblBtn.Text = "Clear Product Table";
+            this.ClearProductTblBtn.UseVisualStyleBackColor = false;
+            this.ClearProductTblBtn.Click += new System.EventHandler(this.ClearProductTblBtn_Click);
+            // 
+            // OrderPrintPreviewDialog
+            // 
+            this.OrderPrintPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.OrderPrintPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.OrderPrintPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
+            this.OrderPrintPreviewDialog.Enabled = true;
+            this.OrderPrintPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("OrderPrintPreviewDialog.Icon")));
+            this.OrderPrintPreviewDialog.Name = "OrderPrintPreviewDialog";
+            this.OrderPrintPreviewDialog.Visible = false;
+            // 
+            // OrderPrintDocument
+            // 
+            this.OrderPrintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.OrderPrintDocument_PrintPage);
             // 
             // ExportBtn
             // 
@@ -824,25 +1188,6 @@
             this.GenerateInvoicePdfBtn.TextPadding = new System.Windows.Forms.Padding(0);
             this.GenerateInvoicePdfBtn.UseDefaultRadiusAndThickness = true;
             this.GenerateInvoicePdfBtn.Click += new System.EventHandler(this.GenerateInvoicePdfBtn_Click);
-            // 
-            // EnglishInvoiceChk
-            // 
-            this.EnglishInvoiceChk.AutoSize = true;
-            this.EnglishInvoiceChk.Location = new System.Drawing.Point(9, 25);
-            this.EnglishInvoiceChk.Name = "EnglishInvoiceChk";
-            this.EnglishInvoiceChk.Size = new System.Drawing.Size(161, 24);
-            this.EnglishInvoiceChk.TabIndex = 10;
-            this.EnglishInvoiceChk.Text = "Invoice In English";
-            this.EnglishInvoiceChk.UseVisualStyleBackColor = true;
-            // 
-            // lblRemainingAmount
-            // 
-            this.lblRemainingAmount.AutoSize = true;
-            this.lblRemainingAmount.Location = new System.Drawing.Point(57, 285);
-            this.lblRemainingAmount.Name = "lblRemainingAmount";
-            this.lblRemainingAmount.Size = new System.Drawing.Size(137, 20);
-            this.lblRemainingAmount.TabIndex = 9;
-            this.lblRemainingAmount.Text = "Remaining: Rs. 0";
             // 
             // ClearCartBtn
             // 
@@ -1204,28 +1549,6 @@
             this.SaveBillBtn.UseDefaultRadiusAndThickness = true;
             this.SaveBillBtn.Click += new System.EventHandler(this.SaveBillBtn_Click);
             // 
-            // BankTransferRaadioBtn
-            // 
-            this.BankTransferRaadioBtn.AutoSize = true;
-            this.BankTransferRaadioBtn.Location = new System.Drawing.Point(140, 172);
-            this.BankTransferRaadioBtn.Name = "BankTransferRaadioBtn";
-            this.BankTransferRaadioBtn.Size = new System.Drawing.Size(136, 24);
-            this.BankTransferRaadioBtn.TabIndex = 0;
-            this.BankTransferRaadioBtn.Text = "Bank Transfer";
-            this.BankTransferRaadioBtn.UseVisualStyleBackColor = true;
-            // 
-            // CashRadioBtn
-            // 
-            this.CashRadioBtn.AutoSize = true;
-            this.CashRadioBtn.Checked = true;
-            this.CashRadioBtn.Location = new System.Drawing.Point(42, 171);
-            this.CashRadioBtn.Name = "CashRadioBtn";
-            this.CashRadioBtn.Size = new System.Drawing.Size(74, 24);
-            this.CashRadioBtn.TabIndex = 0;
-            this.CashRadioBtn.TabStop = true;
-            this.CashRadioBtn.Text = "Cash ";
-            this.CashRadioBtn.UseVisualStyleBackColor = true;
-            // 
             // ReceivedAmountTxt
             // 
             this.ReceivedAmountTxt.AcceptsReturn = false;
@@ -1301,185 +1624,6 @@
             this.ReceivedAmountTxt.WordWrap = true;
             this.ReceivedAmountTxt.TextChange += new System.EventHandler(this.ReceivedAmountTxt_TextChange);
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label7.Location = new System.Drawing.Point(76, 202);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(202, 29);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Received Amount";
-            // 
-            // TotalItemLbl
-            // 
-            this.TotalItemLbl.AutoSize = true;
-            this.TotalItemLbl.Location = new System.Drawing.Point(277, 129);
-            this.TotalItemLbl.Name = "TotalItemLbl";
-            this.TotalItemLbl.Size = new System.Drawing.Size(18, 20);
-            this.TotalItemLbl.TabIndex = 0;
-            this.TotalItemLbl.Text = "0";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label8.Location = new System.Drawing.Point(15, 124);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(153, 32);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Total Items";
-            // 
-            // TotalAmountLbl
-            // 
-            this.TotalAmountLbl.AutoSize = true;
-            this.TotalAmountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalAmountLbl.Location = new System.Drawing.Point(118, 93);
-            this.TotalAmountLbl.Name = "TotalAmountLbl";
-            this.TotalAmountLbl.Size = new System.Drawing.Size(31, 32);
-            this.TotalAmountLbl.TabIndex = 0;
-            this.TotalAmountLbl.Text = "0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label6.Location = new System.Drawing.Point(53, 61);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(176, 32);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Total Amount";
-            // 
-            // ProductListGroup
-            // 
-            this.ProductListGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductListGroup.Controls.Add(this.label9);
-            this.ProductListGroup.Controls.Add(this.SuggestionGrid);
-            this.ProductListGroup.Controls.Add(this.CartProductList);
-            this.ProductListGroup.Location = new System.Drawing.Point(8, 190);
-            this.ProductListGroup.Name = "ProductListGroup";
-            this.ProductListGroup.Size = new System.Drawing.Size(1339, 604);
-            this.ProductListGroup.TabIndex = 2;
-            this.ProductListGroup.TabStop = false;
-            this.ProductListGroup.Text = "Items List";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(144, 11);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(182, 16);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "پہلے ریکارڈ پر جائیں: Ctrl+Q";
-            // 
-            // SuggestionGrid
-            // 
-            this.SuggestionGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.SuggestionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SuggestionGrid.Location = new System.Drawing.Point(22, 0);
-            this.SuggestionGrid.Name = "SuggestionGrid";
-            this.SuggestionGrid.ReadOnly = true;
-            this.SuggestionGrid.RowHeadersWidth = 51;
-            this.SuggestionGrid.RowTemplate.Height = 30;
-            this.SuggestionGrid.Size = new System.Drawing.Size(925, 397);
-            this.SuggestionGrid.TabIndex = 0;
-            this.SuggestionGrid.Visible = false;
-            this.SuggestionGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SuggestionGrid_CellMouseClick);
-            this.SuggestionGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SuggestionGrid_KeyDown);
-            // 
-            // CartProductList
-            // 
-            this.CartProductList.AllowUserToAddRows = false;
-            this.CartProductList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CartProductList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.CartProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CartProductList.Location = new System.Drawing.Point(9, 40);
-            this.CartProductList.Name = "CartProductList";
-            this.CartProductList.RowHeadersWidth = 51;
-            this.CartProductList.RowTemplate.Height = 24;
-            this.CartProductList.Size = new System.Drawing.Size(1315, 558);
-            this.CartProductList.TabIndex = 0;
-            this.CartProductList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CartProductList_CellClick);
-            this.CartProductList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CartProductList_CellEndEdit);
-            this.CartProductList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CartProductList_KeyDown);
-            // 
-            // ProductGroup
-            // 
-            this.ProductGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductGroup.Controls.Add(this.Prod_Qty);
-            this.ProductGroup.Controls.Add(this.InvoiceShopName);
-            this.ProductGroup.Controls.Add(this.OtherProductChk);
-            this.ProductGroup.Controls.Add(this.label5);
-            this.ProductGroup.Controls.Add(this.ProductDetailTxt);
-            this.ProductGroup.Controls.Add(this.AddToCardBtn);
-            this.ProductGroup.Controls.Add(this.label4);
-            this.ProductGroup.Controls.Add(this.ProductAmount);
-            this.ProductGroup.Controls.Add(this.label3);
-            this.ProductGroup.Controls.Add(this.ProductSalePrice);
-            this.ProductGroup.Controls.Add(this.label2);
-            this.ProductGroup.Controls.Add(this.StockQtyLbl);
-            this.ProductGroup.Controls.Add(this.P_typeLbl);
-            this.ProductGroup.Controls.Add(this.productTypeDropdown);
-            this.ProductGroup.Controls.Add(this.P_StockQtyTxt);
-            this.ProductGroup.Controls.Add(this.ProductEngNameTxt);
-            this.ProductGroup.Location = new System.Drawing.Point(8, 85);
-            this.ProductGroup.Name = "ProductGroup";
-            this.ProductGroup.Size = new System.Drawing.Size(1334, 99);
-            this.ProductGroup.TabIndex = 0;
-            this.ProductGroup.TabStop = false;
-            this.ProductGroup.Text = "Product Section";
-            // 
-            // Prod_Qty
-            // 
-            this.Prod_Qty.Location = new System.Drawing.Point(1253, 48);
-            this.Prod_Qty.Name = "Prod_Qty";
-            this.Prod_Qty.Size = new System.Drawing.Size(19, 22);
-            this.Prod_Qty.TabIndex = 8;
-            this.Prod_Qty.Visible = false;
-            // 
-            // InvoiceShopName
-            // 
-            this.InvoiceShopName.AutoSize = true;
-            this.InvoiceShopName.Checked = true;
-            this.InvoiceShopName.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.InvoiceShopName.Location = new System.Drawing.Point(1104, 17);
-            this.InvoiceShopName.Name = "InvoiceShopName";
-            this.InvoiceShopName.Size = new System.Drawing.Size(184, 20);
-            this.InvoiceShopName.TabIndex = 0;
-            this.InvoiceShopName.Text = "Hide Shop Name in Invice";
-            this.InvoiceShopName.UseVisualStyleBackColor = true;
-            this.InvoiceShopName.CheckedChanged += new System.EventHandler(this.InvoiceShopName_CheckedChanged);
-            // 
-            // OtherProductChk
-            // 
-            this.OtherProductChk.AutoSize = true;
-            this.OtherProductChk.Location = new System.Drawing.Point(157, 23);
-            this.OtherProductChk.Name = "OtherProductChk";
-            this.OtherProductChk.Size = new System.Drawing.Size(117, 20);
-            this.OtherProductChk.TabIndex = 0;
-            this.OtherProductChk.TabStop = false;
-            this.OtherProductChk.Text = "Other Procduct";
-            this.OtherProductChk.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(353, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(105, 16);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Product Detail";
-            // 
             // ProductDetailTxt
             // 
             this.ProductDetailTxt.AcceptsReturn = false;
@@ -1554,30 +1698,6 @@
             this.ProductDetailTxt.UseSystemPasswordChar = false;
             this.ProductDetailTxt.WordWrap = true;
             // 
-            // AddToCardBtn
-            // 
-            this.AddToCardBtn.BackColor = System.Drawing.Color.SlateBlue;
-            this.AddToCardBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddToCardBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddToCardBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.AddToCardBtn.Location = new System.Drawing.Point(1076, 39);
-            this.AddToCardBtn.Name = "AddToCardBtn";
-            this.AddToCardBtn.Size = new System.Drawing.Size(154, 50);
-            this.AddToCardBtn.TabIndex = 7;
-            this.AddToCardBtn.Text = "Add To Cart";
-            this.AddToCardBtn.UseVisualStyleBackColor = false;
-            this.AddToCardBtn.Click += new System.EventHandler(this.AddToCardBtn_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(959, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 16);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Amount";
-            // 
             // ProductAmount
             // 
             this.ProductAmount.AcceptsReturn = false;
@@ -1651,16 +1771,6 @@
             this.ProductAmount.TextPlaceholder = "Amount";
             this.ProductAmount.UseSystemPasswordChar = false;
             this.ProductAmount.WordWrap = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(799, 25);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 16);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Rate";
             // 
             // ProductSalePrice
             // 
@@ -1738,93 +1848,6 @@
             this.ProductSalePrice.TextChange += new System.EventHandler(this.ProductSalePrice_TextChange);
             this.ProductSalePrice.Enter += new System.EventHandler(this.ProductSalePrice_Enter);
             this.ProductSalePrice.Leave += new System.EventHandler(this.ProductSalePrice_Leave);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 16);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Product Name";
-            // 
-            // StockQtyLbl
-            // 
-            this.StockQtyLbl.AutoSize = true;
-            this.StockQtyLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StockQtyLbl.Location = new System.Drawing.Point(603, 27);
-            this.StockQtyLbl.Name = "StockQtyLbl";
-            this.StockQtyLbl.Size = new System.Drawing.Size(30, 16);
-            this.StockQtyLbl.TabIndex = 0;
-            this.StockQtyLbl.Text = "Qty";
-            // 
-            // P_typeLbl
-            // 
-            this.P_typeLbl.AutoSize = true;
-            this.P_typeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.P_typeLbl.Location = new System.Drawing.Point(694, 27);
-            this.P_typeLbl.Name = "P_typeLbl";
-            this.P_typeLbl.Size = new System.Drawing.Size(43, 16);
-            this.P_typeLbl.TabIndex = 0;
-            this.P_typeLbl.Text = "Type";
-            // 
-            // productTypeDropdown
-            // 
-            this.productTypeDropdown.BackColor = System.Drawing.Color.Transparent;
-            this.productTypeDropdown.BackgroundColor = System.Drawing.Color.White;
-            this.productTypeDropdown.BorderColor = System.Drawing.Color.Silver;
-            this.productTypeDropdown.BorderRadius = 1;
-            this.productTypeDropdown.Color = System.Drawing.Color.Silver;
-            this.productTypeDropdown.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
-            this.productTypeDropdown.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.productTypeDropdown.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.productTypeDropdown.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.productTypeDropdown.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.productTypeDropdown.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
-            this.productTypeDropdown.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.productTypeDropdown.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
-            this.productTypeDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.productTypeDropdown.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
-            this.productTypeDropdown.FillDropDown = true;
-            this.productTypeDropdown.FillIndicator = false;
-            this.productTypeDropdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.productTypeDropdown.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.productTypeDropdown.ForeColor = System.Drawing.Color.Black;
-            this.productTypeDropdown.FormattingEnabled = true;
-            this.productTypeDropdown.Icon = null;
-            this.productTypeDropdown.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
-            this.productTypeDropdown.IndicatorColor = System.Drawing.Color.Gray;
-            this.productTypeDropdown.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
-            this.productTypeDropdown.ItemBackColor = System.Drawing.Color.White;
-            this.productTypeDropdown.ItemBorderColor = System.Drawing.Color.White;
-            this.productTypeDropdown.ItemForeColor = System.Drawing.Color.Black;
-            this.productTypeDropdown.ItemHeight = 26;
-            this.productTypeDropdown.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
-            this.productTypeDropdown.ItemHighLightForeColor = System.Drawing.Color.White;
-            this.productTypeDropdown.Items.AddRange(new object[] {
-            "عدد",
-            "ڈبہ",
-            "درجن",
-            "پیکٹ",
-            "بنڈل",
-            "کارٹن",
-            "رول",
-            "ڈبی",
-            "کلو",
-            "گز",
-            "جوڑی",
-            "سابقہ"});
-            this.productTypeDropdown.ItemTopMargin = 3;
-            this.productTypeDropdown.Location = new System.Drawing.Point(693, 48);
-            this.productTypeDropdown.Name = "productTypeDropdown";
-            this.productTypeDropdown.Size = new System.Drawing.Size(96, 32);
-            this.productTypeDropdown.TabIndex = 4;
-            this.productTypeDropdown.Text = null;
-            this.productTypeDropdown.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
-            this.productTypeDropdown.TextLeftMargin = 1;
-            this.productTypeDropdown.Enter += new System.EventHandler(this.productTypeDropdown_Enter);
-            this.productTypeDropdown.Leave += new System.EventHandler(this.productTypeDropdown_Leave);
             // 
             // P_StockQtyTxt
             // 
@@ -1981,66 +2004,6 @@
             this.ProductEngNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ProductEngNameTxt_KeyPress);
             this.ProductEngNameTxt.Enter += new System.EventHandler(this.ProductEngNameTxt_Enter);
             // 
-            // CustomerGroup
-            // 
-            this.CustomerGroup.Controls.Add(this.AddNewCustomerLink);
-            this.CustomerGroup.Controls.Add(this.CustomerIdLbl);
-            this.CustomerGroup.Controls.Add(this.ResetCustomerBtn);
-            this.CustomerGroup.Controls.Add(this.label1);
-            this.CustomerGroup.Controls.Add(this.CustomerNameTxt);
-            this.CustomerGroup.Location = new System.Drawing.Point(8, 6);
-            this.CustomerGroup.Name = "CustomerGroup";
-            this.CustomerGroup.Size = new System.Drawing.Size(932, 73);
-            this.CustomerGroup.TabIndex = 0;
-            this.CustomerGroup.TabStop = false;
-            this.CustomerGroup.Text = "Customer Secion";
-            // 
-            // AddNewCustomerLink
-            // 
-            this.AddNewCustomerLink.AutoSize = true;
-            this.AddNewCustomerLink.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddNewCustomerLink.Location = new System.Drawing.Point(806, 8);
-            this.AddNewCustomerLink.Name = "AddNewCustomerLink";
-            this.AddNewCustomerLink.Size = new System.Drawing.Size(122, 16);
-            this.AddNewCustomerLink.TabIndex = 5;
-            this.AddNewCustomerLink.TabStop = true;
-            this.AddNewCustomerLink.Text = "Add New Customer";
-            this.AddNewCustomerLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddNewCustomerLink_LinkClicked);
-            // 
-            // CustomerIdLbl
-            // 
-            this.CustomerIdLbl.AutoSize = true;
-            this.CustomerIdLbl.Location = new System.Drawing.Point(6, 46);
-            this.CustomerIdLbl.Name = "CustomerIdLbl";
-            this.CustomerIdLbl.Size = new System.Drawing.Size(77, 16);
-            this.CustomerIdLbl.TabIndex = 0;
-            this.CustomerIdLbl.Text = "CustomerID";
-            this.CustomerIdLbl.Visible = false;
-            // 
-            // ResetCustomerBtn
-            // 
-            this.ResetCustomerBtn.BackColor = System.Drawing.Color.Red;
-            this.ResetCustomerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ResetCustomerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetCustomerBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ResetCustomerBtn.Location = new System.Drawing.Point(799, 25);
-            this.ResetCustomerBtn.Name = "ResetCustomerBtn";
-            this.ResetCustomerBtn.Size = new System.Drawing.Size(124, 39);
-            this.ResetCustomerBtn.TabIndex = 0;
-            this.ResetCustomerBtn.Text = "Customer Delete";
-            this.ResetCustomerBtn.UseVisualStyleBackColor = false;
-            this.ResetCustomerBtn.Visible = false;
-            this.ResetCustomerBtn.Click += new System.EventHandler(this.ResetCustomerBtn_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Customer Name";
-            // 
             // CustomerNameTxt
             // 
             this.CustomerNameTxt.AcceptsReturn = false;
@@ -2118,31 +2081,6 @@
             this.CustomerNameTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerNameTxt_KeyDown);
             this.CustomerNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CustomerNameTxt_KeyPress);
             this.CustomerNameTxt.Enter += new System.EventHandler(this.CustomerNameTxt_Enter);
-            // 
-            // ImpoertOrderFileTab
-            // 
-            this.ImpoertOrderFileTab.Controls.Add(this.LoadOrderExcelFileGroup);
-            this.ImpoertOrderFileTab.Location = new System.Drawing.Point(4, 25);
-            this.ImpoertOrderFileTab.Name = "ImpoertOrderFileTab";
-            this.ImpoertOrderFileTab.Size = new System.Drawing.Size(1768, 802);
-            this.ImpoertOrderFileTab.TabIndex = 3;
-            this.ImpoertOrderFileTab.Text = "Impoert Order File ";
-            this.ImpoertOrderFileTab.UseVisualStyleBackColor = true;
-            // 
-            // LoadOrderExcelFileGroup
-            // 
-            this.LoadOrderExcelFileGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LoadOrderExcelFileGroup.Controls.Add(this.LoadOrderExcelFileBtn);
-            this.LoadOrderExcelFileGroup.Controls.Add(this.ImportUpdatedFilePathTxt);
-            this.LoadOrderExcelFileGroup.Controls.Add(this.BrowsOrderExcelFile);
-            this.LoadOrderExcelFileGroup.Controls.Add(this.label11);
-            this.LoadOrderExcelFileGroup.Location = new System.Drawing.Point(17, 22);
-            this.LoadOrderExcelFileGroup.Name = "LoadOrderExcelFileGroup";
-            this.LoadOrderExcelFileGroup.Size = new System.Drawing.Size(1273, 95);
-            this.LoadOrderExcelFileGroup.TabIndex = 3;
-            this.LoadOrderExcelFileGroup.TabStop = false;
-            this.LoadOrderExcelFileGroup.Text = "Import Excel";
             // 
             // LoadOrderExcelFileBtn
             // 
@@ -2257,27 +2195,6 @@
             this.BrowsOrderExcelFile.UseVisualStyleBackColor = false;
             this.BrowsOrderExcelFile.Click += new System.EventHandler(this.BrowsOrderExcelFile_Click);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 20);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(288, 16);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Brows Order Excel file to Load the data into Grid";
-            // 
-            // TruncateTableTab
-            // 
-            this.TruncateTableTab.Controls.Add(this.ClearTempOrderTabls);
-            this.TruncateTableTab.Controls.Add(this.ClearProductTblBtn);
-            this.TruncateTableTab.Controls.Add(this.TruncateOrder_OrderDetailBtn);
-            this.TruncateTableTab.Location = new System.Drawing.Point(4, 25);
-            this.TruncateTableTab.Name = "TruncateTableTab";
-            this.TruncateTableTab.Size = new System.Drawing.Size(1768, 802);
-            this.TruncateTableTab.TabIndex = 2;
-            this.TruncateTableTab.Text = "Truncate Table ";
-            this.TruncateTableTab.UseVisualStyleBackColor = true;
-            // 
             // ClearTempOrderTabls
             // 
             this.ClearTempOrderTabls.AllowAnimations = true;
@@ -2367,18 +2284,6 @@
             this.ClearTempOrderTabls.TextPadding = new System.Windows.Forms.Padding(0);
             this.ClearTempOrderTabls.UseDefaultRadiusAndThickness = true;
             this.ClearTempOrderTabls.Click += new System.EventHandler(this.ClearTempOrderTabls_Click);
-            // 
-            // ClearProductTblBtn
-            // 
-            this.ClearProductTblBtn.BackColor = System.Drawing.Color.DarkKhaki;
-            this.ClearProductTblBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ClearProductTblBtn.Location = new System.Drawing.Point(378, 55);
-            this.ClearProductTblBtn.Name = "ClearProductTblBtn";
-            this.ClearProductTblBtn.Size = new System.Drawing.Size(364, 61);
-            this.ClearProductTblBtn.TabIndex = 1;
-            this.ClearProductTblBtn.Text = "Clear Product Table";
-            this.ClearProductTblBtn.UseVisualStyleBackColor = false;
-            this.ClearProductTblBtn.Click += new System.EventHandler(this.ClearProductTblBtn_Click);
             // 
             // TruncateOrder_OrderDetailBtn
             // 
@@ -2470,19 +2375,115 @@
             this.TruncateOrder_OrderDetailBtn.UseDefaultRadiusAndThickness = true;
             this.TruncateOrder_OrderDetailBtn.Click += new System.EventHandler(this.TruncateOrder_OrderDetailBtn_Click);
             // 
-            // OrderPrintPreviewDialog
+            // TopBarSearchProductTxt
             // 
-            this.OrderPrintPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.OrderPrintPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.OrderPrintPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
-            this.OrderPrintPreviewDialog.Enabled = true;
-            this.OrderPrintPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("OrderPrintPreviewDialog.Icon")));
-            this.OrderPrintPreviewDialog.Name = "OrderPrintPreviewDialog";
-            this.OrderPrintPreviewDialog.Visible = false;
+            this.TopBarSearchProductTxt.AcceptsReturn = false;
+            this.TopBarSearchProductTxt.AcceptsTab = false;
+            this.TopBarSearchProductTxt.AnimationSpeed = 200;
+            this.TopBarSearchProductTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.TopBarSearchProductTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.TopBarSearchProductTxt.BackColor = System.Drawing.Color.Transparent;
+            this.TopBarSearchProductTxt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TopBarSearchProductTxt.BackgroundImage")));
+            this.TopBarSearchProductTxt.BorderColorActive = System.Drawing.Color.DodgerBlue;
+            this.TopBarSearchProductTxt.BorderColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.TopBarSearchProductTxt.BorderColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.TopBarSearchProductTxt.BorderColorIdle = System.Drawing.Color.Silver;
+            this.TopBarSearchProductTxt.BorderRadius = 1;
+            this.TopBarSearchProductTxt.BorderThickness = 1;
+            this.TopBarSearchProductTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.TopBarSearchProductTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TopBarSearchProductTxt.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
+            this.TopBarSearchProductTxt.DefaultText = "";
+            this.TopBarSearchProductTxt.FillColor = System.Drawing.Color.White;
+            this.TopBarSearchProductTxt.HideSelection = true;
+            this.TopBarSearchProductTxt.IconLeft = null;
+            this.TopBarSearchProductTxt.IconLeftCursor = System.Windows.Forms.Cursors.IBeam;
+            this.TopBarSearchProductTxt.IconPadding = 10;
+            this.TopBarSearchProductTxt.IconRight = null;
+            this.TopBarSearchProductTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
+            this.TopBarSearchProductTxt.Lines = new string[0];
+            this.TopBarSearchProductTxt.Location = new System.Drawing.Point(80, 3);
+            this.TopBarSearchProductTxt.MaxLength = 32767;
+            this.TopBarSearchProductTxt.MinimumSize = new System.Drawing.Size(1, 1);
+            this.TopBarSearchProductTxt.Modified = false;
+            this.TopBarSearchProductTxt.Multiline = false;
+            this.TopBarSearchProductTxt.Name = "TopBarSearchProductTxt";
+            stateProperties1.BorderColor = System.Drawing.Color.DodgerBlue;
+            stateProperties1.FillColor = System.Drawing.Color.Empty;
+            stateProperties1.ForeColor = System.Drawing.Color.Empty;
+            stateProperties1.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.TopBarSearchProductTxt.OnActiveState = stateProperties1;
+            stateProperties2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            stateProperties2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            stateProperties2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            stateProperties2.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.TopBarSearchProductTxt.OnDisabledState = stateProperties2;
+            stateProperties3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            stateProperties3.FillColor = System.Drawing.Color.Empty;
+            stateProperties3.ForeColor = System.Drawing.Color.Empty;
+            stateProperties3.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.TopBarSearchProductTxt.OnHoverState = stateProperties3;
+            stateProperties4.BorderColor = System.Drawing.Color.Silver;
+            stateProperties4.FillColor = System.Drawing.Color.White;
+            stateProperties4.ForeColor = System.Drawing.Color.Empty;
+            stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.TopBarSearchProductTxt.OnIdleState = stateProperties4;
+            this.TopBarSearchProductTxt.Padding = new System.Windows.Forms.Padding(3);
+            this.TopBarSearchProductTxt.PasswordChar = '\0';
+            this.TopBarSearchProductTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.TopBarSearchProductTxt.PlaceholderText = "Search......";
+            this.TopBarSearchProductTxt.ReadOnly = false;
+            this.TopBarSearchProductTxt.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TopBarSearchProductTxt.SelectedText = "";
+            this.TopBarSearchProductTxt.SelectionLength = 0;
+            this.TopBarSearchProductTxt.SelectionStart = 0;
+            this.TopBarSearchProductTxt.ShortcutsEnabled = true;
+            this.TopBarSearchProductTxt.Size = new System.Drawing.Size(307, 38);
+            this.TopBarSearchProductTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
+            this.TopBarSearchProductTxt.TabIndex = 0;
+            this.TopBarSearchProductTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.TopBarSearchProductTxt.TextMarginBottom = 0;
+            this.TopBarSearchProductTxt.TextMarginLeft = 3;
+            this.TopBarSearchProductTxt.TextMarginTop = 0;
+            this.TopBarSearchProductTxt.TextPlaceholder = "Search......";
+            this.TopBarSearchProductTxt.UseSystemPasswordChar = false;
+            this.TopBarSearchProductTxt.WordWrap = true;
+            this.TopBarSearchProductTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TopBarSearchProductTxt_KeyPress);
             // 
-            // OrderPrintDocument
+            // BackScreenBtn
             // 
-            this.OrderPrintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.OrderPrintDocument_PrintPage);
+            this.BackScreenBtn.ActiveImage = null;
+            this.BackScreenBtn.AllowAnimations = true;
+            this.BackScreenBtn.AllowBuffering = false;
+            this.BackScreenBtn.AllowToggling = false;
+            this.BackScreenBtn.AllowZooming = true;
+            this.BackScreenBtn.AllowZoomingOnFocus = false;
+            this.BackScreenBtn.BackColor = System.Drawing.Color.Transparent;
+            this.BackScreenBtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.BackScreenBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BackScreenBtn.ErrorImage")));
+            this.BackScreenBtn.FadeWhenInactive = false;
+            this.BackScreenBtn.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
+            this.BackScreenBtn.Image = global::POS_Shop.Properties.Resources.iconPrev;
+            this.BackScreenBtn.ImageActive = null;
+            this.BackScreenBtn.ImageLocation = null;
+            this.BackScreenBtn.ImageMargin = 0;
+            this.BackScreenBtn.ImageSize = new System.Drawing.Size(43, 36);
+            this.BackScreenBtn.ImageZoomSize = new System.Drawing.Size(44, 37);
+            this.BackScreenBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("BackScreenBtn.InitialImage")));
+            this.BackScreenBtn.Location = new System.Drawing.Point(5, 5);
+            this.BackScreenBtn.Name = "BackScreenBtn";
+            this.BackScreenBtn.Rotation = 0;
+            this.BackScreenBtn.ShowActiveImage = true;
+            this.BackScreenBtn.ShowCursorChanges = true;
+            this.BackScreenBtn.ShowImageBorders = true;
+            this.BackScreenBtn.ShowSizeMarkers = false;
+            this.BackScreenBtn.Size = new System.Drawing.Size(44, 37);
+            this.BackScreenBtn.TabIndex = 1;
+            this.BackScreenBtn.ToolTipText = "";
+            this.BackScreenBtn.WaitOnLoad = false;
+            this.BackScreenBtn.Zoom = 0;
+            this.BackScreenBtn.ZoomSpeed = 10;
+            this.BackScreenBtn.Click += new System.EventHandler(this.BackScreenBtn_Click);
             // 
             // BillPadForm
             // 

@@ -55,13 +55,12 @@ namespace POS_Shop.Views.BillScreen
                 //dt.Columns.Add("P-Price", typeof(string));
               
                 //dt.Columns.Add("C-p", typeof(int));
-                dt.Columns.Add("Type", typeof(string));
                 dt.Columns.Add("S-P", typeof(string));
              
 
                 foreach (var item in result.data)
                 {
-                    dt.Rows.Add(item.Id, item.ProductEnglishName, item.ProductUrduName, item.ProductType, item.SalePrice);
+                    dt.Rows.Add(item.Id, item.ProductEnglishName, item.ProductUrduName, item.SalePrice);
                 }
 
                 ProductListGrid.ReadOnly = true;
