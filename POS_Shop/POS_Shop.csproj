@@ -242,6 +242,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\POSConstants.cs" />
     <Compile Include="DTOs\City\CitiesListForDataGrifDto.cs" />
     <Compile Include="DTOs\Country\CountryListForDataGirdDto.cs" />
     <Compile Include="DTOs\Order\OrderDto.cs" />
@@ -251,6 +252,7 @@
     <Compile Include="DTOs\Product\ProductSalesData.cs" />
     <Compile Include="DTOs\Product\ProductSuggestion.cs" />
     <Compile Include="Helpers\ConversionHelper.cs" />
+    <Compile Include="Helpers\DAL\DatabaseHelper.cs" />
     <Compile Include="Helpers\DatabasePathManager.cs" />
     <Compile Include="Helpers\InvoicePDFGenerator.cs" />
     <Compile Include="Helpers\ISectionAware.cs" />
@@ -312,6 +314,14 @@
     <Compile Include="Migrations\202601181805560_ProductUniTableAdded.Designer.cs">
       <DependentUpon>202601181805560_ProductUniTableAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202601251605004_Update_Prod_Tbl_addedProdPrice.cs" />
+    <Compile Include="Migrations\202601251605004_Update_Prod_Tbl_addedProdPrice.Designer.cs">
+      <DependentUpon>202601251605004_Update_Prod_Tbl_addedProdPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601281948234_RemoveProdType_colmn.cs" />
+    <Compile Include="Migrations\202601281948234_RemoveProdType_colmn.Designer.cs">
+      <DependentUpon>202601281948234_RemoveProdType_colmn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\AuthModel\AuthUser.cs" />
@@ -327,6 +337,7 @@
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\POSDbContext.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductPrice.cs" />
     <Compile Include="Models\ProductUnit.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\TempOrder.cs" />
@@ -437,6 +448,18 @@
     <Compile Include="Views\Controllers\Order\TempOrderControl.Designer.cs">
       <DependentUpon>TempOrderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\Product\EditProdPricesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Product\EditProdPricesForm.Designer.cs">
+      <DependentUpon>EditProdPricesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Product\NewProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Product\NewProductForm.Designer.cs">
+      <DependentUpon>NewProductForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controllers\Product\ProductListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -506,12 +529,6 @@
     <Compile Include="Views\Loader\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controllers\Product\ProductFromControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\Controllers\Product\ProductFromControl.Designer.cs">
-      <DependentUpon>ProductFromControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Reports\ProductSalesTrendForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -556,6 +573,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202601181805560_ProductUniTableAdded.resx">
       <DependentUpon>202601181805560_ProductUniTableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601251605004_Update_Prod_Tbl_addedProdPrice.resx">
+      <DependentUpon>202601251605004_Update_Prod_Tbl_addedProdPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601281948234_RemoveProdType_colmn.resx">
+      <DependentUpon>202601281948234_RemoveProdType_colmn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -607,8 +630,8 @@
     <EmbeddedResource Include="Views\Controllers\Order\TempOrderControl.resx">
       <DependentUpon>TempOrderControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controllers\Product\ProductFromControl.resx">
-      <DependentUpon>ProductFromControl.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Controllers\Product\NewProductForm.resx">
+      <DependentUpon>NewProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Product\ProductListControl.resx">
       <DependentUpon>ProductListControl.cs</DependentUpon>

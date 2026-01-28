@@ -72,7 +72,6 @@ namespace POS_Shop.Views.Controllers.Product
                 dt.Columns.Add("UName", typeof(string));
                 dt.Columns.Add("SearchBy", typeof(string));
                 dt.Columns.Add("Qty", typeof(int));
-                dt.Columns.Add("Type", typeof(string));
                 dt.Columns.Add("Cost", typeof(int));
                 dt.Columns.Add("Purchase-Price", typeof(string));
                 dt.Columns.Add("SalePrice", typeof(string));
@@ -82,7 +81,7 @@ namespace POS_Shop.Views.Controllers.Product
                     // Check if this product is in our selected list
                     bool isSelected = selectedProductIds.Contains(item.Id);
                     dt.Rows.Add(isSelected, item.Id, item.ProductEnglishName, TextFormatHelper.FormatMixedText(item.ProductUrduName), item.SearchByProductCode, item.Qty,
-                            item.ProductType, item.Cost, item.PurchasePrice, item.SalePrice);
+                           item.Cost, item.PurchasePrice, item.SalePrice);
                 }
 
                 ProductListGrid.ReadOnly = false;
@@ -269,12 +268,23 @@ namespace POS_Shop.Views.Controllers.Product
                 //GetAndBindProductForEdit(productId);
 
                 //MessageBox.Show($"Prod ID :{productId} and NAme :{productName} for Edit");
+
+                var form = new NewProductForm(productId);
+                form.ShowDialog();
             }
             else if (e.ColumnIndex == grid.Columns["Delete"].Index)
             {
 
                 DeleteProductById(productId);
 
+            }else
+            {
+                // Select the entire row
+                ProductListGrid.Rows[e.RowIndex].Selected = true;
+                // Optional: Highlight the row
+                ProductListGrid.CurrentCell = ProductListGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                btnManagePrices.Enabled = true;
+                btnDeleteProduct.Enabled = true;
             }
         }
 
@@ -603,7 +613,7 @@ namespace POS_Shop.Views.Controllers.Product
                     exportTable.Columns.Add("ProductName", typeof(string));
                     exportTable.Columns.Add("UrduName", typeof(string));
                     exportTable.Columns.Add("SearchByProductName", typeof(string));
-                    exportTable.Columns.Add("Type", typeof(string));
+                
                     exportTable.Columns.Add("PurchasePrice", typeof(string));
                     exportTable.Columns.Add("SalePrice", typeof(decimal));
                     exportTable.Columns.Add("Cost", typeof(int));
@@ -619,7 +629,6 @@ namespace POS_Shop.Views.Controllers.Product
                             product.ProductEnglishName,
                             product.ProductUrduName,
                             product.SearchByProductCode,
-                            product.ProductType,
                             product.PurchasePrice,
                             product.SalePrice,
                             product.Cost,
@@ -666,6 +675,84 @@ namespace POS_Shop.Views.Controllers.Product
             importExcelForm.Show();
 
             LoadingManager.HideLoading();
+        }
+
+        private async void AddNewProductFormBtn_Click(object sender, EventArgs e)
+        {
+            var form = new NewProductForm();
+            form.ShowDialog();
+
+        }
+
+        private void btnManagePrices_Click(object sender, EventArgs e)
+        {
+
+            // Simple check for any selection
+            if (ProductListGrid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a product first.", "No Selection",
+                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataGridViewRow row = ProductListGrid.SelectedRows[0];
+
+            // Quick validation
+            if (row.Cells["ID"].Value == null ||
+                !int.TryParse(row.Cells["ID"].Value.ToString(), out int productId))
+            {
+                MessageBox.Show("Invalid product selection.", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get product name (adjust column name as needed)
+            string productName = row.Cells["Name"].Value?.ToString();
+
+            //// Open form
+            //using (var priceForm = new NewProductForm(productId))
+            //{
+            //    if (priceForm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        MessageBox.Show("Prices updated successfully!", "Success",
+            //                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
+
+            // Open price management form
+            using (var priceForm = new EditProdPricesForm(productId, productName))
+            {
+                if (priceForm.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Product prices updated successfully!", "Success",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnDeleteProduct_Click(object sender, EventArgs e)
+        {
+
+            // Simple check for any selection
+            if (ProductListGrid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a product first.", "No Selection",
+                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataGridViewRow row = ProductListGrid.SelectedRows[0];
+
+            // Quick validation
+            if (row.Cells["ID"].Value == null ||
+                !int.TryParse(row.Cells["ID"].Value.ToString(), out int productId))
+            {
+                MessageBox.Show("Invalid product selection.", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DeleteProductById(productId);
+
         }
     }
 }

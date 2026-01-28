@@ -1,5 +1,6 @@
 ﻿using ClosedXML.Excel;
 using ExcelDataReader;
+using POS_Shop.Constants;
 using POS_Shop.DTOs.Order;
 using POS_Shop.DTOs.Product;
 using POS_Shop.Helpers;
@@ -61,31 +62,26 @@ namespace POS_Shop.Views.BillScreen
                 // InvoicePageTabControl.TabPages.Remove(ImpoertOrderFileTab);
             }
 
-            using(var context =new POSDbContext())
+            using (var context = new POSDbContext())
             {
-                var productUnitRepo= new ProductUnitRepository(context);
+                var productUnitRepo = new ProductUnitRepository(context);
 
-                
+
                 var productUnit = productUnitRepo.GetAll().Select(s => new ProductUnit()
                 {
-                    Id=s.Id,
-                    Name= s.Name,
+                    Id = s.Id,
+                    Name = s.Name,
 
                 }).ToList();
                 productTypeDropdown.Items.Clear();
 
                 // Add default option
                 var allItems = new List<ProductUnit>();
-                allItems.Add(new ProductUnit { Id = 0, Name = "" });
+                //allItems.Add(new ProductUnit { Id = 0, Name = "" });
                 allItems.AddRange(productUnit);
                 productTypeDropdown.DataSource = allItems;
                 productTypeDropdown.DisplayMember = "Name";
                 productTypeDropdown.ValueMember = "Name";
-
-
-                //productTypeDropdown.DataSource = productUnit;
-                //productTypeDropdown.DisplayMember = "Name";
-                //productTypeDropdown.ValueMember = "Id";
             }
 
         }
@@ -543,6 +539,7 @@ namespace POS_Shop.Views.BillScreen
         }
 
         private async void ShowSuggestions(string searchText, bool isForCustomer = false)
+        
         {
             try
             {
@@ -583,13 +580,13 @@ namespace POS_Shop.Views.BillScreen
                     dt.Columns.Add("Code", typeof(string));
                     dt.Columns.Add("Name", typeof(string));
                     dt.Columns.Add("U-Name", typeof(string));
-                    dt.Columns.Add("Type", typeof(string));
+                   // dt.Columns.Add("Type", typeof(string));
                     dt.Columns.Add("Qty", typeof(int));
                     dt.Columns.Add("Sale-P", typeof(string));
 
                     foreach (var item in suggestions)
                     {
-                        dt.Rows.Add(item.ProductId, item.purchasePrice, item.ProductName, TextFormatHelper.FormatMixedText(item.ProductUrduName), item.ProductType,item.Qty, item.Price);
+                        dt.Rows.Add(item.ProductId, item.purchasePrice, item.ProductName, TextFormatHelper.FormatMixedText(item.ProductUrduName), item.Qty, item.Price);
                     }
 
                     SuggestionGrid.ReadOnly = true;
@@ -598,10 +595,10 @@ namespace POS_Shop.Views.BillScreen
 
                     SuggestionGrid.Columns[0].Width = 40;
                     SuggestionGrid.Columns[1].Width = 50;
-                    SuggestionGrid.Columns[2].Width = 190;
-                    SuggestionGrid.Columns[3].Width = 190;
-                    SuggestionGrid.Columns[4].Width = 40;
-                    SuggestionGrid.Columns[5].Width = 65;
+                    SuggestionGrid.Columns[2].Width = 200;
+                    SuggestionGrid.Columns[3].Width = 200;
+                  //  SuggestionGrid.Columns[4].Width = 40;
+                    SuggestionGrid.Columns[5].Width = 75;
                     SuggestionGrid.Visible = true;
                     SuggestionGrid.BringToFront();
                 }
@@ -713,7 +710,6 @@ namespace POS_Shop.Views.BillScreen
                     Id AS ProductId,
                     ProductEnglishName AS ProductName,
                     ProductUrduName,
-                    ProductType,
                     Qty,
                     ISNULL(SalePrice, 0) AS Price,
                     PurchasePrice
@@ -731,7 +727,6 @@ namespace POS_Shop.Views.BillScreen
                                         p.Id AS ProductId,
                                         p.ProductEnglishName AS ProductName,
                                         p.ProductUrduName,
-                                        p.ProductType,
                                         p.Qty,
                                         ISNULL(p.SalePrice, 0) AS Price,
                                         p.PurchasePrice
@@ -775,7 +770,6 @@ namespace POS_Shop.Views.BillScreen
                                 p.Id AS ProductId,
                                 p.ProductEnglishName AS ProductName,
                                 p.ProductUrduName,
-                                p.ProductType,
                                 p.Qty,      
                                 ISNULL(p.SalePrice, 0) AS Price,
                                 p.PurchasePrice
@@ -950,7 +944,7 @@ namespace POS_Shop.Views.BillScreen
                 ProductForm.StartPosition = FormStartPosition.CenterScreen;
 
                 // Create an instance of your User Control
-                var FormCtrl = new Views.Product.ProductFromControl();
+                var FormCtrl = new POS_Shop.Views.Controllers.Product.ProductListControl();
                 FormCtrl.Dock = DockStyle.Fill; // Dock it to fill the entire form
 
                 // Add the User Control to the new Form's controls collection
@@ -1364,7 +1358,7 @@ namespace POS_Shop.Views.BillScreen
 
                 // Checking User has Enabled the Stock Qty Update Feature
                 var config = ConfigurationManager.Configuration.Features.EnableUpdateQty;
-                if(config)
+                if (config)
                 {
                     if (!string.IsNullOrEmpty(productIdValue))
                     {
@@ -1380,7 +1374,7 @@ namespace POS_Shop.Views.BillScreen
 
                     }
                 }
-               
+
                 var odrDetail = new OrderDetail
                 {
                     ProductId = string.IsNullOrEmpty(productIdValue) ? (int?)null : int.Parse(productIdValue),
@@ -1395,8 +1389,8 @@ namespace POS_Shop.Views.BillScreen
                 orderDetailList.Add(odrDetail);
 
                 // Checking User has Enabled the Stock Qty Update Feature
-              
-                if(config)
+
+                if (config)
                 {
                     if (!string.IsNullOrEmpty(productIdValue))
                     {
@@ -1552,7 +1546,7 @@ namespace POS_Shop.Views.BillScreen
                       totalAmount: TotalAmountLbl.Text,
                       isCashPayment: CashRadioBtn.Checked,
                       receivedAmount: ReceivedAmountTxt.Text
-                      //hideShopName: InvoiceShopName.Checked
+                  //hideShopName: InvoiceShopName.Checked
                   );
             else
                 InvoicePrintHelper.PrintInvoice(
@@ -1563,7 +1557,7 @@ namespace POS_Shop.Views.BillScreen
                       totalAmount: TotalAmountLbl.Text,
                       isCashPayment: CashRadioBtn.Checked,
                       receivedAmount: ReceivedAmountTxt.Text
-                     // hideShopName: InvoiceShopName.Checked
+                  // hideShopName: InvoiceShopName.Checked
                   );
         }
 
@@ -1624,7 +1618,7 @@ namespace POS_Shop.Views.BillScreen
             {
                 GenerateInvoicePdfBtn.PerformClick();
             }
-            else if (e.KeyCode == Keys.Q && e.Control)  
+            else if (e.KeyCode == Keys.Q && e.Control)
             {
                 e.Handled = true;
                 GotoFirstRow();
@@ -1704,17 +1698,17 @@ namespace POS_Shop.Views.BillScreen
                         pId = Convert.ToInt32(foundRow.Cells[0].Value);
                         ProductEngNameTxt.Text = (string)foundRow.Cells[2].Value;
                         prod_U_Name = (string)foundRow.Cells[3].Value;
-                        productTypeDropdown.SelectedItem = foundRow.Cells[4].Value == null
-                                    || foundRow.Cells[4].Value == DBNull.Value
-                                    ? "ڈبہ"
-                                    : foundRow.Cells[4].Value.ToString();
+                        //productTypeDropdown.SelectedValue = foundRow.Cells[4].Value == null
+                        //            || foundRow.Cells[4].Value == DBNull.Value
+                        //            ? POSConstants.DefaultproductTypeDropdownValue
+                        //            : foundRow.Cells[4].Value.ToString();
 
-                        Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[5].Value.ToString();
+                        Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
 
-                        ProductSalePrice.Text = foundRow.Cells[6].Value == null
-                            || foundRow.Cells[6].Value == DBNull.Value
+                        ProductSalePrice.Text = foundRow.Cells[5].Value == null
+                            || foundRow.Cells[5].Value == DBNull.Value
                             ? string.Empty
-                            : foundRow.Cells[6].Value.ToString();
+                            : foundRow.Cells[5].Value.ToString();
                         PId = pId.ToString();
                         P_StockQtyTxt.Text = "1";
                         SuggestionGrid.Visible = false;
@@ -1738,23 +1732,23 @@ namespace POS_Shop.Views.BillScreen
             if (SuggestionGrid.Rows.Count > 0)
             {
                 int pId = Convert.ToInt32(SuggestionGrid.CurrentRow.Cells[0].Value);
-                
+
                 ProductEngNameTxt.Text = (string)SuggestionGrid.CurrentRow.Cells[2].Value;
-                
+
                 prod_U_Name = (string)SuggestionGrid.CurrentRow.Cells[3].Value;
-                
-                productTypeDropdown.SelectedItem = SuggestionGrid.CurrentRow.Cells[4].Value == null
-                            || SuggestionGrid.CurrentRow.Cells[4].Value == DBNull.Value
-                            ? "ڈبہ"
-                            : SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
 
-                Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[5].Value.ToString();
+                //productTypeDropdown.SelectedValue = SuggestionGrid.CurrentRow.Cells[4].Value == null
+                //            || SuggestionGrid.CurrentRow.Cells[4].Value == DBNull.Value
+                //            ? POSConstants.DefaultproductTypeDropdownValue
+                //            : SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
 
-                ProductSalePrice.Text = SuggestionGrid.CurrentRow.Cells[6].Value == null
-                    || SuggestionGrid.CurrentRow.Cells[6].Value == DBNull.Value
+                Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
+
+                ProductSalePrice.Text = SuggestionGrid.CurrentRow.Cells[5].Value == null
+                    || SuggestionGrid.CurrentRow.Cells[5].Value == DBNull.Value
                     ? string.Empty
-                    : SuggestionGrid.CurrentRow.Cells[6].Value.ToString();
-               
+                    : SuggestionGrid.CurrentRow.Cells[5].Value.ToString();
+
                 PId = pId.ToString();
 
                 P_StockQtyTxt.Text = "1";
@@ -2407,5 +2401,33 @@ namespace POS_Shop.Views.BillScreen
             InvoicePageTabControl.SelectedTab = BilPad;
         }
 
+
+        // Updates product price when product type is selected from dropdown
+        private void productTypeDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var i = PId;
+            // Check if SelectedValue is null or the default option
+            if (productTypeDropdown.SelectedItem == null || string.IsNullOrEmpty(productTypeDropdown.SelectedValue?.ToString()))
+                return;
+
+            // Get the selected ID as integer
+            string selectedValue = Convert.ToString(productTypeDropdown.SelectedValue);
+            if (!string.IsNullOrEmpty(PId))
+            {
+                int pid = Convert.ToInt32(PId);
+                using (var context = new POSDbContext())
+                {
+                    var price = context.ProductPrices
+                  .FirstOrDefault(s => s.ProductId == pid && s.TypeName == selectedValue)
+                  ?.Price ?? 0;
+
+                    ProductSalePrice.Text = $"{price:0}";
+                }
+            }
+            else
+            {
+                ProductSalePrice.Text = "0";
+            }
+        }
     }
 }

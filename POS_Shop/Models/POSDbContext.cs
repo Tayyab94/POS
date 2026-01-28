@@ -106,7 +106,7 @@ namespace POS_Shop.Models
 
         public DbSet<AuthUser> Users { get; set; }
         public DbSet<ProductUnit> ProductUnits { get; set; }
-
+        public DbSet<ProductPrice> ProductPrices { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 

@@ -16,7 +16,6 @@ namespace POS_Shop.Models
         [StringLength(50, ErrorMessage = "Urdu Name cannot exceed 50 characters")]
         public string ProductUrduName { get; set; }
 
-        public string ProductType { get; set; }
         public string PurchasePrice { get; set; }
         public int? SalePrice { get; set; }
 
@@ -30,6 +29,7 @@ namespace POS_Shop.Models
         [ForeignKey("SubcategoryId")]
         public virtual SubCategory SubCategory { get; set; }
 
+        public virtual ICollection<ProductPrice> ProductPrices { get; set; }
         public bool IsValid(out List<ValidationResult> results)
         {
             var context = new ValidationContext(this);
