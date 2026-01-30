@@ -139,20 +139,20 @@
   </data>
   <data name="p_costTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAFcAAAApCAYAAABA4LXdAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACPSURBVGhD7dCxCcQwAARB91+VhMr4MlyAjRLD59psFi65
-        cK5LbWut3xjjsTPbnh/uPnSu7Qk3Cm4Y3DC4YXDD4IbBDYMbBjcMbhjcMLhhcMPghsENgxsGNwxuGNww
-        uGFww+CGwQ2DGwY3DG4Y3DC4YXDD4IbBDYMbBjcMbhjcMLhhf7hzznsfdmbb88NV0wtw/ea3DYDROgAA
-        AABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAAJgAAAApCAYAAADJVODxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACfSURBVHhe7dKxCcQwAARB91+VhMr4MlyAjRLD59psBi65
+        eK8Lamut3xjjMTu13dQX2D7gpN2UwMgIjJTASAmMlMBICYyUwEgJjJTASAmMlMBICYyUwEgJjJTASAmM
+        lMBICYyUwEgJjJTASAmMlMBICYyUwEgJjJTASAmMlMBICYyUwEgJjJTASAmMlMBICYzUX2BzznsfZqe2
+        m/oCg8oLA+j9ao6PFWwAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="P_StockQtyTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAH4AAAApCAYAAADzqJ3HAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACUSURBVHhe7dGxDcMwEARB9V8VCZbhMlyAhU8EuAXtLHDJ
-        pXNd6nbO+ay1fvb+jfUDP4cajTX4YOCjgY8GPhr4aOCjgY8GPhr4aOCjgY8GPhr4aOCjgY8GPhr4aOCj
-        gY8GPhr4aOCjgY8GPhr4aOCjgY8GPhr4aOCjgY8GPhr4aOCjgY8GPtof/N77O4e9f2P9wKvXDe81WsVx
-        /dcNAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAALwAAAApCAYAAACP4kNbAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACkSURBVHhe7dKxCcQwAARB91+VhMr4MlyAjRLDt6CdgUsu
+        3uuCmrXWb4zxmJ263fgX/D7gZLtxwZMheFIET4rgSRE8KYInRfCkCJ4UwZMieFIET4rgSRE8KYInRfCk
+        CJ4UwZMieFIET4rgSRE8KYInRfCkCJ4UwZMieFIET4rgSRE8KYInRfCkCJ4UwZMieFIET4rgSfkLfs55
+        78Ps1O3Gv+Ch4gXyHaOcEMFVVwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="PurchasePriceTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -162,15 +162,6 @@
         5/57HEC31vqMMb5m9tzu445lH8C73YdYIBALRGKBSCwQiQUisUAkFojEApFYIBILRGKBSCwQiQUisUAk
         FojEApFYIBILRGKBSCwQiQUisUAkFojEApFYIBILRGKBSCwQiQUisUAkFojEApFYIBILRGKBSCwQ/cQy
         5zz3YWbP7T7uWID/LizxqNnWKx9DAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="P_SalePriceTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAHQAAAApCAYAAADkig0OAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACUSURBVHhe7dGxCcQwAARB91+VhMr4MlyAjRLDl6BlFi65
-        dK5LvdZavzHGY+duG36g+9DZbUOgoYDGAhoLaCygsYDGAhoLaCygsYDGAhoLaCygsYDGAhoLaCygsYDG
-        AhoLaCygsYDGAhoLaCygsYDGAhoLaCygsYDGAhoLaCygsYDGAhoLaKw/0DnnvQ87d9vwA1WnF31cV0d3
-        Mr3PAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="ProductUrduNameTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

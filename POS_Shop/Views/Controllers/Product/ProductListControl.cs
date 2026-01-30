@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using POS_Shop.DTOs.Product;
 using POS_Shop.Helpers;
 using POS_Shop.Interfaces;
 using POS_Shop.Models;
@@ -74,23 +75,43 @@ namespace POS_Shop.Views.Controllers.Product
                 dt.Columns.Add("Qty", typeof(int));
                 dt.Columns.Add("Cost", typeof(int));
                 dt.Columns.Add("Purchase-Price", typeof(string));
-                dt.Columns.Add("SalePrice", typeof(string));
+              dt.Columns.Add("SalePrice", typeof(string));
 
                 foreach (var item in result.data)
                 {
+                    var price=FormatPricesByType(item.ProductPrices);
                     // Check if this product is in our selected list
                     bool isSelected = selectedProductIds.Contains(item.Id);
-                    dt.Rows.Add(isSelected, item.Id, item.ProductEnglishName, TextFormatHelper.FormatMixedText(item.ProductUrduName), item.SearchByProductCode, item.Qty,
-                           item.Cost, item.PurchasePrice, item.SalePrice);
+                    dt.Rows.Add(isSelected, item.Id, item.Name, TextFormatHelper.FormatMixedText(item.UrduName), item.SearchByName, item.Qty,
+                           item.Cost, item.PurchasePrice, price);
                 }
 
                 ProductListGrid.ReadOnly = false;
                 ProductListGrid.AllowUserToAddRows = false;
                 ProductListGrid.AutoGenerateColumns = false;
                 ProductListGrid.DataSource = dt;
+
+                //ProductListGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                //ProductListGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 ConfigureDataGridView();
                 UpdatePager();
             }
+        }
+
+
+        private string FormatPricesByType(List<ProductPriceDTO> prices)
+        {
+            if (prices == null || !prices.Any())
+                return "N/A";
+
+            var priceList = new List<string>();
+
+            foreach (var price in prices)
+            {
+                priceList.Add($"{price.DisplayText}");
+            }
+
+            return string.Join(Environment.NewLine, priceList);
         }
         private void ConfigureDataGridView()
         {
@@ -149,7 +170,7 @@ namespace POS_Shop.Views.Controllers.Product
                 Name = "Qty",
                 DataPropertyName = "Qty",
                 HeaderText = "Qty",
-                Width = 200,
+                Width = 10,
                 ReadOnly = true
             });
 
@@ -158,7 +179,7 @@ namespace POS_Shop.Views.Controllers.Product
                 Name = "Type",
                 DataPropertyName = "Type",
                 HeaderText = "Type",
-                Width = 70,
+                Width = 10,
                 ReadOnly = true
             });
 
@@ -167,7 +188,7 @@ namespace POS_Shop.Views.Controllers.Product
                 Name = "Cost",
                 DataPropertyName = "Cost",
                 HeaderText = "Cost",
-                Width = 50,
+                Width = 10,
                 ReadOnly = true,
                 DefaultCellStyle = new DataGridViewCellStyle() { Format = "N0" }
             });
@@ -179,7 +200,7 @@ namespace POS_Shop.Views.Controllers.Product
                 Name = "PurchasePrice",
                 DataPropertyName = "Purchase-Price",
                 HeaderText = "Purchase Price",
-                Width = 60,
+                Width = 20,
                 ReadOnly = true,
                 DefaultCellStyle = new DataGridViewCellStyle() { Format = "N2" }
             });
@@ -189,7 +210,7 @@ namespace POS_Shop.Views.Controllers.Product
                 Name = "SalePrice",
                 DataPropertyName = "SalePrice",
                 HeaderText = "Sale Price",
-                Width = 60,
+                Width = 200,
                 ReadOnly = true,
                 DefaultCellStyle = new DataGridViewCellStyle() { Format = "N2" }
             });
@@ -385,7 +406,6 @@ namespace POS_Shop.Views.Controllers.Product
                 {
                     selectedProductIds.Remove(productId);
                 }
-
                 // Update status to show selected count
                 UpdateSelectionStatus();
             }
@@ -432,6 +452,7 @@ namespace POS_Shop.Views.Controllers.Product
         // Method to clear selection
         public async void ClearSelection()
         {
+            CurrentCursor = 0;
             selectedProductIds.Clear();
             // Reload current page to update checkboxes
             await LoadProductsForDataGridView();
@@ -520,38 +541,6 @@ namespace POS_Shop.Views.Controllers.Product
         // Helper method to update all checkboxes based on selectedProductIds
         private void UpdateAllCheckboxes(bool isSelected)
         {
-            // Method 1: Update via DataTable (Recommended)
-            //var dataTable = ProductListGrid.DataSource as DataTable;
-            //if (dataTable != null)
-            //{
-            //    // Update all rows in the DataTable
-            //    foreach (DataRow row in dataTable.Rows)
-            //    {
-            //        int productId = Convert.ToInt32(row["ID"]);
-            //        row["IsSelected"] = isSelected;
-
-            //        // Update the selection list
-            //        if (isSelected && !selectedProductIds.Contains(productId))
-            //        {
-            //            selectedProductIds.Add(productId);
-            //        }
-            //        else if (!isSelected)
-            //        {
-            //            selectedProductIds.Remove(productId);
-            //        }
-            //    }
-
-            //    // Force the DataGridView to refresh
-            //    ProductListGrid.Invalidate();
-            //    ProductListGrid.Refresh();
-
-            //    // Alternatively, rebind the data source
-            //    // ProductListGrid.DataSource = null;
-            //    // ProductListGrid.DataSource = dataTable;
-            //}
-
-            // Method 2: Update via DataGridView directly (Backup)
-
             foreach (DataGridViewRow row in ProductListGrid.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -589,6 +578,82 @@ namespace POS_Shop.Views.Controllers.Product
             await LoadProductsForDataGridView();
         }
 
+        //private async void ExportProdBtn_Click(object sender, EventArgs e)
+        //{
+        //    if (selectedProductIds.Count == 0)
+        //    {
+        //        MessageBox.Show("No products selected for export.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
+
+
+        //    using (var context = new POSDbContext())
+        //    {
+        //        var productRepo = new ProductRepository(context);
+        //        //var selectedProducts = productRepo.GetAll(selectedProductIds.ToList()).Result;
+        //        var selectedProducts = await productRepo.GetAll(selectedProductIds.ToList());
+        //        if (selectedProducts.Count() > 0)
+        //        {
+        //            DataTable exportTable = new DataTable();
+        //            exportTable.TableName = "Products";
+
+        //            // Add columns
+        //            exportTable.Columns.Add("ProductID", typeof(int));
+        //            exportTable.Columns.Add("ProductName", typeof(string));
+        //            exportTable.Columns.Add("UrduName", typeof(string));
+        //            exportTable.Columns.Add("SearchByProductName", typeof(string));
+
+        //            exportTable.Columns.Add("PurchasePrice", typeof(string));
+        //            exportTable.Columns.Add("Cost", typeof(int));
+        //            exportTable.Columns.Add("SubCategory", typeof(int));
+        //            exportTable.Columns.Add("ProductOldName", typeof(string));
+        //            exportTable.Columns.Add("Qty", typeof(int));
+
+        //            // Add rows
+        //            foreach (var product in selectedProducts)
+        //            {
+        //                exportTable.Rows.Add(
+        //                    product.Id,
+        //                    product.ProductEnglishName,
+        //                    product.ProductUrduName,
+        //                    product.SearchByProductCode,
+        //                    product.PurchasePrice,
+        //                    product.Cost,
+        //                    product.SubcategoryId,
+        //                    product.ProductEnglishName,
+        //                    product.Qty
+        //                );
+        //            }
+
+        //            // 3. Ask where to save the file
+        //            using (var sfd = new SaveFileDialog
+        //            {
+        //                Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+        //                FileName = "SelectedProducts.xlsx"
+        //            })
+        //            {
+        //                if (sfd.ShowDialog() == DialogResult.OK)
+        //                {
+        //                    // 4. Write to Excel using ClosedXML
+        //                    using (var workbook = new XLWorkbook())
+        //                    {
+        //                        workbook.Worksheets.Add(exportTable, "Products");
+        //                        workbook.SaveAs(sfd.FileName);
+        //                    }
+        //                    MessageBox.Show("Export successful!");
+        //                }
+        //            }
+        //            // Export logic here - for demo, we'll just show count
+        //            MessageBox.Show($"{selectedProducts.Count()} products ready for export.", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            ClearSelection();
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("No products found for the selected IDs.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        }
+        //    }
+        //}
+
         private async void ExportProdBtn_Click(object sender, EventArgs e)
         {
             if (selectedProductIds.Count == 0)
@@ -597,75 +662,351 @@ namespace POS_Shop.Views.Controllers.Product
                 return;
             }
 
-
             using (var context = new POSDbContext())
             {
                 var productRepo = new ProductRepository(context);
-                //var selectedProducts = productRepo.GetAll(selectedProductIds.ToList()).Result;
                 var selectedProducts = await productRepo.GetAll(selectedProductIds.ToList());
-                if (selectedProducts.Count() > 0)
+
+                if (selectedProducts.Any())
                 {
-                    DataTable exportTable = new DataTable();
-                    exportTable.TableName = "Products";
+                    // Create DataTable for Products sheet
+                    DataTable productsTable = new DataTable();
+                    productsTable.TableName = "Products";
 
-                    // Add columns
-                    exportTable.Columns.Add("ProductID", typeof(int));
-                    exportTable.Columns.Add("ProductName", typeof(string));
-                    exportTable.Columns.Add("UrduName", typeof(string));
-                    exportTable.Columns.Add("SearchByProductName", typeof(string));
-                
-                    exportTable.Columns.Add("PurchasePrice", typeof(string));
-                    exportTable.Columns.Add("SalePrice", typeof(decimal));
-                    exportTable.Columns.Add("Cost", typeof(int));
-                    exportTable.Columns.Add("SubCategory", typeof(int));
-                    exportTable.Columns.Add("ProductOldName", typeof(string));
-                    exportTable.Columns.Add("Qty", typeof(int));
+                    // Add columns for Products sheet
+                    productsTable.Columns.Add("ProductID", typeof(int));
+                    productsTable.Columns.Add("ProductName", typeof(string));
+                    productsTable.Columns.Add("UrduName", typeof(string));
+                    productsTable.Columns.Add("SearchByProductCode", typeof(string));
+                    productsTable.Columns.Add("PurchasePrice", typeof(string));
+                    productsTable.Columns.Add("Cost", typeof(int));
+                    productsTable.Columns.Add("SubCategory", typeof(int));
+                    productsTable.Columns.Add("Qty", typeof(int));
 
-                    // Add rows
+                    // Create DataTable for ProductPrices sheet
+                    DataTable productPricesTable = new DataTable();
+                    productPricesTable.TableName = "ProductPrices";
+
+                    // Add columns for ProductPrices sheet
+                    productPricesTable.Columns.Add("ProductID", typeof(int));
+                    productPricesTable.Columns.Add("ProductName", typeof(string));
+                    productPricesTable.Columns.Add("PriceID", typeof(int));
+                    productPricesTable.Columns.Add("UnitTypeID", typeof(int));
+                    productPricesTable.Columns.Add("TypeName", typeof(string));
+                    productPricesTable.Columns.Add("Unit", typeof(string));
+                    productPricesTable.Columns.Add("ItemsCount", typeof(int));
+                    productPricesTable.Columns.Add("Price", typeof(decimal));
+                    productPricesTable.Columns.Add("PricePerItem", typeof(decimal));
+                    productPricesTable.Columns.Add("CreatedDate", typeof(DateTime));
+
+                    // Track all product prices
+                    var allProductPrices = new List<ProductPrice>();
+
+                    // Populate Products sheet data and collect product prices
                     foreach (var product in selectedProducts)
                     {
-                        exportTable.Rows.Add(
+                        // Add product to Products sheet
+                        productsTable.Rows.Add(
                             product.Id,
                             product.ProductEnglishName,
                             product.ProductUrduName,
                             product.SearchByProductCode,
                             product.PurchasePrice,
-                            product.SalePrice,
-                            product.Cost,
-                            product.SubcategoryId,
-                            product.ProductEnglishName,
+                            product.Cost ?? 0,
+                            product.SubcategoryId ?? 0,
                             product.Qty
+                        );
+
+                        // If product has prices, add them to our collection
+                        if (product.ProductPrices != null && product.ProductPrices.Any())
+                        {
+                            allProductPrices.AddRange(product.ProductPrices);
+                        }
+                    }
+
+                    // Populate ProductPrices sheet data
+                    foreach (var price in allProductPrices)
+                    {
+                        // Find the product name for this price
+                        var product = selectedProducts.FirstOrDefault(p => p.Id == price.ProductId);
+                        var productName = product?.ProductEnglishName ?? "Unknown";
+
+                        productPricesTable.Rows.Add(
+                            price.ProductId,
+                            productName,
+                            price.Id,
+                            price.Prod_Unit_TypeId,
+                            price.TypeName,
+                            price.Unit,
+                            price.ItemsCount,
+                            price.Price,
+                            price.PricePerItem,
+                            price.CreatedDate
                         );
                     }
 
-                    // 3. Ask where to save the file
+                    // Ask where to save the file
                     using (var sfd = new SaveFileDialog
                     {
                         Filter = "Excel Workbook (*.xlsx)|*.xlsx",
-                        FileName = "SelectedProducts.xlsx"
+                        FileName = $"Products_Export_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
                     })
                     {
                         if (sfd.ShowDialog() == DialogResult.OK)
                         {
-                            // 4. Write to Excel using ClosedXML
-                            using (var workbook = new XLWorkbook())
+                            try
                             {
-                                workbook.Worksheets.Add(exportTable, "Products");
-                                workbook.SaveAs(sfd.FileName);
+                                // Write to Excel using ClosedXML
+                                using (var workbook = new XLWorkbook())
+                                {
+                                    // Add Products sheet
+                                    var productsWorksheet = workbook.Worksheets.Add(productsTable, "Products");
+
+                                    // Auto-adjust columns width for Products sheet
+                                    productsWorksheet.Columns().AdjustToContents();
+
+                                    // Apply some basic formatting to Products sheet
+                                    productsWorksheet.Row(1).Style.Font.Bold = true;
+                                    productsWorksheet.Row(1).Style.Fill.BackgroundColor = XLColor.LightGray;
+
+                                    // Add ProductPrices sheet only if there are prices
+                                    if (productPricesTable.Rows.Count > 0)
+                                    {
+                                        var pricesWorksheet = workbook.Worksheets.Add(productPricesTable, "ProductPrices");
+
+                                        // Auto-adjust columns width for ProductPrices sheet
+                                        pricesWorksheet.Columns().AdjustToContents();
+
+                                        // Apply formatting to ProductPrices sheet
+                                        pricesWorksheet.Row(1).Style.Font.Bold = true;
+                                        pricesWorksheet.Row(1).Style.Fill.BackgroundColor = XLColor.LightGray;
+
+                                        // Find the CreatedDate column and format it
+                                        // Get the column index by finding which column has "CreatedDate" in the header
+                                        int createdDateColumnIndex = -1;
+                                        for (int i = 1; i <= pricesWorksheet.Columns().Count(); i++)
+                                        {
+                                            if (pricesWorksheet.Cell(1, i).Value.ToString() == "CreatedDate")
+                                            {
+                                                createdDateColumnIndex = i;
+                                                break;
+                                            }
+                                        }
+
+                                        // Format the CreatedDate column if found
+                                        if (createdDateColumnIndex > 0)
+                                        {
+                                            var dateColumn = pricesWorksheet.Column(createdDateColumnIndex);
+                                            dateColumn.Style.DateFormat.Format = "yyyy-MM-dd HH:mm";
+                                        }
+
+                                        // Alternative simpler approach: Format based on column position
+                                        // CreatedDate is the 10th column (column J)
+                                        // pricesWorksheet.Column(10).Style.DateFormat.Format = "yyyy-MM-dd HH:mm";
+                                    }
+                                    else
+                                    {
+                                        // Add empty ProductPrices sheet if no prices exist
+                                        workbook.Worksheets.Add("ProductPrices");
+                                        var emptySheet = workbook.Worksheet("ProductPrices");
+                                        emptySheet.Cell(1, 1).Value = "No product prices available for selected products";
+                                    }
+
+                                    workbook.SaveAs(sfd.FileName);
+                                }
+
+                                MessageBox.Show($"Export successful!\n\n" +
+                                              $"Products exported: {selectedProducts.Count()}\n" +
+                                              $"Product prices exported: {allProductPrices.Count}",
+                                              "Export Complete",
+                                              MessageBoxButtons.OK,
+                                              MessageBoxIcon.Information);
+
+                                ClearSelection();
                             }
-                            MessageBox.Show("Export successful!");
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"Error exporting file: {ex.Message}",
+                                              "Export Error",
+                                              MessageBoxButtons.OK,
+                                              MessageBoxIcon.Error);
+                            }
                         }
                     }
-                    // Export logic here - for demo, we'll just show count
-                    MessageBox.Show($"{selectedProducts.Count()} products ready for export.", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearSelection();
                 }
                 else
                 {
-                    MessageBox.Show("No products found for the selected IDs.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No products found for the selected IDs.",
+                                  "Info",
+                                  MessageBoxButtons.OK,
+                                  MessageBoxIcon.Information);
                 }
             }
         }
+
+        //private async void ExportProdBtn_Click(object sender, EventArgs e)
+        //{
+        //    if (selectedProductIds.Count == 0)
+        //    {
+        //        MessageBox.Show("No products selected for export.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
+
+        //    using (var context = new POSDbContext())
+        //    {
+        //        var productRepo = new ProductRepository(context);
+        //        var selectedProducts = await productRepo.GetAll(selectedProductIds.ToList());
+
+        //        if (selectedProducts.Any())
+        //        {
+        //            // Create DataTable for Products sheet
+        //            DataTable productsTable = new DataTable();
+        //            productsTable.TableName = "Products";
+
+        //            // Add columns for Products sheet
+        //            productsTable.Columns.Add("ProductID", typeof(int));
+        //            productsTable.Columns.Add("ProductName", typeof(string));
+        //            productsTable.Columns.Add("UrduName", typeof(string));
+        //            productsTable.Columns.Add("SearchByProductCode", typeof(string));
+        //            productsTable.Columns.Add("PurchasePrice", typeof(string));
+        //            productsTable.Columns.Add("Cost", typeof(int));
+        //            productsTable.Columns.Add("SubCategory", typeof(int));
+        //            productsTable.Columns.Add("Qty", typeof(int));
+
+        //            // Create DataTable for ProductPrices sheet
+        //            DataTable productPricesTable = new DataTable();
+        //            productPricesTable.TableName = "ProductPrices";
+
+        //            // Add columns for ProductPrices sheet
+        //            productPricesTable.Columns.Add("ProductID", typeof(int));
+        //            productPricesTable.Columns.Add("ProductName", typeof(string)); // For reference
+        //            productPricesTable.Columns.Add("PriceID", typeof(int));
+        //            productPricesTable.Columns.Add("UnitTypeID", typeof(int));
+        //            productPricesTable.Columns.Add("TypeName", typeof(string));
+        //            productPricesTable.Columns.Add("Unit", typeof(string));
+        //            productPricesTable.Columns.Add("ItemsCount", typeof(int));
+        //            productPricesTable.Columns.Add("Price", typeof(decimal));
+        //            productPricesTable.Columns.Add("PricePerItem", typeof(decimal));
+        //            productPricesTable.Columns.Add("CreatedDate", typeof(DateTime));
+
+        //            // Track all product prices
+        //            var allProductPrices = new List<ProductPrice>();
+
+        //            // Populate Products sheet data and collect product prices
+        //            foreach (var product in selectedProducts)
+        //            {
+        //                // Add product to Products sheet
+        //                productsTable.Rows.Add(
+        //                    product.Id,
+        //                    product.ProductEnglishName,
+        //                    product.ProductUrduName,
+        //                    product.SearchByProductCode,
+        //                    product.PurchasePrice,
+        //                    product.Cost ?? 0, // Handle nullable int
+        //                    product.SubcategoryId ?? 0, // Handle nullable int
+        //                    product.Qty
+        //                );
+
+        //                // If product has prices, add them to our collection
+        //                if (product.ProductPrices != null && product.ProductPrices.Any())
+        //                {
+        //                    allProductPrices.AddRange(product.ProductPrices);
+        //                }
+        //            }
+
+        //            // Populate ProductPrices sheet data
+        //            foreach (var price in allProductPrices)
+        //            {
+        //                // Find the product name for this price
+        //                var product = selectedProducts.FirstOrDefault(p => p.Id == price.ProductId);
+        //                var productName = product?.ProductEnglishName ?? "Unknown";
+
+        //                productPricesTable.Rows.Add(
+        //                    price.ProductId,
+        //                    productName,
+        //                    price.Id,
+        //                    price.Prod_Unit_TypeId,
+        //                    price.TypeName,
+        //                    price.Unit,
+        //                    price.ItemsCount,
+        //                    price.Price,
+        //                    price.PricePerItem,
+        //                    price.CreatedDate
+        //                );
+        //            }
+
+        //            // Ask where to save the file
+        //            using (var sfd = new SaveFileDialog
+        //            {
+        //                Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+        //                FileName = $"Products_Export_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
+        //            })
+        //            {
+        //                if (sfd.ShowDialog() == DialogResult.OK)
+        //                {
+        //                    try
+        //                    {
+        //                        // Write to Excel using ClosedXML
+        //                        using (var workbook = new XLWorkbook())
+        //                        {
+        //                            // Add Products sheet
+        //                            var productsWorksheet = workbook.Worksheets.Add(productsTable, "Products");
+
+        //                            // Auto-adjust columns width for Products sheet
+        //                            productsWorksheet.Columns().AdjustToContents();
+
+        //                            // Apply some basic formatting to Products sheet
+        //                            productsWorksheet.Row(1).Style.Font.Bold = true;
+        //                            productsWorksheet.Row(1).Style.Fill.BackgroundColor = XLColor.LightGray;
+
+        //                            // Add ProductPrices sheet only if there are prices
+        //                            if (productPricesTable.Rows.Count > 0)
+        //                            {
+        //                                var pricesWorksheet = workbook.Worksheets.Add(productPricesTable, "ProductPrices");
+
+        //                                // Auto-adjust columns width for ProductPrices sheet
+        //                                pricesWorksheet.Columns().AdjustToContents();
+
+        //                                // Apply formatting to ProductPrices sheet
+        //                                pricesWorksheet.Row(1).Style.Font.Bold = true;
+        //                                pricesWorksheet.Row(1).Style.Fill.BackgroundColor = XLColor.LightGray;
+
+        //                                // Format date column
+        //                                var dateColumn = pricesWorksheet.Column("CreatedDate");
+        //                                dateColumn.Style.DateFormat.Format = "yyyy-MM-dd HH:mm";
+        //                            }
+
+        //                            workbook.SaveAs(sfd.FileName);
+        //                        }
+
+        //                        MessageBox.Show($"Export successful!\n\n" +
+        //                                      $"Products exported: {selectedProducts.Count()}\n" +
+        //                                      $"Product prices exported: {allProductPrices.Count}",
+        //                                      "Export Complete",
+        //                                      MessageBoxButtons.OK,
+        //                                      MessageBoxIcon.Information);
+
+        //                        ClearSelection();
+        //                    }
+        //                    catch (Exception ex)
+        //                    {
+        //                        MessageBox.Show($"Error exporting file: {ex.Message}",
+        //                                      "Export Error",
+        //                                      MessageBoxButtons.OK,
+        //                                      MessageBoxIcon.Error);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("No products found for the selected IDs.",
+        //                          "Info",
+        //                          MessageBoxButtons.OK,
+        //                          MessageBoxIcon.Information);
+        //        }
+        //    }
+        //}
 
 
         private void ImportFilBtn_Click(object sender, EventArgs e)
@@ -708,16 +1049,6 @@ namespace POS_Shop.Views.Controllers.Product
 
             // Get product name (adjust column name as needed)
             string productName = row.Cells["Name"].Value?.ToString();
-
-            //// Open form
-            //using (var priceForm = new NewProductForm(productId))
-            //{
-            //    if (priceForm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        MessageBox.Show("Prices updated successfully!", "Success",
-            //                      MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //}
 
             // Open price management form
             using (var priceForm = new EditProdPricesForm(productId, productName))

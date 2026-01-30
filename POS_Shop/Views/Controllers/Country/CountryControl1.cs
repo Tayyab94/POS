@@ -60,7 +60,6 @@ namespace POS_Shop.Views.Controllers.Country
 
                 CountryDatagridView.ReadOnly = true;
                 CountryDatagridView.AllowUserToAddRows = false;
-
                 CountryDatagridView.DataSource = dt;
 
             }
@@ -75,6 +74,7 @@ namespace POS_Shop.Views.Controllers.Country
                 countryIdTxt.Text= row.Cells["ID"].Value.ToString();
                 UpdateCountrybtn.Enabled = true;
                 RemoveCountryBtn.Visible = true;
+                RemoveCountryBtn.Enabled = true;
             }
         }
 
@@ -89,7 +89,6 @@ namespace POS_Shop.Views.Controllers.Country
                 }
 
                 ICountryRepository countryRepository = new CountryRepository(context);
-
                 countryRepository.Insert(new Models.Country()
                 {
                     CountryName = CountryNameTxt.Text

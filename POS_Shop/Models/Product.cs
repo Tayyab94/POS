@@ -17,7 +17,7 @@ namespace POS_Shop.Models
         public string ProductUrduName { get; set; }
 
         public string PurchasePrice { get; set; }
-        public int? SalePrice { get; set; }
+        //public int? SalePrice { get; set; }
 
         public int? Cost { get; set; }
 

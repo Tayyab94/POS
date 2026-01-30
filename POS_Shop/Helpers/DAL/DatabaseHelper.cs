@@ -138,7 +138,7 @@ namespace POS_Shop.Helpers.DAL
         {
             // Check if product with same code exists
             var existingProduct = _context.Products
-                .FirstOrDefault(p => p.SearchByProductCode == product.SearchByProductCode);
+                .FirstOrDefault(p => p.Id == product.Id);
 
             if (existingProduct != null)
             {
@@ -146,8 +146,7 @@ namespace POS_Shop.Helpers.DAL
                 existingProduct.ProductEnglishName = product.ProductEnglishName;
                 existingProduct.ProductUrduName = product.ProductUrduName;
                 existingProduct.PurchasePrice = product.PurchasePrice;
-                existingProduct.SalePrice = product.SalePrice;
-                existingProduct.Cost = product.Cost;
+               existingProduct.Cost = product.Cost;
                 existingProduct.Qty = product.Qty;
                 existingProduct.SubcategoryId = product.SubcategoryId;
 
@@ -183,7 +182,6 @@ namespace POS_Shop.Helpers.DAL
                     existing.ProductEnglishName = product.ProductEnglishName;
                     existing.ProductUrduName = product.ProductUrduName;
                     existing.PurchasePrice = product.PurchasePrice;
-                    existing.SalePrice = product.SalePrice;
                     existing.Cost = product.Cost;
                     existing.Qty = product.Qty;
                 }

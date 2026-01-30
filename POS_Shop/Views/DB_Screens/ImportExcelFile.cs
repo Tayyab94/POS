@@ -610,7 +610,7 @@ namespace POS_Shop.Views.DB_Screens
                                 //PurchasePrice = GetIntOrDefaultFromDecimalValue(row["Company Rate"]),
                                 PurchasePrice = GetStringOrNull(row["Company Rate"]),
                                 // Changed to int?
-                                SalePrice = GetIntOrDefault(row["Price (R)"]),
+                               // SalePrice = GetIntOrDefault(row["Price (R)"]),
                                 SearchByProductCode = GetStringOrNull(row["Category"]),
                                 SubcategoryId = 1
                             });
@@ -919,7 +919,7 @@ namespace POS_Shop.Views.DB_Screens
          
             product.SearchByProductCode = GetStringOrNull(row["SearchByProductName"]);
             product.PurchasePrice = GetStringOrNull(row["Purchase Price"]);
-            product.SalePrice = GetIntOrDefault(row["Sale Price"]);
+           // product.SalePrice = GetIntOrDefault(row["Sale Price"]);
             product.Cost = Convert.ToInt32(row["Cost"]);
             product.SubcategoryId = Convert.ToInt32(row["SubCategory"]);
         }
@@ -932,7 +932,7 @@ namespace POS_Shop.Views.DB_Screens
                 ProductUrduName = GetStringOrNull(row["Urdu Name"]),
                
                 PurchasePrice = GetStringOrNull(row["Purchase Price"]),
-                SalePrice = GetIntOrDefault(row["Sale Price"]),
+                //SalePrice = GetIntOrDefault(row["Sale Price"]),
                 Cost = Convert.ToInt32(row["Cost"]),
                 SubcategoryId = Convert.ToInt32(row["SubCategory"]),
                 SearchByProductCode = GetStringOrNull(row["SearchByProductName"])

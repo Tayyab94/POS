@@ -219,9 +219,16 @@ namespace POS_Shop
             try
             {
                 LoadingManager.ShowLoading();
-                ImportExcelFile importExcelForm = new ImportExcelFile();
+                //ImportExcelFile importExcelForm = new ImportExcelFile();
+                //importExcelForm.Owner = this;
+                //importExcelForm.Show();
+
+                var importExcelForm = new ImportForm();
                 importExcelForm.Owner = this;
                 importExcelForm.Show();
+
+
+
             }
             finally
             {
@@ -401,6 +408,11 @@ namespace POS_Shop
             {
                 LoadingManager.HideLoading();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            LoadHomeUI();
         }
     }
 }

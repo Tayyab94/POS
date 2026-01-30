@@ -322,6 +322,10 @@
     <Compile Include="Migrations\202601281948234_RemoveProdType_colmn.Designer.cs">
       <DependentUpon>202601281948234_RemoveProdType_colmn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202601301453541_RemoveSalePrice_ProdTable.cs" />
+    <Compile Include="Migrations\202601301453541_RemoveSalePrice_ProdTable.Designer.cs">
+      <DependentUpon>202601301453541_RemoveSalePrice_ProdTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\AuthModel\AuthUser.cs" />
@@ -484,6 +488,9 @@
     <Compile Include="Views\DB_Screens\BackUpForm.Designer.cs">
       <DependentUpon>BackUpForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\DB_Screens\ErrorLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\DB_Screens\ImportCustomerFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -495,6 +502,15 @@
     </Compile>
     <Compile Include="Views\DB_Screens\ImportExcelFile.Designer.cs">
       <DependentUpon>ImportExcelFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DB_Screens\ImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DB_Screens\ImportForm.Designer.cs">
+      <DependentUpon>ImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DB_Screens\ImportProgressForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\DB_Screens\RestoreDbForm.cs">
       <SubType>Form</SubType>
@@ -580,6 +596,9 @@
     <EmbeddedResource Include="Migrations\202601281948234_RemoveProdType_colmn.resx">
       <DependentUpon>202601281948234_RemoveProdType_colmn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601301453541_RemoveSalePrice_ProdTable.resx">
+      <DependentUpon>202601301453541_RemoveSalePrice_ProdTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -653,6 +672,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\ImportExcelFile.resx">
       <DependentUpon>ImportExcelFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DB_Screens\ImportForm.resx">
+      <DependentUpon>ImportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\RestoreDbForm.resx">
       <DependentUpon>RestoreDbForm.cs</DependentUpon>

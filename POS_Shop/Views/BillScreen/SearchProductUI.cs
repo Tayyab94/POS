@@ -55,12 +55,12 @@ namespace POS_Shop.Views.BillScreen
                 //dt.Columns.Add("P-Price", typeof(string));
               
                 //dt.Columns.Add("C-p", typeof(int));
-                dt.Columns.Add("S-P", typeof(string));
+               // dt.Columns.Add("S-P", typeof(string));
              
 
                 foreach (var item in result.data)
                 {
-                    dt.Rows.Add(item.Id, item.ProductEnglishName, item.ProductUrduName, item.SalePrice);
+                    dt.Rows.Add(item.Id, item.ProductEnglishName, item.ProductUrduName);
                 }
 
                 ProductListGrid.ReadOnly = true;
@@ -150,15 +150,15 @@ namespace POS_Shop.Views.BillScreen
                 DefaultCellStyle = new DataGridViewCellStyle() { Format = "N0" }
             });
 
-            ProductListGrid.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "SalePrice",
-                DataPropertyName = "Sale-Price",
-                HeaderText = "Sale Price",
-                Width = 100,
-                ReadOnly = true,
-                DefaultCellStyle = new DataGridViewCellStyle() { Format = "N2" }
-            });
+            //ProductListGrid.Columns.Add(new DataGridViewTextBoxColumn()
+            //{
+            //    Name = "SalePrice",
+            //    DataPropertyName = "Sale-Price",
+            //    HeaderText = "Sale Price",
+            //    Width = 100,
+            //    ReadOnly = true,
+            //    DefaultCellStyle = new DataGridViewCellStyle() { Format = "N2" }
+            //});
 
             ProductListGrid.Columns.Add(new DataGridViewTextBoxColumn()
             {
@@ -348,7 +348,7 @@ namespace POS_Shop.Views.BillScreen
                 PNameLbl.Text = selectedRow.Cells[1].Value?.ToString() ?? string.Empty;
                 PUNameLbl.Text = selectedRow.Cells[2].Value?.ToString() ?? string.Empty;
                 PTypeLbl.Text = selectedRow.Cells[3].Value?.ToString() ?? string.Empty;
-                ProdSalePriceLbl.Text = selectedRow.Cells[4].Value?.ToString() ?? string.Empty;
+           //     ProdSalePriceLbl.Text = selectedRow.Cells[4].Value?.ToString() ?? string.Empty;
 
                 FormCloseLbl.Text = "false";
                 this.Close();
