@@ -15,7 +15,7 @@ namespace POS_Shop.Interfaces
         Task<IEnumerable<Product>> GetAll(List<int> ids);
         IEnumerable<ProductOrderHistoryDetails> ProductPreviousPriceInRecentOrderByCustomerId(int customerId, int productId);
 
-        Task<(int totalCount, bool hasMore, IEnumerable<Product> data)> GetProductCursorPagingListAsync(int? cursor, int pageSize, string search);
+        Task<(int totalCount, bool hasMore, IEnumerable<ProductListDtp> data)> GetProductCursorPagingListAsync(int? cursor, int pageSize, string search);
 
     }
 }

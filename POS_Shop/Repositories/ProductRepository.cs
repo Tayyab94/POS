@@ -20,7 +20,7 @@ namespace POS_Shop.Repositories
 
         public async Task<IEnumerable<Product>> GetAll(List<int> ids)
         {
-            var data = await _context.Products.Where(e => ids.Contains(e.Id)).ToListAsync();
+            var data = await _context.Products.Where(e => ids.Contains(e.Id)).Include(s=>s.ProductPrices).ToListAsync();
             return data;
         }
         public async Task<bool> CheckRecoradlreadyExistByName(string name)
@@ -92,7 +92,7 @@ namespace POS_Shop.Repositories
             return data;
         }
 
-        public async Task<(int totalCount, bool hasMore, IEnumerable<Product> data)> GetProductCursorPagingListAsync(int? cursor, int pageSize, string search)
+        public async Task<(int totalCount, bool hasMore, IEnumerable<ProductListDtp> data)> GetProductCursorPagingListAsync(int? cursor, int pageSize, string search)
         {
 
             var query = _context.Products.AsNoTracking().AsQueryable();
@@ -125,6 +125,22 @@ namespace POS_Shop.Repositories
             var result = await query
                 .OrderBy(s => s.Id)
                 .Take(pageSize + 1)
+                .Select(s=> new ProductListDtp
+                {
+                    Id = s.Id,
+                    Name = s.ProductEnglishName,
+                    UrduName = s.ProductUrduName,
+                    SearchByName = s.SearchByProductCode,
+                    PurchasePrice = s.PurchasePrice,
+                    Qty = s.Qty,
+                    Cost = s.Cost??0,
+                    ProductPrices = s.ProductPrices.Select(pt =>new ProductPriceDTO(){
+                         Type =pt.TypeName,
+                          Items = pt.ItemsCount,
+                           Price= pt.Price,
+                            P_Per_Item = pt.PricePerItem,
+                    }).ToList()
+                })
                 .ToListAsync();
 
             // Check if there are more records

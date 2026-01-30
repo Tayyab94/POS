@@ -21,19 +21,6 @@ namespace POS_Shop.Views.Controllers.Product
         private const int CONTROL_SPACING = 45;
         private const int INITIAL_Y_POSITION = 5;
 
-        //// Default items count for each type
-        //private Dictionary<string, int> defaultItems = new Dictionary<string, int>
-        //{
-        //    { "عدد", 1 },
-        //    { "درجن", 12 },
-        //    { "ڈبہ", 24 },
-        //    { "پیکٹ", 6 },
-        //    { "کلو", 1 },
-        //    { "کارٹن", 48 },
-        //    { "بنڈل", 10 },
-        //    { "جوڑی", 1 }
-        //};
-
         public NewProductForm()
         {
             InitializeComponent();
@@ -104,22 +91,9 @@ namespace POS_Shop.Views.Controllers.Product
                     ProductUrduNameTxt.Text = product.ProductUrduName;
                     SearchBynameTxt.Text = product.SearchByProductCode;
                     PurchasePriceTxt.Text = product.PurchasePrice;
-                    P_SalePriceTxt.Text = product.SalePrice?.ToString() ?? "";
+                   // P_SalePriceTxt.Text = product.SalePrice?.ToString() ?? "";
                     p_costTxt.Text = product.Cost?.ToString() ?? "";
                     P_StockQtyTxt.Text = product.Qty.ToString();
-
-                    //// Set product type dropdown
-                    //if (!string.IsNullOrEmpty(product.ProductType) && int.TryParse(product.ProductType, out int productTypeId))
-                    //{
-                    //    foreach (ProductUnitDto item in productTypeDropdown.Items)
-                    //    {
-                    //        if (item.Id == productTypeId)
-                    //        {
-                    //            productTypeDropdown.SelectedItem = item;
-                    //            break;
-                    //        }
-                    //    }
-                    //}
 
                     // Load category and subcategory - FIXED
                     if (product.SubcategoryId.HasValue)
@@ -666,7 +640,6 @@ namespace POS_Shop.Views.Controllers.Product
                     ProductUrduName = ProductUrduNameTxt.Text.Trim(),
                     SearchByProductCode = SearchBynameTxt.Text.Trim(),
                     PurchasePrice = PurchasePriceTxt.Text.Trim(),
-                    SalePrice = int.TryParse(P_SalePriceTxt.Text, out int salePrice) ? salePrice : (int?)null,
                     Cost = int.TryParse(p_costTxt.Text, out int cost) ? cost : (int?)null,
                     Qty = int.TryParse(P_StockQtyTxt.Text, out int qty) ? qty : 0,
                     SubcategoryId = SubCategoryCategoryDropDownLst.SelectedValue != null &&
@@ -873,14 +846,8 @@ namespace POS_Shop.Views.Controllers.Product
                 // You might want to add a label for summary like in the previous form
                 return;
             }
-
-            // Update summary logic here if you add a summary label
         }
 
-        //private int GetDefaultItemsCount(string typeName)
-        //{
-        //    return defaultItems.ContainsKey(typeName) ? defaultItems[typeName] : 1;
-        //}
 
         private void TxtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -903,7 +870,6 @@ namespace POS_Shop.Views.Controllers.Product
             ProductUrduNameTxt.Clear();
             SearchBynameTxt.Clear();
             PurchasePriceTxt.Clear();
-            P_SalePriceTxt.Clear();
             p_costTxt.Clear();
             P_StockQtyTxt.Text = "0";
             CategoryDropDownLst.SelectedIndex = 0;
@@ -933,6 +899,8 @@ namespace POS_Shop.Views.Controllers.Product
             base.OnFormClosing(e);
             dbHelper?.Dispose();
         }
+
+        
     }
 
 

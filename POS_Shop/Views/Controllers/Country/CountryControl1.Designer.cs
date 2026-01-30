@@ -52,8 +52,10 @@
             this.SaveCityBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.CountryDatagridView = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.cityGrdiheadingLbl = new System.Windows.Forms.Label();
+            this.CountryListGroup = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CountryDatagridView)).BeginInit();
+            this.CountryListGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -284,7 +286,7 @@
             this.countryIdTxt.IconRight = null;
             this.countryIdTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.countryIdTxt.Lines = new string[0];
-            this.countryIdTxt.Location = new System.Drawing.Point(40, 62);
+            this.countryIdTxt.Location = new System.Drawing.Point(188, 62);
             this.countryIdTxt.MaxLength = 32767;
             this.countryIdTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.countryIdTxt.Modified = false;
@@ -313,7 +315,7 @@
             this.countryIdTxt.Padding = new System.Windows.Forms.Padding(3);
             this.countryIdTxt.PasswordChar = '\0';
             this.countryIdTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.countryIdTxt.PlaceholderText = "Enter text";
+            this.countryIdTxt.PlaceholderText = "Country Id";
             this.countryIdTxt.ReadOnly = false;
             this.countryIdTxt.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.countryIdTxt.SelectedText = "";
@@ -327,7 +329,7 @@
             this.countryIdTxt.TextMarginBottom = 0;
             this.countryIdTxt.TextMarginLeft = 3;
             this.countryIdTxt.TextMarginTop = 0;
-            this.countryIdTxt.TextPlaceholder = "Enter text";
+            this.countryIdTxt.TextPlaceholder = "Country Id";
             this.countryIdTxt.UseSystemPasswordChar = false;
             this.countryIdTxt.Visible = false;
             this.countryIdTxt.WordWrap = true;
@@ -390,7 +392,7 @@
             this.CountryNameTxt.Padding = new System.Windows.Forms.Padding(3);
             this.CountryNameTxt.PasswordChar = '\0';
             this.CountryNameTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.CountryNameTxt.PlaceholderText = "Enter text";
+            this.CountryNameTxt.PlaceholderText = "Country Name";
             this.CountryNameTxt.ReadOnly = false;
             this.CountryNameTxt.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.CountryNameTxt.SelectedText = "";
@@ -404,7 +406,7 @@
             this.CountryNameTxt.TextMarginBottom = 0;
             this.CountryNameTxt.TextMarginLeft = 3;
             this.CountryNameTxt.TextMarginTop = 0;
-            this.CountryNameTxt.TextPlaceholder = "Enter text";
+            this.CountryNameTxt.TextPlaceholder = "Country Name";
             this.CountryNameTxt.UseSystemPasswordChar = false;
             this.CountryNameTxt.WordWrap = true;
             // 
@@ -524,7 +526,7 @@
             this.CountryDatagridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
@@ -551,7 +553,7 @@
             this.CountryDatagridView.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
@@ -562,13 +564,13 @@
             this.CountryDatagridView.HeaderBackColor = System.Drawing.Color.DodgerBlue;
             this.CountryDatagridView.HeaderBgColor = System.Drawing.Color.Empty;
             this.CountryDatagridView.HeaderForeColor = System.Drawing.Color.White;
-            this.CountryDatagridView.Location = new System.Drawing.Point(17, 278);
+            this.CountryDatagridView.Location = new System.Drawing.Point(6, 27);
             this.CountryDatagridView.Name = "CountryDatagridView";
             this.CountryDatagridView.RowHeadersVisible = false;
             this.CountryDatagridView.RowHeadersWidth = 51;
             this.CountryDatagridView.RowTemplate.Height = 40;
             this.CountryDatagridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CountryDatagridView.Size = new System.Drawing.Size(1180, 337);
+            this.CountryDatagridView.Size = new System.Drawing.Size(1156, 323);
             this.CountryDatagridView.TabIndex = 4;
             this.CountryDatagridView.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CountryDatagridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CountryDatagridView_CellClick);
@@ -584,18 +586,33 @@
             this.cityGrdiheadingLbl.TabIndex = 11;
             this.cityGrdiheadingLbl.Text = "Country Form and List";
             // 
+            // CountryListGroup
+            // 
+            this.CountryListGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CountryListGroup.Controls.Add(this.CountryDatagridView);
+            this.CountryListGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountryListGroup.Location = new System.Drawing.Point(17, 262);
+            this.CountryListGroup.Name = "CountryListGroup";
+            this.CountryListGroup.Size = new System.Drawing.Size(1168, 356);
+            this.CountryListGroup.TabIndex = 12;
+            this.CountryListGroup.TabStop = false;
+            this.CountryListGroup.Text = "Country List";
+            // 
             // CountryControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CountryListGroup);
             this.Controls.Add(this.cityGrdiheadingLbl);
-            this.Controls.Add(this.CountryDatagridView);
             this.Controls.Add(this.panel1);
             this.Name = "CountryControl1";
             this.Size = new System.Drawing.Size(1200, 629);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CountryDatagridView)).EndInit();
+            this.CountryListGroup.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -611,5 +628,6 @@
         private Bunifu.UI.WinForms.BunifuTextBox countryIdTxt;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton UpdateCountrybtn;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton RemoveCountryBtn;
+        private System.Windows.Forms.GroupBox CountryListGroup;
     }
 }

@@ -25,6 +25,6 @@ namespace POS_Shop.Models
         public virtual ProductUnit ProductUnitType { get; set; }
         // Helper property for UI
         public string DisplayText =>
-            $"{TypeName}: ${Price:F2} per {Unit} ({ItemsCount} pieces, ${PricePerItem:F2}/piece)";
+            $"{TypeName}: ${Price:0} per {Unit} ({ItemsCount} pieces, ${PricePerItem:F2}/piece)";
     }
 }

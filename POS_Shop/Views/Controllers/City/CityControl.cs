@@ -158,7 +158,8 @@ namespace POS_Shop.Views.Controllers.City
 
                 UpdateCitybtn.Enabled = true;
                 UpdateCitybtn.Visible = true;
-
+                RemoveCityBtn.Enabled= true;
+                RemoveCityBtn.Visible = true;
             }
         }
 
