@@ -1326,7 +1326,11 @@ namespace POS_Shop.Views.BillScreen
                         var product = context.Products.Find(item.ProductId);
                         if (product != null)
                         {
-                            product.Qty += item.Quantity;
+                            var prices = context.ProductPrices
+                            .Where(p => p.ProductId == item.ProductId && p.TypeName == item.QuantityType)
+                            .FirstOrDefault();
+
+                            product.Qty += (item.Quantity * prices.ItemsCount);
                             context.Entry(product).State = EntityState.Modified;
                         }
                     }
@@ -1351,22 +1355,22 @@ namespace POS_Shop.Views.BillScreen
 
                 // Checking User has Enabled the Stock Qty Update Feature
                 var config = ConfigurationManager.Configuration.Features.EnableUpdateQty;
-                if (config)
-                {
-                    if (!string.IsNullOrEmpty(productIdValue))
-                    {
-                        var productCheck = context.Products.Find(int.Parse(productIdValue));
-                        if (productCheck.Qty < 0 || productCheck.Qty < q)
-                        {
-                            MessageBox.Show($"Insufficient stock for product {productCheck.ProductEnglishName}",
-                               "Error",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Error);
-                            throw new Exception($"Insufficient stock for product ID {productIdValue}");
-                        }
+                //if (config)
+                //{
+                //    if (!string.IsNullOrEmpty(productIdValue))
+                //    {
+                //        var productCheck = context.Products.Find(int.Parse(productIdValue));
+                //        if (productCheck.Qty < 0 || productCheck.Qty < q)
+                //        {
+                //            MessageBox.Show($"Insufficient stock for product {productCheck.ProductEnglishName}",
+                //               "Error",
+                //               MessageBoxButtons.OK,
+                //               MessageBoxIcon.Error);
+                //            throw new Exception($"Insufficient stock for product ID {productIdValue}");
+                //        }
 
-                    }
-                }
+                //    }
+                //}
 
                 var odrDetail = new OrderDetail
                 {
@@ -1388,8 +1392,12 @@ namespace POS_Shop.Views.BillScreen
                     if (!string.IsNullOrEmpty(productIdValue))
                     {
                         var pid = int.Parse(productIdValue);
+                        var prices= context.ProductPrices
+                            .Where(p => p.ProductId == pid && p.TypeName==odrDetail.QuantityType)
+                            .FirstOrDefault();
+
                         var product = context.Products.Find(pid);
-                        product.Qty -= odrDetail.Quantity;
+                        product.Qty -= (odrDetail.Quantity * prices.ItemsCount);
                         context.Entry(product).State = EntityState.Modified;
                     }
                 }
@@ -1628,7 +1636,7 @@ namespace POS_Shop.Views.BillScreen
             }
             else if (e.KeyCode == Keys.R && e.Alt)
             {
-                e.Handled = true;
+                 e.Handled = true;
                 ReceivedAmountTxt.Focus();
             }
         }
@@ -1727,6 +1735,7 @@ namespace POS_Shop.Views.BillScreen
                 Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
                 PId = pId.ToString();
                 P_StockQtyTxt.Text = "1";
+
                 SuggestionGrid.Visible = false;
                 ProductDetailTxt.Focus();
 
@@ -1779,6 +1788,8 @@ namespace POS_Shop.Views.BillScreen
                     ProductSalePrice.Text = ((int)d.Price).ToString();
                     ProductAmount.Text = Convert.ToString(Convert.ToInt32(P_StockQtyTxt.Text) * Convert.ToInt32(ProductSalePrice.Text));
                 }
+
+               
             }
         }
 
@@ -2409,6 +2420,7 @@ namespace POS_Shop.Views.BillScreen
             if (productTypeDropdown.SelectedItem == null || string.IsNullOrEmpty(productTypeDropdown.SelectedValue?.ToString()))
                 return;
 
+
             // Get the selected ID as integer
             string selectedValue = Convert.ToString(productTypeDropdown.SelectedValue);
             if (!string.IsNullOrEmpty(PId))
@@ -2428,6 +2440,7 @@ namespace POS_Shop.Views.BillScreen
 
             if (!string.IsNullOrEmpty(P_StockQtyTxt.Text))
                 ProductAmount.Text = Convert.ToString(Convert.ToInt32(P_StockQtyTxt.Text) * Convert.ToInt32(ProductSalePrice.Text));
+
         }
     }
 }

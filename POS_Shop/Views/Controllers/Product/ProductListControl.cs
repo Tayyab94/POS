@@ -682,7 +682,7 @@ namespace POS_Shop.Views.Controllers.Product
                     productsTable.Columns.Add("Cost", typeof(int));
                     productsTable.Columns.Add("SubCategory", typeof(int));
                     productsTable.Columns.Add("Qty", typeof(int));
-
+                    productsTable.Columns.Add("ProductOldName", typeof(string));
                     // Create DataTable for ProductPrices sheet
                     DataTable productPricesTable = new DataTable();
                     productPricesTable.TableName = "ProductPrices";
@@ -714,7 +714,8 @@ namespace POS_Shop.Views.Controllers.Product
                             product.PurchasePrice,
                             product.Cost ?? 0,
                             product.SubcategoryId ?? 0,
-                            product.Qty
+                            product.Qty,
+                            product.ProductEnglishName
                         );
 
                         // If product has prices, add them to our collection

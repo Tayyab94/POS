@@ -14,22 +14,13 @@ namespace POS_Shop.Views.Settings
 {
     public partial class ConfigSettingForm : Form
     {
-        // Control declarations should be in the designer file
-        // Remove control declarations from here if they're in the designer file
 
         public ConfigSettingForm()
         {
             InitializeComponent(); // This calls the designer-generated method
            // SetConfigPathLabel();
-            LoadSettings();
+           LoadSettings();
         }
-        //private void SetConfigPathLabel()
-        //{
-        //    if (lblConfigPath != null)
-        //    {
-        //        lblConfigPath.Text = $"Config file: {ConfigurationManager.GetConfigFilePath()}";
-        //    }
-        //}
         private void LoadSettings()
         {
             try
@@ -39,12 +30,12 @@ namespace POS_Shop.Views.Settings
                 chkEnableUpdateQty.Checked = config.Features.EnableUpdateQty;
                 chkShowHideShopName.Checked = config.Features.ShowHideShopName;
                 // Load invoice settings
-                txtShopName.Text = config.InvoiceSettings.ShopName ?? "";
-                txtShopAddress.Text = config.InvoiceSettings.ShopAddress ?? "";
-                txtContactNumber.Text = config.InvoiceSettings.ContactNumber ?? "";
-                txtEmail.Text = config.InvoiceSettings.Email ?? "";
-                txtTaxNumber.Text = config.InvoiceSettings.TaxNumber ?? "";
-                txtFooterMessage.Text = config.InvoiceSettings.FooterMessage ?? "";
+                //txtShopName.Text = config.InvoiceSettings.ShopName ?? "";
+                //txtShopAddress.Text = config.InvoiceSettings.ShopAddress ?? "";
+                //txtContactNumber.Text = config.InvoiceSettings.ContactNumber ?? "";
+                //txtEmail.Text = config.InvoiceSettings.Email ?? "";
+                //txtTaxNumber.Text = config.InvoiceSettings.TaxNumber ?? "";
+                //txtFooterMessage.Text = config.InvoiceSettings.FooterMessage ?? "";
             }
             catch (Exception ex)
             {
@@ -60,15 +51,15 @@ namespace POS_Shop.Views.Settings
             try
             {
                 // Validate required fields
-                if (string.IsNullOrWhiteSpace(txtShopName.Text))
-                {
-                    MessageBox.Show("Shop name is required.",
-                        "Validation Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    txtShopName.Focus();
-                    return;
-                }
+                //if (string.IsNullOrWhiteSpace(txtShopName.Text))
+                //{
+                //    MessageBox.Show("Shop name is required.",
+                //        "Validation Error",
+                //        MessageBoxButtons.OK,
+                //        MessageBoxIcon.Warning);
+                //    txtShopName.Focus();
+                //    return;
+                //}
 
                 var config = ConfigurationManager.Configuration;
 
@@ -76,19 +67,18 @@ namespace POS_Shop.Views.Settings
                 config.Features.EnableUpdateQty = chkEnableUpdateQty.Checked;
                 config.Features.ShowHideShopName = chkShowHideShopName.Checked;
 
-                // Save invoice settings
-                config.InvoiceSettings.ShopName = txtShopName.Text.Trim();
-                config.InvoiceSettings.ShopAddress = txtShopAddress.Text.Trim();
-                config.InvoiceSettings.ContactNumber = txtContactNumber.Text.Trim();
-                config.InvoiceSettings.Email = txtEmail.Text.Trim();
-                config.InvoiceSettings.TaxNumber = txtTaxNumber.Text.Trim();
-                config.InvoiceSettings.FooterMessage = txtFooterMessage.Text.Trim();
+                //// Save invoice settings
+                //config.InvoiceSettings.ShopName = txtShopName.Text.Trim();
+                //config.InvoiceSettings.ShopAddress = txtShopAddress.Text.Trim();
+                //config.InvoiceSettings.ContactNumber = txtContactNumber.Text.Trim();
+                //config.InvoiceSettings.Email = txtEmail.Text.Trim();
+                //config.InvoiceSettings.TaxNumber = txtTaxNumber.Text.Trim();
+                //config.InvoiceSettings.FooterMessage = txtFooterMessage.Text.Trim();
 
                 // Save to file
                 ConfigurationManager.SaveConfiguration();
 
-                MessageBox.Show("Settings saved successfully!\n\n" +
-                               $"Configuration saved to:\n{ConfigurationManager.GetConfigFilePath()}",
+                MessageBox.Show("Settings saved successfully",
                     "Success",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

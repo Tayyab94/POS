@@ -50,19 +50,19 @@ namespace POS_Shop.Views.Settings
             tabFeatures.Padding = new Padding(10);
             InitializeFeaturesTab(tabFeatures);
 
-            // Invoice Tab
-            var tabInvoice = new TabPage("Invoice Settings");
-            tabInvoice.Padding = new Padding(10);
-            InitializeInvoiceTab(tabInvoice);
+            //// Invoice Tab
+            //var tabInvoice = new TabPage("Invoice Settings");
+            //tabInvoice.Padding = new Padding(10);
+            //InitializeInvoiceTab(tabInvoice);
 
-            // About Tab
-            var tabAbout = new TabPage("About");
-            tabAbout.Padding = new Padding(10);
-            InitializeAboutTab(tabAbout);
+            //// About Tab
+            //var tabAbout = new TabPage("About");
+            //tabAbout.Padding = new Padding(10);
+            //InitializeAboutTab(tabAbout);
 
             this.tabControl.TabPages.Add(tabFeatures);
-            this.tabControl.TabPages.Add(tabInvoice);
-            this.tabControl.TabPages.Add(tabAbout);
+            //this.tabControl.TabPages.Add(tabInvoice);
+            //this.tabControl.TabPages.Add(tabAbout);
 
             // Buttons Panel
             this.panelButtons = new Panel();
@@ -109,14 +109,14 @@ namespace POS_Shop.Views.Settings
             this.panelButtons.Controls.Add(this.btnCancel);
 
             // Add status label
-            this.lblConfigPath = new Label();
-            this.lblConfigPath.Text = $"Config file: {ConfigurationManager.GetConfigFilePath()}";
-            this.lblConfigPath.Location = new Point(20, 30);
-            this.lblConfigPath.Size = new Size(650, 20);
-            this.lblConfigPath.ForeColor = Color.Gray;
-            this.lblConfigPath.Font = new Font("Segoe UI", 7F, FontStyle.Italic);
+            //this.lblConfigPath = new Label();
+            //this.lblConfigPath.Text = $"Config file: {ConfigurationManager.GetConfigFilePath()}";
+            //this.lblConfigPath.Location = new Point(20, 30);
+            //this.lblConfigPath.Size = new Size(650, 20);
+            //this.lblConfigPath.ForeColor = Color.Gray;
+            //this.lblConfigPath.Font = new Font("Segoe UI", 7F, FontStyle.Italic);
 
-            this.panelButtons.Controls.Add(this.lblConfigPath);
+            //this.panelButtons.Controls.Add(this.lblConfigPath);
 
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.panelButtons);
@@ -166,181 +166,181 @@ namespace POS_Shop.Views.Settings
 
         }
 
-        private void InitializeInvoiceTab(TabPage tab)
-        {
-            tab.BackColor = SystemColors.Window;
+        //private void InitializeInvoiceTab(TabPage tab)
+        //{
+        //    tab.BackColor = SystemColors.Window;
 
-            // Header
-            var lblHeader = new Label();
-            lblHeader.Text = "Invoice/Receipt Settings";
-            lblHeader.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblHeader.Location = new Point(10, 10);
-            lblHeader.Size = new Size(300, 30);
+        //    // Header
+        //    var lblHeader = new Label();
+        //    lblHeader.Text = "Invoice/Receipt Settings";
+        //    lblHeader.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+        //    lblHeader.Location = new Point(10, 10);
+        //    lblHeader.Size = new Size(300, 30);
 
-            // Create form fields
-            int yPos = 60;
-            int labelWidth = 130;
-            int textBoxWidth = 400;
-            int spacing = 35;
+        //    // Create form fields
+        //    int yPos = 60;
+        //    int labelWidth = 130;
+        //    int textBoxWidth = 400;
+        //    int spacing = 35;
 
-            var labelFont = new Font("Segoe UI", 9.75F, FontStyle.Regular);
-            var textBoxFont = new Font("Segoe UI", 9.75F, FontStyle.Regular);
+        //    var labelFont = new Font("Segoe UI", 9.75F, FontStyle.Regular);
+        //    var textBoxFont = new Font("Segoe UI", 9.75F, FontStyle.Regular);
 
-            // Shop Name
-            var lblShopName = new Label();
-            lblShopName.Text = "Shop Name:";
-            lblShopName.Font = labelFont;
-            lblShopName.Location = new Point(20, yPos);
-            lblShopName.Size = new Size(labelWidth, 25);
+        //    // Shop Name
+        //    var lblShopName = new Label();
+        //    lblShopName.Text = "Shop Name:";
+        //    lblShopName.Font = labelFont;
+        //    lblShopName.Location = new Point(20, yPos);
+        //    lblShopName.Size = new Size(labelWidth, 25);
 
-            this.txtShopName = new TextBox();
-            this.txtShopName.Name = "txtShopName";
-            this.txtShopName.Font = textBoxFont;
-            this.txtShopName.Location = new Point(150, yPos);
-            this.txtShopName.Size = new Size(textBoxWidth, 28);
+        //    this.txtShopName = new TextBox();
+        //    this.txtShopName.Name = "txtShopName";
+        //    this.txtShopName.Font = textBoxFont;
+        //    this.txtShopName.Location = new Point(150, yPos);
+        //    this.txtShopName.Size = new Size(textBoxWidth, 28);
 
-            yPos += spacing;
+        //    yPos += spacing;
 
-            // Address
-            var lblAddress = new Label();
-            lblAddress.Text = "Address:";
-            lblAddress.Font = labelFont;
-            lblAddress.Location = new Point(20, yPos);
-            lblAddress.Size = new Size(labelWidth, 25);
+        //    // Address
+        //    var lblAddress = new Label();
+        //    lblAddress.Text = "Address:";
+        //    lblAddress.Font = labelFont;
+        //    lblAddress.Location = new Point(20, yPos);
+        //    lblAddress.Size = new Size(labelWidth, 25);
 
-            this.txtShopAddress = new TextBox();
-            this.txtShopAddress.Name = "txtShopAddress";
-            this.txtShopAddress.Font = textBoxFont;
-            this.txtShopAddress.Location = new Point(150, yPos);
-            this.txtShopAddress.Size = new Size(textBoxWidth, 28);
-            this.txtShopAddress.Multiline = true;
-            this.txtShopAddress.Height = 56;
+        //    this.txtShopAddress = new TextBox();
+        //    this.txtShopAddress.Name = "txtShopAddress";
+        //    this.txtShopAddress.Font = textBoxFont;
+        //    this.txtShopAddress.Location = new Point(150, yPos);
+        //    this.txtShopAddress.Size = new Size(textBoxWidth, 28);
+        //    this.txtShopAddress.Multiline = true;
+        //    this.txtShopAddress.Height = 56;
 
-            yPos += 70;
+        //    yPos += 70;
 
-            // Contact Number
-            var lblContact = new Label();
-            lblContact.Text = "Contact Number:";
-            lblContact.Font = labelFont;
-            lblContact.Location = new Point(20, yPos);
-            lblContact.Size = new Size(labelWidth, 25);
+        //    // Contact Number
+        //    var lblContact = new Label();
+        //    lblContact.Text = "Contact Number:";
+        //    lblContact.Font = labelFont;
+        //    lblContact.Location = new Point(20, yPos);
+        //    lblContact.Size = new Size(labelWidth, 25);
 
-            this.txtContactNumber = new TextBox();
-            this.txtContactNumber.Name = "txtContactNumber";
-            this.txtContactNumber.Font = textBoxFont;
-            this.txtContactNumber.Location = new Point(150, yPos);
-            this.txtContactNumber.Size = new Size(textBoxWidth, 28);
+        //    this.txtContactNumber = new TextBox();
+        //    this.txtContactNumber.Name = "txtContactNumber";
+        //    this.txtContactNumber.Font = textBoxFont;
+        //    this.txtContactNumber.Location = new Point(150, yPos);
+        //    this.txtContactNumber.Size = new Size(textBoxWidth, 28);
 
-            yPos += spacing;
+        //    yPos += spacing;
 
-            // Email
-            var lblEmail = new Label();
-            lblEmail.Text = "Email:";
-            lblEmail.Font = labelFont;
-            lblEmail.Location = new Point(20, yPos);
-            lblEmail.Size = new Size(labelWidth, 25);
+        //    // Email
+        //    var lblEmail = new Label();
+        //    lblEmail.Text = "Email:";
+        //    lblEmail.Font = labelFont;
+        //    lblEmail.Location = new Point(20, yPos);
+        //    lblEmail.Size = new Size(labelWidth, 25);
 
-            this.txtEmail = new TextBox();
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Font = textBoxFont;
-            this.txtEmail.Location = new Point(150, yPos);
-            this.txtEmail.Size = new Size(textBoxWidth, 28);
+        //    this.txtEmail = new TextBox();
+        //    this.txtEmail.Name = "txtEmail";
+        //    this.txtEmail.Font = textBoxFont;
+        //    this.txtEmail.Location = new Point(150, yPos);
+        //    this.txtEmail.Size = new Size(textBoxWidth, 28);
 
-            yPos += spacing;
+        //    yPos += spacing;
 
-            // Tax Number
-            var lblTax = new Label();
-            lblTax.Text = "Tax Number:";
-            lblTax.Font = labelFont;
-            lblTax.Location = new Point(20, yPos);
-            lblTax.Size = new Size(labelWidth, 25);
+        //    // Tax Number
+        //    var lblTax = new Label();
+        //    lblTax.Text = "Tax Number:";
+        //    lblTax.Font = labelFont;
+        //    lblTax.Location = new Point(20, yPos);
+        //    lblTax.Size = new Size(labelWidth, 25);
 
-            this.txtTaxNumber = new TextBox();
-            this.txtTaxNumber.Name = "txtTaxNumber";
-            this.txtTaxNumber.Font = textBoxFont;
-            this.txtTaxNumber.Location = new Point(150, yPos);
-            this.txtTaxNumber.Size = new Size(textBoxWidth, 28);
+        //    this.txtTaxNumber = new TextBox();
+        //    this.txtTaxNumber.Name = "txtTaxNumber";
+        //    this.txtTaxNumber.Font = textBoxFont;
+        //    this.txtTaxNumber.Location = new Point(150, yPos);
+        //    this.txtTaxNumber.Size = new Size(textBoxWidth, 28);
 
-            yPos += spacing;
+        //    yPos += spacing;
 
-            // Footer Message
-            var lblFooter = new Label();
-            lblFooter.Text = "Footer Message:";
-            lblFooter.Font = labelFont;
-            lblFooter.Location = new Point(20, yPos);
-            lblFooter.Size = new Size(labelWidth, 25);
+        //    // Footer Message
+        //    var lblFooter = new Label();
+        //    lblFooter.Text = "Footer Message:";
+        //    lblFooter.Font = labelFont;
+        //    lblFooter.Location = new Point(20, yPos);
+        //    lblFooter.Size = new Size(labelWidth, 25);
 
-            this.txtFooterMessage = new TextBox();
-            this.txtFooterMessage.Name = "txtFooterMessage";
-            this.txtFooterMessage.Font = textBoxFont;
-            this.txtFooterMessage.Location = new Point(150, yPos);
-            this.txtFooterMessage.Size = new Size(textBoxWidth, 28);
-            this.txtFooterMessage.Multiline = true;
-            this.txtFooterMessage.Height = 56;
+        //    this.txtFooterMessage = new TextBox();
+        //    this.txtFooterMessage.Name = "txtFooterMessage";
+        //    this.txtFooterMessage.Font = textBoxFont;
+        //    this.txtFooterMessage.Location = new Point(150, yPos);
+        //    this.txtFooterMessage.Size = new Size(textBoxWidth, 28);
+        //    this.txtFooterMessage.Multiline = true;
+        //    this.txtFooterMessage.Height = 56;
 
-            tab.Controls.AddRange(new Control[] {
-                lblHeader,
-                lblShopName, this.txtShopName,
-                lblAddress, this.txtShopAddress,
-                lblContact, this.txtContactNumber,
-                lblEmail, this.txtEmail,
-                lblTax, this.txtTaxNumber,
-                lblFooter, this.txtFooterMessage
-            });
-        }
+        //    tab.Controls.AddRange(new Control[] {
+        //        lblHeader,
+        //        lblShopName, this.txtShopName,
+        //        lblAddress, this.txtShopAddress,
+        //        lblContact, this.txtContactNumber,
+        //        lblEmail, this.txtEmail,
+        //        lblTax, this.txtTaxNumber,
+        //        lblFooter, this.txtFooterMessage
+        //    });
+        //}
 
-        private void InitializeAboutTab(TabPage tab)
-        {
-            tab.BackColor = SystemColors.Window;
+        //private void InitializeAboutTab(TabPage tab)
+        //{
+        //    tab.BackColor = SystemColors.Window;
 
-            var lblTitle = new Label();
-            lblTitle.Text = "POS System Configuration";
-            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblTitle.Location = new Point(20, 20);
-            lblTitle.Size = new Size(400, 30);
+        //    var lblTitle = new Label();
+        //    lblTitle.Text = "POS System Configuration";
+        //    lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+        //    lblTitle.Location = new Point(20, 20);
+        //    lblTitle.Size = new Size(400, 30);
 
-            var lblVersion = new Label();
-            lblVersion.Text = $"Version: {Application.ProductVersion}";
-            lblVersion.Font = new Font("Segoe UI", 11F, FontStyle.Regular);
-            lblVersion.Location = new Point(20, 70);
-            lblVersion.Size = new Size(300, 25);
+        //    var lblVersion = new Label();
+        //    lblVersion.Text = $"Version: {Application.ProductVersion}";
+        //    lblVersion.Font = new Font("Segoe UI", 11F, FontStyle.Regular);
+        //    lblVersion.Location = new Point(20, 70);
+        //    lblVersion.Size = new Size(300, 25);
 
-            var lblConfigInfo = new Label();
-            lblConfigInfo.Text = "Configuration Information:";
-            lblConfigInfo.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblConfigInfo.Location = new Point(20, 120);
-            lblConfigInfo.Size = new Size(300, 25);
+        //    var lblConfigInfo = new Label();
+        //    lblConfigInfo.Text = "Configuration Information:";
+        //    lblConfigInfo.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+        //    lblConfigInfo.Location = new Point(20, 120);
+        //    lblConfigInfo.Size = new Size(300, 25);
 
-            var lblConfigPath = new Label();
-            lblConfigPath.Text = $"Config file location:\n{ConfigurationManager.GetConfigFilePath()}";
-            lblConfigPath.Font = new Font("Consolas", 9F, FontStyle.Regular);
-            lblConfigPath.Location = new Point(20, 160);
-            lblConfigPath.Size = new Size(600, 60);
-            lblConfigPath.BorderStyle = BorderStyle.FixedSingle;
-            lblConfigPath.BackColor = SystemColors.Info;
+        //    var lblConfigPath = new Label();
+        //    lblConfigPath.Text = $"Config file location:\n{ConfigurationManager.GetConfigFilePath()}";
+        //    lblConfigPath.Font = new Font("Consolas", 9F, FontStyle.Regular);
+        //    lblConfigPath.Location = new Point(20, 160);
+        //    lblConfigPath.Size = new Size(600, 60);
+        //    lblConfigPath.BorderStyle = BorderStyle.FixedSingle;
+        //    lblConfigPath.BackColor = SystemColors.Info;
 
-            var btnOpenConfigFolder = new Button();
-            btnOpenConfigFolder.Text = "Open Config Folder";
-            btnOpenConfigFolder.Location = new Point(20, 240);
-            btnOpenConfigFolder.Size = new Size(150, 35);
-            btnOpenConfigFolder.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
-            btnOpenConfigFolder.Click += BtnOpenConfigFolder_Click;
+        //    var btnOpenConfigFolder = new Button();
+        //    btnOpenConfigFolder.Text = "Open Config Folder";
+        //    btnOpenConfigFolder.Location = new Point(20, 240);
+        //    btnOpenConfigFolder.Size = new Size(150, 35);
+        //    btnOpenConfigFolder.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
+        //    btnOpenConfigFolder.Click += BtnOpenConfigFolder_Click;
 
-            var btnViewConfig = new Button();
-            btnViewConfig.Text = "View Config File";
-            btnViewConfig.Location = new Point(180, 240);
-            btnViewConfig.Size = new Size(150, 35);
-            btnViewConfig.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
-            btnViewConfig.Click += BtnViewConfig_Click;
+        //    var btnViewConfig = new Button();
+        //    btnViewConfig.Text = "View Config File";
+        //    btnViewConfig.Location = new Point(180, 240);
+        //    btnViewConfig.Size = new Size(150, 35);
+        //    btnViewConfig.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
+        //    btnViewConfig.Click += BtnViewConfig_Click;
 
-            tab.Controls.AddRange(new Control[] {
-                lblTitle,
-                lblVersion,
-                lblConfigInfo,
-                lblConfigPath,
-                btnOpenConfigFolder,
-                btnViewConfig
-            });
-        }
+        //    tab.Controls.AddRange(new Control[] {
+        //        lblTitle,
+        //        lblVersion,
+        //        lblConfigInfo,
+        //        lblConfigPath,
+        //        btnOpenConfigFolder,
+        //        btnViewConfig
+        //    });
+        //}
     }
 }
