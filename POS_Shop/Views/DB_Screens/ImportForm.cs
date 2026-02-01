@@ -39,6 +39,7 @@ namespace POS_Shop.Views.DB_Screens
             dgvProductsPreview.Columns.Add("Cost", "Cost");
             dgvProductsPreview.Columns.Add("SubCategory", "SubCategory ID");
             dgvProductsPreview.Columns.Add("Qty", "Quantity");
+            dgvProductsPreview.Columns.Add("ProductOldName", "Old Name");
 
             // Initialize Prices DataGridView
             dgvPricesPreview.Columns.Clear();
@@ -105,7 +106,8 @@ namespace POS_Shop.Views.DB_Screens
                                 GetCellValue(row.Cell(5)),
                                 GetCellValue(row.Cell(6)),
                                 GetCellValue(row.Cell(7)),
-                                GetCellValue(row.Cell(8))
+                                GetCellValue(row.Cell(8)),
+                                GetCellValue(row.Cell(9))
                             );
                         }
 
@@ -312,7 +314,7 @@ namespace POS_Shop.Views.DB_Screens
                     int cost = row.Cell(6).GetValue<int>();
                     int subcategoryId = row.Cell(7).GetValue<int>();
                     int qty = row.Cell(8).GetValue<int>();
-
+                    string productOldName = row.Cell(9).GetString();
                     // Validate required fields
                     if (string.IsNullOrWhiteSpace(productEnglishName))
                     {
@@ -330,25 +332,28 @@ namespace POS_Shop.Views.DB_Screens
                     Product existingProduct = null;
 
                     // Try by ID
-                    if (productId > 0)
-                    {
-                        existingProduct = await context.Products
-                            .FirstOrDefaultAsync(p => p.Id == productId);
-                    }
+                    //if (productId > 0)
+                    //{
+                    //    existingProduct = await context.Products
+                    //        .FirstOrDefaultAsync(p => p.Id == productId);
+                    //}
 
-                    // If not found by ID, try by English Name
-                    if (existingProduct == null)
-                    {
-                        existingProduct = await context.Products
-                            .FirstOrDefaultAsync(p => p.ProductEnglishName == productEnglishName);
-                    }
+                    //// If not found by ID, try by English Name
+                    //if (existingProduct == null)
+                    //{
+                    //    existingProduct = await context.Products
+                    //        .FirstOrDefaultAsync(p => p.ProductEnglishName == productEnglishName);
+                    //}
 
-                    // If not found by English Name, try by Urdu Name
-                    if (existingProduct == null)
-                    {
-                        existingProduct = await context.Products
-                            .FirstOrDefaultAsync(p => p.ProductUrduName == productUrduName);
-                    }
+                    //// If not found by English Name, try by Urdu Name
+                    //if (existingProduct == null)
+                    //{
+                    //    existingProduct = await context.Products
+                    //        .FirstOrDefaultAsync(p => p.ProductUrduName == productUrduName);
+                    //}
+
+                    existingProduct = await context.Products
+                        .FirstOrDefaultAsync(S => S.ProductEnglishName == productOldName);
 
                     if (existingProduct != null)
                     {
