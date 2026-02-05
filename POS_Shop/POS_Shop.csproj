@@ -248,6 +248,7 @@
     <Compile Include="DTOs\Order\OrderDto.cs" />
     <Compile Include="DTOs\Order\OrdersListDto.cs" />
     <Compile Include="DTOs\Order\TempOrderListDto.cs" />
+    <Compile Include="DTOs\Product\ProdPricesdto.cs" />
     <Compile Include="DTOs\Product\ProductOrderHistoryDetails.cs" />
     <Compile Include="DTOs\Product\ProductSalesData.cs" />
     <Compile Include="DTOs\Product\ProductSuggestion.cs" />
@@ -325,6 +326,10 @@
     <Compile Include="Migrations\202601301453541_RemoveSalePrice_ProdTable.cs" />
     <Compile Include="Migrations\202601301453541_RemoveSalePrice_ProdTable.Designer.cs">
       <DependentUpon>202601301453541_RemoveSalePrice_ProdTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602022107282_added_ClusteredProperties_ProdPrices.cs" />
+    <Compile Include="Migrations\202602022107282_added_ClusteredProperties_ProdPrices.Designer.cs">
+      <DependentUpon>202602022107282_added_ClusteredProperties_ProdPrices.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
@@ -598,6 +603,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202601301453541_RemoveSalePrice_ProdTable.resx">
       <DependentUpon>202601301453541_RemoveSalePrice_ProdTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602022107282_added_ClusteredProperties_ProdPrices.resx">
+      <DependentUpon>202602022107282_added_ClusteredProperties_ProdPrices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

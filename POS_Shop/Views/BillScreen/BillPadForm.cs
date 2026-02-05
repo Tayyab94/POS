@@ -21,6 +21,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 using Color = System.Drawing.Color;
 using Font = System.Drawing.Font;
 using Order = POS_Shop.Models.Order;
@@ -245,76 +246,6 @@ namespace POS_Shop.Views.BillScreen
             return true; // ✅ Passed all checks
         }
 
-
-        //private void AddToCardBtn_Click(object sender, EventArgs e)
-        //{
-
-        //    if (!ValidateInputs())
-        //        return; // stop if validation fails
-
-        //    // Get values from the TextBoxes
-        //    string productId = PId; // (or use the label SearchProductUI.ProdIdLbl.Text)
-        //    string productName = ProductEngNameTxt.Text;
-        //    string ProductUrduName = prod_U_Name;
-        //    string productType = productTypeDropdown.SelectedItem?.ToString();
-        //    decimal salePrice = Math.Round(decimal.Parse(ProductSalePrice.Text), 1);
-        //    int qty = int.Parse(P_StockQtyTxt.Text);
-        //    decimal amount = salePrice * qty;
-
-        //    bool productExists = false;
-        //    var finalName = OtherProductChk.Checked == false ? $"{ProductUrduName} {ProductDetailTxt.Text}" : $"{productName} {ProductDetailTxt.Text}";
-
-
-        //    //string formattedText = FixCommonPatterns(finalName);
-
-        //    string formattedText = TextFormatHelper.FormatMixedText(finalName);
-        //    var finalPId = OtherProductChk.Checked == false ? productId : "";
-        //    //if (!OtherProductChk.Checked)
-        //    //{
-        //    // Loop through DataGridView rows to check if product already exists
-        //    foreach (DataGridViewRow row in CartProductList.Rows)
-        //    {
-
-        //        string existingName = row.Cells["Urdu Name"].Value.ToString();
-        //        // Remove directional characters for comparison
-        //        string cleanExisting = TextFormatHelper.RemoveDirectionalCharacters(existingName);
-        //        string cleanNew = TextFormatHelper.RemoveDirectionalCharacters(formattedText);
-
-        //        if (string.Equals(
-        //            cleanExisting.Trim(),
-        //            cleanNew.Trim(),
-        //            StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            // Product already exists → increase Qty & update Amount
-        //            int existingQty = int.Parse(row.Cells["Qty"].Value.ToString());
-        //            existingQty += qty;
-        //            row.Cells["Qty"].Value = existingQty;
-
-        //            decimal newAmount = existingQty * salePrice;
-        //            row.Cells["Amount"].Value = Math.Round(newAmount, 1);
-        //            productExists = true;
-        //            break;
-        //        }
-
-        //    }
-        //    //}
-
-        //    // If product doesn’t exist, add a new row
-        //    if (!productExists)
-        //    {
-        //        //CartProductList.Rows.Add(finalPId, finalName, productType, qty,salePrice, amount);
-        //        CartProductList.Rows.Add(null, amount, salePrice, formattedText, productType, qty, finalPId, ProductDetailTxt.Text);
-        //    }
-
-        //    CalculateTotals();
-        //    CalculateReturnAmount();
-
-        //    // Clear input fields after adding
-        //    ClearInputs();
-        //    ProductEngNameTxt.Focus();
-        //}
-
-
         private void AddToCardBtn_Click(object sender, EventArgs e)
         {
             if (!ValidateInputs())
@@ -337,13 +268,24 @@ namespace POS_Shop.Views.BillScreen
             var finalPId = OtherProductChk.Checked == false ? productId : "";
 
 
-            //// checking the available stock
-            //int availableQty =int.Parse(Prod_Qty.Text);
-            //if(qty > availableQty)
-            //{
-            //    MessageBox.Show($"Available stock is {availableQty}. Please enter a valid quantity.", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
+           // checking the available stock
+            var config = ConfigurationManager.Configuration.Features.EnableUpdateQty;
+            if (config ==true && !string.IsNullOrEmpty(productId))
+            {
+                int availableQty = int.Parse(Prod_Qty.Text);
+                if (availableQty <= 0 || int.Parse(prod_ItemCountTxt.Text)<=0 || (int.Parse(prod_ItemCountTxt.Text) * qty) > availableQty)
+                {
+                    if(int.Parse(prod_ItemCountTxt.Text)<=0)
+                    {
+                        MessageBox.Show($"Product type '{productType}' is not properly configured against this Product. Item count must be greater than zero.",
+                                "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    MessageBox.Show($"Available stock is {availableQty} Pieces.Please enter a valid quantity.", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
 
             // IMPROVED DUPLICATE CHECK - Compare multiple properties
             foreach (DataGridViewRow row in CartProductList.Rows)
@@ -407,6 +349,40 @@ namespace POS_Shop.Views.BillScreen
                     if (CartProductList.Columns[e.ColumnIndex].Name == "Qty" ||
                         CartProductList.Columns[e.ColumnIndex].Name == "SalePrice")
                     {
+
+                        if (CartProductList.Columns[e.ColumnIndex].Name=="Qty")
+                        {
+                            var config = ConfigurationManager.Configuration.Features.EnableUpdateQty;
+                            if (config == true)
+                            {
+
+                                int productId = int.Parse(row.Cells["ProductId"].Value?.ToString());
+                                string existingType = row.Cells["ProductType"].Value?.ToString();
+                                int availableQty = int.Parse(row.Cells["Qty"].Value?.ToString());
+
+                                if (config == true && !string.IsNullOrEmpty(row.Cells["ProductId"].Value?.ToString()))
+                                {
+                                    using (var context = new POSDbContext())
+                                    {
+                                        var productQty = context.Products.FirstOrDefault(s => s.Id == productId).Qty;
+                                        var price = context.ProductPrices.Where(s => s.ProductId == productId && s.TypeName == existingType).Select(s => new ProdPricesdto()
+                                        {
+                                            price = s.Price,
+                                            ItemCount = s.ItemsCount
+                                        }).FirstOrDefault();
+
+                                        if (price != null)
+                                        {
+                                            if (availableQty <= 0 || (price.ItemCount * availableQty) > productQty)
+                                            {
+                                                MessageBox.Show($"Available stock is {productQty} Pieces. Please enter a valid quantity.", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                return;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         decimal salePrice = Convert.ToDecimal(row.Cells["SalePrice"].Value);
                         int qty = Convert.ToInt32(row.Cells["Qty"].Value);
                         decimal newAmount = salePrice * qty;
@@ -459,7 +435,7 @@ namespace POS_Shop.Views.BillScreen
             ProductDetailTxt.Clear();
             OtherProductChk.Checked = false;
             Prod_Qty.Clear();
-
+            prod_ItemCountTxt.Clear();
             ProductOrderHistoryDataGrid.DataSource = null;
             ProductPriceDataGridView.DataSource = null;
         }
@@ -1121,57 +1097,69 @@ namespace POS_Shop.Views.BillScreen
         {
             if (CartProductList.Rows.Count != 0 && CartProductList.Rows != null)
             {
-                bool IsDone = false;
-                if (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && PreviousOrderIdLbl.Text != "Prev Order Id")
-                    IsDone = await SaveOrder(true);  //await UpdateOrderSaved();
-                else
-                    IsDone = await SaveOrder(false);  // await NewOrderSaved();
-
-                if (IsDone)
+                LoadingManager.ShowLoading();
+                try
                 {
-                    //// First clear any previous handlers
-                    //OrderPrintDocument.PrintPage -= OrderPrintDocument_PrintPage;
-                    //OrderPrintDocument.PrintPage -= OrderPrintDocument_PrintPage_English;
+                    bool IsDone = false;
+                    if (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && PreviousOrderIdLbl.Text != "Prev Order Id")
+                        IsDone = await SaveOrder(true);  //await UpdateOrderSaved();
+                    else
+                        IsDone = await SaveOrder(false);  // await NewOrderSaved();
 
-                    //if (EnglishInvoiceChk.Checked)
-                    //    OrderPrintDocument.PrintPage += OrderPrintDocument_PrintPage_English;
-                    //else
-                    //    OrderPrintDocument.PrintPage += OrderPrintDocument_PrintPage;
-
-
-                    OrderPrintPreviewDialog.Document = OrderPrintDocument;
-                    OrderPrintDocument.DefaultPageSettings.PaperSize = new PaperSize("FullInvoice", 280, 32767);
-                    OrderPrintDocument.Print();
-
-                    if (isTempSaved)
+                    if (IsDone)
                     {
-                        string sql = "DELETE FROM TempOrders WHERE InvoiceNumber = @InvoiceNumber";
-                        string sql1 = "DELETE FROM TempOrderDetails WHERE TempInvoiceNumber = @InvoiceNumber";
 
-                        using (var context = new POSDbContext())
+                        LoadingManager.HideLoading();
+                        //// First clear any previous handlers
+                        //OrderPrintDocument.PrintPage -= OrderPrintDocument_PrintPage;
+                        //OrderPrintDocument.PrintPage -= OrderPrintDocument_PrintPage_English;
+
+                        //if (EnglishInvoiceChk.Checked)
+                        //    OrderPrintDocument.PrintPage += OrderPrintDocument_PrintPage_English;
+                        //else
+                        //    OrderPrintDocument.PrintPage += OrderPrintDocument_PrintPage;
+
+
+                        OrderPrintPreviewDialog.Document = OrderPrintDocument;
+                        OrderPrintDocument.DefaultPageSettings.PaperSize = new PaperSize("FullInvoice", 280, 32767);
+                        OrderPrintDocument.Print();
+
+                        if (isTempSaved)
                         {
-                            var parameters1 = new[]
+                            string sql = "DELETE FROM TempOrders WHERE InvoiceNumber = @InvoiceNumber";
+                            string sql1 = "DELETE FROM TempOrderDetails WHERE TempInvoiceNumber = @InvoiceNumber";
+
+                            using (var context = new POSDbContext())
                             {
+                                var parameters1 = new[]
+                                {
                                 new System.Data.SqlClient.SqlParameter("@InvoiceNumber", InvoiceNoLbl.Text)
                             };
 
-                            context.Database.ExecuteSqlCommand(sql1, parameters1);
+                                context.Database.ExecuteSqlCommand(sql1, parameters1);
 
-                            var parameters = new[]
-                            {
+                                var parameters = new[]
+                                {
                                 new System.Data.SqlClient.SqlParameter("@InvoiceNumber", InvoiceNoLbl.Text),
                             };
-                            context.Database.ExecuteSqlCommand(sql, parameters);
+                                context.Database.ExecuteSqlCommand(sql, parameters);
+                            }
                         }
-                    }
 
-                    ResetUIAfterSave();
-                    SendKeys.SendWait("^{F11}");
-                    MessageBox.Show("Order Created Successfully!", "Order Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ResetUIAfterSave();
+                        SendKeys.SendWait("^{F11}");
+                        MessageBox.Show("Order Created Successfully!", "Order Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Order Creation Failed!", "Order Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    MessageBox.Show("Order Creation Failed!", "Order Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    LoadingManager.HideLoading();
+                 
                 }
             }
             else
@@ -1329,13 +1317,11 @@ namespace POS_Shop.Views.BillScreen
                             var prices = context.ProductPrices
                             .Where(p => p.ProductId == item.ProductId && p.TypeName == item.QuantityType)
                             .FirstOrDefault();
-
                             product.Qty += (item.Quantity * prices.ItemsCount);
                             context.Entry(product).State = EntityState.Modified;
                         }
                     }
                 }
-
                 context.SaveChanges();
             }
         }
@@ -1343,7 +1329,7 @@ namespace POS_Shop.Views.BillScreen
         private async Task SaveOrderDetails(POSDbContext context, int orderId)
         {
             var orderDetailList = new List<OrderDetail>();
-
+            var prices = new ProductPrice();
             foreach (DataGridViewRow row in CartProductList.Rows)
             {
                 if (row.Cells["ProductId"].Value == null) continue;
@@ -1355,22 +1341,30 @@ namespace POS_Shop.Views.BillScreen
 
                 // Checking User has Enabled the Stock Qty Update Feature
                 var config = ConfigurationManager.Configuration.Features.EnableUpdateQty;
-                //if (config)
-                //{
-                //    if (!string.IsNullOrEmpty(productIdValue))
-                //    {
-                //        var productCheck = context.Products.Find(int.Parse(productIdValue));
-                //        if (productCheck.Qty < 0 || productCheck.Qty < q)
-                //        {
-                //            MessageBox.Show($"Insufficient stock for product {productCheck.ProductEnglishName}",
-                //               "Error",
-                //               MessageBoxButtons.OK,
-                //               MessageBoxIcon.Error);
-                //            throw new Exception($"Insufficient stock for product ID {productIdValue}");
-                //        }
+                if (config)
+                {
+                    if (!string.IsNullOrEmpty(productIdValue))
+                    {
 
-                //    }
-                //}
+                        int prodId = int.Parse(productIdValue);
+                        string typeName = row.Cells["ProductType"].Value?.ToString();
+                        prices = context.ProductPrices.Where(p => p.ProductId == prodId && p.TypeName == typeName).FirstOrDefault();
+
+                        var productCheck = context.Products.Find(int.Parse(productIdValue));
+
+                        if ((int.Parse(row.Cells["Qty"].Value?.ToString()) < 0 || (int.Parse(row.Cells["Qty"].Value?.ToString()) * prices.ItemsCount) < q))
+                        {
+                            LoadingManager.HideLoading();
+                            MessageBox.Show($"Insufficient stock for product {productCheck.ProductEnglishName}",
+                               "Error",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
+                            throw new Exception($"Insufficient stock for product ID {productIdValue}");
+                        }
+
+
+                    }
+                }
 
                 var odrDetail = new OrderDetail
                 {
@@ -1386,16 +1380,11 @@ namespace POS_Shop.Views.BillScreen
                 orderDetailList.Add(odrDetail);
 
                 // Checking User has Enabled the Stock Qty Update Feature
-
                 if (config)
                 {
                     if (!string.IsNullOrEmpty(productIdValue))
                     {
                         var pid = int.Parse(productIdValue);
-                        var prices= context.ProductPrices
-                            .Where(p => p.ProductId == pid && p.TypeName==odrDetail.QuantityType)
-                            .FirstOrDefault();
-
                         var product = context.Products.Find(pid);
                         product.Qty -= (odrDetail.Quantity * prices.ItemsCount);
                         context.Entry(product).State = EntityState.Modified;
@@ -1608,7 +1597,7 @@ namespace POS_Shop.Views.BillScreen
             else if (e.KeyCode == Keys.D1 && e.Control) // 1 to Focus on Product TextBox
             {
                 ProductEngNameTxt.Focus();
-                ProductEngNameTxt.SelectAll();
+                ProductEngNameTxt.SelectAll(); 
             }
             else if (e.KeyCode == Keys.D2 && e.Control) // 2 to Focus on Product TextBox
             {
@@ -1788,8 +1777,6 @@ namespace POS_Shop.Views.BillScreen
                     ProductSalePrice.Text = ((int)d.Price).ToString();
                     ProductAmount.Text = Convert.ToString(Convert.ToInt32(P_StockQtyTxt.Text) * Convert.ToInt32(ProductSalePrice.Text));
                 }
-
-               
             }
         }
 
@@ -2219,6 +2206,7 @@ namespace POS_Shop.Views.BillScreen
         {
             if (CartProductList.Rows.Count != 0 && CartProductList.Rows != null)
             {
+                LoadingManager.ShowLoading();
                 bool IsDone = false;
                 if (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && PreviousOrderIdLbl.Text != "Prev Order Id")
                     IsDone = await SaveOrder(true);  //await UpdateOrderSaved();
@@ -2227,7 +2215,7 @@ namespace POS_Shop.Views.BillScreen
 
                 if (IsDone)
                 {
-
+                    LoadingManager.HideLoading();
                     if (isTempSaved)
                     {
                         string sql = "DELETE FROM TempOrders WHERE InvoiceNumber = @InvoiceNumber";
@@ -2428,11 +2416,22 @@ namespace POS_Shop.Views.BillScreen
                 int pid = Convert.ToInt32(PId);
                 using (var context = new POSDbContext())
                 {
-                    var price = context.ProductPrices
-                  .FirstOrDefault(s => s.ProductId == pid && s.TypeName == selectedValue)
-                  ?.Price ?? 0;
+                    var price = context.ProductPrices.Where(s=>s.ProductId== pid && s.TypeName== selectedValue).Select(s => new ProdPricesdto()
+                    {
+                        price = s.Price,
+                        ItemCount = s.ItemsCount
+                    }).FirstOrDefault();
 
-                    ProductSalePrice.Text = $"{price:0}";
+                    if(price != null)
+                    {
+                        ProductSalePrice.Text = $"{price.price:0}";
+                        prod_ItemCountTxt.Text = price.ItemCount.ToString();
+                    }
+                    else
+                    {
+                        ProductSalePrice.Text = "0";
+                        prod_ItemCountTxt.Text = "0";
+                    }               
                 }
             }
             else
@@ -2443,4 +2442,6 @@ namespace POS_Shop.Views.BillScreen
 
         }
     }
+
+    
 }

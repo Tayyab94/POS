@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace POS_Shop.Models
         public int Id { get; set; }
         public int ProductId { get; set; }
         public int Prod_Unit_TypeId { get; set; }
+        [StringLength(maximumLength:30)]
         public string TypeName { get; set; }
         public string Unit { get; set; }
         public int ItemsCount { get; set; }

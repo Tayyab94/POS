@@ -172,7 +172,20 @@ namespace POS_Shop.Models
                 .HasName("IX_IsActive");
 
 
-        
+
+            modelBuilder.Entity<ProductPrice>()
+                .HasIndex(p => p.ProductId)
+                .HasName("IX_ProductPrices_ProductId")
+                .IsClustered(false) // Non-clustered index
+                .IsUnique(false);   // Allow duplicates
+
+
+            modelBuilder.Entity<ProductPrice>()
+                .HasIndex(p => p.TypeName)
+                .HasName("IX_ProductPrices_TypeName")
+                .IsClustered(false) // Non-clustered index
+                .IsUnique(false);   // Allow duplicates
+
         }
     }
 }

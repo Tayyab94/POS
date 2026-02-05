@@ -320,11 +320,13 @@ namespace POS_Shop
 
         private void databaseSettingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var settingsForm = new SettingsForm())
-            {
-                settingsForm.ShowDialog();
-                //LoadDatabaseInfo(); // Refresh status
-            }
+
+            // Don't Remove this code, without testing this.
+            //using (var settingsForm = new SettingsForm())
+            //{
+            //    settingsForm.ShowDialog();
+            //    //LoadDatabaseInfo(); // Refresh status
+            //}
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
