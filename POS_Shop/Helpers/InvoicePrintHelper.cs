@@ -415,7 +415,7 @@ namespace POS_Shop.Helpers
 
         public static void PrintInvoice(PrintPageEventArgs e, DataGridView cartProductList,
                               string customerName, string invoiceNo, string totalAmount,
-                              bool isCashPayment, string receivedAmount)
+                              bool isCashPayment, string receivedAmount, bool isPaid)
         {
             // 1️⃣  Dynamic height calculation
             int baseHeight = 350; // header, totals, footer space
@@ -474,9 +474,6 @@ namespace POS_Shop.Helpers
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 2;
 
-            //e.Graphics.DrawString("تاریخ: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), urduFont, Brushes.Black,
-            //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
-            //currentY += lineHeight + 2;
 
             e.Graphics.DrawString("تاریخ: " + DateTime.Now.ToString("yyyy-MM-dd"), urduFont, Brushes.Black,
                               new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
@@ -578,17 +575,55 @@ namespace POS_Shop.Helpers
             e.Graphics.DrawString($"ادائیگی کا طریقہ: {method}", urduFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 4;
+
+            //if (isPaid)
+            //{
+            //    // Simple PAID stamp
+            //    int stampSize = 70; // Smaller size (was 100)
+            //    int stampX = paperWidth - 120;
+            //    int stampY = currentY - 50;
+
+            //    // Save state and rotate
+            //    var oldTransform = e.Graphics.Transform.Clone();
+            //    e.Graphics.TranslateTransform(stampX + stampSize / 2, stampY + stampSize / 2);
+            //    e.Graphics.RotateTransform(-15);
+            //    e.Graphics.TranslateTransform(-(stampX + stampSize / 2), -(stampY + stampSize / 2));
+
+            //    // Semi-transparent red
+            //    Color stampColor = Color.Black;
+
+            //    // Draw round circle
+            //    using (Pen pen = new Pen(stampColor, 3))
+            //    {
+            //        e.Graphics.DrawEllipse(pen, stampX, stampY, stampSize, stampSize);
+            //    }
+
+            //    // Draw PAID text
+            //    using (Font stampFont = new Font("Arial", 18, FontStyle.Bold))
+            //    using (SolidBrush brush = new SolidBrush(stampColor))
+            //    {
+            //        StringFormat format = new StringFormat();
+            //        format.Alignment = StringAlignment.Center;
+            //        format.LineAlignment = StringAlignment.Center;
+            //        e.Graphics.DrawString("PAID", stampFont, brush,
+            //            new Rectangle(stampX, stampY, stampSize, stampSize), format);
+            //    }
+
+            //    // Restore state
+            //    e.Graphics.Transform = oldTransform;
+            //}
+
             e.Graphics.DrawString("ٹوٹے ہوۓ سامان کی واپسی نہیں۔", headerFont, Brushes.Black,
                        new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 4;
-
             e.Graphics.DrawString("چائنہ مال کی وارنٹی نہیں۔", headerFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
+          
         }
 
         public static void PrintEnglishInvoice(PrintPageEventArgs e, DataGridView cartProductList,
                     string customerName, string invoiceNo, string totalAmount,
-                    bool isCashPayment, string receivedAmount)
+                    bool isCashPayment, string receivedAmount, bool isPaid)
         {
             // Thermal printer settings (80mm paper)
             int paperWidth = 280; // pixels for 80mm paper
@@ -768,6 +803,44 @@ namespace POS_Shop.Helpers
             // 7. FOOTER
             e.Graphics.DrawString(dashLine, smallFont, Brushes.Black, leftMargin, currentY);
             currentY += lineHeight;
+
+
+            //if (isPaid)
+            //{
+            //    // Simple PAID stamp
+            //    int stampSize = 70; // Smaller size (was 100)
+            //    int stampX = paperWidth - 120;
+            //    int stampY = currentY - 50;
+
+            //    // Save state and rotate
+            //    var oldTransform = e.Graphics.Transform.Clone();
+            //    e.Graphics.TranslateTransform(stampX + stampSize / 2, stampY + stampSize / 2);
+            //    e.Graphics.RotateTransform(-15);
+            //    e.Graphics.TranslateTransform(-(stampX + stampSize / 2), -(stampY + stampSize / 2));
+
+            //    // Semi-transparent red
+            //    Color stampColor = Color.Black;
+
+            //    // Draw round circle
+            //    using (Pen pen = new Pen(stampColor, 3))
+            //    {
+            //        e.Graphics.DrawEllipse(pen, stampX, stampY, stampSize, stampSize);
+            //    }
+
+            //    // Draw PAID text
+            //    using (Font stampFont = new Font("Arial", 18, FontStyle.Bold))
+            //    using (SolidBrush brush = new SolidBrush(stampColor))
+            //    {
+            //        StringFormat format = new StringFormat();
+            //        format.Alignment = StringAlignment.Center;
+            //        format.LineAlignment = StringAlignment.Center;
+            //        e.Graphics.DrawString("PAID", stampFont, brush,
+            //            new Rectangle(stampX, stampY, stampSize, stampSize), format);
+            //    }
+
+            //    // Restore state
+            //    e.Graphics.Transform = oldTransform;
+            //}
 
             e.Graphics.DrawString("خریدا ہوا سامان واپس یا تبدیل نہیں ہوگا", headerFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
@@ -954,7 +1027,7 @@ namespace POS_Shop.Helpers
                                       string customerName, string invoiceNo, string totalAmount)
         {
             PrintInvoice(e, cartProductList, customerName, invoiceNo, totalAmount,
-                        true, totalAmount);
+                        true, totalAmount, false);
         }
     }
 }

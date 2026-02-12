@@ -1,6 +1,7 @@
 ﻿using POS_Shop.DTOs.Product;
 using POS_Shop.Helpers;
 using POS_Shop.Models;
+using POS_Shop.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,6 +34,32 @@ namespace POS_Shop.Views.Reports
         {
             InitializeComponent();
             CreateControls();
+
+            InitializeProductUnitsDropdown();
+        }
+
+        private void InitializeProductUnitsDropdown()
+        {
+            using (var context = new POSDbContext())
+            {
+                var productUnitRepo = new ProductUnitRepository(context);
+                var productUnit = productUnitRepo.GetAll().Select(s => new ProductUnit()
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+
+                }).ToList();
+                cmbQuantityType.Items.Clear();
+
+                // Add default option
+                var allItems = new List<ProductUnit>();
+                allItems.Add(new ProductUnit { Id = 0, Name = "All" });
+                allItems.AddRange(productUnit);
+                cmbQuantityType.DataSource = allItems;
+                cmbQuantityType.DisplayMember = "Name";
+                cmbQuantityType.ValueMember = "Name";
+                cmbQuantityType.SelectedIndex = 1;
+            }
         }
 
         private void CreateControls()
@@ -89,20 +116,20 @@ namespace POS_Shop.Views.Reports
                 Size = new Size(100, 20),
                 DropDownStyle = ComboBoxStyle.DropDownList
             };
-            cmbQuantityType.Items.AddRange(new[] { "All",    
-                            "عدد",    // Piece/Unit
-                            "ڈبہ",    // Box
-                            "درجن",   // Dozen
-                            "پیکٹ",   // Packet
-                            "بنڈل",   // Bundle
-                            "کارٹن",  // Carton (corrected)
-                            "رول",    // Roll
-                             "ڈبی",
-                            "کلو",    // Kilogram
-                            "گز",     // Yard
-                            "جوڑی",   // Pair
-                            "سبقہ" });
-            cmbQuantityType.SelectedIndex = 0;
+            //cmbQuantityType.Items.AddRange(new[] { "All",    
+            //                "عدد",    // Piece/Unit
+            //                "ڈبہ",    // Box
+            //                "درجن",   // Dozen
+            //                "پیکٹ",   // Packet
+            //                "بنڈل",   // Bundle
+            //                "کارٹن",  // Carton (corrected)
+            //                "رول",    // Roll
+            //                 "ڈبی",
+            //                "کلو",    // Kilogram
+            //                "گز",     // Yard
+            //                "جوڑی",   // Pair
+            //                "سبقہ" });
+            //cmbQuantityType.SelectedIndex = 0;
 
             // Quantity Textbox
             lblQty = new Label { Text = "Qty:", Location = new Point(570, 20), Size = new Size(30, 20) };
@@ -157,7 +184,7 @@ namespace POS_Shop.Views.Reports
                 LoadingManager.ShowLoading();
                 DateTime startDate = dtpStartDate.Value.Date;
                 DateTime endDate = dtpEndDate.Value.Date.AddDays(1).AddSeconds(-1);
-                string selectedQuantityType = cmbQuantityType.SelectedItem?.ToString() ?? "All";
+                string selectedQuantityType = cmbQuantityType.SelectedValue?.ToString() ?? "All";
 
                 if (startDate > endDate)
                 {

@@ -244,6 +244,7 @@
   <ItemGroup>
     <Compile Include="Constants\POSConstants.cs" />
     <Compile Include="DTOs\City\CitiesListForDataGrifDto.cs" />
+    <Compile Include="DTOs\Supplier\SupplierListForDataGridDto.cs" />
     <Compile Include="DTOs\Country\CountryListForDataGirdDto.cs" />
     <Compile Include="DTOs\Order\OrderDto.cs" />
     <Compile Include="DTOs\Order\OrdersListDto.cs" />
@@ -279,6 +280,7 @@
     <Compile Include="Interfaces\IProductUnitRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ISubCategoryRepository.cs" />
+    <Compile Include="Interfaces\ISupplierRepository.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,6 +333,10 @@
     <Compile Include="Migrations\202602022107282_added_ClusteredProperties_ProdPrices.Designer.cs">
       <DependentUpon>202602022107282_added_ClusteredProperties_ProdPrices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202602060051573_Added_Supplier_tbl.cs" />
+    <Compile Include="Migrations\202602060051573_Added_Supplier_tbl.Designer.cs">
+      <DependentUpon>202602060051573_Added_Supplier_tbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\AuthModel\AuthUser.cs" />
@@ -349,6 +355,7 @@
     <Compile Include="Models\ProductPrice.cs" />
     <Compile Include="Models\ProductUnit.cs" />
     <Compile Include="Models\SubCategory.cs" />
+    <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\TempOrder.cs" />
     <Compile Include="Models\TempOrderDetail.cs" />
     <Compile Include="Program.cs" />
@@ -366,6 +373,7 @@
     <Compile Include="Repositories\ProductUnitRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SubCategoryRepository.cs" />
+    <Compile Include="Repositories\SupplierRepository.cs" />
     <Compile Include="Services\DailyBackgroundService.cs" />
     <Compile Include="Views\Account\Auth\AddEditUserForm.cs">
       <SubType>Form</SubType>
@@ -574,6 +582,12 @@
     <Compile Include="Views\Settings\PirntersAndScanners.Designer.cs">
       <DependentUpon>PirntersAndScanners.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\Supplier\SupplierControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\SupplierControl.Designer.cs">
+      <DependentUpon>SupplierControl.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MasterLayoutForm.resx">
       <DependentUpon>MasterLayoutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -606,6 +620,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202602022107282_added_ClusteredProperties_ProdPrices.resx">
       <DependentUpon>202602022107282_added_ClusteredProperties_ProdPrices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602060051573_Added_Supplier_tbl.resx">
+      <DependentUpon>202602060051573_Added_Supplier_tbl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -668,6 +685,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\SubCategory\SubCategoryForm.resx">
       <DependentUpon>SubCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Supplier\SupplierControl.resx">
+      <DependentUpon>SupplierControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\BackUpForm.resx">
       <DependentUpon>BackUpForm.cs</DependentUpon>

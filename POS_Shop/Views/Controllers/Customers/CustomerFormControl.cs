@@ -33,7 +33,7 @@ namespace POS_Shop.Views.Controllers.Customers
         public CustomerFormControl()
         {
             InitializeComponent();
-
+           
             CustomerListDataGrid.RowTemplate.Height = 32;
             this.Load += CustomerFormControl_Load;
         }
@@ -378,16 +378,10 @@ namespace POS_Shop.Views.Controllers.Customers
                                 CityDropDownLst.SelectedValue = (int)row.Cells["CityId"].Value;
                             }
                         }
-
-
                         CustomerActiveChkBox.Checked = (bool)row.Cells["Active"].Value;
                     }
-                   
-
                 }
             }
-
-          
         }
 
         private async void RemoveCustomerBtn_Click(object sender, EventArgs e)
