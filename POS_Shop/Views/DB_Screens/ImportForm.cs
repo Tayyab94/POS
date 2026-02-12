@@ -235,41 +235,92 @@ namespace POS_Shop.Views.DB_Screens
             }
         }
 
+        //private async Task<ImportResult> ImportExcelFileAsync(string filePath, ImportProgressForm progressForm)
+        //{
+        //    var result = new ImportResult();
+
+        //    using (var context = new POSDbContext())
+        //    {
+        //        using (var transaction = context.Database.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                using (var workbook = new XLWorkbook(filePath))
+        //                {
+        //                    // 1. Import Products from "Products" sheet
+        //                    if (workbook.Worksheets.TryGetWorksheet("Products", out var productsWorksheet))
+        //                    {
+        //                        progressForm.UpdateMessage("Importing products...");
+        //                        await ImportProductsSheetAsync(productsWorksheet, context, result, progressForm);
+        //                    }
+        //                    else
+        //                    {
+        //                        result.Errors.Add("'Products' worksheet not found in the Excel file.");
+        //                    }
+
+        //                    // 2. Import ProductPrices from "ProductPrices" sheet
+        //                    if (workbook.Worksheets.TryGetWorksheet("ProductPrices", out var pricesWorksheet))
+        //                    {
+        //                        progressForm.UpdateMessage("Importing product prices...");
+        //                        await ImportProductPricesSheetAsync(pricesWorksheet, context, result, progressForm);
+        //                    }
+
+        //                    // Save all changes to database
+        //                    progressForm.UpdateMessage("Saving to database...");
+        //                    await context.SaveChangesAsync();
+        //                    transaction.Commit();
+
+        //                    progressForm.UpdateMessage("Import completed successfully!");
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                transaction.Rollback();
+        //                result.Errors.Add($"Transaction rolled back due to error: {ex.Message}");
+        //                throw;
+        //            }
+        //        }
+        //    }
+
+        //    return result;
+        //}
+
+
         private async Task<ImportResult> ImportExcelFileAsync(string filePath, ImportProgressForm progressForm)
         {
             var result = new ImportResult();
 
             using (var context = new POSDbContext())
             {
+                // OPTIMIZATION 9: Set command timeout for large imports
+                context.Database.CommandTimeout = 300; // 5 minutes
+
                 using (var transaction = context.Database.BeginTransaction())
                 {
                     try
                     {
                         using (var workbook = new XLWorkbook(filePath))
                         {
-                            // 1. Import Products from "Products" sheet
+                            // OPTIMIZATION 10: Process sheets in parallel if no dependencies
+                            var tasks = new List<Task>();
+
                             if (workbook.Worksheets.TryGetWorksheet("Products", out var productsWorksheet))
                             {
                                 progressForm.UpdateMessage("Importing products...");
                                 await ImportProductsSheetAsync(productsWorksheet, context, result, progressForm);
                             }
-                            else
-                            {
-                                result.Errors.Add("'Products' worksheet not found in the Excel file.");
-                            }
 
-                            // 2. Import ProductPrices from "ProductPrices" sheet
                             if (workbook.Worksheets.TryGetWorksheet("ProductPrices", out var pricesWorksheet))
                             {
                                 progressForm.UpdateMessage("Importing product prices...");
                                 await ImportProductPricesSheetAsync(pricesWorksheet, context, result, progressForm);
                             }
 
-                            // Save all changes to database
-                            progressForm.UpdateMessage("Saving to database...");
+                            // Final save
+                            progressForm.UpdateMessage("Finalizing database changes...");
                             await context.SaveChangesAsync();
-                            transaction.Commit();
 
+                            transaction.Commit();
                             progressForm.UpdateMessage("Import completed successfully!");
                         }
                     }
@@ -285,149 +336,465 @@ namespace POS_Shop.Views.DB_Screens
             return result;
         }
 
+        //private async Task ImportProductsSheetAsync(IXLWorksheet worksheet, POSDbContext context,
+        //                                           ImportResult result, ImportProgressForm progressForm)
+        //{
+        //    var rows = worksheet.RowsUsed().Skip(1).ToList();
+        //    result.ProductsProcessed = rows.Count;
+
+        //    for (int i = 0; i < rows.Count; i++)
+        //    {
+        //        if (progressForm.IsCancelled)
+        //        {
+        //            result.Errors.Add("Import cancelled by user.");
+        //            throw new OperationCanceledException("Import cancelled by user.");
+        //        }
+
+        //        progressForm.UpdateProgress("Importing Products", i + 1, rows.Count);
+
+        //        try
+        //        {
+        //            var row = rows[i];
+
+        //            // Read values from Excel row
+        //            int productId = row.Cell(1).GetValue<int>();
+        //            string productEnglishName = row.Cell(2).GetString();
+        //            string productUrduName = row.Cell(3).GetString();
+        //            string searchByProductCode = row.Cell(4).GetString();
+        //            string purchasePrice = row.Cell(5).GetString();
+        //            int cost = row.Cell(6).GetValue<int>();
+        //            int subcategoryId = row.Cell(7).GetValue<int>();
+        //            int qty = row.Cell(8).GetValue<int>();
+        //            string productOldName = row.Cell(9).GetString();
+        //            // Validate required fields
+        //            if (string.IsNullOrWhiteSpace(productEnglishName))
+        //            {
+        //                result.Errors.Add($"Row {i + 2}: Product English Name is required");
+        //                continue;
+        //            }
+
+        //            if (string.IsNullOrWhiteSpace(productUrduName))
+        //            {
+        //                result.Errors.Add($"Row {i + 2}: Product Urdu Name is required");
+        //                continue;
+        //            }
+
+        //            // Check if product exists
+        //            Product existingProduct = null;
+
+        //            // Try by ID
+        //            //if (productId > 0)
+        //            //{
+        //            //    existingProduct = await context.Products
+        //            //        .FirstOrDefaultAsync(p => p.Id == productId);
+        //            //}
+
+        //            //// If not found by ID, try by English Name
+        //            //if (existingProduct == null)
+        //            //{
+        //            //    existingProduct = await context.Products
+        //            //        .FirstOrDefaultAsync(p => p.ProductEnglishName == productEnglishName);
+        //            //}
+
+        //            //// If not found by English Name, try by Urdu Name
+        //            //if (existingProduct == null)
+        //            //{
+        //            //    existingProduct = await context.Products
+        //            //        .FirstOrDefaultAsync(p => p.ProductUrduName == productUrduName);
+        //            //}
+
+        //            existingProduct = await context.Products
+        //                .FirstOrDefaultAsync(S => S.ProductEnglishName == productOldName);
+
+        //            if (existingProduct != null)
+        //            {
+        //                // Update existing product
+        //                existingProduct.ProductEnglishName = productEnglishName;
+        //                existingProduct.ProductUrduName = productUrduName;
+        //                existingProduct.SearchByProductCode = searchByProductCode;
+        //                existingProduct.PurchasePrice = purchasePrice;
+        //                existingProduct.Cost = cost;
+        //                existingProduct.SubcategoryId = subcategoryId;
+        //                existingProduct.Qty = qty;
+
+        //                context.Products.AddOrUpdate(existingProduct);
+        //                result.ProductsUpdated++;
+        //            }
+        //            else
+        //            {
+        //                // Create new product
+        //                var newProduct = new Product
+        //                {
+        //                    ProductEnglishName = productEnglishName,
+        //                    ProductUrduName = productUrduName,
+        //                    SearchByProductCode = searchByProductCode,
+        //                    PurchasePrice = purchasePrice,
+        //                    Cost = cost,
+        //                    SubcategoryId = subcategoryId,
+        //                    Qty = qty
+        //                };
+
+        //                // If Excel has an ID and it's not in use, preserve it
+        //                if (productId > 0 && !await context.Products.AnyAsync(p => p.Id == productId))
+        //                {
+        //                    // For SQL Server, we might need to handle identity insert
+        //                    // This is a simplified approach
+        //                    try
+        //                    {
+        //                        // Temporarily set ID, but let DB handle it if there's a conflict
+        //                        newProduct.Id = productId;
+        //                         context.Products.Add(newProduct);
+        //                    }
+        //                    catch
+        //                    {
+        //                        // If setting ID fails, let DB generate it
+        //                        newProduct.Id = 0;
+        //                         context.Products.Add(newProduct);
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                     context.Products.Add(newProduct);
+        //                }
+
+        //                result.ProductsCreated++;
+        //            }
+
+        //            // Save periodically (every 50 rows)
+        //            if ((i + 1) % 50 == 0)
+        //            {
+        //                await context.SaveChangesAsync();
+        //                progressForm.UpdateMessage($"Saved {i + 1} of {rows.Count} products...");
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            result.Errors.Add($"Row {i + 2}: Error processing product - {ex.Message}");
+        //        }
+        //    }
+
+        //    // Final save for remaining products
+        //    await context.SaveChangesAsync();
+        //}
+
+
+
         private async Task ImportProductsSheetAsync(IXLWorksheet worksheet, POSDbContext context,
-                                                   ImportResult result, ImportProgressForm progressForm)
+                                            ImportResult result, ImportProgressForm progressForm)
         {
             var rows = worksheet.RowsUsed().Skip(1).ToList();
             result.ProductsProcessed = rows.Count;
 
-            for (int i = 0; i < rows.Count; i++)
+            // OPTIMIZATION 1: Load all existing products into memory once
+            var existingProducts = await context.Products
+                .Select(p => new { p.Id, p.ProductEnglishName, p.ProductUrduName, p.SearchByProductCode })
+                .ToListAsync();
+
+            var productsByOldName = existingProducts
+                .Where(p => !string.IsNullOrEmpty(p.ProductEnglishName))
+                .ToDictionary(p => p.ProductEnglishName, p => p.Id);
+
+            var allProductIds = new HashSet<int>(existingProducts.Select(p => p.Id));
+
+            // OPTIMIZATION 2: Disable auto-detect changes for bulk operations
+            context.Configuration.AutoDetectChangesEnabled = false;
+            context.Configuration.ValidateOnSaveEnabled = false;
+
+            var productsToAdd = new List<Product>();
+            var productsToUpdate = new List<Product>();
+
+            try
             {
-                if (progressForm.IsCancelled)
+                for (int i = 0; i < rows.Count; i++)
                 {
-                    result.Errors.Add("Import cancelled by user.");
-                    throw new OperationCanceledException("Import cancelled by user.");
-                }
-
-                progressForm.UpdateProgress("Importing Products", i + 1, rows.Count);
-
-                try
-                {
-                    var row = rows[i];
-
-                    // Read values from Excel row
-                    int productId = row.Cell(1).GetValue<int>();
-                    string productEnglishName = row.Cell(2).GetString();
-                    string productUrduName = row.Cell(3).GetString();
-                    string searchByProductCode = row.Cell(4).GetString();
-                    string purchasePrice = row.Cell(5).GetString();
-                    int cost = row.Cell(6).GetValue<int>();
-                    int subcategoryId = row.Cell(7).GetValue<int>();
-                    int qty = row.Cell(8).GetValue<int>();
-                    string productOldName = row.Cell(9).GetString();
-                    // Validate required fields
-                    if (string.IsNullOrWhiteSpace(productEnglishName))
+                    if (progressForm.IsCancelled)
                     {
-                        result.Errors.Add($"Row {i + 2}: Product English Name is required");
-                        continue;
+                        result.Errors.Add("Import cancelled by user.");
+                        throw new OperationCanceledException("Import cancelled by user.");
                     }
 
-                    if (string.IsNullOrWhiteSpace(productUrduName))
+                    progressForm.UpdateProgress("Importing Products", i + 1, rows.Count);
+
+                    try
                     {
-                        result.Errors.Add($"Row {i + 2}: Product Urdu Name is required");
-                        continue;
-                    }
+                        var row = rows[i];
 
-                    // Check if product exists
-                    Product existingProduct = null;
+                        // Read values from Excel row
+                        int productId = row.Cell(1).GetValue<int>();
+                        string productEnglishName = row.Cell(2).GetString();
+                        string productUrduName = row.Cell(3).GetString();
+                        string searchByProductCode = row.Cell(4).GetString();
+                        string purchasePrice = row.Cell(5).GetString();
+                        int cost = row.Cell(6).GetValue<int>();
+                        int subcategoryId = row.Cell(7).GetValue<int>();
+                        int qty = row.Cell(8).GetValue<int>();
+                        string productOldName = row.Cell(9).GetString();
 
-                    // Try by ID
-                    //if (productId > 0)
-                    //{
-                    //    existingProduct = await context.Products
-                    //        .FirstOrDefaultAsync(p => p.Id == productId);
-                    //}
-
-                    //// If not found by ID, try by English Name
-                    //if (existingProduct == null)
-                    //{
-                    //    existingProduct = await context.Products
-                    //        .FirstOrDefaultAsync(p => p.ProductEnglishName == productEnglishName);
-                    //}
-
-                    //// If not found by English Name, try by Urdu Name
-                    //if (existingProduct == null)
-                    //{
-                    //    existingProduct = await context.Products
-                    //        .FirstOrDefaultAsync(p => p.ProductUrduName == productUrduName);
-                    //}
-
-                    existingProduct = await context.Products
-                        .FirstOrDefaultAsync(S => S.ProductEnglishName == productOldName);
-
-                    if (existingProduct != null)
-                    {
-                        // Update existing product
-                        existingProduct.ProductEnglishName = productEnglishName;
-                        existingProduct.ProductUrduName = productUrduName;
-                        existingProduct.SearchByProductCode = searchByProductCode;
-                        existingProduct.PurchasePrice = purchasePrice;
-                        existingProduct.Cost = cost;
-                        existingProduct.SubcategoryId = subcategoryId;
-                        existingProduct.Qty = qty;
-
-                        context.Products.AddOrUpdate(existingProduct);
-                        result.ProductsUpdated++;
-                    }
-                    else
-                    {
-                        // Create new product
-                        var newProduct = new Product
+                        // Validate required fields
+                        if (string.IsNullOrWhiteSpace(productEnglishName))
                         {
-                            ProductEnglishName = productEnglishName,
-                            ProductUrduName = productUrduName,
-                            SearchByProductCode = searchByProductCode,
-                            PurchasePrice = purchasePrice,
-                            Cost = cost,
-                            SubcategoryId = subcategoryId,
-                            Qty = qty
-                        };
+                            result.Errors.Add($"Row {i + 2}: Product English Name is required");
+                            continue;
+                        }
 
-                        // If Excel has an ID and it's not in use, preserve it
-                        if (productId > 0 && !await context.Products.AnyAsync(p => p.Id == productId))
+                        if (string.IsNullOrWhiteSpace(productUrduName))
                         {
-                            // For SQL Server, we might need to handle identity insert
-                            // This is a simplified approach
-                            try
-                            {
-                                // Temporarily set ID, but let DB handle it if there's a conflict
-                                newProduct.Id = productId;
-                                 context.Products.Add(newProduct);
-                            }
-                            catch
-                            {
-                                // If setting ID fails, let DB generate it
-                                newProduct.Id = 0;
-                                 context.Products.Add(newProduct);
-                            }
+                            result.Errors.Add($"Row {i + 2}: Product Urdu Name is required");
+                            continue;
+                        }
+
+                        // Check existence in memory instead of database
+                        if (productsByOldName.TryGetValue(productOldName, out int existingId))
+                        {
+                            // Update existing product - don't attach yet, batch them
+                            var existingProduct = new Product { Id = existingId };
+                            context.Products.Attach(existingProduct);
+
+                            existingProduct.ProductEnglishName = productEnglishName;
+                            existingProduct.ProductUrduName = productUrduName;
+                            existingProduct.SearchByProductCode = searchByProductCode;
+                            existingProduct.PurchasePrice = purchasePrice;
+                            existingProduct.Cost = cost;
+                            existingProduct.SubcategoryId = subcategoryId;
+                            existingProduct.Qty = qty;
+
+                            context.Entry(existingProduct).State = EntityState.Modified;
+                            result.ProductsUpdated++;
+                            productsToUpdate.Add(existingProduct);
                         }
                         else
                         {
-                             context.Products.Add(newProduct);
+                            // Create new product
+                            var newProduct = new Product
+                            {
+                                ProductEnglishName = productEnglishName,
+                                ProductUrduName = productUrduName,
+                                SearchByProductCode = searchByProductCode,
+                                PurchasePrice = purchasePrice,
+                                Cost = cost,
+                                SubcategoryId = subcategoryId,
+                                Qty = qty
+                            };
+
+                            // Handle ID preservation
+                            if (productId > 0 && !allProductIds.Contains(productId))
+                            {
+                                newProduct.Id = productId;
+                                allProductIds.Add(productId);
+                            }
+
+                            productsToAdd.Add(newProduct);
+                            result.ProductsCreated++;
+
+                            // Add to dictionary for future lookups in same batch
+                            if (!productsByOldName.ContainsKey(productOldName))
+                            {
+                                productsByOldName.Add(productOldName, newProduct.Id);
+                            }
                         }
 
-                        result.ProductsCreated++;
-                    }
+                        // Batch save - every 500 rows or at end
+                        if (productsToAdd.Count >= 500 || productsToUpdate.Count >= 500 ||
+                            i == rows.Count - 1)
+                        {
+                            await BulkSaveProductsAsync(context, productsToAdd, productsToUpdate,
+                                                        i + 1, rows.Count, progressForm);
 
-                    // Save periodically (every 50 rows)
-                    if ((i + 1) % 50 == 0)
+                            // Clear batches
+                            productsToAdd.Clear();
+                            productsToUpdate.Clear();
+
+                            // Detach all entities to free memory (EF6 alternative to ChangeTracker.Clear)
+                            foreach (var entity in context.ChangeTracker.Entries().ToList())
+                            {
+                                entity.State = EntityState.Detached;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
                     {
-                        await context.SaveChangesAsync();
-                        progressForm.UpdateMessage($"Saved {i + 1} of {rows.Count} products...");
+                        result.Errors.Add($"Row {i + 2}: Error processing product - {ex.Message}");
                     }
                 }
-                catch (Exception ex)
+
+                // Final save for any remaining products
+                if (productsToAdd.Any() || productsToUpdate.Any())
                 {
-                    result.Errors.Add($"Row {i + 2}: Error processing product - {ex.Message}");
+                    await BulkSaveProductsAsync(context, productsToAdd, productsToUpdate,
+                                                rows.Count, rows.Count, progressForm);
                 }
             }
-
-            // Final save for remaining products
-            await context.SaveChangesAsync();
+            finally
+            {
+                // Re-enable auto-detect changes
+                context.Configuration.AutoDetectChangesEnabled = true;
+                context.Configuration.ValidateOnSaveEnabled = true;
+            }
         }
 
+        private async Task BulkSaveProductsAsync(POSDbContext context, List<Product> productsToAdd,
+                                                List<Product> productsToUpdate, int currentCount,
+                                                int totalCount, ImportProgressForm progressForm)
+        {
+            // Add all new products
+            if (productsToAdd.Any())
+            {
+                context.Products.AddRange(productsToAdd);
+            }
+
+            // Save changes
+            await context.SaveChangesAsync();
+            progressForm.UpdateMessage($"Saved {currentCount} of {totalCount} products...");
+        }
+
+        //private async Task ImportProductPricesSheetAsync(IXLWorksheet worksheet, POSDbContext context,
+        //                                                ImportResult result, ImportProgressForm progressForm)
+        //{
+        //    var rows = worksheet.RowsUsed().Skip(1).ToList();
+
+        //    // Skip if the sheet only contains the "no data" message
+        //    if (rows.Count == 1 && rows[0].Cell(1).Value.ToString()?.Contains("No product prices") == true)
+        //    {
+        //        result.PricesProcessed = 0;
+        //        return;
+        //    }
+
+        //    result.PricesProcessed = rows.Count;
+
+        //    for (int i = 0; i < rows.Count; i++)
+        //    {
+        //        if (progressForm.IsCancelled)
+        //        {
+        //            result.Errors.Add("Import cancelled by user.");
+        //            throw new OperationCanceledException("Import cancelled by user.");
+        //        }
+
+        //        progressForm.UpdateProgress("Importing Prices", i + 1, rows.Count);
+
+        //        try
+        //        {
+        //            var row = rows[i];
+
+        //            // Read values from Excel row
+        //            int productId = row.Cell(1).GetValue<int>();
+        //            string productName = row.Cell(2).GetString();
+        //            int priceId = row.Cell(3).GetValue<int>();
+        //            int unitTypeId = row.Cell(4).GetValue<int>();
+        //            string typeName = row.Cell(5).GetString();
+        //            string unit = row.Cell(6).GetString();
+        //            int itemsCount = row.Cell(7).GetValue<int>();
+        //            decimal price = row.Cell(8).GetValue<decimal>();
+        //            decimal pricePerItem = row.Cell(9).GetValue<decimal>();
+        //            DateTime createdDate = row.Cell(10).GetValue<DateTime>();
+
+        //            // Find the product
+        //            Product product = await context.Products
+        //                .FirstOrDefaultAsync(p => p.Id == productId || p.ProductEnglishName == productName);
+
+        //            if (product == null)
+        //            {
+        //                result.Errors.Add($"Row {i + 2}: Product not found (ID: {productId}, Name: {productName})");
+        //                continue;
+        //            }
+
+        //            // Verify ProductUnit exists
+        //            var productUnit = await context.ProductUnits
+        //                .FirstOrDefaultAsync(pu => pu.Id == unitTypeId);
+
+        //            if (productUnit == null)
+        //            {
+        //                result.Errors.Add($"Row {i + 2}: Product Unit Type with ID {unitTypeId} not found");
+        //                continue;
+        //            }
+
+        //            // Check if price exists
+        //            ProductPrice existingPrice = null;
+
+        //            // Try by Price ID
+        //            if (priceId > 0)
+        //            {
+        //                existingPrice = await context.ProductPrices
+        //                    .FirstOrDefaultAsync(pp => pp.Id == priceId);
+        //            }
+
+        //            // If not found by ID, check if similar price exists for this product and unit
+        //            if (existingPrice == null)
+        //            {
+        //                existingPrice = await context.ProductPrices
+        //                    .FirstOrDefaultAsync(pp => pp.ProductId == product.Id && pp.Prod_Unit_TypeId == unitTypeId);
+        //            }
+
+        //            if (existingPrice != null)
+        //            {
+        //                // Update existing price
+        //                existingPrice.ProductId = product.Id;
+        //                existingPrice.Prod_Unit_TypeId = unitTypeId;
+        //                existingPrice.TypeName = typeName;
+        //                existingPrice.Unit = unit;
+        //                existingPrice.ItemsCount = itemsCount;
+        //                existingPrice.Price = price;
+        //                existingPrice.PricePerItem = pricePerItem;
+        //                existingPrice.CreatedDate = createdDate;
+
+        //                context.ProductPrices.AddOrUpdate(existingPrice);
+        //                result.PricesUpdated++;
+        //            }
+        //            else
+        //            {
+        //                // Create new price
+        //                var newPrice = new ProductPrice
+        //                {
+        //                    ProductId = product.Id,
+        //                    Prod_Unit_TypeId = unitTypeId,
+        //                    TypeName = typeName,
+        //                    Unit = unit,
+        //                    ItemsCount = itemsCount,
+        //                    Price = price,
+        //                    PricePerItem = pricePerItem,
+        //                    CreatedDate = createdDate
+        //                };
+
+        //                // Try to preserve Price ID if possible
+        //                if (priceId > 0 && !await context.ProductPrices.AnyAsync(pp => pp.Id == priceId))
+        //                {
+        //                    try
+        //                    {
+        //                        newPrice.Id = priceId;
+        //                         context.ProductPrices.Add(newPrice);
+        //                    }
+        //                    catch
+        //                    {
+        //                        newPrice.Id = 0;
+        //                         context.ProductPrices.Add(newPrice);
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                     context.ProductPrices.Add(newPrice);
+        //                }
+
+        //                result.PricesCreated++;
+        //            }
+
+        //            // Save periodically
+        //            if ((i + 1) % 50 == 0)
+        //            {
+        //                await context.SaveChangesAsync();
+        //                progressForm.UpdateMessage($"Saved {i + 1} of {rows.Count} prices...");
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            result.Errors.Add($"Row {i + 2}: Error processing price - {ex.Message}");
+        //        }
+        //    }
+
+        //    // Final save for remaining prices
+        //    await context.SaveChangesAsync();
+        //}
+
         private async Task ImportProductPricesSheetAsync(IXLWorksheet worksheet, POSDbContext context,
-                                                        ImportResult result, ImportProgressForm progressForm)
+                                                  ImportResult result, ImportProgressForm progressForm)
         {
             var rows = worksheet.RowsUsed().Skip(1).ToList();
 
@@ -440,139 +807,177 @@ namespace POS_Shop.Views.DB_Screens
 
             result.PricesProcessed = rows.Count;
 
-            for (int i = 0; i < rows.Count; i++)
+            // OPTIMIZATION: Load all products into dictionary
+            var products = await context.Products
+                .Select(p => new { p.Id, p.ProductEnglishName })
+                .ToDictionaryAsync(p => p.Id, p => p.ProductEnglishName);
+
+            var productsByName = products.ToDictionary(p => p.Value, p => p.Key);
+
+            // Load existing prices
+            var existingPrices = await context.ProductPrices
+                .Select(p => new { p.Id, p.ProductId, p.Prod_Unit_TypeId })
+                .ToListAsync();
+
+            var priceKeys = new HashSet<string>(
+                existingPrices.Select(p => $"{p.ProductId}|{p.Prod_Unit_TypeId}"));
+
+            var priceIds = new HashSet<int>(existingPrices.Select(p => p.Id));
+
+            // Disable auto-detect changes
+            context.Configuration.AutoDetectChangesEnabled = false;
+            context.Configuration.ValidateOnSaveEnabled = false;
+
+            var pricesToAdd = new List<ProductPrice>();
+            var pricesToUpdate = new List<ProductPrice>();
+
+            try
             {
-                if (progressForm.IsCancelled)
+                for (int i = 0; i < rows.Count; i++)
                 {
-                    result.Errors.Add("Import cancelled by user.");
-                    throw new OperationCanceledException("Import cancelled by user.");
-                }
-
-                progressForm.UpdateProgress("Importing Prices", i + 1, rows.Count);
-
-                try
-                {
-                    var row = rows[i];
-
-                    // Read values from Excel row
-                    int productId = row.Cell(1).GetValue<int>();
-                    string productName = row.Cell(2).GetString();
-                    int priceId = row.Cell(3).GetValue<int>();
-                    int unitTypeId = row.Cell(4).GetValue<int>();
-                    string typeName = row.Cell(5).GetString();
-                    string unit = row.Cell(6).GetString();
-                    int itemsCount = row.Cell(7).GetValue<int>();
-                    decimal price = row.Cell(8).GetValue<decimal>();
-                    decimal pricePerItem = row.Cell(9).GetValue<decimal>();
-                    DateTime createdDate = row.Cell(10).GetValue<DateTime>();
-
-                    // Find the product
-                    Product product = await context.Products
-                        .FirstOrDefaultAsync(p => p.Id == productId || p.ProductEnglishName == productName);
-
-                    if (product == null)
+                    if (progressForm.IsCancelled)
                     {
-                        result.Errors.Add($"Row {i + 2}: Product not found (ID: {productId}, Name: {productName})");
-                        continue;
+                        result.Errors.Add("Import cancelled by user.");
+                        throw new OperationCanceledException("Import cancelled by user.");
                     }
 
-                    // Verify ProductUnit exists
-                    var productUnit = await context.ProductUnits
-                        .FirstOrDefaultAsync(pu => pu.Id == unitTypeId);
+                    progressForm.UpdateProgress("Importing Prices", i + 1, rows.Count);
 
-                    if (productUnit == null)
+                    try
                     {
-                        result.Errors.Add($"Row {i + 2}: Product Unit Type with ID {unitTypeId} not found");
-                        continue;
-                    }
+                        var row = rows[i];
 
-                    // Check if price exists
-                    ProductPrice existingPrice = null;
+                        // Read values from Excel row
+                        int productId = row.Cell(1).GetValue<int>();
+                        string productName = row.Cell(2).GetString();
+                        int priceId = row.Cell(3).GetValue<int>();
+                        int unitTypeId = row.Cell(4).GetValue<int>();
+                        string typeName = row.Cell(5).GetString();
+                        string unit = row.Cell(6).GetString();
+                        int itemsCount = row.Cell(7).GetValue<int>();
+                        decimal price = row.Cell(8).GetValue<decimal>();
+                        decimal pricePerItem = row.Cell(9).GetValue<decimal>();
+                        DateTime createdDate = row.Cell(10).GetValue<DateTime>();
 
-                    // Try by Price ID
-                    if (priceId > 0)
-                    {
-                        existingPrice = await context.ProductPrices
-                            .FirstOrDefaultAsync(pp => pp.Id == priceId);
-                    }
-
-                    // If not found by ID, check if similar price exists for this product and unit
-                    if (existingPrice == null)
-                    {
-                        existingPrice = await context.ProductPrices
-                            .FirstOrDefaultAsync(pp => pp.ProductId == product.Id && pp.Prod_Unit_TypeId == unitTypeId);
-                    }
-
-                    if (existingPrice != null)
-                    {
-                        // Update existing price
-                        existingPrice.ProductId = product.Id;
-                        existingPrice.Prod_Unit_TypeId = unitTypeId;
-                        existingPrice.TypeName = typeName;
-                        existingPrice.Unit = unit;
-                        existingPrice.ItemsCount = itemsCount;
-                        existingPrice.Price = price;
-                        existingPrice.PricePerItem = pricePerItem;
-                        existingPrice.CreatedDate = createdDate;
-
-                        context.ProductPrices.AddOrUpdate(existingPrice);
-                        result.PricesUpdated++;
-                    }
-                    else
-                    {
-                        // Create new price
-                        var newPrice = new ProductPrice
+                        // Find the product (in memory)
+                        int actualProductId = 0;
+                        if (products.ContainsKey(productId))
                         {
-                            ProductId = product.Id,
-                            Prod_Unit_TypeId = unitTypeId,
-                            TypeName = typeName,
-                            Unit = unit,
-                            ItemsCount = itemsCount,
-                            Price = price,
-                            PricePerItem = pricePerItem,
-                            CreatedDate = createdDate
-                        };
-
-                        // Try to preserve Price ID if possible
-                        if (priceId > 0 && !await context.ProductPrices.AnyAsync(pp => pp.Id == priceId))
+                            actualProductId = productId;
+                        }
+                        else if (productsByName.TryGetValue(productName, out int id))
                         {
-                            try
+                            actualProductId = id;
+                        }
+
+                        if (actualProductId == 0)
+                        {
+                            result.Errors.Add($"Row {i + 2}: Product not found (ID: {productId}, Name: {productName})");
+                            continue;
+                        }
+
+                        string priceKey = $"{actualProductId}|{unitTypeId}";
+
+                        // Check existence in memory
+                        if (priceKeys.Contains(priceKey))
+                        {
+                            // Update existing price
+                            var existingPrice = await context.ProductPrices
+                                .FirstOrDefaultAsync(pp => pp.ProductId == actualProductId &&
+                                                          pp.Prod_Unit_TypeId == unitTypeId);
+
+                            if (existingPrice != null)
                             {
-                                newPrice.Id = priceId;
-                                 context.ProductPrices.Add(newPrice);
-                            }
-                            catch
-                            {
-                                newPrice.Id = 0;
-                                 context.ProductPrices.Add(newPrice);
+                                existingPrice.TypeName = typeName;
+                                existingPrice.Unit = unit;
+                                existingPrice.ItemsCount = itemsCount;
+                                existingPrice.Price = price;
+                                existingPrice.PricePerItem = pricePerItem;
+                                existingPrice.CreatedDate = createdDate;
+
+                                context.Entry(existingPrice).State = EntityState.Modified;
+                                result.PricesUpdated++;
+                                pricesToUpdate.Add(existingPrice);
                             }
                         }
                         else
                         {
-                             context.ProductPrices.Add(newPrice);
+                            // Create new price
+                            var newPrice = new ProductPrice
+                            {
+                                ProductId = actualProductId,
+                                Prod_Unit_TypeId = unitTypeId,
+                                TypeName = typeName,
+                                Unit = unit,
+                                ItemsCount = itemsCount,
+                                Price = price,
+                                PricePerItem = pricePerItem,
+                                CreatedDate = createdDate
+                            };
+
+                            // Try to preserve Price ID if possible
+                            if (priceId > 0 && !priceIds.Contains(priceId))
+                            {
+                                newPrice.Id = priceId;
+                                priceIds.Add(priceId);
+                            }
+
+                            pricesToAdd.Add(newPrice);
+                            result.PricesCreated++;
+
+                            // Add to lookup
+                            priceKeys.Add(priceKey);
                         }
 
-                        result.PricesCreated++;
-                    }
+                        // Batch save
+                        if (pricesToAdd.Count >= 500 || pricesToUpdate.Count >= 500 ||
+                            i == rows.Count - 1)
+                        {
+                            await BulkSavePricesAsync(context, pricesToAdd, pricesToUpdate,
+                                                     i + 1, rows.Count, progressForm);
 
-                    // Save periodically
-                    if ((i + 1) % 50 == 0)
+                            pricesToAdd.Clear();
+                            pricesToUpdate.Clear();
+
+                            // Detach all entities to free memory (EF6 alternative)
+                            foreach (var entity in context.ChangeTracker.Entries().ToList())
+                            {
+                                entity.State = EntityState.Detached;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
                     {
-                        await context.SaveChangesAsync();
-                        progressForm.UpdateMessage($"Saved {i + 1} of {rows.Count} prices...");
+                        result.Errors.Add($"Row {i + 2}: Error processing price - {ex.Message}");
                     }
                 }
-                catch (Exception ex)
+
+                // Final save
+                if (pricesToAdd.Any() || pricesToUpdate.Any())
                 {
-                    result.Errors.Add($"Row {i + 2}: Error processing price - {ex.Message}");
+                    await BulkSavePricesAsync(context, pricesToAdd, pricesToUpdate,
+                                             rows.Count, rows.Count, progressForm);
                 }
             }
-
-            // Final save for remaining prices
-            await context.SaveChangesAsync();
+            finally
+            {
+                context.Configuration.AutoDetectChangesEnabled = true;
+                context.Configuration.ValidateOnSaveEnabled = true;
+            }
         }
 
-       
+        private async Task BulkSavePricesAsync(POSDbContext context, List<ProductPrice> pricesToAdd,
+                                              List<ProductPrice> pricesToUpdate, int currentCount,
+                                              int totalCount, ImportProgressForm progressForm)
+        {
+            if (pricesToAdd.Any())
+            {
+                context.ProductPrices.AddRange(pricesToAdd);
+            }
+
+            await context.SaveChangesAsync();
+            progressForm.UpdateMessage($"Saved {currentCount} of {totalCount} prices...");
+        }
 
         private void ShowImportResults(ImportResult result)
         {

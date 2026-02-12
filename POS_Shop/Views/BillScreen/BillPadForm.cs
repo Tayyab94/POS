@@ -35,7 +35,7 @@ namespace POS_Shop.Views.BillScreen
         string customerId { get; set; } = string.Empty;
         public string prod_U_Name { get; set; }
         public bool isTempSaved { get; set; } = false;
-
+        public bool isPaid { get; set; } = false;
         public BillPadForm()
         {
             InitializeComponent();
@@ -277,6 +277,7 @@ namespace POS_Shop.Views.BillScreen
                 {
                     if(int.Parse(prod_ItemCountTxt.Text)<=0)
                     {
+                        
                         MessageBox.Show($"Product type '{productType}' is not properly configured against this Product. Item count must be greater than zero.",
                                 "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
@@ -484,11 +485,18 @@ namespace POS_Shop.Views.BillScreen
 
         private void ProductEngNameTxt_TextChange(object sender, EventArgs e)
         {
+            // Skip if we're programmatically updating
+            if (_isUpdatingText) return;
+
+
             if ((string.IsNullOrEmpty(ProductEngNameTxt.Text) || ProductEngNameTxt.Text.Length < 2))
             {
                 SuggestionGrid.Visible = false;
                 return;
             }
+
+            if (ProductEngNameTxt.Text == _lastSelectedProductText) return;
+
             if (OtherProductChk.Checked == false)
             {
                 ShowSuggestions(ProductEngNameTxt.Text);
@@ -547,7 +555,7 @@ namespace POS_Shop.Views.BillScreen
                 }
 
                 // Get suggestions from your data source
-                var suggestions = GetProductSuggestions(searchText);
+                var suggestions = await GetProductSuggestions(searchText);
 
                 if (suggestions.Any())
                 {
@@ -663,7 +671,7 @@ namespace POS_Shop.Views.BillScreen
         //}
 
         #endregion
-        private List<ProductSuggestion> GetProductSuggestions(string searchText)
+        private async Task<List<ProductSuggestion>> GetProductSuggestions(string searchText)
         {
             using (var _context = new POSDbContext())
             {
@@ -712,11 +720,11 @@ namespace POS_Shop.Views.BillScreen
                 }
 
                 // CASE 3: Multiple words - Efficient parameterized query
-                return ExecuteMultiWordSearch(searchWords, _context);
+                return await ExecuteMultiWordSearch(searchWords, _context);
             }
         }
 
-        private List<ProductSuggestion> ExecuteMultiWordSearch(string[] words, POSDbContext context)
+        private async Task<List<ProductSuggestion>> ExecuteMultiWordSearch(string[] words, POSDbContext context)
         {
             // Build parameterized query for multiple words
             var parameters = new List<SqlParameter>();
@@ -746,7 +754,7 @@ namespace POS_Shop.Views.BillScreen
                             WHERE {whereClause}
                             ORDER BY p.Id";
 
-            return context.Database.SqlQuery<ProductSuggestion>(sql, parameters.ToArray()).ToList();
+            return await context.Database.SqlQuery<ProductSuggestion>(sql, parameters.ToArray()).ToListAsync();
         }
 
         private void P_StockQtyTxt_TextChange(object sender, EventArgs e)
@@ -900,6 +908,8 @@ namespace POS_Shop.Views.BillScreen
             TotalItemLbl.Text = "0";
             TotalAmountLbl.Text = "0";
             ReceivedAmountTxt.Clear();
+
+            isPaid = false;
         }
 
         private void TopBarSearchProductTxt_KeyPress(object sender, KeyPressEventArgs e)
@@ -1100,6 +1110,21 @@ namespace POS_Shop.Views.BillScreen
                 LoadingManager.ShowLoading();
                 try
                 {
+
+                    #region code of showing Confirmation for Paid Stamp
+                    //DialogResult result = MessageBox.Show(
+                    //"Mark this bill as paid?",  // Simple, direct question
+                    //"Payment Status",
+                    //MessageBoxButtons.YesNo,
+                    //MessageBoxIcon.Question);
+
+                    //if (result == DialogResult.Yes)
+                    //{
+                    //    // Perform delete operation
+                    //    isPaid = true;
+                    //}
+                    #endregion
+
                     bool IsDone = false;
                     if (!string.IsNullOrEmpty(PreviousOrderIdLbl.Text) && PreviousOrderIdLbl.Text != "Prev Order Id")
                         IsDone = await SaveOrder(true);  //await UpdateOrderSaved();
@@ -1110,6 +1135,7 @@ namespace POS_Shop.Views.BillScreen
                     {
 
                         LoadingManager.HideLoading();
+
                         //// First clear any previous handlers
                         //OrderPrintDocument.PrintPage -= OrderPrintDocument_PrintPage;
                         //OrderPrintDocument.PrintPage -= OrderPrintDocument_PrintPage_English;
@@ -1476,54 +1502,6 @@ namespace POS_Shop.Views.BillScreen
             }
         }
 
-        private string FixCommonPatterns(string input)
-        {
-            // Common battery patterns
-            var patterns = new Dictionary<string, string>
-            {
-                { @"(\d+)V-(\d+)AH", "{$1V-$2AH}" },  // 12V-7AH pattern
-                { @"(\d+)V", "{$1V}" },               // Simple voltage
-                { @"(\d+)AH", "{$1AH}" }              // Amp-hour
-            };
-
-            string result = input;
-
-            // First, protect common battery patterns
-            foreach (var pattern in patterns)
-            {
-                var regex = new System.Text.RegularExpressions.Regex(pattern.Key);
-                result = regex.Replace(result, pattern.Value);
-            }
-
-            // Now apply directional marks
-            const char LRM = '\u200E'; // Left-to-Right
-            const char RLM = '\u200F'; // Right-to-Left
-
-            // Start with RTL context
-            var sb = new System.Text.StringBuilder().Append(RLM);
-
-            bool inProtected = false;
-            foreach (char c in result)
-            {
-                if (c == '{')
-                {
-                    sb.Append(LRM); // Start LTR for protected content
-                    inProtected = true;
-                }
-                else if (c == '}')
-                {
-                    sb.Append(RLM); // Resume RTL
-                    inProtected = false;
-                }
-                else
-                {
-                    sb.Append(c);
-                }
-            }
-
-            return sb.ToString().Trim();
-        }
-
         // This is default
         private void OrderPrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
@@ -1535,8 +1513,8 @@ namespace POS_Shop.Views.BillScreen
                       invoiceNo: InvoiceNoLbl.Text,
                       totalAmount: TotalAmountLbl.Text,
                       isCashPayment: CashRadioBtn.Checked,
-                      receivedAmount: ReceivedAmountTxt.Text
-                  //hideShopName: InvoiceShopName.Checked
+                      receivedAmount: ReceivedAmountTxt.Text,
+                      isPaid
                   );
             else
                 InvoicePrintHelper.PrintInvoice(
@@ -1546,8 +1524,8 @@ namespace POS_Shop.Views.BillScreen
                       invoiceNo: InvoiceNoLbl.Text,
                       totalAmount: TotalAmountLbl.Text,
                       isCashPayment: CashRadioBtn.Checked,
-                      receivedAmount: ReceivedAmountTxt.Text
-                  // hideShopName: InvoiceShopName.Checked
+                      receivedAmount: ReceivedAmountTxt.Text,
+                      isPaid
                   );
         }
 
@@ -1641,6 +1619,103 @@ namespace POS_Shop.Views.BillScreen
             }
         }
 
+        private bool _isUpdatingText = false;
+        private string _lastSelectedProductText = "";
+
+
+
+        //private async void SuggestionGrid_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.Up)
+        //    {
+        //        // If we're on the first row, move focus back to TextBox
+        //        if (SuggestionGrid.CurrentRow != null &&
+        //            SuggestionGrid.CurrentRow.Index == 0)
+        //        {
+        //            ProductEngNameTxt.Focus();
+        //            ProductEngNameTxt.SelectAll(); // Optional: select all text
+
+        //            SuggestionGrid.Visible = false;
+        //            e.Handled = true;
+        //        }
+        //    }
+        //    else if (e.KeyCode == Keys.Left)
+        //    {
+        //        e.Handled = true;
+        //        e.SuppressKeyPress = true;
+        //        ProductEngNameTxt.Focus();
+        //        ProductEngNameTxt.SelectAll(); // Optional: select all text
+
+        //        SuggestionGrid.Visible = false;
+        //    }
+        //    else if (e.KeyCode == Keys.Enter && !e.Handled)
+        //    {
+        //        e.Handled = true;
+        //        e.SuppressKeyPress = true; // This prevents the beep sound and default behavior
+
+        //        if (SuggestionGrid.CurrentRow != null && SuggestionGrid.CurrentRow.Index >= 0)
+        //        {
+        //            int pId = Convert.ToInt32(SuggestionGrid.CurrentRow.Cells[0].Value);
+        //            ProductEngNameTxt.Text = (string)SuggestionGrid.CurrentRow.Cells[2].Value;
+        //            prod_U_Name = (string)SuggestionGrid.CurrentRow.Cells[3].Value;
+
+        //            DataGridViewRow foundRow = null;
+
+        //            foreach (DataGridViewRow row in SuggestionGrid.Rows)
+        //            {
+        //                if (row.Cells[0].Value != null &&
+        //                    Convert.ToInt32(row.Cells[0].Value) == pId)
+        //                {
+        //                    foundRow = row;
+        //                    break;
+        //                }
+        //            }
+
+        //            if (foundRow != null)
+        //            {
+        //                _isUpdatingText = true;
+
+        //                try
+        //                {
+        //                    SuggestionGrid.Visible = false;
+        //                    string selectedText = (string)foundRow.Cells[2].Value;
+        //                    _lastSelectedProductText = selectedText;
+
+        //                    pId = Convert.ToInt32(foundRow.Cells[0].Value);
+        //                    ProductEngNameTxt.Text = selectedText;
+        //                    prod_U_Name = (string)foundRow.Cells[3].Value;
+        //                    Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
+        //                    PId = pId.ToString();
+        //                    P_StockQtyTxt.Text = "1";
+
+        //                    ProductDetailTxt.Focus();
+
+
+        //                    // Now do async operations while flag is still true
+        //                    await ShowProductPrices(pId);
+
+        //                    if (!string.IsNullOrEmpty(CustomerIdLbl.Text))
+        //                    {
+        //                        SetProductPreviousSalePrice(int.Parse(CustomerIdLbl.Text), productId: pId);
+        //                    }
+        //                    SuggestionGrid.Visible = false;
+        //                }
+        //                finally
+        //                {
+        //                    // This ensures flag is ALWAYS reset, even if an exception occurs
+        //                    _isUpdatingText = false;
+        //                    _lastSelectedProductText = "";
+        //                }
+
+        //            }
+
+        //            //SetProductPreviousSalePrice(customerId: string.IsNullOrEmpty(CustomerIdLbl.Text) ? 0 : int.Parse(CustomerIdLbl.Text),
+        //            //                      productId: pId);
+        //        }
+        //    }
+        //}
+
+
         private async void SuggestionGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up)
@@ -1650,8 +1725,7 @@ namespace POS_Shop.Views.BillScreen
                     SuggestionGrid.CurrentRow.Index == 0)
                 {
                     ProductEngNameTxt.Focus();
-                    ProductEngNameTxt.SelectAll(); // Optional: select all text
-
+                    ProductEngNameTxt.SelectAll();
                     SuggestionGrid.Visible = false;
                     e.Handled = true;
                 }
@@ -1661,23 +1735,21 @@ namespace POS_Shop.Views.BillScreen
                 e.Handled = true;
                 e.SuppressKeyPress = true;
                 ProductEngNameTxt.Focus();
-                ProductEngNameTxt.SelectAll(); // Optional: select all text
-
+                ProductEngNameTxt.SelectAll();
                 SuggestionGrid.Visible = false;
             }
             else if (e.KeyCode == Keys.Enter && !e.Handled)
             {
                 e.Handled = true;
-                e.SuppressKeyPress = true; // This prevents the beep sound and default behavior
+                e.SuppressKeyPress = true;
 
                 if (SuggestionGrid.CurrentRow != null && SuggestionGrid.CurrentRow.Index >= 0)
                 {
+                    // Get the selected product ID
                     int pId = Convert.ToInt32(SuggestionGrid.CurrentRow.Cells[0].Value);
-                    ProductEngNameTxt.Text = (string)SuggestionGrid.CurrentRow.Cells[2].Value;
-                    prod_U_Name = (string)SuggestionGrid.CurrentRow.Cells[3].Value;
 
+                    // Find the row in the grid
                     DataGridViewRow foundRow = null;
-
                     foreach (DataGridViewRow row in SuggestionGrid.Rows)
                     {
                         if (row.Cells[0].Value != null &&
@@ -1690,49 +1762,110 @@ namespace POS_Shop.Views.BillScreen
 
                     if (foundRow != null)
                     {
-                        pId = Convert.ToInt32(foundRow.Cells[0].Value);
-                        ProductEngNameTxt.Text = (string)foundRow.Cells[2].Value;
-                        prod_U_Name = (string)foundRow.Cells[3].Value;
-                        Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
-                        PId = pId.ToString();
-                        P_StockQtyTxt.Text = "1";
-                        SuggestionGrid.Visible = false;
-                        ProductDetailTxt.Focus();
+                        // SET FLAG BEFORE ANY TEXT CHANGES!
+                        _isUpdatingText = true;
+
+                        try
+                        {
+                            string selectedText = (string)foundRow.Cells[2].Value;
+                            string selectedUrduName = (string)foundRow.Cells[3].Value;
+                            int selectedQty = Convert.ToInt32(foundRow.Cells[4].Value);
+                            pId = Convert.ToInt32(foundRow.Cells[0].Value);
+
+                            // NOW update all UI controls
+                            _lastSelectedProductText = selectedText;
+                            ProductEngNameTxt.Text = selectedText;  // ← ONLY ONE PLACE!
+                            prod_U_Name = selectedUrduName;
+                            Prod_Qty.Text = selectedQty.ToString();
+                            PId = pId.ToString();
+                            P_StockQtyTxt.Text = "1";
+                            SuggestionGrid.Visible = false;
+
+                            ProductDetailTxt.Focus();
+
+                            // Do async operations while flag is still true
+                            await ShowProductPrices(pId);
+
+                            if (!string.IsNullOrEmpty(CustomerIdLbl.Text))
+                            {
+                                SetProductPreviousSalePrice(int.Parse(CustomerIdLbl.Text), productId: pId);
+                            }
+                        }
+                        finally
+                        {
+                            // Reset flag after ALL operations complete
+                            _isUpdatingText = false;
+                            _lastSelectedProductText = "";
+                        }
                     }
-                    ProductDetailTxt.Focus();
-                   await ShowProductPrices(pId);
-                    if (!string.IsNullOrEmpty(CustomerIdLbl.Text))
-                    {
-                        SetProductPreviousSalePrice(int.Parse(CustomerIdLbl.Text), productId: pId);
-                    }
-                    //SetProductPreviousSalePrice(customerId: string.IsNullOrEmpty(CustomerIdLbl.Text) ? 0 : int.Parse(CustomerIdLbl.Text),
-                    //                      productId: pId);
                 }
             }
         }
 
+        //private async void SuggestionGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        //{
+        //    if (SuggestionGrid.Rows.Count > 0)
+        //    {
+        //        int pId = Convert.ToInt32(SuggestionGrid.CurrentRow.Cells[0].Value);
+
+        //        ProductEngNameTxt.Text = (string)SuggestionGrid.CurrentRow.Cells[2].Value;
+
+        //        prod_U_Name = (string)SuggestionGrid.CurrentRow.Cells[3].Value;
+
+        //        Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
+        //        PId = pId.ToString();
+        //        P_StockQtyTxt.Text = "1";
+
+        //        SuggestionGrid.Visible = false;
+        //        ProductDetailTxt.Focus();
+
+        //       await ShowProductPrices(pId);
+
+        //        if (!string.IsNullOrEmpty(CustomerIdLbl.Text))
+        //        {
+        //            SetProductPreviousSalePrice(int.Parse(CustomerIdLbl.Text), productId: pId);
+        //        }
+
+        //        SuggestionGrid.Visible = false;
+        //    }
+        //}
+
         private async void SuggestionGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (SuggestionGrid.Rows.Count > 0)
+            if (SuggestionGrid.Rows.Count > 0 && SuggestionGrid.CurrentRow != null)
             {
-                int pId = Convert.ToInt32(SuggestionGrid.CurrentRow.Cells[0].Value);
+                // SET FLAG BEFORE ANY TEXT CHANGES!
+                _isUpdatingText = true;
 
-                ProductEngNameTxt.Text = (string)SuggestionGrid.CurrentRow.Cells[2].Value;
-
-                prod_U_Name = (string)SuggestionGrid.CurrentRow.Cells[3].Value;
-
-                Prod_Qty.Text = SuggestionGrid.CurrentRow.Cells[4].Value.ToString();
-                PId = pId.ToString();
-                P_StockQtyTxt.Text = "1";
-
-                SuggestionGrid.Visible = false;
-                ProductDetailTxt.Focus();
-
-               await ShowProductPrices(pId);
-
-                if (!string.IsNullOrEmpty(CustomerIdLbl.Text))
+                try
                 {
-                    SetProductPreviousSalePrice(int.Parse(CustomerIdLbl.Text), productId: pId);
+                    int pId = Convert.ToInt32(SuggestionGrid.CurrentRow.Cells[0].Value);
+                    string selectedText = (string)SuggestionGrid.CurrentRow.Cells[2].Value;
+                    string selectedUrduName = (string)SuggestionGrid.CurrentRow.Cells[3].Value;
+                    int selectedQty = Convert.ToInt32(SuggestionGrid.CurrentRow.Cells[4].Value);
+
+                    // Update all UI controls
+                    _lastSelectedProductText = selectedText;
+                    ProductEngNameTxt.Text = selectedText;
+                    prod_U_Name = selectedUrduName;
+                    Prod_Qty.Text = selectedQty.ToString();
+                    PId = pId.ToString();
+                    P_StockQtyTxt.Text = "1";
+                    SuggestionGrid.Visible = false;
+
+                    ProductDetailTxt.Focus();
+
+                    await ShowProductPrices(pId);
+
+                    if (!string.IsNullOrEmpty(CustomerIdLbl.Text))
+                    {
+                        SetProductPreviousSalePrice(int.Parse(CustomerIdLbl.Text), productId: pId);
+                    }
+                }
+                finally
+                {
+                    _isUpdatingText = false;
+                    _lastSelectedProductText = "";
                 }
             }
         }

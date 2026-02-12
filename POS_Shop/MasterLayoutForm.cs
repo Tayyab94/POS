@@ -416,5 +416,42 @@ namespace POS_Shop
         {
             LoadHomeUI();
         }
+
+        private void SuppliersBtn_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    LoadingManager.ShowLoading();
+            //    MainPanel.Controls.Clear();
+            //    MainPanel.Controls.Add(new Views.Controllers.Country.CountryControl1());
+            //}
+            //catch (Exception ex)
+            //{
+
+            //}
+            //finally
+            //{
+            //    LoadingManager.HideLoading();
+            //}
+
+            try
+            {
+                LoadingManager.ShowLoading();
+                MainPanel.Padding = new Padding(0);
+                MainPanel.Margin = new Padding(0);
+
+                var supplierCtrl = new Views.Controllers.Supplier.SupplierControl();
+                supplierCtrl.Dock = DockStyle.Fill; // Ensures it fills the panel
+
+                MainPanel.Controls.Clear();
+                MainPanel.Controls.Add(supplierCtrl);
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
+
+
+        }
     }
 }

@@ -107,6 +107,10 @@ namespace POS_Shop.Models
         public DbSet<AuthUser> Users { get; set; }
         public DbSet<ProductUnit> ProductUnits { get; set; }
         public DbSet<ProductPrice> ProductPrices { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
@@ -183,6 +187,28 @@ namespace POS_Shop.Models
             modelBuilder.Entity<ProductPrice>()
                 .HasIndex(p => p.TypeName)
                 .HasName("IX_ProductPrices_TypeName")
+                .IsClustered(false) // Non-clustered index
+                .IsUnique(false);   // Allow duplicates
+
+
+
+
+            modelBuilder.Entity<Supplier>()
+                .HasIndex(p => p.SupplierName)
+                .HasName("IX_Supplier_SupplierName")
+                .IsClustered(false) // Non-clustered index
+                .IsUnique(false);   // Allow duplicates
+
+
+            modelBuilder.Entity<Supplier>()
+                .HasIndex(p => p.ShopName)
+                .HasName("IX_Supplier_ShopName")
+                .IsClustered(false) // Non-clustered index
+                .IsUnique(false);   // Allow duplicates
+
+            modelBuilder.Entity<Supplier>()
+                .HasIndex(p => p.ContactNo)
+                .HasName("IX_Supplier_ContactNo")
                 .IsClustered(false) // Non-clustered index
                 .IsUnique(false);   // Allow duplicates
 

@@ -39,4 +39,5 @@ namespace POS_Shop.DTOs.City
         public string CategoryName { get; set; }
         public bool IsActive { get; set; }
     }
+
 }

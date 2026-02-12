@@ -29,12 +29,22 @@ namespace POS_Shop.Views.Controllers
                 var TodayOrderCount = await Task.Run(() => context.Orders.Where(s => s.CreatedDate >= today && s.CreatedDate < tomorrow).Count());
                 var TodaySale = await Task.Run(() => context.Orders.Where(s => s.CreatedDate >= today && s.CreatedDate < tomorrow).Sum(s => (float?)s.TotalBill) ?? 0f);
                 var TodayTempOrderCount = await Task.Run(() => context.TempOrders.Where(s => s.CreatedDate >= today && s.CreatedDate < tomorrow).Count());
-                // Update UI controls on the main thread
-                this.Invoke(new Action(() =>
+                //// Update UI controls on the main thread
+                //this.Invoke(new Action(() =>
+                //{
+                //    TodayTotalOrderLbl.Text = TodayOrderCount.ToString();
+                //    TempTotalOrderLbl.Text = TodayTempOrderCount.ToString();
+                //}));
+
+                // Use BeginInvoke with IsHandleCreated check
+                if (this.IsHandleCreated)
                 {
-                    TodayTotalOrderLbl.Text = TodayOrderCount.ToString();
-                    TempTotalOrderLbl.Text = TodayTempOrderCount.ToString();
-                }));
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        TodayTotalOrderLbl.Text = TodayOrderCount.ToString();
+                        TempTotalOrderLbl.Text = TodayTempOrderCount.ToString();
+                    }));
+                }
             }
         }
 
