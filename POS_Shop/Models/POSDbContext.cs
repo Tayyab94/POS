@@ -1,6 +1,7 @@
 ﻿using POS_Shop.Helpers;
 using POS_Shop.Models.AuthModel;
 using POS_Shop.Models.LicenseModels;
+using POS_Shop.Models.Suppliers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -111,8 +112,46 @@ namespace POS_Shop.Models
 
 
 
+        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<PurchaseItem> PurchaseItems { get; set; }
+        public DbSet<SupplierPayment> SupplierPayments { get; set; }
+        public DbSet<SupplierPaymentDetail> SupplierPaymentDetails { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // Configure Purchase relationships
+            modelBuilder.Entity<Purchase>()
+                .HasRequired(p => p.Supplier)
+                .WithMany(s => s.Purchases)
+                .HasForeignKey(p => p.SupplierId)
+                .WillCascadeOnDelete(false);
+
+            // Configure SupplierPayment relationships
+            modelBuilder.Entity<SupplierPayment>()
+                .HasRequired(sp => sp.Supplier)
+                .WithMany(s => s.SupplierPayments)
+                .HasForeignKey(sp => sp.SupplierId)
+                .WillCascadeOnDelete(false);
+
+            // Configure SupplierPaymentDetail relationships
+            modelBuilder.Entity<SupplierPaymentDetail>()
+                .HasRequired(spd => spd.SupplierPayment)
+                .WithMany(sp => sp.PaymentDetails)
+                .HasForeignKey(spd => spd.SupplierPaymentId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<SupplierPaymentDetail>()
+                .HasRequired(spd => spd.Purchase)
+                .WithMany(p => p.PaymentDetails)
+                .HasForeignKey(spd => spd.PurchaseId)
+                .WillCascadeOnDelete(false);
+
+            // Configure PurchaseItem relationships
+            modelBuilder.Entity<PurchaseItem>()
+                .HasRequired(pi => pi.Purchase)
+                .WithMany(p => p.PurchaseItems)
+                .HasForeignKey(pi => pi.PurchaseId)
+                .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);
 

@@ -33,6 +33,7 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ProductSaleTrendBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.SalesReportBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -44,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.BtnSalesAanlysis = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.BtnWeeklySalesChart = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.PurchaseReportsBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.bunifuPanel2.SuspendLayout();
             this.bunifuGradientPanel1.SuspendLayout();
@@ -106,7 +108,7 @@
             this.ProductSaleTrendBtn.IdleIconLeftImage = null;
             this.ProductSaleTrendBtn.IdleIconRightImage = null;
             this.ProductSaleTrendBtn.IndicateFocus = false;
-            this.ProductSaleTrendBtn.Location = new System.Drawing.Point(577, 474);
+            this.ProductSaleTrendBtn.Location = new System.Drawing.Point(577, 413);
             this.ProductSaleTrendBtn.Name = "ProductSaleTrendBtn";
             this.ProductSaleTrendBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.ProductSaleTrendBtn.OnDisabledState.BorderRadius = 30;
@@ -140,7 +142,7 @@
             this.ProductSaleTrendBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.ProductSaleTrendBtn.OnPressedState.IconLeftImage = null;
             this.ProductSaleTrendBtn.OnPressedState.IconRightImage = null;
-            this.ProductSaleTrendBtn.Size = new System.Drawing.Size(474, 84);
+            this.ProductSaleTrendBtn.Size = new System.Drawing.Size(474, 61);
             this.ProductSaleTrendBtn.TabIndex = 0;
             this.ProductSaleTrendBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ProductSaleTrendBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -196,7 +198,7 @@
             this.SalesReportBtn.IdleIconLeftImage = null;
             this.SalesReportBtn.IdleIconRightImage = null;
             this.SalesReportBtn.IndicateFocus = false;
-            this.SalesReportBtn.Location = new System.Drawing.Point(577, 366);
+            this.SalesReportBtn.Location = new System.Drawing.Point(577, 342);
             this.SalesReportBtn.Name = "SalesReportBtn";
             this.SalesReportBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SalesReportBtn.OnDisabledState.BorderRadius = 30;
@@ -230,7 +232,7 @@
             this.SalesReportBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.SalesReportBtn.OnPressedState.IconLeftImage = null;
             this.SalesReportBtn.OnPressedState.IconRightImage = null;
-            this.SalesReportBtn.Size = new System.Drawing.Size(474, 84);
+            this.SalesReportBtn.Size = new System.Drawing.Size(474, 56);
             this.SalesReportBtn.TabIndex = 0;
             this.SalesReportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SalesReportBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -490,7 +492,7 @@
             this.BtnWeeklySalesChart.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.BtnWeeklySalesChart.OnPressedState.IconLeftImage = null;
             this.BtnWeeklySalesChart.OnPressedState.IconRightImage = null;
-            this.BtnWeeklySalesChart.Size = new System.Drawing.Size(474, 84);
+            this.BtnWeeklySalesChart.Size = new System.Drawing.Size(474, 67);
             this.BtnWeeklySalesChart.TabIndex = 2;
             this.BtnWeeklySalesChart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.BtnWeeklySalesChart.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -499,11 +501,102 @@
             this.BtnWeeklySalesChart.UseDefaultRadiusAndThickness = true;
             this.BtnWeeklySalesChart.Click += new System.EventHandler(this.BtnWeeklySalesChart_Click);
             // 
+            // PurchaseReportsBtn
+            // 
+            this.PurchaseReportsBtn.AllowAnimations = true;
+            this.PurchaseReportsBtn.AllowMouseEffects = true;
+            this.PurchaseReportsBtn.AllowToggling = false;
+            this.PurchaseReportsBtn.AnimationSpeed = 200;
+            this.PurchaseReportsBtn.AutoGenerateColors = false;
+            this.PurchaseReportsBtn.AutoRoundBorders = false;
+            this.PurchaseReportsBtn.AutoSizeLeftIcon = true;
+            this.PurchaseReportsBtn.AutoSizeRightIcon = true;
+            this.PurchaseReportsBtn.BackColor = System.Drawing.Color.Transparent;
+            this.PurchaseReportsBtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PurchaseReportsBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PurchaseReportsBtn.BackgroundImage")));
+            this.PurchaseReportsBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.PurchaseReportsBtn.ButtonText = "Purchase Reports";
+            this.PurchaseReportsBtn.ButtonTextMarginLeft = 0;
+            this.PurchaseReportsBtn.ColorContrastOnClick = 45;
+            this.PurchaseReportsBtn.ColorContrastOnHover = 45;
+            this.PurchaseReportsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges5.BottomLeft = true;
+            borderEdges5.BottomRight = true;
+            borderEdges5.TopLeft = true;
+            borderEdges5.TopRight = true;
+            this.PurchaseReportsBtn.CustomizableEdges = borderEdges5;
+            this.PurchaseReportsBtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.PurchaseReportsBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.PurchaseReportsBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.PurchaseReportsBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.PurchaseReportsBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.PurchaseReportsBtn.Font = new System.Drawing.Font("Rockwell", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PurchaseReportsBtn.ForeColor = System.Drawing.Color.White;
+            this.PurchaseReportsBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PurchaseReportsBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.PurchaseReportsBtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.PurchaseReportsBtn.IconMarginLeft = 11;
+            this.PurchaseReportsBtn.IconPadding = 10;
+            this.PurchaseReportsBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.PurchaseReportsBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.PurchaseReportsBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.PurchaseReportsBtn.IconSize = 25;
+            this.PurchaseReportsBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
+            this.PurchaseReportsBtn.IdleBorderRadius = 30;
+            this.PurchaseReportsBtn.IdleBorderThickness = 1;
+            this.PurchaseReportsBtn.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PurchaseReportsBtn.IdleIconLeftImage = null;
+            this.PurchaseReportsBtn.IdleIconRightImage = null;
+            this.PurchaseReportsBtn.IndicateFocus = false;
+            this.PurchaseReportsBtn.Location = new System.Drawing.Point(577, 497);
+            this.PurchaseReportsBtn.Name = "PurchaseReportsBtn";
+            this.PurchaseReportsBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.PurchaseReportsBtn.OnDisabledState.BorderRadius = 30;
+            this.PurchaseReportsBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.PurchaseReportsBtn.OnDisabledState.BorderThickness = 1;
+            this.PurchaseReportsBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.PurchaseReportsBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.PurchaseReportsBtn.OnDisabledState.IconLeftImage = null;
+            this.PurchaseReportsBtn.OnDisabledState.IconRightImage = null;
+            this.PurchaseReportsBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.PurchaseReportsBtn.onHoverState.BorderRadius = 30;
+            this.PurchaseReportsBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.PurchaseReportsBtn.onHoverState.BorderThickness = 1;
+            this.PurchaseReportsBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.PurchaseReportsBtn.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.PurchaseReportsBtn.onHoverState.IconLeftImage = null;
+            this.PurchaseReportsBtn.onHoverState.IconRightImage = null;
+            this.PurchaseReportsBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.PurchaseReportsBtn.OnIdleState.BorderRadius = 30;
+            this.PurchaseReportsBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.PurchaseReportsBtn.OnIdleState.BorderThickness = 1;
+            this.PurchaseReportsBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PurchaseReportsBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.PurchaseReportsBtn.OnIdleState.IconLeftImage = null;
+            this.PurchaseReportsBtn.OnIdleState.IconRightImage = null;
+            this.PurchaseReportsBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.PurchaseReportsBtn.OnPressedState.BorderRadius = 30;
+            this.PurchaseReportsBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.PurchaseReportsBtn.OnPressedState.BorderThickness = 1;
+            this.PurchaseReportsBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.PurchaseReportsBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.PurchaseReportsBtn.OnPressedState.IconLeftImage = null;
+            this.PurchaseReportsBtn.OnPressedState.IconRightImage = null;
+            this.PurchaseReportsBtn.Size = new System.Drawing.Size(474, 61);
+            this.PurchaseReportsBtn.TabIndex = 3;
+            this.PurchaseReportsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PurchaseReportsBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PurchaseReportsBtn.TextMarginLeft = 0;
+            this.PurchaseReportsBtn.TextPadding = new System.Windows.Forms.Padding(0);
+            this.PurchaseReportsBtn.UseDefaultRadiusAndThickness = true;
+            this.PurchaseReportsBtn.Click += new System.EventHandler(this.PurchaseReportsBtn_Click);
+            // 
             // HomeControlUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.PurchaseReportsBtn);
             this.Controls.Add(this.BtnWeeklySalesChart);
             this.Controls.Add(this.BtnSalesAanlysis);
             this.Controls.Add(this.pictureBox1);
@@ -534,5 +627,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnSalesAanlysis;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnWeeklySalesChart;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton PurchaseReportsBtn;
     }
 }
