@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace POS_Shop.Helpers
@@ -93,6 +95,15 @@ namespace POS_Shop.Helpers
                 default:
                     return "DEF-"; // Default prefix for other users
             }
+        }
+
+        public static string ConvertStringToTileCaseOrNull(object value)
+        {
+            if (value == null || value == DBNull.Value || string.IsNullOrWhiteSpace(value.ToString()))
+                return null;
+
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            return textInfo.ToTitleCase(value.ToString().ToLower());
         }
     }
 

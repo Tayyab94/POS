@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POS_Shop.Models.Suppliers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -42,5 +43,10 @@ namespace POS_Shop.Models
             results = new List<ValidationResult>();
             return Validator.TryValidateObject(this, context, results, true);
         }
+
+        
+        public virtual ICollection<Purchase> Purchases { get; set; }
+
+        public virtual ICollection<SupplierPayment> SupplierPayments { get; set; }
     }
 }

@@ -242,6 +242,29 @@ namespace POS_Shop.Views.Controllers
             }
         }
 
+        private void PurchaseReportsBtn_Click(object sender, EventArgs e)
+        {
+            bool showDialog = true;
+            while (showDialog)
+            {
+                using (var dialog = new InputDialog("Enter Password:", title: "Analysis Info", isTextBoxProtected: true))
+                {
+                    if (dialog.ShowDialog() != DialogResult.OK) return;
 
+                    string userInput = dialog.InputValue;
+                    if (!string.IsNullOrWhiteSpace(userInput) && userInput.ToLower() == "show")
+                    {
+                        showDialog = false;
+                        var purchaseOrderForm = new POS_Shop.Views.Controllers.Reports.ReportsMenuForm();
+
+                        this.Hide();
+                        purchaseOrderForm.ShowDialog();
+                        this.Show();
+                    }
+                    else
+                        MessageBox.Show("Invalid Input", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

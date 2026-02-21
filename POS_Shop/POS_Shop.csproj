@@ -337,6 +337,14 @@
     <Compile Include="Migrations\202602060051573_Added_Supplier_tbl.Designer.cs">
       <DependentUpon>202602060051573_Added_Supplier_tbl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202602190100591_addedPurchaseRelatedTables.cs" />
+    <Compile Include="Migrations\202602190100591_addedPurchaseRelatedTables.Designer.cs">
+      <DependentUpon>202602190100591_addedPurchaseRelatedTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202602192003100_AddPurchaseItemIsDeleted.cs" />
+    <Compile Include="Migrations\202602192003100_AddPurchaseItemIsDeleted.Designer.cs">
+      <DependentUpon>202602192003100_AddPurchaseItemIsDeleted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\AuthModel\AuthUser.cs" />
@@ -356,6 +364,7 @@
     <Compile Include="Models\ProductUnit.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\Suppliers\PurchasePaymentStatus.cs" />
     <Compile Include="Models\TempOrder.cs" />
     <Compile Include="Models\TempOrderDetail.cs" />
     <Compile Include="Program.cs" />
@@ -489,11 +498,102 @@
     <Compile Include="Views\Controllers\Product\ProductUnitControl.Designer.cs">
       <DependentUpon>ProductUnitControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\Reports\AgingReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\AgingReportForm.Designer.cs">
+      <DependentUpon>AgingReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\Monthlycashflowreportform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\Monthlycashflowreportform.Designer.cs">
+      <DependentUpon>Monthlycashflowreportform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\PaymentMethodReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\PaymentMethodReportForm.Designer.cs">
+      <DependentUpon>PaymentMethodReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\Pricevariancereportform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\Pricevariancereportform.Designer.cs">
+      <DependentUpon>Pricevariancereportform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\Productpurchasehistoryreportform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\Productpurchasehistoryreportform.Designer.cs">
+      <DependentUpon>Productpurchasehistoryreportform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\PurchaseBySupplierReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\PurchaseBySupplierReportForm.Designer.cs">
+      <DependentUpon>PurchaseBySupplierReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\PurchaseSummaryReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\PurchaseSummaryReportForm.Designer.cs">
+      <DependentUpon>PurchaseSummaryReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\ReportBase.cs" />
+    <Compile Include="Views\Controllers\Reports\ReportsMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\ReportsMenuForm.Designer.cs">
+      <DependentUpon>ReportsMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\SupplierLedgerReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\SupplierLedgerReportForm.Designer.cs">
+      <DependentUpon>SupplierLedgerReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\SupplierPerformanceReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\SupplierPerformanceReportForm.Designer.cs">
+      <DependentUpon>SupplierPerformanceReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\TopUnpaidReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\TopUnpaidReportForm.Designer.cs">
+      <DependentUpon>TopUnpaidReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controllers\SubCategory\SubCategoryForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\Controllers\SubCategory\SubCategoryForm.Designer.cs">
       <DependentUpon>SubCategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\PaidPurchasesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\PaidPurchasesForm.Designer.cs">
+      <DependentUpon>PaidPurchasesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\PurchaseDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\PurchaseDetailForm.Designer.cs">
+      <DependentUpon>PurchaseDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\Purchaseform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\Purchaseform.Designer.cs">
+      <DependentUpon>Purchaseform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\Supplierpaymentform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\Supplierpaymentform.Designer.cs">
+      <DependentUpon>Supplierpaymentform.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\DB_Screens\BackUpForm.cs">
       <SubType>Form</SubType>
@@ -557,6 +657,12 @@
     </Compile>
     <Compile Include="Views\Loader\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\frmPurchaseSummaryByPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reports\frmPurchaseSummaryByPeriod.Designer.cs">
+      <DependentUpon>frmPurchaseSummaryByPeriod.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Reports\ProductSalesTrendForm.cs">
       <SubType>Form</SubType>
@@ -624,6 +730,12 @@
     <EmbeddedResource Include="Migrations\202602060051573_Added_Supplier_tbl.resx">
       <DependentUpon>202602060051573_Added_Supplier_tbl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602190100591_addedPurchaseRelatedTables.resx">
+      <DependentUpon>202602190100591_addedPurchaseRelatedTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602192003100_AddPurchaseItemIsDeleted.resx">
+      <DependentUpon>202602192003100_AddPurchaseItemIsDeleted.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -683,11 +795,26 @@
     <EmbeddedResource Include="Views\Controllers\Product\ProductUnitControl.resx">
       <DependentUpon>ProductUnitControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Reports\ReportsMenuForm.resx">
+      <DependentUpon>ReportsMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\SubCategory\SubCategoryForm.resx">
       <DependentUpon>SubCategoryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Supplier\PaidPurchasesForm.resx">
+      <DependentUpon>PaidPurchasesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Supplier\PurchaseDetailForm.resx">
+      <DependentUpon>PurchaseDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Supplier\Purchaseform.resx">
+      <DependentUpon>Purchaseform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Supplier\SupplierControl.resx">
       <DependentUpon>SupplierControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Supplier\Supplierpaymentform.resx">
+      <DependentUpon>Supplierpaymentform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\BackUpForm.resx">
       <DependentUpon>BackUpForm.cs</DependentUpon>
