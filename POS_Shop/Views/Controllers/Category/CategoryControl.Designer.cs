@@ -26,6 +26,11 @@
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
+        #region Component Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -61,19 +66,23 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.RemoveCategoryBtn);
             this.groupBox1.Controls.Add(this.categoryIdTxt);
             this.groupBox1.Controls.Add(this.updateCategoryBtn);
             this.groupBox1.Controls.Add(this.SaveCategoryBtn);
             this.groupBox1.Controls.Add(this.categoryNameTxt);
             this.groupBox1.Controls.Add(this.categoryNameLbl);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(22, 23);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.groupBox1.Location = new System.Drawing.Point(20, 20);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(987, 165);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(15);
+            this.groupBox1.Size = new System.Drawing.Size(1160, 140);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Category Form";
+            this.groupBox1.Text = "Category Details";
             // 
             // RemoveCategoryBtn
             // 
@@ -87,7 +96,7 @@
             this.RemoveCategoryBtn.AutoSizeLeftIcon = true;
             this.RemoveCategoryBtn.AutoSizeRightIcon = true;
             this.RemoveCategoryBtn.BackColor = System.Drawing.Color.Transparent;
-            this.RemoveCategoryBtn.BackColor1 = System.Drawing.Color.Red;
+            this.RemoveCategoryBtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.RemoveCategoryBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RemoveCategoryBtn.BackgroundImage")));
             this.RemoveCategoryBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.RemoveCategoryBtn.ButtonText = "Delete";
@@ -106,7 +115,7 @@
             this.RemoveCategoryBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.RemoveCategoryBtn.Enabled = false;
             this.RemoveCategoryBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.RemoveCategoryBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.RemoveCategoryBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.RemoveCategoryBtn.ForeColor = System.Drawing.Color.White;
             this.RemoveCategoryBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.RemoveCategoryBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
@@ -116,49 +125,49 @@
             this.RemoveCategoryBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.RemoveCategoryBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
             this.RemoveCategoryBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.RemoveCategoryBtn.IconSize = 25;
-            this.RemoveCategoryBtn.IdleBorderColor = System.Drawing.Color.CornflowerBlue;
-            this.RemoveCategoryBtn.IdleBorderRadius = 30;
+            this.RemoveCategoryBtn.IconSize = 20;
+            this.RemoveCategoryBtn.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.RemoveCategoryBtn.IdleBorderRadius = 5;
             this.RemoveCategoryBtn.IdleBorderThickness = 1;
-            this.RemoveCategoryBtn.IdleFillColor = System.Drawing.Color.Red;
+            this.RemoveCategoryBtn.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.RemoveCategoryBtn.IdleIconLeftImage = null;
             this.RemoveCategoryBtn.IdleIconRightImage = null;
             this.RemoveCategoryBtn.IndicateFocus = false;
-            this.RemoveCategoryBtn.Location = new System.Drawing.Point(694, 122);
+            this.RemoveCategoryBtn.Location = new System.Drawing.Point(1070, 55);
             this.RemoveCategoryBtn.Name = "RemoveCategoryBtn";
             this.RemoveCategoryBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.RemoveCategoryBtn.OnDisabledState.BorderRadius = 30;
+            this.RemoveCategoryBtn.OnDisabledState.BorderRadius = 5;
             this.RemoveCategoryBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.RemoveCategoryBtn.OnDisabledState.BorderThickness = 1;
             this.RemoveCategoryBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.RemoveCategoryBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.RemoveCategoryBtn.OnDisabledState.IconLeftImage = null;
             this.RemoveCategoryBtn.OnDisabledState.IconRightImage = null;
-            this.RemoveCategoryBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.RemoveCategoryBtn.onHoverState.BorderRadius = 30;
+            this.RemoveCategoryBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(56)))), ((int)(((byte)(40)))));
+            this.RemoveCategoryBtn.onHoverState.BorderRadius = 5;
             this.RemoveCategoryBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.RemoveCategoryBtn.onHoverState.BorderThickness = 1;
-            this.RemoveCategoryBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.RemoveCategoryBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(56)))), ((int)(((byte)(40)))));
             this.RemoveCategoryBtn.onHoverState.ForeColor = System.Drawing.Color.White;
             this.RemoveCategoryBtn.onHoverState.IconLeftImage = null;
             this.RemoveCategoryBtn.onHoverState.IconRightImage = null;
-            this.RemoveCategoryBtn.OnIdleState.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.RemoveCategoryBtn.OnIdleState.BorderRadius = 30;
+            this.RemoveCategoryBtn.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.RemoveCategoryBtn.OnIdleState.BorderRadius = 5;
             this.RemoveCategoryBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.RemoveCategoryBtn.OnIdleState.BorderThickness = 1;
-            this.RemoveCategoryBtn.OnIdleState.FillColor = System.Drawing.Color.Red;
+            this.RemoveCategoryBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.RemoveCategoryBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
             this.RemoveCategoryBtn.OnIdleState.IconLeftImage = null;
             this.RemoveCategoryBtn.OnIdleState.IconRightImage = null;
-            this.RemoveCategoryBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.RemoveCategoryBtn.OnPressedState.BorderRadius = 30;
+            this.RemoveCategoryBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(36)))), ((int)(((byte)(20)))));
+            this.RemoveCategoryBtn.OnPressedState.BorderRadius = 5;
             this.RemoveCategoryBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.RemoveCategoryBtn.OnPressedState.BorderThickness = 1;
-            this.RemoveCategoryBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.RemoveCategoryBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(36)))), ((int)(((byte)(20)))));
             this.RemoveCategoryBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.RemoveCategoryBtn.OnPressedState.IconLeftImage = null;
             this.RemoveCategoryBtn.OnPressedState.IconRightImage = null;
-            this.RemoveCategoryBtn.Size = new System.Drawing.Size(76, 37);
+            this.RemoveCategoryBtn.Size = new System.Drawing.Size(80, 45);
             this.RemoveCategoryBtn.TabIndex = 5;
             this.RemoveCategoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.RemoveCategoryBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -170,9 +179,9 @@
             // 
             // categoryIdTxt
             // 
-            this.categoryIdTxt.Location = new System.Drawing.Point(192, 105);
+            this.categoryIdTxt.Location = new System.Drawing.Point(161, 21);
             this.categoryIdTxt.Name = "categoryIdTxt";
-            this.categoryIdTxt.Size = new System.Drawing.Size(50, 28);
+            this.categoryIdTxt.Size = new System.Drawing.Size(20, 34);
             this.categoryIdTxt.TabIndex = 4;
             this.categoryIdTxt.Visible = false;
             // 
@@ -188,7 +197,7 @@
             this.updateCategoryBtn.AutoSizeLeftIcon = true;
             this.updateCategoryBtn.AutoSizeRightIcon = true;
             this.updateCategoryBtn.BackColor = System.Drawing.Color.Transparent;
-            this.updateCategoryBtn.BackColor1 = System.Drawing.Color.MediumSlateBlue;
+            this.updateCategoryBtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.updateCategoryBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("updateCategoryBtn.BackgroundImage")));
             this.updateCategoryBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.updateCategoryBtn.ButtonText = "Update";
@@ -207,7 +216,7 @@
             this.updateCategoryBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.updateCategoryBtn.Enabled = false;
             this.updateCategoryBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.updateCategoryBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.updateCategoryBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.updateCategoryBtn.ForeColor = System.Drawing.Color.White;
             this.updateCategoryBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.updateCategoryBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
@@ -217,49 +226,49 @@
             this.updateCategoryBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.updateCategoryBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
             this.updateCategoryBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.updateCategoryBtn.IconSize = 25;
-            this.updateCategoryBtn.IdleBorderColor = System.Drawing.Color.CornflowerBlue;
-            this.updateCategoryBtn.IdleBorderRadius = 30;
+            this.updateCategoryBtn.IconSize = 20;
+            this.updateCategoryBtn.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
+            this.updateCategoryBtn.IdleBorderRadius = 5;
             this.updateCategoryBtn.IdleBorderThickness = 1;
-            this.updateCategoryBtn.IdleFillColor = System.Drawing.Color.MediumSlateBlue;
+            this.updateCategoryBtn.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.updateCategoryBtn.IdleIconLeftImage = null;
             this.updateCategoryBtn.IdleIconRightImage = null;
             this.updateCategoryBtn.IndicateFocus = false;
-            this.updateCategoryBtn.Location = new System.Drawing.Point(776, 122);
+            this.updateCategoryBtn.Location = new System.Drawing.Point(980, 55);
             this.updateCategoryBtn.Name = "updateCategoryBtn";
             this.updateCategoryBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.updateCategoryBtn.OnDisabledState.BorderRadius = 30;
+            this.updateCategoryBtn.OnDisabledState.BorderRadius = 5;
             this.updateCategoryBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.updateCategoryBtn.OnDisabledState.BorderThickness = 1;
             this.updateCategoryBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.updateCategoryBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.updateCategoryBtn.OnDisabledState.IconLeftImage = null;
             this.updateCategoryBtn.OnDisabledState.IconRightImage = null;
-            this.updateCategoryBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.updateCategoryBtn.onHoverState.BorderRadius = 30;
+            this.updateCategoryBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(166)))), ((int)(((byte)(5)))));
+            this.updateCategoryBtn.onHoverState.BorderRadius = 5;
             this.updateCategoryBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.updateCategoryBtn.onHoverState.BorderThickness = 1;
-            this.updateCategoryBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.updateCategoryBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(166)))), ((int)(((byte)(5)))));
             this.updateCategoryBtn.onHoverState.ForeColor = System.Drawing.Color.White;
             this.updateCategoryBtn.onHoverState.IconLeftImage = null;
             this.updateCategoryBtn.onHoverState.IconRightImage = null;
-            this.updateCategoryBtn.OnIdleState.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.updateCategoryBtn.OnIdleState.BorderRadius = 30;
+            this.updateCategoryBtn.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
+            this.updateCategoryBtn.OnIdleState.BorderRadius = 5;
             this.updateCategoryBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.updateCategoryBtn.OnIdleState.BorderThickness = 1;
-            this.updateCategoryBtn.OnIdleState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.updateCategoryBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.updateCategoryBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
             this.updateCategoryBtn.OnIdleState.IconLeftImage = null;
             this.updateCategoryBtn.OnIdleState.IconRightImage = null;
-            this.updateCategoryBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.updateCategoryBtn.OnPressedState.BorderRadius = 30;
+            this.updateCategoryBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(146)))), ((int)(((byte)(5)))));
+            this.updateCategoryBtn.OnPressedState.BorderRadius = 5;
             this.updateCategoryBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.updateCategoryBtn.OnPressedState.BorderThickness = 1;
-            this.updateCategoryBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.updateCategoryBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(146)))), ((int)(((byte)(5)))));
             this.updateCategoryBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.updateCategoryBtn.OnPressedState.IconLeftImage = null;
             this.updateCategoryBtn.OnPressedState.IconRightImage = null;
-            this.updateCategoryBtn.Size = new System.Drawing.Size(83, 37);
+            this.updateCategoryBtn.Size = new System.Drawing.Size(80, 45);
             this.updateCategoryBtn.TabIndex = 3;
             this.updateCategoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.updateCategoryBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -280,7 +289,7 @@
             this.SaveCategoryBtn.AutoSizeLeftIcon = true;
             this.SaveCategoryBtn.AutoSizeRightIcon = true;
             this.SaveCategoryBtn.BackColor = System.Drawing.Color.Transparent;
-            this.SaveCategoryBtn.BackColor1 = System.Drawing.Color.DodgerBlue;
+            this.SaveCategoryBtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(150)))), ((int)(((byte)(100)))));
             this.SaveCategoryBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SaveCategoryBtn.BackgroundImage")));
             this.SaveCategoryBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveCategoryBtn.ButtonText = "Save";
@@ -298,7 +307,7 @@
             this.SaveCategoryBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.SaveCategoryBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.SaveCategoryBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.SaveCategoryBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.SaveCategoryBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.SaveCategoryBtn.ForeColor = System.Drawing.Color.White;
             this.SaveCategoryBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SaveCategoryBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
@@ -308,49 +317,49 @@
             this.SaveCategoryBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.SaveCategoryBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
             this.SaveCategoryBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.SaveCategoryBtn.IconSize = 25;
-            this.SaveCategoryBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.SaveCategoryBtn.IdleBorderRadius = 30;
+            this.SaveCategoryBtn.IconSize = 20;
+            this.SaveCategoryBtn.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(150)))), ((int)(((byte)(100)))));
+            this.SaveCategoryBtn.IdleBorderRadius = 5;
             this.SaveCategoryBtn.IdleBorderThickness = 1;
-            this.SaveCategoryBtn.IdleFillColor = System.Drawing.Color.DodgerBlue;
+            this.SaveCategoryBtn.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(150)))), ((int)(((byte)(100)))));
             this.SaveCategoryBtn.IdleIconLeftImage = null;
             this.SaveCategoryBtn.IdleIconRightImage = null;
             this.SaveCategoryBtn.IndicateFocus = false;
-            this.SaveCategoryBtn.Location = new System.Drawing.Point(865, 122);
+            this.SaveCategoryBtn.Location = new System.Drawing.Point(890, 55);
             this.SaveCategoryBtn.Name = "SaveCategoryBtn";
             this.SaveCategoryBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.SaveCategoryBtn.OnDisabledState.BorderRadius = 30;
+            this.SaveCategoryBtn.OnDisabledState.BorderRadius = 5;
             this.SaveCategoryBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveCategoryBtn.OnDisabledState.BorderThickness = 1;
             this.SaveCategoryBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.SaveCategoryBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.SaveCategoryBtn.OnDisabledState.IconLeftImage = null;
             this.SaveCategoryBtn.OnDisabledState.IconRightImage = null;
-            this.SaveCategoryBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.SaveCategoryBtn.onHoverState.BorderRadius = 30;
+            this.SaveCategoryBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(120)))), ((int)(((byte)(80)))));
+            this.SaveCategoryBtn.onHoverState.BorderRadius = 5;
             this.SaveCategoryBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveCategoryBtn.onHoverState.BorderThickness = 1;
-            this.SaveCategoryBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.SaveCategoryBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(120)))), ((int)(((byte)(80)))));
             this.SaveCategoryBtn.onHoverState.ForeColor = System.Drawing.Color.White;
             this.SaveCategoryBtn.onHoverState.IconLeftImage = null;
             this.SaveCategoryBtn.onHoverState.IconRightImage = null;
-            this.SaveCategoryBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.SaveCategoryBtn.OnIdleState.BorderRadius = 30;
+            this.SaveCategoryBtn.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(150)))), ((int)(((byte)(100)))));
+            this.SaveCategoryBtn.OnIdleState.BorderRadius = 5;
             this.SaveCategoryBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveCategoryBtn.OnIdleState.BorderThickness = 1;
-            this.SaveCategoryBtn.OnIdleState.FillColor = System.Drawing.Color.DodgerBlue;
+            this.SaveCategoryBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(150)))), ((int)(((byte)(100)))));
             this.SaveCategoryBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
             this.SaveCategoryBtn.OnIdleState.IconLeftImage = null;
             this.SaveCategoryBtn.OnIdleState.IconRightImage = null;
-            this.SaveCategoryBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.SaveCategoryBtn.OnPressedState.BorderRadius = 30;
+            this.SaveCategoryBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(100)))), ((int)(((byte)(60)))));
+            this.SaveCategoryBtn.OnPressedState.BorderRadius = 5;
             this.SaveCategoryBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.SaveCategoryBtn.OnPressedState.BorderThickness = 1;
-            this.SaveCategoryBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.SaveCategoryBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(100)))), ((int)(((byte)(60)))));
             this.SaveCategoryBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.SaveCategoryBtn.OnPressedState.IconLeftImage = null;
             this.SaveCategoryBtn.OnPressedState.IconRightImage = null;
-            this.SaveCategoryBtn.Size = new System.Drawing.Size(99, 37);
+            this.SaveCategoryBtn.Size = new System.Drawing.Size(80, 45);
             this.SaveCategoryBtn.TabIndex = 2;
             this.SaveCategoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SaveCategoryBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -372,13 +381,13 @@
             this.categoryNameTxt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("categoryNameTxt.BackgroundImage")));
             this.categoryNameTxt.BorderColorActive = System.Drawing.Color.DodgerBlue;
             this.categoryNameTxt.BorderColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.categoryNameTxt.BorderColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.categoryNameTxt.BorderColorHover = System.Drawing.Color.DodgerBlue;
             this.categoryNameTxt.BorderColorIdle = System.Drawing.Color.Silver;
-            this.categoryNameTxt.BorderRadius = 1;
+            this.categoryNameTxt.BorderRadius = 5;
             this.categoryNameTxt.BorderThickness = 1;
             this.categoryNameTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.categoryNameTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.categoryNameTxt.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
+            this.categoryNameTxt.DefaultFont = new System.Drawing.Font("Segoe UI", 9.75F);
             this.categoryNameTxt.DefaultText = "";
             this.categoryNameTxt.FillColor = System.Drawing.Color.White;
             this.categoryNameTxt.HideSelection = true;
@@ -388,7 +397,7 @@
             this.categoryNameTxt.IconRight = null;
             this.categoryNameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.categoryNameTxt.Lines = new string[0];
-            this.categoryNameTxt.Location = new System.Drawing.Point(187, 44);
+            this.categoryNameTxt.Location = new System.Drawing.Point(28, 55);
             this.categoryNameTxt.MaxLength = 32767;
             this.categoryNameTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.categoryNameTxt.Modified = false;
@@ -404,7 +413,7 @@
             stateProperties2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             stateProperties2.PlaceholderForeColor = System.Drawing.Color.DarkGray;
             this.categoryNameTxt.OnDisabledState = stateProperties2;
-            stateProperties3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            stateProperties3.BorderColor = System.Drawing.Color.DodgerBlue;
             stateProperties3.FillColor = System.Drawing.Color.Empty;
             stateProperties3.ForeColor = System.Drawing.Color.Empty;
             stateProperties3.PlaceholderForeColor = System.Drawing.Color.Empty;
@@ -417,21 +426,21 @@
             this.categoryNameTxt.Padding = new System.Windows.Forms.Padding(3);
             this.categoryNameTxt.PasswordChar = '\0';
             this.categoryNameTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.categoryNameTxt.PlaceholderText = "Enter text";
+            this.categoryNameTxt.PlaceholderText = "e.g. Electronics, Clothing...";
             this.categoryNameTxt.ReadOnly = false;
             this.categoryNameTxt.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.categoryNameTxt.SelectedText = "";
             this.categoryNameTxt.SelectionLength = 0;
             this.categoryNameTxt.SelectionStart = 0;
             this.categoryNameTxt.ShortcutsEnabled = true;
-            this.categoryNameTxt.Size = new System.Drawing.Size(772, 41);
+            this.categoryNameTxt.Size = new System.Drawing.Size(850, 42);
             this.categoryNameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.categoryNameTxt.TabIndex = 1;
             this.categoryNameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.categoryNameTxt.TextMarginBottom = 0;
             this.categoryNameTxt.TextMarginLeft = 3;
             this.categoryNameTxt.TextMarginTop = 0;
-            this.categoryNameTxt.TextPlaceholder = "Enter text";
+            this.categoryNameTxt.TextPlaceholder = "e.g. Electronics, Clothing...";
             this.categoryNameTxt.UseSystemPasswordChar = false;
             this.categoryNameTxt.WordWrap = true;
             this.categoryNameTxt.TextChange += new System.EventHandler(this.CategoryNameTxt_Changed);
@@ -440,10 +449,11 @@
             // categoryNameLbl
             // 
             this.categoryNameLbl.AutoSize = true;
-            this.categoryNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.categoryNameLbl.Location = new System.Drawing.Point(29, 64);
+            this.categoryNameLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoryNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.categoryNameLbl.Location = new System.Drawing.Point(25, 35);
             this.categoryNameLbl.Name = "categoryNameLbl";
-            this.categoryNameLbl.Size = new System.Drawing.Size(125, 18);
+            this.categoryNameLbl.Size = new System.Drawing.Size(130, 23);
             this.categoryNameLbl.TabIndex = 0;
             this.categoryNameLbl.Text = "Category Name";
             // 
@@ -452,11 +462,14 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.CategoryDatagridView);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(22, 208);
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.groupBox2.Location = new System.Drawing.Point(20, 175);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1159, 389);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(15);
+            this.groupBox2.Size = new System.Drawing.Size(1160, 450);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Category List";
@@ -514,13 +527,13 @@
             this.CategoryDatagridView.HeaderBackColor = System.Drawing.Color.DodgerBlue;
             this.CategoryDatagridView.HeaderBgColor = System.Drawing.Color.Empty;
             this.CategoryDatagridView.HeaderForeColor = System.Drawing.Color.White;
-            this.CategoryDatagridView.Location = new System.Drawing.Point(19, 42);
+            this.CategoryDatagridView.Location = new System.Drawing.Point(15, 40);
             this.CategoryDatagridView.Name = "CategoryDatagridView";
             this.CategoryDatagridView.RowHeadersVisible = false;
             this.CategoryDatagridView.RowHeadersWidth = 51;
             this.CategoryDatagridView.RowTemplate.Height = 40;
             this.CategoryDatagridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CategoryDatagridView.Size = new System.Drawing.Size(1134, 322);
+            this.CategoryDatagridView.Size = new System.Drawing.Size(1130, 395);
             this.CategoryDatagridView.TabIndex = 4;
             this.CategoryDatagridView.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.CategoryDatagridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CategoryDatagridView_CellClick);
@@ -528,7 +541,7 @@
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 608);
+            this.panel1.Location = new System.Drawing.Point(0, 629);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1200, 21);
             this.panel1.TabIndex = 2;
@@ -541,11 +554,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(246)))), ((int)(((byte)(249)))));
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "CategoryControl";
-            this.Size = new System.Drawing.Size(1200, 629);
+            this.Size = new System.Drawing.Size(1200, 650);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -554,7 +568,7 @@
             this.ResumeLayout(false);
 
         }
-
+        #endregion
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;

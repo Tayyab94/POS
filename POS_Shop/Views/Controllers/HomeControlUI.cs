@@ -255,11 +255,13 @@ namespace POS_Shop.Views.Controllers
                     if (!string.IsNullOrWhiteSpace(userInput) && userInput.ToLower() == "show")
                     {
                         showDialog = false;
-                        var purchaseOrderForm = new POS_Shop.Views.Controllers.Reports.ReportsMenuForm();
+                        
+                        var purchaseOrderForm = new POS_Shop.Views.Controllers.Reports.FormReportsMenu();
 
                         this.Hide();
                         purchaseOrderForm.ShowDialog();
                         this.Show();
+
                     }
                     else
                         MessageBox.Show("Invalid Input", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

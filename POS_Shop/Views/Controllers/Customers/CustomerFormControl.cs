@@ -966,7 +966,8 @@ namespace POS_Shop.Views.Controllers.Customers
             CustomerActiveChkBox.Checked = Convert.ToBoolean(row.Cells[Col.Active].Value);
             RemoveCustomerBtn.Visible = true;
             UpdateCustomerBtn.Visible = true;
-
+            UpdateCustomerBtn.Enabled = true;
+            RemoveCustomerBtn.Enabled = true;
             if (row.Cells[Col.CityId].Value == null) return;
 
             int cityId = Convert.ToInt32(row.Cells[Col.CityId].Value);
