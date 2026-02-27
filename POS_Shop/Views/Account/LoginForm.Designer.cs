@@ -389,11 +389,11 @@
             // 
             this.FooterLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.FooterLbl.AutoSize = true;
-            this.FooterLbl.Font = new System.Drawing.Font("Ravie", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FooterLbl.Font = new System.Drawing.Font("Rockwell", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FooterLbl.ForeColor = System.Drawing.SystemColors.Control;
             this.FooterLbl.Location = new System.Drawing.Point(11, 619);
             this.FooterLbl.Name = "FooterLbl";
-            this.FooterLbl.Size = new System.Drawing.Size(250, 19);
+            this.FooterLbl.Size = new System.Drawing.Size(155, 16);
             this.FooterLbl.TabIndex = 12;
             this.FooterLbl.Text = "POS App - Cortex Studios";
             // 

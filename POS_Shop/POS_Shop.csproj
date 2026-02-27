@@ -504,6 +504,12 @@
     <Compile Include="Views\Controllers\Reports\AgingReportForm.Designer.cs">
       <DependentUpon>AgingReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\Reports\FormReportsMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\FormReportsMenu.Designer.cs">
+      <DependentUpon>FormReportsMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controllers\Reports\Monthlycashflowreportform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -528,6 +534,12 @@
     <Compile Include="Views\Controllers\Reports\Productpurchasehistoryreportform.Designer.cs">
       <DependentUpon>Productpurchasehistoryreportform.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\Reports\ProfitLossReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\ProfitLossReportForm.Designer.cs">
+      <DependentUpon>ProfitLossReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controllers\Reports\PurchaseBySupplierReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -547,6 +559,18 @@
     <Compile Include="Views\Controllers\Reports\ReportsMenuForm.Designer.cs">
       <DependentUpon>ReportsMenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\Reports\SalesPurchaseComparisonReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\SalesPurchaseComparisonReportForm.Designer.cs">
+      <DependentUpon>SalesPurchaseComparisonReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\SalesSummaryReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\SalesSummaryReportForm.Designer.cs">
+      <DependentUpon>SalesSummaryReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controllers\Reports\SupplierLedgerReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -559,6 +583,18 @@
     <Compile Include="Views\Controllers\Reports\SupplierPerformanceReportForm.Designer.cs">
       <DependentUpon>SupplierPerformanceReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\Reports\TopCustomersReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\TopCustomersReportForm.Designer.cs">
+      <DependentUpon>TopCustomersReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\TopSellingProductsReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\TopSellingProductsReportForm.Designer.cs">
+      <DependentUpon>TopSellingProductsReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controllers\Reports\TopUnpaidReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -570,6 +606,18 @@
     </Compile>
     <Compile Include="Views\Controllers\SubCategory\SubCategoryForm.Designer.cs">
       <DependentUpon>SubCategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\AllPurchasesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\AllPurchasesForm.Designer.cs">
+      <DependentUpon>AllPurchasesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\Invoicepaymentflowform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\Invoicepaymentflowform.Designer.cs">
+      <DependentUpon>Invoicepaymentflowform.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controllers\Supplier\PaidPurchasesForm.cs">
       <SubType>Form</SubType>
@@ -657,12 +705,6 @@
     </Compile>
     <Compile Include="Views\Loader\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Reports\frmPurchaseSummaryByPeriod.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Reports\frmPurchaseSummaryByPeriod.Designer.cs">
-      <DependentUpon>frmPurchaseSummaryByPeriod.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Reports\ProductSalesTrendForm.cs">
       <SubType>Form</SubType>
@@ -795,11 +837,20 @@
     <EmbeddedResource Include="Views\Controllers\Product\ProductUnitControl.resx">
       <DependentUpon>ProductUnitControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Reports\FormReportsMenu.resx">
+      <DependentUpon>FormReportsMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Reports\ProfitLossReportForm.resx">
+      <DependentUpon>ProfitLossReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Reports\ReportsMenuForm.resx">
       <DependentUpon>ReportsMenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\SubCategory\SubCategoryForm.resx">
       <DependentUpon>SubCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Supplier\AllPurchasesForm.resx">
+      <DependentUpon>AllPurchasesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Supplier\PaidPurchasesForm.resx">
       <DependentUpon>PaidPurchasesForm.cs</DependentUpon>

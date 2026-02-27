@@ -479,7 +479,9 @@ namespace POS_Shop
 
         private void PurchaseOrderListBtn_Click(object sender, EventArgs e)
         {
-            var purchaseOrderForm = new POS_Shop.Views.Controllers.Supplier.PaidPurchasesForm();
+            //var purchaseOrderForm = new POS_Shop.Views.Controllers.Supplier.PaidPurchasesForm();
+
+            var purchaseOrderForm = new POS_Shop.Views.Controllers.Supplier.AllPurchasesForm();
             this.Hide();
             purchaseOrderForm.ShowDialog();
             this.Show();
@@ -487,19 +489,15 @@ namespace POS_Shop
             LoadHomeUI();
         }
 
-        private void BtnPurchaseSummaryReport_Click(object sender, EventArgs e)
+        private void PurchasePaidOrderListBtn_Click(object sender, EventArgs e)
         {
-
-            var purchaseOrderForm = new POS_Shop.Views.Reports.frmPurchaseSummaryByPeriod();
+            var purchaseOrderForm = new POS_Shop.Views.Controllers.Supplier.PaidPurchasesForm();
 
             this.Hide();
             purchaseOrderForm.ShowDialog();
             this.Show();
 
             LoadHomeUI();
-
-
-
         }
     }
 }

@@ -3252,6 +3252,7 @@ namespace POS_Shop.Views.BillScreen
 
         private void CustomerNameTxt_TextChange(object sender, EventArgs e)
         {
+            if (_isUpdatingText) return;
             if (string.IsNullOrEmpty(CustomerNameTxt.Text) || CustomerNameTxt.Text.Length < 2)
             {
                 _customerDebounceTimer?.Stop();
@@ -4235,20 +4236,31 @@ namespace POS_Shop.Views.BillScreen
         {
             if (!int.TryParse(row.Cells[0].Value?.ToString(), out int cId)) return;
 
-            CustomerIdLbl.Text = cId.ToString();
-            CustomerNameTxt.Text = row.Cells[1].Value?.ToString() ?? string.Empty;
-            ResetCustomerBtn.Visible = true;
-            CustomerListDataGrid.Visible = false;
+            _isUpdatingText = true;
 
-            ProductEngNameTxt.Focus();
-            ProductEngNameTxt.SelectAll();
-
-            using (var context = new POSDbContext())
+            try
             {
-                IOrderRepository orderRepo = new OrderRepository(context);
-                var summary = orderRepo.GetLatestOrderAmountSummaryByCustomerId(cId);
-                UpdatePreviousOrderSummary(summary);
+                CustomerIdLbl.Text = cId.ToString();
+                CustomerNameTxt.Text = row.Cells[1].Value?.ToString() ?? string.Empty;
+                ResetCustomerBtn.Visible = true;
+                CustomerListDataGrid.Visible = false;
+
+                ProductEngNameTxt.Focus();
+                ProductEngNameTxt.SelectAll();
+
+                using (var context = new POSDbContext())
+                {
+                    IOrderRepository orderRepo = new OrderRepository(context);
+                    var summary = orderRepo.GetLatestOrderAmountSummaryByCustomerId(cId);
+                    UpdatePreviousOrderSummary(summary);
+                }
             }
+            finally
+            {
+                _isUpdatingText = false;
+                _lastSelectedProductText = string.Empty;
+            }
+           
         }
 
         private void UpdatePreviousOrderSummary(OrderAmountSummaryDto summary)
