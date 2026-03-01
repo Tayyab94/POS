@@ -2913,7 +2913,9 @@ using POS_Shop.Interfaces;
 using POS_Shop.Models;
 using POS_Shop.Models.AuthModel;
 using POS_Shop.Repositories;
+using POS_Shop.Repositories.LoanRepositories;
 using POS_Shop.Views.Controllers.Order;
+using POS_Shop.Views.CustomerLoanScreens;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -2939,6 +2941,12 @@ namespace POS_Shop.Views.BillScreen
         private string prod_U_Name { get; set; } = string.Empty;
         public bool isTempSaved { get; set; } = false;
         public bool isPaid { get; set; } = false;
+
+
+        private int _selectedCustomerId = 0;
+
+        private decimal _customerLedgerBalance = 0m;  // live balance of selected customer
+
 
         // ── Debounce timers ────────────────────────────────────────────────────────
         private System.Windows.Forms.Timer _productDebounceTimer;
@@ -3649,7 +3657,7 @@ namespace POS_Shop.Views.BillScreen
         private void CalculateTotals()
         {
             int totalItems = 0;
-            decimal subTotal = 0;
+            decimal subTotal = 0;  
 
             foreach (DataGridViewRow row in CartProductList.Rows)
             {
@@ -3723,6 +3731,8 @@ namespace POS_Shop.Views.BillScreen
                     await SaveOrderDetailsAsync(context, orderId);
 
                     tx.Commit();
+
+                    await PostOrderToLedgerAsync(orderId, _selectedCustomerId, Convert.ToDecimal(orderData.TotalBill), Convert.ToDecimal(orderData.ReceiveAmount));
                     return true;
                 }
                 catch (Exception ex)
@@ -4240,6 +4250,7 @@ namespace POS_Shop.Views.BillScreen
 
             try
             {
+                _selectedCustomerId = cId;
                 CustomerIdLbl.Text = cId.ToString();
                 CustomerNameTxt.Text = row.Cells[1].Value?.ToString() ?? string.Empty;
                 ResetCustomerBtn.Visible = true;
@@ -4254,6 +4265,8 @@ namespace POS_Shop.Views.BillScreen
                     var summary = orderRepo.GetLatestOrderAmountSummaryByCustomerId(cId);
                     UpdatePreviousOrderSummary(summary);
                 }
+
+                LoadCustomerLedgerBalanceAsync(cId);
             }
             finally
             {
@@ -4556,6 +4569,11 @@ namespace POS_Shop.Views.BillScreen
             previousBillAmountLbl.Text = "0";
             PreviousReceivedAmountLbl.Text = "0";
             PreviousOrderSummaryLbl.Visible = false;
+
+            lblLedgerBalance.Text= "";
+            pnlLedgerBalance.Visible = false;
+
+            _selectedCustomerId = 0;
         }
 
         private void ResetUIAfterSave()
@@ -5027,6 +5045,161 @@ namespace POS_Shop.Views.BillScreen
                     $"{ex.Message}\n{ex.StackTrace}\n\n");
             }
             catch { /* logging must never crash the app */ }
+        }
+
+        private void btnViewLedger_Click(object sender, EventArgs e)
+        {
+            if (_selectedCustomerId <= 0)
+            {
+                MessageBox.Show("Please select a customer first.",
+                    "No Customer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var frm = new CustomerLedgerForm(_selectedCustomerId, CustomerNameTxt.Text))
+                frm.ShowDialog(this);
+
+            // Refresh balance after closing ledger form (payment may have been made)
+            _ = LoadCustomerLedgerBalanceAsync(_selectedCustomerId);
+        }
+
+        private void btnReceivePayment_Click(object sender, EventArgs e)
+        {
+            if (_selectedCustomerId <= 0)
+            {
+                MessageBox.Show("Please select a customer first.",
+                    "No Customer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string customerName = CustomerNameTxt.Text; // adjust to your label name
+
+            using (var dlg = new CustomerPaymentForm(
+                _selectedCustomerId, customerName, _customerLedgerBalance))
+            {
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    _customerLedgerBalance = dlg.SavedPayment.BalanceAfter;
+                    UpdateLedgerBalanceUI();
+
+                    MessageBox.Show(
+                        $"Payment of Rs. {dlg.SavedPayment.AmountPaid:N0} recorded.",
+                        "Payment Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// Posts the order's financial effect to the customer ledger.
+        /// Runs in a SEPARATE db context — ledger is secondary, order is already committed.
+        /// If ledger post fails, log it — do NOT roll back the saved order.
+        /// </summary>
+        private async Task PostOrderToLedgerAsync(
+            int orderId, int customerId, decimal totalBill, decimal received)
+        {
+            try
+            {
+                using (var db = new POSDbContext())
+                {
+                    var repo = new CustomerLedgerRepository(db);
+                    var result = await repo.PostOrderAsync(
+                        customerId, orderId, totalBill, received,
+                        createdBy: Environment.UserName);
+
+                    // Refresh the balance shown on the form
+                    _customerLedgerBalance = result.BalanceAfter;
+                    UpdateLedgerBalanceUI();
+
+                    // Show ledger summary to cashier if something notable happened
+                    if (result.LoanAdded > 0 || result.AdvanceAdded > 0 || result.AdvanceApplied > 0)
+                    {
+                        MessageBox.Show(result.SummaryMessage,
+                            "Ledger Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ledger failure must NOT block the cashier — just log it.
+                LogError("PostOrderToLedger", ex);
+            }
+        }
+
+        private void UpdateLedgerBalanceUI()
+        {
+            // lblLedgerBalance and pnlLedgerBalance are the new controls
+            // you add to BillPadForm (see STEP 4 below).
+            if (_customerLedgerBalance > 0)
+            {
+                lblLedgerBalance.Text = $"⚠  Loan: Rs. {_customerLedgerBalance:N0}";
+                lblLedgerBalance.ForeColor = System.Drawing.Color.FromArgb(198, 40, 40);
+                pnlLedgerBalance.BackColor = System.Drawing.Color.FromArgb(255, 235, 238);
+            }
+            else if (_customerLedgerBalance < 0)
+            {
+                lblLedgerBalance.Text = $"✔  Advance: Rs. {Math.Abs(_customerLedgerBalance):N0}";
+                lblLedgerBalance.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
+                pnlLedgerBalance.BackColor = System.Drawing.Color.FromArgb(227, 242, 253);
+            }
+            else
+            {
+                lblLedgerBalance.Text = "✔  Settled";
+                lblLedgerBalance.ForeColor = System.Drawing.Color.FromArgb(46, 125, 50);
+                pnlLedgerBalance.BackColor = System.Drawing.Color.FromArgb(232, 245, 233);
+            }
+            pnlLedgerBalance.Visible = true;
+        }
+
+
+
+        /// <summary>
+        /// Loads the customer's ledger balance and shows it on the bill form.
+        /// Call this after a customer is selected.
+        /// </summary>
+        private async Task LoadCustomerLedgerBalanceAsync(int customerId)
+        {
+            try
+            {
+                using (var db = new POSDbContext())
+                {
+                    var repo = new CustomerLedgerRepository(db);
+                    _customerLedgerBalance = await repo.GetRunningBalanceAsync(customerId);
+                }
+                UpdateLedgerBalanceUI1();
+            }
+            catch (Exception ex)
+            {
+                LogError("LoadCustomerLedgerBalance", ex);
+                _customerLedgerBalance = 0m;
+            }
+        }
+
+        private void UpdateLedgerBalanceUI1()
+        {
+            // lblLedgerBalance and pnlLedgerBalance are the new controls
+            // you add to BillPadForm (see STEP 4 below).
+            if (_customerLedgerBalance > 0)
+            {
+                lblLedgerBalance.Text = $"⚠  Loan: Rs. {_customerLedgerBalance:N0}";
+                lblLedgerBalance.ForeColor = System.Drawing.Color.FromArgb(198, 40, 40);
+                pnlLedgerBalance.BackColor = System.Drawing.Color.FromArgb(255, 235, 238);
+            }
+            else if (_customerLedgerBalance < 0)
+            {
+                lblLedgerBalance.Text = $"✔  Advance: Rs. {Math.Abs(_customerLedgerBalance):N0}";
+                lblLedgerBalance.ForeColor = System.Drawing.Color.FromArgb(21, 101, 192);
+                pnlLedgerBalance.BackColor = System.Drawing.Color.FromArgb(227, 242, 253);
+            }
+            else
+            {
+                lblLedgerBalance.Text = "✔  Settled";
+                lblLedgerBalance.ForeColor = System.Drawing.Color.FromArgb(46, 125, 50);
+                pnlLedgerBalance.BackColor = System.Drawing.Color.FromArgb(232, 245, 233);
+            }
+            pnlLedgerBalance.Visible = true;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using POS_Shop.Helpers;
 using POS_Shop.Models.AuthModel;
 using POS_Shop.Models.LicenseModels;
+using POS_Shop.Models.LoanModels;
 using POS_Shop.Models.Suppliers;
 using System;
 using System.Collections.Generic;
@@ -116,6 +117,12 @@ namespace POS_Shop.Models
         public DbSet<PurchaseItem> PurchaseItems { get; set; }
         public DbSet<SupplierPayment> SupplierPayments { get; set; }
         public DbSet<SupplierPaymentDetail> SupplierPaymentDetails { get; set; }
+
+
+        public DbSet<CustomerLedger> CustomerLedgers { get; set; }
+        public DbSet<CustomerTransaction> CustomerTransactions { get; set; }
+        public DbSet<CustomerPayment> CustomerPayments { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

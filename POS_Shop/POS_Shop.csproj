@@ -345,6 +345,10 @@
     <Compile Include="Migrations\202602192003100_AddPurchaseItemIsDeleted.Designer.cs">
       <DependentUpon>202602192003100_AddPurchaseItemIsDeleted.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202602281856211_AddCustomerLoan.cs" />
+    <Compile Include="Migrations\202602281856211_AddCustomerLoan.Designer.cs">
+      <DependentUpon>202602281856211_AddCustomerLoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\AuthModel\AuthUser.cs" />
@@ -356,6 +360,11 @@
     <Compile Include="Models\LicenseModels\AppLicense.cs" />
     <Compile Include="Models\LicenseModels\DTO\LicenseInfo.cs" />
     <Compile Include="Models\LicenseModels\LicenseType.cs" />
+    <Compile Include="Models\LoanModels\CustomerLedger.cs" />
+    <Compile Include="Models\LoanModels\CustomerPayment.cs" />
+    <Compile Include="Models\LoanModels\CustomerTransaction.cs" />
+    <Compile Include="Models\LoanModels\PaymentMethods.cs" />
+    <Compile Include="Models\LoanModels\TransactionTypes.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\POSDbContext.cs" />
@@ -377,6 +386,7 @@
     <Compile Include="Repositories\EncryptionService.cs" />
     <Compile Include="Repositories\LicenseService.cs" />
     <Compile Include="Repositories\LicenseServices\LicenseKeyManager.cs" />
+    <Compile Include="Repositories\LoanRepositories\CustomerLedgerSummaryDto.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\ProductUnitRepository.cs" />
@@ -643,6 +653,33 @@
     <Compile Include="Views\Controllers\Supplier\Supplierpaymentform.Designer.cs">
       <DependentUpon>Supplierpaymentform.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomerLoanScreens\AdjustmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CustomerLoanScreens\AdjustmentForm.Designer.cs">
+      <DependentUpon>AdjustmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomerLoanScreens\Adjustmentform1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CustomerLoanScreens\Customerledgerform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CustomerLoanScreens\Customerledgerform.Designer.cs">
+      <DependentUpon>Customerledgerform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomerLoanScreens\Customerledgerreportform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CustomerLoanScreens\Customerledgerreportform.Designer.cs">
+      <DependentUpon>Customerledgerreportform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomerLoanScreens\Customerpaymentform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CustomerLoanScreens\Customerpaymentform.Designer.cs">
+      <DependentUpon>Customerpaymentform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\DB_Screens\BackUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -778,6 +815,9 @@
     <EmbeddedResource Include="Migrations\202602192003100_AddPurchaseItemIsDeleted.resx">
       <DependentUpon>202602192003100_AddPurchaseItemIsDeleted.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202602281856211_AddCustomerLoan.resx">
+      <DependentUpon>202602281856211_AddCustomerLoan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -866,6 +906,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Supplier\Supplierpaymentform.resx">
       <DependentUpon>Supplierpaymentform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CustomerLoanScreens\AdjustmentForm.resx">
+      <DependentUpon>AdjustmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\BackUpForm.resx">
       <DependentUpon>BackUpForm.cs</DependentUpon>
