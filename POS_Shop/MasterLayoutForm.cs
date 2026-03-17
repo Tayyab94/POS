@@ -4,6 +4,7 @@ using POS_Shop.Views.Account;
 using POS_Shop.Views.Account.Auth;
 using POS_Shop.Views.BillScreen;
 using POS_Shop.Views.Controllers.Product;
+using POS_Shop.Views.Controllers.Supplier;
 using POS_Shop.Views.DB_Screens;
 using POS_Shop.Views.LicenseManagement;
 using POS_Shop.Views.Reports;
@@ -482,11 +483,8 @@ namespace POS_Shop
             //var purchaseOrderForm = new POS_Shop.Views.Controllers.Supplier.PaidPurchasesForm();
 
             var purchaseOrderForm = new POS_Shop.Views.Controllers.Supplier.AllPurchasesForm();
-            this.Hide();
             purchaseOrderForm.ShowDialog();
-            this.Show();
-
-            LoadHomeUI();
+           
         }
 
         private void PurchasePaidOrderListBtn_Click(object sender, EventArgs e)
@@ -499,5 +497,30 @@ namespace POS_Shop
 
             LoadHomeUI();
         }
+
+        private void CustomerLedgerBtn_Click(object sender, EventArgs e)
+        {
+            var purchaseOrderForm = new POS_Shop.Views.CustomerLoanScreensV1.AllCustomerBalancesForm();
+
+            purchaseOrderForm.ShowDialog();
+         
+        }
+
+        private void LedgerEntryFromBtn_Click(object sender, EventArgs e)
+        {
+            var purchaseOrderForm = new POS_Shop.Views.CustomerLoanScreensV1.ManualLedgerEntryForm();
+            purchaseOrderForm.ShowDialog();
+        }
+
+
+        #region Delete Purchase Order code. Don't Delete it, you may need this code in future.
+        // This is just a form. if you need this feature just create an event and use this code. 
+        //private void deletePurchasesToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    using (var f = new DeletePaidPurchasesForm())
+        //        f.ShowDialog(this);
+        //}
+
+        #endregion
     }
 }

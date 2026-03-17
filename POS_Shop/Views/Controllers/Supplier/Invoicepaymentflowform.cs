@@ -400,6 +400,43 @@ namespace POS_Shop.Views.Controllers.Supplier
         //  RENDER ITEMS GRID
         // ══════════════════════════════════════════════════════════════════════
 
+        //private void RenderItemsGrid(List<PurchaseItem> items)
+        //{
+        //    dgvItems.Rows.Clear();
+
+        //    decimal total = 0;
+        //    foreach (var item in items)
+        //    {
+        //        string productName = item.Product?.ProductEnglishName ?? $"Product #{item.ProductId}";
+        //        string unit = item.ProductUnitType;
+
+        //        int idx = dgvItems.Rows.Add();
+        //        var row = dgvItems.Rows[idx];
+        //        row.Cells["colItemProduct"].Value = productName;
+        //        row.Cells["colItemUnit"].Value = unit;
+        //        row.Cells["colItemQty"].Value = item.Quantity;
+        //        row.Cells["colItemPrice"].Value = item.PurchasePrice;
+        //        row.Cells["colItemTotal"].Value = item.TotalPrice;
+        //        total += item.TotalPrice;
+        //    }
+
+        //    // Total row
+        //    if (items.Count > 0)
+        //    {
+        //        var tr = dgvItems.Rows[dgvItems.Rows.Add()];
+        //        tr.Cells["colItemProduct"].Value = $"TOTAL  ({items.Count} items)";
+        //        tr.Cells["colItemTotal"].Value = total;
+        //        foreach (DataGridViewCell c in tr.Cells)
+        //        {
+        //            c.Style.BackColor = Color.FromArgb(21, 101, 192);
+        //            c.Style.ForeColor = Color.White;
+        //            c.Style.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+        //        }
+        //    }
+        //}
+
+
+
         private void RenderItemsGrid(List<PurchaseItem> items)
         {
             dgvItems.Rows.Clear();
@@ -434,6 +471,7 @@ namespace POS_Shop.Views.Controllers.Supplier
                 }
             }
         }
+
 
         // ── Close button ───────────────────────────────────────────────────────
         private void BtnClose_Click(object sender, EventArgs e) => Close();
