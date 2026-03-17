@@ -48,6 +48,110 @@ namespace POS_Shop.Views.Controllers.Supplier
         //  LOAD DATA
         // ══════════════════════════════════════════════════════════════════════
 
+        //private void LoadInvoice()
+        //{
+        //    try
+        //    {
+        //        var purchase = _db.Purchases
+        //            .Include("PurchaseItems")
+        //            .Include("Supplier")
+        //            .FirstOrDefault(p => p.Id == _purchaseId);
+
+        //        if (purchase == null)
+        //        {
+        //            MessageBox.Show("Invoice not found.", "Error",
+        //                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            this.Close();
+        //            return;
+        //        }
+
+        //        // ── Form title ────────────────────────────────────────────────
+        //        this.Text = $"Invoice — {purchase.InvoiceNumber}";
+        //        lblInvoiceNo.Text = purchase.InvoiceNumber;
+
+        //        // ── Status badge ──────────────────────────────────────────────
+        //        ApplyStatusBadge(purchase.PaymentStatus);
+
+        //        // ── Meta strip ────────────────────────────────────────────────
+        //        if (purchase.Supplier != null)
+        //            lblSupVal.Text = $"{purchase.Supplier.SupplierName}  —  {purchase.Supplier.ShopName}";
+        //        else
+        //            lblSupVal.Text = $"Supplier #{purchase.SupplierId}";
+
+        //        lblDateVal.Text = purchase.PurchaseDate.ToString("dd MMM yyyy  (dddd)");
+        //        lblRefVal.Text = !string.IsNullOrWhiteSpace(purchase.SupplierReferenceNo)
+        //                             ? purchase.SupplierReferenceNo
+        //                             : "—";
+        //        lblCreatedVal.Text = purchase.CreatedAt.ToLocalTime().ToString("dd MMM yyyy  HH:mm");
+
+        //        // ── Items grid ────────────────────────────────────────────────
+        //        var items = purchase.PurchaseItems
+        //            .Where(i => !i.IsDeleted)
+        //            .OrderBy(i => i.Id)
+        //            .ToList();
+
+        //        int sr = 1;
+        //        foreach (var item in items)
+        //        {
+        //            // Resolve product
+        //            string name = $"Product #{item.ProductId}";
+        //            string code = "";
+        //            var prod = _db.Products.FirstOrDefault(p => p.Id == item.ProductId);
+        //            if (prod != null)
+        //            {
+        //                name = prod.ProductEnglishName;
+        //                code = prod.SearchByProductCode ?? "";
+        //            }
+
+        //            // Resolve unit
+        //            string unit = "—";
+        //            //if (item.ProductUnitId.HasValue && item.ProductUnitId > 0)
+        //            //{
+        //            //    var u = _db.ProductUnits.FirstOrDefault(x => x.Id == item.ProductUnitId);
+        //            //    if (u != null) unit = u.Name;
+        //            //}
+
+        //            int idx = dgvItems.Rows.Add();
+        //            var row = dgvItems.Rows[idx];
+        //            row.Cells["colSrNo"].Value = sr++;
+        //            row.Cells["colCode"].Value = code;
+        //            row.Cells["colProduct"].Value = name;
+        //            row.Cells["colUnit"].Value = item.ProductUnitType;
+        //            row.Cells["colQty"].Value = item.Quantity;
+        //            row.Cells["colPrice"].Value = item.PurchasePrice;
+        //            row.Cells["colTotal"].Value = item.TotalPrice;
+        //        }
+
+        //        // ── Grid title ────────────────────────────────────────────────
+        //        lblGridTitle.Text = $"  Items Purchased  ({items.Count} item{(items.Count != 1 ? "s" : "")})";
+
+        //        // ── Totals ────────────────────────────────────────────────────
+        //        lblSubVal.Text = $"Rs. {purchase.TotalAmount:N2}";
+        //        lblDiscVal.Text = purchase.Discount > 0
+        //                          ? $"−  Rs. {purchase.Discount:N2}"
+        //                          : "Rs. 0.00";
+        //        lblNetVal.Text = $"Rs. {purchase.NetAmount:N2}";
+
+        //        // ── Payment summary ───────────────────────────────────────────
+        //        lblPaidVal.Text = $"Rs. {purchase.TotalPaid:N2}";
+        //        lblBalVal.Text = $"Rs. {purchase.Balance:N2}";
+        //        lblBalVal.ForeColor = purchase.Balance <= 0
+        //            ? System.Drawing.Color.FromArgb(46, 125, 50)
+        //            : System.Drawing.Color.FromArgb(198, 40, 40);
+
+        //        // ── Notes ─────────────────────────────────────────────────────
+        //        lblNotesVal.Text = !string.IsNullOrWhiteSpace(purchase.Notes)
+        //                           ? purchase.Notes
+        //                           : "—";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error loading invoice:\n" + ex.Message, "Error",
+        //            MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
+
+
         private void LoadInvoice()
         {
             try
@@ -150,6 +254,7 @@ namespace POS_Shop.Views.Controllers.Supplier
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         // ══════════════════════════════════════════════════════════════════════
         //  STATUS BADGE

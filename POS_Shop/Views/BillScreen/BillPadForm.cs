@@ -2912,6 +2912,7 @@ using POS_Shop.Helpers;
 using POS_Shop.Interfaces;
 using POS_Shop.Models;
 using POS_Shop.Models.AuthModel;
+using POS_Shop.Models.LoanModelsV1;
 using POS_Shop.Repositories;
 using POS_Shop.Views.Controllers.Order;
 using System;
@@ -2939,6 +2940,13 @@ namespace POS_Shop.Views.BillScreen
         private string prod_U_Name { get; set; } = string.Empty;
         public bool isTempSaved { get; set; } = false;
         public bool isPaid { get; set; } = false;
+
+
+        private bool _isAdvanceBalance;
+
+
+        private decimal _customerAdvanceBalance = 0; // < 0 means advance credit available
+        private decimal _advanceApplied = 0;
 
         // ── Debounce timers ────────────────────────────────────────────────────────
         private System.Windows.Forms.Timer _productDebounceTimer;
@@ -3042,40 +3050,69 @@ namespace POS_Shop.Views.BillScreen
 
         private void SetItemGridView()
         {
+            //CartProductList.ColumnCount = 7;
+
+            //CartProductList.Columns[0].Name = Col.Amount;
+            //CartProductList.Columns[1].Name = Col.SalePrice;
+            //CartProductList.Columns[2].Name = Col.UrduName;
+            //CartProductList.Columns[3].Name = Col.ProductType;
+            //CartProductList.Columns[4].Name = Col.Qty;
+            //CartProductList.Columns[5].Name = Col.ProductId;
+            //CartProductList.Columns[6].Name = Col.Detail;
+
+            //CartProductList.Columns[Col.Amount].Width = 100;
+            //CartProductList.Columns[Col.SalePrice].Width = 60;
+            //CartProductList.Columns[Col.UrduName].Width = 190;
+            //CartProductList.Columns[Col.ProductType].Width = 30;
+            //CartProductList.Columns[Col.Qty].Width = 50;
+            //CartProductList.Columns[Col.ProductId].Width = 50;
+
+            //CartProductList.Columns[Col.ProductId].Visible = false;
+            //CartProductList.Columns[Col.Detail].Visible = false;
+
+            //CartProductList.Columns[Col.Amount].ReadOnly = true;
+            //CartProductList.Columns[Col.UrduName].ReadOnly = true;
+            //CartProductList.Columns[Col.ProductType].ReadOnly = true;
+
+            //// Delete button column — inserted at position 0
+            //var btnCol = new DataGridViewButtonColumn
+            //{
+            //    Name = Col.Delete,
+            //    HeaderText = "Action",
+            //    Text = "Delete",
+            //    UseColumnTextForButtonValue = true,
+            //    Width = 50
+            //};
+            //CartProductList.Columns.Insert(0, btnCol);
+
+
+            CartProductList.SuspendLayout();
             CartProductList.ColumnCount = 7;
 
-            CartProductList.Columns[0].Name = Col.Amount;
-            CartProductList.Columns[1].Name = Col.SalePrice;
-            CartProductList.Columns[2].Name = Col.UrduName;
-            CartProductList.Columns[3].Name = Col.ProductType;
-            CartProductList.Columns[4].Name = Col.Qty;
-            CartProductList.Columns[5].Name = Col.ProductId;
-            CartProductList.Columns[6].Name = Col.Detail;
+            var cols = CartProductList.Columns;
+            cols[0].Name = "Amount"; cols[0].Width = 90;
+            cols[1].Name = "SalePrice"; cols[1].Width = 60;
+            cols[2].Name = "Urdu Name"; cols[2].Width = 200;
+            cols[3].Name = "ProductType"; cols[3].Width = 30;
+            cols[4].Name = "Qty"; cols[4].Width = 30;
+            cols[5].Name = "ProductId"; cols[5].Width = 50; cols[5].Visible = false;
+            cols[6].Name = "ProductDetail"; cols[6].Visible = false;
 
-            CartProductList.Columns[Col.Amount].Width = 100;
-            CartProductList.Columns[Col.SalePrice].Width = 60;
-            CartProductList.Columns[Col.UrduName].Width = 190;
-            CartProductList.Columns[Col.ProductType].Width = 30;
-            CartProductList.Columns[Col.Qty].Width = 50;
-            CartProductList.Columns[Col.ProductId].Width = 50;
+            cols["Amount"].ReadOnly = true;
+            cols["Urdu Name"].ReadOnly = true;
+            cols["ProductType"].ReadOnly = true;
 
-            CartProductList.Columns[Col.ProductId].Visible = false;
-            CartProductList.Columns[Col.Detail].Visible = false;
-
-            CartProductList.Columns[Col.Amount].ReadOnly = true;
-            CartProductList.Columns[Col.UrduName].ReadOnly = true;
-            CartProductList.Columns[Col.ProductType].ReadOnly = true;
-
-            // Delete button column — inserted at position 0
             var btnCol = new DataGridViewButtonColumn
             {
-                Name = Col.Delete,
+                Name = "Delete",
                 HeaderText = "Action",
                 Text = "Delete",
                 UseColumnTextForButtonValue = true,
-                Width = 50
+
             };
             CartProductList.Columns.Insert(0, btnCol);
+            cols[0].Width = 45;
+            CartProductList.ResumeLayout();
         }
 
         // ══════════════════════════════════════════════════════════════════════════
@@ -3722,6 +3759,50 @@ namespace POS_Shop.Views.BillScreen
 
                     await SaveOrderDetailsAsync(context, orderId);
 
+                    // ─── 4. INSIDE SaveOrder(): Post to ledger after order is saved ───────────────
+
+                    #region Code for POST to ledger after order save
+                    // Add this INSIDE your existing SaveOrder() method, after tx.Commit()
+
+                    // Example — add after your existing order save, inside the transaction:
+                    /*
+                        // Get received and total
+                        decimal received = decimal.TryParse(ReceivedAmountTxt.Text, out decimal r) ? r : 0;
+                        decimal total = decimal.TryParse(TotalBillTxt.Text, out decimal t) ? t : 0;
+
+                        if (_selectedCustomerId > 0)
+                        {
+                            var ledgerRepo = new CustomerLedgerRepository(context);
+
+                            if (_advanceApplied > 0)
+                            {
+                                // Post: advance applied to this order
+                                await ledgerRepo.PostAdvanceDepositAsync(... use PostAdjustment with positive amount);
+                                // Actually: use a SALE entry that shows debit (order total) and credit (advance applied)
+                                // Simpler approach: post sale entry for the truly outstanding amount
+                            }
+
+                            // Outstanding = what customer still owes after received + advance
+                            decimal outstanding = total - received; // received already includes advance if checkbox ticked
+                            if (outstanding > 0)
+                            {
+                                await ledgerRepo.PostSaleEntryAsync(
+                                    _selectedCustomerId, total, received, orderId, "User");
+                            }
+                            else if (outstanding < 0)
+                            {
+                                // Overpayment → becomes advance
+                                await ledgerRepo.PostAdvanceDepositAsync(
+                                    _selectedCustomerId, Math.Abs(outstanding), "Cash", "", 
+                                    $"Overpayment from Invoice #{orderId}", "User");
+                            }
+                        }
+                    */
+
+                    #endregion
+
+                    await SettleAdvanceLoan(context, orderData.ReceiveAmount, orderData.TotalBill);
+
                     tx.Commit();
                     return true;
                 }
@@ -3733,6 +3814,45 @@ namespace POS_Shop.Views.BillScreen
                 }
             }
         }
+
+        private async Task SettleAdvanceLoan(POSDbContext context, float receivedAmt, float totalBill)
+        {
+            if (_shouldAddWithBill && int.TryParse(CustomerIdLbl.Text, out int custId) && custId > 0)
+            {
+                decimal amount = Math.Abs(_customerAdvanceBalance);
+                var repo = new CustomerLedgerRepository(context);
+
+                if (_isAdvanceBalance)
+                    await repo.PostAdjustmentAsync(custId, amount, $"Payment settle INV-{InvoiceNoLbl.Text}", "User");
+                else
+                    await repo.PostAdvanceDepositAsync(custId, amount, "Cash", InvoiceNoLbl.Text.Trim(),
+                        $"Payment settle INV-{InvoiceNoLbl.Text}", "User");
+
+                _shouldAddWithBill = false;
+            }
+
+            if (CustomerLagerRecordChk.Checked)
+            {
+                if (int.TryParse(CustomerIdLbl.Text, out int customerId) && customerId > 0)
+                {
+                    decimal difference = Convert.ToDecimal(receivedAmt - totalBill);
+                    if (difference == 0) return;
+
+                    var repo = new CustomerLedgerRepository(context);
+
+                    if (difference < 0)
+                        await repo.PostAdjustmentAsync(customerId, Math.Abs(difference),
+                            $"loan added INV-{InvoiceNoLbl.Text}", "User");
+                    else
+                        await repo.PostAdvanceDepositAsync(customerId, difference, "Cash",
+                            InvoiceNoLbl.Text, $"Advance deposit {InvoiceNoLbl.Text}", "User");
+                }
+
+
+                CustomerLagerRecordChk.Checked = false;
+            }
+        }
+
 
         /// <summary>
         /// For an update: restores stock for old quantities (if enabled),
@@ -4200,7 +4320,7 @@ namespace POS_Shop.Views.BillScreen
         // CUSTOMER SELECTION
         // ══════════════════════════════════════════════════════════════════════════
 
-        private void CustomerListDataGrid_KeyDown(object sender, KeyEventArgs e)
+        private async void CustomerListDataGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up && CustomerListDataGrid.CurrentRow?.Index == 0)
             {
@@ -4222,17 +4342,17 @@ namespace POS_Shop.Views.BillScreen
                 }
 
                 if (CustomerListDataGrid.CurrentRow != null &&!CustomerListDataGrid.CurrentRow.IsNewRow)
-                    SelectCustomerFromRow(CustomerListDataGrid.CurrentRow);
+                   await SelectCustomerFromRow(CustomerListDataGrid.CurrentRow);
             }
         }
 
-        private void CustomerListDataGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void CustomerListDataGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex >= 0 && CustomerListDataGrid.CurrentRow != null)
-                SelectCustomerFromRow(CustomerListDataGrid.CurrentRow);
+                await SelectCustomerFromRow(CustomerListDataGrid.CurrentRow);
         }
 
-        private void SelectCustomerFromRow(DataGridViewRow row)
+        private async Task SelectCustomerFromRow(DataGridViewRow row)
         {
             if (!int.TryParse(row.Cells[0].Value?.ToString(), out int cId)) return;
 
@@ -4254,6 +4374,8 @@ namespace POS_Shop.Views.BillScreen
                     var summary = orderRepo.GetLatestOrderAmountSummaryByCustomerId(cId);
                     UpdatePreviousOrderSummary(summary);
                 }
+
+                await LoadCustomerLedgerBalanceAsync(cId);
             }
             finally
             {
@@ -4532,6 +4654,7 @@ namespace POS_Shop.Views.BillScreen
             OtherProductChk.Checked = false;
             ProductOrderHistoryDataGrid.DataSource = null;
             ProductPriceDataGridView.DataSource = null;
+
         }
 
         private void ClearCartFunction()
@@ -4549,6 +4672,7 @@ namespace POS_Shop.Views.BillScreen
 
             string invRef = TextFormatHelper.GetPrefix(Properties.Settings.Default.UserName);
             InvoiceNoLbl.Text = invRef + DateTime.Now.ToString("ddMMyy-HHmmss");
+            ApplyAdvanceChk.Visible = false;
         }
 
         private void ClearCustomerPreviousTransactionGroup()
@@ -4585,6 +4709,9 @@ namespace POS_Shop.Views.BillScreen
             CustomerIdLbl.Text = string.Empty;
             ResetCustomerBtn.Enabled = true;
             ResetCustomerBtn.Visible = false;
+
+            lblAdvanceInfo.Visible = false;
+            ApplyAdvanceChk.Visible = false;
             ClearCustomerPreviousTransactionGroup();
         }
 
@@ -5027,6 +5154,161 @@ namespace POS_Shop.Views.BillScreen
                     $"{ex.Message}\n{ex.StackTrace}\n\n");
             }
             catch { /* logging must never crash the app */ }
+        }
+
+
+
+
+        // ─── 2. METHOD: Call this right after a customer is selected ─────────────────
+
+        /// <summary>
+        /// After customer is selected in BillPadForm, check for any advance credit.
+        /// Call this from your existing customer selection handler.
+        /// </summary>
+        private async Task LoadCustomerLedgerBalanceAsync(int customerId)
+        {
+            using (var context = new POSDbContext())
+            {
+                var repo = new CustomerLedgerRepository(context);
+                decimal balance = await repo.GetCurrentBalanceAsync(customerId);
+                _customerAdvanceBalance = balance;
+                _advanceApplied = 0;
+
+                if (balance < 0) // Has advance credit
+                {
+                    decimal advCredit = Math.Abs(balance);  
+                    lblAdvanceInfo.Visible = false;
+                    lblAdvanceInfo.Text = $"🔵 Advance Credit: PKR {advCredit:N2}";
+                    lblAdvanceInfo.ForeColor = Color.FromArgb(0, 102, 204);
+                    ApplyAdvanceChk.Visible = true;
+                    ApplyAdvanceChk.Text = $"🔴 Apply advance (PKR {advCredit:N2}) to this invoice";
+                    ApplyAdvanceChk.ForeColor = Color.FromArgb(0, 102, 204);
+                    ApplyAdvanceChk.Checked = false;
+                    _isAdvanceBalance = true;
+                }
+                else if (balance > 0) // Has outstanding loan
+                {
+                    lblAdvanceInfo.Visible = false;
+                    lblAdvanceInfo.Text = $"🔴 Outstanding Loan: PKR {balance:N2}";
+                    lblAdvanceInfo.ForeColor = Color.FromArgb(192, 0, 0);
+                    ApplyAdvanceChk.Visible = true;
+                    ApplyAdvanceChk.Text = $"🔴 Apply Loan (PKR {balance:N2}) to this invoice";
+                    ApplyAdvanceChk.ForeColor = Color.FromArgb(192, 0, 0);
+                    ApplyAdvanceChk.Checked = false;
+                    _isAdvanceBalance = false;
+                }
+                else
+                {
+                    lblAdvanceInfo.Visible = false;
+                    ApplyAdvanceChk.Visible = false;
+                }
+            }
+        }
+
+        // ─── 3. EVENT: When "Apply advance" checkbox is toggled ──────────────────────
+
+        //private void ApplyAdvanceChk_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (ApplyAdvanceChk.Checked && _customerAdvanceBalance < 0)
+        //    {
+        //        decimal advCredit = Math.Abs(_customerAdvanceBalance);
+        //        // decimal total = GetCurrentCartTotal(); // your existing method
+
+        //        decimal total = Convert.ToDecimal(TotalAmountLbl.Text);
+        //        _advanceApplied = Math.Min(advCredit, total);
+        //        ReceivedAmountTxt.Text =Convert.ToInt32(_advanceApplied).ToString();
+        //        // This will auto-trigger your existing CalculateReturnAmount
+        //    }
+        //    else
+        //    {
+        //        _advanceApplied = 0;
+        //        ReceivedAmountTxt.Text = "0";
+        //    }
+        //    CalculateTotals(); // your existing method
+        //}
+
+        private bool _isProcessingCheck = false;
+        private bool _shouldAddWithBill = false;
+        private void ApplyAdvanceChk_CheckedChanged(object sender, EventArgs e)
+        {
+            //// Prevent recursive calls
+            //if (_isProcessingCheck) return;
+
+            //_isProcessingCheck = true;
+
+            //try
+            //{
+            //    if (ApplyAdvanceChk.Checked)
+            //    {
+            //        // Open the manual ledger entry form
+            //        var manualEntryForm = new POS_Shop.Views.CustomerLoanScreensV1.ManualLedgerEntryForm();
+
+            //        // Show the form as dialog
+            //        var result = manualEntryForm.ShowDialog();
+
+            //        // After form is closed, uncheck the checkbox
+            //        ApplyAdvanceChk.Checked = false;
+
+            //        // Optionally, you can check if the entry was saved and refresh data
+            //        if (manualEntryForm.EntrySaved)
+            //        {
+            //            // Refresh your data here if needed
+            //            // For example: await LoadDataAsync();
+            //            MessageBox.Show("Entry saved successfully!", "Success",
+            //                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //    }
+            //}
+            //finally
+            //{
+            //    _isProcessingCheck = false;
+            //}
+
+
+            _shouldAddWithBill = !_shouldAddWithBill;
+            if (ApplyAdvanceChk.Checked)
+            {
+                // Checkbox is checked - Add the row
+                if (_customerAdvanceBalance < 0)
+                {
+                    ProductEngNameTxt.Text = "سابقہ ایڈوانس جمع";
+                }
+                else
+                {
+                    ProductEngNameTxt.Text = "سابقہ ادھر جمع";
+                }
+
+                CartProductList.Rows.Add(null, _customerAdvanceBalance, _customerAdvanceBalance, ProductEngNameTxt.Text,
+                                       "سابقہ", 1, "", "");
+            }
+            else
+            {
+                // Checkbox is unchecked - Remove the "سابقہ" row
+                for (int i = CartProductList.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataGridViewRow row = CartProductList.Rows[i];
+                    if (row.Cells["Urdu Name"]?.Value?.ToString() == "سابقہ" ||
+                        row.Cells["Urdu Name"]?.Value?.ToString() == "سابقہ ایڈوانس جمع" ||
+                        row.Cells["Urdu Name"]?.Value?.ToString() == "سابقہ ادھر جمع")
+                    {
+                        CartProductList.Rows.RemoveAt(i);
+                    }
+                }
+
+
+            }
+
+            // Recalculate totals after removal
+            CalculateTotals();
+            CalculateReturnAmount();
+            ClearInputs();
+            ProductEngNameTxt.Focus();
+        }
+
+        private void LedgerEntryFromBtn_Click(object sender, EventArgs e)
+        {
+            var purchaseOrderForm = new POS_Shop.Views.CustomerLoanScreensV1.ManualLedgerEntryForm();
+            purchaseOrderForm.ShowDialog();
         }
     }
 }
