@@ -66,7 +66,7 @@ namespace POS_Shop.Views.LicenseManagement
         private string GenerateLicenseInfoText(LicenseInfo licenseInfo)
         {
             return $"👤 User Name: {licenseInfo.UserName}\n" +
-                   $"🔑 License Key: {licenseInfo.LicenseKey}\n" +
+                //  $"🔑 License Key: {licenseInfo.LicenseKey}\n" +
                    $"📋 License Type: {licenseInfo.LicenseType}\n" +
                    $"📅 Issue Date: {licenseInfo.IssueDate:dd/MM/yyyy HH:mm}\n" +
                    $"⏰ Expiry Date: {licenseInfo.ExpiryDate:dd/MM/yyyy HH:mm}\n" +

@@ -256,6 +256,7 @@
     <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\DAL\DatabaseHelper.cs" />
     <Compile Include="Helpers\DatabasePathManager.cs" />
+    <Compile Include="Helpers\TempOrderGridHelper.cs" />
     <Compile Include="Helpers\InvoicePDFGenerator.cs" />
     <Compile Include="Helpers\ISectionAware.cs" />
     <Compile Include="Helpers\LoadingManager.cs" />
@@ -266,6 +267,7 @@
     <Compile Include="Helpers\SessionManager.cs" />
     <Compile Include="Helpers\InvoicePrintHelper.cs" />
     <Compile Include="Helpers\SimpleWhatsAppSender.cs" />
+    <Compile Include="Helpers\TempOrderPrintHelper.cs" />
     <Compile Include="Helpers\TextFormatHelper.cs" />
     <Compile Include="Helpers\ToastHelper.cs" />
     <Compile Include="Helpers\ValidationPattern.cs" />
@@ -393,6 +395,11 @@
     <Compile Include="Models\TempOrderDetail.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\AuthRepos\UserRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
@@ -425,6 +432,12 @@
     </Compile>
     <Compile Include="Views\Account\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BankingQR\ImageManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BankingQR\ImageManagementForm.Designer.cs">
+      <DependentUpon>ImageManagementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\BillScreen\BillPadForm.cs">
       <SubType>Form</SubType>
@@ -655,6 +668,12 @@
     <Compile Include="Views\Controllers\Supplier\PaidPurchasesForm.Designer.cs">
       <DependentUpon>PaidPurchasesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\Supplier\PendingPurchasesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Supplier\PendingPurchasesForm.Designer.cs">
+      <DependentUpon>PendingPurchasesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controllers\Supplier\PurchaseDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -715,6 +734,12 @@
     <Compile Include="Views\CustomerLoanScreensV1\Manualledgerentryform.Designer.cs">
       <DependentUpon>Manualledgerentryform.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomerLoanScreensV1\OrderDetailViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CustomerLoanScreensV1\OrderDetailViewForm.Designer.cs">
+      <DependentUpon>OrderDetailViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\DB_Screens\BackUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -730,6 +755,12 @@
     <Compile Include="Views\DB_Screens\ImportCustomerFile.Designer.cs">
       <DependentUpon>ImportCustomerFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\DB_Screens\ImportCustomerLedgerExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DB_Screens\ImportCustomerLedgerExcel.Designer.cs">
+      <DependentUpon>ImportCustomerLedgerExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\DB_Screens\ImportExcelFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -744,6 +775,12 @@
     </Compile>
     <Compile Include="Views\DB_Screens\ImportProgressForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DB_Screens\ImportSupplierExcelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DB_Screens\ImportSupplierExcelForm.Designer.cs">
+      <DependentUpon>ImportSupplierExcelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\DB_Screens\RestoreDbForm.cs">
       <SubType>Form</SubType>
@@ -856,14 +893,9 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Views\Account\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -902,6 +934,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Order\TempOrderControl.resx">
       <DependentUpon>TempOrderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Product\EditProdPricesForm.resx">
+      <DependentUpon>EditProdPricesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Product\NewProductForm.resx">
       <DependentUpon>NewProductForm.cs</DependentUpon>
@@ -957,6 +992,9 @@
     <EmbeddedResource Include="Views\CustomerLoanScreensV1\Manualledgerentryform.resx">
       <DependentUpon>Manualledgerentryform.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\CustomerLoanScreensV1\OrderDetailViewForm.resx">
+      <DependentUpon>OrderDetailViewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\BackUpForm.resx">
       <DependentUpon>BackUpForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -971,6 +1009,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\ImportForm.resx">
       <DependentUpon>ImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DB_Screens\ImportSupplierExcelForm.resx">
+      <DependentUpon>ImportSupplierExcelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DB_Screens\RestoreDbForm.resx">
       <DependentUpon>RestoreDbForm.cs</DependentUpon>
@@ -989,6 +1030,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\SalesChartForm.resx">
       <DependentUpon>SalesChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Settings\ConfigSettingForm.resx">
+      <DependentUpon>ConfigSettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="POS_Shop_TemporaryKey.pfx" />
@@ -1037,6 +1081,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="pos_icon.ico" />
+    <Content Include="Properties\Homedashboard.png" />
+    <None Include="Resources\Homedashboard.jpg" />
     <None Include="Resources\Homedashboard.png" />
     <None Include="Properties\loupe.png" />
     <None Include="Properties\iconExcel.png" />

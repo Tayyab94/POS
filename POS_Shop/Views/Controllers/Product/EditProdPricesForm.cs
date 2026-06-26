@@ -607,5 +607,33 @@ namespace POS_Shop.Views.Controllers.Product
             base.OnFormClosing(e);
             dbHelper?.Dispose();
         }
+
+        private void AddNewProductTypeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var form = new Form
+            {
+                Text = "Add New Product Unit",
+                StartPosition = FormStartPosition.CenterScreen,
+                Width = 1050,
+                Height = 625
+            };
+            var ProductUnitFormCtrl = new ProductUnitControl() { Dock = DockStyle.Fill };
+            form.Controls.Add(ProductUnitFormCtrl);
+            form.ShowDialog();
+
+
+            try
+            {
+
+                // Reload all product units from the database
+                allProductUnits = dbHelper.GetAllProductUnits();
+
+                // Refresh the dropdown (which filters out already used units)
+                UpdateUnitDropdown();
+            }catch (Exception ex)
+            {
+                MessageBox.Show($"Error refreshing product units", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
     }
-}
+}}

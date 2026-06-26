@@ -133,6 +133,16 @@ namespace POS_Shop.Repositories
                 // 3. Check for existing license on this hardware
                 using (var context = new POSDbContext())
                 {
+                    var activationCount= context.Licenses.Where(s=>s.MacAddress== macAddress
+                    &&  s.LicenseType== licenseType && s.LicenseType==LicenseType.Trial).Count();
+                    
+                    if(activationCount>1)
+                    {
+                        MessageBox.Show("You have alreay avail the trail of this software. please contact to the support team to buy paid version", "Activation Successful",
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        return false;
+                    }
                     var existingLicense = context.Licenses
                         .FirstOrDefault(l => l.MacAddress == macAddress
                                             && l.HardwareId == hardwareId

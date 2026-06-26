@@ -36,6 +36,8 @@ namespace POS_Shop.Views.Settings
                 //txtEmail.Text = config.InvoiceSettings.Email ?? "";
                 //txtTaxNumber.Text = config.InvoiceSettings.TaxNumber ?? "";
                 //txtFooterMessage.Text = config.InvoiceSettings.FooterMessage ?? "";
+
+                btnReset.Visible = false;
             }
             catch (Exception ex)
             {

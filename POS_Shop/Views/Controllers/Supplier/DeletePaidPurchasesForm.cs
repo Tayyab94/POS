@@ -40,6 +40,7 @@ namespace POS_Shop.Views.Controllers.Supplier
         {
             dtpFrom.Value = DateTime.Now.AddMonths(-2);
             dtpTo.Value = DateTime.Now;
+            cmbDateField.SelectedIndex = 0;
             RefreshPreview();
         }
 
@@ -91,6 +92,44 @@ namespace POS_Shop.Views.Controllers.Supplier
             }
         }
 
+        //private List<Purchase> GetEligiblePurchases()
+        //{
+        //    DateTime from = dtpFrom.Value.Date;
+        //    DateTime to = dtpTo.Value.Date.AddDays(1).AddTicks(-1); // inclusive end
+
+        //    bool byPurchaseDate = cmbDateField.SelectedIndex == 0;
+
+        //    if (byPurchaseDate)
+        //    {
+        //        return _db.Purchases
+        //            .Where(p => !p.IsDeleted
+        //                     && p.PaymentStatus == PurchasePaymentStatus.Paid
+        //                     && p.PurchaseDate >= from
+        //                     && p.PurchaseDate <= to && p.PaymentStatus== PurchasePaymentStatus.Paid)
+        //            .ToList();
+        //    }
+        //    else
+        //    {
+        //        // Filter by the date of their latest linked SupplierPayment
+        //        return _db.Purchases
+        //            .Include("PaymentDetails")
+        //            .Where(p => !p.IsDeleted
+        //                     && p.PaymentStatus == PurchasePaymentStatus.Paid)
+        //            .ToList()
+        //            .Where(p =>
+        //            {
+        //                // Find the most recent payment date touching this purchase
+        //                var paymentIds = p.PaymentDetails.Select(d => d.SupplierPaymentId).Distinct().ToList();
+        //                if (!paymentIds.Any()) return false;
+        //                var latestPayDate = _db.SupplierPayments
+        //                    .Where(sp => paymentIds.Contains(sp.Id))
+        //                    .Max(sp => sp.PaymentDate);
+        //                return latestPayDate >= from && latestPayDate <= to;
+        //            })
+        //            .ToList();
+        //    }
+        //}
+
         private List<Purchase> GetEligiblePurchases()
         {
             DateTime from = dtpFrom.Value.Date;
@@ -101,10 +140,10 @@ namespace POS_Shop.Views.Controllers.Supplier
             if (byPurchaseDate)
             {
                 return _db.Purchases
-                    .Where(p => !p.IsDeleted
-                             && p.PaymentStatus == PurchasePaymentStatus.Paid
+                    .Where(p =>
+                              p.PaymentStatus == PurchasePaymentStatus.Paid
                              && p.PurchaseDate >= from
-                             && p.PurchaseDate <= to && p.PaymentStatus== PurchasePaymentStatus.Paid)
+                             && p.PurchaseDate <= to && p.PaymentStatus == PurchasePaymentStatus.Paid)
                     .ToList();
             }
             else
@@ -112,8 +151,9 @@ namespace POS_Shop.Views.Controllers.Supplier
                 // Filter by the date of their latest linked SupplierPayment
                 return _db.Purchases
                     .Include("PaymentDetails")
-                    .Where(p => !p.IsDeleted
-                             && p.PaymentStatus == PurchasePaymentStatus.Paid)
+                     //.Where(p => !p.IsDeleted
+                     //         && p.PaymentStatus == PurchasePaymentStatus.Paid)
+                     .Where(p => p.PaymentStatus == PurchasePaymentStatus.Paid)
                     .ToList()
                     .Where(p =>
                     {

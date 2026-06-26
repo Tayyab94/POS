@@ -468,13 +468,15 @@ namespace POS_Shop.Helpers
             e.Graphics.DrawString("انوائس", headerFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 2;
-
             //string cName= !string.IsNullOrEmpty(customerName) ? customerName.Split('-')[1].Trim() : "";
             e.Graphics.DrawString($"کسٹمر: {customerName}", headerFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 2;
-
-
+            //string cName= !string.IsNullOrEmpty(customerName) ? customerName.Split('-')[1].Trim() : "";
+            e.Graphics.DrawString($"آپریٹر: {Properties.Settings.Default.UserName.ToString()}", headerFont, Brushes.Black,
+                                 new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
+            currentY += lineHeight + 2;
+           
             e.Graphics.DrawString("تاریخ: " + DateTime.Now.ToString("yyyy-MM-dd"), urduFont, Brushes.Black,
                               new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 2;
@@ -618,7 +620,14 @@ namespace POS_Shop.Helpers
             currentY += lineHeight + 4;
             e.Graphics.DrawString("چائنہ مال کی وارنٹی نہیں۔", headerFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
-          
+
+            currentY += lineHeight + 4;
+            // Advertisement - POS Software
+            string advertisement = "03364978771 " + "سافٹ ویئر بنوانے کے لیے رابطہ نمبر";
+            e.Graphics.DrawString(TextFormatHelper.FormatMixedText(advertisement), headerFont, Brushes.Black,
+                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+
+            currentY += lineHeight + 1;
         }
 
         public static void PrintEnglishInvoice(PrintPageEventArgs e, DataGridView cartProductList,
@@ -690,6 +699,9 @@ namespace POS_Shop.Helpers
             e.Graphics.DrawString($"Customer: {cName}", regularFont, Brushes.Black, leftMargin, currentY);
             currentY += lineHeight;
 
+            e.Graphics.DrawString($"Operator: {Properties.Settings.Default.UserName.ToString()}", regularFont, Brushes.Black, leftMargin, currentY);
+            currentY += lineHeight;
+
             e.Graphics.DrawString("Date: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), regularFont, Brushes.Black, leftMargin, currentY);
             currentY += lineHeight;
 
@@ -729,8 +741,6 @@ namespace POS_Shop.Helpers
 
             foreach (DataGridViewRow row in cartProductList.Rows)
             {
-
-
                 if (row.Cells[0].Value != null) // Check if row has data
                 {
                     // First line: Product name only (left aligned)
@@ -844,8 +854,15 @@ namespace POS_Shop.Helpers
 
             e.Graphics.DrawString("خریدا ہوا سامان واپس یا تبدیل نہیں ہوگا", headerFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-            currentY += lineHeight;
+            
 
+            currentY += lineHeight + 4;
+            // Advertisement - POS Software
+            string advertisement = "03364978771 " + "سافٹ ویئر بنوانے کے لیے رابطہ نمبر";
+            e.Graphics.DrawString(TextFormatHelper.FormatMixedText(advertisement), headerFont, Brushes.Black,
+                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+
+            currentY += lineHeight + 1;
             //e.Graphics.DrawString("7-day return with receipt", smallFont, Brushes.Black,
             //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
         }

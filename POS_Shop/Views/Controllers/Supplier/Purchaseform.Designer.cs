@@ -16,20 +16,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblInvoiceNo = new System.Windows.Forms.Label();
             this.lblHeaderDate = new System.Windows.Forms.Label();
             this.pnlTopInfo = new System.Windows.Forms.Panel();
+            this.TotalItemLbl = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.lblSupplierCaption = new System.Windows.Forms.Label();
             this.txtSupplierSearch = new System.Windows.Forms.TextBox();
             this.pnlSupplierBadge = new System.Windows.Forms.Panel();
@@ -64,18 +66,20 @@
             this.lblItemCount = new System.Windows.Forms.Label();
             this.lblGridTitle = new System.Windows.Forms.Label();
             this.pnlFooter = new System.Windows.Forms.Panel();
+            this.TotalAmountLbl = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.lblNotesCaption = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.pnlTotals = new System.Windows.Forms.Panel();
-            this.lblSubtotalCaption = new System.Windows.Forms.Label();
             this.lblSubtotalVal = new System.Windows.Forms.Label();
             this.lblDiscountCaption = new System.Windows.Forms.Label();
             this.txtDiscount = new System.Windows.Forms.TextBox();
-            this.lblSeparator = new System.Windows.Forms.Label();
             this.lblNetCaption = new System.Windows.Forms.Label();
-            this.lblNetVal = new System.Windows.Forms.Label();
-            this.lblStatusInfoCaption = new System.Windows.Forms.Label();
             this.lblStatusInfo = new System.Windows.Forms.Label();
+            this.lblNetVal = new System.Windows.Forms.Label();
+            this.lblSubtotalCaption = new System.Windows.Forms.Label();
+            this.lblSeparator = new System.Windows.Forms.Label();
+            this.lblStatusInfoCaption = new System.Windows.Forms.Label();
             this.pnlActionBar = new System.Windows.Forms.Panel();
             this.btnClearAll = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -141,6 +145,8 @@
             // pnlTopInfo
             // 
             this.pnlTopInfo.BackColor = System.Drawing.Color.White;
+            this.pnlTopInfo.Controls.Add(this.TotalItemLbl);
+            this.pnlTopInfo.Controls.Add(this.label8);
             this.pnlTopInfo.Controls.Add(this.lblSupplierCaption);
             this.pnlTopInfo.Controls.Add(this.txtSupplierSearch);
             this.pnlTopInfo.Controls.Add(this.pnlSupplierBadge);
@@ -153,6 +159,28 @@
             this.pnlTopInfo.Name = "pnlTopInfo";
             this.pnlTopInfo.Size = new System.Drawing.Size(1182, 106);
             this.pnlTopInfo.TabIndex = 2;
+            // 
+            // TotalItemLbl
+            // 
+            this.TotalItemLbl.AutoSize = true;
+            this.TotalItemLbl.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
+            this.TotalItemLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.TotalItemLbl.Location = new System.Drawing.Point(1134, 35);
+            this.TotalItemLbl.Name = "TotalItemLbl";
+            this.TotalItemLbl.Size = new System.Drawing.Size(29, 35);
+            this.TotalItemLbl.TabIndex = 16;
+            this.TotalItemLbl.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(1074, 12);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(94, 19);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "TOTAL ITEMS";
             // 
             // lblSupplierCaption
             // 
@@ -428,19 +456,19 @@
             this.dgvItems.AllowUserToAddRows = false;
             this.dgvItems.AllowUserToDeleteRows = false;
             this.dgvItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvItems.BackgroundColor = System.Drawing.Color.White;
             this.dgvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvItems.ColumnHeadersHeight = 38;
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -452,14 +480,14 @@
             this.colPrice,
             this.colTotal,
             this.colDelete});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(71)))), ((int)(((byte)(161)))));
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvItems.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(71)))), ((int)(((byte)(161)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvItems.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvItems.EnableHeadersVisualStyles = false;
             this.dgvItems.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -479,8 +507,8 @@
             // 
             // colSrNo
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colSrNo.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colSrNo.DefaultCellStyle = dataGridViewCellStyle3;
             this.colSrNo.FillWeight = 5F;
             this.colSrNo.HeaderText = "Sr#";
             this.colSrNo.MinimumWidth = 6;
@@ -505,8 +533,8 @@
             // 
             // colUnit
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colUnit.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colUnit.DefaultCellStyle = dataGridViewCellStyle4;
             this.colUnit.FillWeight = 8F;
             this.colUnit.HeaderText = "Unit";
             this.colUnit.MinimumWidth = 6;
@@ -515,8 +543,8 @@
             // 
             // colQty
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.colQty.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colQty.DefaultCellStyle = dataGridViewCellStyle5;
             this.colQty.FillWeight = 8F;
             this.colQty.HeaderText = "Qty";
             this.colQty.MinimumWidth = 6;
@@ -524,9 +552,9 @@
             // 
             // colPrice
             // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.Format = "N2";
-            this.colPrice.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N2";
+            this.colPrice.DefaultCellStyle = dataGridViewCellStyle6;
             this.colPrice.FillWeight = 14F;
             this.colPrice.HeaderText = "Purchase Price";
             this.colPrice.MinimumWidth = 6;
@@ -534,11 +562,11 @@
             // 
             // colTotal
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle16.Format = "N2";
-            this.colTotal.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle7.Format = "N2";
+            this.colTotal.DefaultCellStyle = dataGridViewCellStyle7;
             this.colTotal.FillWeight = 14F;
             this.colTotal.HeaderText = "Total";
             this.colTotal.MinimumWidth = 6;
@@ -547,11 +575,11 @@
             // 
             // colDelete
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(235)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(235)))), ((int)(((byte)(238)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle8;
             this.colDelete.FillWeight = 6F;
             this.colDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.colDelete.HeaderText = "";
@@ -590,6 +618,8 @@
             // pnlFooter
             // 
             this.pnlFooter.BackColor = System.Drawing.Color.White;
+            this.pnlFooter.Controls.Add(this.TotalAmountLbl);
+            this.pnlFooter.Controls.Add(this.label6);
             this.pnlFooter.Controls.Add(this.lblNotesCaption);
             this.pnlFooter.Controls.Add(this.txtNotes);
             this.pnlFooter.Controls.Add(this.pnlTotals);
@@ -599,6 +629,28 @@
             this.pnlFooter.Padding = new System.Windows.Forms.Padding(14, 8, 14, 8);
             this.pnlFooter.Size = new System.Drawing.Size(1182, 118);
             this.pnlFooter.TabIndex = 5;
+            // 
+            // TotalAmountLbl
+            // 
+            this.TotalAmountLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.TotalAmountLbl.Font = new System.Drawing.Font("Segoe UI", 26F, System.Drawing.FontStyle.Bold);
+            this.TotalAmountLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(78)))), ((int)(((byte)(216)))));
+            this.TotalAmountLbl.Location = new System.Drawing.Point(487, 39);
+            this.TotalAmountLbl.Name = "TotalAmountLbl";
+            this.TotalAmountLbl.Size = new System.Drawing.Size(289, 60);
+            this.TotalAmountLbl.TabIndex = 14;
+            this.TotalAmountLbl.Text = "Rs.  0";
+            this.TotalAmountLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(486, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(163, 17);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "TOTAL AMOUNT";
             // 
             // lblNotesCaption
             // 
@@ -624,33 +676,18 @@
             // 
             // pnlTotals
             // 
-            this.pnlTotals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlTotals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTotals.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.pnlTotals.Controls.Add(this.lblSubtotalCaption);
             this.pnlTotals.Controls.Add(this.lblSubtotalVal);
             this.pnlTotals.Controls.Add(this.lblDiscountCaption);
             this.pnlTotals.Controls.Add(this.txtDiscount);
-            this.pnlTotals.Controls.Add(this.lblSeparator);
             this.pnlTotals.Controls.Add(this.lblNetCaption);
-            this.pnlTotals.Controls.Add(this.lblNetVal);
-            this.pnlTotals.Controls.Add(this.lblStatusInfoCaption);
             this.pnlTotals.Controls.Add(this.lblStatusInfo);
-            this.pnlTotals.Location = new System.Drawing.Point(1472, 4);
+            this.pnlTotals.Controls.Add(this.lblNetVal);
+            this.pnlTotals.Location = new System.Drawing.Point(850, 12);
             this.pnlTotals.Name = "pnlTotals";
-            this.pnlTotals.Size = new System.Drawing.Size(680, 104);
+            this.pnlTotals.Size = new System.Drawing.Size(320, 95);
             this.pnlTotals.TabIndex = 11;
-            // 
-            // lblSubtotalCaption
-            // 
-            this.lblSubtotalCaption.AutoSize = true;
-            this.lblSubtotalCaption.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblSubtotalCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
-            this.lblSubtotalCaption.Location = new System.Drawing.Point(10, 6);
-            this.lblSubtotalCaption.Name = "lblSubtotalCaption";
-            this.lblSubtotalCaption.Size = new System.Drawing.Size(78, 23);
-            this.lblSubtotalCaption.TabIndex = 0;
-            this.lblSubtotalCaption.Text = "Subtotal:";
             // 
             // lblSubtotalVal
             // 
@@ -667,7 +704,7 @@
             this.lblDiscountCaption.AutoSize = true;
             this.lblDiscountCaption.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblDiscountCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
-            this.lblDiscountCaption.Location = new System.Drawing.Point(10, 30);
+            this.lblDiscountCaption.Location = new System.Drawing.Point(8, 8);
             this.lblDiscountCaption.Name = "lblDiscountCaption";
             this.lblDiscountCaption.Size = new System.Drawing.Size(81, 23);
             this.lblDiscountCaption.TabIndex = 2;
@@ -677,22 +714,15 @@
             // 
             this.txtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtDiscount.Location = new System.Drawing.Point(500, 28);
+            this.txtDiscount.Location = new System.Drawing.Point(96, 5);
             this.txtDiscount.Name = "txtDiscount";
-            this.txtDiscount.Size = new System.Drawing.Size(170, 27);
+            this.txtDiscount.Size = new System.Drawing.Size(211, 27);
             this.txtDiscount.TabIndex = 11;
             this.txtDiscount.Text = "0.00";
             this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDiscount.TextChanged += new System.EventHandler(this.TxtDiscount_TextChanged);
+            this.txtDiscount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDiscount_KeyDown);
             this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DecimalOnly);
-            // 
-            // lblSeparator
-            // 
-            this.lblSeparator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.lblSeparator.Location = new System.Drawing.Point(10, 54);
-            this.lblSeparator.Name = "lblSeparator";
-            this.lblSeparator.Size = new System.Drawing.Size(660, 1);
-            this.lblSeparator.TabIndex = 12;
             // 
             // lblNetCaption
             // 
@@ -705,16 +735,46 @@
             this.lblNetCaption.TabIndex = 13;
             this.lblNetCaption.Text = "Net Amount:";
             // 
+            // lblStatusInfo
+            // 
+            this.lblStatusInfo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblStatusInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(124)))), ((int)(((byte)(0)))));
+            this.lblStatusInfo.Location = new System.Drawing.Point(-376, -56);
+            this.lblStatusInfo.Name = "lblStatusInfo";
+            this.lblStatusInfo.Size = new System.Drawing.Size(435, 35);
+            this.lblStatusInfo.TabIndex = 16;
+            this.lblStatusInfo.Text = "PENDING - Pay later via Supplier Payment";
+            this.lblStatusInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // lblNetVal
             // 
             this.lblNetVal.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.lblNetVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.lblNetVal.Location = new System.Drawing.Point(500, 58);
+            this.lblNetVal.Location = new System.Drawing.Point(162, 62);
             this.lblNetVal.Name = "lblNetVal";
-            this.lblNetVal.Size = new System.Drawing.Size(170, 26);
+            this.lblNetVal.Size = new System.Drawing.Size(141, 26);
             this.lblNetVal.TabIndex = 14;
             this.lblNetVal.Text = "0.00";
             this.lblNetVal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSubtotalCaption
+            // 
+            this.lblSubtotalCaption.AutoSize = true;
+            this.lblSubtotalCaption.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblSubtotalCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
+            this.lblSubtotalCaption.Location = new System.Drawing.Point(10, 6);
+            this.lblSubtotalCaption.Name = "lblSubtotalCaption";
+            this.lblSubtotalCaption.Size = new System.Drawing.Size(78, 23);
+            this.lblSubtotalCaption.TabIndex = 0;
+            this.lblSubtotalCaption.Text = "Subtotal:";
+            // 
+            // lblSeparator
+            // 
+            this.lblSeparator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.lblSeparator.Location = new System.Drawing.Point(10, 54);
+            this.lblSeparator.Name = "lblSeparator";
+            this.lblSeparator.Size = new System.Drawing.Size(660, 1);
+            this.lblSeparator.TabIndex = 12;
             // 
             // lblStatusInfoCaption
             // 
@@ -726,17 +786,6 @@
             this.lblStatusInfoCaption.Size = new System.Drawing.Size(131, 23);
             this.lblStatusInfoCaption.TabIndex = 15;
             this.lblStatusInfoCaption.Text = "Payment Status:";
-            // 
-            // lblStatusInfo
-            // 
-            this.lblStatusInfo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblStatusInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(124)))), ((int)(((byte)(0)))));
-            this.lblStatusInfo.Location = new System.Drawing.Point(300, 88);
-            this.lblStatusInfo.Name = "lblStatusInfo";
-            this.lblStatusInfo.Size = new System.Drawing.Size(370, 20);
-            this.lblStatusInfo.TabIndex = 16;
-            this.lblStatusInfo.Text = "PENDING - Pay later via Supplier Payment";
-            this.lblStatusInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pnlActionBar
             // 
@@ -893,5 +942,9 @@
         private System.Windows.Forms.Button btnSave, btnClearAll;
         private System.Windows.Forms.ListBox lstSupplierSugg, lstProductSugg;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label TotalItemLbl;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label TotalAmountLbl;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -80,7 +80,7 @@
             this.userEmailTxt.BorderColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.userEmailTxt.BorderColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
             this.userEmailTxt.BorderColorIdle = System.Drawing.Color.Silver;
-            this.userEmailTxt.BorderRadius = 40;
+            this.userEmailTxt.BorderRadius = 15;
             this.userEmailTxt.BorderThickness = 1;
             this.userEmailTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.userEmailTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -155,7 +155,7 @@
             this.UserPasswordTxt.BorderColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.UserPasswordTxt.BorderColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
             this.UserPasswordTxt.BorderColorIdle = System.Drawing.Color.Silver;
-            this.UserPasswordTxt.BorderRadius = 40;
+            this.UserPasswordTxt.BorderRadius = 15;
             this.UserPasswordTxt.BorderThickness = 1;
             this.UserPasswordTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.UserPasswordTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -315,12 +315,12 @@
             this.userNamelbl.Cursor = System.Windows.Forms.Cursors.Default;
             this.userNamelbl.CursorType = System.Windows.Forms.Cursors.Default;
             this.userNamelbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.userNamelbl.Location = new System.Drawing.Point(312, 178);
+            this.userNamelbl.Location = new System.Drawing.Point(312, 174);
             this.userNamelbl.Name = "userNamelbl";
             this.userNamelbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.userNamelbl.Size = new System.Drawing.Size(48, 23);
+            this.userNamelbl.Size = new System.Drawing.Size(94, 23);
             this.userNamelbl.TabIndex = 0;
-            this.userNamelbl.Text = "Email";
+            this.userNamelbl.Text = "User Name";
             this.userNamelbl.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.userNamelbl.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
@@ -347,7 +347,7 @@
             this.bunifuLabel1.CursorType = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.bunifuLabel1.ForeColor = System.Drawing.Color.Red;
-            this.bunifuLabel1.Location = new System.Drawing.Point(366, 180);
+            this.bunifuLabel1.Location = new System.Drawing.Point(421, 180);
             this.bunifuLabel1.Name = "bunifuLabel1";
             this.bunifuLabel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bunifuLabel1.Size = new System.Drawing.Size(10, 23);

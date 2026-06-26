@@ -783,6 +783,7 @@
             this.OpenLedgerBtn = new System.Windows.Forms.Button();
             this.BalanceGrid = new System.Windows.Forms.DataGridView();
             this.lblLoading = new System.Windows.Forms.Label();
+            this.ExportBtn = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.pnlKpi.SuspendLayout();
             this.pnlLoanKpi.SuspendLayout();
@@ -828,6 +829,7 @@
             // pnlKpi
             // 
             this.pnlKpi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.pnlKpi.Controls.Add(this.ExportBtn);
             this.pnlKpi.Controls.Add(this.pnlLoanKpi);
             this.pnlKpi.Controls.Add(this.pnlAdvanceKpi);
             this.pnlKpi.Controls.Add(this.PrevBtn);
@@ -1118,6 +1120,20 @@
             this.lblLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblLoading.Visible = false;
             // 
+            // ExportBtn
+            // 
+            this.ExportBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(158)))), ((int)(((byte)(11)))));
+            this.ExportBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExportBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExportBtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.ExportBtn.Location = new System.Drawing.Point(562, 44);
+            this.ExportBtn.Name = "ExportBtn";
+            this.ExportBtn.Size = new System.Drawing.Size(146, 37);
+            this.ExportBtn.TabIndex = 11;
+            this.ExportBtn.Text = "🛢Export Data";
+            this.ExportBtn.UseVisualStyleBackColor = false;
+            this.ExportBtn.Click += new System.EventHandler(this.ExportBtn_Click);
+            // 
             // AllCustomerBalancesForm
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
@@ -1171,5 +1187,6 @@
         private System.Windows.Forms.Label lblPageInfo;
         private System.Windows.Forms.DataGridView BalanceGrid;
         private System.Windows.Forms.Label lblLoading;
+        private System.Windows.Forms.Button ExportBtn;
     }
 }
