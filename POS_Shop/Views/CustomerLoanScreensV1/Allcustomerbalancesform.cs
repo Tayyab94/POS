@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
+﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using POS_Shop.Models;
 using POS_Shop.Models.LoanModelsV1;
@@ -769,5 +770,135 @@ namespace POS_Shop.Views.CustomerLoanScreensV1
         // ─── Pagination handlers ──────────────────────────────────────────────
         private async void PrevBtn_Click(object sender, EventArgs e) => await LoadPrevPageAsync();
         private async void NextBtn_Click(object sender, EventArgs e) => await LoadNextPageAsync();
+
+        private void ExportBtn_Click(object sender, EventArgs e)
+        {
+            if (_currentPage == null || _currentPage.Count == 0)
+            {
+                MessageBox.Show("No data to export.", "Export",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // ── Ask user where to save ────────────────────────────────────────────
+            using (var dlg = new SaveFileDialog())
+            {
+                dlg.Title = "Save Customer Balances";
+                dlg.Filter = "Excel File (*.xlsx)|*.xlsx";
+                dlg.FileName = $"CustomerBalances_{DateTime.Today:yyyy-MM-dd}.xlsx";
+                dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+                if (dlg.ShowDialog() != DialogResult.OK) return;
+
+                try
+                {
+                    using (var wb = new XLWorkbook())
+                    {
+                        var ws = wb.Worksheets.Add("Customer Balances");
+
+                        // ── Header row ────────────────────────────────────────────
+                        ws.Cell(1, 1).Value = "Customer ID";
+                        ws.Cell(1, 2).Value = "Customer Name";
+                        ws.Cell(1, 3).Value = "Balance (PKR)";
+                        ws.Cell(1, 4).Value = "Status";
+                        ws.Cell(1, 5).Value = "Last Transaction";
+
+                        // Style header row
+                        var headerRow = ws.Range("A1:E1");
+                        headerRow.Style.Font.Bold = true;
+                        headerRow.Style.Font.FontColor = XLColor.White;
+                        headerRow.Style.Fill.BackgroundColor = XLColor.FromArgb(44, 62, 80);
+                        headerRow.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        // ── Data rows ─────────────────────────────────────────────
+                        for (int i = 0; i < _currentPage.Count; i++)
+                        {
+                            var cust = _currentPage[i];
+                            int row = i + 2; // row 1 is header
+
+                            ws.Cell(row, 1).Value = cust.CustomerId;
+                            ws.Cell(row, 2).Value = cust.CustomerName;
+                            ws.Cell(row, 3).Value = cust.Balance;
+                            ws.Cell(row, 4).Value = GetStatusText(cust.BalanceType);
+                            ws.Cell(row, 5).Value = cust.LastTransactionDate.HasValue
+                                ? cust.LastTransactionDate.Value.ToString("dd-MMM-yyyy")
+                                : "-";
+
+                            // Alternate row background
+                            if (i % 2 == 1)
+                                ws.Range(row, 1, row, 5).Style
+                                  .Fill.BackgroundColor = XLColor.FromArgb(250, 250, 250);
+
+                            // Color the Balance column by type
+                            switch (cust.BalanceType)
+                            {
+                                case BalanceType.Loan:
+                                    ws.Cell(row, 3).Style.Font.FontColor = XLColor.FromArgb(192, 0, 0);
+                                    ws.Cell(row, 4).Style.Fill.BackgroundColor = XLColor.FromArgb(192, 0, 0);
+                                    ws.Cell(row, 4).Style.Font.FontColor = XLColor.White;
+                                    break;
+                                case BalanceType.Advance:
+                                    ws.Cell(row, 3).Style.Font.FontColor = XLColor.FromArgb(0, 102, 204);
+                                    ws.Cell(row, 4).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 102, 204);
+                                    ws.Cell(row, 4).Style.Font.FontColor = XLColor.White;
+                                    break;
+                                case BalanceType.Clear:
+                                    ws.Cell(row, 4).Style.Fill.BackgroundColor = XLColor.FromArgb(39, 174, 96);
+                                    ws.Cell(row, 4).Style.Font.FontColor = XLColor.White;
+                                    break;
+                            }
+
+                            // Right-align Balance column
+                            ws.Cell(row, 3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                            ws.Cell(row, 3).Style.NumberFormat.Format = "#,##0.00";
+
+                            // Center-align Status and Date columns
+                            ws.Cell(row, 4).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            ws.Cell(row, 5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        }
+
+                        // ── Auto-fit columns ──────────────────────────────────────
+                        ws.Column(1).Width = 14;
+                        ws.Column(2).Width = 28;
+                        ws.Column(3).Width = 18;
+                        ws.Column(4).Width = 14;
+                        ws.Column(5).Width = 18;
+
+                        // ── Freeze header row ─────────────────────────────────────
+                        ws.SheetView.FreezeRows(1);
+
+                        // ── Save ──────────────────────────────────────────────────
+                        wb.SaveAs(dlg.FileName);
+                    }
+
+                    // Ask user if they want to open the file immediately
+                    var open = MessageBox.Show(
+                        $"File saved successfully.\n\nDo you want to open it now?",
+                        "Export Complete",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Information);
+
+                    if (open == DialogResult.Yes)
+                        System.Diagnostics.Process.Start(dlg.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error exporting file:\n{ex.Message}", "Export Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // ── Helper: convert BalanceType enum to display text ─────────────────────────
+        private string GetStatusText(BalanceType type)
+        {
+            switch (type)
+            {
+                case BalanceType.Loan: return "LOAN";
+                case BalanceType.Advance: return "ADVANCE";
+                case BalanceType.Clear: return "CLEAR";
+                default: return "-";
+            }
+        }
     }
 }

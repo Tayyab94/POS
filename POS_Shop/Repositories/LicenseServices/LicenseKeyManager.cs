@@ -23,7 +23,7 @@ namespace POS_Shop.Repositories.LicenseServices
             // Lifetime License - No expiration
             { "LIFETIME-MNOP-QRST-UVWX", LicenseType.Lifetime }
         };
-
+       
         // Key format validation patterns
         private static readonly Dictionary<LicenseType, string> KeyPatterns =
             new Dictionary<LicenseType, string>

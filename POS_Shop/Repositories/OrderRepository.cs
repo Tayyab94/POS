@@ -263,49 +263,154 @@ namespace POS_Shop.Repositories
 
         }
 
-        public async Task<(int totalCount, bool hasMore, IEnumerable<OrdersListDto> data)> GetOrderCursorPagingListAsync(int? cursor, int pageSize, string search)
+        //public async Task<(int totalCount, bool hasMore, IEnumerable<OrdersListDto> data)> GetOrderCursorPagingListAsync(int? cursor, int pageSize, string search)
+        //{
+        //    var query = _context.Orders.Include(s => s.Customer).AsNoTracking().AsQueryable();
+
+        //    // apply search
+        //    var searchWords = search.ToLower().Split(' ');
+        //    // apply search
+
+        //    foreach (var word in searchWords)
+        //        query = query.Where(s => s.Id.ToString().Contains(word) || s.InvoiceNumber.ToString().Contains(word) || s.Customer.CustomerName.Contains(word) || s.Customer.CustomerAddress.Contains(word));
+
+        //    var totalCount = await query.CountAsync();
+
+        //    // Apply cursor filter (fetch records after the cursor)
+        //    if (cursor.HasValue)
+        //    {
+        //        query = query.Where(s => s.Id < cursor.Value);
+        //    }
+
+        //    // Fetch pageSize + 1 to determine if there are more records
+        //    var result = await query
+        //        .OrderByDescending(s => s.Id)
+        //        .Take(pageSize + 1)
+        //        .Select(s => new OrdersListDto()
+        //        {
+        //            Id = s.Id,
+        //            InvoiceNumber = s.InvoiceNumber,
+        //            paymentType = s.paymentType,
+        //            CreatedDate = s.CreatedDate,
+        //            customerId = s.customerId.HasValue ? s.customerId : null,
+        //            CustomerName = s.customerId == null ? "No" : s.Customer.CustomerName.ToString(),
+        //            ReceiveAmount = s.ReceiveAmount,
+        //            TotalBill = s.TotalBill,
+        //        })
+        //        .ToListAsync();
+
+        //    // Check if there are more records
+        //    bool hasMore = result.Count > pageSize;
+
+        //    // Return only pageSize records
+        //    var data = hasMore ? result.Take(pageSize).ToList() : result;
+
+        //    return (totalCount, hasMore, data);
+        //}
+
+
+        public async Task<(int totalCount, bool hasMore, IEnumerable<OrdersListDto> data)>
+                 GetOrderCursorPagingListAsync(long? cursor, int pageSize, string search, string searchCriteria = null)
         {
-            var query = _context.Orders.Include(s => s.Customer).AsNoTracking().AsQueryable();
 
-            // apply search
-            var searchWords = search.ToLower().Split(' ');
-            // apply search
+            IQueryable<Order> query = _context.Orders.AsNoTracking();
 
-            foreach (var word in searchWords)
-                query = query.Where(s => s.Id.ToString().Contains(word) || s.InvoiceNumber.ToString().Contains(word) || s.Customer.CustomerName.Contains(word) || s.Customer.CustomerAddress.Contains(word));
-
-            var totalCount = await query.CountAsync();
-
-            // Apply cursor filter (fetch records after the cursor)
-            if (cursor.HasValue)
+            // ✅ Apply Search Filter
+            if (!string.IsNullOrWhiteSpace(search))
             {
-                query = query.Where(s => s.Id < cursor.Value);
+                var searchWords = search.ToLower().Split(new[] { ' ' },
+                    System.StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var word in searchWords)
+                {
+                    var captured = word;
+                    bool isNumeric = long.TryParse(captured, out long numericValue);
+
+                    query = query.Where(s =>
+                        (isNumeric && s.Id == numericValue) ||
+                        s.InvoiceNumber.Contains(captured) ||
+                        s.Customer.CustomerName.Contains(captured) ||
+                        s.Customer.CustomerAddress.Contains(captured)
+                    );
+                }
             }
 
-            // Fetch pageSize + 1 to determine if there are more records
-            var result = await query
+            // ✅ Apply SearchCriteria Filter
+            if (!string.IsNullOrWhiteSpace(searchCriteria))
+            {
+                var criteriaWords = searchCriteria.ToLower().Split(new[] { ' ' },
+                    System.StringSplitOptions.RemoveEmptyEntries);
+
+                query = query
+                    .Include("OrderDetails.Product")
+                    .Where(s => s.OrderDetails.Any(od =>
+                        criteriaWords.All(word =>
+                            (od.Product != null &&
+                             od.Product.ProductEnglishName.ToLower().Contains(word)) ||
+                            od.OtherProductName.ToLower().Contains(word)
+                        )
+                    ));
+            }
+
+            // ✅ SEQUENTIAL EXECUTION (EF6 requirement)
+            // Step 1: Get total count FIRST
+            var totalCount = await query.CountAsync();
+
+            // Step 2: Then fetch data with cursor
+            var dataQuery = query;
+            if (cursor.HasValue)
+                dataQuery = dataQuery.Where(s => s.Id < cursor.Value);
+
+            var result = await dataQuery
                 .OrderByDescending(s => s.Id)
                 .Take(pageSize + 1)
-                .Select(s => new OrdersListDto()
+                .Select(s => new OrdersListDto
                 {
                     Id = s.Id,
                     InvoiceNumber = s.InvoiceNumber,
                     paymentType = s.paymentType,
                     CreatedDate = s.CreatedDate,
-                    customerId = s.customerId.HasValue ? s.customerId : null,
-                    CustomerName = s.customerId == null ? "No" : s.Customer.CustomerName.ToString(),
+                    customerId = s.customerId,
+                    CustomerName = s.customerId.HasValue ? s.Customer.CustomerName : "No Customer",
                     ReceiveAmount = s.ReceiveAmount,
                     TotalBill = s.TotalBill,
                 })
                 .ToListAsync();
 
-            // Check if there are more records
             bool hasMore = result.Count > pageSize;
-
-            // Return only pageSize records
-            var data = hasMore ? result.Take(pageSize).ToList() : result;
+            var data = result.Take(pageSize).ToList();
 
             return (totalCount, hasMore, data);
         }
+
+        public async Task<bool> DeleteTempOrderAsync(string invoiceNo)
+        {
+            try
+            {
+                // Find the temp order by invoice number
+                var tempOrder = await _context.TempOrders
+                    .FirstOrDefaultAsync(t => t.InvoiceNumber == invoiceNo);
+
+                var tempOrderDetailList = await _context.TempOrderDetails.Where(s => s.TempInvoiceNumber == invoiceNo).ToListAsync();
+                if (tempOrderDetailList.Count > 0)
+                {
+                    _context.TempOrderDetails.RemoveRange(tempOrderDetailList);
+                }
+                if (tempOrder != null)
+                {
+                    _context.TempOrders.Remove(tempOrder);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if you have logging
+                throw new Exception($"Error deleting temp order: {ex.Message}", ex);
+            }
+        }
+
     }
 }

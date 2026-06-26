@@ -7,7 +7,7 @@ namespace POS_Shop.DTOs.Order
 
         public float TotalBill { get; set; }
 
-
+        public float ReceiveAmount { get; set; }
         public DateTime CreatedDate { get; set; }
 
         public string InvoiceNumber { get; set; }

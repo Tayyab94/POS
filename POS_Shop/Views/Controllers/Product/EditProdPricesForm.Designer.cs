@@ -32,13 +32,14 @@
             this.lblInstructions = new System.Windows.Forms.Label();
             this.selectionPanel = new System.Windows.Forms.Panel();
             this.lblSelectType = new System.Windows.Forms.Label();
-            this.cmbProductUnit = new System.Windows.Forms.ComboBox(); // Changed name
+            this.cmbProductUnit = new System.Windows.Forms.ComboBox();
             this.btnAddPrice = new System.Windows.Forms.Button();
             this.priceControlsContainer = new System.Windows.Forms.Panel();
             this.lblSummary = new System.Windows.Forms.Label();
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.AddNewProductTypeLink = new System.Windows.Forms.LinkLabel();
             this.selectionPanel.SuspendLayout();
             this.buttonPanel.SuspendLayout();
             this.SuspendLayout();
@@ -61,13 +62,15 @@
             this.lblInstructions.Name = "lblInstructions";
             this.lblInstructions.Size = new System.Drawing.Size(668, 33);
             this.lblInstructions.TabIndex = 1;
-            this.lblInstructions.Text = "Add product prices for different units. Each unit represents a different packaging/selling unit.";
+            this.lblInstructions.Text = "Add product prices for different units. Each unit represents a different packagin" +
+    "g/selling unit.";
             // 
             // selectionPanel
             // 
             this.selectionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.selectionPanel.Controls.Add(this.AddNewProductTypeLink);
             this.selectionPanel.Controls.Add(this.lblSelectType);
-            this.selectionPanel.Controls.Add(this.cmbProductUnit); // Updated control name
+            this.selectionPanel.Controls.Add(this.cmbProductUnit);
             this.selectionPanel.Controls.Add(this.btnAddPrice);
             this.selectionPanel.Location = new System.Drawing.Point(20, 90);
             this.selectionPanel.Name = "selectionPanel";
@@ -78,9 +81,9 @@
             // lblSelectType
             // 
             this.lblSelectType.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblSelectType.Location = new System.Drawing.Point(10, 8);
+            this.lblSelectType.Location = new System.Drawing.Point(-4, 8);
             this.lblSelectType.Name = "lblSelectType";
-            this.lblSelectType.Size = new System.Drawing.Size(80, 25);
+            this.lblSelectType.Size = new System.Drawing.Size(95, 25);
             this.lblSelectType.TabIndex = 0;
             this.lblSelectType.Text = "Select Unit:";
             this.lblSelectType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -162,7 +165,18 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // NewProductPriceForm
+            // AddNewProductTypeLink
+            // 
+            this.AddNewProductTypeLink.AutoSize = true;
+            this.AddNewProductTypeLink.Location = new System.Drawing.Point(636, 31);
+            this.AddNewProductTypeLink.Name = "AddNewProductTypeLink";
+            this.AddNewProductTypeLink.Size = new System.Drawing.Size(146, 16);
+            this.AddNewProductTypeLink.TabIndex = 4;
+            this.AddNewProductTypeLink.TabStop = true;
+            this.AddNewProductTypeLink.Text = "Add New Product Type";
+            this.AddNewProductTypeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddNewProductTypeLink_LinkClicked);
+            // 
+            // EditProdPricesForm
             // 
             this.ClientSize = new System.Drawing.Size(850, 600);
             this.Controls.Add(this.lblProductName);
@@ -172,12 +186,14 @@
             this.Controls.Add(this.lblSummary);
             this.Controls.Add(this.buttonPanel);
             this.MinimumSize = new System.Drawing.Size(850, 400);
-            this.Name = "NewProductPriceForm";
+            this.Name = "EditProdPricesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Product Prices";
             this.selectionPanel.ResumeLayout(false);
+            this.selectionPanel.PerformLayout();
             this.buttonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -193,5 +209,6 @@
         private System.Windows.Forms.Panel buttonPanel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.LinkLabel AddNewProductTypeLink;
     }
 }

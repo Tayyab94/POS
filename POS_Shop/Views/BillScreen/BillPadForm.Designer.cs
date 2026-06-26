@@ -2,53 +2,34 @@
 {
     partial class BillPadForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing && (components != null))
-        //    {
-        //        components.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BillPadForm));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties4 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges9 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties5 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties6 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties7 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties8 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -81,23 +62,28 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties34 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties35 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties36 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges9 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges10 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges11 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.TopBarSearchProductTxt = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.BackScreenBtn = new Bunifu.UI.WinForms.BunifuImageButton();
+            this.BillPadPageHeadingLbl = new System.Windows.Forms.Label();
             this.LedgerEntryFromBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.ExportBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.TopBarSearchProductTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.ClearCartBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.GenerateInvoicePdfBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.SaveOrderWithoutPrintBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.BackScreenBtn = new Bunifu.UI.WinForms.BunifuImageButton();
-            this.BillPadPageHeadingLbl = new System.Windows.Forms.Label();
             this.SaveAndPrintOrderBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.SaveBillBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.PrintPreviewBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.InvoicePageTabControl = new System.Windows.Forms.TabControl();
             this.BilPad = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LedgerListBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.CustomerLagerRecordChk = new System.Windows.Forms.CheckBox();
+            this.lblAdvanceInfo = new System.Windows.Forms.Label();
+            this.ApplyAdvanceChk = new System.Windows.Forms.CheckBox();
             this.ProductPricesGroup = new System.Windows.Forms.GroupBox();
             this.ProductPriceDataGridView = new System.Windows.Forms.DataGridView();
             this.CustomerPreviousOrderHistoryGroup = new System.Windows.Forms.GroupBox();
@@ -108,13 +94,6 @@
             this.previousBillLbl = new System.Windows.Forms.Label();
             this.PreOrderGroup = new System.Windows.Forms.GroupBox();
             this.ProductOrderHistoryDataGrid = new System.Windows.Forms.DataGridView();
-            this.CustomerListDataGrid = new System.Windows.Forms.DataGridView();
-            this.OrdersGroup = new System.Windows.Forms.GroupBox();
-            this.TemOrderBtn = new System.Windows.Forms.Button();
-            this.PreviousOrderIdLbl = new System.Windows.Forms.Label();
-            this.SearchInvoiceLink = new System.Windows.Forms.LinkLabel();
-            this.InvoiceNoLbl = new System.Windows.Forms.Label();
-            this.InvoiceNoHeading = new System.Windows.Forms.Label();
             this.BillPadGrou = new System.Windows.Forms.GroupBox();
             this.EnglishInvoiceChk = new System.Windows.Forms.CheckBox();
             this.lblRemainingAmount = new System.Windows.Forms.Label();
@@ -126,10 +105,17 @@
             this.label8 = new System.Windows.Forms.Label();
             this.TotalAmountLbl = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.OrdersGroup = new System.Windows.Forms.GroupBox();
+            this.TemOrderBtn = new System.Windows.Forms.Button();
+            this.PreviousOrderIdLbl = new System.Windows.Forms.Label();
+            this.SearchInvoiceLink = new System.Windows.Forms.LinkLabel();
+            this.InvoiceNoLbl = new System.Windows.Forms.Label();
+            this.InvoiceNoHeading = new System.Windows.Forms.Label();
             this.ProductListGroup = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.SuggestionGrid = new System.Windows.Forms.DataGridView();
             this.CartProductList = new System.Windows.Forms.DataGridView();
+            this.CustomerListDataGrid = new System.Windows.Forms.DataGridView();
             this.ProductGroup = new System.Windows.Forms.GroupBox();
             this.prod_ItemCountTxt = new System.Windows.Forms.TextBox();
             this.Prod_Qty = new System.Windows.Forms.TextBox();
@@ -149,8 +135,7 @@
             this.P_StockQtyTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.ProductEngNameTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.CustomerGroup = new System.Windows.Forms.GroupBox();
-            this.ApplyAdvanceChk = new System.Windows.Forms.CheckBox();
-            this.lblAdvanceInfo = new System.Windows.Forms.Label();
+            this.QRCodeBtn = new System.Windows.Forms.Button();
             this.AddNewCustomerLink = new System.Windows.Forms.LinkLabel();
             this.CustomerIdLbl = new System.Windows.Forms.Label();
             this.ResetCustomerBtn = new System.Windows.Forms.Button();
@@ -168,22 +153,22 @@
             this.TruncateOrder_OrderDetailBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.OrderPrintPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.OrderPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.CustomerLagerRecordChk = new System.Windows.Forms.CheckBox();
             this.TopPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.InvoicePageTabControl.SuspendLayout();
             this.BilPad.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.ProductPricesGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductPriceDataGridView)).BeginInit();
             this.CustomerPreviousOrderHistoryGroup.SuspendLayout();
             this.PreOrderGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductOrderHistoryDataGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerListDataGrid)).BeginInit();
-            this.OrdersGroup.SuspendLayout();
             this.BillPadGrou.SuspendLayout();
+            this.OrdersGroup.SuspendLayout();
             this.ProductListGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SuggestionGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CartProductList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerListDataGrid)).BeginInit();
             this.ProductGroup.SuspendLayout();
             this.CustomerGroup.SuspendLayout();
             this.ImpoertOrderFileTab.SuspendLayout();
@@ -194,203 +179,15 @@
             // TopPanel
             // 
             this.TopPanel.BackColor = System.Drawing.Color.SlateBlue;
-            this.TopPanel.Controls.Add(this.LedgerEntryFromBtn);
-            this.TopPanel.Controls.Add(this.ExportBtn);
             this.TopPanel.Controls.Add(this.TopBarSearchProductTxt);
-            this.TopPanel.Controls.Add(this.ClearCartBtn);
-            this.TopPanel.Controls.Add(this.GenerateInvoicePdfBtn);
-            this.TopPanel.Controls.Add(this.SaveOrderWithoutPrintBtn);
             this.TopPanel.Controls.Add(this.BackScreenBtn);
             this.TopPanel.Controls.Add(this.BillPadPageHeadingLbl);
-            this.TopPanel.Controls.Add(this.SaveAndPrintOrderBtn);
-            this.TopPanel.Controls.Add(this.SaveBillBtn);
-            this.TopPanel.Controls.Add(this.PrintPreviewBtn);
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(1776, 43);
             this.TopPanel.TabIndex = 0;
-            // 
-            // LedgerEntryFromBtn
-            // 
-            this.LedgerEntryFromBtn.AllowAnimations = true;
-            this.LedgerEntryFromBtn.AllowMouseEffects = true;
-            this.LedgerEntryFromBtn.AllowToggling = false;
-            this.LedgerEntryFromBtn.AnimationSpeed = 200;
-            this.LedgerEntryFromBtn.AutoGenerateColors = false;
-            this.LedgerEntryFromBtn.AutoRoundBorders = false;
-            this.LedgerEntryFromBtn.AutoSizeLeftIcon = true;
-            this.LedgerEntryFromBtn.AutoSizeRightIcon = true;
-            this.LedgerEntryFromBtn.BackColor = System.Drawing.Color.Transparent;
-            this.LedgerEntryFromBtn.BackColor1 = System.Drawing.Color.DarkSlateBlue;
-            this.LedgerEntryFromBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LedgerEntryFromBtn.BackgroundImage")));
-            this.LedgerEntryFromBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.LedgerEntryFromBtn.ButtonText = "📒 Ledger Entry";
-            this.LedgerEntryFromBtn.ButtonTextMarginLeft = 0;
-            this.LedgerEntryFromBtn.ColorContrastOnClick = 45;
-            this.LedgerEntryFromBtn.ColorContrastOnHover = 45;
-            this.LedgerEntryFromBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.LedgerEntryFromBtn.CustomizableEdges = borderEdges1;
-            this.LedgerEntryFromBtn.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.LedgerEntryFromBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.LedgerEntryFromBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.LedgerEntryFromBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.LedgerEntryFromBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.LedgerEntryFromBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LedgerEntryFromBtn.ForeColor = System.Drawing.Color.White;
-            this.LedgerEntryFromBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LedgerEntryFromBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.LedgerEntryFromBtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.LedgerEntryFromBtn.IconMarginLeft = 11;
-            this.LedgerEntryFromBtn.IconPadding = 10;
-            this.LedgerEntryFromBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.LedgerEntryFromBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.LedgerEntryFromBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.LedgerEntryFromBtn.IconSize = 25;
-            this.LedgerEntryFromBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
-            this.LedgerEntryFromBtn.IdleBorderRadius = 30;
-            this.LedgerEntryFromBtn.IdleBorderThickness = 1;
-            this.LedgerEntryFromBtn.IdleFillColor = System.Drawing.Color.DarkSlateBlue;
-            this.LedgerEntryFromBtn.IdleIconLeftImage = null;
-            this.LedgerEntryFromBtn.IdleIconRightImage = null;
-            this.LedgerEntryFromBtn.IndicateFocus = false;
-            this.LedgerEntryFromBtn.Location = new System.Drawing.Point(668, -1);
-            this.LedgerEntryFromBtn.Name = "LedgerEntryFromBtn";
-            this.LedgerEntryFromBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.LedgerEntryFromBtn.OnDisabledState.BorderRadius = 30;
-            this.LedgerEntryFromBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.LedgerEntryFromBtn.OnDisabledState.BorderThickness = 1;
-            this.LedgerEntryFromBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.LedgerEntryFromBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.LedgerEntryFromBtn.OnDisabledState.IconLeftImage = null;
-            this.LedgerEntryFromBtn.OnDisabledState.IconRightImage = null;
-            this.LedgerEntryFromBtn.onHoverState.BorderColor = System.Drawing.Color.BlueViolet;
-            this.LedgerEntryFromBtn.onHoverState.BorderRadius = 30;
-            this.LedgerEntryFromBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.LedgerEntryFromBtn.onHoverState.BorderThickness = 1;
-            this.LedgerEntryFromBtn.onHoverState.FillColor = System.Drawing.Color.OliveDrab;
-            this.LedgerEntryFromBtn.onHoverState.ForeColor = System.Drawing.Color.White;
-            this.LedgerEntryFromBtn.onHoverState.IconLeftImage = null;
-            this.LedgerEntryFromBtn.onHoverState.IconRightImage = null;
-            this.LedgerEntryFromBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.LedgerEntryFromBtn.OnIdleState.BorderRadius = 30;
-            this.LedgerEntryFromBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.LedgerEntryFromBtn.OnIdleState.BorderThickness = 1;
-            this.LedgerEntryFromBtn.OnIdleState.FillColor = System.Drawing.Color.DarkSlateBlue;
-            this.LedgerEntryFromBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
-            this.LedgerEntryFromBtn.OnIdleState.IconLeftImage = null;
-            this.LedgerEntryFromBtn.OnIdleState.IconRightImage = null;
-            this.LedgerEntryFromBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.LedgerEntryFromBtn.OnPressedState.BorderRadius = 30;
-            this.LedgerEntryFromBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.LedgerEntryFromBtn.OnPressedState.BorderThickness = 1;
-            this.LedgerEntryFromBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.LedgerEntryFromBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
-            this.LedgerEntryFromBtn.OnPressedState.IconLeftImage = null;
-            this.LedgerEntryFromBtn.OnPressedState.IconRightImage = null;
-            this.LedgerEntryFromBtn.Size = new System.Drawing.Size(133, 45);
-            this.LedgerEntryFromBtn.TabIndex = 14;
-            this.LedgerEntryFromBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LedgerEntryFromBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.LedgerEntryFromBtn.TextMarginLeft = 0;
-            this.LedgerEntryFromBtn.TextPadding = new System.Windows.Forms.Padding(0);
-            this.LedgerEntryFromBtn.UseDefaultRadiusAndThickness = true;
-            this.LedgerEntryFromBtn.Click += new System.EventHandler(this.LedgerEntryFromBtn_Click);
-            // 
-            // ExportBtn
-            // 
-            this.ExportBtn.AllowAnimations = true;
-            this.ExportBtn.AllowMouseEffects = true;
-            this.ExportBtn.AllowToggling = false;
-            this.ExportBtn.AnimationSpeed = 200;
-            this.ExportBtn.AutoGenerateColors = false;
-            this.ExportBtn.AutoRoundBorders = false;
-            this.ExportBtn.AutoSizeLeftIcon = true;
-            this.ExportBtn.AutoSizeRightIcon = true;
-            this.ExportBtn.BackColor = System.Drawing.Color.Transparent;
-            this.ExportBtn.BackColor1 = System.Drawing.Color.DarkGoldenrod;
-            this.ExportBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ExportBtn.BackgroundImage")));
-            this.ExportBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.ExportBtn.ButtonText = "Exp(Ctrl+E)";
-            this.ExportBtn.ButtonTextMarginLeft = 0;
-            this.ExportBtn.ColorContrastOnClick = 45;
-            this.ExportBtn.ColorContrastOnHover = 45;
-            this.ExportBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.ExportBtn.CustomizableEdges = borderEdges2;
-            this.ExportBtn.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.ExportBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.ExportBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.ExportBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.ExportBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.ExportBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExportBtn.ForeColor = System.Drawing.Color.White;
-            this.ExportBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ExportBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.ExportBtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.ExportBtn.IconMarginLeft = 11;
-            this.ExportBtn.IconPadding = 10;
-            this.ExportBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ExportBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.ExportBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.ExportBtn.IconSize = 25;
-            this.ExportBtn.IdleBorderColor = System.Drawing.Color.DarkOrange;
-            this.ExportBtn.IdleBorderRadius = 20;
-            this.ExportBtn.IdleBorderThickness = 1;
-            this.ExportBtn.IdleFillColor = System.Drawing.Color.DarkGoldenrod;
-            this.ExportBtn.IdleIconLeftImage = null;
-            this.ExportBtn.IdleIconRightImage = null;
-            this.ExportBtn.IndicateFocus = false;
-            this.ExportBtn.Location = new System.Drawing.Point(1651, 4);
-            this.ExportBtn.Name = "ExportBtn";
-            this.ExportBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.ExportBtn.OnDisabledState.BorderRadius = 20;
-            this.ExportBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.ExportBtn.OnDisabledState.BorderThickness = 1;
-            this.ExportBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.ExportBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.ExportBtn.OnDisabledState.IconLeftImage = null;
-            this.ExportBtn.OnDisabledState.IconRightImage = null;
-            this.ExportBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.ExportBtn.onHoverState.BorderRadius = 20;
-            this.ExportBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.ExportBtn.onHoverState.BorderThickness = 1;
-            this.ExportBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.ExportBtn.onHoverState.ForeColor = System.Drawing.Color.White;
-            this.ExportBtn.onHoverState.IconLeftImage = null;
-            this.ExportBtn.onHoverState.IconRightImage = null;
-            this.ExportBtn.OnIdleState.BorderColor = System.Drawing.Color.DarkOrange;
-            this.ExportBtn.OnIdleState.BorderRadius = 20;
-            this.ExportBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.ExportBtn.OnIdleState.BorderThickness = 1;
-            this.ExportBtn.OnIdleState.FillColor = System.Drawing.Color.DarkGoldenrod;
-            this.ExportBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
-            this.ExportBtn.OnIdleState.IconLeftImage = null;
-            this.ExportBtn.OnIdleState.IconRightImage = null;
-            this.ExportBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.ExportBtn.OnPressedState.BorderRadius = 20;
-            this.ExportBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.ExportBtn.OnPressedState.BorderThickness = 1;
-            this.ExportBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.ExportBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
-            this.ExportBtn.OnPressedState.IconLeftImage = null;
-            this.ExportBtn.OnPressedState.IconRightImage = null;
-            this.ExportBtn.Size = new System.Drawing.Size(114, 37);
-            this.ExportBtn.TabIndex = 0;
-            this.ExportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ExportBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ExportBtn.TextMarginLeft = 0;
-            this.ExportBtn.TextPadding = new System.Windows.Forms.Padding(0);
-            this.ExportBtn.UseDefaultRadiusAndThickness = true;
-            this.ExportBtn.Click += new System.EventHandler(this.ExportBtn_Click);
             // 
             // TopBarSearchProductTxt
             // 
@@ -467,6 +264,232 @@
             this.TopBarSearchProductTxt.WordWrap = true;
             this.TopBarSearchProductTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TopBarSearchProductTxt_KeyPress);
             // 
+            // BackScreenBtn
+            // 
+            this.BackScreenBtn.ActiveImage = null;
+            this.BackScreenBtn.AllowAnimations = true;
+            this.BackScreenBtn.AllowBuffering = false;
+            this.BackScreenBtn.AllowToggling = false;
+            this.BackScreenBtn.AllowZooming = true;
+            this.BackScreenBtn.AllowZoomingOnFocus = false;
+            this.BackScreenBtn.BackColor = System.Drawing.Color.Transparent;
+            this.BackScreenBtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.BackScreenBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BackScreenBtn.ErrorImage")));
+            this.BackScreenBtn.FadeWhenInactive = false;
+            this.BackScreenBtn.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
+            this.BackScreenBtn.Image = global::POS_Shop.Properties.Resources.iconPrev;
+            this.BackScreenBtn.ImageActive = null;
+            this.BackScreenBtn.ImageLocation = null;
+            this.BackScreenBtn.ImageMargin = 0;
+            this.BackScreenBtn.ImageSize = new System.Drawing.Size(43, 36);
+            this.BackScreenBtn.ImageZoomSize = new System.Drawing.Size(44, 37);
+            this.BackScreenBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("BackScreenBtn.InitialImage")));
+            this.BackScreenBtn.Location = new System.Drawing.Point(5, 5);
+            this.BackScreenBtn.Name = "BackScreenBtn";
+            this.BackScreenBtn.Rotation = 0;
+            this.BackScreenBtn.ShowActiveImage = true;
+            this.BackScreenBtn.ShowCursorChanges = true;
+            this.BackScreenBtn.ShowImageBorders = true;
+            this.BackScreenBtn.ShowSizeMarkers = false;
+            this.BackScreenBtn.Size = new System.Drawing.Size(44, 37);
+            this.BackScreenBtn.TabIndex = 1;
+            this.BackScreenBtn.ToolTipText = "";
+            this.BackScreenBtn.WaitOnLoad = false;
+            this.BackScreenBtn.Zoom = 0;
+            this.BackScreenBtn.ZoomSpeed = 10;
+            this.BackScreenBtn.Click += new System.EventHandler(this.BackScreenBtn_Click);
+            // 
+            // BillPadPageHeadingLbl
+            // 
+            this.BillPadPageHeadingLbl.AutoSize = true;
+            this.BillPadPageHeadingLbl.Font = new System.Drawing.Font("Ravie", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BillPadPageHeadingLbl.Location = new System.Drawing.Point(45, -1);
+            this.BillPadPageHeadingLbl.Name = "BillPadPageHeadingLbl";
+            this.BillPadPageHeadingLbl.Size = new System.Drawing.Size(184, 44);
+            this.BillPadPageHeadingLbl.TabIndex = 0;
+            this.BillPadPageHeadingLbl.Text = "Bill Pad";
+            // 
+            // LedgerEntryFromBtn
+            // 
+            this.LedgerEntryFromBtn.AllowAnimations = true;
+            this.LedgerEntryFromBtn.AllowMouseEffects = true;
+            this.LedgerEntryFromBtn.AllowToggling = false;
+            this.LedgerEntryFromBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LedgerEntryFromBtn.AnimationSpeed = 200;
+            this.LedgerEntryFromBtn.AutoGenerateColors = false;
+            this.LedgerEntryFromBtn.AutoRoundBorders = false;
+            this.LedgerEntryFromBtn.AutoSizeLeftIcon = true;
+            this.LedgerEntryFromBtn.AutoSizeRightIcon = true;
+            this.LedgerEntryFromBtn.BackColor = System.Drawing.Color.Transparent;
+            this.LedgerEntryFromBtn.BackColor1 = System.Drawing.Color.DarkSlateBlue;
+            this.LedgerEntryFromBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LedgerEntryFromBtn.BackgroundImage")));
+            this.LedgerEntryFromBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.LedgerEntryFromBtn.ButtonText = "📒 Ledger Entry";
+            this.LedgerEntryFromBtn.ButtonTextMarginLeft = 0;
+            this.LedgerEntryFromBtn.ColorContrastOnClick = 45;
+            this.LedgerEntryFromBtn.ColorContrastOnHover = 45;
+            this.LedgerEntryFromBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.LedgerEntryFromBtn.CustomizableEdges = borderEdges1;
+            this.LedgerEntryFromBtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.LedgerEntryFromBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.LedgerEntryFromBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.LedgerEntryFromBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.LedgerEntryFromBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.LedgerEntryFromBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LedgerEntryFromBtn.ForeColor = System.Drawing.Color.White;
+            this.LedgerEntryFromBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LedgerEntryFromBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.LedgerEntryFromBtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.LedgerEntryFromBtn.IconMarginLeft = 11;
+            this.LedgerEntryFromBtn.IconPadding = 10;
+            this.LedgerEntryFromBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LedgerEntryFromBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.LedgerEntryFromBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.LedgerEntryFromBtn.IconSize = 25;
+            this.LedgerEntryFromBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
+            this.LedgerEntryFromBtn.IdleBorderRadius = 10;
+            this.LedgerEntryFromBtn.IdleBorderThickness = 1;
+            this.LedgerEntryFromBtn.IdleFillColor = System.Drawing.Color.DarkSlateBlue;
+            this.LedgerEntryFromBtn.IdleIconLeftImage = null;
+            this.LedgerEntryFromBtn.IdleIconRightImage = null;
+            this.LedgerEntryFromBtn.IndicateFocus = false;
+            this.LedgerEntryFromBtn.Location = new System.Drawing.Point(311, 13);
+            this.LedgerEntryFromBtn.Name = "LedgerEntryFromBtn";
+            this.LedgerEntryFromBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.LedgerEntryFromBtn.OnDisabledState.BorderRadius = 10;
+            this.LedgerEntryFromBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.LedgerEntryFromBtn.OnDisabledState.BorderThickness = 1;
+            this.LedgerEntryFromBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.LedgerEntryFromBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.LedgerEntryFromBtn.OnDisabledState.IconLeftImage = null;
+            this.LedgerEntryFromBtn.OnDisabledState.IconRightImage = null;
+            this.LedgerEntryFromBtn.onHoverState.BorderColor = System.Drawing.Color.BlueViolet;
+            this.LedgerEntryFromBtn.onHoverState.BorderRadius = 10;
+            this.LedgerEntryFromBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.LedgerEntryFromBtn.onHoverState.BorderThickness = 1;
+            this.LedgerEntryFromBtn.onHoverState.FillColor = System.Drawing.Color.OliveDrab;
+            this.LedgerEntryFromBtn.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.LedgerEntryFromBtn.onHoverState.IconLeftImage = null;
+            this.LedgerEntryFromBtn.onHoverState.IconRightImage = null;
+            this.LedgerEntryFromBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.LedgerEntryFromBtn.OnIdleState.BorderRadius = 10;
+            this.LedgerEntryFromBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.LedgerEntryFromBtn.OnIdleState.BorderThickness = 1;
+            this.LedgerEntryFromBtn.OnIdleState.FillColor = System.Drawing.Color.DarkSlateBlue;
+            this.LedgerEntryFromBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.LedgerEntryFromBtn.OnIdleState.IconLeftImage = null;
+            this.LedgerEntryFromBtn.OnIdleState.IconRightImage = null;
+            this.LedgerEntryFromBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.LedgerEntryFromBtn.OnPressedState.BorderRadius = 10;
+            this.LedgerEntryFromBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.LedgerEntryFromBtn.OnPressedState.BorderThickness = 1;
+            this.LedgerEntryFromBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.LedgerEntryFromBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.LedgerEntryFromBtn.OnPressedState.IconLeftImage = null;
+            this.LedgerEntryFromBtn.OnPressedState.IconRightImage = null;
+            this.LedgerEntryFromBtn.Size = new System.Drawing.Size(133, 26);
+            this.LedgerEntryFromBtn.TabIndex = 14;
+            this.LedgerEntryFromBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LedgerEntryFromBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.LedgerEntryFromBtn.TextMarginLeft = 0;
+            this.LedgerEntryFromBtn.TextPadding = new System.Windows.Forms.Padding(0);
+            this.LedgerEntryFromBtn.UseDefaultRadiusAndThickness = true;
+            this.LedgerEntryFromBtn.Click += new System.EventHandler(this.LedgerEntryFromBtn_Click);
+            // 
+            // ExportBtn
+            // 
+            this.ExportBtn.AllowAnimations = true;
+            this.ExportBtn.AllowMouseEffects = true;
+            this.ExportBtn.AllowToggling = false;
+            this.ExportBtn.AnimationSpeed = 200;
+            this.ExportBtn.AutoGenerateColors = false;
+            this.ExportBtn.AutoRoundBorders = false;
+            this.ExportBtn.AutoSizeLeftIcon = true;
+            this.ExportBtn.AutoSizeRightIcon = true;
+            this.ExportBtn.BackColor = System.Drawing.Color.Transparent;
+            this.ExportBtn.BackColor1 = System.Drawing.Color.DarkGoldenrod;
+            this.ExportBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ExportBtn.BackgroundImage")));
+            this.ExportBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.ExportBtn.ButtonText = "Exp(Ctrl+E)";
+            this.ExportBtn.ButtonTextMarginLeft = 0;
+            this.ExportBtn.ColorContrastOnClick = 45;
+            this.ExportBtn.ColorContrastOnHover = 45;
+            this.ExportBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges2.BottomLeft = true;
+            borderEdges2.BottomRight = true;
+            borderEdges2.TopLeft = true;
+            borderEdges2.TopRight = true;
+            this.ExportBtn.CustomizableEdges = borderEdges2;
+            this.ExportBtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.ExportBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.ExportBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.ExportBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.ExportBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.ExportBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExportBtn.ForeColor = System.Drawing.Color.White;
+            this.ExportBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ExportBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.ExportBtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.ExportBtn.IconMarginLeft = 11;
+            this.ExportBtn.IconPadding = 10;
+            this.ExportBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ExportBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.ExportBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.ExportBtn.IconSize = 25;
+            this.ExportBtn.IdleBorderColor = System.Drawing.Color.DarkOrange;
+            this.ExportBtn.IdleBorderRadius = 20;
+            this.ExportBtn.IdleBorderThickness = 1;
+            this.ExportBtn.IdleFillColor = System.Drawing.Color.DarkGoldenrod;
+            this.ExportBtn.IdleIconLeftImage = null;
+            this.ExportBtn.IdleIconRightImage = null;
+            this.ExportBtn.IndicateFocus = false;
+            this.ExportBtn.Location = new System.Drawing.Point(207, 418);
+            this.ExportBtn.Name = "ExportBtn";
+            this.ExportBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.ExportBtn.OnDisabledState.BorderRadius = 20;
+            this.ExportBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.ExportBtn.OnDisabledState.BorderThickness = 1;
+            this.ExportBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.ExportBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.ExportBtn.OnDisabledState.IconLeftImage = null;
+            this.ExportBtn.OnDisabledState.IconRightImage = null;
+            this.ExportBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.ExportBtn.onHoverState.BorderRadius = 20;
+            this.ExportBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.ExportBtn.onHoverState.BorderThickness = 1;
+            this.ExportBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.ExportBtn.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.ExportBtn.onHoverState.IconLeftImage = null;
+            this.ExportBtn.onHoverState.IconRightImage = null;
+            this.ExportBtn.OnIdleState.BorderColor = System.Drawing.Color.DarkOrange;
+            this.ExportBtn.OnIdleState.BorderRadius = 20;
+            this.ExportBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.ExportBtn.OnIdleState.BorderThickness = 1;
+            this.ExportBtn.OnIdleState.FillColor = System.Drawing.Color.DarkGoldenrod;
+            this.ExportBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.ExportBtn.OnIdleState.IconLeftImage = null;
+            this.ExportBtn.OnIdleState.IconRightImage = null;
+            this.ExportBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.ExportBtn.OnPressedState.BorderRadius = 20;
+            this.ExportBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.ExportBtn.OnPressedState.BorderThickness = 1;
+            this.ExportBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.ExportBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.ExportBtn.OnPressedState.IconLeftImage = null;
+            this.ExportBtn.OnPressedState.IconRightImage = null;
+            this.ExportBtn.Size = new System.Drawing.Size(171, 37);
+            this.ExportBtn.TabIndex = 0;
+            this.ExportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ExportBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ExportBtn.TextMarginLeft = 0;
+            this.ExportBtn.TextPadding = new System.Windows.Forms.Padding(0);
+            this.ExportBtn.UseDefaultRadiusAndThickness = true;
+            this.ExportBtn.Click += new System.EventHandler(this.ExportBtn_Click);
+            // 
             // ClearCartBtn
             // 
             this.ClearCartBtn.AllowAnimations = true;
@@ -514,7 +537,7 @@
             this.ClearCartBtn.IdleIconLeftImage = null;
             this.ClearCartBtn.IdleIconRightImage = null;
             this.ClearCartBtn.IndicateFocus = false;
-            this.ClearCartBtn.Location = new System.Drawing.Point(1500, 4);
+            this.ClearCartBtn.Location = new System.Drawing.Point(13, 468);
             this.ClearCartBtn.Name = "ClearCartBtn";
             this.ClearCartBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.ClearCartBtn.OnDisabledState.BorderRadius = 20;
@@ -548,7 +571,7 @@
             this.ClearCartBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.ClearCartBtn.OnPressedState.IconLeftImage = null;
             this.ClearCartBtn.OnPressedState.IconRightImage = null;
-            this.ClearCartBtn.Size = new System.Drawing.Size(147, 37);
+            this.ClearCartBtn.Size = new System.Drawing.Size(358, 37);
             this.ClearCartBtn.TabIndex = 0;
             this.ClearCartBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ClearCartBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -604,7 +627,7 @@
             this.GenerateInvoicePdfBtn.IdleIconLeftImage = null;
             this.GenerateInvoicePdfBtn.IdleIconRightImage = null;
             this.GenerateInvoicePdfBtn.IndicateFocus = false;
-            this.GenerateInvoicePdfBtn.Location = new System.Drawing.Point(1366, 4);
+            this.GenerateInvoicePdfBtn.Location = new System.Drawing.Point(208, 372);
             this.GenerateInvoicePdfBtn.Name = "GenerateInvoicePdfBtn";
             this.GenerateInvoicePdfBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.GenerateInvoicePdfBtn.OnDisabledState.BorderRadius = 20;
@@ -638,7 +661,7 @@
             this.GenerateInvoicePdfBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.GenerateInvoicePdfBtn.OnPressedState.IconLeftImage = null;
             this.GenerateInvoicePdfBtn.OnPressedState.IconRightImage = null;
-            this.GenerateInvoicePdfBtn.Size = new System.Drawing.Size(126, 37);
+            this.GenerateInvoicePdfBtn.Size = new System.Drawing.Size(171, 37);
             this.GenerateInvoicePdfBtn.TabIndex = 0;
             this.GenerateInvoicePdfBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.GenerateInvoicePdfBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -694,7 +717,7 @@
             this.SaveOrderWithoutPrintBtn.IdleIconLeftImage = null;
             this.SaveOrderWithoutPrintBtn.IdleIconRightImage = null;
             this.SaveOrderWithoutPrintBtn.IndicateFocus = false;
-            this.SaveOrderWithoutPrintBtn.Location = new System.Drawing.Point(963, 4);
+            this.SaveOrderWithoutPrintBtn.Location = new System.Drawing.Point(208, 325);
             this.SaveOrderWithoutPrintBtn.Name = "SaveOrderWithoutPrintBtn";
             this.SaveOrderWithoutPrintBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveOrderWithoutPrintBtn.OnDisabledState.BorderRadius = 20;
@@ -728,7 +751,7 @@
             this.SaveOrderWithoutPrintBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.SaveOrderWithoutPrintBtn.OnPressedState.IconLeftImage = null;
             this.SaveOrderWithoutPrintBtn.OnPressedState.IconRightImage = null;
-            this.SaveOrderWithoutPrintBtn.Size = new System.Drawing.Size(107, 37);
+            this.SaveOrderWithoutPrintBtn.Size = new System.Drawing.Size(171, 37);
             this.SaveOrderWithoutPrintBtn.TabIndex = 0;
             this.SaveOrderWithoutPrintBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SaveOrderWithoutPrintBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -736,51 +759,6 @@
             this.SaveOrderWithoutPrintBtn.TextPadding = new System.Windows.Forms.Padding(0);
             this.SaveOrderWithoutPrintBtn.UseDefaultRadiusAndThickness = true;
             this.SaveOrderWithoutPrintBtn.Click += new System.EventHandler(this.SaveOrderWithoutPrintBtn_Click);
-            // 
-            // BackScreenBtn
-            // 
-            this.BackScreenBtn.ActiveImage = null;
-            this.BackScreenBtn.AllowAnimations = true;
-            this.BackScreenBtn.AllowBuffering = false;
-            this.BackScreenBtn.AllowToggling = false;
-            this.BackScreenBtn.AllowZooming = true;
-            this.BackScreenBtn.AllowZoomingOnFocus = false;
-            this.BackScreenBtn.BackColor = System.Drawing.Color.Transparent;
-            this.BackScreenBtn.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.BackScreenBtn.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BackScreenBtn.ErrorImage")));
-            this.BackScreenBtn.FadeWhenInactive = false;
-            this.BackScreenBtn.Flip = Bunifu.UI.WinForms.BunifuImageButton.FlipOrientation.Normal;
-            this.BackScreenBtn.Image = global::POS_Shop.Properties.Resources.iconPrev;
-            this.BackScreenBtn.ImageActive = null;
-            this.BackScreenBtn.ImageLocation = null;
-            this.BackScreenBtn.ImageMargin = 0;
-            this.BackScreenBtn.ImageSize = new System.Drawing.Size(43, 36);
-            this.BackScreenBtn.ImageZoomSize = new System.Drawing.Size(44, 37);
-            this.BackScreenBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("BackScreenBtn.InitialImage")));
-            this.BackScreenBtn.Location = new System.Drawing.Point(5, 5);
-            this.BackScreenBtn.Name = "BackScreenBtn";
-            this.BackScreenBtn.Rotation = 0;
-            this.BackScreenBtn.ShowActiveImage = true;
-            this.BackScreenBtn.ShowCursorChanges = true;
-            this.BackScreenBtn.ShowImageBorders = true;
-            this.BackScreenBtn.ShowSizeMarkers = false;
-            this.BackScreenBtn.Size = new System.Drawing.Size(44, 37);
-            this.BackScreenBtn.TabIndex = 1;
-            this.BackScreenBtn.ToolTipText = "";
-            this.BackScreenBtn.WaitOnLoad = false;
-            this.BackScreenBtn.Zoom = 0;
-            this.BackScreenBtn.ZoomSpeed = 10;
-            this.BackScreenBtn.Click += new System.EventHandler(this.BackScreenBtn_Click);
-            // 
-            // BillPadPageHeadingLbl
-            // 
-            this.BillPadPageHeadingLbl.AutoSize = true;
-            this.BillPadPageHeadingLbl.Font = new System.Drawing.Font("Ravie", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BillPadPageHeadingLbl.Location = new System.Drawing.Point(45, -1);
-            this.BillPadPageHeadingLbl.Name = "BillPadPageHeadingLbl";
-            this.BillPadPageHeadingLbl.Size = new System.Drawing.Size(184, 44);
-            this.BillPadPageHeadingLbl.TabIndex = 0;
-            this.BillPadPageHeadingLbl.Text = "Bill Pad";
             // 
             // SaveAndPrintOrderBtn
             // 
@@ -829,7 +807,7 @@
             this.SaveAndPrintOrderBtn.IdleIconLeftImage = null;
             this.SaveAndPrintOrderBtn.IdleIconRightImage = null;
             this.SaveAndPrintOrderBtn.IndicateFocus = false;
-            this.SaveAndPrintOrderBtn.Location = new System.Drawing.Point(815, 4);
+            this.SaveAndPrintOrderBtn.Location = new System.Drawing.Point(15, 325);
             this.SaveAndPrintOrderBtn.Name = "SaveAndPrintOrderBtn";
             this.SaveAndPrintOrderBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveAndPrintOrderBtn.OnDisabledState.BorderRadius = 20;
@@ -863,7 +841,7 @@
             this.SaveAndPrintOrderBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.SaveAndPrintOrderBtn.OnPressedState.IconLeftImage = null;
             this.SaveAndPrintOrderBtn.OnPressedState.IconRightImage = null;
-            this.SaveAndPrintOrderBtn.Size = new System.Drawing.Size(147, 37);
+            this.SaveAndPrintOrderBtn.Size = new System.Drawing.Size(187, 37);
             this.SaveAndPrintOrderBtn.TabIndex = 8;
             this.SaveAndPrintOrderBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SaveAndPrintOrderBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -919,7 +897,7 @@
             this.SaveBillBtn.IdleIconLeftImage = null;
             this.SaveBillBtn.IdleIconRightImage = null;
             this.SaveBillBtn.IndicateFocus = false;
-            this.SaveBillBtn.Location = new System.Drawing.Point(1190, 4);
+            this.SaveBillBtn.Location = new System.Drawing.Point(15, 373);
             this.SaveBillBtn.Name = "SaveBillBtn";
             this.SaveBillBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.SaveBillBtn.OnDisabledState.BorderRadius = 20;
@@ -953,7 +931,7 @@
             this.SaveBillBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.SaveBillBtn.OnPressedState.IconLeftImage = null;
             this.SaveBillBtn.OnPressedState.IconRightImage = null;
-            this.SaveBillBtn.Size = new System.Drawing.Size(171, 37);
+            this.SaveBillBtn.Size = new System.Drawing.Size(187, 37);
             this.SaveBillBtn.TabIndex = 0;
             this.SaveBillBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SaveBillBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1009,7 +987,7 @@
             this.PrintPreviewBtn.IdleIconLeftImage = null;
             this.PrintPreviewBtn.IdleIconRightImage = null;
             this.PrintPreviewBtn.IndicateFocus = false;
-            this.PrintPreviewBtn.Location = new System.Drawing.Point(1077, 4);
+            this.PrintPreviewBtn.Location = new System.Drawing.Point(15, 419);
             this.PrintPreviewBtn.Name = "PrintPreviewBtn";
             this.PrintPreviewBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.PrintPreviewBtn.OnDisabledState.BorderRadius = 20;
@@ -1043,7 +1021,7 @@
             this.PrintPreviewBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.PrintPreviewBtn.OnPressedState.IconLeftImage = null;
             this.PrintPreviewBtn.OnPressedState.IconRightImage = null;
-            this.PrintPreviewBtn.Size = new System.Drawing.Size(108, 37);
+            this.PrintPreviewBtn.Size = new System.Drawing.Size(185, 37);
             this.PrintPreviewBtn.TabIndex = 0;
             this.PrintPreviewBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.PrintPreviewBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1076,14 +1054,15 @@
             // 
             // BilPad
             // 
-            this.BilPad.BackColor = System.Drawing.Color.Transparent;
+            this.BilPad.BackColor = System.Drawing.Color.White;
+            this.BilPad.Controls.Add(this.groupBox1);
             this.BilPad.Controls.Add(this.ProductPricesGroup);
             this.BilPad.Controls.Add(this.CustomerPreviousOrderHistoryGroup);
             this.BilPad.Controls.Add(this.PreOrderGroup);
-            this.BilPad.Controls.Add(this.CustomerListDataGrid);
-            this.BilPad.Controls.Add(this.OrdersGroup);
             this.BilPad.Controls.Add(this.BillPadGrou);
+            this.BilPad.Controls.Add(this.OrdersGroup);
             this.BilPad.Controls.Add(this.ProductListGroup);
+            this.BilPad.Controls.Add(this.CustomerListDataGrid);
             this.BilPad.Controls.Add(this.ProductGroup);
             this.BilPad.Controls.Add(this.CustomerGroup);
             this.BilPad.Location = new System.Drawing.Point(4, 25);
@@ -1092,6 +1071,148 @@
             this.BilPad.Size = new System.Drawing.Size(1768, 802);
             this.BilPad.TabIndex = 0;
             this.BilPad.Text = "Bill Pad";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.LedgerListBtn);
+            this.groupBox1.Controls.Add(this.LedgerEntryFromBtn);
+            this.groupBox1.Controls.Add(this.CustomerLagerRecordChk);
+            this.groupBox1.Controls.Add(this.lblAdvanceInfo);
+            this.groupBox1.Controls.Add(this.ApplyAdvanceChk);
+            this.groupBox1.Location = new System.Drawing.Point(493, 93);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(453, 79);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Customer Loan Section";
+            // 
+            // LedgerListBtn
+            // 
+            this.LedgerListBtn.AllowAnimations = true;
+            this.LedgerListBtn.AllowMouseEffects = true;
+            this.LedgerListBtn.AllowToggling = false;
+            this.LedgerListBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LedgerListBtn.AnimationSpeed = 200;
+            this.LedgerListBtn.AutoGenerateColors = false;
+            this.LedgerListBtn.AutoRoundBorders = false;
+            this.LedgerListBtn.AutoSizeLeftIcon = true;
+            this.LedgerListBtn.AutoSizeRightIcon = true;
+            this.LedgerListBtn.BackColor = System.Drawing.Color.Transparent;
+            this.LedgerListBtn.BackColor1 = System.Drawing.Color.DarkSlateBlue;
+            this.LedgerListBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LedgerListBtn.BackgroundImage")));
+            this.LedgerListBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.LedgerListBtn.ButtonText = "📒 Ledger List";
+            this.LedgerListBtn.ButtonTextMarginLeft = 0;
+            this.LedgerListBtn.ColorContrastOnClick = 45;
+            this.LedgerListBtn.ColorContrastOnHover = 45;
+            this.LedgerListBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges9.BottomLeft = true;
+            borderEdges9.BottomRight = true;
+            borderEdges9.TopLeft = true;
+            borderEdges9.TopRight = true;
+            this.LedgerListBtn.CustomizableEdges = borderEdges9;
+            this.LedgerListBtn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.LedgerListBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.LedgerListBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.LedgerListBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.LedgerListBtn.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.LedgerListBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LedgerListBtn.ForeColor = System.Drawing.Color.White;
+            this.LedgerListBtn.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LedgerListBtn.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.LedgerListBtn.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.LedgerListBtn.IconMarginLeft = 11;
+            this.LedgerListBtn.IconPadding = 10;
+            this.LedgerListBtn.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LedgerListBtn.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.LedgerListBtn.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.LedgerListBtn.IconSize = 25;
+            this.LedgerListBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
+            this.LedgerListBtn.IdleBorderRadius = 10;
+            this.LedgerListBtn.IdleBorderThickness = 1;
+            this.LedgerListBtn.IdleFillColor = System.Drawing.Color.DarkSlateBlue;
+            this.LedgerListBtn.IdleIconLeftImage = null;
+            this.LedgerListBtn.IdleIconRightImage = null;
+            this.LedgerListBtn.IndicateFocus = false;
+            this.LedgerListBtn.Location = new System.Drawing.Point(311, 44);
+            this.LedgerListBtn.Name = "LedgerListBtn";
+            this.LedgerListBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.LedgerListBtn.OnDisabledState.BorderRadius = 10;
+            this.LedgerListBtn.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.LedgerListBtn.OnDisabledState.BorderThickness = 1;
+            this.LedgerListBtn.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.LedgerListBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.LedgerListBtn.OnDisabledState.IconLeftImage = null;
+            this.LedgerListBtn.OnDisabledState.IconRightImage = null;
+            this.LedgerListBtn.onHoverState.BorderColor = System.Drawing.Color.BlueViolet;
+            this.LedgerListBtn.onHoverState.BorderRadius = 10;
+            this.LedgerListBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.LedgerListBtn.onHoverState.BorderThickness = 1;
+            this.LedgerListBtn.onHoverState.FillColor = System.Drawing.Color.OliveDrab;
+            this.LedgerListBtn.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.LedgerListBtn.onHoverState.IconLeftImage = null;
+            this.LedgerListBtn.onHoverState.IconRightImage = null;
+            this.LedgerListBtn.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.LedgerListBtn.OnIdleState.BorderRadius = 10;
+            this.LedgerListBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.LedgerListBtn.OnIdleState.BorderThickness = 1;
+            this.LedgerListBtn.OnIdleState.FillColor = System.Drawing.Color.DarkSlateBlue;
+            this.LedgerListBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.LedgerListBtn.OnIdleState.IconLeftImage = null;
+            this.LedgerListBtn.OnIdleState.IconRightImage = null;
+            this.LedgerListBtn.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.LedgerListBtn.OnPressedState.BorderRadius = 10;
+            this.LedgerListBtn.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.LedgerListBtn.OnPressedState.BorderThickness = 1;
+            this.LedgerListBtn.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.LedgerListBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.LedgerListBtn.OnPressedState.IconLeftImage = null;
+            this.LedgerListBtn.OnPressedState.IconRightImage = null;
+            this.LedgerListBtn.Size = new System.Drawing.Size(133, 26);
+            this.LedgerListBtn.TabIndex = 15;
+            this.LedgerListBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LedgerListBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.LedgerListBtn.TextMarginLeft = 0;
+            this.LedgerListBtn.TextPadding = new System.Windows.Forms.Padding(0);
+            this.LedgerListBtn.UseDefaultRadiusAndThickness = true;
+            this.LedgerListBtn.Click += new System.EventHandler(this.LedgerListBtn_Click);
+            // 
+            // CustomerLagerRecordChk
+            // 
+            this.CustomerLagerRecordChk.AutoSize = true;
+            this.CustomerLagerRecordChk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold);
+            this.CustomerLagerRecordChk.Location = new System.Drawing.Point(21, 53);
+            this.CustomerLagerRecordChk.Name = "CustomerLagerRecordChk";
+            this.CustomerLagerRecordChk.Size = new System.Drawing.Size(159, 22);
+            this.CustomerLagerRecordChk.TabIndex = 12;
+            this.CustomerLagerRecordChk.Text = "Record in Ledger";
+            this.CustomerLagerRecordChk.UseVisualStyleBackColor = true;
+            this.CustomerLagerRecordChk.CheckedChanged += new System.EventHandler(this.CustomerLagerRecordChk_CheckedChanged);
+            // 
+            // lblAdvanceInfo
+            // 
+            this.lblAdvanceInfo.AutoSize = true;
+            this.lblAdvanceInfo.Location = new System.Drawing.Point(210, 55);
+            this.lblAdvanceInfo.Name = "lblAdvanceInfo";
+            this.lblAdvanceInfo.Size = new System.Drawing.Size(96, 16);
+            this.lblAdvanceInfo.TabIndex = 6;
+            this.lblAdvanceInfo.Text = "lblAdvanceInfo";
+            this.lblAdvanceInfo.Visible = false;
+            // 
+            // ApplyAdvanceChk
+            // 
+            this.ApplyAdvanceChk.AutoSize = true;
+            this.ApplyAdvanceChk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold);
+            this.ApplyAdvanceChk.Location = new System.Drawing.Point(21, 25);
+            this.ApplyAdvanceChk.Name = "ApplyAdvanceChk";
+            this.ApplyAdvanceChk.Size = new System.Drawing.Size(163, 22);
+            this.ApplyAdvanceChk.TabIndex = 7;
+            this.ApplyAdvanceChk.Text = "ApplyAdvanceChk";
+            this.ApplyAdvanceChk.UseVisualStyleBackColor = true;
+            this.ApplyAdvanceChk.Visible = false;
+            this.ApplyAdvanceChk.CheckedChanged += new System.EventHandler(this.ApplyAdvanceChk_CheckedChanged);
             // 
             // ProductPricesGroup
             // 
@@ -1107,6 +1228,7 @@
             // ProductPriceDataGridView
             // 
             this.ProductPriceDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ProductPriceDataGridView.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1139,7 +1261,7 @@
             this.CustomerPreviousOrderHistoryGroup.Controls.Add(this.previousBillAmountLbl);
             this.CustomerPreviousOrderHistoryGroup.Controls.Add(this.label13);
             this.CustomerPreviousOrderHistoryGroup.Controls.Add(this.previousBillLbl);
-            this.CustomerPreviousOrderHistoryGroup.Location = new System.Drawing.Point(1359, 333);
+            this.CustomerPreviousOrderHistoryGroup.Location = new System.Drawing.Point(1359, 156);
             this.CustomerPreviousOrderHistoryGroup.Name = "CustomerPreviousOrderHistoryGroup";
             this.CustomerPreviousOrderHistoryGroup.Size = new System.Drawing.Size(385, 110);
             this.CustomerPreviousOrderHistoryGroup.TabIndex = 7;
@@ -1203,10 +1325,10 @@
             // 
             this.PreOrderGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PreOrderGroup.Controls.Add(this.ProductOrderHistoryDataGrid);
-            this.PreOrderGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PreOrderGroup.Location = new System.Drawing.Point(1355, 150);
+            this.PreOrderGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PreOrderGroup.Location = new System.Drawing.Point(954, 6);
             this.PreOrderGroup.Name = "PreOrderGroup";
-            this.PreOrderGroup.Size = new System.Drawing.Size(397, 177);
+            this.PreOrderGroup.Size = new System.Drawing.Size(393, 177);
             this.PreOrderGroup.TabIndex = 6;
             this.PreOrderGroup.TabStop = false;
             this.PreOrderGroup.Text = "Customer Order History";
@@ -1215,9 +1337,9 @@
             // 
             this.ProductOrderHistoryDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductOrderHistoryDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ProductOrderHistoryDataGrid.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.ProductOrderHistoryDataGrid.BackgroundColor = System.Drawing.Color.White;
             this.ProductOrderHistoryDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProductOrderHistoryDataGrid.Location = new System.Drawing.Point(11, 22);
+            this.ProductOrderHistoryDataGrid.Location = new System.Drawing.Point(7, 22);
             this.ProductOrderHistoryDataGrid.Name = "ProductOrderHistoryDataGrid";
             this.ProductOrderHistoryDataGrid.ReadOnly = true;
             this.ProductOrderHistoryDataGrid.RowHeadersWidth = 51;
@@ -1225,130 +1347,31 @@
             this.ProductOrderHistoryDataGrid.Size = new System.Drawing.Size(380, 150);
             this.ProductOrderHistoryDataGrid.TabIndex = 0;
             // 
-            // CustomerListDataGrid
-            // 
-            this.CustomerListDataGrid.AllowUserToAddRows = false;
-            this.CustomerListDataGrid.AllowUserToDeleteRows = false;
-            this.CustomerListDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CustomerListDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.CustomerListDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.CustomerListDataGrid.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CustomerListDataGrid.Location = new System.Drawing.Point(122, 72);
-            this.CustomerListDataGrid.Name = "CustomerListDataGrid";
-            this.CustomerListDataGrid.ReadOnly = true;
-            this.CustomerListDataGrid.RowHeadersWidth = 51;
-            this.CustomerListDataGrid.RowTemplate.Height = 24;
-            this.CustomerListDataGrid.Size = new System.Drawing.Size(794, 337);
-            this.CustomerListDataGrid.TabIndex = 5;
-            this.CustomerListDataGrid.Visible = false;
-            this.CustomerListDataGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerListDataGrid_CellMouseClick);
-            this.CustomerListDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerListDataGrid_KeyDown);
-            // 
-            // OrdersGroup
-            // 
-            this.OrdersGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.OrdersGroup.Controls.Add(this.TemOrderBtn);
-            this.OrdersGroup.Controls.Add(this.PreviousOrderIdLbl);
-            this.OrdersGroup.Controls.Add(this.SearchInvoiceLink);
-            this.OrdersGroup.Controls.Add(this.InvoiceNoLbl);
-            this.OrdersGroup.Controls.Add(this.InvoiceNoHeading);
-            this.OrdersGroup.Location = new System.Drawing.Point(946, 84);
-            this.OrdersGroup.Name = "OrdersGroup";
-            this.OrdersGroup.Size = new System.Drawing.Size(400, 72);
-            this.OrdersGroup.TabIndex = 0;
-            this.OrdersGroup.TabStop = false;
-            this.OrdersGroup.Text = "Order Section";
-            // 
-            // TemOrderBtn
-            // 
-            this.TemOrderBtn.BackColor = System.Drawing.Color.DarkOrange;
-            this.TemOrderBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TemOrderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TemOrderBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.TemOrderBtn.Location = new System.Drawing.Point(234, 20);
-            this.TemOrderBtn.Name = "TemOrderBtn";
-            this.TemOrderBtn.Size = new System.Drawing.Size(134, 30);
-            this.TemOrderBtn.TabIndex = 0;
-            this.TemOrderBtn.Text = "Temp Orders";
-            this.TemOrderBtn.UseVisualStyleBackColor = false;
-            this.TemOrderBtn.Click += new System.EventHandler(this.TemOrderBtn_Click);
-            // 
-            // PreviousOrderIdLbl
-            // 
-            this.PreviousOrderIdLbl.AutoSize = true;
-            this.PreviousOrderIdLbl.Location = new System.Drawing.Point(248, 0);
-            this.PreviousOrderIdLbl.Name = "PreviousOrderIdLbl";
-            this.PreviousOrderIdLbl.Size = new System.Drawing.Size(86, 16);
-            this.PreviousOrderIdLbl.TabIndex = 0;
-            this.PreviousOrderIdLbl.Text = "Prev Order Id";
-            this.PreviousOrderIdLbl.Visible = false;
-            this.PreviousOrderIdLbl.TextChanged += new System.EventHandler(this.PreviousOrderIdLbl_TextChanged);
-            // 
-            // SearchInvoiceLink
-            // 
-            this.SearchInvoiceLink.AutoSize = true;
-            this.SearchInvoiceLink.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SearchInvoiceLink.Location = new System.Drawing.Point(115, 23);
-            this.SearchInvoiceLink.Name = "SearchInvoiceLink";
-            this.SearchInvoiceLink.Size = new System.Drawing.Size(87, 16);
-            this.SearchInvoiceLink.TabIndex = 0;
-            this.SearchInvoiceLink.TabStop = true;
-            this.SearchInvoiceLink.Text = "Search Order";
-            this.SearchInvoiceLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SearchInvoiceLink_LinkClicked);
-            // 
-            // InvoiceNoLbl
-            // 
-            this.InvoiceNoLbl.AutoSize = true;
-            this.InvoiceNoLbl.Location = new System.Drawing.Point(13, 49);
-            this.InvoiceNoLbl.Name = "InvoiceNoLbl";
-            this.InvoiceNoLbl.Size = new System.Drawing.Size(74, 16);
-            this.InvoiceNoLbl.TabIndex = 0;
-            this.InvoiceNoLbl.Text = "Invoice No.";
-            // 
-            // InvoiceNoHeading
-            // 
-            this.InvoiceNoHeading.AutoSize = true;
-            this.InvoiceNoHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InvoiceNoHeading.Location = new System.Drawing.Point(8, 20);
-            this.InvoiceNoHeading.Name = "InvoiceNoHeading";
-            this.InvoiceNoHeading.Size = new System.Drawing.Size(109, 25);
-            this.InvoiceNoHeading.TabIndex = 0;
-            this.InvoiceNoHeading.Text = "Invoice No.";
-            // 
             // BillPadGrou
             // 
             this.BillPadGrou.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BillPadGrou.Controls.Add(this.CustomerLagerRecordChk);
             this.BillPadGrou.Controls.Add(this.EnglishInvoiceChk);
+            this.BillPadGrou.Controls.Add(this.ExportBtn);
             this.BillPadGrou.Controls.Add(this.lblRemainingAmount);
+            this.BillPadGrou.Controls.Add(this.ClearCartBtn);
             this.BillPadGrou.Controls.Add(this.BankTransferRaadioBtn);
             this.BillPadGrou.Controls.Add(this.CashRadioBtn);
+            this.BillPadGrou.Controls.Add(this.GenerateInvoicePdfBtn);
             this.BillPadGrou.Controls.Add(this.ReceivedAmountTxt);
+            this.BillPadGrou.Controls.Add(this.SaveOrderWithoutPrintBtn);
             this.BillPadGrou.Controls.Add(this.label7);
+            this.BillPadGrou.Controls.Add(this.SaveBillBtn);
             this.BillPadGrou.Controls.Add(this.TotalItemLbl);
+            this.BillPadGrou.Controls.Add(this.PrintPreviewBtn);
             this.BillPadGrou.Controls.Add(this.label8);
+            this.BillPadGrou.Controls.Add(this.SaveAndPrintOrderBtn);
             this.BillPadGrou.Controls.Add(this.TotalAmountLbl);
             this.BillPadGrou.Controls.Add(this.label6);
             this.BillPadGrou.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BillPadGrou.Location = new System.Drawing.Point(1367, 449);
+            this.BillPadGrou.Location = new System.Drawing.Point(1367, 272);
             this.BillPadGrou.Name = "BillPadGrou";
-            this.BillPadGrou.Size = new System.Drawing.Size(385, 336);
+            this.BillPadGrou.Size = new System.Drawing.Size(385, 512);
             this.BillPadGrou.TabIndex = 0;
             this.BillPadGrou.TabStop = false;
             this.BillPadGrou.Text = "Summary";
@@ -1521,17 +1544,90 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Total Amount";
             // 
+            // OrdersGroup
+            // 
+            this.OrdersGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrdersGroup.Controls.Add(this.TemOrderBtn);
+            this.OrdersGroup.Controls.Add(this.PreviousOrderIdLbl);
+            this.OrdersGroup.Controls.Add(this.SearchInvoiceLink);
+            this.OrdersGroup.Controls.Add(this.InvoiceNoLbl);
+            this.OrdersGroup.Controls.Add(this.InvoiceNoHeading);
+            this.OrdersGroup.Location = new System.Drawing.Point(10, 93);
+            this.OrdersGroup.Name = "OrdersGroup";
+            this.OrdersGroup.Size = new System.Drawing.Size(470, 79);
+            this.OrdersGroup.TabIndex = 0;
+            this.OrdersGroup.TabStop = false;
+            this.OrdersGroup.Text = "Order Section";
+            // 
+            // TemOrderBtn
+            // 
+            this.TemOrderBtn.BackColor = System.Drawing.Color.DarkOrange;
+            this.TemOrderBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.TemOrderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TemOrderBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.TemOrderBtn.Location = new System.Drawing.Point(234, 20);
+            this.TemOrderBtn.Name = "TemOrderBtn";
+            this.TemOrderBtn.Size = new System.Drawing.Size(134, 30);
+            this.TemOrderBtn.TabIndex = 0;
+            this.TemOrderBtn.Text = "Temp Orders";
+            this.TemOrderBtn.UseVisualStyleBackColor = false;
+            this.TemOrderBtn.Click += new System.EventHandler(this.TemOrderBtn_Click);
+            // 
+            // PreviousOrderIdLbl
+            // 
+            this.PreviousOrderIdLbl.AutoSize = true;
+            this.PreviousOrderIdLbl.Location = new System.Drawing.Point(248, 0);
+            this.PreviousOrderIdLbl.Name = "PreviousOrderIdLbl";
+            this.PreviousOrderIdLbl.Size = new System.Drawing.Size(86, 16);
+            this.PreviousOrderIdLbl.TabIndex = 0;
+            this.PreviousOrderIdLbl.Text = "Prev Order Id";
+            this.PreviousOrderIdLbl.Visible = false;
+            this.PreviousOrderIdLbl.TextChanged += new System.EventHandler(this.PreviousOrderIdLbl_TextChanged);
+            // 
+            // SearchInvoiceLink
+            // 
+            this.SearchInvoiceLink.AutoSize = true;
+            this.SearchInvoiceLink.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SearchInvoiceLink.Location = new System.Drawing.Point(115, 23);
+            this.SearchInvoiceLink.Name = "SearchInvoiceLink";
+            this.SearchInvoiceLink.Size = new System.Drawing.Size(87, 16);
+            this.SearchInvoiceLink.TabIndex = 0;
+            this.SearchInvoiceLink.TabStop = true;
+            this.SearchInvoiceLink.Text = "Search Order";
+            this.SearchInvoiceLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SearchInvoiceLink_LinkClicked);
+            // 
+            // InvoiceNoLbl
+            // 
+            this.InvoiceNoLbl.AutoSize = true;
+            this.InvoiceNoLbl.Location = new System.Drawing.Point(13, 49);
+            this.InvoiceNoLbl.Name = "InvoiceNoLbl";
+            this.InvoiceNoLbl.Size = new System.Drawing.Size(74, 16);
+            this.InvoiceNoLbl.TabIndex = 0;
+            this.InvoiceNoLbl.Text = "Invoice No.";
+            // 
+            // InvoiceNoHeading
+            // 
+            this.InvoiceNoHeading.AutoSize = true;
+            this.InvoiceNoHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InvoiceNoHeading.Location = new System.Drawing.Point(8, 20);
+            this.InvoiceNoHeading.Name = "InvoiceNoHeading";
+            this.InvoiceNoHeading.Size = new System.Drawing.Size(109, 25);
+            this.InvoiceNoHeading.TabIndex = 0;
+            this.InvoiceNoHeading.Text = "Invoice No.";
+            // 
             // ProductListGroup
             // 
             this.ProductListGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductListGroup.BackColor = System.Drawing.Color.White;
             this.ProductListGroup.Controls.Add(this.label9);
             this.ProductListGroup.Controls.Add(this.SuggestionGrid);
             this.ProductListGroup.Controls.Add(this.CartProductList);
-            this.ProductListGroup.Location = new System.Drawing.Point(8, 256);
+            this.ProductListGroup.Location = new System.Drawing.Point(8, 322);
             this.ProductListGroup.Name = "ProductListGroup";
-            this.ProductListGroup.Size = new System.Drawing.Size(1339, 528);
+            this.ProductListGroup.Size = new System.Drawing.Size(1339, 462);
             this.ProductListGroup.TabIndex = 2;
             this.ProductListGroup.TabStop = false;
             this.ProductListGroup.Text = "Items List";
@@ -1549,24 +1645,24 @@
             // SuggestionGrid
             // 
             this.SuggestionGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SuggestionGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SuggestionGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.SuggestionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SuggestionGrid.DefaultCellStyle = dataGridViewCellStyle6;
-            this.SuggestionGrid.Location = new System.Drawing.Point(22, 0);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SuggestionGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SuggestionGrid.Location = new System.Drawing.Point(25, 0);
             this.SuggestionGrid.Name = "SuggestionGrid";
             this.SuggestionGrid.ReadOnly = true;
             this.SuggestionGrid.RowHeadersWidth = 51;
@@ -1584,6 +1680,38 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CartProductList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CartProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.CartProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.CartProductList.DefaultCellStyle = dataGridViewCellStyle6;
+            this.CartProductList.Location = new System.Drawing.Point(9, 46);
+            this.CartProductList.Name = "CartProductList";
+            this.CartProductList.RowHeadersWidth = 51;
+            this.CartProductList.RowTemplate.Height = 24;
+            this.CartProductList.Size = new System.Drawing.Size(1315, 416);
+            this.CartProductList.TabIndex = 0;
+            this.CartProductList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CartProductList_CellClick);
+            this.CartProductList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CartProductList_CellEndEdit);
+            this.CartProductList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CartProductList_KeyDown);
+            // 
+            // CustomerListDataGrid
+            // 
+            this.CustomerListDataGrid.AllowUserToAddRows = false;
+            this.CustomerListDataGrid.AllowUserToDeleteRows = false;
+            this.CustomerListDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1591,8 +1719,8 @@
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CartProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.CartProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CustomerListDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.CustomerListDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1600,16 +1728,17 @@
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.CartProductList.DefaultCellStyle = dataGridViewCellStyle8;
-            this.CartProductList.Location = new System.Drawing.Point(9, 46);
-            this.CartProductList.Name = "CartProductList";
-            this.CartProductList.RowHeadersWidth = 51;
-            this.CartProductList.RowTemplate.Height = 24;
-            this.CartProductList.Size = new System.Drawing.Size(1315, 482);
-            this.CartProductList.TabIndex = 0;
-            this.CartProductList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CartProductList_CellClick);
-            this.CartProductList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CartProductList_CellEndEdit);
-            this.CartProductList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CartProductList_KeyDown);
+            this.CustomerListDataGrid.DefaultCellStyle = dataGridViewCellStyle8;
+            this.CustomerListDataGrid.Location = new System.Drawing.Point(123, 72);
+            this.CustomerListDataGrid.Name = "CustomerListDataGrid";
+            this.CustomerListDataGrid.ReadOnly = true;
+            this.CustomerListDataGrid.RowHeadersWidth = 51;
+            this.CustomerListDataGrid.RowTemplate.Height = 24;
+            this.CustomerListDataGrid.Size = new System.Drawing.Size(794, 337);
+            this.CustomerListDataGrid.TabIndex = 5;
+            this.CustomerListDataGrid.Visible = false;
+            this.CustomerListDataGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerListDataGrid_CellMouseClick);
+            this.CustomerListDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerListDataGrid_KeyDown);
             // 
             // ProductGroup
             // 
@@ -1632,7 +1761,7 @@
             this.ProductGroup.Controls.Add(this.productTypeDropdown);
             this.ProductGroup.Controls.Add(this.P_StockQtyTxt);
             this.ProductGroup.Controls.Add(this.ProductEngNameTxt);
-            this.ProductGroup.Location = new System.Drawing.Point(8, 151);
+            this.ProductGroup.Location = new System.Drawing.Point(8, 205);
             this.ProductGroup.Name = "ProductGroup";
             this.ProductGroup.Size = new System.Drawing.Size(1334, 99);
             this.ProductGroup.TabIndex = 0;
@@ -2195,8 +2324,9 @@
             // 
             // CustomerGroup
             // 
-            this.CustomerGroup.Controls.Add(this.ApplyAdvanceChk);
-            this.CustomerGroup.Controls.Add(this.lblAdvanceInfo);
+            this.CustomerGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CustomerGroup.Controls.Add(this.QRCodeBtn);
             this.CustomerGroup.Controls.Add(this.AddNewCustomerLink);
             this.CustomerGroup.Controls.Add(this.CustomerIdLbl);
             this.CustomerGroup.Controls.Add(this.ResetCustomerBtn);
@@ -2204,38 +2334,32 @@
             this.CustomerGroup.Controls.Add(this.CustomerNameTxt);
             this.CustomerGroup.Location = new System.Drawing.Point(8, 6);
             this.CustomerGroup.Name = "CustomerGroup";
-            this.CustomerGroup.Size = new System.Drawing.Size(1334, 73);
+            this.CustomerGroup.Size = new System.Drawing.Size(938, 73);
             this.CustomerGroup.TabIndex = 0;
             this.CustomerGroup.TabStop = false;
             this.CustomerGroup.Text = "Customer Secion";
             // 
-            // ApplyAdvanceChk
+            // QRCodeBtn
             // 
-            this.ApplyAdvanceChk.AutoSize = true;
-            this.ApplyAdvanceChk.Location = new System.Drawing.Point(942, 15);
-            this.ApplyAdvanceChk.Name = "ApplyAdvanceChk";
-            this.ApplyAdvanceChk.Size = new System.Drawing.Size(141, 20);
-            this.ApplyAdvanceChk.TabIndex = 7;
-            this.ApplyAdvanceChk.Text = "ApplyAdvanceChk";
-            this.ApplyAdvanceChk.UseVisualStyleBackColor = true;
-            this.ApplyAdvanceChk.Visible = false;
-            this.ApplyAdvanceChk.CheckedChanged += new System.EventHandler(this.ApplyAdvanceChk_CheckedChanged);
-            // 
-            // lblAdvanceInfo
-            // 
-            this.lblAdvanceInfo.AutoSize = true;
-            this.lblAdvanceInfo.Location = new System.Drawing.Point(940, 44);
-            this.lblAdvanceInfo.Name = "lblAdvanceInfo";
-            this.lblAdvanceInfo.Size = new System.Drawing.Size(96, 16);
-            this.lblAdvanceInfo.TabIndex = 6;
-            this.lblAdvanceInfo.Text = "lblAdvanceInfo";
-            this.lblAdvanceInfo.Visible = false;
+            this.QRCodeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.QRCodeBtn.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.QRCodeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.QRCodeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QRCodeBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.QRCodeBtn.Location = new System.Drawing.Point(828, 23);
+            this.QRCodeBtn.Name = "QRCodeBtn";
+            this.QRCodeBtn.Size = new System.Drawing.Size(103, 39);
+            this.QRCodeBtn.TabIndex = 6;
+            this.QRCodeBtn.Text = "QR Codes";
+            this.QRCodeBtn.UseVisualStyleBackColor = false;
+            this.QRCodeBtn.Click += new System.EventHandler(this.QRCodeBtn_Click);
             // 
             // AddNewCustomerLink
             // 
+            this.AddNewCustomerLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AddNewCustomerLink.AutoSize = true;
             this.AddNewCustomerLink.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddNewCustomerLink.Location = new System.Drawing.Point(806, 8);
+            this.AddNewCustomerLink.Location = new System.Drawing.Point(696, 8);
             this.AddNewCustomerLink.Name = "AddNewCustomerLink";
             this.AddNewCustomerLink.Size = new System.Drawing.Size(122, 16);
             this.AddNewCustomerLink.TabIndex = 5;
@@ -2255,13 +2379,14 @@
             // 
             // ResetCustomerBtn
             // 
+            this.ResetCustomerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ResetCustomerBtn.BackColor = System.Drawing.Color.Red;
             this.ResetCustomerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetCustomerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResetCustomerBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ResetCustomerBtn.Location = new System.Drawing.Point(799, 25);
+            this.ResetCustomerBtn.Location = new System.Drawing.Point(692, 25);
             this.ResetCustomerBtn.Name = "ResetCustomerBtn";
-            this.ResetCustomerBtn.Size = new System.Drawing.Size(124, 39);
+            this.ResetCustomerBtn.Size = new System.Drawing.Size(130, 39);
             this.ResetCustomerBtn.TabIndex = 0;
             this.ResetCustomerBtn.Text = "Customer Delete";
             this.ResetCustomerBtn.UseVisualStyleBackColor = false;
@@ -2281,6 +2406,8 @@
             // 
             this.CustomerNameTxt.AcceptsReturn = false;
             this.CustomerNameTxt.AcceptsTab = false;
+            this.CustomerNameTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CustomerNameTxt.AnimationSpeed = 200;
             this.CustomerNameTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.CustomerNameTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
@@ -2304,7 +2431,7 @@
             this.CustomerNameTxt.IconRight = null;
             this.CustomerNameTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.CustomerNameTxt.Lines = new string[0];
-            this.CustomerNameTxt.Location = new System.Drawing.Point(115, 19);
+            this.CustomerNameTxt.Location = new System.Drawing.Point(119, 19);
             this.CustomerNameTxt.MaxLength = 32767;
             this.CustomerNameTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.CustomerNameTxt.Modified = false;
@@ -2340,7 +2467,7 @@
             this.CustomerNameTxt.SelectionLength = 0;
             this.CustomerNameTxt.SelectionStart = 0;
             this.CustomerNameTxt.ShortcutsEnabled = true;
-            this.CustomerNameTxt.Size = new System.Drawing.Size(674, 41);
+            this.CustomerNameTxt.Size = new System.Drawing.Size(566, 41);
             this.CustomerNameTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.CustomerNameTxt.TabIndex = 0;
             this.CustomerNameTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -2533,11 +2660,11 @@
             this.ClearTempOrderTabls.ColorContrastOnClick = 45;
             this.ClearTempOrderTabls.ColorContrastOnHover = 45;
             this.ClearTempOrderTabls.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges9.BottomLeft = true;
-            borderEdges9.BottomRight = true;
-            borderEdges9.TopLeft = true;
-            borderEdges9.TopRight = true;
-            this.ClearTempOrderTabls.CustomizableEdges = borderEdges9;
+            borderEdges10.BottomLeft = true;
+            borderEdges10.BottomRight = true;
+            borderEdges10.TopLeft = true;
+            borderEdges10.TopRight = true;
+            this.ClearTempOrderTabls.CustomizableEdges = borderEdges10;
             this.ClearTempOrderTabls.DialogResult = System.Windows.Forms.DialogResult.None;
             this.ClearTempOrderTabls.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.ClearTempOrderTabls.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -2635,11 +2762,11 @@
             this.TruncateOrder_OrderDetailBtn.ColorContrastOnClick = 45;
             this.TruncateOrder_OrderDetailBtn.ColorContrastOnHover = 45;
             this.TruncateOrder_OrderDetailBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges10.BottomLeft = true;
-            borderEdges10.BottomRight = true;
-            borderEdges10.TopLeft = true;
-            borderEdges10.TopRight = true;
-            this.TruncateOrder_OrderDetailBtn.CustomizableEdges = borderEdges10;
+            borderEdges11.BottomLeft = true;
+            borderEdges11.BottomRight = true;
+            borderEdges11.TopLeft = true;
+            borderEdges11.TopRight = true;
+            this.TruncateOrder_OrderDetailBtn.CustomizableEdges = borderEdges11;
             this.TruncateOrder_OrderDetailBtn.DialogResult = System.Windows.Forms.DialogResult.None;
             this.TruncateOrder_OrderDetailBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.TruncateOrder_OrderDetailBtn.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -2720,24 +2847,14 @@
             // 
             this.OrderPrintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.OrderPrintDocument_PrintPage);
             // 
-            // CustomerLagerRecordChk
-            // 
-            this.CustomerLagerRecordChk.AutoSize = true;
-            this.CustomerLagerRecordChk.Location = new System.Drawing.Point(189, 25);
-            this.CustomerLagerRecordChk.Name = "CustomerLagerRecordChk";
-            this.CustomerLagerRecordChk.Size = new System.Drawing.Size(160, 24);
-            this.CustomerLagerRecordChk.TabIndex = 12;
-            this.CustomerLagerRecordChk.Text = "Record in Ledger";
-            this.CustomerLagerRecordChk.UseVisualStyleBackColor = true;
-            // 
             // BillPadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1776, 874);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.TopPanel);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BillPadForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bill Pad";
@@ -2747,21 +2864,23 @@
             this.MainPanel.ResumeLayout(false);
             this.InvoicePageTabControl.ResumeLayout(false);
             this.BilPad.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ProductPricesGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ProductPriceDataGridView)).EndInit();
             this.CustomerPreviousOrderHistoryGroup.ResumeLayout(false);
             this.CustomerPreviousOrderHistoryGroup.PerformLayout();
             this.PreOrderGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ProductOrderHistoryDataGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerListDataGrid)).EndInit();
-            this.OrdersGroup.ResumeLayout(false);
-            this.OrdersGroup.PerformLayout();
             this.BillPadGrou.ResumeLayout(false);
             this.BillPadGrou.PerformLayout();
+            this.OrdersGroup.ResumeLayout(false);
+            this.OrdersGroup.PerformLayout();
             this.ProductListGroup.ResumeLayout(false);
             this.ProductListGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SuggestionGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CartProductList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerListDataGrid)).EndInit();
             this.ProductGroup.ResumeLayout(false);
             this.ProductGroup.PerformLayout();
             this.CustomerGroup.ResumeLayout(false);
@@ -2838,8 +2957,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton TruncateOrder_OrderDetailBtn;
         private System.Windows.Forms.LinkLabel AddNewCustomerLink;
         private System.Windows.Forms.DataGridView CustomerListDataGrid;
-        private System.Windows.Forms.GroupBox PreOrderGroup;
-        private System.Windows.Forms.DataGridView ProductOrderHistoryDataGrid;
         private System.Windows.Forms.Label label10;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton SaveOrderWithoutPrintBtn;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton ExportBtn;
@@ -2863,5 +2980,10 @@
         private System.Windows.Forms.CheckBox ApplyAdvanceChk;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton LedgerEntryFromBtn;
         private System.Windows.Forms.CheckBox CustomerLagerRecordChk;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton LedgerListBtn;
+        private System.Windows.Forms.GroupBox PreOrderGroup;
+        private System.Windows.Forms.DataGridView ProductOrderHistoryDataGrid;
+        private System.Windows.Forms.Button QRCodeBtn;
     }
 }

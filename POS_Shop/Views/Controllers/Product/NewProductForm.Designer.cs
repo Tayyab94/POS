@@ -87,6 +87,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cmbProductType = new System.Windows.Forms.ComboBox();
             this.btnAddPrice = new System.Windows.Forms.Button();
+            this.AddNewProductTypeLink = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.ProductFromGrp.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -1146,6 +1147,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.AddNewProductTypeLink);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.cmbProductType);
             this.panel2.Controls.Add(this.btnAddPrice);
@@ -1180,6 +1182,17 @@
             this.btnAddPrice.TabIndex = 2;
             this.btnAddPrice.Text = "Add Price Type";
             this.btnAddPrice.UseVisualStyleBackColor = true;
+            // 
+            // AddNewProductTypeLink
+            // 
+            this.AddNewProductTypeLink.AutoSize = true;
+            this.AddNewProductTypeLink.Location = new System.Drawing.Point(661, 19);
+            this.AddNewProductTypeLink.Name = "AddNewProductTypeLink";
+            this.AddNewProductTypeLink.Size = new System.Drawing.Size(146, 16);
+            this.AddNewProductTypeLink.TabIndex = 3;
+            this.AddNewProductTypeLink.TabStop = true;
+            this.AddNewProductTypeLink.Text = "Add New Product Type";
+            this.AddNewProductTypeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddNewProductTypeLink_LinkClicked);
             // 
             // NewProductForm
             // 
@@ -1234,5 +1247,6 @@
         private Bunifu.UI.WinForms.BunifuTextBox ProductEngNameTxt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.LinkLabel AddNewProductTypeLink;
     }
 }

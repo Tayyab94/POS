@@ -1,7 +1,9 @@
 ﻿using POS_Shop.Helpers;
+using POS_Shop.Models;
 using POS_Shop.Models.AuthModel;
 using POS_Shop.Views.Account;
 using POS_Shop.Views.Account.Auth;
+using POS_Shop.Views.BankingQR;
 using POS_Shop.Views.BillScreen;
 using POS_Shop.Views.Controllers.Product;
 using POS_Shop.Views.Controllers.Supplier;
@@ -10,13 +12,9 @@ using POS_Shop.Views.LicenseManagement;
 using POS_Shop.Views.Reports;
 using POS_Shop.Views.Settings;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POS_Shop
@@ -31,6 +29,9 @@ namespace POS_Shop
             this.KeyPreview = true; // Enable form to capture key events
             this.KeyDown += MasterLayoutForm_KeyDown;
             this.Load += MasterLayoutForm_Load;
+
+            LoggedInUserLbl.Text = $"Welcome, {Properties.Settings.Default.UserName}";
+
         }
 
         private void MasterLayoutForm_Load(object sender, EventArgs e)
@@ -141,16 +142,44 @@ namespace POS_Shop
 
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
+            //SessionManager.Logout();
+            //foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+            //{
+            //    //if (form != this)
+            //    //    form.Close();
+            //    form.Close();
+            //}
+
+            //var loginForm = new LoginForm();
+            //loginForm.Show();
+
             SessionManager.Logout();
+
+            // Hide the main form instead of closing it
+            this.Hide();
+
+            // Close other forms except this one
             foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
             {
-                //if (form != this)
-                //    form.Close();
-                form.Close();
+                if (form != this)
+                    form.Close();
             }
 
+            // Show login form
             var loginForm = new LoginForm();
-            loginForm.Show();
+            loginForm.ShowDialog();
+
+            // If login successful, show main form again
+            if (loginForm.DialogResult == DialogResult.OK)
+            {
+                this.Show();
+                // Refresh or reset any data as needed
+            }
+            else
+            {
+                // User cancelled login, close everything
+                this.Close();
+            }
         }
 
       
@@ -522,5 +551,62 @@ namespace POS_Shop
         //}
 
         #endregion
+
+        private void importSupplierExcelFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadingManager.ShowLoading();
+                var importExcelForm = new ImportSupplierExcelForm();
+                importExcelForm.Owner = this;
+                importExcelForm.Show();
+            }
+            finally
+            {
+                LoadingManager.HideLoading();
+            }
+        }
+
+        private void importCustomerLedgerExcelFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Check before creating the form
+            using (var context = new POSDbContext())
+            {
+                if (context.CustomerLedgerEntries.Any())
+                {
+                    MessageBox.Show("Customer ledger data already exists in the database.\n" +
+                                   "Import functionality is disabled to prevent duplicate entries.",
+                                   "Import Disabled",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
+            // Only proceed if no data exists
+            using (var f = new ImportCustomerLedgerExcel())
+            {
+                f.ShowDialog(this);
+            }
+
+        }
+
+        private void DuePurchaseOrderBtn_Click(object sender, EventArgs e)
+        {
+            using (var db = new POSDbContext())
+            {
+                string connStr = db.Database.Connection.ConnectionString;
+                var form = new PendingPurchasesForm(connStr);
+                form.Show();
+            }
+        }
+
+        private void qRCodeImagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var f = new ImageManagementForm())
+            {
+                f.ShowDialog(this);
+            }
+        }
     }
 }

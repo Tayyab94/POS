@@ -41,6 +41,13 @@ namespace POS_Shop.Views.Controllers.Product
 
         private void WireEvents()
         {
+            // Remove existing handlers first to prevent duplication
+            btnAddPrice.Click -= BtnAddPrice_Click;
+            ProductSaveBtn.Click -= BtnSaveProduct_Click;
+            ProductResetFormBtn.Click -= (s, e) => ResetForm();
+            updateProductBtn.Click -= BtnUpdateProduct_Click;
+
+
             btnAddPrice.Click += BtnAddPrice_Click;
             ProductSaveBtn.Click += BtnSaveProduct_Click;
             ProductResetFormBtn.Click += (s, e) => ResetForm();
@@ -900,7 +907,22 @@ namespace POS_Shop.Views.Controllers.Product
             dbHelper?.Dispose();
         }
 
-        
+        private void AddNewProductTypeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var form = new Form
+            {
+                Text = "Add New Product Unit",
+                StartPosition = FormStartPosition.CenterScreen,
+                Width = 1050,
+                Height = 625
+            };
+            var ProductUnitFormCtrl = new ProductUnitControl() { Dock= DockStyle.Fill };
+            form.Controls.Add(ProductUnitFormCtrl);
+            form.ShowDialog();
+
+
+            LoadProductUnitsForPriceTypeDropdown();
+        }
     }
 
 

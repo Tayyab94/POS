@@ -251,11 +251,73 @@ namespace POS_Shop.Views.CustomerLoanScreensV1
 
             try
             {
+                //using (var context = new POSDbContext())
+                //{
+                //    var results = await context.Customers
+                //        .Where(c => c.CustomerName.Contains(searchText)
+                //                 || c.ContactNo.Contains(searchText))
+                //        .OrderBy(c => c.CustomerName)
+                //        .Take(10)
+                //        .Select(c => new CustomerSearchResult
+                //        {
+                //            Id = c.Id,
+                //            CustomerName = c.CustomerName,
+                //            ContactNo = c.ContactNo
+                //        })
+                //        .ToListAsync();
+
+                //    // Fetch balances for the results
+                //    var ids = results.Select(r => r.Id).ToList();
+                //    var lastEntries = await context.CustomerLedgerEntries
+                //        .Where(e2 => ids.Contains(e2.CustomerId))
+                //        .GroupBy(e2 => e2.CustomerId)
+                //        .Select(g => new
+                //        {
+                //            CustomerId = g.Key,
+                //            Balance = g.OrderByDescending(x => x.Id)
+                //                       .Select(x => x.Balance)
+                //                       .FirstOrDefault()
+                //        })
+                //        .ToListAsync();
+
+                //    foreach (var r in results)
+                //    {
+                //        var entry = lastEntries.FirstOrDefault(x => x.CustomerId == r.Id);
+                //        r.CurrentBalance = entry?.Balance ?? 0;
+                //    }
+
+                //    _customers = results;
+
+                //    // Only show suggestions if no customer is selected
+                //    if (!_selectedCustomerId.HasValue)
+                //    {
+                //        BindSuggestions();
+                //    }
+                //}
+
+
                 using (var context = new POSDbContext())
                 {
-                    var results = await context.Customers
-                        .Where(c => c.CustomerName.Contains(searchText)
-                                 || c.ContactNo.Contains(searchText))
+                    // Token split - compatible with all .NET versions
+                    var tokens = searchText
+                        .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(t => t.Trim())
+                        .Where(t => t.Length > 0)
+                        .ToList();
+
+                    // Build base query with token matching
+                    IQueryable<Customer> query = context.Customers;
+
+                    foreach (var token in tokens)
+                    {
+                        var t = token; // capture for closure
+                        query = query.Where(c =>
+                            c.CustomerName.Contains(t) ||
+                            c.ContactNo.Contains(t));
+                    }
+
+                    // Step 1: Fetch matched customers (max 10)
+                    var results = await query
                         .OrderBy(c => c.CustomerName)
                         .Take(10)
                         .Select(c => new CustomerSearchResult
@@ -266,29 +328,31 @@ namespace POS_Shop.Views.CustomerLoanScreensV1
                         })
                         .ToListAsync();
 
-                    // Fetch balances for the results
+                    // Step 2: Fetch balances in ONE query using GroupBy (same as your original)
                     var ids = results.Select(r => r.Id).ToList();
+
                     var lastEntries = await context.CustomerLedgerEntries
-                        .Where(e2 => ids.Contains(e2.CustomerId))
-                        .GroupBy(e2 => e2.CustomerId)
+                        .Where(e => ids.Contains(e.CustomerId))
+                        .GroupBy(e => e.CustomerId)
                         .Select(g => new
                         {
                             CustomerId = g.Key,
                             Balance = g.OrderByDescending(x => x.Id)
-                                       .Select(x => x.Balance)
-                                       .FirstOrDefault()
+                                          .Select(x => x.Balance)
+                                          .FirstOrDefault()
                         })
                         .ToListAsync();
 
+                    // Step 3: Map balances in-memory (O(n) with dictionary instead of O(n²) with FirstOrDefault)
+                    var balanceMap = lastEntries.ToDictionary(x => x.CustomerId, x => x.Balance);
+
                     foreach (var r in results)
                     {
-                        var entry = lastEntries.FirstOrDefault(x => x.CustomerId == r.Id);
-                        r.CurrentBalance = entry?.Balance ?? 0;
+                        r.CurrentBalance = balanceMap.TryGetValue(r.Id, out var balance) ? balance : 0;
                     }
 
                     _customers = results;
 
-                    // Only show suggestions if no customer is selected
                     if (!_selectedCustomerId.HasValue)
                     {
                         BindSuggestions();

@@ -66,9 +66,9 @@
             this.lblNotesCap = new System.Windows.Forms.Label();
             this.lblNotesVal = new System.Windows.Forms.Label();
             this.pnlActionBar = new System.Windows.Forms.Panel();
+            this.BtnPDF = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.BtnPDF = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.pnlStatusBadge.SuspendLayout();
             this.pnlMeta.SuspendLayout();
@@ -517,9 +517,9 @@
             this.pnlTotals.Controls.Add(this.pnlSep);
             this.pnlTotals.Controls.Add(this.lblNetCap);
             this.pnlTotals.Controls.Add(this.lblNetVal);
-            this.pnlTotals.Location = new System.Drawing.Point(1392, 10);
+            this.pnlTotals.Location = new System.Drawing.Point(540, 10);
             this.pnlTotals.Name = "pnlTotals";
-            this.pnlTotals.Size = new System.Drawing.Size(400, 110);
+            this.pnlTotals.Size = new System.Drawing.Size(447, 110);
             this.pnlTotals.TabIndex = 1;
             // 
             // lblSubCap
@@ -630,6 +630,23 @@
             this.pnlActionBar.Size = new System.Drawing.Size(1002, 54);
             this.pnlActionBar.TabIndex = 2;
             // 
+            // BtnPDF
+            // 
+            this.BtnPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnPDF.BackColor = System.Drawing.Color.SlateBlue;
+            this.BtnPDF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnPDF.FlatAppearance.BorderSize = 0;
+            this.BtnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPDF.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.BtnPDF.ForeColor = System.Drawing.Color.White;
+            this.BtnPDF.Location = new System.Drawing.Point(421, 9);
+            this.BtnPDF.Name = "BtnPDF";
+            this.BtnPDF.Size = new System.Drawing.Size(160, 36);
+            this.BtnPDF.TabIndex = 2;
+            this.BtnPDF.Text = "🖨  PDF / Export";
+            this.BtnPDF.UseVisualStyleBackColor = false;
+            this.BtnPDF.Click += new System.EventHandler(this.BtnPDF_Click);
+            // 
             // btnPrint
             // 
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -663,23 +680,6 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            // 
-            // BtnPDF
-            // 
-            this.BtnPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnPDF.BackColor = System.Drawing.Color.SlateBlue;
-            this.BtnPDF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnPDF.FlatAppearance.BorderSize = 0;
-            this.BtnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPDF.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.BtnPDF.ForeColor = System.Drawing.Color.White;
-            this.BtnPDF.Location = new System.Drawing.Point(421, 9);
-            this.BtnPDF.Name = "BtnPDF";
-            this.BtnPDF.Size = new System.Drawing.Size(160, 36);
-            this.BtnPDF.TabIndex = 2;
-            this.BtnPDF.Text = "🖨  PDF / Export";
-            this.BtnPDF.UseVisualStyleBackColor = false;
-            this.BtnPDF.Click += new System.EventHandler(this.BtnPDF_Click);
             // 
             // PurchaseDetailForm
             // 

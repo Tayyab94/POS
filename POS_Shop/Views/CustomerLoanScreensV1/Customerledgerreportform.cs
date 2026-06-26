@@ -155,7 +155,7 @@ namespace POS_Shop.Views.CustomerLoanScreensV1
                 // ── KPI Row ───────────────────────────────────────────────────
                 decimal totalDebit = _rows.Sum(r => r.Debit);
                 decimal totalCredit = _rows.Sum(r => r.Credit);
-                decimal lastBal = _rows.Any() ? _rows.Last().Balance : 0;
+                decimal lastBal = _rows.Any() ? _rows.First().Balance : 0;
 
                 using (var kpiFont = new Font("Segoe UI", 9, FontStyle.Bold))
                 {
@@ -445,7 +445,7 @@ namespace POS_Shop.Views.CustomerLoanScreensV1
                         ws.Cell(totRow, 3).FormulaA1 = $"=SUM(C6:C{_rows.Count + 5})";
                         ws.Cell(totRow, 4).FormulaA1 = $"=SUM(D6:D{_rows.Count + 5})";
 
-                        decimal lastBal = _rows.Any() ? _rows.Last().Balance : 0;
+                        decimal lastBal = _rows.Any() ? _rows.First().Balance : 0;
                         ws.Cell(totRow, 5).Value = Math.Abs(lastBal);
                         ws.Cell(totRow, 6).Value = lastBal > 0 ? "LOAN" : lastBal < 0 ? "ADVANCE" : "CLEAR";
 

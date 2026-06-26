@@ -36,6 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.SearchOrderTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -43,6 +44,7 @@
             this.NextPageBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.OrderListDataGrid = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.InvoiceNoLbl = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.OrderListDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,6 +122,7 @@
             this.SearchOrderTxt.UseSystemPasswordChar = false;
             this.SearchOrderTxt.WordWrap = true;
             this.SearchOrderTxt.TextChange += new System.EventHandler(this.SearchOrderTxt_TextChange);
+            this.SearchOrderTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchOrderTxt_KeyDown);
             // 
             // label1
             // 
@@ -135,7 +138,7 @@
             // 
             this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(341, 151);
+            this.lblStatus.Location = new System.Drawing.Point(343, 156);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(44, 16);
             this.lblStatus.TabIndex = 21;
@@ -269,6 +272,14 @@
             this.OrderListDataGrid.HeaderForeColor = System.Drawing.Color.White;
             this.OrderListDataGrid.Location = new System.Drawing.Point(13, 183);
             this.OrderListDataGrid.Name = "OrderListDataGrid";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.OrderListDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.OrderListDataGrid.RowHeadersVisible = false;
             this.OrderListDataGrid.RowHeadersWidth = 51;
             this.OrderListDataGrid.RowTemplate.Height = 40;
@@ -277,6 +288,7 @@
             this.OrderListDataGrid.TabIndex = 25;
             this.OrderListDataGrid.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             this.OrderListDataGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.OrderListDataGrid_CellMouseClick);
+            this.OrderListDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OrderListDataGrid_KeyDown);
             // 
             // InvoiceNoLbl
             // 
@@ -287,10 +299,22 @@
             this.InvoiceNoLbl.TabIndex = 26;
             this.InvoiceNoLbl.Text = "InvoiceNo";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.label2.Location = new System.Drawing.Point(16, 156);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(238, 18);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Ctrl+P (Print) - Ctrl+D (Delete)";
+            // 
             // TempOrderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.InvoiceNoLbl);
             this.Controls.Add(this.OrderListDataGrid);
             this.Controls.Add(this.PreviousPageBtn);
@@ -315,5 +339,6 @@
         private Bunifu.UI.WinForms.BunifuImageButton NextPageBtn;
         private Bunifu.UI.WinForms.BunifuDataGridView OrderListDataGrid;
         public System.Windows.Forms.Label InvoiceNoLbl;
+        private System.Windows.Forms.Label label2;
     }
 }

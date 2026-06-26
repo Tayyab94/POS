@@ -63,6 +63,7 @@ namespace POS_Shop.Views.Controllers.Product
                 // Update cursor for next page
                 if (result.data.Any())
                 {
+                    PreviousCursor=result.data.First().Id; // First item of current page
                     CurrentCursor = result.data.Last().Id;
                 }
 
@@ -364,6 +365,9 @@ namespace POS_Shop.Views.Controllers.Product
                         productRepo.Save();
                         MessageBox.Show("Product deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         selectedProductIds.Remove(productId);
+                        //  ClearSelection();
+
+                        CurrentCursor= PreviousCursor -1;
                         await LoadProductsForDataGridView();
                     }
                     else
@@ -1023,7 +1027,8 @@ namespace POS_Shop.Views.Controllers.Product
         {
             var form = new NewProductForm();
             form.ShowDialog();
-
+            CurrentCursor = PreviousCursor - 1;
+            await LoadProductsForDataGridView();
         }
 
         private void btnManagePrices_Click(object sender, EventArgs e)
@@ -1064,26 +1069,34 @@ namespace POS_Shop.Views.Controllers.Product
 
         private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
-
-            // Simple check for any selection
-            if (ProductListGrid.SelectedRows.Count == 0)
+            try
             {
-                MessageBox.Show("Please select a product first.", "No Selection",
-                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                // Simple check for any selection
+                if (ProductListGrid.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a product first.", "No Selection",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DataGridViewRow row = ProductListGrid.SelectedRows[0];
+
+                // Quick validation
+                if (row.Cells["ID"].Value == null ||
+                    !int.TryParse(row.Cells["ID"].Value.ToString(), out int productId))
+                {
+                    MessageBox.Show("Invalid product selection.", "Error",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                DeleteProductById(productId);
             }
-
-            DataGridViewRow row = ProductListGrid.SelectedRows[0];
-
-            // Quick validation
-            if (row.Cells["ID"].Value == null ||
-                !int.TryParse(row.Cells["ID"].Value.ToString(), out int productId))
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid product selection.", "Error",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("An Error occur", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            DeleteProductById(productId);
+            
 
         }
     }

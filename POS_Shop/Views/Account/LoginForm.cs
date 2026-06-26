@@ -21,6 +21,8 @@ namespace POS_Shop.Views.Account
             InitializeComponent();
             userNamelbl.AutoSize = true;
             userPasswordLbl.AutoSize = true;
+            userEmailTxt.Focus();
+            userEmailTxt.SelectAll();
         }
 
         private void loginBtn_Click(object sender, EventArgs e)

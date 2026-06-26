@@ -233,6 +233,7 @@
             this.btnDeleteProduct.Text = "🗑️ Delete";
             this.btnDeleteProduct.UseVisualStyleBackColor = false;
             this.btnDeleteProduct.Click += new System.EventHandler(this.btnDeleteProduct_Click);
+
             // 
             // ProductFormLbl
             // 

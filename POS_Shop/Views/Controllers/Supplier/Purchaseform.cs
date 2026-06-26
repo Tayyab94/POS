@@ -1255,6 +1255,7 @@
 using POS_Shop.Models;
 using POS_Shop.Models.Suppliers;
 using System;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -1362,7 +1363,11 @@ namespace POS_Shop.Views.Controllers.Supplier
                     .FirstOrDefault();
 
                 if (existing != null)
+                {
+
                     LoadExistingPurchase(existing);
+                    CheckExistingOrderPaidStatus();
+                }
                 else if (_existingPurchaseId.HasValue)
                     SwitchToNewMode();
             }
@@ -1417,6 +1422,21 @@ namespace POS_Shop.Views.Controllers.Supplier
             SetEditModeBanner(true);
         }
 
+        private void CheckExistingOrderPaidStatus()
+        {
+            if (!_existingPurchaseId.HasValue)
+            {
+               // OrderStatusInfoLbl.Text = string.Empty;
+                return;
+            }
+            using (var context = new POSDbContext())
+            {
+                decimal data = context.Purchases.Where(s => s.Id.Equals(_existingPurchaseId.Value))
+                    .FirstOrDefault().TotalPaid;
+                lblGridTitle.Text = string.Concat(lblGridTitle.Text, data >= 1 ? $"- You have already paid: Rs. {data.ToString("F0")} againt this order":string.Empty);
+            }
+        }
+
         private void SwitchToNewMode()
         {
             _existingPurchaseId = null;
@@ -1448,6 +1468,7 @@ namespace POS_Shop.Views.Controllers.Supplier
         private void DtpPurchaseDate_ValueChanged(object sender, EventArgs e)
         {
             CheckForExistingPurchase();
+            CheckExistingOrderPaidStatus();
         }
 
         // ══════════════════════════════════════════════════════════════════════
@@ -1785,6 +1806,43 @@ namespace POS_Shop.Views.Controllers.Supplier
         //  DATAGRID EVENTS
         // ══════════════════════════════════════════════════════════════════════
 
+        //private void DgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex < 0) return;
+        //    if (dgvItems.Columns[e.ColumnIndex].Name != "colDelete") return;
+
+        //    if (MessageBox.Show("Remove this item?", "Confirm",
+        //        MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+        //        return;
+
+        //    var row = dgvItems.Rows[e.RowIndex];
+
+        //    int purchaseItemId = row.Cells["colSrNo"].Tag is int t ? t : 0;
+        //    if (purchaseItemId > 0 && _existingPurchaseId.HasValue)
+        //    {
+        //        try
+        //        {
+        //            var dbItem = _db.PurchaseItems.FirstOrDefault(i => i.Id == purchaseItemId);
+        //            if (dbItem != null)
+        //            {
+        //                dbItem.IsDeleted = true;
+        //                _db.SaveChanges();
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Could not remove item from DB:\n" + ex.Message);
+        //            return;
+        //        }
+        //    }
+
+        //    dgvItems.Rows.RemoveAt(e.RowIndex);
+        //    Renumber();
+        //    UpdateItemCount();
+        //    RefreshTotals();
+        //}
+
+
         private void DgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -1796,16 +1854,91 @@ namespace POS_Shop.Views.Controllers.Supplier
 
             var row = dgvItems.Rows[e.RowIndex];
 
-            int purchaseItemId = row.Cells["colSrNo"].Tag is int t ? t : 0;
+            string prod_code = row.Cells["colProductCode"].Value.ToString();
+
+            string prod_name = row.Cells["colProductName"].Value.ToString();
+
+            // If this row came from the DB, soft-delete it immediately so the
+            // change is persisted even if the user cancels without clicking Save.
+            int purchaseItemId = row.Cells["colSrNo"].Value is int t ? t : 0;
             if (purchaseItemId > 0 && _existingPurchaseId.HasValue)
             {
+                if (dgvItems.Rows.Count == 1 & (_db.SupplierPaymentDetails
+                     .Any(spd => spd.PurchaseId == _existingPurchaseId.Value)))
+                {
+                    MessageBox.Show(
+                    "Cannot delete this purchase!\n\n" +
+                    "Reason: Payments have been made against this order.\n\n" +
+                    "Action Required:\n" +
+                    "1. First reverse/refund the payments, OR\n" +
+                    "2. Create a Purchase Return/Credit Note instead\n" +
+                    "3. Contact accounts department for assistance",
+                    "Deletion Restricted",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                    return;
+                }
+
                 try
                 {
-                    var dbItem = _db.PurchaseItems.FirstOrDefault(i => i.Id == purchaseItemId);
-                    if (dbItem != null)
+                    var pr = _db.Products.FirstOrDefault(s => s.SearchByProductCode == prod_code && s.ProductEnglishName == prod_name).Id;
+
+                    if (pr > 0)
                     {
-                        dbItem.IsDeleted = true;
-                        _db.SaveChanges();
+                        var dbItem = _db.PurchaseItems.FirstOrDefault(i => i.ProductId == pr && i.IsDeleted == false);
+                        if (dbItem != null)
+                        {
+                            dbItem.IsDeleted = true;
+                            _db.SaveChanges();
+                            if (dgvItems.Rows.Count == 1)
+                            {
+                                using (var transaction = _db.Database.BeginTransaction())
+                                {
+                                    try
+                                    {
+                                        var purchaseId = _existingPurchaseId.Value;
+
+                                        // 1. Delete SupplierPaymentDetails
+                                        _db.Database.ExecuteSqlCommand(
+                                            "DELETE FROM SupplierPaymentDetails WHERE PurchaseId = @purchaseId",
+                                            new SqlParameter("@purchaseId", purchaseId));
+
+                                        // 2. Delete PurchaseItems
+                                        _db.Database.ExecuteSqlCommand(
+                                            "DELETE FROM PurchaseItems WHERE PurchaseId = @purchaseId",
+                                            new SqlParameter("@purchaseId", purchaseId));
+
+                                        // 3. Delete Purchase
+                                        _db.Database.ExecuteSqlCommand(
+                                            "DELETE FROM Purchases WHERE Id = @purchaseId",
+                                            new SqlParameter("@purchaseId", purchaseId));
+
+                                        // 4. Delete orphaned SupplierPayments
+                                        _db.Database.ExecuteSqlCommand(@"
+                                            DELETE FROM SupplierPayments 
+                                            WHERE Id IN (
+                                                SELECT DISTINCT pd.SupplierPaymentId
+                                                FROM SupplierPaymentDetails pd
+                                                LEFT JOIN SupplierPaymentDetails pd2 ON pd.SupplierPaymentId = pd2.SupplierPaymentId 
+                                                    AND pd2.PurchaseId IS NOT NULL
+                                                WHERE pd.PurchaseId = @purchaseId
+                                                AND pd2.SupplierPaymentId IS NULL
+                                            )",
+                                            new SqlParameter("@purchaseId", purchaseId));
+
+                                        transaction.Commit();
+                                        MessageBox.Show("Purchase and associated records deleted successfully.");
+                                        this.Close();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        transaction.Rollback();
+                                        MessageBox.Show("Error deleting purchase: " + ex.Message);
+                                    }
+                                }
+                            }
+                            dgvItems.Rows.RemoveAt(e.RowIndex);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -1814,12 +1947,17 @@ namespace POS_Shop.Views.Controllers.Supplier
                     return;
                 }
             }
+            else
+            {
+                dgvItems.Rows.RemoveAt(e.RowIndex);
+            }
 
-            dgvItems.Rows.RemoveAt(e.RowIndex);
+
             Renumber();
             UpdateItemCount();
             RefreshTotals();
         }
+
 
         private void DgvItems_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -1872,18 +2010,41 @@ namespace POS_Shop.Views.Controllers.Supplier
 
         private void RefreshTotals()
         {
+            //decimal subtotal = 0;
+            //foreach (DataGridViewRow row in dgvItems.Rows)
+            //    subtotal += D(row.Cells["colTotal"].Value?.ToString());
+
+            //decimal discount = D(txtDiscount.Text);
+            //decimal net = Math.Max(0, subtotal - discount);
+
+            //lblSubtotalVal.Text = subtotal.ToString("N2");
+            //lblNetVal.Text = net.ToString("N2");
+
+            //lblStatusInfo.Text = net <= 0 ? "—" : "⏳ PENDING  (Pay later via Supplier Payment)";
+            //lblStatusInfo.ForeColor = Color.FromArgb(245, 124, 0);
+
+            int totalItems = 0;
             decimal subtotal = 0;
+
             foreach (DataGridViewRow row in dgvItems.Rows)
-                subtotal += D(row.Cells["colTotal"].Value?.ToString());
+            {
+                if (row.Cells[1].Value == null) continue;
+                totalItems++;
+                if (row.Cells["colTotal"].Value != null)
+                    subtotal += Convert.ToDecimal(row.Cells["colTotal"].Value);
+            }
+            //foreach (DataGridViewRow row in dgvItems.Rows)
+            //    subtotal += D(row.Cells["colTotal"].Value?.ToString());
 
             decimal discount = D(txtDiscount.Text);
             decimal net = Math.Max(0, subtotal - discount);
 
             lblSubtotalVal.Text = subtotal.ToString("N2");
             lblNetVal.Text = net.ToString("N2");
-
+            TotalAmountLbl.Text = subtotal.ToString("N0");
             lblStatusInfo.Text = net <= 0 ? "—" : "⏳ PENDING  (Pay later via Supplier Payment)";
             lblStatusInfo.ForeColor = Color.FromArgb(245, 124, 0);
+            TotalItemLbl.Text = totalItems.ToString();
         }
 
         // ══════════════════════════════════════════════════════════════════════
@@ -1998,16 +2159,52 @@ namespace POS_Shop.Views.Controllers.Supplier
                 foreach (DataGridViewRow row in dgvItems.Rows)
                 {
                     int productId = (int)row.Tag;
-                    int purchaseItemId = row.Cells["colSrNo"].Tag is int t ? t : 0;
+                    //int purchaseItemId = row.Cells["colSrNo"].Tag is int t ? t : 0;
+                    int purchaseItemId = row.Cells["colSrNo"].Value is int t ? t : 0;
                     decimal qty = D(row.Cells["colQty"].Value?.ToString());
                     decimal price = D(row.Cells["colPrice"].Value?.ToString());
                     decimal total = D(row.Cells["colTotal"].Value?.ToString());
                     int? unitId = row.Cells["colUnit"].Tag is int uid ? uid : (int?)null;
 
-                    if (purchaseItemId > 0)
+
+                    string prod_code = row.Cells["colProductCode"].Value.ToString();
+
+                    string prod_name = row.Cells["colProductName"].Value.ToString();
+
+                    var pr = _db.Products.FirstOrDefault(s => s.SearchByProductCode == prod_code && s.ProductEnglishName == prod_name).Id;
+
+                    //if (purchaseItemId > 0)
+                    //{
+                    //    var existing = purchase.PurchaseItems
+                    //        .FirstOrDefault(i => i.Id == purchaseItemId && !i.IsDeleted);
+
+                    //    if (existing != null)
+                    //    {
+                    //        existing.Quantity = qty;
+                    //        existing.PurchasePrice = price;
+                    //        existing.TotalPrice = total;
+                    //        existing.ProductUnitId = unitId;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    purchase.PurchaseItems.Add(new PurchaseItem
+                    //    {
+                    //        PurchaseId = purchase.Id,
+                    //        ProductId = productId,
+                    //        ProductUnitId = unitId,
+                    //        Quantity = qty,
+                    //        PurchasePrice = price,
+                    //        TotalPrice = total
+                    //    });
+                    //}
+
+                    if (pr > 0)
                     {
+
+                        // Row came from DB → UPDATE the existing PurchaseItem
                         var existing = purchase.PurchaseItems
-                            .FirstOrDefault(i => i.Id == purchaseItemId && !i.IsDeleted);
+                            .FirstOrDefault(i => i.ProductId == pr && !i.IsDeleted);
 
                         if (existing != null)
                         {
@@ -2016,9 +2213,23 @@ namespace POS_Shop.Views.Controllers.Supplier
                             existing.TotalPrice = total;
                             existing.ProductUnitId = unitId;
                         }
+                        else
+                        {
+                            // Row is new this session → INSERT a new PurchaseItem
+                            purchase.PurchaseItems.Add(new PurchaseItem
+                            {
+                                PurchaseId = purchase.Id,
+                                ProductId = productId,
+                                ProductUnitId = unitId,
+                                Quantity = qty,
+                                PurchasePrice = price,
+                                TotalPrice = total
+                            });
+                        }
                     }
                     else
                     {
+                        // Row is new this session → INSERT a new PurchaseItem
                         purchase.PurchaseItems.Add(new PurchaseItem
                         {
                             PurchaseId = purchase.Id,
@@ -2250,6 +2461,20 @@ namespace POS_Shop.Views.Controllers.Supplier
                 case Keys.Alt | Keys.F4: this.Close(); return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void txtDiscount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                if (sender is TextBox textBox)
+                {
+                    txtDiscount.SelectAll();
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                }
+                return;
+            }
         }
     }
 }

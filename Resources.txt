@@ -7,3 +7,12 @@ https://www.youtube.com/watch?v=pEGumMNQ3a8&ab_channel=EvoBitSolution
 
 
 
+  Logger.LogMessage($"Deleted {tempInvs.Count} temporary saved records.");
+
+
+
+DefaultCellStyle 
+---------------------
+SelectionBackColor 219, 234, 254
+ForceColor 37, 99, 235
+SelectionForceColro 30, 58, 138
