@@ -175,6 +175,13 @@ namespace POS_Shop.Views.Controllers.City
             using (var context = new POSDbContext())
             {
                 ICityRepository cityRepository = new CityRepository(context);
+
+                if (context.Cities.Any(s => s.Id!=cityId && s.Name == CityNameTxt.Text))
+                {
+
+                    MessageBox.Show("City name is already exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 var response = await cityRepository.UpdateCity(new Models.City()
                 {
                     Id = Convert.ToInt32(cityId.ToString()),

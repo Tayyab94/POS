@@ -29,6 +29,7 @@ namespace POS_Shop.Views.Settings
                 // Load feature settings
                 chkEnableUpdateQty.Checked = config.Features.EnableUpdateQty;
                 chkShowHideShopName.Checked = config.Features.ShowHideShopName;
+                chkShowHideShopName.Visible = false;
                 // Load invoice settings
                 //txtShopName.Text = config.InvoiceSettings.ShopName ?? "";
                 //txtShopAddress.Text = config.InvoiceSettings.ShopAddress ?? "";

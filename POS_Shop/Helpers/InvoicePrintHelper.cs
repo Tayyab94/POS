@@ -437,7 +437,7 @@ namespace POS_Shop.Helpers
             int lineHeight = 12;
             int sectionSpacing = 3;
 
-            Font titleFont = new Font("Arial", 11, FontStyle.Bold);
+            Font titleFont = new Font("Arial", 16, FontStyle.Bold);
             Font headerFont = new Font("Arial", 9, FontStyle.Bold);
             Font regularFont = new Font("Arial", 9, FontStyle.Regular);
             Font smallFont = new Font("Arial", 7, FontStyle.Regular);
@@ -454,13 +454,13 @@ namespace POS_Shop.Helpers
             {
                 var InvoiceInfo = ConfigurationManager.Configuration.InvoiceSettings;
 
-                e.Graphics.DrawString(InvoiceInfo.ShopName, titleFont, Brushes.Black,
+                e.Graphics.DrawString("صادات الیکٹرک اسٹور", titleFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
                 currentY += lineHeight * 2;
-                e.Graphics.DrawString(InvoiceInfo.ShopAddress, smallFont, Brushes.Black,
+                e.Graphics.DrawString("موتی بازار، وزیرآباد", smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
                 currentY += lineHeight + 2;
-                e.Graphics.DrawString(InvoiceInfo.ContactNumber, smallFont, Brushes.Black,
+                e.Graphics.DrawString("0301-6244700", smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
                 currentY += lineHeight + 2;
             }
@@ -642,7 +642,7 @@ namespace POS_Shop.Helpers
             int sectionSpacing = 3;
 
             // Fonts for thermal printing
-            Font titleFont = new Font("Arial", 11, FontStyle.Bold);
+            Font titleFont = new Font("Arial", 16, FontStyle.Bold);
             Font headerFont = new Font("Arial", 9, FontStyle.Bold);
             Font regularFont = new Font("Arial", 8, FontStyle.Regular);
             Font smallFont = new Font("Arial", 7, FontStyle.Regular);
@@ -666,28 +666,30 @@ namespace POS_Shop.Helpers
             if (ConfigurationManager.Configuration.Features.ShowHideShopName)
             {
 
-                var InvoiceInfo = ConfigurationManager.Configuration.InvoiceSettings;
+                //var InvoiceInfo = ConfigurationManager.Configuration.InvoiceSettings;
 
-                e.Graphics.DrawString(InvoiceInfo.ShopName, titleFont, Brushes.Black,
-                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
-                currentY += lineHeight * 2;
-                e.Graphics.DrawString(InvoiceInfo.ShopAddress, smallFont, Brushes.Black,
-                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-                currentY += lineHeight + 2;
-                e.Graphics.DrawString(InvoiceInfo.ContactNumber, smallFont, Brushes.Black,
-                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-                currentY += lineHeight + 2;
-
-
-                //e.Graphics.DrawString("Electric Shop", titleFont, Brushes.Black,
+                //e.Graphics.DrawString(InvoiceInfo.ShopName, titleFont, Brushes.Black,
                 //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
                 //currentY += lineHeight * 2;
-
-                //e.Graphics.DrawString("Contact: 1234567", smallFont, Brushes.Black,
+                //e.Graphics.DrawString(InvoiceInfo.ShopAddress, smallFont, Brushes.Black,
                 //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
-                //currentY += lineHeight;
-
                 //currentY += lineHeight + 2;
+                //e.Graphics.DrawString(InvoiceInfo.ContactNumber, smallFont, Brushes.Black,
+                //                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                //currentY += lineHeight + 2;
+
+
+
+                e.Graphics.DrawString("Sadaat Electric Store", titleFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
+                currentY += lineHeight * 2;
+                e.Graphics.DrawString("Moti Bazaar, Wazirabad", smallFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                currentY += lineHeight + 2;
+                e.Graphics.DrawString("0301-6244700", smallFont, Brushes.Black,
+                                     new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
+                currentY += lineHeight + 2;
+
             }
 
 

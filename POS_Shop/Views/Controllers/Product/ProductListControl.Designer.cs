@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductListControl));
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties4 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties13 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties14 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties15 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties16 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ProdSearchTxt = new Bunifu.UI.WinForms.BunifuTextBox();
             this.ClearAllSelectionBtn = new System.Windows.Forms.Button();
             this.SelectAllBtn = new System.Windows.Forms.Button();
+            this.ExportProdBtn = new System.Windows.Forms.Button();
             this.ImportFilBtn = new System.Windows.Forms.Button();
             this.selectedProdLbl = new System.Windows.Forms.Label();
             this.ProductListGridGrp = new Bunifu.UI.WinForms.BunifuGroupBox();
@@ -48,8 +50,7 @@
             this.ProductFormLbl = new System.Windows.Forms.Label();
             this.PreviousPageBtn = new Bunifu.UI.WinForms.BunifuImageButton();
             this.NextPageBtn = new Bunifu.UI.WinForms.BunifuImageButton();
-            this.ProdSearchTxt = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.ExportProdBtn = new System.Windows.Forms.Button();
+            this.showLessQtyCheck = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.ProductListGridGrp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductListGrid)).BeginInit();
@@ -72,6 +73,81 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1172, 59);
             this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // ProdSearchTxt
+            // 
+            this.ProdSearchTxt.AcceptsReturn = false;
+            this.ProdSearchTxt.AcceptsTab = false;
+            this.ProdSearchTxt.AnimationSpeed = 200;
+            this.ProdSearchTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.ProdSearchTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.ProdSearchTxt.BackColor = System.Drawing.Color.Transparent;
+            this.ProdSearchTxt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ProdSearchTxt.BackgroundImage")));
+            this.ProdSearchTxt.BorderColorActive = System.Drawing.Color.DodgerBlue;
+            this.ProdSearchTxt.BorderColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.ProdSearchTxt.BorderColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.ProdSearchTxt.BorderColorIdle = System.Drawing.Color.Silver;
+            this.ProdSearchTxt.BorderRadius = 1;
+            this.ProdSearchTxt.BorderThickness = 1;
+            this.ProdSearchTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.ProdSearchTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ProdSearchTxt.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
+            this.ProdSearchTxt.DefaultText = "";
+            this.ProdSearchTxt.FillColor = System.Drawing.Color.White;
+            this.ProdSearchTxt.HideSelection = true;
+            this.ProdSearchTxt.IconLeft = null;
+            this.ProdSearchTxt.IconLeftCursor = System.Windows.Forms.Cursors.IBeam;
+            this.ProdSearchTxt.IconPadding = 10;
+            this.ProdSearchTxt.IconRight = null;
+            this.ProdSearchTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
+            this.ProdSearchTxt.Lines = new string[0];
+            this.ProdSearchTxt.Location = new System.Drawing.Point(3, 13);
+            this.ProdSearchTxt.MaxLength = 32767;
+            this.ProdSearchTxt.MinimumSize = new System.Drawing.Size(1, 1);
+            this.ProdSearchTxt.Modified = false;
+            this.ProdSearchTxt.Multiline = false;
+            this.ProdSearchTxt.Name = "ProdSearchTxt";
+            stateProperties13.BorderColor = System.Drawing.Color.DodgerBlue;
+            stateProperties13.FillColor = System.Drawing.Color.Empty;
+            stateProperties13.ForeColor = System.Drawing.Color.Empty;
+            stateProperties13.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.ProdSearchTxt.OnActiveState = stateProperties13;
+            stateProperties14.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            stateProperties14.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            stateProperties14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            stateProperties14.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.ProdSearchTxt.OnDisabledState = stateProperties14;
+            stateProperties15.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            stateProperties15.FillColor = System.Drawing.Color.Empty;
+            stateProperties15.ForeColor = System.Drawing.Color.Empty;
+            stateProperties15.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.ProdSearchTxt.OnHoverState = stateProperties15;
+            stateProperties16.BorderColor = System.Drawing.Color.Silver;
+            stateProperties16.FillColor = System.Drawing.Color.White;
+            stateProperties16.ForeColor = System.Drawing.Color.Empty;
+            stateProperties16.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.ProdSearchTxt.OnIdleState = stateProperties16;
+            this.ProdSearchTxt.Padding = new System.Windows.Forms.Padding(3);
+            this.ProdSearchTxt.PasswordChar = '\0';
+            this.ProdSearchTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.ProdSearchTxt.PlaceholderText = "Search...";
+            this.ProdSearchTxt.ReadOnly = false;
+            this.ProdSearchTxt.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.ProdSearchTxt.SelectedText = "";
+            this.ProdSearchTxt.SelectionLength = 0;
+            this.ProdSearchTxt.SelectionStart = 0;
+            this.ProdSearchTxt.ShortcutsEnabled = true;
+            this.ProdSearchTxt.Size = new System.Drawing.Size(519, 41);
+            this.ProdSearchTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
+            this.ProdSearchTxt.TabIndex = 22;
+            this.ProdSearchTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.ProdSearchTxt.TextMarginBottom = 0;
+            this.ProdSearchTxt.TextMarginLeft = 3;
+            this.ProdSearchTxt.TextMarginTop = 0;
+            this.ProdSearchTxt.TextPlaceholder = "Search...";
+            this.ProdSearchTxt.UseSystemPasswordChar = false;
+            this.ProdSearchTxt.WordWrap = true;
+            this.ProdSearchTxt.TextChange += new System.EventHandler(this.ProdSearchTxt_TextChanged);
             // 
             // ClearAllSelectionBtn
             // 
@@ -103,6 +179,24 @@
             this.SelectAllBtn.Text = "Select All";
             this.SelectAllBtn.UseVisualStyleBackColor = false;
             this.SelectAllBtn.Click += new System.EventHandler(this.SelectAllBtn_Click);
+            // 
+            // ExportProdBtn
+            // 
+            this.ExportProdBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExportProdBtn.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.ExportProdBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExportProdBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExportProdBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ExportProdBtn.Image = global::POS_Shop.Properties.Resources.iconExcel;
+            this.ExportProdBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ExportProdBtn.Location = new System.Drawing.Point(746, 11);
+            this.ExportProdBtn.Name = "ExportProdBtn";
+            this.ExportProdBtn.Size = new System.Drawing.Size(114, 43);
+            this.ExportProdBtn.TabIndex = 19;
+            this.ExportProdBtn.Text = "Export";
+            this.ExportProdBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ExportProdBtn.UseVisualStyleBackColor = false;
+            this.ExportProdBtn.Click += new System.EventHandler(this.ExportProdBtn_Click);
             // 
             // ImportFilBtn
             // 
@@ -233,7 +327,6 @@
             this.btnDeleteProduct.Text = "🗑️ Delete";
             this.btnDeleteProduct.UseVisualStyleBackColor = false;
             this.btnDeleteProduct.Click += new System.EventHandler(this.btnDeleteProduct_Click);
-
             // 
             // ProductFormLbl
             // 
@@ -321,103 +414,24 @@
             this.NextPageBtn.ZoomSpeed = 10;
             this.NextPageBtn.Click += new System.EventHandler(this.NextPageBtn_Click);
             // 
-            // ProdSearchTxt
+            // showLessQtyCheck
             // 
-            this.ProdSearchTxt.AcceptsReturn = false;
-            this.ProdSearchTxt.AcceptsTab = false;
-            this.ProdSearchTxt.AnimationSpeed = 200;
-            this.ProdSearchTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.ProdSearchTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.ProdSearchTxt.BackColor = System.Drawing.Color.Transparent;
-            this.ProdSearchTxt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ProdSearchTxt.BackgroundImage")));
-            this.ProdSearchTxt.BorderColorActive = System.Drawing.Color.DodgerBlue;
-            this.ProdSearchTxt.BorderColorDisabled = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.ProdSearchTxt.BorderColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.ProdSearchTxt.BorderColorIdle = System.Drawing.Color.Silver;
-            this.ProdSearchTxt.BorderRadius = 1;
-            this.ProdSearchTxt.BorderThickness = 1;
-            this.ProdSearchTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.ProdSearchTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ProdSearchTxt.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
-            this.ProdSearchTxt.DefaultText = "";
-            this.ProdSearchTxt.FillColor = System.Drawing.Color.White;
-            this.ProdSearchTxt.HideSelection = true;
-            this.ProdSearchTxt.IconLeft = null;
-            this.ProdSearchTxt.IconLeftCursor = System.Windows.Forms.Cursors.IBeam;
-            this.ProdSearchTxt.IconPadding = 10;
-            this.ProdSearchTxt.IconRight = null;
-            this.ProdSearchTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
-            this.ProdSearchTxt.Lines = new string[0];
-            this.ProdSearchTxt.Location = new System.Drawing.Point(3, 13);
-            this.ProdSearchTxt.MaxLength = 32767;
-            this.ProdSearchTxt.MinimumSize = new System.Drawing.Size(1, 1);
-            this.ProdSearchTxt.Modified = false;
-            this.ProdSearchTxt.Multiline = false;
-            this.ProdSearchTxt.Name = "ProdSearchTxt";
-            stateProperties1.BorderColor = System.Drawing.Color.DodgerBlue;
-            stateProperties1.FillColor = System.Drawing.Color.Empty;
-            stateProperties1.ForeColor = System.Drawing.Color.Empty;
-            stateProperties1.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.ProdSearchTxt.OnActiveState = stateProperties1;
-            stateProperties2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            stateProperties2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            stateProperties2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            stateProperties2.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.ProdSearchTxt.OnDisabledState = stateProperties2;
-            stateProperties3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            stateProperties3.FillColor = System.Drawing.Color.Empty;
-            stateProperties3.ForeColor = System.Drawing.Color.Empty;
-            stateProperties3.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.ProdSearchTxt.OnHoverState = stateProperties3;
-            stateProperties4.BorderColor = System.Drawing.Color.Silver;
-            stateProperties4.FillColor = System.Drawing.Color.White;
-            stateProperties4.ForeColor = System.Drawing.Color.Empty;
-            stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.ProdSearchTxt.OnIdleState = stateProperties4;
-            this.ProdSearchTxt.Padding = new System.Windows.Forms.Padding(3);
-            this.ProdSearchTxt.PasswordChar = '\0';
-            this.ProdSearchTxt.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.ProdSearchTxt.PlaceholderText = "Search...";
-            this.ProdSearchTxt.ReadOnly = false;
-            this.ProdSearchTxt.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.ProdSearchTxt.SelectedText = "";
-            this.ProdSearchTxt.SelectionLength = 0;
-            this.ProdSearchTxt.SelectionStart = 0;
-            this.ProdSearchTxt.ShortcutsEnabled = true;
-            this.ProdSearchTxt.Size = new System.Drawing.Size(519, 41);
-            this.ProdSearchTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
-            this.ProdSearchTxt.TabIndex = 22;
-            this.ProdSearchTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.ProdSearchTxt.TextMarginBottom = 0;
-            this.ProdSearchTxt.TextMarginLeft = 3;
-            this.ProdSearchTxt.TextMarginTop = 0;
-            this.ProdSearchTxt.TextPlaceholder = "Search...";
-            this.ProdSearchTxt.UseSystemPasswordChar = false;
-            this.ProdSearchTxt.WordWrap = true;
-            this.ProdSearchTxt.TextChange += new System.EventHandler(this.ProdSearchTxt_TextChanged);
-            // 
-            // ExportProdBtn
-            // 
-            this.ExportProdBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportProdBtn.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ExportProdBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ExportProdBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExportProdBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ExportProdBtn.Image = global::POS_Shop.Properties.Resources.iconExcel;
-            this.ExportProdBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ExportProdBtn.Location = new System.Drawing.Point(746, 11);
-            this.ExportProdBtn.Name = "ExportProdBtn";
-            this.ExportProdBtn.Size = new System.Drawing.Size(114, 43);
-            this.ExportProdBtn.TabIndex = 19;
-            this.ExportProdBtn.Text = "Export";
-            this.ExportProdBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ExportProdBtn.UseVisualStyleBackColor = false;
-            this.ExportProdBtn.Click += new System.EventHandler(this.ExportProdBtn_Click);
+            this.showLessQtyCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.showLessQtyCheck.AutoSize = true;
+            this.showLessQtyCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showLessQtyCheck.Location = new System.Drawing.Point(961, 129);
+            this.showLessQtyCheck.Name = "showLessQtyCheck";
+            this.showLessQtyCheck.Size = new System.Drawing.Size(130, 20);
+            this.showLessQtyCheck.TabIndex = 24;
+            this.showLessQtyCheck.Text = "Show Less Qty";
+            this.showLessQtyCheck.UseVisualStyleBackColor = true;
+            this.showLessQtyCheck.CheckedChanged += new System.EventHandler(this.showLessQtyCheck_CheckedChanged);
             // 
             // ProductListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.showLessQtyCheck);
             this.Controls.Add(this.ProductFormLbl);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.PreviousPageBtn);
@@ -456,5 +470,6 @@
         private System.Windows.Forms.Button btnDeleteProduct;
         private System.Windows.Forms.Label ProductFormLbl;
         private System.Windows.Forms.Button ImportFilBtn;
+        private System.Windows.Forms.CheckBox showLessQtyCheck;
     }
 }

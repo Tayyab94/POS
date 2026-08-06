@@ -20,7 +20,7 @@ namespace POS_Shop.Repositories
         private const string LicenseFileName = "license.lic";
         private readonly IEncryptionService _encryptionService;
         private LicenseInfo _currentLicense;
-
+       
         public LicenseService()
         {
             _encryptionService = new EncryptionService();
@@ -56,6 +56,14 @@ namespace POS_Shop.Repositories
             }
         }
 
+        public bool IsSoftwareNewOrNot()
+        {
+            string macAddress = _encryptionService?.GetMacAddress() ?? string.Empty;
+            using (var context = new POSDbContext())
+            {
+                return context.Licenses.Any(s => s.MacAddress == macAddress);
+            }
+        }
         public bool ValidateLicense(LicenseInfo licenseInfo)
         {
             if (licenseInfo == null)

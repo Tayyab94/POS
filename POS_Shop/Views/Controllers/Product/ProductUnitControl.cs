@@ -86,49 +86,59 @@ namespace POS_Shop.Views.Controllers.Product
             LoadProductUnitForDataGridView();
         }
 
-        private async void updateProductIUnitBtn_Click(object sender, EventArgs e)
+        private void updateProductIUnitBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(productUnitIdTxt.Text) || !int.TryParse(productUnitIdTxt.Text, out int prodUnitId) || prodUnitId <= 0)
+            if (!int.TryParse(productUnitIdTxt.Text, out int prodUnitId) || prodUnitId <= 0)
             {
-                MessageBox.Show("Please select Record first", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a record first.", "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             using (var context = new POSDbContext())
+            using (var transaction = context.Database.BeginTransaction())
             {
-                var prodUnitRepo = new ProductUnitRepository(context);
-
                 try
                 {
-                    //ICityRepository cityRepository = new CityRepository(context);
-                    var data= prodUnitRepo.GetById(int.Parse(productUnitIdTxt.Text));
-                    data.Id = int.Parse(productUnitIdTxt.Text);
-                    data.Name = ProdUnitNameTxt.Text;
-                    data.Abbreviation = ProdUnitAbbreviationTxt.Text;
-                    data.IsActive = ProdUnitActiveChkBox.Checked ? true : false;
+                    var repo = new ProductUnitRepository(context);
+                    var data = repo.GetById(prodUnitId);
 
-                    prodUnitRepo.Update(data);
-                    //prodUnitRepo.Update(new Models.ProductUnit()
-                    //{
-                    //    Id =int.Parse(productUnitIdTxt.Text),
-                    //    Name = ProdUnitNameTxt.Text,
-                    //    Abbreviation = ProdUnitAbbreviationTxt.Text,
-                    //    IsActive= ProdUnitActiveChkBox.Checked ? true : false
+                    if (data == null)
+                    {
+                        MessageBox.Show("Record no longer exists.", "Not Found",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
-                    //});
-                    prodUnitRepo.Save();
+                    data.Name = ProdUnitNameTxt.Text.Trim();
+                    data.Abbreviation = ProdUnitAbbreviationTxt.Text.Trim();
+                    data.IsActive = ProdUnitActiveChkBox.Checked;
+
+                    // Raw SQL runs in the SAME transaction — atomic now
+                    context.Database.ExecuteSqlCommand(
+                        "UPDATE ProductPrices SET TypeName = @name, Unit = @name WHERE Prod_Unit_TypeId = @id",
+                        new SqlParameter("@name", data.Name),
+                        new SqlParameter("@id", prodUnitId)
+                    );
+
+                    repo.Update(data);
+                    repo.Save();
+                    transaction.Commit();
+
                     ClearFormFunction();
                     LoadProductUnitForDataGridView();
-                    MessageBox.Show("Record has been Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);                }
+                    MessageBox.Show("Record updated successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    transaction.Rollback();
+                    // Log ex.ToString() to your logging system here
+                    MessageBox.Show($"Update failed: {ex.Message}", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
-
         private void RemoveProductUnitBtn_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure to delete this Category?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);

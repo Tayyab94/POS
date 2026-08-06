@@ -21,6 +21,8 @@ namespace POS_Shop.Models
 
         public int? Cost { get; set; }
 
+        public string ProdQtyStockUnit { get; set; }
+
         public int Qty { get; set; }
 
         public string SearchByProductCode { get; set; }

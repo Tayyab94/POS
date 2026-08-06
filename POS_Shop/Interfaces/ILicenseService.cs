@@ -15,5 +15,6 @@ namespace POS_Shop.Interfaces
         LicenseInfo GetCurrentLicenseInfo();
         int GetRemainingDays();
         bool VerifyLicenseKeyInFile();
+        bool IsSoftwareNewOrNot();
     }
 }
