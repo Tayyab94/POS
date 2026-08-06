@@ -56,7 +56,7 @@ namespace POS_Shop.Views.Controllers.Product
                 //var result = await productRepository.GetProductPagingListAsync(PageIndex, PageSize, SearchTerm);
                 //RecordCount = result.totalCount;
 
-                var result = await productRepository.GetProductCursorPagingListAsync(CurrentCursor, PageSize, SearchTerm);
+                var result = await productRepository.GetProductCursorPagingListAsync(CurrentCursor, PageSize, SearchTerm, showLessQtyCheck.Checked);
                 RecordCount = result.totalCount;
                 HasMoreRecords = result.hasMore;
 
@@ -1098,6 +1098,12 @@ namespace POS_Shop.Views.Controllers.Product
             }
             
 
+        }
+
+        private async void showLessQtyCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            CurrentCursor = 0;
+            await LoadProductsForDataGridView();
         }
     }
 }

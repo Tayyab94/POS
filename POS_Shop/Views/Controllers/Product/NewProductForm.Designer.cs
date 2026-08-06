@@ -84,10 +84,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.priceControlsContainer = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.AddNewProductTypeLink = new System.Windows.Forms.LinkLabel();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbProductType = new System.Windows.Forms.ComboBox();
             this.btnAddPrice = new System.Windows.Forms.Button();
-            this.AddNewProductTypeLink = new System.Windows.Forms.LinkLabel();
+            this.ProductStockUniDropDown = new Bunifu.UI.WinForms.BunifuDropdown();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.ProductFromGrp.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -201,6 +203,8 @@
             // 
             this.ProductFromGrp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductFromGrp.Controls.Add(this.label8);
+            this.ProductFromGrp.Controls.Add(this.ProductStockUniDropDown);
             this.ProductFromGrp.Controls.Add(this.SearchBynameTxt);
             this.ProductFromGrp.Controls.Add(this.label5);
             this.ProductFromGrp.Controls.Add(this.P_costLbl);
@@ -219,7 +223,7 @@
             this.ProductFromGrp.Controls.Add(this.label6);
             this.ProductFromGrp.Location = new System.Drawing.Point(19, 47);
             this.ProductFromGrp.Name = "ProductFromGrp";
-            this.ProductFromGrp.Size = new System.Drawing.Size(607, 387);
+            this.ProductFromGrp.Size = new System.Drawing.Size(607, 426);
             this.ProductFromGrp.TabIndex = 2;
             this.ProductFromGrp.TabStop = false;
             this.ProductFromGrp.Text = "Product Form";
@@ -312,7 +316,7 @@
             // 
             this.P_costLbl.AutoSize = true;
             this.P_costLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.P_costLbl.Location = new System.Drawing.Point(224, 165);
+            this.P_costLbl.Location = new System.Drawing.Point(296, 165);
             this.P_costLbl.Name = "P_costLbl";
             this.P_costLbl.Size = new System.Drawing.Size(38, 16);
             this.P_costLbl.TabIndex = 0;
@@ -345,7 +349,7 @@
             this.p_costTxt.IconRight = null;
             this.p_costTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.p_costTxt.Lines = new string[0];
-            this.p_costTxt.Location = new System.Drawing.Point(232, 195);
+            this.p_costTxt.Location = new System.Drawing.Point(301, 195);
             this.p_costTxt.MaxLength = 32767;
             this.p_costTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.p_costTxt.Modified = false;
@@ -381,7 +385,7 @@
             this.p_costTxt.SelectionLength = 0;
             this.p_costTxt.SelectionStart = 0;
             this.p_costTxt.ShortcutsEnabled = true;
-            this.p_costTxt.Size = new System.Drawing.Size(152, 41);
+            this.p_costTxt.Size = new System.Drawing.Size(294, 41);
             this.p_costTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.p_costTxt.TabIndex = 5;
             this.p_costTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -396,7 +400,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(318, 260);
+            this.label4.Location = new System.Drawing.Point(300, 334);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 16);
             this.label4.TabIndex = 0;
@@ -436,9 +440,9 @@
             this.SubCategoryCategoryDropDownLst.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
             this.SubCategoryCategoryDropDownLst.ItemHighLightForeColor = System.Drawing.Color.White;
             this.SubCategoryCategoryDropDownLst.ItemTopMargin = 3;
-            this.SubCategoryCategoryDropDownLst.Location = new System.Drawing.Point(312, 284);
+            this.SubCategoryCategoryDropDownLst.Location = new System.Drawing.Point(301, 360);
             this.SubCategoryCategoryDropDownLst.Name = "SubCategoryCategoryDropDownLst";
-            this.SubCategoryCategoryDropDownLst.Size = new System.Drawing.Size(283, 32);
+            this.SubCategoryCategoryDropDownLst.Size = new System.Drawing.Size(294, 32);
             this.SubCategoryCategoryDropDownLst.TabIndex = 8;
             this.SubCategoryCategoryDropDownLst.Text = null;
             this.SubCategoryCategoryDropDownLst.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
@@ -478,9 +482,9 @@
             this.CategoryDropDownLst.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
             this.CategoryDropDownLst.ItemHighLightForeColor = System.Drawing.Color.White;
             this.CategoryDropDownLst.ItemTopMargin = 3;
-            this.CategoryDropDownLst.Location = new System.Drawing.Point(17, 284);
+            this.CategoryDropDownLst.Location = new System.Drawing.Point(6, 360);
             this.CategoryDropDownLst.Name = "CategoryDropDownLst";
-            this.CategoryDropDownLst.Size = new System.Drawing.Size(258, 32);
+            this.CategoryDropDownLst.Size = new System.Drawing.Size(289, 32);
             this.CategoryDropDownLst.TabIndex = 7;
             this.CategoryDropDownLst.Text = null;
             this.CategoryDropDownLst.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
@@ -490,7 +494,7 @@
             // 
             this.CategoryDropdownLbl.AutoSize = true;
             this.CategoryDropdownLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategoryDropdownLbl.Location = new System.Drawing.Point(17, 260);
+            this.CategoryDropdownLbl.Location = new System.Drawing.Point(17, 336);
             this.CategoryDropdownLbl.Name = "CategoryDropdownLbl";
             this.CategoryDropdownLbl.Size = new System.Drawing.Size(70, 16);
             this.CategoryDropdownLbl.TabIndex = 0;
@@ -523,7 +527,7 @@
             this.P_StockQtyTxt.IconRight = null;
             this.P_StockQtyTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.P_StockQtyTxt.Lines = new string[0];
-            this.P_StockQtyTxt.Location = new System.Drawing.Point(405, 197);
+            this.P_StockQtyTxt.Location = new System.Drawing.Point(301, 279);
             this.P_StockQtyTxt.MaxLength = 32767;
             this.P_StockQtyTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.P_StockQtyTxt.Modified = false;
@@ -559,7 +563,7 @@
             this.P_StockQtyTxt.SelectionLength = 0;
             this.P_StockQtyTxt.SelectionStart = 0;
             this.P_StockQtyTxt.ShortcutsEnabled = true;
-            this.P_StockQtyTxt.Size = new System.Drawing.Size(188, 41);
+            this.P_StockQtyTxt.Size = new System.Drawing.Size(294, 41);
             this.P_StockQtyTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.P_StockQtyTxt.TabIndex = 6;
             this.P_StockQtyTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -574,7 +578,7 @@
             // 
             this.StockQtyLbl.AutoSize = true;
             this.StockQtyLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StockQtyLbl.Location = new System.Drawing.Point(404, 165);
+            this.StockQtyLbl.Location = new System.Drawing.Point(298, 248);
             this.StockQtyLbl.Name = "StockQtyLbl";
             this.StockQtyLbl.Size = new System.Drawing.Size(73, 16);
             this.StockQtyLbl.TabIndex = 8;
@@ -607,7 +611,7 @@
             this.PurchasePriceTxt.IconRight = null;
             this.PurchasePriceTxt.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.PurchasePriceTxt.Lines = new string[0];
-            this.PurchasePriceTxt.Location = new System.Drawing.Point(18, 197);
+            this.PurchasePriceTxt.Location = new System.Drawing.Point(12, 197);
             this.PurchasePriceTxt.MaxLength = 32767;
             this.PurchasePriceTxt.MinimumSize = new System.Drawing.Size(1, 1);
             this.PurchasePriceTxt.Modified = false;
@@ -643,7 +647,7 @@
             this.PurchasePriceTxt.SelectionLength = 0;
             this.PurchasePriceTxt.SelectionStart = 0;
             this.PurchasePriceTxt.ShortcutsEnabled = true;
-            this.PurchasePriceTxt.Size = new System.Drawing.Size(203, 41);
+            this.PurchasePriceTxt.Size = new System.Drawing.Size(283, 41);
             this.PurchasePriceTxt.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.PurchasePriceTxt.TabIndex = 4;
             this.PurchasePriceTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1156,6 +1160,17 @@
             this.panel2.Size = new System.Drawing.Size(819, 43);
             this.panel2.TabIndex = 1;
             // 
+            // AddNewProductTypeLink
+            // 
+            this.AddNewProductTypeLink.AutoSize = true;
+            this.AddNewProductTypeLink.Location = new System.Drawing.Point(661, 19);
+            this.AddNewProductTypeLink.Name = "AddNewProductTypeLink";
+            this.AddNewProductTypeLink.Size = new System.Drawing.Size(146, 16);
+            this.AddNewProductTypeLink.TabIndex = 3;
+            this.AddNewProductTypeLink.TabStop = true;
+            this.AddNewProductTypeLink.Text = "Add New Product Type";
+            this.AddNewProductTypeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddNewProductTypeLink_LinkClicked);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -1183,16 +1198,57 @@
             this.btnAddPrice.Text = "Add Price Type";
             this.btnAddPrice.UseVisualStyleBackColor = true;
             // 
-            // AddNewProductTypeLink
+            // ProductStockUniDropDown
             // 
-            this.AddNewProductTypeLink.AutoSize = true;
-            this.AddNewProductTypeLink.Location = new System.Drawing.Point(661, 19);
-            this.AddNewProductTypeLink.Name = "AddNewProductTypeLink";
-            this.AddNewProductTypeLink.Size = new System.Drawing.Size(146, 16);
-            this.AddNewProductTypeLink.TabIndex = 3;
-            this.AddNewProductTypeLink.TabStop = true;
-            this.AddNewProductTypeLink.Text = "Add New Product Type";
-            this.AddNewProductTypeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddNewProductTypeLink_LinkClicked);
+            this.ProductStockUniDropDown.BackColor = System.Drawing.Color.Transparent;
+            this.ProductStockUniDropDown.BackgroundColor = System.Drawing.Color.White;
+            this.ProductStockUniDropDown.BorderColor = System.Drawing.Color.Silver;
+            this.ProductStockUniDropDown.BorderRadius = 1;
+            this.ProductStockUniDropDown.Color = System.Drawing.Color.Silver;
+            this.ProductStockUniDropDown.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
+            this.ProductStockUniDropDown.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.ProductStockUniDropDown.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.ProductStockUniDropDown.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.ProductStockUniDropDown.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.ProductStockUniDropDown.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
+            this.ProductStockUniDropDown.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ProductStockUniDropDown.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
+            this.ProductStockUniDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProductStockUniDropDown.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.ProductStockUniDropDown.FillDropDown = true;
+            this.ProductStockUniDropDown.FillIndicator = false;
+            this.ProductStockUniDropDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ProductStockUniDropDown.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ProductStockUniDropDown.ForeColor = System.Drawing.Color.Black;
+            this.ProductStockUniDropDown.FormattingEnabled = true;
+            this.ProductStockUniDropDown.Icon = null;
+            this.ProductStockUniDropDown.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.ProductStockUniDropDown.IndicatorColor = System.Drawing.Color.Gray;
+            this.ProductStockUniDropDown.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.ProductStockUniDropDown.ItemBackColor = System.Drawing.Color.White;
+            this.ProductStockUniDropDown.ItemBorderColor = System.Drawing.Color.White;
+            this.ProductStockUniDropDown.ItemForeColor = System.Drawing.Color.Black;
+            this.ProductStockUniDropDown.ItemHeight = 26;
+            this.ProductStockUniDropDown.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
+            this.ProductStockUniDropDown.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.ProductStockUniDropDown.ItemTopMargin = 3;
+            this.ProductStockUniDropDown.Location = new System.Drawing.Point(6, 283);
+            this.ProductStockUniDropDown.Name = "ProductStockUniDropDown";
+            this.ProductStockUniDropDown.Size = new System.Drawing.Size(289, 32);
+            this.ProductStockUniDropDown.TabIndex = 25;
+            this.ProductStockUniDropDown.Text = null;
+            this.ProductStockUniDropDown.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.ProductStockUniDropDown.TextLeftMargin = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(17, 252);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(134, 16);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Product Stock Unit";
             // 
             // NewProductForm
             // 
@@ -1248,5 +1304,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.LinkLabel AddNewProductTypeLink;
+        private System.Windows.Forms.Label label8;
+        private Bunifu.UI.WinForms.BunifuDropdown ProductStockUniDropDown;
     }
 }

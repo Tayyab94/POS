@@ -80,6 +80,8 @@
             this.InvoicePageTabControl = new System.Windows.Forms.TabControl();
             this.BilPad = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.LedgerListBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.CustomerLagerRecordChk = new System.Windows.Forms.CheckBox();
             this.lblAdvanceInfo = new System.Windows.Forms.Label();
@@ -117,9 +119,9 @@
             this.CartProductList = new System.Windows.Forms.DataGridView();
             this.CustomerListDataGrid = new System.Windows.Forms.DataGridView();
             this.ProductGroup = new System.Windows.Forms.GroupBox();
+            this.prodStockUnit = new System.Windows.Forms.TextBox();
             this.prod_ItemCountTxt = new System.Windows.Forms.TextBox();
             this.Prod_Qty = new System.Windows.Forms.TextBox();
-            this.InvoiceShopName = new System.Windows.Forms.CheckBox();
             this.OtherProductChk = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.ProductDetailTxt = new Bunifu.UI.WinForms.BunifuTextBox();
@@ -357,7 +359,7 @@
             this.LedgerEntryFromBtn.IdleIconLeftImage = null;
             this.LedgerEntryFromBtn.IdleIconRightImage = null;
             this.LedgerEntryFromBtn.IndicateFocus = false;
-            this.LedgerEntryFromBtn.Location = new System.Drawing.Point(311, 13);
+            this.LedgerEntryFromBtn.Location = new System.Drawing.Point(401, 13);
             this.LedgerEntryFromBtn.Name = "LedgerEntryFromBtn";
             this.LedgerEntryFromBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.LedgerEntryFromBtn.OnDisabledState.BorderRadius = 10;
@@ -1076,17 +1078,39 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.LedgerListBtn);
             this.groupBox1.Controls.Add(this.LedgerEntryFromBtn);
             this.groupBox1.Controls.Add(this.CustomerLagerRecordChk);
             this.groupBox1.Controls.Add(this.lblAdvanceInfo);
             this.groupBox1.Controls.Add(this.ApplyAdvanceChk);
-            this.groupBox1.Location = new System.Drawing.Point(493, 93);
+            this.groupBox1.Location = new System.Drawing.Point(404, 93);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(453, 79);
+            this.groupBox1.Size = new System.Drawing.Size(542, 79);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Customer Loan Section";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(2, 55);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(93, 16);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "(Ctrl+Space)";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(4, 29);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(62, 16);
+            this.label12.TabIndex = 16;
+            this.label12.Text = "(Ctrl+W)";
             // 
             // LedgerListBtn
             // 
@@ -1136,7 +1160,7 @@
             this.LedgerListBtn.IdleIconLeftImage = null;
             this.LedgerListBtn.IdleIconRightImage = null;
             this.LedgerListBtn.IndicateFocus = false;
-            this.LedgerListBtn.Location = new System.Drawing.Point(311, 44);
+            this.LedgerListBtn.Location = new System.Drawing.Point(401, 44);
             this.LedgerListBtn.Name = "LedgerListBtn";
             this.LedgerListBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.LedgerListBtn.OnDisabledState.BorderRadius = 10;
@@ -1183,7 +1207,7 @@
             // 
             this.CustomerLagerRecordChk.AutoSize = true;
             this.CustomerLagerRecordChk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold);
-            this.CustomerLagerRecordChk.Location = new System.Drawing.Point(21, 53);
+            this.CustomerLagerRecordChk.Location = new System.Drawing.Point(107, 53);
             this.CustomerLagerRecordChk.Name = "CustomerLagerRecordChk";
             this.CustomerLagerRecordChk.Size = new System.Drawing.Size(159, 22);
             this.CustomerLagerRecordChk.TabIndex = 12;
@@ -1194,7 +1218,7 @@
             // lblAdvanceInfo
             // 
             this.lblAdvanceInfo.AutoSize = true;
-            this.lblAdvanceInfo.Location = new System.Drawing.Point(210, 55);
+            this.lblAdvanceInfo.Location = new System.Drawing.Point(289, 55);
             this.lblAdvanceInfo.Name = "lblAdvanceInfo";
             this.lblAdvanceInfo.Size = new System.Drawing.Size(96, 16);
             this.lblAdvanceInfo.TabIndex = 6;
@@ -1205,7 +1229,7 @@
             // 
             this.ApplyAdvanceChk.AutoSize = true;
             this.ApplyAdvanceChk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold);
-            this.ApplyAdvanceChk.Location = new System.Drawing.Point(21, 25);
+            this.ApplyAdvanceChk.Location = new System.Drawing.Point(89, 25);
             this.ApplyAdvanceChk.Name = "ApplyAdvanceChk";
             this.ApplyAdvanceChk.Size = new System.Drawing.Size(163, 22);
             this.ApplyAdvanceChk.TabIndex = 7;
@@ -1555,7 +1579,7 @@
             this.OrdersGroup.Controls.Add(this.InvoiceNoHeading);
             this.OrdersGroup.Location = new System.Drawing.Point(10, 93);
             this.OrdersGroup.Name = "OrdersGroup";
-            this.OrdersGroup.Size = new System.Drawing.Size(470, 79);
+            this.OrdersGroup.Size = new System.Drawing.Size(388, 79);
             this.OrdersGroup.TabIndex = 0;
             this.OrdersGroup.TabStop = false;
             this.OrdersGroup.Text = "Order Section";
@@ -1744,9 +1768,9 @@
             // 
             this.ProductGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductGroup.Controls.Add(this.prodStockUnit);
             this.ProductGroup.Controls.Add(this.prod_ItemCountTxt);
             this.ProductGroup.Controls.Add(this.Prod_Qty);
-            this.ProductGroup.Controls.Add(this.InvoiceShopName);
             this.ProductGroup.Controls.Add(this.OtherProductChk);
             this.ProductGroup.Controls.Add(this.label5);
             this.ProductGroup.Controls.Add(this.ProductDetailTxt);
@@ -1768,6 +1792,15 @@
             this.ProductGroup.TabStop = false;
             this.ProductGroup.Text = "Product Section";
             // 
+            // prodStockUnit
+            // 
+            this.prodStockUnit.BackColor = System.Drawing.Color.Red;
+            this.prodStockUnit.Location = new System.Drawing.Point(1080, 16);
+            this.prodStockUnit.Name = "prodStockUnit";
+            this.prodStockUnit.Size = new System.Drawing.Size(10, 22);
+            this.prodStockUnit.TabIndex = 9;
+            this.prodStockUnit.Visible = false;
+            // 
             // prod_ItemCountTxt
             // 
             this.prod_ItemCountTxt.BackColor = System.Drawing.Color.Red;
@@ -1785,19 +1818,6 @@
             this.Prod_Qty.Size = new System.Drawing.Size(10, 22);
             this.Prod_Qty.TabIndex = 8;
             this.Prod_Qty.Visible = false;
-            // 
-            // InvoiceShopName
-            // 
-            this.InvoiceShopName.AutoSize = true;
-            this.InvoiceShopName.Checked = true;
-            this.InvoiceShopName.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.InvoiceShopName.Location = new System.Drawing.Point(1104, 17);
-            this.InvoiceShopName.Name = "InvoiceShopName";
-            this.InvoiceShopName.Size = new System.Drawing.Size(184, 20);
-            this.InvoiceShopName.TabIndex = 0;
-            this.InvoiceShopName.Text = "Hide Shop Name in Invice";
-            this.InvoiceShopName.UseVisualStyleBackColor = true;
-            this.InvoiceShopName.CheckedChanged += new System.EventHandler(this.InvoiceShopName_CheckedChanged);
             // 
             // OtherProductChk
             // 
@@ -2855,6 +2875,7 @@
             this.ClientSize = new System.Drawing.Size(1776, 874);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.TopPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BillPadForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bill Pad";
@@ -2931,7 +2952,6 @@
         private System.Windows.Forms.DataGridView SuggestionGrid;
         private System.Windows.Forms.DataGridView CartProductList;
         private System.Windows.Forms.GroupBox ProductGroup;
-        private System.Windows.Forms.CheckBox InvoiceShopName;
         private System.Windows.Forms.CheckBox OtherProductChk;
         private System.Windows.Forms.Label label5;
         private Bunifu.UI.WinForms.BunifuTextBox ProductDetailTxt;
@@ -2985,5 +3005,8 @@
         private System.Windows.Forms.GroupBox PreOrderGroup;
         private System.Windows.Forms.DataGridView ProductOrderHistoryDataGrid;
         private System.Windows.Forms.Button QRCodeBtn;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox prodStockUnit;
     }
 }

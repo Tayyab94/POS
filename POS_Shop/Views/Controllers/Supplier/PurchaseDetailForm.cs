@@ -443,7 +443,7 @@ namespace POS_Shop.Views.Controllers.Supplier
             int lineHeight = 12;
             int sectionSpacing = 3;
 
-            System.Drawing.Font titleFont = new System.Drawing.Font("Arial", 11, FontStyle.Bold);
+            System.Drawing.Font titleFont = new System.Drawing.Font("Arial", 16, FontStyle.Bold);
             System.Drawing.Font headerFont = new System.Drawing.Font("Arial", 9, FontStyle.Bold);
             System.Drawing.Font regularFont = new System.Drawing.Font("Arial", 9, FontStyle.Regular);
             System.Drawing.Font smallFont = new System.Drawing.Font("Arial", 7, FontStyle.Regular);
@@ -461,13 +461,13 @@ namespace POS_Shop.Views.Controllers.Supplier
             {
                 var invoiceInfo = ConfigurationManager.Configuration.InvoiceSettings;
 
-                e.Graphics.DrawString(invoiceInfo.ShopName, titleFont, Brushes.Black,
+                e.Graphics.DrawString("صادات الیکٹرک اسٹور", titleFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
                 currentY += lineHeight * 2;
-                e.Graphics.DrawString(invoiceInfo.ShopAddress, smallFont, Brushes.Black,
+                e.Graphics.DrawString("موتی بازار، وزیرآباد", smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
                 currentY += lineHeight + 2;
-                e.Graphics.DrawString(invoiceInfo.ContactNumber, smallFont, Brushes.Black,
+                e.Graphics.DrawString("0301-6244700", smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
                 currentY += lineHeight + 2;
             }
@@ -602,38 +602,41 @@ namespace POS_Shop.Views.Controllers.Supplier
             currentY += lineHeight + 4;
             // ─────────────────────────────────────────────────────────────────────────
 
-            // PAID STAMP
-            bool isPaid = CheckIfPaid();
-            if (isPaid)
-            {
-                int stampSize = 70;
-                int stampX = paperWidth - 120;
-                int stampY = currentY - 50;
+            #region Checking if the status is Paid
+            //// PAID STAMP
+            //bool isPaid = CheckIfPaid();
+            //if (isPaid)
+            //{
+            //    int stampSize = 70;
+            //    int stampX = paperWidth - 120;
+            //    int stampY = currentY - 50;
 
-                var oldTransform = e.Graphics.Transform.Clone();
-                e.Graphics.TranslateTransform(stampX + stampSize / 2, stampY + stampSize / 2);
-                e.Graphics.RotateTransform(-15);
-                e.Graphics.TranslateTransform(-(stampX + stampSize / 2), -(stampY + stampSize / 2));
+            //    var oldTransform = e.Graphics.Transform.Clone();
+            //    e.Graphics.TranslateTransform(stampX + stampSize / 2, stampY + stampSize / 2);
+            //    e.Graphics.RotateTransform(-15);
+            //    e.Graphics.TranslateTransform(-(stampX + stampSize / 2), -(stampY + stampSize / 2));
 
-                using (Pen pen = new Pen(System.Drawing.Color.Black, 2f))
-                {
-                    e.Graphics.DrawEllipse(pen, stampX, stampY, stampSize, stampSize);
-                }
+            //    using (Pen pen = new Pen(System.Drawing.Color.Black, 2f))
+            //    {
+            //        e.Graphics.DrawEllipse(pen, stampX, stampY, stampSize, stampSize);
+            //    }
 
-                using (System.Drawing.Font stampFont = new System.Drawing.Font("Arial", 18, FontStyle.Regular))
-                using (SolidBrush brush = new SolidBrush(System.Drawing.Color.Black))
-                {
-                    StringFormat format = new StringFormat
-                    {
-                        Alignment = StringAlignment.Center,
-                        LineAlignment = StringAlignment.Center
-                    };
-                    e.Graphics.DrawString("PAID", stampFont, brush,
-                        new Rectangle(stampX, stampY, stampSize, stampSize), format);
-                }
+            //    using (System.Drawing.Font stampFont = new System.Drawing.Font("Arial", 18, FontStyle.Regular))
+            //    using (SolidBrush brush = new SolidBrush(System.Drawing.Color.Black))
+            //    {
+            //        StringFormat format = new StringFormat
+            //        {
+            //            Alignment = StringAlignment.Center,
+            //            LineAlignment = StringAlignment.Center
+            //        };
+            //        e.Graphics.DrawString("PAID", stampFont, brush,
+            //            new Rectangle(stampX, stampY, stampSize, stampSize), format);
+            //    }
 
-                e.Graphics.Transform = oldTransform;
-            }
+            //    e.Graphics.Transform = oldTransform;
+            //}
+
+            #endregion
 
             // NOTES
             if (lblNotesVal.Text != "—" && !string.IsNullOrEmpty(lblNotesVal.Text))

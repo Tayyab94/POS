@@ -359,6 +359,10 @@
     <Compile Include="Migrations\202603022050233_removeEditQty_decimal_TempOdrDetail.Designer.cs">
       <DependentUpon>202603022050233_removeEditQty_decimal_TempOdrDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202608041731461_add_ProdStockUnit_Prod_table.cs" />
+    <Compile Include="Migrations\202608041731461_add_ProdStockUnit_Prod_table.Designer.cs">
+      <DependentUpon>202608041731461_add_ProdStockUnit_Prod_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\AuthModel\AuthUser.cs" />
@@ -890,6 +894,9 @@
     <EmbeddedResource Include="Migrations\202603022050233_removeEditQty_decimal_TempOdrDetail.resx">
       <DependentUpon>202603022050233_removeEditQty_decimal_TempOdrDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202608041731461_add_ProdStockUnit_Prod_table.resx">
+      <DependentUpon>202608041731461_add_ProdStockUnit_Prod_table.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1082,7 +1089,6 @@
   <ItemGroup>
     <Content Include="pos_icon.ico" />
     <Content Include="Properties\Homedashboard.png" />
-    <None Include="Resources\Homedashboard.jpg" />
     <None Include="Resources\Homedashboard.png" />
     <None Include="Properties\loupe.png" />
     <None Include="Properties\iconExcel.png" />

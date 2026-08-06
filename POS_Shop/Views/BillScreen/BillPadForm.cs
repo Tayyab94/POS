@@ -285,6 +285,7 @@ namespace POS_Shop.Views.BillScreen
                             Id                 AS ProductId,
                             ProductEnglishName AS ProductName,
                             ProductUrduName,
+       p.ProdQtyStockUnit AS ProductType,
                             Qty,
                             PurchasePrice
                         FROM Products WITH (NOLOCK)
@@ -302,6 +303,7 @@ namespace POS_Shop.Views.BillScreen
                             p.Id                 AS ProductId,
                             p.ProductEnglishName AS ProductName,
                             p.ProductUrduName,
+       p.ProdQtyStockUnit AS ProductType,
                             p.Qty,
                             p.PurchasePrice
                         FROM Products p WITH (NOLOCK)
@@ -340,6 +342,7 @@ namespace POS_Shop.Views.BillScreen
                     p.Id                 AS ProductId,
                     p.ProductEnglishName AS ProductName,
                     p.ProductUrduName,
+                    p.ProdQtyStockUnit AS ProductType,
                     p.Qty,
                     p.PurchasePrice
                 FROM Products p WITH (NOLOCK)
@@ -354,10 +357,11 @@ namespace POS_Shop.Views.BillScreen
         {
             var dt = new DataTable();
             dt.Columns.Add("ID", typeof(int));
-            dt.Columns.Add("Code", typeof(string));
+            dt.Columns.Add("Price", typeof(string));
             dt.Columns.Add("Name", typeof(string));
             dt.Columns.Add("U-Name", typeof(string));
             dt.Columns.Add("Qty", typeof(int));
+            dt.Columns.Add("Type", typeof(string));
 
             foreach (var item in suggestions)
                 dt.Rows.Add(
@@ -365,7 +369,8 @@ namespace POS_Shop.Views.BillScreen
                     item.purchasePrice,
                     item.ProductName,
                     TextFormatHelper.FormatMixedText(item.ProductUrduName),
-                    item.Qty);
+                    
+                    item.Qty, item.ProductType);
 
             SuggestionGrid.SuspendLayout();
             SuggestionGrid.ReadOnly = true;
@@ -375,6 +380,7 @@ namespace POS_Shop.Views.BillScreen
             SuggestionGrid.Columns[1].Width = 50;
             SuggestionGrid.Columns[2].Width = 200;
             SuggestionGrid.Columns[3].Width = 200;
+            SuggestionGrid.Columns[4].Width = 100;
             SuggestionGrid.ResumeLayout();
 
             SuggestionGrid.Visible = true;
@@ -501,7 +507,7 @@ namespace POS_Shop.Views.BillScreen
                 PId = pId.ToString();
                 P_StockQtyTxt.Text = "1";
                 SuggestionGrid.Visible = false;
-
+                prodStockUnit.Text = row.Cells[5].Value?.ToString() ?? string.Empty;
                 ProductDetailTxt.Focus();
 
                 await ShowProductPricesAsync(pId);
@@ -644,7 +650,7 @@ namespace POS_Shop.Views.BillScreen
                 if (availableQty <= 0 || (itemCount * qty) > availableQty)
                 {
                     MessageBox.Show(
-                        $"Available stock is {availableQty} pieces. Please enter a valid quantity.",
+                        $"Available stock is {availableQty} {prodStockUnit.Text}. Please enter a valid quantity.",
                         "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -664,11 +670,36 @@ namespace POS_Shop.Views.BillScreen
                                   StringComparison.OrdinalIgnoreCase))
                 {
                     int existingQty = int.TryParse(row.Cells[Col.Qty].Value?.ToString(), out int eq) ? eq : 0;
-                    existingQty += qty;
-                    row.Cells[Col.Qty].Value = existingQty;
-                    row.Cells[Col.Amount].Value = Math.Round(existingQty * salePrice, 1);
-                    productExists = true;
-                    break;
+
+                    if (config && !string.IsNullOrEmpty(productId))
+                    {
+                        if ((existingQty * Convert.ToInt32(prod_ItemCountTxt.Text)) + (qty * Convert.ToInt32(prod_ItemCountTxt.Text)) <= Convert.ToInt32(Prod_Qty.Text))
+                        {
+                            existingQty += qty;
+                            row.Cells[Col.Qty].Value = existingQty;
+                            row.Cells[Col.Amount].Value = Math.Round(existingQty * salePrice, 1);
+                            productExists = true;
+                            break;
+                        }
+                        else
+                        {
+                            productExists = false;
+
+                            MessageBox.Show($"Remaining stock is {Convert.ToInt32(Prod_Qty.Text) - (existingQty * Convert.ToInt32(prod_ItemCountTxt.Text)) + (qty * Convert.ToInt32(prod_ItemCountTxt.Text))} - {prodStockUnit.Text}. Please enter a valid quantity.");
+
+                            return;
+                        }
+                    }
+                    else
+                    {
+                      
+                        existingQty += qty;
+                        row.Cells["Qty"].Value = existingQty;
+                        row.Cells["Amount"].Value = Math.Round(existingQty * salePrice, 1);
+                        productExists = true;
+                        break;
+                    }
+                   
                 }
             }
 
@@ -752,7 +783,7 @@ namespace POS_Shop.Views.BillScreen
                                 if (editedQty <= 0 || (price.ItemCount * editedQty) > product.Qty)
                                 {
                                     MessageBox.Show(
-                                        $"Available stock is {product.Qty} pieces.",
+                                        $"Available stock is {product.Qty} {product.ProdQtyStockUnit}.",
                                         "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     row.Cells[e.ColumnIndex].Value = 0;
                                     return;
@@ -1187,6 +1218,11 @@ namespace POS_Shop.Views.BillScreen
             {
                 try
                 {
+
+                    // Delete the Record from Customer Ledger 
+                    context.Database.ExecuteSqlCommand($"delete from CustomerLedger where Note like '%{InvoiceNoLbl.Text}%'");
+
+
                     var repo = new OrderRepository(context);
                     var data = await GetTempOrderData();
 
@@ -1868,6 +1904,7 @@ namespace POS_Shop.Views.BillScreen
             Prod_Qty.Clear();
             prod_ItemCountTxt.Clear();
             ProductDetailTxt.Clear();
+            prodStockUnit.Clear();
             productTypeDropdown.SelectedIndex = -1;
             OtherProductChk.Checked = false;
             ProductOrderHistoryDataGrid.DataSource = null;
@@ -2185,10 +2222,7 @@ namespace POS_Shop.Views.BillScreen
         private void productTypeDropdown_Leave(object sender, EventArgs e)
             => productTypeDropdown.BorderColor = Color.Silver;
 
-        private void InvoiceShopName_CheckedChanged(object sender, EventArgs e)
-            => InvoiceShopName.Text = InvoiceShopName.Checked
-                ? "Hide Shop Name in Invoice" : "Show Shop Name in Invoice";
-
+        
         private void BackScreenBtn_Click(object sender, EventArgs e)
         {
             if (CartProductList.Rows.Count != 0)

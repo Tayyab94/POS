@@ -149,7 +149,7 @@ namespace POS_Shop.Helpers.DAL
                existingProduct.Cost = product.Cost;
                 existingProduct.Qty = product.Qty;
                 existingProduct.SubcategoryId = product.SubcategoryId;
-
+                existingProduct.ProdQtyStockUnit = product.ProdQtyStockUnit;
                 _context.SaveChanges();
                 return existingProduct.Id;
             }

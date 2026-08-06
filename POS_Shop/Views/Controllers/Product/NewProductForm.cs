@@ -101,6 +101,17 @@ namespace POS_Shop.Views.Controllers.Product
                    // P_SalePriceTxt.Text = product.SalePrice?.ToString() ?? "";
                     p_costTxt.Text = product.Cost?.ToString() ?? "";
                     P_StockQtyTxt.Text = product.Qty.ToString();
+                    ProductStockUniDropDown.SelectedIndex = product.ProdQtyStockUnit == null
+                                            ? 0 : ProductStockUniDropDown.FindStringExact(product.ProdQtyStockUnit);
+
+                    //if (product.ProdQtyStockUnit != null)
+                    //{
+                    //    ProductStockUniDropDown.SelectedIndex = 0;
+                    //}
+                    //else
+                    //{
+                    //    ProductStockUniDropDown.SelectedIndex = ProductStockUniDropDown.FindStringExact(product.ProdQtyStockUnit);
+                    //}
 
                     // Load category and subcategory - FIXED
                     if (product.SubcategoryId.HasValue)
@@ -247,6 +258,10 @@ namespace POS_Shop.Views.Controllers.Product
                 // Store in allProductUnits for later use
                 allProductUnits = productUnits;
 
+                ProductStockUniDropDown.DataSource = allProductUnits;
+                ProductStockUniDropDown.DisplayMember = "Name";
+                ProductStockUniDropDown.ValueMember = "Id";
+                ProductStockUniDropDown.SelectedIndex = 0;
                 // Load the price type dropdown
                 UpdateProductUnitDropdown();
             }
@@ -640,6 +655,7 @@ namespace POS_Shop.Views.Controllers.Product
 
             try
             {
+                string qtyUnit= ProductStockUniDropDown.SelectedItem is ProductUnitDto selectedUnit ? selectedUnit.Name : null;
                 // Create/Update product
                 var product = new POS_Shop.Models.Product
                 {
@@ -648,10 +664,13 @@ namespace POS_Shop.Views.Controllers.Product
                     SearchByProductCode = SearchBynameTxt.Text.Trim(),
                     PurchasePrice = PurchasePriceTxt.Text.Trim(),
                     Cost = int.TryParse(p_costTxt.Text, out int cost) ? cost : (int?)null,
+                    ProdQtyStockUnit = qtyUnit.Trim(),
                     Qty = int.TryParse(P_StockQtyTxt.Text, out int qty) ? qty : 0,
                     SubcategoryId = SubCategoryCategoryDropDownLst.SelectedValue != null &&
                                    Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue) > 0 ?
-                                   Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue) : (int?)null
+                                   Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue) : (int?)null,
+                    
+
                 };
 
                 if (isUpdate && !string.IsNullOrEmpty(productIdTxt.Text))
@@ -923,6 +942,7 @@ namespace POS_Shop.Views.Controllers.Product
 
             LoadProductUnitsForPriceTypeDropdown();
         }
+
     }
 
 

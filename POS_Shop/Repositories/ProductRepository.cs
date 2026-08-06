@@ -92,7 +92,7 @@ namespace POS_Shop.Repositories
             return data;
         }
 
-        public async Task<(int totalCount, bool hasMore, IEnumerable<ProductListDtp> data)> GetProductCursorPagingListAsync(int? cursor, int pageSize, string search)
+        public async Task<(int totalCount, bool hasMore, IEnumerable<ProductListDtp> data)> GetProductCursorPagingListAsync(int? cursor, int pageSize, string search, bool showLessQty = false)
         {
 
             var query = _context.Products.AsNoTracking().AsQueryable();
@@ -111,6 +111,10 @@ namespace POS_Shop.Repositories
                         s.SearchByProductCode.ToLower().Contains(word));
                 }
             }
+
+
+            if (showLessQty)
+                query = query.Where(s => s.Qty <= 5);
 
             // Get total count (cached if possible)
             var totalCount = await query.CountAsync();
