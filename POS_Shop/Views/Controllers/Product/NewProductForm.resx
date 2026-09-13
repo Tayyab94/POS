@@ -118,16 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ImportFilBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAI4AAAAsCAYAAACzKYDtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAD3SURBVHhe7dyhTQVBFIbRkZTDDAVgaYASKIIeUJg3q2gD
-        h+btkNcBDSAICUGAgLzgls2G/PqIY+698tO3lFJKr48XUxuHqY1v2HDYtXF1bKZMZ+NyavPryhH80et4
-        m9r+uvQ2npdL2NLr+CjLIfyHcIgIh4hwiAiHiHCICIeIcIgIh4hwiAiHiHCICIeIcIgIh4hwiAiHiHCI
-        CIeIcIgIh4hwiAiHiHCICIeIcIgIh4hwiAiHiHCICIeIcIgIh4hwiAiHiHCICIeIcIiUXp9elkPY0uv4
-        Kr3ub6Y63pdLWLM7nT97ne9/v6u3cbs8gDXHaO7OH05+AE62Ew8V2+UZAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="SearchBynameTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAASYAAAApCAYAAACY5YS7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

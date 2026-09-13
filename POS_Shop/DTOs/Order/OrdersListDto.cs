@@ -24,5 +24,6 @@ namespace POS_Shop.DTOs.Order
 
         public int ? customerId { get; set; }
         public string CustomerName {  get; set; }
+
     }
 }

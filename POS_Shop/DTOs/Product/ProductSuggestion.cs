@@ -40,7 +40,7 @@ namespace POS_Shop.DTOs.Product
     {
 
         public string DisplayText =>
-            $"Rs.{Price:0} per {Type} ({Items} pieces, Rs {P_Per_Item:0}/piece)";
+            $"Rs.{Price:0} per {Type} ({Items} pieces, Rs {ItemPrice:0}/piece)";
     }
 
 
@@ -48,10 +48,13 @@ namespace POS_Shop.DTOs.Product
     {
 
         public string Type { get; set; }
-        public int Items { get; set; }
+        public decimal Pur_Price { get; set; }
         public decimal Price { get; set; }
-        public decimal P_Per_Item { get; set; }
-     
+        public int Items { get; set; }
+
+        public decimal ItemPrice { get; set; }
+
+
     }
 
 }

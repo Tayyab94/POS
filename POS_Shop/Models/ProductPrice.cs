@@ -16,6 +16,7 @@ namespace POS_Shop.Models
         [StringLength(maximumLength:30)]
         public string TypeName { get; set; }
         public string Unit { get; set; }
+        public decimal PurchasePricePerUnit { get; set; } = 0;
         public int ItemsCount { get; set; }
         public decimal Price { get; set; }
         public decimal PricePerItem { get; set; }

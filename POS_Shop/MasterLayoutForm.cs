@@ -40,10 +40,21 @@ namespace POS_Shop
             {
                 // Restrict access to certain features for Cashier role
           
-                userManagementToolStripMenuItem.Visible= false;
-              
+                userManagementToolStripMenuItem.Visible= true;
+
+                HomePageMenuStrip.Items.Remove(viewsToolStripMenuItem);
+                //    InvoicePageTabControl.TabPages.Remove(ImpoertOrderFileTab);
+
             }
             LoadHomeUI();
+
+
+            //string savedRole = Properties.Settings.Default.UserRole?.ToString() ?? string.Empty;
+            //if (!savedRole.Equals(AuthUserRole.SuperAdmin.ToString(), StringComparison.OrdinalIgnoreCase))
+            //{
+            //    InvoicePageTabControl.TabPages.Remove(TruncateTableTab);
+            //    InvoicePageTabControl.TabPages.Remove(ImpoertOrderFileTab);
+            //}
         }
 
         private void LoadHomeUI()
@@ -139,47 +150,11 @@ namespace POS_Shop
             }
             
         }
-
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
-            //SessionManager.Logout();
-            //foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
-            //{
-            //    //if (form != this)
-            //    //    form.Close();
-            //    form.Close();
-            //}
-
-            //var loginForm = new LoginForm();
-            //loginForm.Show();
-
             SessionManager.Logout();
-
-            // Hide the main form instead of closing it
-            this.Hide();
-
-            // Close other forms except this one
-            foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
-            {
-                if (form != this)
-                    form.Close();
-            }
-
-            // Show login form
-            var loginForm = new LoginForm();
-            loginForm.ShowDialog();
-
-            // If login successful, show main form again
-            if (loginForm.DialogResult == DialogResult.OK)
-            {
-                this.Show();
-                // Refresh or reset any data as needed
-            }
-            else
-            {
-                // User cancelled login, close everything
-                this.Close();
-            }
+            this.Close();
+            Application.Exit();
         }
 
       

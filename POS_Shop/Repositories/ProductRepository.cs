@@ -1,5 +1,6 @@
 ﻿using POS_Shop.DTOs.City;
 using POS_Shop.DTOs.Product;
+using POS_Shop.Helpers;
 using POS_Shop.Interfaces;
 using POS_Shop.Models;
 using System;
@@ -114,7 +115,11 @@ namespace POS_Shop.Repositories
 
 
             if (showLessQty)
-                query = query.Where(s => s.Qty <= 5);
+            {
+                int qty = ConfigurationManager.Configuration.Features.MinStockQty;
+               
+                query = query.Where(s => s.Qty <= qty);
+            }
 
             // Get total count (cached if possible)
             var totalCount = await query.CountAsync();
@@ -142,7 +147,7 @@ namespace POS_Shop.Repositories
                          Type =pt.TypeName,
                           Items = pt.ItemsCount,
                            Price= pt.Price,
-                            P_Per_Item = pt.PricePerItem,
+                            ItemPrice = pt.PricePerItem,
                     }).ToList()
                 })
                 .ToListAsync();

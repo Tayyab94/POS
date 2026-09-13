@@ -415,7 +415,7 @@ namespace POS_Shop.Helpers
 
         public static void PrintInvoice(PrintPageEventArgs e, DataGridView cartProductList,
                               string customerName, string invoiceNo, string totalAmount,
-                              bool isCashPayment, string receivedAmount, bool isPaid)
+                              bool isCashPayment, string receivedAmount, bool isPaid, int totalItems)
         {
             // 1️⃣  Dynamic height calculation
             int baseHeight = 350; // header, totals, footer space
@@ -454,13 +454,13 @@ namespace POS_Shop.Helpers
             {
                 var InvoiceInfo = ConfigurationManager.Configuration.InvoiceSettings;
 
-                e.Graphics.DrawString("صادات الیکٹرک اسٹور", titleFont, Brushes.Black,
+                e.Graphics.DrawString("سادات الیکٹرک سٹور", titleFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
                 currentY += lineHeight * 2;
                 e.Graphics.DrawString("موتی بازار، وزیرآباد", smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
                 currentY += lineHeight + 2;
-                e.Graphics.DrawString("0301-6244700", smallFont, Brushes.Black,
+                e.Graphics.DrawString("0301-6244700  055-6601442", smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
                 currentY += lineHeight + 2;
             }
@@ -476,9 +476,12 @@ namespace POS_Shop.Helpers
             e.Graphics.DrawString($"آپریٹر: {Properties.Settings.Default.UserName.ToString()}", headerFont, Brushes.Black,
                                  new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 2;
-           
+
             e.Graphics.DrawString("تاریخ: " + DateTime.Now.ToString("yyyy-MM-dd"), urduFont, Brushes.Black,
-                              new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
+                                new Rectangle(leftMargin, currentY, paperWidth, lineHeight + 2), rightFormat);
+
+            e.Graphics.DrawString($"کل اشیاء :" + totalItems, urduFont, Brushes.Black,
+                                 new Rectangle(190, currentY, paperWidth, lineHeight + 2), rightFormat);
             currentY += lineHeight + 2;
 
 
@@ -632,7 +635,7 @@ namespace POS_Shop.Helpers
 
         public static void PrintEnglishInvoice(PrintPageEventArgs e, DataGridView cartProductList,
                     string customerName, string invoiceNo, string totalAmount,
-                    bool isCashPayment, string receivedAmount, bool isPaid)
+                    bool isCashPayment, string receivedAmount, bool isPaid, int totalItems)
         {
             // Thermal printer settings (80mm paper)
             int paperWidth = 280; // pixels for 80mm paper
@@ -679,14 +682,13 @@ namespace POS_Shop.Helpers
                 //currentY += lineHeight + 2;
 
 
-
                 e.Graphics.DrawString("Sadaat Electric Store", titleFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight * 2), centerFormat);
                 currentY += lineHeight * 2;
                 e.Graphics.DrawString("Moti Bazaar, Wazirabad", smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
                 currentY += lineHeight + 2;
-                e.Graphics.DrawString("0301-6244700", smallFont, Brushes.Black,
+                e.Graphics.DrawString("0301-6244700  055-6601442", smallFont, Brushes.Black,
                                      new Rectangle(leftMargin, currentY, paperWidth, lineHeight), centerFormat);
                 currentY += lineHeight + 2;
 
@@ -705,6 +707,8 @@ namespace POS_Shop.Helpers
             currentY += lineHeight;
 
             e.Graphics.DrawString("Date: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm"), regularFont, Brushes.Black, leftMargin, currentY);
+
+            e.Graphics.DrawString("Total Items: " + totalItems, regularFont, Brushes.Black, 150, currentY);
             currentY += lineHeight;
 
             e.Graphics.DrawString("Invoice #:" + invoiceNo, regularFont, Brushes.Black, leftMargin, currentY);
@@ -1046,7 +1050,7 @@ namespace POS_Shop.Helpers
                                       string customerName, string invoiceNo, string totalAmount)
         {
             PrintInvoice(e, cartProductList, customerName, invoiceNo, totalAmount,
-                        true, totalAmount, false);
+                        true, totalAmount, false, 0);
         }
     }
 }

@@ -1885,7 +1885,7 @@ namespace POS_Shop.Views.Controllers.Supplier
 
                     if (pr > 0)
                     {
-                        var dbItem = _db.PurchaseItems.FirstOrDefault(i => i.ProductId == pr && i.IsDeleted == false);
+                        var dbItem = _db.PurchaseItems.FirstOrDefault(i => i.ProductId == pr && i.PurchaseId == _existingPurchaseId.Value && i.IsDeleted == false);
                         if (dbItem != null)
                         {
                             dbItem.IsDeleted = true;

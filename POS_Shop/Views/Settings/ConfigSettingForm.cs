@@ -30,6 +30,7 @@ namespace POS_Shop.Views.Settings
                 chkEnableUpdateQty.Checked = config.Features.EnableUpdateQty;
                 chkShowHideShopName.Checked = config.Features.ShowHideShopName;
                 chkShowHideShopName.Visible = false;
+                txtStockMinQty.Text = config.Features.MinStockQty.ToString();
                 // Load invoice settings
                 //txtShopName.Text = config.InvoiceSettings.ShopName ?? "";
                 //txtShopAddress.Text = config.InvoiceSettings.ShopAddress ?? "";
@@ -69,7 +70,7 @@ namespace POS_Shop.Views.Settings
                 // Save features
                 config.Features.EnableUpdateQty = chkEnableUpdateQty.Checked;
                 config.Features.ShowHideShopName = chkShowHideShopName.Checked;
-
+                config.Features.MinStockQty = int.Parse(txtStockMinQty.Text);
                 //// Save invoice settings
                 //config.InvoiceSettings.ShopName = txtShopName.Text.Trim();
                 //config.InvoiceSettings.ShopAddress = txtShopAddress.Text.Trim();

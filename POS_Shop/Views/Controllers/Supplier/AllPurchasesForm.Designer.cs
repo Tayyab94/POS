@@ -501,14 +501,15 @@ namespace POS_Shop.Views.Controllers.Supplier
 
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblSubtitle = new System.Windows.Forms.Label();
@@ -562,7 +563,7 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // pnlHeader
             // 
-            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Controls.Add(this.lblSubtitle);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -763,7 +764,7 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // btnSearch
             // 
-            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -805,18 +806,18 @@ namespace POS_Shop.Views.Controllers.Supplier
             this.dgvPurchases.AllowUserToAddRows = false;
             this.dgvPurchases.AllowUserToDeleteRows = false;
             this.dgvPurchases.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            this.dgvPurchases.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            this.dgvPurchases.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPurchases.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPurchases.BackgroundColor = System.Drawing.Color.White;
             this.dgvPurchases.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPurchases.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvPurchases.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvPurchases.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPurchases.ColumnHeadersHeight = 40;
             this.dgvPurchases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvPurchases.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -831,14 +832,14 @@ namespace POS_Shop.Views.Controllers.Supplier
             this.colAPBalance,
             this.colAPStatus,
             this.colAPFlow});
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(71)))), ((int)(((byte)(161)))));
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPurchases.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPurchases.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvPurchases.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPurchases.EnableHeadersVisualStyles = false;
             this.dgvPurchases.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(239)))), ((int)(((byte)(241)))));
@@ -846,6 +847,14 @@ namespace POS_Shop.Views.Controllers.Supplier
             this.dgvPurchases.MultiSelect = false;
             this.dgvPurchases.Name = "dgvPurchases";
             this.dgvPurchases.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPurchases.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvPurchases.RowHeadersVisible = false;
             this.dgvPurchases.RowHeadersWidth = 51;
             this.dgvPurchases.RowTemplate.Height = 38;
@@ -883,8 +892,8 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // colAPItems
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colAPItems.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colAPItems.DefaultCellStyle = dataGridViewCellStyle3;
             this.colAPItems.FillWeight = 5F;
             this.colAPItems.HeaderText = "Items";
             this.colAPItems.MinimumWidth = 6;
@@ -893,10 +902,10 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // colAPTotalBill
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            dataGridViewCellStyle12.Format = "N2";
-            this.colAPTotalBill.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle4.Format = "N2";
+            this.colAPTotalBill.DefaultCellStyle = dataGridViewCellStyle4;
             this.colAPTotalBill.FillWeight = 11F;
             this.colAPTotalBill.HeaderText = "Total Bill";
             this.colAPTotalBill.MinimumWidth = 6;
@@ -905,7 +914,6 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // colAPDiscount
             // 
-           // this.colAPDiscount.DefaultCellStyle = dataGridViewCellStyle4;
             this.colAPDiscount.FillWeight = 8F;
             this.colAPDiscount.HeaderText = "Discount";
             this.colAPDiscount.MinimumWidth = 6;
@@ -914,11 +922,11 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // colAPNetAmt
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle13.Format = "N2";
-            this.colAPNetAmt.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle5.Format = "N2";
+            this.colAPNetAmt.DefaultCellStyle = dataGridViewCellStyle5;
             this.colAPNetAmt.FillWeight = 11F;
             this.colAPNetAmt.HeaderText = "Net Amount";
             this.colAPNetAmt.MinimumWidth = 6;
@@ -927,7 +935,6 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // colAPPaid
             // 
-         //   this.colAPPaid.DefaultCellStyle = dataGridViewCellStyle4;
             this.colAPPaid.FillWeight = 10F;
             this.colAPPaid.HeaderText = "Paid";
             this.colAPPaid.MinimumWidth = 6;
@@ -936,7 +943,6 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // colAPBalance
             // 
-          //  this.colAPBalance.DefaultCellStyle = dataGridViewCellStyle4;
             this.colAPBalance.FillWeight = 10F;
             this.colAPBalance.HeaderText = "Balance Due";
             this.colAPBalance.MinimumWidth = 6;
@@ -945,8 +951,8 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // colAPStatus
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colAPStatus.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colAPStatus.DefaultCellStyle = dataGridViewCellStyle6;
             this.colAPStatus.FillWeight = 8F;
             this.colAPStatus.HeaderText = "Status";
             this.colAPStatus.MinimumWidth = 6;
@@ -955,11 +961,11 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // colAPFlow
             // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
-            this.colAPFlow.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            this.colAPFlow.DefaultCellStyle = dataGridViewCellStyle7;
             this.colAPFlow.FillWeight = 7F;
             this.colAPFlow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.colAPFlow.HeaderText = "";
@@ -971,7 +977,7 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // lblGridTitle
             // 
-            this.lblGridTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.lblGridTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.lblGridTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblGridTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblGridTitle.ForeColor = System.Drawing.Color.White;
@@ -998,7 +1004,7 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // btnPrev
             // 
-            this.btnPrev.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.btnPrev.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.btnPrev.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrev.Enabled = false;
             this.btnPrev.FlatAppearance.BorderSize = 0;
@@ -1016,7 +1022,7 @@ namespace POS_Shop.Views.Controllers.Supplier
             // lblPageInfo
             // 
             this.lblPageInfo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblPageInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.lblPageInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.lblPageInfo.Location = new System.Drawing.Point(142, 8);
             this.lblPageInfo.Name = "lblPageInfo";
             this.lblPageInfo.Size = new System.Drawing.Size(260, 32);
@@ -1026,7 +1032,7 @@ namespace POS_Shop.Views.Controllers.Supplier
             // 
             // btnNext
             // 
-            this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNext.Enabled = false;
             this.btnNext.FlatAppearance.BorderSize = 0;

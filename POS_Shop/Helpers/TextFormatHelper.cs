@@ -93,7 +93,7 @@ namespace POS_Shop.Helpers
                 case "ta":
                     return "INT-";
                 default:
-                    return "DEF-"; // Default prefix for other users
+                    return "SAD-"; // Default prefix for other users
             }
         }
 

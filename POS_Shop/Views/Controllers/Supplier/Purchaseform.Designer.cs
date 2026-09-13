@@ -99,7 +99,7 @@
             // 
             // pnlHeader
             // 
-            this.pnlHeader.BackColor = System.Drawing.Color.SlateBlue;
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Controls.Add(this.lblInvoiceNo);
             this.pnlHeader.Controls.Add(this.lblHeaderDate);
@@ -424,7 +424,7 @@
             // 
             // btnAddItem
             // 
-            this.btnAddItem.BackColor = System.Drawing.Color.SlateBlue;
+            this.btnAddItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.btnAddItem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddItem.FlatAppearance.BorderSize = 0;
             this.btnAddItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -462,7 +462,7 @@
             this.dgvItems.BackgroundColor = System.Drawing.Color.White;
             this.dgvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -590,7 +590,7 @@
             // 
             // lblItemCount
             // 
-            this.lblItemCount.BackColor = System.Drawing.Color.SlateBlue;
+            this.lblItemCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.lblItemCount.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblItemCount.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblItemCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
@@ -604,7 +604,7 @@
             // 
             // lblGridTitle
             // 
-            this.lblGridTitle.BackColor = System.Drawing.Color.SlateBlue;
+            this.lblGridTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.lblGridTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblGridTitle.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblGridTitle.ForeColor = System.Drawing.Color.White;
@@ -817,7 +817,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.Color.SlateBlue;
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

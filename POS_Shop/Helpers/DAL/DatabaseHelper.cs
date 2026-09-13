@@ -91,6 +91,46 @@ namespace POS_Shop.Helpers.DAL
             }
         }
 
+
+        // Save or update product prices
+        public bool SaveProductPrices(int productId, decimal purchasePrice, List<ProductPrice> prices)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // Delete existing prices for this product
+                    var existingPrices = _context.ProductPrices
+                        .Where(pp => pp.ProductId == productId)
+                        .ToList();
+
+                    _context.ProductPrices.RemoveRange(existingPrices);
+
+                    _context.SaveChanges();
+
+                    // Insert new prices
+                    foreach (var price in prices.Where(p => p.Price > 0))
+                    {
+
+                        price.ProductId = productId;
+                        price.CreatedDate = DateTime.Now;
+                        price.PurchasePricePerUnit = purchasePrice * price.ItemsCount;
+                        _context.ProductPrices.Add(price);
+                    }
+
+                    _context.SaveChanges();
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Error saving product prices: " + ex.Message, ex);
+                }
+            }
+        }
+
+
         // Save or update product
         public int SaveProduct(Product product)
         {

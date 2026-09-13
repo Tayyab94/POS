@@ -155,28 +155,28 @@
   <data name="loginBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
+        xV+4Ahfdz6ZhVQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="userNamelbl.BaseStylesheet" xml:space="preserve">
-    <value>#bunifu-label { padding: 0px; font-family: 'Times New Roman'; font-size: 12pt; width: 100%; height: 100%; font-style: normal; font-weight: bold; text-decoration: none; color: rgb(0, 0, 0); text-align: left; }</value>
+    <value>#bunifu-label { padding: 0px; font-family: 'Times New Roman'; font-size: 12pt; width: 100%; height: 100%; font-style: normal; font-weight: bold; text-decoration: none; color: rgb(30, 27, 75); text-align: left; }</value>
   </data>
   <data name="userPasswordLbl.BaseStylesheet" xml:space="preserve">
-    <value>#bunifu-label { padding: 0px; font-family: 'Times New Roman'; font-size: 12pt; width: 100%; height: 100%; font-style: normal; font-weight: bold; text-decoration: none; color: rgb(0, 0, 0); text-align: left; }</value>
+    <value>#bunifu-label { padding: 0px; font-family: 'Times New Roman'; font-size: 12pt; width: 100%; height: 100%; font-style: normal; font-weight: bold; text-decoration: none; color: rgb(30, 27, 75); text-align: left; }</value>
   </data>
   <data name="bunifuLabel1.BaseStylesheet" xml:space="preserve">
     <value>#bunifu-label { padding: 0px; font-family: 'Times New Roman'; font-size: 12pt; width: 100%; height: 100%; font-style: normal; font-weight: bold; text-decoration: none; color: rgb(255, 0, 0); text-align: left; }</value>

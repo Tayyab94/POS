@@ -1057,7 +1057,16 @@ namespace POS_Shop.Views.Controllers.Product
             string productName = row.Cells["Name"].Value?.ToString();
 
             // Open price management form
-            using (var priceForm = new EditProdPricesForm(productId, productName))
+            //using (var priceForm = new EditProdPricesForm(productId, productName))
+            //{
+            //    if (priceForm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        MessageBox.Show("Product prices updated successfully!", "Success",
+            //                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
+
+            using (var priceForm = new ProductStockManagement(productId, productName))
             {
                 if (priceForm.ShowDialog() == DialogResult.OK)
                 {

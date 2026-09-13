@@ -50,10 +50,11 @@ namespace POS_Shop.Repositories
                 {
                     string currentWord = word; // Capture variable for closure
                     data = data.Where(s =>
-                        s.CustomerName.ToLower().Contains(currentWord) ||
-                        s.CustomerAddress.ToLower().Contains(currentWord) ||
-                        s.City.Name.ToLower().Contains(currentWord)
-                    );
+                       s.CustomerName.ToLower().Contains(currentWord) ||
+                       s.CustomerAddress.ToLower().Contains(currentWord) ||
+                       s.City.Name.ToLower().Contains(currentWord) ||
+                       s.ContactNo.Contains(currentWord)
+                   );
                 }
             }
 

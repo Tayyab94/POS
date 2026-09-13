@@ -1,19 +1,9 @@
-﻿using Org.BouncyCastle.Asn1.Cmp;
-using POS_Shop.Interfaces;
-using POS_Shop.Models;
+﻿using POS_Shop.Interfaces;
 using POS_Shop.Models.LicenseModels;
 using POS_Shop.Models.LicenseModels.DTO;
 using POS_Shop.Repositories;
-using POS_Shop.Views.Account;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POS_Shop.Views.LicenseManagement
@@ -88,7 +78,7 @@ namespace POS_Shop.Views.LicenseManagement
 
             if (_licenseService.IsSoftwareNewOrNot())
             {
-                label1.Text = "Update key";
+                label1.Text = "POS Software";
                 label1.ForeColor = Color.Red;
             }
             else

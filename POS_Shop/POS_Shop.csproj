@@ -42,7 +42,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,10 +55,10 @@
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C7EEBA551F4DC885139CDA6C05C7F1396B06231A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>6A589197950170E7D9B33B2A43727CDC4C06C0FE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>POS_Shop_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>POS_Shop_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -179,7 +179,9 @@
     <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
       <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -363,6 +365,14 @@
     <Compile Include="Migrations\202608041731461_add_ProdStockUnit_Prod_table.Designer.cs">
       <DependentUpon>202608041731461_add_ProdStockUnit_Prod_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202608061855482_added_Prod_UniPrice_TotalActualBill_Profit.cs" />
+    <Compile Include="Migrations\202608061855482_added_Prod_UniPrice_TotalActualBill_Profit.Designer.cs">
+      <DependentUpon>202608061855482_added_Prod_UniPrice_TotalActualBill_Profit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202609051840337_add_PurchasePrice_ProductTable.cs" />
+    <Compile Include="Migrations\202609051840337_add_PurchasePrice_ProductTable.Designer.cs">
+      <DependentUpon>202609051840337_add_PurchasePrice_ProductTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\AuthModel\AuthUser.cs" />
@@ -533,6 +543,12 @@
     <Compile Include="Views\Controllers\Product\ProductListControl.Designer.cs">
       <DependentUpon>ProductListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controllers\Product\ProductStockManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Product\ProductStockManagement.Designer.cs">
+      <DependentUpon>ProductStockManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controllers\Product\ProductUnitControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -599,6 +615,12 @@
     </Compile>
     <Compile Include="Views\Controllers\Reports\ReportsMenuForm.Designer.cs">
       <DependentUpon>ReportsMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\SalesProfitReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Controllers\Reports\SalesProfitReport.Designer.cs">
+      <DependentUpon>SalesProfitReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controllers\Reports\SalesPurchaseComparisonReportForm.cs">
       <SubType>Form</SubType>
@@ -897,6 +919,12 @@
     <EmbeddedResource Include="Migrations\202608041731461_add_ProdStockUnit_Prod_table.resx">
       <DependentUpon>202608041731461_add_ProdStockUnit_Prod_table.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202608061855482_added_Prod_UniPrice_TotalActualBill_Profit.resx">
+      <DependentUpon>202608061855482_added_Prod_UniPrice_TotalActualBill_Profit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202609051840337_add_PurchasePrice_ProductTable.resx">
+      <DependentUpon>202609051840337_add_PurchasePrice_ProductTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -951,6 +979,9 @@
     <EmbeddedResource Include="Views\Controllers\Product\ProductListControl.resx">
       <DependentUpon>ProductListControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Product\ProductStockManagement.resx">
+      <DependentUpon>ProductStockManagement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Product\ProductUnitControl.resx">
       <DependentUpon>ProductUnitControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -963,6 +994,9 @@
     <EmbeddedResource Include="Views\Controllers\Reports\ReportsMenuForm.resx">
       <DependentUpon>ReportsMenuForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Reports\SalesProfitReport.resx">
+      <DependentUpon>SalesProfitReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\SubCategory\SubCategoryForm.resx">
       <DependentUpon>SubCategoryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -974,6 +1008,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Supplier\PaidPurchasesForm.resx">
       <DependentUpon>PaidPurchasesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controllers\Supplier\PendingPurchasesForm.resx">
+      <DependentUpon>PendingPurchasesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controllers\Supplier\PurchaseDetailForm.resx">
       <DependentUpon>PurchaseDetailForm.cs</DependentUpon>
@@ -1042,6 +1079,7 @@
       <DependentUpon>ConfigSettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="POS_Shop_1_TemporaryKey.pfx" />
     <None Include="POS_Shop_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

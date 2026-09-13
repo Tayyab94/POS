@@ -26,6 +26,8 @@ namespace POS_Shop.Repositories
                     InvoiceNumber = order.InvoiceNumber,
                     customerId = order.customerId > 0 ? order.customerId : null,
                     paymentType = order.paymentType,
+                    TotalActualBill= order.TotalActualBill,
+                    TotalProfit= order.TotalProfit,
                 };
                 _context.Orders.Add(order);
                 _context.SaveChanges();
@@ -35,12 +37,15 @@ namespace POS_Shop.Repositories
             var prevOrder= await _context.Orders.Where(s=>s.Id== order.Id && s.InvoiceNumber==order.InvoiceNumber).FirstOrDefaultAsync();
             if(prevOrder!=null)
             {
-                    prevOrder.CreatedDate = DateTime.Now;
+                /*prevOrder.CreatedDate = DateTime.Now*/
+                prevOrder.CreatedDate = prevOrder.CreatedDate;
                     prevOrder.TotalBill = order.TotalBill;
                     prevOrder.ReceiveAmount = order.ReceiveAmount;
                     prevOrder.InvoiceNumber = order.InvoiceNumber;
                     prevOrder.customerId = order.customerId > 0 ? order.customerId : null;
                     prevOrder.paymentType = order.paymentType;
+                prevOrder.TotalActualBill = order.TotalActualBill;
+                prevOrder.TotalProfit = order.TotalProfit;
                     _context.Entry(prevOrder).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
             }
@@ -50,21 +55,6 @@ namespace POS_Shop.Repositories
 
         public async Task<string> AddTempOrder(TempOrder order)
         {
-
-
-
-            //var orderData = new TempOrder()
-            //{
-            //    CreatedDate = DateTime.Now,
-            //    TotalBill = order.TotalBill,
-            //    InvoiceNumber = order.InvoiceNumber,
-            //    customerId = order.customerId > 0 ? order.customerId : null,
-            //    CustomerName = order.CustomerName,
-
-            //};
-            //_context.TempOrders.Add(order);
-            //_context.SaveChanges();
-            //return order.InvoiceNumber;
 
             // Check if a record with the same InvoiceNumber already exists
             var existingOrder = await _context.TempOrders
@@ -373,7 +363,7 @@ namespace POS_Shop.Repositories
                     customerId = s.customerId,
                     CustomerName = s.customerId.HasValue ? s.Customer.CustomerName : "No Customer",
                     ReceiveAmount = s.ReceiveAmount,
-                    TotalBill = s.TotalBill,
+                    TotalBill = s.TotalBill
                 })
                 .ToListAsync();
 
