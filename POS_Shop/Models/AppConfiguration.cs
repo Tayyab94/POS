@@ -18,6 +18,8 @@ namespace POS_Shop.Models
     {
         public bool EnableUpdateQty { get; set; } = false; // Default value
         public bool ShowHideShopName { get; set; } = true; // Default value
+
+        public int MinStockQty { get; set; } = 10;
         // Add more feature flags as needed
     }
 

@@ -34,6 +34,7 @@
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.WeeklySaleChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.SaleProfitReoirtBtn = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelFilters = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -90,12 +91,28 @@
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.SteelBlue;
+            this.panelTop.Controls.Add(this.SaleProfitReoirtBtn);
             this.panelTop.Controls.Add(this.lblTitle);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1100, 60);
             this.panelTop.TabIndex = 1;
+            // 
+            // SaleProfitReoirtBtn
+            // 
+            this.SaleProfitReoirtBtn.BackColor = System.Drawing.Color.SlateBlue;
+            this.SaleProfitReoirtBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SaleProfitReoirtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaleProfitReoirtBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaleProfitReoirtBtn.ForeColor = System.Drawing.Color.White;
+            this.SaleProfitReoirtBtn.Location = new System.Drawing.Point(296, 19);
+            this.SaleProfitReoirtBtn.Name = "SaleProfitReoirtBtn";
+            this.SaleProfitReoirtBtn.Size = new System.Drawing.Size(226, 35);
+            this.SaleProfitReoirtBtn.TabIndex = 7;
+            this.SaleProfitReoirtBtn.Text = "Sale Profit Report";
+            this.SaleProfitReoirtBtn.UseVisualStyleBackColor = false;
+            this.SaleProfitReoirtBtn.Click += new System.EventHandler(this.SaleProfitReoirtBtn_Click);
             // 
             // lblTitle
             // 
@@ -428,6 +445,7 @@
         private System.Windows.Forms.Label lblTotalRevenueValue;
         private System.Windows.Forms.Label lblTotalRevenue;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button SaleProfitReoirtBtn;
     }
 }
 

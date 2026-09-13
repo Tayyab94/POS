@@ -25,7 +25,7 @@ namespace POS_Shop.Views.Controllers.Product
         {
             InitializeComponent();
             dbHelper = new DatabaseHelper();
-    
+
             InitializeUI();
             //WireEvents();
             // Wire up events
@@ -98,12 +98,13 @@ namespace POS_Shop.Views.Controllers.Product
                     ProductUrduNameTxt.Text = product.ProductUrduName;
                     SearchBynameTxt.Text = product.SearchByProductCode;
                     PurchasePriceTxt.Text = product.PurchasePrice;
-                   // P_SalePriceTxt.Text = product.SalePrice?.ToString() ?? "";
+                    // P_SalePriceTxt.Text = product.SalePrice?.ToString() ?? "";
                     p_costTxt.Text = product.Cost?.ToString() ?? "";
                     P_StockQtyTxt.Text = product.Qty.ToString();
                     ProductStockUniDropDown.SelectedIndex = product.ProdQtyStockUnit == null
                                             ? 0 : ProductStockUniDropDown.FindStringExact(product.ProdQtyStockUnit);
 
+                    ProductPurchaseUnitPrice.Text = product.PurchasePricePerUnit.ToString() ?? "";
                     //if (product.ProdQtyStockUnit != null)
                     //{
                     //    ProductStockUniDropDown.SelectedIndex = 0;
@@ -125,7 +126,7 @@ namespace POS_Shop.Views.Controllers.Product
                             if (subCategory != null)
                             {
                                 // First ensure categories are loaded
-                               // LoadCategoryForDropdown();
+                                // LoadCategoryForDropdown();
 
                                 // Set category
                                 bool categorySet = false;
@@ -281,7 +282,7 @@ namespace POS_Shop.Views.Controllers.Product
                 cmbProductType.Items.Clear();
 
                 // Add default option
-                cmbProductType.Items.Add(new ProductUnitDto  { Id = 0, Name = "Select Unit" });
+                cmbProductType.Items.Add(new ProductUnitDto { Id = 0, Name = "Select Unit" });
 
                 // Add available units
                 foreach (var unit in availableUnits)
@@ -435,7 +436,7 @@ namespace POS_Shop.Views.Controllers.Product
                 TypeName = selectedUnit.Name,
                 Unit = selectedUnit.Name ?? selectedUnit.Name,
                 //ItemsCount = GetDefaultItemsCount(selectedUnit.Name),
-                ItemsCount= 1,
+                ItemsCount = 1,
                 Price = 0,
                 PricePerItem = 0,
                 CreatedDate = DateTime.Now
@@ -530,7 +531,7 @@ namespace POS_Shop.Views.Controllers.Product
 
             Label lblPieces = new Label
             {
-                Text = "pieces",
+                Text = ProductStockUniDropDown.SelectedItem is ProductUnitDto selectedUnit ? selectedUnit.Name : null,
                 Location = new Point(xPos, 10),
                 Size = new Size(45, 20),
                 Font = new Font("Segoe UI", 9),
@@ -594,6 +595,176 @@ namespace POS_Shop.Views.Controllers.Product
             return pricePanel;
         }
 
+
+        //private Panel CreatePricePanel(ProductPrice price, ProductUnitDto productUnit, int yPosition)
+        //{
+        //    Panel pricePanel = new Panel
+        //    {
+        //        Size = new Size(840, 38),  // fit inside 862 container, was 950
+        //        Location = new Point(5, yPosition),
+        //        Tag = price.Prod_Unit_TypeId,
+        //        BorderStyle = BorderStyle.FixedSingle,
+        //        BackColor = Color.White,
+        //        Padding = new Padding(5)
+        //    };
+
+        //    int xPos = 5;
+
+        //    // Remove button
+        //    Button btnRemove = new Button
+        //    {
+        //        Location = new Point(xPos, 8),
+        //        Size = new Size(75, 24),
+        //        Font = new Font("Segoe UI", 9),
+        //        Tag = price.Prod_Unit_TypeId,
+        //        FlatStyle = FlatStyle.Flat,
+        //        Text = "Remove",
+        //        BackColor = Color.IndianRed,
+        //        ForeColor = Color.White
+        //    };
+        //    btnRemove.Click += BtnRemovePrice_Click;
+        //    pricePanel.Controls.Add(btnRemove);
+        //    xPos += 82;
+
+        //    // Type label
+        //    Label lblType = new Label
+        //    {
+        //        Text = $"{productUnit.Name}:",
+        //        Location = new Point(xPos, 10),
+        //        Size = new Size(65, 20),
+        //        Font = new Font("Segoe UI", 9, FontStyle.Bold),
+        //        TextAlign = ContentAlignment.MiddleLeft
+        //    };
+        //    pricePanel.Controls.Add(lblType);
+        //    xPos += 68;
+
+        //    // Qty label
+        //    Label lblItems = new Label
+        //    {
+        //        Text = "Qty:",
+        //        Location = new Point(xPos, 10),
+        //        Size = new Size(28, 20),
+        //        Font = new Font("Segoe UI", 9),
+        //        TextAlign = ContentAlignment.MiddleRight
+        //    };
+        //    pricePanel.Controls.Add(lblItems);
+        //    xPos += 30;
+
+        //    // Qty numeric
+        //    NumericUpDown numItems = new NumericUpDown
+        //    {
+        //        Location = new Point(xPos, 8),
+        //        Size = new Size(55, 22),
+        //        Font = new Font("Segoe UI", 9),
+        //        Minimum = 1,
+        //        Maximum = 10000,
+        //        Value = price.ItemsCount > 0 ? price.ItemsCount : 1,
+        //        DecimalPlaces = 0,
+        //        Tag = "items"
+        //    };
+        //    numItems.ValueChanged += (s, e) => UpdateSinglePriceCalculation(pricePanel);
+        //    pricePanel.Controls.Add(numItems);
+        //    xPos += 60;
+
+        //    // Pur.Price label
+        //    Label lblPurchasePrice = new Label
+        //    {
+        //        Text = "Pur.Price:",
+        //        Location = new Point(xPos, 10),
+        //        Size = new Size(62, 20),
+        //        Font = new Font("Segoe UI", 9),
+        //        TextAlign = ContentAlignment.MiddleRight
+        //    };
+        //    pricePanel.Controls.Add(lblPurchasePrice);
+        //    xPos += 65;
+
+        //    // Pur.Price textbox
+        //    TextBox txtPurchasePrice = new TextBox
+        //    {
+        //        Location = new Point(xPos, 8),
+        //        Size = new Size(70, 22),
+        //        Font = new Font("Segoe UI", 9),
+        //        Text = price.PurchasePricePerUnit > 0 ? price.PurchasePricePerUnit.ToString("F2") : "",
+        //        TextAlign = HorizontalAlignment.Right,
+        //        Tag = "purchasePrice"
+        //    };
+        //    txtPurchasePrice.TextChanged += (s, e) =>
+        //    {
+        //        if (decimal.TryParse(txtPurchasePrice.Text, out decimal pp))
+        //        {
+        //            var productPrice = productPrices.FirstOrDefault(
+        //                p => p.Prod_Unit_TypeId == (int)pricePanel.Tag);
+        //            if (productPrice != null)
+        //                productPrice.PurchasePricePerUnit = pp;
+        //        }
+        //        else
+        //        {
+        //            var productPrice = productPrices.FirstOrDefault(
+        //                p => p.Prod_Unit_TypeId == (int)pricePanel.Tag);
+        //            if (productPrice != null)
+        //                productPrice.PurchasePricePerUnit = 0;
+        //        }
+        //    };
+        //    txtPurchasePrice.KeyPress += TxtPrice_KeyPress;
+        //    pricePanel.Controls.Add(txtPurchasePrice);
+        //    xPos += 75;
+
+        //    // Sale Price label
+        //    Label lblPrice = new Label
+        //    {
+        //        Text = "Sale Price:",
+        //        Location = new Point(xPos, 10),
+        //        Size = new Size(62, 20),
+        //        Font = new Font("Segoe UI", 9),
+        //        TextAlign = ContentAlignment.MiddleRight
+        //    };
+        //    pricePanel.Controls.Add(lblPrice);
+        //    xPos += 65;
+
+        //    // Sale Price textbox
+        //    TextBox txtPrice = new TextBox
+        //    {
+        //        Location = new Point(xPos, 8),
+        //        Size = new Size(70, 22),
+        //        Font = new Font("Segoe UI", 9),
+        //        Text = price.Price > 0 ? price.Price.ToString("F2") : "",
+        //        TextAlign = HorizontalAlignment.Right,
+        //        Tag = "price"
+        //    };
+        //    txtPrice.TextChanged += (s, e) => UpdateSinglePriceCalculation(pricePanel);
+        //    txtPrice.KeyPress += TxtPrice_KeyPress;
+        //    pricePanel.Controls.Add(txtPrice);
+        //    xPos += 75;
+
+        //    // per unit label
+        //    Label lblUnit = new Label
+        //    {
+        //        Text = $"per {productUnit.Name}",
+        //        Location = new Point(xPos, 10),
+        //        Size = new Size(60, 20),
+        //        Font = new Font("Segoe UI", 9),
+        //        ForeColor = Color.DarkGreen
+        //    };
+        //    pricePanel.Controls.Add(lblUnit);
+        //    xPos += 65;
+
+        //    // Rs per piece label
+        //    Label lblPerPiece = new Label
+        //    {
+        //        Text = price.PricePerItem > 0 ?
+        //               $"Rs {price.PricePerItem:F2}/piece" :
+        //               "Rs 0.00/piece",
+        //        Location = new Point(xPos, 10),
+        //        Size = new Size(100, 20),
+        //        Font = new Font("Segoe UI", 9),
+        //        ForeColor = Color.Blue,
+        //        Tag = "perPiece"
+        //    };
+        //    pricePanel.Controls.Add(lblPerPiece);
+
+        //    return pricePanel;
+        //}
+
         private void BtnRemovePrice_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -655,21 +826,25 @@ namespace POS_Shop.Views.Controllers.Product
 
             try
             {
-                string qtyUnit= ProductStockUniDropDown.SelectedItem is ProductUnitDto selectedUnit ? selectedUnit.Name : null;
+                string qtyUnit = ProductStockUniDropDown.SelectedItem is ProductUnitDto selectedUnit ? selectedUnit.Name : null;
                 // Create/Update product
+
+                var data = decimal.TryParse(ProductPurchaseUnitPrice.Text.Trim(), out decimal purchasePrice) ? purchasePrice : 0;
                 var product = new POS_Shop.Models.Product
                 {
+
                     ProductEnglishName = ProductEngNameTxt.Text.Trim(),
                     ProductUrduName = ProductUrduNameTxt.Text.Trim(),
                     SearchByProductCode = SearchBynameTxt.Text.Trim(),
                     PurchasePrice = PurchasePriceTxt.Text.Trim(),
+                    PurchasePricePerUnit = data,
                     Cost = int.TryParse(p_costTxt.Text, out int cost) ? cost : (int?)null,
                     ProdQtyStockUnit = qtyUnit.Trim(),
                     Qty = int.TryParse(P_StockQtyTxt.Text, out int qty) ? qty : 0,
                     SubcategoryId = SubCategoryCategoryDropDownLst.SelectedValue != null &&
                                    Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue) > 0 ?
                                    Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue) : (int?)null,
-                    
+
 
                 };
 
@@ -684,7 +859,7 @@ namespace POS_Shop.Views.Controllers.Product
                 if (savedProductId > 0)
                 {
                     // Save product prices
-                    bool pricesSaved = dbHelper.SaveProductPrices(savedProductId, productPrices);
+                    bool pricesSaved = dbHelper.SaveProductPrices(savedProductId, Convert.ToDecimal(ProductPurchaseUnitPrice.Text), productPrices);
 
                     if (pricesSaved)
                     {
@@ -790,12 +965,16 @@ namespace POS_Shop.Views.Controllers.Product
             {
                 if (price.Price <= 0)
                 {
-                    errors.Add($"Please enter price for {price.TypeName}");
+                    errors.Add($"Please enter sale price for {price.TypeName}");
                 }
                 else if (price.ItemsCount <= 0)
                 {
                     errors.Add($"Invalid items count for {price.TypeName}");
                 }
+                //else if (price.PurchasePricePerUnit <= 0)
+                //{
+                //    errors.Add($"Please enter purchase price for {price.TypeName}");
+                //}
             }
 
             if (errors.Any())
@@ -807,7 +986,6 @@ namespace POS_Shop.Views.Controllers.Product
 
             return true;
         }
-
         // Helper methods for price management
         private int GetPanelIndex(Panel panel)
         {
@@ -935,7 +1113,7 @@ namespace POS_Shop.Views.Controllers.Product
                 Width = 1050,
                 Height = 625
             };
-            var ProductUnitFormCtrl = new ProductUnitControl() { Dock= DockStyle.Fill };
+            var ProductUnitFormCtrl = new ProductUnitControl() { Dock = DockStyle.Fill };
             form.Controls.Add(ProductUnitFormCtrl);
             form.ShowDialog();
 

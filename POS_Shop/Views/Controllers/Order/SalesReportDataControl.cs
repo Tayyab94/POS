@@ -1,5 +1,6 @@
 ﻿using Org.BouncyCastle.Asn1.Cmp;
 using POS_Shop.Models;
+using POS_Shop.Views.Controllers.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -296,6 +297,12 @@ namespace POS_Shop.Views.Controllers.Order
             public DateTime Date { get; set; }
             public float Sales { get; set; }
             public int OrderCount { get; set; }
+        }
+
+        private void SaleProfitReoirtBtn_Click(object sender, EventArgs e)
+        {
+            var ctrl = new SalesProfitReport { Dock = DockStyle.Fill };
+            ctrl.ShowDialog(this);
         }
     }
 }

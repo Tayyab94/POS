@@ -1,7 +1,5 @@
 ﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Bibliography;
 using ExcelDataReader;
-using POS_Shop.Constants;
 using POS_Shop.DTOs.Order;
 using POS_Shop.DTOs.Product;
 using POS_Shop.Helpers;
@@ -15,10 +13,8 @@ using POS_Shop.Views.Controllers.Order;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.Entity;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
@@ -78,7 +74,6 @@ namespace POS_Shop.Views.BillScreen
         public BillPadForm()
         {
             InitializeComponent();
-
             CustomerIdLbl.Text = string.Empty;
             CustomerNameTxt.Text = string.Empty;
             PreviousOrderIdLbl.Text = string.Empty;
@@ -97,11 +92,16 @@ namespace POS_Shop.Views.BillScreen
             // Role-based tab visibility
             string savedRole = Properties.Settings.Default.UserRole?.ToString() ?? string.Empty;
             if (!savedRole.Equals(AuthUserRole.SuperAdmin.ToString(), StringComparison.OrdinalIgnoreCase))
+            {
                 InvoicePageTabControl.TabPages.Remove(TruncateTableTab);
+                InvoicePageTabControl.TabPages.Remove(ImpoertOrderFileTab);
+            }
 
             InitializeProductUnitsDropdown();
             InitializeDebounceTimers();
         }
+
+        
 
         // ══════════════════════════════════════════════════════════════════════════
         // INITIALIZATION
@@ -139,6 +139,7 @@ namespace POS_Shop.Views.BillScreen
                     .Select(s => new ProductUnit { Id = s.Id, Name = s.Name })
                     .ToList();
 
+                productTypeDropdown.DataSource = null;
                 productTypeDropdown.Items.Clear();
                 productTypeDropdown.DataSource = productUnits;
                 productTypeDropdown.DisplayMember = "Name";
@@ -148,41 +149,6 @@ namespace POS_Shop.Views.BillScreen
 
         private void SetItemGridView()
         {
-            //CartProductList.ColumnCount = 7;
-
-            //CartProductList.Columns[0].Name = Col.Amount;
-            //CartProductList.Columns[1].Name = Col.SalePrice;
-            //CartProductList.Columns[2].Name = Col.UrduName;
-            //CartProductList.Columns[3].Name = Col.ProductType;
-            //CartProductList.Columns[4].Name = Col.Qty;
-            //CartProductList.Columns[5].Name = Col.ProductId;
-            //CartProductList.Columns[6].Name = Col.Detail;
-
-            //CartProductList.Columns[Col.Amount].Width = 100;
-            //CartProductList.Columns[Col.SalePrice].Width = 60;
-            //CartProductList.Columns[Col.UrduName].Width = 190;
-            //CartProductList.Columns[Col.ProductType].Width = 30;
-            //CartProductList.Columns[Col.Qty].Width = 50;
-            //CartProductList.Columns[Col.ProductId].Width = 50;
-
-            //CartProductList.Columns[Col.ProductId].Visible = false;
-            //CartProductList.Columns[Col.Detail].Visible = false;
-
-            //CartProductList.Columns[Col.Amount].ReadOnly = true;
-            //CartProductList.Columns[Col.UrduName].ReadOnly = true;
-            //CartProductList.Columns[Col.ProductType].ReadOnly = true;
-
-            //// Delete button column — inserted at position 0
-            //var btnCol = new DataGridViewButtonColumn
-            //{
-            //    Name = Col.Delete,
-            //    HeaderText = "Action",
-            //    Text = "Delete",
-            //    UseColumnTextForButtonValue = true,
-            //    Width = 50
-            //};
-            //CartProductList.Columns.Insert(0, btnCol);
-
 
             CartProductList.SuspendLayout();
             CartProductList.ColumnCount = 7;
@@ -285,7 +251,7 @@ namespace POS_Shop.Views.BillScreen
                             Id                 AS ProductId,
                             ProductEnglishName AS ProductName,
                             ProductUrduName,
-       p.ProdQtyStockUnit AS ProductType,
+                            p.ProdQtyStockUnit AS ProductType,
                             Qty,
                             PurchasePrice
                         FROM Products WITH (NOLOCK)
@@ -541,31 +507,58 @@ namespace POS_Shop.Views.BillScreen
                 {
                     var data = await context.ProductPrices
                         .Where(s => s.ProductId == productId)
-                        .Select(s => new ProdDTO
+                        .Select(s => new
                         {
                             Type = s.TypeName,
+                            Pur_Price = s.PurchasePricePerUnit,
                             Price = s.Price,
                             Items = s.ItemsCount,
-                            P_Per_Item = s.PricePerItem
-                        }).ToListAsync();
+                            ItemPrice = s.PricePerItem,
+                            UnitId = s.Prod_Unit_TypeId  // include this too
+                        })
+                        .ToListAsync();
+
+                    // Map to DTO
+                    var priceData = data.Select(s => new ProdDTO
+                    {
+                        Type = s.Type,
+                        Pur_Price = s.Pur_Price,
+                        Price = s.Price,
+                        Items = s.Items,
+                        ItemPrice = s.ItemPrice
+                    }).ToList();
 
                     ProductPriceDataGridView.DataSource = null;
-                    ProductPriceDataGridView.DataSource = data;
+                    ProductPriceDataGridView.DataSource = priceData;
                     ProductPriceDataGridView.RowHeadersVisible = false;
                     ProductPriceDataGridView.ClearSelection();
 
-                    if (data.Count > 0)
+                    if (priceData.Count > 0)
                     {
-                        var first = data.First();
+                        var first = priceData.First();
                         productTypeDropdown.SelectedValue = first.Type;
                         ProductSalePrice.Text = $"{(int)first.Price}";
                         prod_ItemCountTxt.Text = first.Items.ToString();
-                        ProductAmount.Text = (1 * (int)first.Price).ToString();
+                        ProductAmount.Text = ((int)first.Price).ToString();
                     }
                     else
                     {
-                        ProductSalePrice.Text = $"0";
-                        ProductAmount.Text = (1 * (int)0).ToString();
+                        ProductSalePrice.Text = "0";
+                        ProductAmount.Text = "0";
+                    }
+
+                    if (ConfigurationManager.Configuration.Features.EnableUpdateQty)
+                    {
+                        // Reuse 'data' — no second DB call
+                        var productUnits = data
+                            .Select(s => new ProductUnit { Id = s.UnitId, Name = s.Type })
+                            .ToList();
+
+                        productTypeDropdown.DataSource = null;
+                        productTypeDropdown.Items.Clear();
+                        productTypeDropdown.DataSource = productUnits;
+                        productTypeDropdown.DisplayMember = "Name";
+                        productTypeDropdown.ValueMember = "Name";
                     }
                 }
             }
@@ -573,6 +566,8 @@ namespace POS_Shop.Views.BillScreen
             {
                 _isLoadingPrices = false;
             }
+
+
         }
 
         /// <summary>
@@ -633,28 +628,32 @@ namespace POS_Shop.Views.BillScreen
 
             string formattedText = TextFormatHelper.FormatMixedText(finalName);
             string finalPId = OtherProductChk.Checked ? string.Empty : productId;
-
-            // Stock check
             var config = ConfigurationManager.Configuration.Features.EnableUpdateQty;
-            if (config && !string.IsNullOrEmpty(productId))
+
+            if (!string.IsNullOrEmpty(finalPId))
             {
-                if (!int.TryParse(Prod_Qty.Text, out int availableQty) ||
-                    !int.TryParse(prod_ItemCountTxt.Text, out int itemCount) ||
-                    itemCount <= 0)
+                // Stock check
+                 if (config && !string.IsNullOrEmpty(productId))
                 {
-                    MessageBox.Show(
-                        $"Product type '{productType}' is not properly configured. Item count must be > 0.",
-                        "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (availableQty <= 0 || (itemCount * qty) > availableQty)
-                {
-                    MessageBox.Show(
-                        $"Available stock is {availableQty} {prodStockUnit.Text}. Please enter a valid quantity.",
-                        "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    if (!int.TryParse(Prod_Qty.Text, out int availableQty) ||
+                        !int.TryParse(prod_ItemCountTxt.Text, out int itemCount) ||
+                        itemCount <= 0)
+                    {
+                        MessageBox.Show(
+                            $"Product type '{productType}' is not properly configured. Item count must be > 0.",
+                            "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    if (availableQty <= 0 || (itemCount * qty) > availableQty)
+                    {
+                        MessageBox.Show(
+                            $"Available stock is {availableQty} {prodStockUnit.Text}. Please enter a valid quantity.",
+                            "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                 }
             }
+            
 
             // Duplicate check — if same product name already in cart, increase qty
             bool productExists = false;
@@ -1009,7 +1008,7 @@ namespace POS_Shop.Views.BillScreen
                             $"loan added INV-{InvoiceNoLbl.Text}", "User");
                     else
                         await repo.PostAdvanceDepositAsync(customerId, difference, "Cash",
-                            InvoiceNoLbl.Text, $"Advance deposit {InvoiceNoLbl.Text}", "User");
+                            InvoiceNoLbl.Text, $"Advance deposit INV-{InvoiceNoLbl.Text}", "User");
                 }
 
 
@@ -1058,31 +1057,127 @@ namespace POS_Shop.Views.BillScreen
             return orderId;
         }
 
+        //private async Task SaveOrderDetailsAsync(POSDbContext context, int orderId)
+        //{
+        //    var detailList = new List<OrderDetail>();
+        //    bool stockCheck = ConfigurationManager.Configuration.Features.EnableUpdateQty;
+
+        //    foreach (DataGridViewRow row in CartProductList.Rows)
+        //    {
+        //        if (row.Cells[Col.ProductId].Value == null) continue;
+
+        //        string pidVal = row.Cells[Col.ProductId].Value?.ToString();
+        //        if (!int.TryParse(row.Cells[Col.Qty].Value?.ToString(), out int qty)) continue;
+        //        if (!float.TryParse(row.Cells[Col.SalePrice].Value?.ToString(), out float price)) continue;
+
+        //        ProductPrice prices = null;
+
+        //        if (stockCheck && !string.IsNullOrEmpty(pidVal))
+        //        {
+        //            int pid = int.Parse(pidVal);
+        //            string typeName = row.Cells[Col.ProductType].Value?.ToString();
+
+        //            prices = await context.ProductPrices
+        //                .Where(p => p.ProductId == pid && p.TypeName == typeName)
+        //                .FirstOrDefaultAsync();
+
+        //            var product = await context.Products.FindAsync(pid);
+
+        //            if (product != null && prices != null &&
+        //                (qty <= 0 || (qty * prices.ItemsCount) > product.Qty))
+        //            {
+        //                LoadingManager.HideLoading();
+        //                MessageBox.Show($"Insufficient stock for '{product.ProductEnglishName}'.",
+        //                    "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //                throw new InvalidOperationException(
+        //                    $"Insufficient stock for product ID {pidVal}");
+        //            }
+        //        }
+
+        //        var detail = new OrderDetail
+        //        {
+        //            ProductId = string.IsNullOrEmpty(pidVal) ? (int?)null : int.Parse(pidVal),
+        //            OtherProductName = string.IsNullOrEmpty(pidVal)
+        //                ? row.Cells[Col.UrduName].Value?.ToString() : null,
+        //            Quantity = qty,
+        //            QuantityType = row.Cells[Col.ProductType].Value?.ToString(),
+        //            Price = price,
+        //            CreatedDate = DateTime.Now,
+        //            OrderId = orderId,
+        //            ProductDetail = row.Cells[Col.Detail].Value?.ToString()
+        //        };
+        //        detailList.Add(detail);
+
+        //        // Deduct stock — same context, same transaction
+        //        if (stockCheck && !string.IsNullOrEmpty(pidVal) && prices != null)
+        //        {
+        //            int pid = int.Parse(pidVal);
+        //            var product = await context.Products.FindAsync(pid);
+        //            if (product != null)
+        //            {
+        //                product.Qty -= detail.Quantity * prices.ItemsCount;
+        //                context.Entry(product).State = EntityState.Modified;
+        //            }
+        //        }
+        //    }
+
+        //    context.OrderDetails.AddRange(detailList);
+        //    await context.SaveChangesAsync();
+        //}
+
         private async Task SaveOrderDetailsAsync(POSDbContext context, int orderId)
         {
-            var detailList = new List<OrderDetail>();
             bool stockCheck = ConfigurationManager.Configuration.Features.EnableUpdateQty;
+
+            // --- Parse rows first (no DB yet) ---
+            var parsedRows = new List<(string pidVal, int qty, float price, string typeName, DataGridViewRow row)>();
 
             foreach (DataGridViewRow row in CartProductList.Rows)
             {
                 if (row.Cells[Col.ProductId].Value == null) continue;
-
                 string pidVal = row.Cells[Col.ProductId].Value?.ToString();
                 if (!int.TryParse(row.Cells[Col.Qty].Value?.ToString(), out int qty)) continue;
                 if (!float.TryParse(row.Cells[Col.SalePrice].Value?.ToString(), out float price)) continue;
+                string typeName = row.Cells[Col.ProductType].Value?.ToString();
+                parsedRows.Add((pidVal, qty, price, typeName, row));
+            }
 
+            // --- Bulk fetch in 2 queries ---
+            var productIds = parsedRows
+                .Where(r => !string.IsNullOrEmpty(r.pidVal))
+                .Select(r => int.Parse(r.pidVal))
+                .Distinct()
+                .ToList();
+
+            Dictionary<int, Product> productMap = new Dictionary<int, Product>();
+            Dictionary<(int, string), ProductPrice> priceMap = new Dictionary<(int, string), ProductPrice>();
+
+            if (stockCheck && productIds.Any())
+            {
+                productMap = await context.Products
+                    .Where(p => productIds.Contains(p.Id))
+                    .ToDictionaryAsync(p => p.Id);
+
+                var typeNames = parsedRows.Select(r => r.typeName).Distinct().ToList();
+
+                priceMap = await context.ProductPrices
+                    .Where(p => productIds.Contains(p.ProductId) && typeNames.Contains(p.TypeName))
+                    .ToDictionaryAsync(p => (p.ProductId, p.TypeName));
+            }
+
+            // --- Process in memory (no more DB calls) ---
+            var detailList = new List<OrderDetail>();
+
+            foreach (var (pidVal, qty, price, typeName, row) in parsedRows)
+            {
+                Product product = null;
                 ProductPrice prices = null;
 
                 if (stockCheck && !string.IsNullOrEmpty(pidVal))
                 {
                     int pid = int.Parse(pidVal);
-                    string typeName = row.Cells[Col.ProductType].Value?.ToString();
-
-                    prices = await context.ProductPrices
-                        .Where(p => p.ProductId == pid && p.TypeName == typeName)
-                        .FirstOrDefaultAsync();
-
-                    var product = await context.Products.FindAsync(pid);
+                    productMap.TryGetValue(pid, out product);
+                    priceMap.TryGetValue((pid, typeName), out prices);
 
                     if (product != null && prices != null &&
                         (qty <= 0 || (qty * prices.ItemsCount) > product.Qty))
@@ -1090,41 +1185,63 @@ namespace POS_Shop.Views.BillScreen
                         LoadingManager.HideLoading();
                         MessageBox.Show($"Insufficient stock for '{product.ProductEnglishName}'.",
                             "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        throw new InvalidOperationException(
-                            $"Insufficient stock for product ID {pidVal}");
+                        throw new InvalidOperationException($"Insufficient stock for product ID {pidVal}");
+                    }
+
+                    // Deduct in memory — tracked by EF, persisted in one SaveChanges
+                    if (product != null && prices != null)
+                    {
+                        product.Qty -= qty * prices.ItemsCount;
+                        context.Entry(product).State = EntityState.Modified;
                     }
                 }
 
-                var detail = new OrderDetail
+                detailList.Add(new OrderDetail
                 {
                     ProductId = string.IsNullOrEmpty(pidVal) ? (int?)null : int.Parse(pidVal),
                     OtherProductName = string.IsNullOrEmpty(pidVal)
                         ? row.Cells[Col.UrduName].Value?.ToString() : null,
                     Quantity = qty,
-                    QuantityType = row.Cells[Col.ProductType].Value?.ToString(),
+                    QuantityType = typeName,
                     Price = price,
                     CreatedDate = DateTime.Now,
                     OrderId = orderId,
                     ProductDetail = row.Cells[Col.Detail].Value?.ToString()
-                };
-                detailList.Add(detail);
-
-                // Deduct stock — same context, same transaction
-                if (stockCheck && !string.IsNullOrEmpty(pidVal) && prices != null)
-                {
-                    int pid = int.Parse(pidVal);
-                    var product = await context.Products.FindAsync(pid);
-                    if (product != null)
-                    {
-                        product.Qty -= detail.Quantity * prices.ItemsCount;
-                        context.Entry(product).State = EntityState.Modified;
-                    }
-                }
+                });
             }
 
             context.OrderDetails.AddRange(detailList);
             await context.SaveChangesAsync();
         }
+
+        //private async Task<Order> GetOrderData()
+        //{
+        //    int? cId = null;
+        //    if (!string.IsNullOrEmpty(CustomerNameTxt.Text) &&
+        //        !string.IsNullOrEmpty(CustomerIdLbl.Text) &&
+        //        int.TryParse(CustomerIdLbl.Text, out int parsedId))
+        //        cId = parsedId;
+
+        //    float.TryParse(TotalAmountLbl.Text, out float totalBill);
+        //    float receiveAmount = totalBill;
+        //    if (!string.IsNullOrWhiteSpace(ReceivedAmountTxt.Text))
+        //        float.TryParse(ReceivedAmountTxt.Text, out receiveAmount);
+
+        //    return new Order
+        //    {
+        //        TotalBill = totalBill,
+        //        ReceiveAmount = receiveAmount,
+        //        CreatedDate = DateTime.Now,
+        //        InvoiceNumber = !string.IsNullOrEmpty(InvoiceNoLbl.Text)
+        //            ? InvoiceNoLbl.Text : DateTime.Now.ToString("MMddyyy-HHmmss"),
+        //        paymentType = CashRadioBtn.Checked ? "Cash" : "Bank",
+        //        customerId = cId
+        //    };
+        //}
+
+
+
+
 
         private async Task<Order> GetOrderData()
         {
@@ -1139,7 +1256,8 @@ namespace POS_Shop.Views.BillScreen
             if (!string.IsNullOrWhiteSpace(ReceivedAmountTxt.Text))
                 float.TryParse(ReceivedAmountTxt.Text, out receiveAmount);
 
-            return new Order
+            // Create order object
+            var order = new Order
             {
                 TotalBill = totalBill,
                 ReceiveAmount = receiveAmount,
@@ -1147,9 +1265,284 @@ namespace POS_Shop.Views.BillScreen
                 InvoiceNumber = !string.IsNullOrEmpty(InvoiceNoLbl.Text)
                     ? InvoiceNoLbl.Text : DateTime.Now.ToString("MMddyyy-HHmmss"),
                 paymentType = CashRadioBtn.Checked ? "Cash" : "Bank",
-                customerId = cId
+                customerId = cId,
+                TotalActualBill = 0,
+                TotalProfit = 0
             };
+
+            
+            // ============================================
+            // STEP 1: Get ALL product IDs from cart (NO DB CALL)
+            // ============================================
+            //var productIds = CartProductList.Rows
+            //        .Cast<DataGridViewRow>()
+            //        .Where(r => r.Cells[Col.ProductId].Value != null)
+            //        .Select(r => r.Cells[Col.ProductId].Value.ToString().Trim())
+            //        .Where(s => !string.IsNullOrEmpty(s) && s.All(char.IsDigit))
+            //        .Select(int.Parse)
+            //        .Distinct()
+            //        .ToList();
+
+            var productIds = new HashSet<int>();
+            foreach (DataGridViewRow row in CartProductList.Rows)
+            {
+                if (row.Cells[Col.ProductId].Value == null) continue;
+
+                if (int.TryParse(row.Cells[Col.ProductId].Value.ToString(), out int productId))
+                {
+                    productIds.Add(productId);
+                }
+            }
+
+            // If cart is empty, return order with zero totals
+            if (!productIds.Any())
+                return order;
+
+            // ============================================
+            // STEP 2: Load ALL product prices in ONE database call
+            // ============================================
+            var priceDictionary = new Dictionary<int, List<(string TypeName, int ItemsCount, decimal PurchasePricePerUnit)>>();
+
+            using (var context = new POSDbContext())
+            {
+                var dbPrices = await context.ProductPrices
+                    .Where(p => productIds.Contains(p.ProductId))
+                    .Select(p => new
+                    {
+                        p.ProductId,
+                        p.TypeName,
+                        p.ItemsCount,
+                        p.PurchasePricePerUnit
+                    })
+                    .ToListAsync();
+
+                // Group by ProductId with proper null/zero handling
+                priceDictionary = dbPrices
+                    .GroupBy(p => p.ProductId)
+                    .ToDictionary(
+                        g => g.Key,
+                        g => g.Select(p => (
+                            TypeName: p.TypeName ?? "Single",  // Handle null TypeName
+                            ItemsCount: ( p.ItemsCount > 0) ? p.ItemsCount : 1,  // Handle null or zero
+                            PurchasePricePerUnit: (p.PurchasePricePerUnit > 0) ? p.PurchasePricePerUnit : 0  // Handle null or zero
+                        )).ToList()
+                    );
+            }
+
+            // Variables for totals
+            decimal totalActualPrice = 0;
+            decimal totalProfit = 0;
+
+            // ============================================
+            // STEP 3: Loop through rows (NO DB CALLS INSIDE!)
+            // ============================================
+            foreach (DataGridViewRow row in CartProductList.Rows)
+            {
+                if (row.Cells[Col.ProductId].Value == null) continue;
+
+                // Get values from row
+                if (!int.TryParse(row.Cells[Col.ProductId].Value?.ToString(), out int productId)) continue;
+                if (!int.TryParse(row.Cells[Col.Qty].Value?.ToString(), out int qty)) continue;
+                if (!float.TryParse(row.Cells[Col.SalePrice].Value?.ToString(), out float salePrice)) continue;
+
+                string unitType = row.Cells[Col.ProductType]?.Value?.ToString() ?? "Single";
+
+                // ============================================
+                // Get pricing from dictionary (NO DATABASE CALL!)
+                // ============================================
+                int itemsCount = 1;
+                decimal purchasePricePerUnit = 0;
+
+                // CASE 1: Product exists in dictionary
+                if (priceDictionary.TryGetValue(productId, out var priceList) && priceList != null && priceList.Any())
+                {
+                    // Try to find exact unit type match
+                    var price = priceList.FirstOrDefault(p => p.TypeName == unitType);
+
+                    if (price != default)
+                    {
+                        // Found exact match
+                        itemsCount = price.ItemsCount > 0 ? price.ItemsCount : 1;
+                        purchasePricePerUnit = price.PurchasePricePerUnit > 0 ? price.PurchasePricePerUnit : 0;
+                    }
+                    else
+                    {
+                        // CASE 2: Unit type not found - fallback to first available
+                        var firstPrice = priceList.FirstOrDefault();
+                        if (firstPrice != default)
+                        {
+                            itemsCount = firstPrice.ItemsCount > 0 ? firstPrice.ItemsCount : 1;
+                            purchasePricePerUnit = firstPrice.PurchasePricePerUnit > 0 ? firstPrice.PurchasePricePerUnit : 0;
+                        }
+                        else
+                        {
+                            // CASE 3: Price list is empty (should not happen but handle anyway)
+                            itemsCount = 1;
+                            purchasePricePerUnit = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    // CASE 4: Product not found in dictionary at all
+                    // Use default values (1, 0)
+                    itemsCount = 1;
+                    purchasePricePerUnit = 0;
+
+                    // Optional: Log this issue
+                    // Logger.LogWarning($"No pricing found for ProductId: {productId}");
+                }
+
+                // CASE 5: Handle invalid quantity
+                int validQty = qty > 0 ? qty : 0;
+
+                // Calculate totals
+                decimal totalCost = purchasePricePerUnit * validQty;
+                decimal totalSale = (decimal)salePrice * validQty;
+                decimal profit = totalCost !=0 ? totalSale - totalCost:0;
+
+                // Accumulate totals (handle negative values appropriately)
+                totalActualPrice += totalCost;
+                totalProfit += profit;
+            }
+
+            // Set order totals (ensure non-negative for actual bill)
+            order.TotalActualBill = totalActualPrice >= 0 ? totalActualPrice : 0;
+            order.TotalProfit = totalProfit;
+
+            return order;
         }
+
+
+
+
+
+        //private async Task<Order> GetOrderData()
+        //{
+        //    int? cId = null;
+        //    if (!string.IsNullOrEmpty(CustomerNameTxt.Text) &&
+        //        !string.IsNullOrEmpty(CustomerIdLbl.Text) &&
+        //        int.TryParse(CustomerIdLbl.Text, out int parsedId))
+        //        cId = parsedId;
+
+        //    float.TryParse(TotalAmountLbl.Text, out float totalBill);
+        //    float receiveAmount = totalBill;
+        //    if (!string.IsNullOrWhiteSpace(ReceivedAmountTxt.Text))
+        //        float.TryParse(ReceivedAmountTxt.Text, out receiveAmount);
+
+        //    // Create order object
+        //    var order = new Order
+        //    {
+        //        TotalBill = totalBill,
+        //        ReceiveAmount = receiveAmount,
+        //        CreatedDate = DateTime.Now,
+        //        InvoiceNumber = !string.IsNullOrEmpty(InvoiceNoLbl.Text)
+        //            ? InvoiceNoLbl.Text : DateTime.Now.ToString("MMddyyy-HHmmss"),
+        //        paymentType = CashRadioBtn.Checked ? "Cash" : "Bank",
+        //        customerId = cId,
+        //        TotalActualBill = 0,
+        //        TotalProfit = 0
+        //    };
+
+
+        //    // Variables for totals
+        //    decimal totalActualPrice = 0;
+        //    decimal totalProfit = 0;
+
+        //    // Loop through DataGrid rows
+        //    foreach (DataGridViewRow row in CartProductList.Rows)
+        //    {
+        //        if (row.Cells[Col.ProductId].Value == null) continue;
+
+        //        // Get values from row
+        //        if (!int.TryParse(row.Cells[Col.ProductId].Value?.ToString(), out int productId)) continue;
+        //        if (!int.TryParse(row.Cells[Col.Qty].Value?.ToString(), out int qty)) continue;
+        //        if (!float.TryParse(row.Cells[Col.SalePrice].Value?.ToString(), out float salePrice)) continue;
+
+        //        // Get unit type and product name
+        //        string unitType = row.Cells[Col.ProductType]?.Value?.ToString() ?? "Single";
+
+        //        // ============================================
+        //        // CALCULATE PURCHASE PRICE & PROFIT
+        //        // ============================================
+
+        //        // Step 1: Get purchase price per piece (from smallest unit)
+        //        //decimal purchasePricePerPiece = await GetProductPurchasePrice(productId);
+
+        //        // Step 2: Get items count for the unit being sold
+        //        var(itemsCount, purchasePricePerPiece) = await GetItemsCountForUnit(productId, unitType);
+
+        //        // Step 3: Calculate total pieces
+        //        int totalPieces = qty * itemsCount;
+
+        //        // Step 4: Calculate total cost (purchase price × total pieces)
+        //        //decimal totalCost = purchasePricePerPiece * totalPieces;
+        //        decimal totalCost = purchasePricePerPiece * qty;
+
+
+        //        // Step 5: Calculate total sale
+        //        decimal totalSale = (decimal)salePrice * qty;
+
+        //        // Step 6: Calculate profit
+        //        decimal profit = totalSale - totalCost;
+
+        //        // Add to totals
+        //        totalActualPrice += totalCost;
+        //        totalProfit += profit;
+        //    }
+
+        //    // Set order totals
+        //    order.TotalActualBill = totalActualPrice;
+        //    order.TotalProfit = totalProfit;
+
+        //    return order;
+        //}
+
+
+
+
+
+        //private async Task<(int ItemsCount, decimal PricePerUnit)> GetItemsCountForUnit(int productId, string unitType)
+        //{
+        //    try
+        //    {
+        //        using (var context = new POSDbContext())
+        //        {
+        //            var productPrice = await context.ProductPrices
+        //                .FirstOrDefaultAsync(p => p.ProductId == productId &&
+        //                                         p.TypeName == unitType);
+
+        //            return (productPrice?.ItemsCount ?? 1, productPrice?.PurchasePricePerUnit ?? 0);
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return (1, 0);
+        //    }
+        //}
+
+
+
+
+        private async Task<decimal> GetProductPurchasePrice(int productId)
+        {
+            try
+            {
+                using (var contex = new POSDbContext())
+                {
+                    var data = await contex.Products.Where(s => s.Id == productId).Select(s => s.PurchasePrice).FirstOrDefaultAsync();
+
+                    return Convert.ToDecimal(data);
+                }
+
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+
 
         // ══════════════════════════════════════════════════════════════════════════
         // TEMP ORDER SAVE
@@ -1227,15 +1620,26 @@ namespace POS_Shop.Views.BillScreen
                     var data = await GetTempOrderData();
 
                     // FIX: check TempOrders, not Orders
-                    var existingTemp = await context.TempOrders
-                        .FirstOrDefaultAsync(o => o.InvoiceNumber == data.InvoiceNumber);
+                    //var existingTemp = await context.TempOrders
+                    //    .FirstOrDefaultAsync(o => o.InvoiceNumber == data.InvoiceNumber);
 
-                    if (existingTemp != null)
+                    //if (existingTemp != null)
+                    //{
+                    //    var existingTempDetails = await context.TempOrderDetails
+                    //        .Where(d => d.TempInvoiceNumber == data.InvoiceNumber).ToListAsync();
+                    //    context.TempOrderDetails.RemoveRange(existingTempDetails);
+                    //    context.TempOrders.Remove(existingTemp);
+                    //    await context.SaveChangesAsync();
+                    //}
+
+
+                    if (context.Orders.Any(o => o.InvoiceNumber == data.InvoiceNumber))
                     {
-                        var existingTempDetails = await context.TempOrderDetails
-                            .Where(d => d.TempInvoiceNumber == data.InvoiceNumber).ToListAsync();
-                        context.TempOrderDetails.RemoveRange(existingTempDetails);
-                        context.TempOrders.Remove(existingTemp);
+                        var details = await context.OrderDetails
+                            .Where(d => d.Order.InvoiceNumber == data.InvoiceNumber).ToListAsync();
+                        context.OrderDetails.RemoveRange(details);
+                        var existing = await context.Orders.FirstOrDefaultAsync(o => o.InvoiceNumber == data.InvoiceNumber);
+                        if (existing != null) context.Orders.Remove(existing);
                         await context.SaveChangesAsync();
                     }
 
@@ -1366,12 +1770,12 @@ namespace POS_Shop.Views.BillScreen
                 InvoicePrintHelper.PrintEnglishInvoice(
                     e, CartProductList, CustomerNameTxt.Text,
                     InvoiceNoLbl.Text, TotalAmountLbl.Text,
-                    CashRadioBtn.Checked, ReceivedAmountTxt.Text, isPaid);
+                    CashRadioBtn.Checked, ReceivedAmountTxt.Text, isPaid, Convert.ToInt32(TotalItemLbl.Text));
             else
                 InvoicePrintHelper.PrintInvoice(
                     e, CartProductList, CustomerNameTxt.Text,
                     InvoiceNoLbl.Text, TotalAmountLbl.Text,
-                    CashRadioBtn.Checked, ReceivedAmountTxt.Text, isPaid);
+                    CashRadioBtn.Checked, ReceivedAmountTxt.Text, isPaid, Convert.ToInt32(TotalItemLbl.Text));
         }
 
         private void PrintPreviewBtn_Click(object sender, EventArgs e)
@@ -1905,6 +2309,7 @@ namespace POS_Shop.Views.BillScreen
             prod_ItemCountTxt.Clear();
             ProductDetailTxt.Clear();
             prodStockUnit.Clear();
+            InitializeProductUnitsDropdown();
             productTypeDropdown.SelectedIndex = -1;
             OtherProductChk.Checked = false;
             ProductOrderHistoryDataGrid.DataSource = null;
@@ -2686,6 +3091,18 @@ namespace POS_Shop.Views.BillScreen
             {
                 //f.Icon = new Icon(Application.StartupPath + "/pos_icon.ico");
                 f.ShowDialog(this);
+            }
+        }
+
+        private void OtherProductChk_CheckedChanged(object sender, EventArgs e)
+        {
+            if(OtherProductChk.Checked)
+            {
+                InitializeProductUnitsDropdown();
+            }else
+            {
+                ProductEngNameTxt.Text = "";
+                ProductEngNameTxt.Focus();
             }
         }
     }

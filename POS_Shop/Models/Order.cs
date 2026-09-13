@@ -15,10 +15,14 @@ namespace POS_Shop.Models
 
         public int Id { get; set; }
 
+        
         public float TotalBill { get; set; }
 
         public float ReceiveAmount { get; set; }
 
+        public decimal TotalActualBill { get; set; } = 0;
+
+        public decimal TotalProfit {  get; set; }= 0;
         public DateTime CreatedDate { get; set; }
 
         public string InvoiceNumber { get; set; }

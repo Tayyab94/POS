@@ -49,6 +49,7 @@ namespace POS_Shop.Views.Controllers.Product
                 ProductUnitDatagridView.AllowUserToAddRows = false;
 
                 ProductUnitDatagridView.DataSource = dt;
+                ProductUnitDatagridView.Columns[0].Visible = false;
             }
         }
 
@@ -149,6 +150,13 @@ namespace POS_Shop.Views.Controllers.Product
                 using (var context = new POSDbContext())
                 {
                     var prodUnitRepo = new ProductUnitRepository(context);
+
+
+                    if (prodUnitRepo.IsProductUnitUsedWithRecord(prdUnitId))
+                    {
+                        MessageBox.Show("This Unit is being used by other records and cannot be deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     var data = prodUnitRepo.GetById(prdUnitId);
                     if (data != null)
                     {
