@@ -15,7 +15,7 @@ namespace POS_Shop.DTOs.Product
         public string ProductUrduName { get; set; }
 
         public string ProductType { get; set; }
-        public int Qty { get; set; }
+        public decimal Qty { get; set; }
         public string purchasePrice { get; set; }
         public int Price { get; set; }
     }
@@ -30,13 +30,13 @@ namespace POS_Shop.DTOs.Product
         public string SearchByName { get; set; }
 
         public string PurchasePrice { get; set; }
-        public int Qty { get; set; }
+        public decimal Qty { get; set; }
         public int Cost { get; set; }
-        
+
         public List<ProductPriceDTO> ProductPrices { get; set; }
     }
 
-    public class ProductPriceDTO :ProdDTO
+    public class ProductPriceDTO : ProdDTO
     {
 
         public string DisplayText =>

@@ -455,7 +455,7 @@ namespace POS_Shop.Views.Reports
                         .Select(x => x.ProductId)
                         .ToList();
 
-                    if (!topProductIds.Any()|| topProductIds.Count()<0)
+                    if (!topProductIds.Any() || topProductIds.Count() < 0)
                         return new List<ProductSalesData>();
 
                     // Step 2: Calculate metrics for these products filtered by quantityType
@@ -470,7 +470,7 @@ namespace POS_Shop.Views.Reports
                         {
                             ProductId = g.Key.Value,
                             TotalQuantity = g.Sum(x => x.Quantity),
-                            TotalRevenue = g.Sum(x => x.Quantity * x.Price)
+                            TotalRevenue = g.Sum(x => x.Quantity * (decimal)x.Price)
                         })
                         .ToList();
 
@@ -488,10 +488,10 @@ namespace POS_Shop.Views.Reports
                             ProductName = productNames.TryGetValue(x.ProductId, out var name)
                                 ? name
                                 : "Unknown",
-                            TotalQuantity = x.TotalQuantity,
-                            TotalRevenue = x.TotalRevenue,
+                            TotalQuantity = (decimal)x.TotalQuantity,
+                            TotalRevenue = (decimal)x.TotalRevenue,
                             QuantityType = quantityType
-                        }).OrderByDescending(s=>s.TotalQuantity)
+                        }).OrderByDescending(s => s.TotalQuantity)
                         .ToList();
 
                     return productsData;

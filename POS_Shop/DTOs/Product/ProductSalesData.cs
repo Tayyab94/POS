@@ -8,10 +8,10 @@ namespace POS_Shop.DTOs.Product
     public class ProductSalesData
     {
         public string ProductName { get; set; }
-        public int TotalQuantity { get; set; }
-        public double TotalRevenue { get; set; }
+        public decimal TotalQuantity { get; set; }
+        public decimal TotalRevenue { get; set; }
         public int ProductId { get; set; }
-        public double Percentage { get; set; }
+        public decimal Percentage { get; set; }
 
         public string QuantityType { get; set; }
     }

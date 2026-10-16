@@ -104,7 +104,7 @@ namespace POS_Shop.Helpers
                 // ── Rows ──────────────────────────────────────────────────────
                 foreach (var row in _details)
                 {
-                    decimal amount = (decimal)(row.Price * row.Quantity);
+                    decimal amount = ((decimal)row.Price * row.Quantity);
                     string productName = TextFormatHelper.FormatMixedText(row.ProductName);
                     string qtyFormatted = TextFormatHelper.FormatMixedText($"{row.QuantityType} {row.Quantity:0}");
 
@@ -125,7 +125,7 @@ namespace POS_Shop.Helpers
 
                 // ── Totals ────────────────────────────────────────────────────
                 y += SectionSpacing;
-                decimal total = (decimal)_details.Sum(x => x.Quantity * x.Price);
+                decimal total = _details.Sum(x => x.Quantity * (decimal)x.Price);
                 decimal change = _receivedAmount - total;
 
                 DrawLine(e, urduFont, $"کل رقم: {total:0}", y, rightFmt); y += LineHeight + 4;

@@ -840,7 +840,7 @@ namespace POS_Shop.Views.Controllers.Product
                     PurchasePricePerUnit = data,
                     Cost = int.TryParse(p_costTxt.Text, out int cost) ? cost : (int?)null,
                     ProdQtyStockUnit = qtyUnit.Trim(),
-                    Qty = int.TryParse(P_StockQtyTxt.Text, out int qty) ? qty : 0,
+                    Qty = Convert.ToDecimal(P_StockQtyTxt.Text),
                     SubcategoryId = SubCategoryCategoryDropDownLst.SelectedValue != null &&
                                    Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue) > 0 ?
                                    Convert.ToInt32(SubCategoryCategoryDropDownLst.SelectedValue) : (int?)null,

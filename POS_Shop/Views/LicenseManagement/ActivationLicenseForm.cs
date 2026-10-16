@@ -33,7 +33,7 @@ namespace POS_Shop.Views.LicenseManagement
             }
 
             // Show activation form
-          //  ShowActivationForm();
+            //  ShowActivationForm();
         }
 
         private void InitializeComponent()
@@ -143,7 +143,7 @@ namespace POS_Shop.Views.LicenseManagement
 
             if (string.IsNullOrEmpty(userName))
             {
-                lblStatus.Text = "Please enter your user name!";  
+                lblStatus.Text = "Please enter your user name!";
                 txtUserName.Focus();
                 return;
             }
@@ -154,7 +154,6 @@ namespace POS_Shop.Views.LicenseManagement
                 txtLicenseKey.Focus();
                 return;
             }
-
 
             if (licenseKey.Equals("reinit", StringComparison.OrdinalIgnoreCase))
             {

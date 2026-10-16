@@ -8,25 +8,23 @@ namespace POS_Shop.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Product English Name is Required")]
+        [Required(ErrorMessage = "Product English Name is Required")]
         [StringLength(50, ErrorMessage = "English Name cannot exceed 50 characters")]
         public string ProductEnglishName { get; set; }
-     
+
         [Required(ErrorMessage = "Product Urdu Name is Required")]
         [StringLength(50, ErrorMessage = "Urdu Name cannot exceed 50 characters")]
         public string ProductUrduName { get; set; }
 
         public string PurchasePrice { get; set; }
-
-
-        public decimal PurchasePricePerUnit { get; set; } = 0;
         //public int? SalePrice { get; set; }
 
+        public decimal PurchasePricePerUnit { get; set; } = 0;
         public int? Cost { get; set; }
 
         public string ProdQtyStockUnit { get; set; }
 
-        public int Qty { get; set; }
+        public decimal Qty { get; set; }
 
         public string SearchByProductCode { get; set; }
 

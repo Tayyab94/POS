@@ -63,7 +63,7 @@ namespace POS_Shop.Views.Controllers.Product
                 // Update cursor for next page
                 if (result.data.Any())
                 {
-                    PreviousCursor=result.data.First().Id; // First item of current page
+                    PreviousCursor = result.data.First().Id; // First item of current page
                     CurrentCursor = result.data.Last().Id;
                 }
 
@@ -73,14 +73,14 @@ namespace POS_Shop.Views.Controllers.Product
                 dt.Columns.Add("Name", typeof(string));
                 dt.Columns.Add("UName", typeof(string));
                 dt.Columns.Add("SearchBy", typeof(string));
-                dt.Columns.Add("Qty", typeof(int));
+                dt.Columns.Add("Qty", typeof(decimal));
                 dt.Columns.Add("Cost", typeof(int));
                 dt.Columns.Add("Purchase-Price", typeof(string));
-              dt.Columns.Add("SalePrice", typeof(string));
+                dt.Columns.Add("SalePrice", typeof(string));
 
                 foreach (var item in result.data)
                 {
-                    var price=FormatPricesByType(item.ProductPrices);
+                    var price = FormatPricesByType(item.ProductPrices);
                     // Check if this product is in our selected list
                     bool isSelected = selectedProductIds.Contains(item.Id);
                     dt.Rows.Add(isSelected, item.Id, item.Name, TextFormatHelper.FormatMixedText(item.UrduName), item.SearchByName, item.Qty,
@@ -299,7 +299,8 @@ namespace POS_Shop.Views.Controllers.Product
 
                 DeleteProductById(productId);
 
-            }else
+            }
+            else
             {
                 // Select the entire row
                 ProductListGrid.Rows[e.RowIndex].Selected = true;
@@ -367,7 +368,7 @@ namespace POS_Shop.Views.Controllers.Product
                         selectedProductIds.Remove(productId);
                         //  ClearSelection();
 
-                        CurrentCursor= PreviousCursor -1;
+                        CurrentCursor = PreviousCursor - 1;
                         await LoadProductsForDataGridView();
                     }
                     else
@@ -1105,7 +1106,7 @@ namespace POS_Shop.Views.Controllers.Product
                 MessageBox.Show("An Error occur", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
 
         }
 
