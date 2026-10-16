@@ -1,4 +1,5 @@
-﻿using POS_Shop.Helpers;
+﻿using POS_Shop.Config;
+using POS_Shop.Helpers;
 using POS_Shop.Models.AuthModel;
 using POS_Shop.Models.LicenseModels;
 using POS_Shop.Models.LoanModelsV1;
@@ -16,7 +17,8 @@ namespace POS_Shop.Models
     public class POSDbContext: DbContext
     {
 
-        public POSDbContext() : base("name=POSDbConnectionstring")
+        //public POSDbContext() : base("name=POSDbConnectionstring")
+        public POSDbContext() : base(DatabaseConfigHolder.ConnectionString)
         {
             //string dbname = @"Server=(localdb)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\dbName.mdf;Integrated Security=true;";
             //Optional Initializer  

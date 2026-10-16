@@ -117,7 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="SearchProductNameTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAUUAAAApCAYAAACiNTvIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAC3SURBVHhe7dRRCQMxAETB868qITIqowJaQsvxTkNmYH9W
+        wLsuAJ7WWq8xxsfM7NTtDt5R3AfAyXYHRRHgTxQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQB
+        QhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQBQhQB
+        QhQBQhQBQhQBQhQB4hHFOed7H2Zmp2538I4iAD9f4m8Gs31Ow+QAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="SearchOrderTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAfQAAAApCAYAAADDAdvPAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -930,7 +942,4 @@
         hc8lIPoc/tm+nsaPG4JmTf8fgo32YYKEVuYAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
 </root>

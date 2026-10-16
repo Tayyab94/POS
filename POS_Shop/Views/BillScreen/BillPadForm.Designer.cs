@@ -181,7 +181,7 @@
             // 
             // TopPanel
             // 
-            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(30, 27, 75);
+            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(75)))));
             this.TopPanel.Controls.Add(this.TopBarSearchProductTxt);
             this.TopPanel.Controls.Add(this.BackScreenBtn);
             this.TopPanel.Controls.Add(this.BillPadPageHeadingLbl);
@@ -308,7 +308,7 @@
             this.BillPadPageHeadingLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BillPadPageHeadingLbl.Location = new System.Drawing.Point(45, -1);
             this.BillPadPageHeadingLbl.Name = "BillPadPageHeadingLbl";
-            this.BillPadPageHeadingLbl.Size = new System.Drawing.Size(184, 44);
+            this.BillPadPageHeadingLbl.Size = new System.Drawing.Size(124, 41);
             this.BillPadPageHeadingLbl.TabIndex = 0;
             this.BillPadPageHeadingLbl.Text = "Bill Pad";
             // 
@@ -324,7 +324,7 @@
             this.LedgerEntryFromBtn.AutoSizeLeftIcon = true;
             this.LedgerEntryFromBtn.AutoSizeRightIcon = true;
             this.LedgerEntryFromBtn.BackColor = System.Drawing.Color.Transparent;
-            this.LedgerEntryFromBtn.BackColor1 = System.Drawing.Color.FromArgb(45, 42, 94);
+            this.LedgerEntryFromBtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(42)))), ((int)(((byte)(94)))));
             this.LedgerEntryFromBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LedgerEntryFromBtn.BackgroundImage")));
             this.LedgerEntryFromBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.LedgerEntryFromBtn.ButtonText = "📒 Ledger Entry";
@@ -356,7 +356,7 @@
             this.LedgerEntryFromBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
             this.LedgerEntryFromBtn.IdleBorderRadius = 10;
             this.LedgerEntryFromBtn.IdleBorderThickness = 1;
-            this.LedgerEntryFromBtn.IdleFillColor = System.Drawing.Color.FromArgb(45, 42, 94);
+            this.LedgerEntryFromBtn.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(42)))), ((int)(((byte)(94)))));
             this.LedgerEntryFromBtn.IdleIconLeftImage = null;
             this.LedgerEntryFromBtn.IdleIconRightImage = null;
             this.LedgerEntryFromBtn.IndicateFocus = false;
@@ -370,11 +370,11 @@
             this.LedgerEntryFromBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.LedgerEntryFromBtn.OnDisabledState.IconLeftImage = null;
             this.LedgerEntryFromBtn.OnDisabledState.IconRightImage = null;
-            this.LedgerEntryFromBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(99, 91, 255);
+            this.LedgerEntryFromBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(91)))), ((int)(((byte)(255)))));
             this.LedgerEntryFromBtn.onHoverState.BorderRadius = 10;
             this.LedgerEntryFromBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.LedgerEntryFromBtn.onHoverState.BorderThickness = 1;
-            this.LedgerEntryFromBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(65, 62, 120);
+            this.LedgerEntryFromBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(62)))), ((int)(((byte)(120)))));
             this.LedgerEntryFromBtn.onHoverState.ForeColor = System.Drawing.Color.White;
             this.LedgerEntryFromBtn.onHoverState.IconLeftImage = null;
             this.LedgerEntryFromBtn.onHoverState.IconRightImage = null;
@@ -382,7 +382,7 @@
             this.LedgerEntryFromBtn.OnIdleState.BorderRadius = 10;
             this.LedgerEntryFromBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.LedgerEntryFromBtn.OnIdleState.BorderThickness = 1;
-            this.LedgerEntryFromBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(45, 42, 94);
+            this.LedgerEntryFromBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(42)))), ((int)(((byte)(94)))));
             this.LedgerEntryFromBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
             this.LedgerEntryFromBtn.OnIdleState.IconLeftImage = null;
             this.LedgerEntryFromBtn.OnIdleState.IconRightImage = null;
@@ -1057,7 +1057,7 @@
             // 
             // BilPad
             // 
-            this.BilPad.BackColor = System.Drawing.Color.FromArgb(245, 246, 250);
+            this.BilPad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
             this.BilPad.Controls.Add(this.groupBox1);
             this.BilPad.Controls.Add(this.ProductPricesGroup);
             this.BilPad.Controls.Add(this.CustomerPreviousOrderHistoryGroup);
@@ -1125,7 +1125,7 @@
             this.LedgerListBtn.AutoSizeLeftIcon = true;
             this.LedgerListBtn.AutoSizeRightIcon = true;
             this.LedgerListBtn.BackColor = System.Drawing.Color.Transparent;
-            this.LedgerListBtn.BackColor1 = System.Drawing.Color.FromArgb(45, 42, 94);
+            this.LedgerListBtn.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(42)))), ((int)(((byte)(94)))));
             this.LedgerListBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LedgerListBtn.BackgroundImage")));
             this.LedgerListBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.LedgerListBtn.ButtonText = "📒 Ledger List";
@@ -1157,7 +1157,7 @@
             this.LedgerListBtn.IdleBorderColor = System.Drawing.Color.DodgerBlue;
             this.LedgerListBtn.IdleBorderRadius = 10;
             this.LedgerListBtn.IdleBorderThickness = 1;
-            this.LedgerListBtn.IdleFillColor = System.Drawing.Color.FromArgb(45, 42, 94);
+            this.LedgerListBtn.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(42)))), ((int)(((byte)(94)))));
             this.LedgerListBtn.IdleIconLeftImage = null;
             this.LedgerListBtn.IdleIconRightImage = null;
             this.LedgerListBtn.IndicateFocus = false;
@@ -1171,11 +1171,11 @@
             this.LedgerListBtn.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
             this.LedgerListBtn.OnDisabledState.IconLeftImage = null;
             this.LedgerListBtn.OnDisabledState.IconRightImage = null;
-            this.LedgerListBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(99, 91, 255);
+            this.LedgerListBtn.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(91)))), ((int)(((byte)(255)))));
             this.LedgerListBtn.onHoverState.BorderRadius = 10;
             this.LedgerListBtn.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.LedgerListBtn.onHoverState.BorderThickness = 1;
-            this.LedgerListBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(65, 62, 120);
+            this.LedgerListBtn.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(62)))), ((int)(((byte)(120)))));
             this.LedgerListBtn.onHoverState.ForeColor = System.Drawing.Color.White;
             this.LedgerListBtn.onHoverState.IconLeftImage = null;
             this.LedgerListBtn.onHoverState.IconRightImage = null;
@@ -1183,7 +1183,7 @@
             this.LedgerListBtn.OnIdleState.BorderRadius = 10;
             this.LedgerListBtn.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
             this.LedgerListBtn.OnIdleState.BorderThickness = 1;
-            this.LedgerListBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(45, 42, 94);
+            this.LedgerListBtn.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(42)))), ((int)(((byte)(94)))));
             this.LedgerListBtn.OnIdleState.ForeColor = System.Drawing.Color.White;
             this.LedgerListBtn.OnIdleState.IconLeftImage = null;
             this.LedgerListBtn.OnIdleState.IconRightImage = null;
@@ -1328,7 +1328,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(120, 130, 200);
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
             this.label13.Location = new System.Drawing.Point(6, 51);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(116, 20);
@@ -1339,7 +1339,7 @@
             // 
             this.previousBillLbl.AutoSize = true;
             this.previousBillLbl.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.previousBillLbl.ForeColor = System.Drawing.Color.FromArgb(120, 130, 200);
+            this.previousBillLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
             this.previousBillLbl.Location = new System.Drawing.Point(6, 22);
             this.previousBillLbl.Name = "previousBillLbl";
             this.previousBillLbl.Size = new System.Drawing.Size(108, 20);
@@ -1532,7 +1532,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(99, 91, 255);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(91)))), ((int)(((byte)(255)))));
             this.label7.Location = new System.Drawing.Point(76, 202);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(202, 29);
@@ -1552,7 +1552,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(99, 91, 255);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(91)))), ((int)(((byte)(255)))));
             this.label8.Location = new System.Drawing.Point(15, 124);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(153, 32);
@@ -1573,7 +1573,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(99, 91, 255);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(91)))), ((int)(((byte)(255)))));
             this.label6.Location = new System.Drawing.Point(53, 61);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(176, 32);
@@ -1929,7 +1929,7 @@
             // 
             // AddToCardBtn
             // 
-            this.AddToCardBtn.BackColor = System.Drawing.Color.FromArgb(79, 70, 229);
+            this.AddToCardBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(70)))), ((int)(((byte)(229)))));
             this.AddToCardBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddToCardBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddToCardBtn.ForeColor = System.Drawing.Color.AliceBlue;
@@ -2375,7 +2375,7 @@
             // QRCodeBtn
             // 
             this.QRCodeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.QRCodeBtn.BackColor = System.Drawing.Color.FromArgb(45, 42, 94);
+            this.QRCodeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(42)))), ((int)(((byte)(94)))));
             this.QRCodeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.QRCodeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QRCodeBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -2637,7 +2637,7 @@
             // BrowsOrderExcelFile
             // 
             this.BrowsOrderExcelFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BrowsOrderExcelFile.BackColor = System.Drawing.Color.FromArgb(79, 70, 229);
+            this.BrowsOrderExcelFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(70)))), ((int)(((byte)(229)))));
             this.BrowsOrderExcelFile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BrowsOrderExcelFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrowsOrderExcelFile.ForeColor = System.Drawing.SystemColors.Control;

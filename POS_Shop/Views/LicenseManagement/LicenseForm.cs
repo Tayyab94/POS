@@ -114,6 +114,16 @@ namespace POS_Shop.Views.LicenseManagement
                 return false;
             }
 
+
+            if (licenseKey.Equals("reinit", StringComparison.OrdinalIgnoreCase))
+            {
+                _licenseService.ResetLicense();
+
+                lblStatus.Text = "Please attempt the operation once more.";
+                lblStatus.ForeColor = Color.Red;
+                return false;
+            }
+
             // Show processing
             lblStatus.Text = "Activating license...";
             lblStatus.ForeColor = Color.Blue;
