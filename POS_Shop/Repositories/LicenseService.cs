@@ -295,5 +295,15 @@ namespace POS_Shop.Repositories
 
             return LicenseKeyManager.IsValidLicenseKey(licenseInfo.LicenseKey);
         }
+
+        public void ResetLicense()
+        {
+            // truncate the license table in the database
+            using (var context = new POSDbContext())
+            {
+                context.Database.ExecuteSqlCommand("TRUNCATE TABLE Licenses");
+                context.SaveChanges();
+            }
+        }
     }
 }

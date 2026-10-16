@@ -16,5 +16,7 @@ namespace POS_Shop.Interfaces
         int GetRemainingDays();
         bool VerifyLicenseKeyInFile();
         bool IsSoftwareNewOrNot();
+
+        void ResetLicense();
     }
 }

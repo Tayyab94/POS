@@ -1126,6 +1126,7 @@ namespace POS_Shop.Views.BillScreen
         //}
 
         private async Task SaveOrderDetailsAsync(POSDbContext context, int orderId)
+
         {
             bool stockCheck = ConfigurationManager.Configuration.Features.EnableUpdateQty;
 
@@ -1213,7 +1214,6 @@ namespace POS_Shop.Views.BillScreen
             context.OrderDetails.AddRange(detailList);
             await context.SaveChangesAsync();
         }
-
         //private async Task<Order> GetOrderData()
         //{
         //    int? cId = null;

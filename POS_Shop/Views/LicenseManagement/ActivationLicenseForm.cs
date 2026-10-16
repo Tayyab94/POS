@@ -143,7 +143,7 @@ namespace POS_Shop.Views.LicenseManagement
 
             if (string.IsNullOrEmpty(userName))
             {
-                lblStatus.Text = "Please enter your user name!";
+                lblStatus.Text = "Please enter your user name!";  
                 txtUserName.Focus();
                 return;
             }
@@ -152,6 +152,16 @@ namespace POS_Shop.Views.LicenseManagement
             {
                 lblStatus.Text = "Please enter your license key!";
                 txtLicenseKey.Focus();
+                return;
+            }
+
+
+            if (licenseKey.Equals("reinit", StringComparison.OrdinalIgnoreCase))
+            {
+                _licenseService.ResetLicense();
+
+                lblStatus.Text = "Please attempt the operation once more.";
+                lblStatus.ForeColor = Color.Red;
                 return;
             }
 

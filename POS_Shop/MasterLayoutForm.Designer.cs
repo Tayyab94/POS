@@ -1082,7 +1082,7 @@
     //        this.SupplierPaymentBtn.IdleIconLeftImage = null;
     //        this.SupplierPaymentBtn.IdleIconRightImage = null;
     //        this.SupplierPaymentBtn.IndicateFocus = false;
-    //        this.SupplierPaymentBtn.Location = new System.Drawing.Point(289, 9);
+    //        this.SupplierPaymentBtn.Location = new System.Drawing.Point(313, 9);
     //        this.SupplierPaymentBtn.Name = "SupplierPaymentBtn";
     //        this.SupplierPaymentBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
     //        this.SupplierPaymentBtn.OnDisabledState.BorderRadius = 15;
@@ -1172,7 +1172,7 @@
     //        this.PurchaseOrderListBtn.IdleIconLeftImage = null;
     //        this.PurchaseOrderListBtn.IdleIconRightImage = null;
     //        this.PurchaseOrderListBtn.IndicateFocus = false;
-    //        this.PurchaseOrderListBtn.Location = new System.Drawing.Point(433, 9);
+    //        this.PurchaseOrderListBtn.Location = new System.Drawing.Point(458, 9);
     //        this.PurchaseOrderListBtn.Name = "PurchaseOrderListBtn";
     //        this.PurchaseOrderListBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
     //        this.PurchaseOrderListBtn.OnDisabledState.BorderRadius = 15;
@@ -1246,7 +1246,7 @@
     //        this.LoggedInUserLbl.AutoSize = true;
     //        this.LoggedInUserLbl.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
     //        this.LoggedInUserLbl.ForeColor = System.Drawing.Color.White;
-    //        this.LoggedInUserLbl.Location = new System.Drawing.Point(756, 20);
+    //        this.LoggedInUserLbl.Location = new System.Drawing.Point(827, 20);
     //        this.LoggedInUserLbl.Name = "LoggedInUserLbl";
     //        this.LoggedInUserLbl.Size = new System.Drawing.Size(94, 23);
     //        this.LoggedInUserLbl.TabIndex = 20;
@@ -1299,7 +1299,7 @@
     //        this.DuePurchaseOrderBtn.IdleIconLeftImage = null;
     //        this.DuePurchaseOrderBtn.IdleIconRightImage = null;
     //        this.DuePurchaseOrderBtn.IndicateFocus = false;
-    //        this.DuePurchaseOrderBtn.Location = new System.Drawing.Point(587, 9);
+    //        this.DuePurchaseOrderBtn.Location = new System.Drawing.Point(612, 9);
     //        this.DuePurchaseOrderBtn.Name = "DuePurchaseOrderBtn";
     //        this.DuePurchaseOrderBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
     //        this.DuePurchaseOrderBtn.OnDisabledState.BorderRadius = 15;
@@ -1389,7 +1389,7 @@
     //        this.PurchaseOrderBtn.IdleIconLeftImage = null;
     //        this.PurchaseOrderBtn.IdleIconRightImage = null;
     //        this.PurchaseOrderBtn.IndicateFocus = false;
-    //        this.PurchaseOrderBtn.Location = new System.Drawing.Point(142, 9);
+    //        this.PurchaseOrderBtn.Location = new System.Drawing.Point(165, 9);
     //        this.PurchaseOrderBtn.Name = "PurchaseOrderBtn";
     //        this.PurchaseOrderBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
     //        this.PurchaseOrderBtn.OnDisabledState.BorderRadius = 15;
@@ -1446,7 +1446,7 @@
     //        this.BillPadBtn.BackColor1 = System.Drawing.Color.DarkSlateBlue;
     //        this.BillPadBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BillPadBtn.BackgroundImage")));
     //        this.BillPadBtn.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-    //        this.BillPadBtn.ButtonText = "🛒 Sell (Ctrl+B)";
+    //        this.BillPadBtn.ButtonText = "🛒 Bill Pad (Ctrl+B)";
     //        this.BillPadBtn.ButtonTextMarginLeft = 0;
     //        this.BillPadBtn.ColorContrastOnClick = 45;
     //        this.BillPadBtn.ColorContrastOnHover = 45;
@@ -1513,7 +1513,7 @@
     //        this.BillPadBtn.OnPressedState.ForeColor = System.Drawing.Color.White;
     //        this.BillPadBtn.OnPressedState.IconLeftImage = null;
     //        this.BillPadBtn.OnPressedState.IconRightImage = null;
-    //        this.BillPadBtn.Size = new System.Drawing.Size(126, 45);
+    //        this.BillPadBtn.Size = new System.Drawing.Size(148, 45);
     //        this.BillPadBtn.TabIndex = 8;
     //        this.BillPadBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
     //        this.BillPadBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1776,7 +1776,6 @@
     //    private System.Windows.Forms.Label LoggedInUserLbl;
     //}
 
-
     partial class MasterLayoutForm
     {
         private System.ComponentModel.IContainer components = null;
@@ -1872,9 +1871,9 @@
             this.sideBarPanel.Controls.Add(this.cityBtn);
             this.sideBarPanel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.sideBarPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sideBarPanel.Location = new System.Drawing.Point(0, 28);
+            this.sideBarPanel.Location = new System.Drawing.Point(0, 30);
             this.sideBarPanel.Name = "sideBarPanel";
-            this.sideBarPanel.Size = new System.Drawing.Size(229, 652);
+            this.sideBarPanel.Size = new System.Drawing.Size(229, 650);
             this.sideBarPanel.TabIndex = 0;
             // 
             // SuppliersBtn
@@ -2014,7 +2013,7 @@
             this.ProductUnitBtn.IdleIconLeftImage = null;
             this.ProductUnitBtn.IdleIconRightImage = null;
             this.ProductUnitBtn.IndicateFocus = false;
-            this.ProductUnitBtn.Location = new System.Drawing.Point(12, 314);
+            this.ProductUnitBtn.Location = new System.Drawing.Point(12, 364);
             this.ProductUnitBtn.Name = "ProductUnitBtn";
             this.ProductUnitBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(90)))));
             this.ProductUnitBtn.OnDisabledState.BorderRadius = 10;
@@ -2255,7 +2254,7 @@
             this.FooterLbl.AutoSize = true;
             this.FooterLbl.Font = new System.Drawing.Font("Segoe UI", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FooterLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(130)))), ((int)(((byte)(160)))));
-            this.FooterLbl.Location = new System.Drawing.Point(18, 637);
+            this.FooterLbl.Location = new System.Drawing.Point(18, 635);
             this.FooterLbl.Name = "FooterLbl";
             this.FooterLbl.Size = new System.Drawing.Size(166, 17);
             this.FooterLbl.TabIndex = 2;
@@ -2398,7 +2397,7 @@
             this.ProductSectrionBtn.IdleIconLeftImage = null;
             this.ProductSectrionBtn.IdleIconRightImage = null;
             this.ProductSectrionBtn.IndicateFocus = false;
-            this.ProductSectrionBtn.Location = new System.Drawing.Point(11, 365);
+            this.ProductSectrionBtn.Location = new System.Drawing.Point(11, 314);
             this.ProductSectrionBtn.Name = "ProductSectrionBtn";
             this.ProductSectrionBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(90)))));
             this.ProductSectrionBtn.OnDisabledState.BorderRadius = 10;
@@ -2938,7 +2937,7 @@
             this.PurchaseOrderListBtn.IdleIconLeftImage = null;
             this.PurchaseOrderListBtn.IdleIconRightImage = null;
             this.PurchaseOrderListBtn.IndicateFocus = false;
-            this.PurchaseOrderListBtn.Location = new System.Drawing.Point(492, 10);
+            this.PurchaseOrderListBtn.Location = new System.Drawing.Point(493, 11);
             this.PurchaseOrderListBtn.Name = "PurchaseOrderListBtn";
             this.PurchaseOrderListBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(90)))));
             this.PurchaseOrderListBtn.OnDisabledState.BorderRadius = 10;
@@ -3003,7 +3002,7 @@
             this.TopNavPanel.Controls.Add(this.BillPadBtn);
             this.TopNavPanel.Controls.Add(this.LogoutBtn);
             this.TopNavPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopNavPanel.Location = new System.Drawing.Point(229, 28);
+            this.TopNavPanel.Location = new System.Drawing.Point(229, 30);
             this.TopNavPanel.Name = "TopNavPanel";
             this.TopNavPanel.Size = new System.Drawing.Size(1149, 62);
             this.TopNavPanel.TabIndex = 3;
@@ -3013,7 +3012,7 @@
             this.LoggedInUserLbl.AutoSize = true;
             this.LoggedInUserLbl.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.LoggedInUserLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(185)))), ((int)(((byte)(210)))));
-            this.LoggedInUserLbl.Location = new System.Drawing.Point(858, 22);
+            this.LoggedInUserLbl.Location = new System.Drawing.Point(864, 22);
             this.LoggedInUserLbl.Name = "LoggedInUserLbl";
             this.LoggedInUserLbl.Size = new System.Drawing.Size(90, 21);
             this.LoggedInUserLbl.TabIndex = 20;
@@ -3066,7 +3065,7 @@
             this.DuePurchaseOrderBtn.IdleIconLeftImage = null;
             this.DuePurchaseOrderBtn.IdleIconRightImage = null;
             this.DuePurchaseOrderBtn.IndicateFocus = false;
-            this.DuePurchaseOrderBtn.Location = new System.Drawing.Point(671, 10);
+            this.DuePurchaseOrderBtn.Location = new System.Drawing.Point(675, 11);
             this.DuePurchaseOrderBtn.Name = "DuePurchaseOrderBtn";
             this.DuePurchaseOrderBtn.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(90)))));
             this.DuePurchaseOrderBtn.OnDisabledState.BorderRadius = 10;
@@ -3337,7 +3336,7 @@
             this.inforToolStripMenuItem});
             this.HomePageMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.HomePageMenuStrip.Name = "HomePageMenuStrip";
-            this.HomePageMenuStrip.Size = new System.Drawing.Size(1378, 28);
+            this.HomePageMenuStrip.Size = new System.Drawing.Size(1378, 30);
             this.HomePageMenuStrip.TabIndex = 4;
             this.HomePageMenuStrip.Text = "menuStrip1";
             // 
@@ -3352,7 +3351,7 @@
             this.exitToolStripMenuItem});
             this.settingsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(230)))));
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // backupDatabaseToolStripMenuItem
@@ -3407,7 +3406,7 @@
             this.qRCodeImagesToolStripMenuItem});
             this.viewsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(230)))));
             this.viewsToolStripMenuItem.Name = "viewsToolStripMenuItem";
-            this.viewsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
+            this.viewsToolStripMenuItem.Size = new System.Drawing.Size(58, 26);
             this.viewsToolStripMenuItem.Text = "Tools";
             // 
             // importExcelFileToolStripMenuItem
@@ -3451,7 +3450,7 @@
             this.userManagementToolStripMenuItem});
             this.managementToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(230)))));
             this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
-            this.managementToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.managementToolStripMenuItem.Size = new System.Drawing.Size(111, 26);
             this.managementToolStripMenuItem.Text = "Management";
             // 
             // userManagementToolStripMenuItem
@@ -3467,7 +3466,7 @@
             this.infoToolStripMenuItem});
             this.inforToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(230)))));
             this.inforToolStripMenuItem.Name = "inforToolStripMenuItem";
-            this.inforToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.inforToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
             this.inforToolStripMenuItem.Text = "Help";
             // 
             // infoToolStripMenuItem

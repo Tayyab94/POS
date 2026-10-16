@@ -244,6 +244,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\AppConfig.cs" />
+    <Compile Include="Config\ConfigManager.cs" />
+    <Compile Include="Config\DatabaseConfigHolder.cs" />
     <Compile Include="Constants\POSConstants.cs" />
     <Compile Include="DTOs\City\CitiesListForDataGrifDto.cs" />
     <Compile Include="DTOs\Supplier\SupplierListForDataGridDto.cs" />
@@ -258,6 +261,7 @@
     <Compile Include="Helpers\ConversionHelper.cs" />
     <Compile Include="Helpers\DAL\DatabaseHelper.cs" />
     <Compile Include="Helpers\DatabasePathManager.cs" />
+    <Compile Include="Helpers\SqlServerHelper.cs" />
     <Compile Include="Helpers\TempOrderGridHelper.cs" />
     <Compile Include="Helpers\InvoicePDFGenerator.cs" />
     <Compile Include="Helpers\ISectionAware.cs" />
@@ -865,6 +869,12 @@
     <Compile Include="Views\Settings\PirntersAndScanners.Designer.cs">
       <DependentUpon>PirntersAndScanners.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Setup\DatabaseSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Setup\DatabaseSetupForm.Designer.cs">
+      <DependentUpon>DatabaseSetupForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MasterLayoutForm.resx">
       <DependentUpon>MasterLayoutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1077,6 +1087,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Settings\ConfigSettingForm.resx">
       <DependentUpon>ConfigSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Setup\DatabaseSetupForm.resx">
+      <DependentUpon>DatabaseSetupForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="POS_Shop_1_TemporaryKey.pfx" />
