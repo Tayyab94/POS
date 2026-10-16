@@ -180,7 +180,7 @@ namespace POS_Shop.Views.CustomerLoanScreensV1
                 else if (!string.IsNullOrWhiteSpace(d.OtherProductName))
                     productName = d.OtherProductName;
 
-                float lineTotal = d.Quantity * d.Price;
+                decimal lineTotal = d.Quantity * (decimal)d.Price;
 
                 rows.Add(new OrderDetailRow
                 {
@@ -329,7 +329,7 @@ namespace POS_Shop.Views.CustomerLoanScreensV1
                         else if (!string.IsNullOrWhiteSpace(d.OtherProductName))
                             productName = d.OtherProductName;
 
-                        float lineTotal = d.Quantity * d.Price;
+                        decimal lineTotal = d.Quantity * (decimal)d.Price;
 
                         if (alt)
                             g.FillRectangle(

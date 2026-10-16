@@ -10,10 +10,10 @@ namespace POS_Shop.Models
 
         public int? ProductId { get; set; }
         public string OtherProductName { get; set; }
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
         public string QuantityType { get; set; }
 
-        public float Price { get; set; }
+        public decimal Price { get; set; }
 
         public DateTime CreatedDate { get; set; }
         public int OrderId { get; set; }
@@ -23,6 +23,6 @@ namespace POS_Shop.Models
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }
 
-        public string ProductDetail { get; set; }= string.Empty;    
+        public string ProductDetail { get; set; } = string.Empty;
     }
 }

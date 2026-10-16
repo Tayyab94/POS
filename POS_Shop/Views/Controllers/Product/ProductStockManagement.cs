@@ -114,7 +114,7 @@ namespace POS_Shop.Views.Controllers.Product
                 if (currentProduct != null)
                 {
                     DisplayProductDetails();
-                   // ShowMessage($"Product '{currentProduct.ProductEnglishName}' loaded successfully", MessageType.Success);
+                    // ShowMessage($"Product '{currentProduct.ProductEnglishName}' loaded successfully", MessageType.Success);
                     lblStatus.Text = "Product loaded";
                     lblStatus.ForeColor = Color.Green;
                 }
@@ -174,7 +174,7 @@ namespace POS_Shop.Views.Controllers.Product
             {
                 Cursor.Current = Cursors.WaitCursor;
                 decimal newQty = decimal.Parse(txtNewQty.Text);
-                int totalNewQty = (int)(currentProduct.Qty + newQty);
+                decimal totalNewQty = currentProduct.Qty + newQty;
 
                 // Using Entity Framework with transaction
                 using (var transaction = dbContext.Database.BeginTransaction())
@@ -191,7 +191,7 @@ namespace POS_Shop.Views.Controllers.Product
                         }
 
                         // Store old quantity for logging
-                        int oldQty = productToUpdate.Qty;
+                        decimal oldQty = productToUpdate.Qty;
 
                         // Update the quantity
                         productToUpdate.Qty = totalNewQty;
@@ -199,7 +199,7 @@ namespace POS_Shop.Views.Controllers.Product
                         // Save changes
                         dbContext.SaveChanges();
 
-                        
+
                         // Commit transaction
                         transaction.Commit();
 

@@ -212,7 +212,7 @@ namespace POS_Shop.Views.Controllers.Order
                 dt.Columns.Add("Customer", typeof(string));
                 dt.Columns.Add("CustomerId", typeof(int));
                 dt.Columns.Add("Date", typeof(DateTime));
-              //  dt.Columns.Add("Profit", typeof(string));
+                //  dt.Columns.Add("Profit", typeof(string));
                 foreach (var item in result.data)
                 {
                     dt.Rows.Add(item.Id, item.InvoiceNumber, item.TotalBill, item.ReceiveAmount, (item.ReceiveAmount - item.TotalBill), item.paymentType, item.CustomerName, item.customerId,
@@ -241,7 +241,7 @@ namespace POS_Shop.Views.Controllers.Order
                 OrderListDataGrid.Columns["Type"].Width = 60;
                 OrderListDataGrid.Columns["Customer"].Width = 190;
                 OrderListDataGrid.Columns["Date"].Width = 75;
-               // OrderListDataGrid.Columns["Profit"].Width = 120;
+                // OrderListDataGrid.Columns["Profit"].Width = 120;
 
                 // Add button column programmatically (better approach)
                 AddButtonColumnToDataGridView();
@@ -539,7 +539,7 @@ namespace POS_Shop.Views.Controllers.Order
 
                             string productType = order.QuantityType;
                             decimal salePrice = Math.Round(decimal.Parse(order.Price.ToString()), 1);
-                            int qty = order.Quantity;
+                            decimal qty = order.Quantity;
                             decimal amount = salePrice * qty;
 
                             OrderDetailList.Rows.Add(amount, salePrice, TextFormatHelper.FormatMixedText(finalName),

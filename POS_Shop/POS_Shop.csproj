@@ -377,6 +377,10 @@
     <Compile Include="Migrations\202609051840337_add_PurchasePrice_ProductTable.Designer.cs">
       <DependentUpon>202609051840337_add_PurchasePrice_ProductTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202610160737374_ProductUnitTypeChange_int_decimal.cs" />
+    <Compile Include="Migrations\202610160737374_ProductUnitTypeChange_int_decimal.Designer.cs">
+      <DependentUpon>202610160737374_ProductUnitTypeChange_int_decimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppConfiguration.cs" />
     <Compile Include="Models\AuthModel\AuthUser.cs" />
@@ -934,6 +938,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202609051840337_add_PurchasePrice_ProductTable.resx">
       <DependentUpon>202609051840337_add_PurchasePrice_ProductTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202610160737374_ProductUnitTypeChange_int_decimal.resx">
+      <DependentUpon>202610160737374_ProductUnitTypeChange_int_decimal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

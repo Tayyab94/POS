@@ -168,7 +168,7 @@ namespace POS_Shop.Views.Reports
                 DataPropertyName = "Name",
                 Width = 340,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-            }); 
+            });
             dgvProductSearch.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Urdu Name",
@@ -897,8 +897,8 @@ namespace POS_Shop.Views.Reports
                             : GetMonthName(dataPoint.Period);
 
                         double value = isRevenueAnalysis
-                            ? dataPoint.Revenue
-                            : dataPoint.Quantity;
+                            ? (double)dataPoint.Revenue
+                            : (double)dataPoint.Quantity;
 
                         var point = new DataPoint(0, value)
                         {
@@ -1095,9 +1095,9 @@ namespace POS_Shop.Views.Reports
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string QuantityType { get; set; }
-        public int Quantity { get; set; }
-        public float Revenue { get; set; }
-        public float AveragePrice { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal Revenue { get; set; }
+        public decimal AveragePrice { get; set; }
     }
 
     #endregion

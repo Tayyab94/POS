@@ -101,7 +101,7 @@ namespace POS_Shop.Views.BillScreen
             InitializeDebounceTimers();
         }
 
-        
+
 
         // ══════════════════════════════════════════════════════════════════════════
         // INITIALIZATION
@@ -326,7 +326,7 @@ namespace POS_Shop.Views.BillScreen
             dt.Columns.Add("Price", typeof(string));
             dt.Columns.Add("Name", typeof(string));
             dt.Columns.Add("U-Name", typeof(string));
-            dt.Columns.Add("Qty", typeof(int));
+            dt.Columns.Add("Qty", typeof(decimal));
             dt.Columns.Add("Type", typeof(string));
 
             foreach (var item in suggestions)
@@ -335,7 +335,7 @@ namespace POS_Shop.Views.BillScreen
                     item.purchasePrice,
                     item.ProductName,
                     TextFormatHelper.FormatMixedText(item.ProductUrduName),
-                    
+
                     item.Qty, item.ProductType);
 
             SuggestionGrid.SuspendLayout();
@@ -618,7 +618,7 @@ namespace POS_Shop.Views.BillScreen
             string productName = ProductEngNameTxt.Text;
             string productType = productTypeDropdown.SelectedValue?.ToString();
             decimal salePrice = Math.Round(decimal.Parse(ProductSalePrice.Text), 1);
-            int qty = int.Parse(P_StockQtyTxt.Text);
+            decimal qty = decimal.Parse(P_StockQtyTxt.Text);
             decimal amount = salePrice * qty;
             string detail = ProductDetailTxt.Text;
 
@@ -633,7 +633,7 @@ namespace POS_Shop.Views.BillScreen
             if (!string.IsNullOrEmpty(finalPId))
             {
                 // Stock check
-                 if (config && !string.IsNullOrEmpty(productId))
+                if (config && !string.IsNullOrEmpty(productId))
                 {
                     if (!int.TryParse(Prod_Qty.Text, out int availableQty) ||
                         !int.TryParse(prod_ItemCountTxt.Text, out int itemCount) ||
@@ -653,7 +653,7 @@ namespace POS_Shop.Views.BillScreen
                     }
                 }
             }
-            
+
 
             // Duplicate check — if same product name already in cart, increase qty
             bool productExists = false;
@@ -668,11 +668,11 @@ namespace POS_Shop.Views.BillScreen
                 if (string.Equals(cleanExisting.Trim(), cleanNew.Trim(),
                                   StringComparison.OrdinalIgnoreCase))
                 {
-                    int existingQty = int.TryParse(row.Cells[Col.Qty].Value?.ToString(), out int eq) ? eq : 0;
+                    decimal existingQty = decimal.TryParse(row.Cells[Col.Qty].Value?.ToString(), out decimal eq) ? eq : 0;
 
                     if (config && !string.IsNullOrEmpty(productId))
                     {
-                        if ((existingQty * Convert.ToInt32(prod_ItemCountTxt.Text)) + (qty * Convert.ToInt32(prod_ItemCountTxt.Text)) <= Convert.ToInt32(Prod_Qty.Text))
+                        if ((existingQty * Convert.ToDecimal(prod_ItemCountTxt.Text)) + (qty * Convert.ToDecimal(prod_ItemCountTxt.Text)) <= Convert.ToDecimal(Prod_Qty.Text))
                         {
                             existingQty += qty;
                             row.Cells[Col.Qty].Value = existingQty;
@@ -691,14 +691,14 @@ namespace POS_Shop.Views.BillScreen
                     }
                     else
                     {
-                      
+
                         existingQty += qty;
                         row.Cells["Qty"].Value = existingQty;
                         row.Cells["Amount"].Value = Math.Round(existingQty * salePrice, 1);
                         productExists = true;
                         break;
                     }
-                   
+
                 }
             }
 
@@ -764,7 +764,7 @@ namespace POS_Shop.Views.BillScreen
                     if (!string.IsNullOrEmpty(pidVal) && int.TryParse(pidVal, out int productId))
                     {
                         string typeName = row.Cells[Col.ProductType].Value?.ToString();
-                        int editedQty = int.Parse(row.Cells[Col.Qty].Value?.ToString() ?? "0");
+                        decimal editedQty = decimal.Parse(row.Cells[Col.Qty].Value?.ToString() ?? "0");
 
                         using (var context = new POSDbContext())
                         {
@@ -793,7 +793,7 @@ namespace POS_Shop.Views.BillScreen
                 }
 
                 decimal sp = Convert.ToDecimal(row.Cells[Col.SalePrice].Value);
-                int q = Convert.ToInt32(row.Cells[Col.Qty].Value);
+                decimal q = Convert.ToDecimal(row.Cells[Col.Qty].Value);
                 row.Cells[Col.Amount].Value = Math.Round(sp * q, 1);
                 CalculateTotals();
                 CalculateReturnAmount();
@@ -861,7 +861,7 @@ namespace POS_Shop.Views.BillScreen
             }
 
             TotalItemLbl.Text = totalItems.ToString();
-            TotalAmountLbl.Text = subTotal.ToString();
+            TotalAmountLbl.Text = subTotal.ToString("0.00");
         }
 
         private void CalculateReturnAmount()
@@ -894,8 +894,8 @@ namespace POS_Shop.Views.BillScreen
 
             decimal remaining = total - received;
             lblRemainingAmount.Text = remaining >= 0
-                ? $"Remaining Amt:  Rs. {remaining}"
-                : $"Return Amt:  Rs. {Math.Abs(remaining)}";
+                ? $"Remaining Amt:  Rs. {remaining.ToString("0.00")}"
+                : $"Return Amt:  Rs. {Math.Abs(remaining).ToString("0.00")}";
             lblRemainingAmount.ForeColor = remaining >= 0 ? Color.Red : Color.Blue;
         }
 
@@ -1126,19 +1126,18 @@ namespace POS_Shop.Views.BillScreen
         //}
 
         private async Task SaveOrderDetailsAsync(POSDbContext context, int orderId)
-
         {
             bool stockCheck = ConfigurationManager.Configuration.Features.EnableUpdateQty;
 
             // --- Parse rows first (no DB yet) ---
-            var parsedRows = new List<(string pidVal, int qty, float price, string typeName, DataGridViewRow row)>();
+            var parsedRows = new List<(string pidVal, decimal qty, decimal price, string typeName, DataGridViewRow row)>();
 
             foreach (DataGridViewRow row in CartProductList.Rows)
             {
                 if (row.Cells[Col.ProductId].Value == null) continue;
                 string pidVal = row.Cells[Col.ProductId].Value?.ToString();
-                if (!int.TryParse(row.Cells[Col.Qty].Value?.ToString(), out int qty)) continue;
-                if (!float.TryParse(row.Cells[Col.SalePrice].Value?.ToString(), out float price)) continue;
+                if (!decimal.TryParse(row.Cells[Col.Qty].Value?.ToString(), out decimal qty)) continue;
+                if (!decimal.TryParse(row.Cells[Col.SalePrice].Value?.ToString(), out decimal price)) continue;
                 string typeName = row.Cells[Col.ProductType].Value?.ToString();
                 parsedRows.Add((pidVal, qty, price, typeName, row));
             }
@@ -1214,6 +1213,7 @@ namespace POS_Shop.Views.BillScreen
             context.OrderDetails.AddRange(detailList);
             await context.SaveChangesAsync();
         }
+
         //private async Task<Order> GetOrderData()
         //{
         //    int? cId = null;
@@ -1270,7 +1270,7 @@ namespace POS_Shop.Views.BillScreen
                 TotalProfit = 0
             };
 
-            
+
             // ============================================
             // STEP 1: Get ALL product IDs from cart (NO DB CALL)
             // ============================================
@@ -1323,7 +1323,7 @@ namespace POS_Shop.Views.BillScreen
                         g => g.Key,
                         g => g.Select(p => (
                             TypeName: p.TypeName ?? "Single",  // Handle null TypeName
-                            ItemsCount: ( p.ItemsCount > 0) ? p.ItemsCount : 1,  // Handle null or zero
+                            ItemsCount: (p.ItemsCount > 0) ? p.ItemsCount : 1,  // Handle null or zero
                             PurchasePricePerUnit: (p.PurchasePricePerUnit > 0) ? p.PurchasePricePerUnit : 0  // Handle null or zero
                         )).ToList()
                     );
@@ -1399,7 +1399,7 @@ namespace POS_Shop.Views.BillScreen
                 // Calculate totals
                 decimal totalCost = purchasePricePerUnit * validQty;
                 decimal totalSale = (decimal)salePrice * validQty;
-                decimal profit = totalCost !=0 ? totalSale - totalCost:0;
+                decimal profit = totalCost != 0 ? totalSale - totalCost : 0;
 
                 // Accumulate totals (handle negative values appropriately)
                 totalActualPrice += totalCost;
@@ -1585,7 +1585,7 @@ namespace POS_Shop.Views.BillScreen
                 if (row.Cells[Col.ProductId].Value == null) continue;
 
                 string pidVal = row.Cells[Col.ProductId].Value?.ToString();
-                if (!int.TryParse(row.Cells[Col.Qty].Value?.ToString(), out int qty)) continue;
+                if (!decimal.TryParse(row.Cells[Col.Qty].Value?.ToString(), out decimal qty)) continue;
                 if (!float.TryParse(row.Cells[Col.SalePrice].Value?.ToString(), out float price)) continue;
 
                 detailList.Add(new TempOrderDetail
@@ -1983,14 +1983,15 @@ namespace POS_Shop.Views.BillScreen
             {
                 IProductRepository repo = new ProductRepository(context);
                 var history = repo.ProductPreviousPriceInRecentOrderByCustomerId(cId, productId);
-                if(history.Count()>0)
+                if (history.Count() > 0)
                 {
 
                     ProductOrderHistoryDataGrid.DataSource = null;
                     ProductOrderHistoryDataGrid.DataSource = history.ToList();
                     ProductOrderHistoryDataGrid.RowHeadersVisible = false;
                     ProductOrderHistoryDataGrid.ClearSelection();
-                }else
+                }
+                else
                 {
                     ProductOrderHistoryDataGrid.DataSource = null;
                     ProductOrderHistoryDataGrid.ClearSelection();
@@ -2398,7 +2399,7 @@ namespace POS_Shop.Views.BillScreen
                 MessageBox.Show("Unit name is required.", "Validation Error");
                 return false;
             }
-            if (!int.TryParse(P_StockQtyTxt.Text, out int qty) || qty <= 0)
+            if (!decimal.TryParse(P_StockQtyTxt.Text, out decimal qty) || qty <= 0)
             {
                 MessageBox.Show("Enter a valid quantity.", "Validation Error");
                 return false;
@@ -2590,8 +2591,8 @@ namespace POS_Shop.Views.BillScreen
             if (!string.IsNullOrEmpty(ProductSalePrice.Text) &&
                 !string.IsNullOrEmpty(P_StockQtyTxt.Text) &&
                 decimal.TryParse(ProductSalePrice.Text, out decimal sp) &&
-                int.TryParse(P_StockQtyTxt.Text, out int qty))
-                ProductAmount.Text = (sp * qty).ToString();
+                   decimal.TryParse(P_StockQtyTxt.Text, out decimal qty))
+                ProductAmount.Text = (sp * qty).ToString("0");
         }
 
         private void P_StockQtyTxt_Leave(object sender, EventArgs e)
@@ -2599,14 +2600,14 @@ namespace POS_Shop.Views.BillScreen
             if (!string.IsNullOrEmpty(ProductSalePrice.Text) &&
                 !string.IsNullOrEmpty(P_StockQtyTxt.Text) &&
                 decimal.TryParse(ProductSalePrice.Text, out decimal sp) &&
-                int.TryParse(P_StockQtyTxt.Text, out int qty))
-                ProductAmount.Text = (sp * qty).ToString();
+                decimal.TryParse(P_StockQtyTxt.Text, out decimal qty))
+                ProductAmount.Text = (sp * qty).ToString("0");
         }
 
         private void P_StockQtyTxt_TextChange(object sender, EventArgs e)
         {
             string valid = RegexValidator.ValidateCommonPattern(
-                P_StockQtyTxt.Text, ValidationPattern.NumbersOnly, "quantityField");
+                P_StockQtyTxt.Text, ValidationPattern.NumbersWithDecimal, "quantityField");
             if (P_StockQtyTxt.Text == valid) return;
             P_StockQtyTxt.Text = valid;
             P_StockQtyTxt.SelectionStart = valid.Length;
@@ -2627,7 +2628,7 @@ namespace POS_Shop.Views.BillScreen
         private void productTypeDropdown_Leave(object sender, EventArgs e)
             => productTypeDropdown.BorderColor = Color.Silver;
 
-        
+
         private void BackScreenBtn_Click(object sender, EventArgs e)
         {
             if (CartProductList.Rows.Count != 0)
@@ -2684,7 +2685,7 @@ namespace POS_Shop.Views.BillScreen
             ClearCustomerPreviousTransactionGroup();
             InvoiceNoLbl.Text = ctrl.InvoiceNoLbl.Text;
             PreviousOrderIdLbl.Text = ctrl.OrderIDLbl.Text;
-            TotalAmountLbl.Text = ctrl.TotalBill.ToString();
+            TotalAmountLbl.Text = ctrl.TotalBill.ToString("0.00").ToString();
             ReceivedAmountTxt.Text = ctrl.ReceiveAmount.ToString();
 
             if (ctrl.CustomerId != 0)
@@ -3096,10 +3097,11 @@ namespace POS_Shop.Views.BillScreen
 
         private void OtherProductChk_CheckedChanged(object sender, EventArgs e)
         {
-            if(OtherProductChk.Checked)
+            if (OtherProductChk.Checked)
             {
                 InitializeProductUnitsDropdown();
-            }else
+            }
+            else
             {
                 ProductEngNameTxt.Text = "";
                 ProductEngNameTxt.Focus();

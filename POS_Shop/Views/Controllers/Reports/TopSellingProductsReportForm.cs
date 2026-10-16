@@ -73,7 +73,7 @@ namespace POS_Shop.Views.Controllers.Reports
                     .Where(d => d.Order.CreatedDate >= from && d.Order.CreatedDate <= to)
                     .ToList();
 
-                decimal totalRevenue = (decimal)details.Sum(d => d.Price * d.Quantity);
+                decimal totalRevenue = details.Sum(d => (decimal)d.Price * d.Quantity);
 
                 var groups = details
                     .GroupBy(d => d.ProductId)
@@ -83,8 +83,8 @@ namespace POS_Shop.Views.Controllers.Reports
                                    ?? g.First().OtherProductName
                                    ?? "Unknown Product";
                         string code = g.First().Product?.SearchByProductCode ?? "-";
-                        int qty = g.Sum(d => d.Quantity);
-                        decimal rev = (decimal)g.Sum(d => d.Price * d.Quantity);
+                        decimal qty = g.Sum(d => d.Quantity);
+                        decimal rev = g.Sum(d => (decimal)d.Price * d.Quantity);
                         decimal avgPrc = qty > 0 ? rev / qty : 0;
                         int orders = g.Select(d => d.OrderId).Distinct().Count();
                         return new { Name = name, Code = code, Qty = qty, Revenue = rev, AvgPrice = avgPrc, Orders = orders };
@@ -110,7 +110,7 @@ namespace POS_Shop.Views.Controllers.Reports
                     row.Cells["colTPRevenue"].Value = r.Revenue;
                     row.Cells["colTPAvgPrice"].Value = r.AvgPrice;
                     row.Cells["colTPShare"].Value = share;
-                    gRev += r.Revenue; gQty += r.Qty;
+                    gRev += r.Revenue; gQty += (int)r.Qty;
                 }
 
                 if (sorted.Count > 0)
