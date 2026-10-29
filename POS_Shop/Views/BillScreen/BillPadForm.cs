@@ -323,19 +323,19 @@ namespace POS_Shop.Views.BillScreen
         {
             var dt = new DataTable();
             dt.Columns.Add("ID", typeof(int));
-            dt.Columns.Add("Price", typeof(string));
+        
             dt.Columns.Add("Name", typeof(string));
             dt.Columns.Add("U-Name", typeof(string));
+            dt.Columns.Add("Price", typeof(string));
             dt.Columns.Add("Qty", typeof(decimal));
             dt.Columns.Add("Type", typeof(string));
 
             foreach (var item in suggestions)
                 dt.Rows.Add(
                     item.ProductId,
-                    item.purchasePrice,
                     item.ProductName,
                     TextFormatHelper.FormatMixedText(item.ProductUrduName),
-
+                       item.purchasePrice,
                     item.Qty, item.ProductType);
 
             SuggestionGrid.SuspendLayout();
@@ -343,9 +343,9 @@ namespace POS_Shop.Views.BillScreen
             SuggestionGrid.AllowUserToAddRows = false;
             SuggestionGrid.DataSource = dt;
             SuggestionGrid.Columns[0].Width = 40;
-            SuggestionGrid.Columns[1].Width = 50;
+            SuggestionGrid.Columns[1].Width = 200;
             SuggestionGrid.Columns[2].Width = 200;
-            SuggestionGrid.Columns[3].Width = 200;
+            SuggestionGrid.Columns[3].Width = 50;
             SuggestionGrid.Columns[4].Width = 100;
             SuggestionGrid.ResumeLayout();
 
@@ -462,8 +462,8 @@ namespace POS_Shop.Views.BillScreen
             try
             {
                 int pId = Convert.ToInt32(row.Cells[0].Value);
-                string selectedText = row.Cells[2].Value?.ToString() ?? string.Empty;
-                string urduName = row.Cells[3].Value?.ToString() ?? string.Empty;
+                string selectedText = row.Cells[1].Value?.ToString() ?? string.Empty;
+                string urduName = row.Cells[2].Value?.ToString() ?? string.Empty;
                 int stockQty = Convert.ToInt32(row.Cells[4].Value);
 
                 _lastSelectedProductText = selectedText;
@@ -478,9 +478,13 @@ namespace POS_Shop.Views.BillScreen
 
                 await ShowProductPricesAsync(pId);
 
-                if (!string.IsNullOrEmpty(CustomerIdLbl.Text) &&
-                    int.TryParse(CustomerIdLbl.Text, out int cId))
-                    SetProductPreviousSalePrice(cId, pId);
+                #region Don't Remove this code, this code is used to set the previous sale price of the product for the customer, but it is commented out because it was causing issues with the UI. If you want to use this feature, you can uncomment this code and make sure that the CustomerIdLbl.Text is set correctly before calling this method.
+
+                //if (!string.IsNullOrEmpty(CustomerIdLbl.Text) &&
+                //    int.TryParse(CustomerIdLbl.Text, out int cId))
+                //    SetProductPreviousSalePrice(cId, pId);
+
+                #endregion
             }
             finally
             {
