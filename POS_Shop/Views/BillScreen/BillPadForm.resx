@@ -720,12 +720,13 @@
   </data>
   <data name="CustomerNameTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAjYAAAApCAYAAAAmqWNSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAADvSURBVHhe7dZBCcQwAAXR+leVEBkrowJacimshAzvwb98
-        BXNdAAAla63fGOMxMzMzO3G7Zb6w2QcAwKl2ywgbACBB2AAAGcIGAMgQNgBAhrABADKEDQCQIWwAgAxh
-        AwBkCBsAIEPYAAAZwgYAyBA2AECGsAEAMoQNAJAhbACADGEDAGQIGwAgQ9gAABnCBgDIEDYAQIawAQAy
-        hA0AkCFsAIAMYQMAZAgbACBD2AAAGcIGAMgQNgBAhrABADKEDQCQIWwAgAxhAwBkCBsAIEPYAAAZwgYA
-        yBA2AEDGX9jMOe99mJmZmZ243TJf2AAAFLyvVPRtSU/0uwAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAAuwAAAApCAYAAABumnzSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEPSURBVHhe7dYxDcRAEARB80d1p4PxMAzA1iaWnkEHVdIk
+        g6CvCwAAaDvn/NZaj5mZmZmZNTaN/gX7HAAAQMc0umAHAIAowQ4AAGGCHQAAwgQ7AACECXYAAAgT7AAA
+        ECbYAQAgTLADAECYYAcAgDDBDgAAYYIdAADCBDsAAIQJdgAACBPsAAAQJtgBACBMsAMAQJhgBwCAMMEO
+        AABhgh0AAMIEOwAAhAl2AAAIE+wAABAm2AEAIEywAwBAmGAHAIAwwQ4AAGGCHQAAwgQ7AACECXYAAAgT
+        7AAAECbYAQAgTLADAECYYAcAgDDBDgAAYYIdAADCBDsAAIT9Bfve+57DzMzMzMwam0b/gh0AAGh6Ab2h
+        Zzs+THD0AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="ImportUpdatedFilePathTxt.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
